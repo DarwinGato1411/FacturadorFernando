@@ -5,91 +5,17 @@
          viewModel="@id('vm') @init('com.ec.controlador.RegistroUsuarioExt')">
 
     <caption label="Registrar usuario"  class="window_registrar_usuario" />
-   
-    <!-- <div class="container_registro">
-        <div class="wrapper">
-            <div class="col_base">
-                <span>RUC de la empresa</span>
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-address-card icon"></div>
-                    <textbox  maxlength="13"   
-                              value="@bind(vm.usuarioSistema.usuRuc)"
-                              class="input" 
-                    />
-                </div>
-            </div>
-            <div class="col_base">
-                <span>Correo</span>
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-envelope icon"></div>
-                    <textbox  maxlength="100"   
-                              value="@bind(vm.usuarioSistema.usuCorreo)" 
-                              class="input" 
-                    />
-                </div>
-            </div>
-            <div class="col_base">
-               
-                <span>Celular (WhatsApp)</span>
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-phone icon"></div>
-                    <textbox  maxlength="12"   
-                              value="@bind(vm.usuarioSistema.usuWhatsapp)" 
-                              class="input" 
-                    />
-                </div>
-            </div>
-            <div class="col_base">
-                <span>Responsable de la cuenta</span>
-                <div class="wrapper_input"> 
-                    <div class="fa-solid fa-user-group icon"></div>
-                    <textbox  maxlength="100"   
-                              value="@bind(vm.usuarioSistema.usuNombre)" 
-                              class="input" 
-                    />
-                </div>
-            </div>
-            <div class="col_base">
-                <span>Usuario</span>
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-user icon"></div>
-                    <textbox  maxlength="25"   
-                              value="@bind(vm.usuarioSistema.usuLogin)"
-                              class="input" 
-                    />
-                </div>
-            </div>
-            <div class="col_base">
-                <span>Contraseña</span> 
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-key icon"></div>
-                    <textbox  maxlength="25"   
-                              type="password"
-                              value="@bind(vm.usuarioSistema.usuPassword)"
-                              class="input" 
-                    />
-                </div>
-            </div>
-
-            <button 
-                class="col_base btn btn_reg" 
-                onClick="@command('guardar')"
-                autodisable="self"
-                label="Ingresar">
-                Guardar
-            </button>   
-            
-        </div>
-    </div> -->
-
+  
     <script type="text/javascript">
         const windowModal = () => {
             const container = document.querySelector(".window_registrar_usuario");
             const modal = document.querySelector(".register_wrapper_id");
 
+
             const modal_btn = Array.from(
                 container.querySelectorAll(".z-window-modal-close")
             )[0];
+
 
             const closeModal = (e) => {
                 if(!modal.contains(e.target)){
@@ -126,8 +52,7 @@
         };
 
         const stopLoading = () => {
-            const loading = document.querySelector(".loading_register");
-            console.log(loading);
+            const loading = document.querySelector(".loading_registro_usuario");
             loading.style.display = "none";
         };
 
@@ -140,10 +65,10 @@
            }, 500);
         })();
     </script>
-                    
-    <div class="register_container">
+
+    <div class="register_container register_container_id">
         <div class="register_wrapper register_wrapper_id">
-            <image src="./imagenes/pichincha/logo1.png" class="logo" />
+            <image src="./imagenes/logo/logo2.png" class="logo" />
             <div class="wrapper_register">
                 <span class="title">Registro</span>
                 <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
@@ -165,9 +90,9 @@
                             <textbox 
                                 type="text" 
                                 class="input_register" 
-                                placeholder="Usuario"
+                                placeholder="Usuario" 
                                 maxlength="25"   
-                                value="@bind(vm.usuarioSistema.usuLogin)" 
+                                value="@bind(vm.usuarioSistema.usuLogin)"
                             />
                         </div>
                         <div class="wrapper_input_register">
@@ -176,8 +101,8 @@
                                 type="password" 
                                 class="input_register input_password_reg" 
                                 placeholder="Contraseña" 
-                                maxlength="25"
                                 value="@bind(vm.usuarioSistema.usuPassword)"
+                                maxlength="25"
                             />
                             <span class="fa-solid fa-eye icon icon_eye icon_eye_reg"></span>
                         </div>
@@ -190,7 +115,7 @@
                                 class="input_register" 
                                 placeholder="Correo" 
                                 maxlength="100"   
-                                value="@bind(vm.usuarioSistema.usuCorreo)"
+                                value="@bind(vm.usuarioSistema.usuCorreo)" 
                             />
                         </div>
                         <div class="wrapper_input_register">
@@ -200,7 +125,7 @@
                                 class="input_register" 
                                 placeholder="Celular (WhatsApp)" 
                                 maxlength="12"   
-                                value="@bind(vm.usuarioSistema.usuWhatsapp)"
+                                value="@bind(vm.usuarioSistema.usuWhatsapp)" 
                             />
                         </div>
                         <div class="wrapper_input_register">
@@ -212,29 +137,23 @@
                                 maxlength="100"   
                                 value="@bind(vm.usuarioSistema.usuNombre)"
                             />
-
                         </div>
                     </div>
 
                 </div>
-                <button type="button" class="btn btn_register">
+                <button 
+                    type="button" 
+                    class="btn btn_register"
+                    onClick="@command('guardar')"
+                    autodisable="self"
+                >
                     Registrar
                 </button>
             </div>
         </div>
     </div>
-
-    <div class="wrapper_loading loading_register">
-        <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+    
+    <div class="wrapper_loading loading_registro_usuario">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
- 
 </window>

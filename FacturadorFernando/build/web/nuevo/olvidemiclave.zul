@@ -7,77 +7,93 @@
                             apply="org.zkoss.bind.BindComposer" 
                             viewModel="@id('vm') @init('com.ec.controlador.RecuperarClave')">
     
-                    <caption label="Olvide mi clave" style="font-weight:bold"
-                    /> 
-                    <!-- <div  class="container" >
-                        <div  class="row" >         
-          
-            
-            
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
-                                <label value="(*) " style="color:red;font-weight:bold"/>RUC :
-                
-                                <textbox  maxlength="100"                          
-                                         value="@bind(vm.usuRuc)" 
-                                         class="form-control" />
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
-                                <label value="(*) " style="color:red;font-weight:bold"/>Correo :
-                
-                                <textbox  maxlength="100"                          
-                                         value="@bind(vm.usuCorreo)" 
-                                         class="form-control" />
-                            </div>
-            
-            
-            
-                     
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
-                    
-                                <image src="/iconos/guardar.png"  
-                                       onClick="@command('recuperar')"
-                                       tooltiptext="Recuperar contraseña"/>
- 
+    <caption label="Olvide mi clave" class="window_recuperar_clave"/> 
 
-                            </div> 
-                        </div>
-   
-                    </div> -->
+    <script type="text/javascript">
+        const windowModal = () => {
+            const container = document.querySelector(".window_recuperar_clave");
+            const modal = document.querySelector(".recuperar_wrapper_id");
 
-                    
-    
-     <div class="container_registro">
-        <div class="wrapper">
-            <div class="col_base">
-                <span>RUC</span>
-                <div class="wrapper_input">
-                    <div class="fa-solid fa-address-card icon"></div>
-                    <textbox  maxlength="20"   
-                        value="@bind(vm.usuRuc)" 
-                        class="input" 
-                    />
+
+            const modal_btn = Array.from(
+                container.querySelectorAll(".z-window-modal-close")
+            )[0];
+
+
+            const closeModal = (e) => {
+                if(!modal.contains(e.target)){
+                    modal_btn.click();
+                }
+            };
+
+            document.addEventListener('click', (e) => closeModal(e));
+        };
+
+        const deleteTags = (node) => {
+            const container = document.querySelector(node);
+            const list = Array.from(container.querySelectorAll(".z-label"));
+            list.forEach((e) => e.classList.remove("z-label"));
+        };
+
+        const stopLoading = () => {
+            const loading = document.querySelector(".loading_recuperar_clave");
+            loading.style.display = "none";
+        };
+
+        (() => {
+           setTimeout(() => {
+            windowModal();
+            deleteTags(".recuperar_container_id");
+            stopLoading();
+           }, 500);
+        })();
+    </script>
+
+
+    <div class="login_container recuperar_container_id">
+        <div class="login_wrapper recuperar_wrapper_id">
+            <image src="./imagenes/logo/logo2.png" class="logo" />
+
+            <div class="wrapper">
+                <span class="title">Recuperar cuenta</span>
+                <span class="subtitle">Ingresa tu RUC, te enviaremos un correo electrónico</span>
+
+                <div class="wrapper_inputs">
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-user icon"></span>
+                        <textbox 
+                            type="text" 
+                            class="input" 
+                            placeholder="RUC" 
+                            maxlength="100"                          
+                            value="@bind(vm.usuRuc)"
+                        />
+                    </div>
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-envelope icon"></span>
+                        <textbox 
+                            type="text" 
+                            class="input" 
+                            placeholder="Correo electrónico" 
+                            maxlength="100"                          
+                            value="@bind(vm.usuCorreo)"
+                        />
+                    </div>
+
+                    <button 
+                        type="button" 
+                        class="btn btn_signin"
+                        onClick="@command('recuperar')"
+                    >
+                        Recuperar
+                    </button>
                 </div>
             </div>
 
-            <div class="col_base">
-             <span>Correo</span>
-             <div class="wrapper_input">
-                <div class="fa-solid fa-envelope icon"></div>
-                 <textbox  maxlength="100"   
-                    value="@bind(vm.usuCorreo)" 
-                    class="input" 
-                />
-             </div>
-            </div>
-            <button 
-                class="col_base btn btn_reg" 
-                onClick="@command('recuperar')"
-                 autodisable="self"
-                label="Recuperar contraseña">
-                Recuperar contraseña
-            </button>   
-           
         </div>
     </div>
-                  
+
+    <div class="wrapper_loading loading_recuperar_clave">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
 </window>
