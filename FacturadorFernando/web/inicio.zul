@@ -7,158 +7,153 @@
 
 <zk >
 
-
-    <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
-        <div class="inicio_container">
-        <div class="nav">
-            <image src="http://localhost:8090/svg/logo.svg" class="logo" />
-            <div class="title_wrapper">
-                <span class="title">PICHINCHA</span>
-                <span class="hr" />
-                <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
-            </div>
+    <div class="container_landing"  id="loginWin" apply="com.ec.controlador.LoginController">
+        <image src="./imagenes/logo/logo2.png" class="logo1" />
+        <div class="wrapper_logo2">
+            <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo2" />
         </div>
 
-        <div class="main">
-            <image src="http://localhost:8090/svg/banner.svg" class="banner" />
+        <image src="http://5.189.136.38:8090/svg/1.svg" class="resources_banner img_resource1" />
+        <image src="http://5.189.136.38:8090/svg/2.svg" class="resources_banner img_resource2" />
+        <image src="http://5.189.136.38:8090/svg/3.svg" class="resources_banner img_resource3" />
+        <image src="http://5.189.136.38:8090/svg/4.svg" class="resources_banner img_resource4" />
 
-            <div class="left">
-                <div class="desc">
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
-                            <span>
-                                Soporte permanente
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
+        <div class="container_signin">
+            <div class="wrapper_signin">
+                <span class="title">Inicia Sesión</span>
+                <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
 
-                            <span>
-                                Capacitación gratuita
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-
-                            <span>
-                                Planes mensuales a su necesidad
-                            </span>
-                        </div>
+                <div class="container_inputs">
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-user"></span>
+                        <textbox 
+                            type="text" 
+                            class="input_box" 
+                            id="account"
+                            onCreate="self.focus()"
+                            placeholder="Ingrese el usuario" 
+                        />
                     </div>
 
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>
-                                Guías de remisión
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Facturas</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Retenciones</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Notas de Crédito</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Respaldo de declaraciones</span>
-                        </div>
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-key"></span>
+                        <textbox 
+                            type="text" 
+                            class="input_box" 
+                            id="password"
+                            placeholder="Ingrese la contraseña"
+                        />
                     </div>
                 </div>
 
-                <div class="buttons_wrapper">
-                    <button type="button" class="btn btn_signin btnLogin">Iniciar Sesión</button>
-                    <button type="button" id="btnRegistra" class="btn btn_reg">Registrarse</button>
+                <div class="wrapper_info_action">
+                    <span class="info_action" id="linkOlvideContrasena">¿Olvidaste tu contraseña?</span>
+                    <span class="info_action modal_registro" id="btnRegistra">Realiza tu registro aquí</span>
                 </div>
+
+                <button type="button" class="btn btn_login" id="buttonEntrar">Ingresar</button>
             </div>
 
+            <div class="wrapper_banner">
+                <div class="wrapper_content_title">
+                    <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo_banner" />
+                    <div class="wrapper_title">
+                        <span class="title_banner">VELCH FACT</span>
+                        <div class="hr"></div>
+                        <span class="subtitle_banner">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
+                    </div>
 
+                </div>
+                <div class="wrapper_content_info">
+                    <div class="content_banner_info">
+                        <div class="details">
+                            <div class="info">
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon1.png" class="cursor_img_icon" />
+                                    <span class="detail">Soporte Permanente</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon1.png" class="cursor_img_icon" />
+                                    <span class="detail">Capacitación gratuita</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon1.png" class="cursor_img_icon" />
+                                    <span class="detail">Planes mensuales a su necesidad</span>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon2.png" class="cursor_img_icon" />
+                                    <span class="detail">Guías de remisión</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon2.png" class="cursor_img_icon" />
+                                    <span class="detail">Facturas</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon2.png" class="cursor_img_icon" />
+                                    <span class="detail">Retenciones</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon2.png" class="cursor_img_icon" />
+                                    <span class="detail">Notas de Crédito</span>
+                                </div>
+                                <div class="wrapper_detail">
+                                    <image src="./imagenes/logo/icon2.png" class="cursor_img_icon" />
+                                    <span class="detail">Respaldo de declaraciones</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="services info">
+                            <div class="wrapper_detail">
+                                <span class="detail"
+                                    style="font-weight: bold;margin-bottom: .5em;display:block;font-size: 17px;">Servicios:</span>
+                            </div>
+                            <div class="wrapper_detail">
+                                <image src="./imagenes/logo/icon3.png" class="cursor_img_icon" />
+                                <span class="detail">Contables, Tributarios y Laborales</span>
+                            </div>
+                            <div class="wrapper_detail">
+                                <image src="./imagenes/logo/icon3.png" class="cursor_img_icon" />
+                                <span class="detail">Capacitaciones</span>
+                            </div>
+                            <div class="wrapper_detail">
+                                <image src="./imagenes/logo/icon3.png" class="cursor_img_icon" />
+                                <span class="detail">Asesorías Personalizadas</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="content_banner_img">
+                        <image src="http://5.189.136.38:8090/svg/banner.svg" class="banner_img" />
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="services">
-            <span class="title">Servicios:</span>
-
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Contables, Tributarios y Laborales</span>
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Capacitaciones</span>
-
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Asesorías Personalizadas</span>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="section">
-                <div>
-                    <span class="fa-solid i fa-mobile-retro"></span>
-                    <span>098 203 8008</span>
+        
+       <div class="footer">
+            <div class="wrapper_footer">
+                <div class="wrapper_info">
+                    <span class="fa-solid fa-mobile icon" />
+                    <div class="info">098 203 8008</div>
                 </div>
-
-                <div>
-                    <span class="fa-solid i fa-phone"></span>
-                    <span>022 298 908</span>
+                <div class="wrapper_info">
+                    <span class="fa-solid fa-phone icon" />
+                    <div class="info">022 298 908</div>
                 </div>
-
-                <div>
-                    <span class="fa-solid i fa-envelope"></span>
-                    <span>velch_sa@hotmail.com</span>
+                <div class="wrapper_info">
+                    <span class="fa-solid fa-envelope icon" />
+                    <div class="info">velch_sa@hotmail.com</div>
                 </div>
-
-                <div>
-                    <span class="fa-solid i fa-globe"></span>
-                    <span>www.velch.com.ec</span>
+                <div class="wrapper_info">
+                    <span class="fa-solid fa-globe icon" />
+                    <div class="info">www.velch.com.ec</div>
                 </div>
-
             </div>
-        </div>
-
-        <image src="http://localhost:8090/svg/2.svg" class="recurso recurso_1" />
-        <image src="http://localhost:8090/svg/3.svg" class="recurso recurso_2" />
-        <image src="http://localhost:8090/svg/1.svg" class="recurso recurso_3" />
-        <image src="http://localhost:8090/svg/4.svg" class="recurso recurso_4" />
-
+        </div> 
     </div>
 
-        <div class="login_container login_container_id" style="display:none">
-            <div class="login_wrapper ">
-                <image src="http://localhost:8090/svg/logo.svg" class="logo" />
-
-                <div class="wrapper">
-                    <span class="title">Iniciar Sesión</span>
-                    <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
-
-                    <div class="wrapper_inputs">
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-user icon"></span>
-                            <textbox type="text" class="input" id="account" onCreate="self.focus()" placeholder="Usuario" />
-                        </div>
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-key icon"></span>
-                            <textbox type="password" id="password" class="input input_password" placeholder="Contraseña" />
-                            <span class="fa-solid fa-eye icon icon_eye"></span>
-                        </div>
-                        <span class="forgot" id="linkOlvideContrasena" style="cursor:pointer;">Olvide la contraseña</span>
-
-                        <button type="button"  id="buttonEntrar"  class="btn btn_signin">
-                            Iniciar Sesión
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+    <div class="wrapper_loading loading_inicio">
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     </div>
-
 </zk>
