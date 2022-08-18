@@ -1,14 +1,13 @@
-<?link rel="stylesheet" type="text/css" href="/css/app/base.css"?>   
 <?link rel="stylesheet" type="text/css" href="/css/app/landing/signin.css"?>
-<?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
+<?script src="./js/inicio.js?v1"?>
 
 <?link rel="icon" type="image/x-icon" href="/iconos/defact.ico"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk contentStyle="" >
 
-    <div class='main_container' id="loginWin" apply="com.ec.controlador.LoginController"> 
+    <!-- <div class='main_container' id="loginWin" apply="com.ec.controlador.LoginController"> 
         <div class="wrapper">
             <div class="nav">
                 <div class="logo_wrapper">
@@ -68,6 +67,68 @@
                 <image src="https://deckxel.com/resource/img/wave.svg" class="wave"/>
             </div>
         </div>
-    </div>
+    </div> -->
     
+    <div class="container_landing wrapper_inicio"  id="loginWin" apply="com.ec.controlador.LoginController">
+        <image src="./imagenes/pichincha/logopi.png" class="logo1" />
+        <div class="wrapper_logo2">
+            <image src="./imagenes/pichincha/logo1.png" class="logo2"/>
+        </div>
+
+        <div class="container_signin">
+            <div class="wrapper_signin">
+                <span class="title">Inicia Sesión</span>
+                <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
+
+                <div class="container_inputs">
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-user"></span>
+                        <textbox 
+                            type="text" 
+                            class="input_box" 
+                            placeholder="Ingrese el usuario" 
+                            onCreate="self.focus()"
+                            id="account"
+                        />
+                    </div>
+
+                    <div class="wrapper_input">
+                        <span class="fa-solid fa-key"></span>
+                        <textbox 
+                            type="text" 
+                            class="input_box" 
+                            placeholder="Ingrese la contraseña"
+                            id="password"
+                        />
+                    </div>
+
+                </div>
+
+                <div class="wrapper_info_action">
+                    <span class="info_action" id="linkOlvideContrasena">¿Olvidaste tu contraseña?</span>
+                    <span class="info_action" id="btnRegistra">Realiza tu registro aquí</span>
+                </div>
+
+                <button 
+                    type="button" 
+                    class="btn btn_login"
+                    id="buttonEntrar" 
+                >Ingresar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="wrapper_loading loading_inicio">
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 </zk>
