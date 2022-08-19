@@ -260,7 +260,7 @@
                                 />
 
                                 <div class="wrapper_input wrapper_total">
-                                    <span style="text_total">Total:</span>
+                                    <span class="text_total">Total:</span>
 
                                     <decimalbox  
                                         format="###.##"   

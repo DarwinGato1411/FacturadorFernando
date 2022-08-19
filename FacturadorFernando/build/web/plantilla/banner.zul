@@ -8,7 +8,7 @@
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/logo/5.png" class="logo_defact" />
+                <image  src="/imagenes/logo/logo2.png" class="logo_defact" />
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      
@@ -26,7 +26,7 @@
                        <!--<label value="( / " class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />--> 
                        <!--<label value="  )" class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />-->
                         <!--<div  align="end" style="float: right; " >-->
-                            <a sclass="logout labelLogout" style="color:red" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
+                            <a sclass="logout labelLogout"  id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
                                 <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>--> 
                                 
                                 
@@ -97,8 +97,7 @@
                     </menupopup>
                 </menu>
                     <menu label="Reportes" id="menuReportes" class="menu_child">
-                    <menupopup class="submenu">                                                                         
-                        <!--<menuitem label="Facturas autorizadas SRI" id="btnFactAutori" class="fa-solid fa-gear menu_item" />-->                              
+                    <menupopup class="submenu">                                              
                         <menuitem label="Compras vs Ventas" id="btnBalanceUtilidad" class="fa-solid fa-gear menu_item" />
                         <menuitem label="Acumulado de ventas" id="btnAcumuladoventas" class="fa-solid fa-gear menu_item"/>
                         <menuitem label="Rotacion Productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
@@ -110,20 +109,6 @@
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
                 <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
             </menubar> 
-
-            <!-- <div class="menu_nav">
-                <div class="menu_ul">
-                    <div class="menu_li"><span>One</span></div>
-                    <div class="menu_li"><span>Two</span>
-                    <div class="dropdown menu_ul">
-                        <div class="menu_li"><span>Sub-1</span></div>
-                        <div class="menu_li"><span>Sub-2</span></div>
-                        <div class="menu_li"><span>Sub-3</span></div>
-                    </div>
-                    </div>
-                    <div class="menu_li"><span>Three</span></div>
-                </div>
-            </div> -->
 
 
                     
@@ -144,18 +129,6 @@
                     </menu>    
                 </menubar>
 
-
-                      <!-- <menubar id="menubarEmpresa" orient="horizontal"  autodrop="true">   
-                         <menu label="Empresa" id="menuInformacion" image="/iconos/info.png" >
-                            <menupopup >                                                                         
-                                <menuitem label="RUC: ${sessionScope.usuario.tipoambiente.amRuc} "  image="/iconos/infor.png"  />                              
-                                <menuitem label="RAZÓN SOCIAL: ${sessionScope.usuario.tipoambiente.amRazonSocial}" image="/iconos/infor.png" />
-                                <menuitem label="Modificar usuario" image="/iconos/Boss.png" onClick="@command('modificarUsuario')" />
-                                <menuitem label="Salir"  image="/iconos/logout-24.png"  id="logoutMenu" />
-                               
-                            </menupopup>
-                        </menu>
-                    </menubar>  -->   
                        </div>              
                 </div>
                 

@@ -38,7 +38,7 @@
                     <div class="wrapper_input">
                         <span class="fa-solid fa-key"></span>
                         <textbox 
-                            type="text" 
+                            type="password" 
                             class="input_box" 
                             id="password"
                             placeholder="Ingrese la contraseña"
