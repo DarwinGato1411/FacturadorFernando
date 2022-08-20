@@ -59,10 +59,9 @@ const stopLoading = () => {
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
-      deleteTags(".wrapper_inicio"); //inicio.zul
-      openLogin();
+      deleteTags(".login_container"); //inicio.zul
       showPassword();
       stopLoading();
-    }, 100);
+    }, 2000);
   });
 })();

@@ -7,157 +7,53 @@
 
 <zk >
 
-
-    <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
-        <div class="inicio_container">
-        <div class="nav">
-            <image src="http://localhost:8090/svg/logo.svg" class="logo" />
-            <div class="title_wrapper">
-                <span class="title">PICHINCHA</span>
-                <span class="hr" />
-                <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
-            </div>
-        </div>
-
-        <div class="main">
-            <image src="http://localhost:8090/svg/banner.svg" class="banner" />
-
-            <div class="left">
-                <div class="desc">
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
-                            <span>
-                                Soporte permanente
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
-
-                            <span>
-                                Capacitación gratuita
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-
-                            <span>
-                                Planes mensuales a su necesidad
-                            </span>
-                        </div>
+   <div class="login_container">
+        <div class="wrapper_login">
+            <div class="container_img">
+                <image src="./imagenes/pichincha/logo2.png" class="logo"/>
+                <div class="wrapper_title">
+                    <span class="title">Sistema de facturación Electrónica</span>
+                    <span class="subtitle">Edificio Consultorios Pichincha</span>
+                    <div class="desc">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque rem quaerat deserunt veritatis
+                        ducimus laborum animi blanditiis doloribus! Placeat, maxime.
                     </div>
+                    <button class="btn btn_reg">Registro</button>
+                </div>
+            </div>
+            <div class="container_signin">
+                <span class="title">Iniciar Sesión</span>
+                <span class="subtitle">Bienvenido a edificio consultorios Pichincha</span>
 
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>
-                                Guías de remisión
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Facturas</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Retenciones</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Notas de Crédito</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Respaldo de declaraciones</span>
-                        </div>
+                <div class="wrapper_all_inputs">
+                    <div class="wrapper_input">
+                        <span class="fas fa-user icon"></span>
+                        <textbox 
+                            type="text" 
+                            placeholder="Usuario" 
+                            class="input"
+                        />
+                    </div>
+                    <div class="wrapper_input">
+                        <span class="fas fa-lock icon"></span>
+                        <textbox 
+                            type="password" 
+                            placeholder="Contraseña" 
+                            class="input input_password"
+                        />
+                        <span class="fa-solid fa-eye icon_eye icon"></span>
                     </div>
                 </div>
 
-                <div class="buttons_wrapper">
-                    <button type="button" class="btn btn_signin btnLogin">Iniciar Sesión</button>
-                    <button type="button" id="btnRegistra" class="btn btn_reg">Registrarse</button>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="services">
-            <span class="title">Servicios:</span>
-
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Contables, Tributarios y Laborales</span>
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Capacitaciones</span>
-
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Asesorías Personalizadas</span>
+                <span class="forgot_text">Olvide mi contraseña</span>
+                <button class="btn btn_sign">Iniciar Sesión</button>
             </div>
         </div>
-
-        <div class="footer">
-            <div class="section">
-                <div>
-                    <span class="fa-solid i fa-mobile-retro"></span>
-                    <span>098 203 8008</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-phone"></span>
-                    <span>022 298 908</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-envelope"></span>
-                    <span>velch_sa@hotmail.com</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-globe"></span>
-                    <span>www.velch.com.ec</span>
-                </div>
-
-            </div>
-        </div>
-
-        <image src="http://localhost:8090/svg/2.svg" class="recurso recurso_1" />
-        <image src="http://localhost:8090/svg/3.svg" class="recurso recurso_2" />
-        <image src="http://localhost:8090/svg/1.svg" class="recurso recurso_3" />
-        <image src="http://localhost:8090/svg/4.svg" class="recurso recurso_4" />
-
     </div>
 
-        <div class="login_container login_container_id" style="display:none">
-            <div class="login_wrapper ">
-                <image src="http://localhost:8090/svg/logo.svg" class="logo" />
-
-                <div class="wrapper">
-                    <span class="title">Iniciar Sesión</span>
-                    <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
-
-                    <div class="wrapper_inputs">
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-user icon"></span>
-                            <textbox type="text" class="input" id="account" onCreate="self.focus()" placeholder="Usuario" />
-                        </div>
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-key icon"></span>
-                            <textbox type="password" id="password" class="input input_password" placeholder="Contraseña" />
-                            <span class="fa-solid fa-eye icon icon_eye"></span>
-                        </div>
-                        <span class="forgot" id="linkOlvideContrasena" style="cursor:pointer;">Olvide la contraseña</span>
-
-                        <button type="button"  id="buttonEntrar"  class="btn btn_signin">
-                            Iniciar Sesión
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+    <div class="wrapper_loading loading_inicio">
+        <div class="lds-heart">
+            <div></div>
         </div>
     </div>
 
