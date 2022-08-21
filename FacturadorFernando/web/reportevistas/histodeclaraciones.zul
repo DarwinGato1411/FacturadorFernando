@@ -41,23 +41,23 @@
                                 <template name="model">
                                     <listitem  >
                                          
-                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
+                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      value="@bind(each.hisAnio)" 
                                                      width="100%"/>
                                         </listcell>  
-                                         <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
+                                         <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      value="@bind(each.mesActual.nombre)" 
                                                      width="100%"/>
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
+                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      value="@bind(each.hisDescripcion)" 
                                                      width="100%"/>
                                         </listcell>  
                                                                             
-                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1" onClick="@command('verDeclaraciones',valor=each)" >
+                                        <listcell zclass = "mycss-listcell" class="td-tabla"  onClick="@command('verDeclaraciones',valor=each)" >
                                                             
                                             <div class="wrapper_input"  >
                                                 <span></span>
@@ -72,7 +72,7 @@
                                             </div>
                                             
                                         </listcell>                                
-                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1" onClick="@command('verPago',valor=each)" >
+                                        <listcell zclass = "mycss-listcell" class="td-tabla"  onClick="@command('verPago',valor=each)" >
                                             <div class="wrapper_input"    >
                                                 <span></span>
                                                

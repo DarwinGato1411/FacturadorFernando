@@ -1,8 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
+
+:root {
+  --primary-color: #3e6e55;
+  --secondary-color: #3e6e55;
+  --tertiary-color: #d5ecfb;
+  --background-color: #fff;
+}
 
 body {
   line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased !important;
+  padding: 0 !important;
 }
 
 .factura * {
@@ -139,7 +147,7 @@ body {
 }
 
 .btn_primary {
-  background-color: #1247b9;
+  background-color: var(--secondary-color);
   color: #fff;
 }
 
@@ -149,8 +157,10 @@ body {
 }
 
 .btn_access {
-  background-color: #77dd77;
-  color: #000;
+  /* background-color: #77dd77; 
+  color: #000; */
+  background-color: var(--secondary-color);
+  color: #fff;
 }
 
 .btn_danger {
@@ -159,8 +169,10 @@ body {
 }
 
 .btn_alert {
-  background-color: #fdfd96;
-  color: #000;
+  /* background-color: #fdfd96;
+  color: #000; */
+  background-color: var(--secondary-color);
+  color: #fff;
 }
 
 .btn_element {
@@ -237,7 +249,7 @@ body {
 }
 
 .wrapper_total > span * {
-  color: #77dd77;
+  color: var(--secondary-color);
   font-weight: bold;
   display: block;
   text-align: center;
@@ -250,7 +262,7 @@ body {
   outline: none !important;
   background-color: transparent;
   font-size: 35px !important;
-  color: #77dd77 !important;
+  color: var(--secondary-color) !important;
 }
 
 .wrapper_total {
@@ -308,7 +320,6 @@ body {
   margin-top: 1rem;
   left: 0;
   display: none;
-  border: solid red 1px;
 }
 
 .menu_ul .menu_li:hover > .menu_ul,
@@ -327,6 +338,7 @@ body {
 
 .wrapper_menu {
   margin-bottom: 1em;
+  background-color: var(--primary-color) !important;
 }
 
 .submenu {
@@ -341,6 +353,7 @@ body {
   font-weight: bold !important;
   font-size: 14px !important;
   position: relative;
+  color: var(--primary-color);
 }
 
 .menu_item::before {
@@ -349,11 +362,12 @@ body {
   margin-right: 0.5em;
   font-size: 16px;
   position: absolute;
-  color: gray;
+  color: var(--primary-color);
 }
 
 .menu_child {
   padding: 0 1em !important;
+  /* color: #fff !important; */
   position: relative;
 }
 
@@ -491,7 +505,6 @@ body {
   gap: 1em;
 }
 
-
 .kardex_wrapper_item {
   width: 35%;
   background-color: #eee;
@@ -542,8 +555,44 @@ body {
   .factura_body_content > .factura_body_item {
     width: 50%;
   }
-  
-   .factura_body_content > .factura_body_item_lefth {
+
+  .factura_body_content > .factura_body_item_lefth {
     width: 60%;
+  }
+}
+
+.z-menu-inner-m .z-menu-btn,
+.z-menuitem-inner-m .z-menuitem-btn {
+  color: #fff !important;
+}
+
+div.z-listbox-header th.z-listheader,
+div.z-listbox-header th.z-auxheader {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+div.z-listfooter-cnt,
+div.z-listcell-cnt,
+div.z-listheader-cnt {
+  color: #fff;
+}
+
+.td-tabla {
+  background-color: var(--primary-color);
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+  color: #fff;
+}
+
+.container_headers .icon {
+  color: var(--primary-color);
+}
+
+@media screen and (min-width: 1400px) {
+  .logo_defact {
+    width: 220px;
   }
 }
