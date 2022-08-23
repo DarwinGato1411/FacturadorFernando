@@ -11,6 +11,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  padding: 0 !important;
+}
 .btn {
   width: 100%;
   padding: 12px;
@@ -35,7 +38,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +62,7 @@
   padding: 0 5em;
 }
 .login_container .wrapper_login .container_img .logo {
-  width: 70px;
+  width: 200px;
   position: absolute;
   z-index: 2;
   top: 50px;
@@ -80,14 +83,17 @@
   font-family: "Poppins", sans-serif;
 }
 .login_container .wrapper_login .container_img .wrapper_title .title {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.7em;
   font-size: 35px;
   font-family: "Nunito", sans-serif;
 }
+.login_container .wrapper_login .container_img .wrapper_title .subtitle {
+  font-size: 18px;
+}
 .login_container .wrapper_login .container_img .wrapper_title .desc {
   font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  margin-top: 0.5em;
+  font-size: 14px;
+  margin-top: 1em;
 }
 .login_container .wrapper_login .container_img .wrapper_title .btn_reg {
   margin-top: 4em;
@@ -132,6 +138,11 @@
 .login_container .wrapper_login .container_signin {
   width: 600px;
   padding: 4em;
+}
+.login_container .wrapper_login .container_signin .logo {
+  display: none;
+  width: 70px;
+  text-align: center;
 }
 .login_container .wrapper_login .container_signin .title {
   margin-top: 3em;
@@ -198,7 +209,6 @@
   position: absolute;
   left: unset;
   right: 10px !important;
-  cursor: pointer;
 }
 .login_container .wrapper_login .container_signin .forgot_text {
   display: block;
@@ -209,16 +219,88 @@
   margin-right: 5px;
   cursor: pointer;
 }
-.login_container .wrapper_login .container_signin .btn_sign {
+.login_container .wrapper_login .container_signin .wrapper_buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
   margin-top: 3em;
+}
+.login_container .wrapper_login .container_signin .wrapper_buttons .btn_sign {
+  border: none;
+  outline: none;
+  border: solid rgb(var(--secondary-color)) 2px;
+  border-radius: 20px;
+  color: rgb(var(--secondary-color));
+  background-color: var(--base-color);
+  transition: all 0.3s ease-in-out;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+.login_container
+  .wrapper_login
+  .container_signin
+  .wrapper_buttons
+  .btn_sign:hover {
+  background-color: rgb(var(--secondary-color));
+  color: var(--base-color);
+}
+.login_container
+  .wrapper_login
+  .container_signin
+  .wrapper_buttons
+  .btn_sign_reg {
   border: none;
   outline: none;
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.233));
   color: var(--base-color);
   background-color: rgb(var(--secondary-color));
   font-family: "Poppins", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 20px;
+}
+@media screen and (max-width: 640px) {
+  .login_container .wrapper_login {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .login_container .wrapper_login .container_signin {
+    padding: unset;
+    height: 100% !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .login_container .wrapper_login .container_signin {
+    padding: unset;
+    padding: 0 15% !important;
+  }
+  .login_container .wrapper_login .container_signin .logo {
+    margin-top: 2em;
+  }
+  .login_container .wrapper_login .wrapper_buttons {
+    flex-direction: row !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .login_container .wrapper_login {
+    border-radius: unset;
+    box-shadow: unset;
+    display: unset;
+  }
+  .login_container .wrapper_login .container_img {
+    display: none;
+  }
+  .login_container .wrapper_login .container_signin {
+    width: 100% !important;
+    height: 100% !important;
+    padding: unset;
+  }
+  .login_container .wrapper_login .container_signin .logo {
+    display: block !important;
+  }
+  .login_container .wrapper_login .wrapper_buttons .btn_sign_reg {
+    display: block !important;
+  }
 }
 @media screen and (max-width: 1536px) {
   .login_container .wrapper_login {
@@ -249,7 +331,7 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
   left: 0;
@@ -262,8 +344,8 @@
 }
 .container_registro .wapper_registro,
 .container_forgot_registro .wapper_registro {
-  width: 700px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+  width: 80%;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
   background-color: #fff;
   border-radius: 20px;
   padding: 2em;
@@ -303,7 +385,9 @@
 .container_forgot_registro .wapper_registro .wrapper_all_inputs {
   margin-top: 3em;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  gap: 1em;
 }
 .container_registro .wapper_registro .wrapper_all_inputs .left,
 .container_registro .wapper_registro .wrapper_all_inputs .right,
@@ -329,6 +413,7 @@
   border: solid rgb(var(--secondary-color)) 1px;
   border-radius: 20px;
   color: rgb(var(--secondary-color));
+  width: 100%;
 }
 .container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .icon,
 .container_forgot_registro
@@ -350,7 +435,6 @@
   top: 10px;
   color: rgb(var(--secondary-color));
   right: 10px !important;
-  cursor: pointer;
 }
 .container_registro .wapper_registro .wrapper_button,
 .container_forgot_registro .wapper_registro .wrapper_button {
@@ -381,6 +465,14 @@
 .container_registro .wrapper_forgot .wrapper_button .btn_reg,
 .container_forgot_registro .wrapper_forgot .wrapper_button .btn_reg {
   width: 77%;
+}
+@media screen and (min-width: 640px) {
+  .container_registro .wapper_registro {
+    width: 600px;
+  }
+  .container_registro .wapper_registro .wrapper_all_inputs {
+    flex-direction: row;
+  }
 }
 .wrapper_loading {
   position: fixed;
