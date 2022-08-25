@@ -1,8 +1,8 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-  --primary-color: #3e6e55;
-  --secondary-color: #3e6e55;
+  --primary-color: #01afec;
+  --secondary-color: #01afec;
   --tertiary-color: #d5ecfb;
   --background-color: #fff;
 }
@@ -234,6 +234,10 @@ body {
   transition: ease 0.3s;
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
+}
+
+.z-menu-body-seld .z-menu-body .z-menu-inner-m .z-menu-btn {
+  color: unset !important;
 }
 
 @media only screen and (min-width: 632px) {

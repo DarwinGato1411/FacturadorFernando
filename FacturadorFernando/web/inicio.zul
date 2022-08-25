@@ -6,34 +6,33 @@
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-
-   <div class="login_container"  id="loginWin" apply="com.ec.controlador.LoginController">
+    <div class="login_container" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="wrapper_login">
             <div class="container_img">
-                <image src="./imagenes/logo/logoECP.png" class="logo"/>
+                <image src="./imagenes/manfer/logo-h.png" class="logo" />
                 <div class="wrapper_title">
                     <span class="title">Sistema de Facturación Electrónica</span>
-                    <span class="subtitle">Edificio Consultorios Pichincha</span>
+                    <span class="subtitle">MANFER Asesoría y desarrollo empresarial</span>
                     <div class="desc">
-                        Estimado doctor sea usted bienvenido, para ingresar al sistema
+                        Estimado cliente sea usted bienvenido, para ingresar al sistema
                         por favor digite su usuario y contraseña.
                     </div>
-                    <!--<button class="btn btn_reg" id="btnRegistra" >Registro</button> -->
                 </div>
             </div>
             <div class="container_signin">
-                <image src="./imagenes/pichincha/logo2.png" class="logo"/>
+                <image src="./imagenes/manfer/logo-h.png" class="logo" />
                 <span class="title">Iniciar Sesión</span>
-                <span class="subtitle">Bienvenido a edificio consultorios Pichincha</span> 
+                <span class="subtitle">Bienvenido a MANFER</span>
+
                 <div class="wrapper_all_inputs">
                     <div class="wrapper_input">
                         <span class="fas fa-user icon"></span>
                         <textbox 
                             type="text" 
-                            placeholder="Usuario" 
-                            class="input"
-                            id="account"
+                            class="input" 
+                            id="account" 
                             onCreate="self.focus()"
+                            placeholder="Ingrese el usuario" 
                         />
                     </div>
                     <div class="wrapper_input">
@@ -41,16 +40,17 @@
                         <textbox 
                             type="password" 
                             placeholder="Contraseña" 
-                             id="password"
-                            class="input input_password"
+                            class="input" 
+                            id="password"
+                            onCreate="self.focus()" 
                         />
                         <span class="fa-solid fa-eye icon_eye icon"></span>
                     </div>
                 </div>
 
                 <span class="forgot_text" id="linkOlvideContrasena">Olvide mi contraseña</span>
-                
-                <div class="wrapper_buttons">
+
+                 <div class="wrapper_buttons">
                     <button 
                         class="btn btn_sign" 
                         id="buttonEntrar"
@@ -62,16 +62,11 @@
                     >Registro
                     </button>
                 </div>
-                
-                
             </div>
         </div>
     </div>
 
     <div class="wrapper_loading loading_inicio">
-        <div class="lds-heart">
-            <div></div>
-        </div>
+        <div class="lds-dual-ring"></div>
     </div>
-
 </zk>
