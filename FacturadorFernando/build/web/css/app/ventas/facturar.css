@@ -380,7 +380,7 @@ body {
 .logo_defact {
   display: block;
   object-fit: cover;
-  width: 150px;
+  width: 120px;
   position: relative;
   z-index: 100;
 }
@@ -563,7 +563,7 @@ body {
 
 .z-menu-inner-m .z-menu-btn,
 .z-menuitem-inner-m .z-menuitem-btn {
-  color: #fff !important;
+  color: #fff;
 }
 
 div.z-listbox-header th.z-listheader,
@@ -593,6 +593,6 @@ div.z-listheader-cnt {
 
 @media screen and (min-width: 1400px) {
   .logo_defact {
-    width: 220px;
+    width: 200px;
   }
 }

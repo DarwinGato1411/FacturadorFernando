@@ -12,7 +12,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-23T10:27:30")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-08-24T20:51:17")
 @StaticMetamodel(Guiaremision.class)
 public class Guiaremision_ { 
 

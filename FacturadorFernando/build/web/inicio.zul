@@ -40,7 +40,7 @@
                         <textbox 
                             type="password" 
                             placeholder="Contraseña" 
-                            class="input" 
+                            class="input input_password" 
                             id="password"
                             onCreate="self.focus()" 
                         />

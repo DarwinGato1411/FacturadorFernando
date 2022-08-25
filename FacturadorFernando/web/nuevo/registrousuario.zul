@@ -161,9 +161,7 @@
     </div>
 
     <div class="wrapper_loading loading_registro_usuario">
-        <div class="lds-heart">
-            <div></div>
-        </div>
+        <div class="lds-dual-ring"></div>
     </div>
 
 </window>

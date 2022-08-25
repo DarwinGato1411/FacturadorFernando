@@ -92,9 +92,7 @@
     </div>
 
     <div class="wrapper_loading loading_recuperar_clave">
-        <div class="lds-heart">
-            <div></div>
-        </div>
+        <div class="lds-dual-ring"></div>
     </div>
                   
 </window>

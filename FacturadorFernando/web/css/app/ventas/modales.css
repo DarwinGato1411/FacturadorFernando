@@ -236,10 +236,6 @@ body {
   font-weight: 900;
 }
 
-.z-menu-body-seld .z-menu-body .z-menu-inner-m .z-menu-btn {
-  color: unset !important;
-}
-
 @media only screen and (min-width: 632px) {
   .container_modal {
     width: 1200px;
