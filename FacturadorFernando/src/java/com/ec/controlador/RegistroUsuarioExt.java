@@ -44,14 +44,15 @@ public class RegistroUsuarioExt {
     private String accion = "create";
 
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
-//    UserCredential credential = new UserCredential();
-//    private String amRuc = "";
-//    private Tipoambiente amb = new Tipoambiente();
+    // UserCredential credential = new UserCredential();
+    // private String amRuc = "";
+    // private Tipoambiente amb = new Tipoambiente();
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
-//    private Boolean readOnly = true;
+    // private Boolean readOnly = true;
 
     @AfterCompose
-    public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
+    public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema,
+            @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
         if (usuarioSistema != null) {
             this.usuarioSistema = usuarioSistema;
@@ -88,27 +89,43 @@ public class RegistroUsuarioExt {
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
-        if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
+        
+        
+//        if (usuarioSistema != null 
+//                && !usuarioSistema.getUsuNombre().equals("") 
+//                && !usuarioSistema.getUsuLogin().equals("") 
+//                && !tipoUSuario.equals("")) {
+
+            if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
                     && !usuarioSistema.getUsuLogin().equals("")
+                     && !usuarioSistema.getUsuCorreo().equals("")
+                     && !usuarioSistema.getUsuWhatsapp().equals("")
+                     && !usuarioSistema.getUsuPassword().equals("")
+                     && !usuarioSistema.getUsuRuc().equals("")
                     && !tipoUSuario.equals("")) {
+                
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
-            /*verifica si tiene tipo ambiente*/
+            
+            
+            
+            
+            /* verifica si tiene tipo ambiente */
 
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             if (usuarioSistema.getUsuRuc().length() != 13) {
                 Clients.showNotification("Ingrese un RUC valido..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
 
             Usuario usuariovalida = servicioUsuario.FindUsuarioPorNombre(usuarioSistema.getUsuLogin());
             if (usuariovalida != null) {
                 Clients.showNotification("El nombre de usuario ya se encuentra en uso..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             usuarioSistema.setUsuFechaRegistro(new Date());
@@ -247,16 +264,17 @@ public class RegistroUsuarioExt {
                 servicioParametrizar.crear(parametrizar);
             }
 
-//            usuarioSistema = new Usuario();
+            // usuarioSistema = new Usuario();
             try {
                 tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
                 MailerClassSistema mail = new MailerClassSistema();
-                mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
+                mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada",
+                        usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
                 Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
             } catch (RemoteException ex) {
                 Clients.showNotification("Ocurrio un error al recuperar su password",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
             }
             windowIdUsuario.detach();
