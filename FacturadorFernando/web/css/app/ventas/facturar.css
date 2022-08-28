@@ -563,7 +563,7 @@ body {
 
 .z-menu-inner-m .z-menu-btn,
 .z-menuitem-inner-m .z-menuitem-btn {
-  color: #fff !important;
+  color: #fff;
 }
 
 div.z-listbox-header th.z-listheader,
