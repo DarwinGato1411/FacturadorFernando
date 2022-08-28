@@ -57,7 +57,7 @@ const stopLoading = () => {
 };
 
 (() => {
-  document.addEventListener("DOMContentLoaded", () => {
+  zk.afterMount(function () {
     setTimeout(() => {
       deleteTags(".login_container"); //inicio.zul
       showPassword();

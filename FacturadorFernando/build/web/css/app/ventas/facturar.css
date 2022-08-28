@@ -13,6 +13,14 @@ body {
   padding: 0 !important;
 }
 
+.wrapper_container_facturar {
+  width: 100%;
+}
+
+.wrapper_container_facturar table {
+  width: 100% !important;
+}
+
 .factura * {
   font-family: "Poppins", sans-serif;
 }
@@ -22,6 +30,7 @@ body {
   flex-direction: column;
   gap: 1em;
   margin-bottom: 1em;
+  width: 100%;
 }
 
 .factura_header > .fact_row {
@@ -30,6 +39,8 @@ body {
   padding: 1em;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
+  width: 100%;
   gap: 1em;
 }
 
@@ -52,7 +63,7 @@ body {
 }
 
 .factura_header > .fact_row > .wrapper_data {
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -71,6 +82,10 @@ body {
   cursor: pointer;
   color: gray;
   font-size: 14px;
+}
+
+.fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input * {
+  width: unset !important;
 }
 
 .wrapper_input > span {
@@ -120,7 +135,7 @@ body {
 }
 
 .wrapper_buttons {
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -236,6 +251,7 @@ body {
   background-color: #eee;
   padding: 1em;
   border-radius: 10px;
+  overflow: hidden !important;
 }
 
 .factura_body_content {
@@ -245,7 +261,39 @@ body {
 }
 
 .factura_body_content > .factura_body_item {
-  width: 100%;
+  overflow: auto;
+}
+
+.cell-description-header,
+.cell-description-body {
+  width: 350px !important;
+}
+
+.cell-header {
+  padding: 0 0.5em;
+  width: 100px;
+}
+
+.cell-body {
+  width: 100px;
+  display: block;
+}
+
+.factura_body_content > .factura_body_item > .z-listbox {
+  overflow: unset;
+}
+
+.factura_body_content
+  > .factura_body_item
+  > .z-listbox
+  > .z-listbox-header
+  > table,
+.factura_body_content
+  > .factura_body_item
+  > .z-listbox
+  > .z-listbox-body
+  > table {
+  table-layout: unset !important;
 }
 
 .wrapper_total > span * {
@@ -338,6 +386,9 @@ body {
 
 .wrapper_menu {
   margin-bottom: 1em;
+}
+
+.wrapper_menu > table > tbody > tr {
   background-color: var(--primary-color) !important;
 }
 
@@ -529,6 +580,35 @@ body {
   margin-bottom: 1em;
 }
 
+.z-menu-inner-m .z-menu-btn,
+.z-menuitem-inner-m .z-menuitem-btn {
+  color: #fff;
+}
+
+div.z-listbox-header th.z-listheader,
+div.z-listbox-header th.z-auxheader {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+div.z-listfooter-cnt,
+div.z-listcell-cnt,
+div.z-listheader-cnt {
+  color: #fff;
+}
+
+.td-tabla {
+  background-color: var(--primary-color);
+}
+
+.fa-chevron-icon {
+  color: #fff;
+}
+
+.container_headers .icon {
+  color: var(--primary-color);
+}
+
 @media only screen and (min-width: 1070px) {
   .factura_header {
     flex-direction: row;
@@ -537,6 +617,11 @@ body {
 
   .factura_header > .fact_row {
     width: 50%;
+    flex-direction: row;
+  }
+
+  .wrapper_buttons {
+    width: 40%;
   }
 
   .factura_header > .fact_row:first-child:after {
@@ -559,36 +644,15 @@ body {
   .factura_body_content > .factura_body_item_lefth {
     width: 60%;
   }
-}
 
-.z-menu-inner-m .z-menu-btn,
-.z-menuitem-inner-m .z-menuitem-btn {
-  color: #fff;
-}
+  .factura_body_content > .factura_body_item > .z-listbox {
+    overflow: hidden !important;
+  }
 
-div.z-listbox-header th.z-listheader,
-div.z-listbox-header th.z-auxheader {
-  background: var(--primary-color) !important;
-  color: #fff !important;
-}
-
-div.z-listfooter-cnt,
-div.z-listcell-cnt,
-div.z-listheader-cnt {
-  color: #fff;
-}
-
-.td-tabla {
-  background-color: var(--primary-color);
-}
-
-.fa-chevron-right,
-.fa-chevron-left {
-  color: #fff;
-}
-
-.container_headers .icon {
-  color: var(--primary-color);
+  .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-header,
+  .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-body {
+    overflow: hidden !important;
+  }
 }
 
 @media screen and (min-width: 1400px) {

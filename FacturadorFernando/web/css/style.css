@@ -450,7 +450,10 @@ element.style {
   font-weight: bold;
   font-size: 14px;
   background-color: #eceeef;
-  text-align: left;
+}
+
+.textoFechaDateBox input {
+  width: auto !important;
 }
 .fondoCabeceraList {
   height: 30px;

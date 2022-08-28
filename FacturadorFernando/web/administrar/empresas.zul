@@ -136,7 +136,7 @@
                                         </listcell>
                                         <listcell class="td-tabla"  zclass = "mycss-listcell">
                                             <div 
-                                                class="fa-solid fa-chevron-right"
+                                                class="fa-solid fa-chevron-right fa-chevron-icon"
                                                 style="font-size:16px; padding:0.5em; cursor:pointer;font-weight: bold"
                                                 onClick="@command('seleccionarEmpresa',valor=each)"
                                                 tooltiptext="Seleccionar empresa"
