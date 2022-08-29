@@ -84,7 +84,7 @@ body {
   font-size: 14px;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input * {
+.fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
   width: unset !important;
 }
 
@@ -618,6 +618,10 @@ div.z-listheader-cnt {
   .factura_header > .fact_row {
     width: 50%;
     flex-direction: row;
+  }
+
+  .fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
+    width: 95% !important;
   }
 
   .wrapper_buttons {

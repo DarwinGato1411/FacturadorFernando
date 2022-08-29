@@ -452,9 +452,6 @@ element.style {
   background-color: #eceeef;
 }
 
-.textoFechaDateBox input {
-  width: auto !important;
-}
 .fondoCabeceraList {
   height: 30px;
 }
