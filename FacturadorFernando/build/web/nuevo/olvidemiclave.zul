@@ -51,7 +51,7 @@
 
     <div class="container_forgot_registro recuperar_container_id">
         <div class="wapper_registro wrapper_forgot recuperar_wrapper_id">
-            <image src="./imagenes/manfer/logo-h.png" class="logo" />
+            <image src="./imagenes/tucontador/logo-h.png" class="logo" />
             <div class="info_wrapper info_wrapper_forgot">
                 <span class="title">Recupera tu cuenta</span>
                 <span class="subtitle">Te enviaremos un correo electrónico</span>

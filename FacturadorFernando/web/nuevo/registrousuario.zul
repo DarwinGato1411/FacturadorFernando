@@ -69,7 +69,7 @@
 
     <div class="container_registro register_container_id">
         <div class="wapper_registro register_wrapper_id">
-            <image src="./imagenes/manfer/logo-h.png" class="logo" />
+            <image src="./imagenes/tucontador/logo-h.png" class="logo" />
 
             <div class="info_wrapper">
                 <span class="title">Registro</span>
