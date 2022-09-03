@@ -62,8 +62,8 @@ public class LoginController extends SelectorComposer<Component> {
                     if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
                         Executions.sendRedirect("/venta/facturar.zul");
                     } else {
-                        Clients.showNotification("Su plan ilimitado no ha sido renovado contactese con el administrador.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                        Clients.showNotification("<div style:'width=200px;'>Su plan ilimitado no ha sido<br/> renovado contactese con el administrador.</div>",
+                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
                     }
 
                 } else {
@@ -71,8 +71,8 @@ public class LoginController extends SelectorComposer<Component> {
                         Executions.sendRedirect("/venta/facturar.zul");
 
                     } else {
-                        Clients.showNotification("El numero de documentos emitidos supera al numero de documentos contratado.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                        Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",
+                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
                         
                     }
 
@@ -83,9 +83,8 @@ public class LoginController extends SelectorComposer<Component> {
             }
 
         } else {
-            Clients.showNotification("Usuario o Contraseña incorrecto. \n Contactese con el administrador.",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
-
+            Clients.showNotification("<div  style='width:200px;'>Usuario o Contraseña incorrecto.<br/>Contáctese con el administrador.</div>",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
         }
 
     }

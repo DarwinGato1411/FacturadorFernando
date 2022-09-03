@@ -71,7 +71,7 @@
 
     <div class="container_registro register_container_id">
         <div class="wapper_registro register_wrapper_id">
-            <image src="./imagenes/israel/logo.png" class="logo" />
+            <image src="./imagenes/sesenid/logo.png" class="logo" />
 
             <div class="info_wrapper">
                 <span class="title">Registro</span>
