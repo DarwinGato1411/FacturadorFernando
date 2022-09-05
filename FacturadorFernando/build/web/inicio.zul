@@ -101,16 +101,13 @@
                <!-- <image src="./imagenes/israel/lion.png" class="img_lion" /> -->
                 <div class="wrapper_item_foot">
                     <span class="fa-brands fa-whatsapp icon"></span>
-                    <span>099 9226 274</span>
+                    <span> 099 2523 001</span>
                 </div>
                 <div class="wrapper_item_foot">
                     <span class="fa-regular fa-envelope icon"></span>
-                    <span>israelpublicaciones@gmail.com</span>
+                    <span>seseind@hotmail.com</span>
                 </div>
-                <div class="wrapper_item_foot">
-                    <span class="fa-solid fa-globe"></span>
-                    <span>www.israelpublicaciones.com</span>
-                </div>
+                
             </div>
 
         </div>
