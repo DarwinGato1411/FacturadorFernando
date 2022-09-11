@@ -1,11 +1,16 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
+
+
 :root {
-  --primary-color:  #bf191c;
-  --secondary-color:  #bf191c;
-  --tertiary-color: #bf191c;
-  --background-color: #fff;
+    --primary-color: #342065;
+    --secondary-color: #533185;
+    --tertiary-color:#6b3c8d;
+    --color4:#8c18b0;
+    --color5:#000;
+    --tertiary-color:#fff;
 }
+
 
 body {
   line-height: 1.5 !important;

@@ -7,7 +7,7 @@ const deleteTags = (node) => {
     const container = document.querySelector(node);
 
     const list = Array.from(container.querySelectorAll(".z-label"));
-    console.log('hola', list)
+  
     list.forEach((e) => e.classList.remove("z-label"));
 };
 
@@ -39,6 +39,7 @@ const showLogin = () => {
         setTimeout(() => {
             deleteTags(".all_wrapper"); //inicio.zul
             stopLoading();
+            showMenu();
             showLogin();
         }, 2000);
     });
