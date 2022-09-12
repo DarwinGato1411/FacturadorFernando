@@ -198,7 +198,8 @@
                         </div>
 
                         <div class="contendor_imagen">
-                            <image src="./imagenes/paybills/imgRegistro.png" />
+                            <image class="logo" src="./imagenes/paybills/logo.png" />
+                            <image  class="imgLogin" src="./imagenes/paybills/imgRegistro.png" />
                         </div>
                     </div>
                 </div>
