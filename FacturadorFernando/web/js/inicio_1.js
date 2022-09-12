@@ -7,13 +7,32 @@ const deleteTags = (node) => {
     const container = document.querySelector(node);
 
     const list = Array.from(container.querySelectorAll(".z-label"));
-  
+
     list.forEach((e) => e.classList.remove("z-label"));
 };
 
 const stopLoading = () => {
     const loading = document.querySelector(".loading_inicio");
     loading.style.display = "none";
+};
+
+const showPassword = () => {
+    const password = document.querySelector(".input_password_reg");
+    const icon = document.querySelector(".icon_eye_reg");
+
+    const toggleShowPass = () => {
+        if (password.type === "password") {
+            password.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            password.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    };
+
+    icon.addEventListener("click", toggleShowPass);
 };
 
 
@@ -39,8 +58,9 @@ const showLogin = () => {
         setTimeout(() => {
             deleteTags(".all_wrapper"); //inicio.zul
             stopLoading();
-            showMenu();
+          
             showLogin();
+            showPassword();
         }, 2000);
     });
 })();

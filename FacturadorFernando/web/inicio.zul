@@ -46,8 +46,9 @@
                         </div>
                         <div class="contendor_input">
                            <span class="fas fa-key icon"> </span>
-                            <textbox type="password" placeholder="Contraseña" id="password"
-                                class="input input_password" />
+                            <textbox  type="password" placeholder="Contraseña" id="password"
+                                class="input input_password input_password_reg" />
+                            <span class="fa-solid icon icon_eye fa-eye icon_eye_reg"></span>
                         </div>
                     </div>
 

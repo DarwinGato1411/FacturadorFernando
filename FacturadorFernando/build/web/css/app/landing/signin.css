@@ -215,16 +215,14 @@ body {
 }
 
 .all_wrapper .container_landing .contendor_imagen .logo {
-    width: 70%
+    width: 65%
 }
 
 .all_wrapper .container_landing .contendor_imagen .imgLogin {
-    width: 100%
+    width: 90%
 }
 
-.all_wrapper .container_landing .contendor_imagen {
-    width: 100%
-}
+
 
 .all_wrapper .container_landing .contendor_imagen .z-image {
     
