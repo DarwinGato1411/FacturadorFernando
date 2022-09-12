@@ -227,10 +227,14 @@ body {
     width: 100%
 }
 
-.all_wrapper .container_landing .contendor_imagen .z-image {
-    display: block;
+.all_wrapper .container_landing .contendor_imagen .logo {
+    width: 70%
+}
+
+.all_wrapper .container_landing .contendor_imagen .imgLogin {
     width: 100%
 }
+
 
 @media screen and (min-width: 769px) {
     .all_wrapper {
