@@ -65,7 +65,8 @@
             </div>
 
             <div class="contendor_imagen">
-                <image src="./imagenes/paybills/imgLogin.png" />
+                <image class="logo" src="./imagenes/paybills/logo.png" />
+                <image class="imgLogo" src="./imagenes/paybills/imgLogin.png" />
             </div>
 
 
