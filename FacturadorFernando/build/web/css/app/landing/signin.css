@@ -1,10 +1,9 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-    --primary-color: #342065;
-    --secondary-color: #533185;
-    --color3:#6b3c8d;
-    --color4:#8c18b0;
+    --primary-color: #fdbe2c;
+    --secondary-color: #2a0f0f;
+    
     --color5:#000;
     --color6:#fff;
 }
@@ -201,7 +200,7 @@ body {
     width: 50%;
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #6b3c8d;
+    background-color: var(--primary-color);
     color: #fff;
     border-radius: 10px;
     border: none
@@ -215,9 +214,20 @@ body {
     width: 100%
 }
 
-.all_wrapper .container_landing .contendor_imagen .z-image {
-    display: block;
+.all_wrapper .container_landing .contendor_imagen .logo {
+    width: 70%
+}
+
+.all_wrapper .container_landing .contendor_imagen .imgLogin {
     width: 100%
+}
+
+.all_wrapper .container_landing .contendor_imagen {
+    width: 100%
+}
+
+.all_wrapper .container_landing .contendor_imagen .z-image {
+    
 }
 
 @media screen and (min-width: 769px) {
@@ -375,7 +385,7 @@ body {
     width:100%;
     position: fixed;
     padding: 20px;
-    background: linear-gradient(90deg, rgba(52,32,101,1) 0%, rgba(83,49,133,1) 53%, rgba(107,60,141,1) 100%);
+    background: linear-gradient(90deg, rgba(42,15,15,1) 0%, rgba(253,190,44,1) 100%);
     z-index: 100;
     color: white;
 }

@@ -28,7 +28,7 @@
             <div class="contendor_signin">
 
                 <div class="contendor_imagen_nube">
-                    <image src="./imagenes/paybills/planta3.png" />
+                   <image src="./imagenes/paybills/planta3.png" />
                 </div>
                 <div class="info_login">
                     <span class="title">Iniciar sesión</span>
@@ -64,8 +64,11 @@
 
             </div>
 
-            <div class="contendor_imagen">
-                <image src="./imagenes/paybills/imgLogin.png" />
+           <div class="contendor_imagen">
+
+                <image class="z-image logo" src="./imagenes/facturados/logo.png" />
+                <image class="z-image imgLogin" src="./imagenes/facturados/imgLogin.png" />
+                
             </div>
 
 
