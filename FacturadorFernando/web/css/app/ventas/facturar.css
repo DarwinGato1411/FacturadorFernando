@@ -4,7 +4,7 @@
 
 
 :root {
-    --primary-color: #d4a63b;
+    --primary-color: #ecab0f;
     --secondary-color: #2a0f0f;
     --color5:#000;
     --color6:#fff;
@@ -181,6 +181,11 @@ body {
 }
 
 .btn_primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn_primary:hover {
     background-color: var(--secondary-color);
     color: #fff;
 }
