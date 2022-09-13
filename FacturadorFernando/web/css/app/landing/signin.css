@@ -220,7 +220,7 @@ body {
 }
 
 .all_wrapper .container_landing .contendor_signin .contendor_body .contenedor_button .btn:hover {
-    background-color: #000
+    background-color: var(--primary-color)
 }
 
 .all_wrapper .container_landing .contendor_imagen {
@@ -360,7 +360,7 @@ body {
 .all_wrapper .container_landing .contendor_signin .contendor_body
 .contendor_input .icon
 {
-    color: white;
+    color: var(--secondary-color);
     position: absolute;
     left:12px;
     top:20%;
