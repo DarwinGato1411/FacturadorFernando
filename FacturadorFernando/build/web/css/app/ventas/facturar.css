@@ -4,9 +4,8 @@
 
 
 :root {
-    --primary-color: #fdbe2c;
+    --primary-color: #d4a63b;
     --secondary-color: #2a0f0f;
-
     --color5:#000;
     --color6:#fff;
 }
@@ -20,6 +19,19 @@ body {
 
 .wrapper_container_facturar {
     width: 100%;
+}
+.title {
+ 
+    
+    
+    display: grid;
+}
+
+.title .z-label{
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    font-weight: bold;
 }
 
 .wrapper_container_facturar table {
@@ -38,7 +50,7 @@ body {
     width: 100%;
 }
 
-.factura_header > .fact_row {
+.factura_header > .fact_row > div {
     position: relative;
     background-color: #eee;
     padding: 1em;
@@ -55,7 +67,7 @@ body {
     border-radius: 10px;
 }
 
-.factura_header > .fact_row:first-child:after {
+.factura_header > div > .fact_row > div:first-child:after {
     content: "";
     width: 99%;
     height: 1px;
@@ -67,21 +79,23 @@ body {
     margin: 0 auto;
 }
 
-.factura_header > .fact_row > .wrapper_data {
+.factura_header > .fact_row > div > .wrapper_data {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
 
-.fact_row > .wrapper_data > .wrapper_input {
+
+
+.fact_row > div > .wrapper_data > .wrapper_input {
     display: flex;
     align-items: center;
     gap: 1em;
     position: relative;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .icon {
+.fact_row > div > .wrapper_data > .wrapper_input > .icon {
     position: absolute;
     right: 10px;
     cursor: pointer;
@@ -89,7 +103,7 @@ body {
     font-size: 14px;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
+.fact_row > div > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
     width: unset !important;
 }
 
@@ -101,13 +115,13 @@ body {
     color: #666;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .input_without_label {
+.fact_row > div > .wrapper_data > .wrapper_input > .input_without_label {
     width: 100% !important;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > input,
-.fact_row > .wrapper_data > .wrapper_input > .input_date > input,
-.fact_row > .wrapper_data > .wrapper_input > .input_select > input {
+.fact_row > div > .wrapper_data > .wrapper_input > input,
+.fact_row > div > .wrapper_data > .wrapper_input > .input_date > input,
+.fact_row > div > .wrapper_data > .wrapper_input > .input_select > input {
     width: 90%;
     padding: 5px 10px;
     border: solid 1px #ccc;
@@ -117,20 +131,20 @@ body {
     color: #333;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .input_date,
-.fact_row > .wrapper_data > .wrapper_input > .input_select {
+.fact_row > div > .wrapper_data > .wrapper_input > .input_date,
+.fact_row > div > .wrapper_data > .wrapper_input > .input_select {
     width: 90% !important;
     border: none;
     background-color: transparent;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .input_date > i,
-.fact_row > .wrapper_data > .wrapper_input > .input_select > i {
+.fact_row > div > .wrapper_data > .wrapper_input > .input_date > i,
+.fact_row > div > .wrapper_data > .wrapper_input > .input_select > i {
     display: none;
 }
 
-.fact_row > .wrapper_data > .wrapper_input > .input_date > input,
-.fact_row > .wrapper_data > .wrapper_input > .input_select > input {
+.fact_row > div > .wrapper_data > .wrapper_input > .input_date > input,
+.fact_row > div > .wrapper_data > .wrapper_input > .input_select > input {
     width: 100%;
 }
 
@@ -299,6 +313,10 @@ body {
 > .z-listbox-body
 > table {
     table-layout: unset !important;
+}
+
+.menuabc{
+    border:solid 10px black;
 }
 
 .wrapper_total > span * {
@@ -532,6 +550,20 @@ body {
 } /*
   kardex detallado
 */
+.z-toolbar-end{
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr)
+}
+
+.z-toolbar{
+    border:none;
+}
+
+.menubarEmpresa{
+    margin: auto;
+    width: 50%;
+}
 
 .container_kardex_header {
     background-color: #eee;
@@ -614,18 +646,20 @@ div.z-listheader-cnt {
     color: var(--primary-color);
 }
 
+
+
+
 @media only screen and (min-width: 1070px) {
     .factura_header {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .factura_header > .fact_row {
-        width: 50%;
+    .factura_header > .fact_row > div {
         flex-direction: row;
     }
 
-    .fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
+    .fact_row > div > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
         width: 95% !important;
     }
 
@@ -633,7 +667,7 @@ div.z-listheader-cnt {
         width: 40%;
     }
 
-    .factura_header > .fact_row:first-child:after {
+    .factura_header > .fact_row > div:first-child:after {
         display: none;
     }
 
