@@ -177,7 +177,7 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
                 tipoambiente.setIdUsuario(usuarioSistema);
-                tipoambiente.setAmUnidadDisco("/");
+                tipoambiente.setAmUnidadDisco("E:\\");
                 tipoambiente.setAmGrabaIce(Boolean.FALSE);
                 tipoambiente.setAmValorIce(BigDecimal.ZERO);
                 tipoambiente.setAmCodigoIce("0");
@@ -186,7 +186,7 @@ public class RegistroUsuarioExt {
 
                 // PRODUCCION
                 Tipoambiente tipoambienteProd = new Tipoambiente();
-                tipoambienteProd.setAmUnidadDisco("/");
+                tipoambienteProd.setAmUnidadDisco("E:\\");
                 tipoambienteProd.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambienteProd.setAmCodigo("2");
                 tipoambienteProd.setAmDescripcion("PRODUCCION");
