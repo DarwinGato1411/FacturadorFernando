@@ -8,7 +8,7 @@
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5" align="start">
-                <image style='' src="/imagenes/facturados/logo2.jpg" class="logo_defact" />
+                <image src="/imagenes/facturados/logo2.jpg" class="logo_defact" />
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      
@@ -62,7 +62,7 @@
                   apply="com.ec.controlador.MenuOpciones" 
             class="row col-12 col-sm-12 col-md-12 col-lg-12" >
                 
-         <div class="col-6 col-sm-6 col-md-11 col-lg-11  " align="start" >
+         <div class="" align="start" >
 
             <menubar id="menubar" orient="horizontal"  autodrop="true" class="wrapper_menu">
                 <menu label="Ventas" id="menuEmitirfact" class="menu_child">

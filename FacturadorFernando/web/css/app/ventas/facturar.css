@@ -21,9 +21,9 @@ body {
     width: 100%;
 }
 .title {
- 
-    
-    
+
+
+
     display: grid;
 }
 
@@ -445,7 +445,7 @@ body {
 }
 
 .menu_child {
-    padding: 0 1em !important;
+    padding: 0 0 0 10px !important;
     /* color: #fff !important; */
     position: relative;
 }
@@ -459,7 +459,7 @@ body {
 .logo_defact {
     display: block;
     object-fit: cover;
-    width: 300px;
+    height:90px;
     position: relative;
     z-index: 100;
 }
@@ -631,12 +631,14 @@ div.z-listbox-header th.z-listheader,
 div.z-listbox-header th.z-auxheader {
     background: var(--primary-color) !important;
     color: #fff !important;
+    text-align: center;
 }
 
 div.z-listfooter-cnt,
 div.z-listcell-cnt,
 div.z-listheader-cnt {
     color: #fff;
+    text-align: center;
 }
 
 .td-tabla {
@@ -705,6 +707,6 @@ div.z-listheader-cnt {
 
 @media screen and (min-width: 1400px) {
     .logo_defact {
-        width: 220px;
+        
     }
 }
