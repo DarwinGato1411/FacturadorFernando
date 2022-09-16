@@ -1,10 +1,11 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-  --primary-color:  #bf191c;
-  --secondary-color:  #bf191c;
-  --tertiary-color: #bf191c;
+  --primary-color: #264b9a;
+  --secondary-color: #49bab8;
   --background-color: #fff;
+  --alpha: 0.5;
+  --base-color: #fff;
 }
 
 body {
@@ -431,7 +432,7 @@ body {
 .logo_defact {
   display: block;
   object-fit: cover;
-  width: 300px;
+ 
   position: relative;
   z-index: 100;
 }
@@ -598,7 +599,7 @@ div.z-listheader-cnt {
 }
 
 .td-tabla {
-  background-color: var(--primary-color);
+  background-color:#65ab65 ;
 }
 
 .fa-chevron-icon {
@@ -661,6 +662,6 @@ div.z-listheader-cnt {
 
 @media screen and (min-width: 1400px) {
   .logo_defact {
-    width: 220px;
+    
   }
 }

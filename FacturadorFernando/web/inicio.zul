@@ -16,105 +16,98 @@
 
         <div class="container_landing login_container">
 
-            <div class="wrapper_nav">
-                <div class="nav">
-                    <span class="item_nav login_btn">Iniciar Sesión</span>
-                    <span class="item_nav" id="btnRegistra">Registro</span>
+            <div class="header">
+                <div class="container_color">
+                    <div class="color first"></div>
+                     <div class="color second"></div>
+                     <div class="color third"></div>
+                    <div class="color fourth"></div>
                 </div>
 
-                <span class="fa-solid fa-bars icon_menu"></span>
+                <div class="wrapper_nav">
+                    <div class="nav">
+                        <span class="item_nav login_btn">Iniciar Sesión</span>
+                        <span class="item_nav" id="btnRegistra">Registro</span>
+                    </div>
+                    <span class="fa-solid fa-bars icon_menu"></span>
+                </div>
             </div>
 
+           
+
             <div class="wrapper_header">
-                <image src="./imagenes/sesenid/logo.png" class="logo2" />
+                <image src="./imagenes/grafica/logoPrincipal.png" class="logo2" />
                 
             </div>
 
             <div class="main">
                 <div class="wrapper_main">
-                <!--    <div class="wrapper_logo_ef">
-                        <image src="./imagenes/israel/logo2.png" class="logo2" />
-                        <image src="./imagenes/israel/logo.png" class="logo1" />
-                    </div> -->
+                    <div class="wrapper_logo_ef">
+                        <span class="title">FACTURACIÓN ELECTRÓNICA</span>
+                    </div> 
 
-                    <div class="wrapper_items">
+                    <div class="wrapper_items">  
                         <div class="wrapper_item">
                             <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Soporte Permanente</span>
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">SOPORTE PERMANENTE</span>
                             </div>
                             <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Capacitación Gratuita</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Asesoría Personalizada</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Planes Anuales</span>
-                            </div>
-                        </div>
-                        <div class="wrapper_item">
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Declaraciones</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Anexos Gastos Personales</span>
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">DECLARACIONES</span>
                             </div>
 
                             <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Contabilidad</span>
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">IMPRENTA EN GENERAL</span>
                             </div>
                             <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Respaldo Declaraciones</span>
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">CAPACITACIÓN GRATUITA</span>
+                            </div>
+                            <div class="item">
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">ANEXO GASTOS PERSONALES</span>
+                            </div>
+                            <div class="item">
+                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
+                                <span class="item_desc">FIRMA ELECTRÓNICA</span>
                             </div>
                         </div>
-                        <div class="wrapper_item">
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Facturas</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Guías de Remisión</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Retenciones</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Notas de Crédito</span>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
 
             <div class="footer">
-               <!-- <image src="./imagenes/israel/lion.png" class="img_lion" /> -->
-                <div class="wrapper_item_foot">
-                    <span class="fa-brands fa-whatsapp icon"></span>
-                    <span> 099 2523 001</span>
+                <div class="container_color">
+                    <div class="color first"></div>
+                     <div class="color second"></div>
+                     <div class="color third"></div>
+                    <div class="color fourth"></div>
                 </div>
-                <div class="wrapper_item_foot">
-                    <span class="fa-regular fa-envelope icon"></span>
-                    <span>seseind@hotmail.com</span>
+            
+                <div class="container_info">
+                    <div class="wrapper_item_foot">
+                        <span class="fa-brands fa-whatsapp icon"></span>
+                        <span> 099 465 0068 / 099 746 7720</span>
+                    </div>
+                    <div class="wrapper_item_foot">
+                        <span class="fa-regular fa-envelope icon"></span>
+                        <span>graficalelectronic@gmail.com</span>
+                    </div>
+                    <div class="wrapper_item_foot"> 
+                        <span class="fa-solid fa-code"></span>
+                        <span>www.graficalelectronic.com</span>
+                    </div>
                 </div>
-                
             </div>
 
         </div>
 
          <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
             <div class="wapper_registro wrapper_forgot wrapper_signin">
-                <image src="./imagenes/sesenid/logo.png" class="logo" />
+                 <image src="./imagenes/grafica/logoPrincipal.png" class="logo" />
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>

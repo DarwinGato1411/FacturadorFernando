@@ -1,10 +1,12 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
+
+
 :root {
-    --primary-color: #bf191c;
-    --secondary-color: #bf191c;
-    --background-color: #fff;
-    --alpha: 0.5;
-    --base-color: #fff;
+  --primary-color: #264b9a;
+  --secondary-color: #49bab8;
+  --background-color: #fff;
+  --alpha: 0.5;
+  --base-color: #fff;
 }
 * {
     margin: 0;
@@ -15,11 +17,13 @@
 .z-notification {
     width: 100%;
     height: auto;
-   
+
 }
 
 body {
     padding: 0 !important;
+    font-family: "Poppins", sans-serif;
+    
 }
 .btn {
     width: 100%;
@@ -59,12 +63,14 @@ body {
 }
 .container_registro .wapper_registro .logo,
 .container_forgot_registro .wapper_registro .logo {
-    width: 100%;
-   
+    width: 50%;
+    margin: auto;
+    display: block;
+
 }
 .container_registro .wapper_registro .info_wrapper,
 .container_forgot_registro .wapper_registro .info_wrapper {
-    
+
 }
 .container_registro .wapper_registro .info_wrapper .title,
 .container_registro .wapper_registro .info_wrapper .subtitle,
@@ -164,7 +170,7 @@ body {
 }
 .container_registro .wrapper_forgot .info_wrapper_forgot,
 .container_forgot_registro .wrapper_forgot .info_wrapper_forgot {
-    
+
 }
 .container_registro .wrapper_forgot .wrapper_button .btn_reg,
 .container_forgot_registro .wrapper_forgot .wrapper_button .btn_reg {
@@ -230,7 +236,7 @@ body {
 }
 .container_landing {
     width: 100%;
-    height: 100vh;
+
     overflow: hidden;
     background-color: var(--background-color);
     position: relative;
@@ -261,6 +267,7 @@ body {
     width: 100%;
     display: flex;
     margin-top: 2em;
+    margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -270,10 +277,16 @@ body {
 .main .wrapper_main {
     width: 80%;
 }
-.main .wrapper_main .wrapper_logo_ef {
-    display: none;
-    justify-content: space-between;
+
+
+.main .wrapper_main .wrapper_logo_ef .title{
+   margin: auto;
+   font-size: 20px;
 }
+
+
+
+
 .main .wrapper_main .wrapper_logo_ef .logo2,
 .main .wrapper_main .wrapper_logo_ef .logo1 {
     display: block;
@@ -290,16 +303,17 @@ body {
     margin-top: 1.5em;
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    align-items: center;
 }
 .main .wrapper_main .wrapper_items .wrapper_item {
     font-size: 12px;
     font-family: "Nunito", sans-serif;
+    display: grid;
+    grid-gap:10px;
 }
 .main .wrapper_main .wrapper_items .wrapper_item .item {
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
+    align-items: center;
     margin: 0.7em 0;
 }
 .main .wrapper_main .wrapper_items .wrapper_item .item .img_icon {
@@ -310,21 +324,64 @@ body {
     font-size: 15px;
     font-family: "Raleway", sans-serif;
 }
+.header{
+ 
+}
+
+.header .container_color{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 100%;
+    height: 20px;
+    
+}
+
 .footer {
-    position: absolute;
+    position: fixed;
     background-color: var(--primary-color);
     bottom: 0;
-    left: 0;
-    right: 0;
-    width: auto;
-    height: fit-content;
-    padding: 1em;
+    width:100%;
     color: #fff;
     font-family: "Poppins", sans-serif;
-    display: flex;
-    justify-content: space-evenly;
     font-size: 12px;
+    display: grid;
+    grid-template-columns: repeat(1,1fr)
 }
+
+
+
+.footer .container_color{
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 100%;
+    height: 10px;
+}
+
+.footer .container_info{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin:auto;
+    width: 100%;
+    background-color: #1F1F1F;
+}
+
+.footer .container_info .wrapper_item_foot{
+    margin:auto;
+}
+
+.header .container_color .first, .footer .container_color .first{
+    background-color: cyan;
+}
+.header .container_color .second, .footer .container_color .second{
+    background-color: magenta;
+}
+.header .container_color .third, .footer .container_color .third{
+    background-color: yellow;
+}
+.header .container_color .fourth, .footer .container_color .fourth{
+    background-color: black;
+}
+
 .footer .wrapper_item_foot:last-child {
     display: none;
 }
@@ -337,37 +394,28 @@ body {
     transform: scale(1.4);
     z-index: 2;
 }
-.footer::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 170%;
-    clip-path: polygon(0 0, 0% 100%, 100% 100%);
-    background-color: var(--primary-color);
-    width: 200px;
-    display: none;
-    z-index: -1;
-}
+
 .wrapper_nav {
-    position: fixed;
     width: 100%;
+    background-color: #1F1F1F; 
+    display: grid;  
 }
 .wrapper_nav .nav {
-    width: 100%;
+   
     padding: 1em;
     font-family: "Nunito", sans-serif;
-    background-color: #eee;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-bottom: solid rgba(0, 0, 0, 0.082) 1px;
+    background-color: black;
+  
+    color: white;
     transform: translate(0, -100%);
     transition: transform 0.3s ease-in-out;
+    margin:0 0 0 auto;
 }
 .wrapper_nav .nav .item_nav {
     display: inline-block;
     margin-right: 1em;
     cursor: pointer;
-    padding: 0.5em 1em;
+    
     position: relative;
 }
 .wrapper_nav .nav .item_nav::after {
@@ -426,16 +474,29 @@ body {
         font-family: "Poppins", sans-serif;
         margin-left: 0.6em;
         margin-top: 1em;
+        margin: auto;
     }
     .main .wrapper_main .wrapper_items .wrapper_item .item .img_icon {
         display: block;
         width: 45px;
     }
     .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
-        font-size: 23px;
+        font-size: 20px;
         font-family: "Raleway", sans-serif;
     }
+    .wrapper_item{
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 20px;
+
+    }
 }
+@media screen and (min-width: 769px) {
+    .wrapper_item{
+        grid-template-columns: repeat(2, 1fr);
+        font-size: 20px;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .footer {
         font-size: 19px;
@@ -446,16 +507,15 @@ body {
     .footer .img_lion {
         display: block;
     }
-    .footer::before {
-        content: "";
-        z-index: 1;
-        display: block;
+
+    .wrapper_item{
+        grid-template-columns: repeat(3, 1fr)
     }
     .icon_menu {
         display: none !important;
     }
     .wrapper_nav {
-        width: fit-content;
+       
         right: 0;
     }
     .wrapper_nav .nav {
@@ -463,7 +523,7 @@ body {
         background-color: rgba(0, 0, 0, 0);
         box-shadow: none;
         border: none;
-        margin-top: 1em;
+       
     }
     .wrapper_nav .nav .item_nav {
         font-size: 18px;
@@ -478,9 +538,7 @@ body {
         margin-top: 4em;
         width: 65%;
     }
-    .main .wrapper_main .wrapper_items {
-        margin-top: 4em;
-    }
+
     .main .wrapper_main .wrapper_items .wrapper_item .item .img_icon {
         width: 45px;
         margin-right: 0.6em;

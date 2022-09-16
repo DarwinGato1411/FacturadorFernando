@@ -15,6 +15,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${file.reference.cliente-ws-offline.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.Filters.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -180,10 +184,6 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.jcommon-1.0.15.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${file.reference.cliente-ws-offline.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
