@@ -473,6 +473,7 @@
                                     </listitem>
                                 </template>
                             </listbox>
+                            <span class="title">Los productos a facturar se irán mostrando aquí</span>
                         </div>                         
                     </div>
                          
