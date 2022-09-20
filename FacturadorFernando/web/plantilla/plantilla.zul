@@ -10,6 +10,9 @@
         <north   border="none" >
             <include src="/plantilla/banner.zul"/>
         </north>
+        <west width="auto"  border="none"  autoscroll="true" collapsible="true" splittable="true"  >
+            <include src="/plantilla/menuOpciones.zul"/>
+        </west>
 
     </borderlayout>
    

@@ -7,7 +7,7 @@
     <div  viewModel="@id('vm')" id="gridMenu" apply="com.ec.controlador.MenuOpciones" >
         
         <menubar id="menubar" orient="vertical"  autodrop="true">
-            <menuitem label="Emitir Facturas" id="btnFacturar" image="/iconmenu/cart_add.png" />
+            <menuitem label="Emitir Facturas" image="/iconmenu/cart_add.png" />
             <menuitem label="Facturas emitidas" id="btnNotaVentas" image="/iconmenu/page_gear.png" />
             <menuitem label="Venta sin factura" id="btnSinFact" image="/iconmenu/page.png" />
             <menuitem label="Proformas emitidas" id="btnProformasEmitidas" image="/iconmenu/page_green.png" />
