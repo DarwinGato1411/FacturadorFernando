@@ -143,7 +143,7 @@
                     
     <div class="register_container">
         <div class="register_wrapper register_wrapper_id">
-            <image src="./imagenes/pichincha/logo1.png" class="logo" />
+            <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
             <div class="wrapper_register">
                 <span class="title">Registro</span>
                 <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>

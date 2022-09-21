@@ -11,16 +11,16 @@
     <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="inicio_container">
         <div class="nav">
-            <image src="http://localhost:8090/svg/logo.svg" class="logo" />
+            <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
             <div class="title_wrapper">
-                <span class="title">PICHINCHA</span>
+                <span class="title">VELCH FACT</span>
                 <span class="hr" />
                 <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
             </div>
         </div>
 
         <div class="main">
-            <image src="http://localhost:8090/svg/banner.svg" class="banner" />
+            <image src="http://5.189.136.38:8090/svg/banner.svg" class="banner" />
 
             <div class="left">
                 <div class="desc">
@@ -124,16 +124,16 @@
             </div>
         </div>
 
-        <image src="http://localhost:8090/svg/2.svg" class="recurso recurso_1" />
-        <image src="http://localhost:8090/svg/3.svg" class="recurso recurso_2" />
-        <image src="http://localhost:8090/svg/1.svg" class="recurso recurso_3" />
-        <image src="http://localhost:8090/svg/4.svg" class="recurso recurso_4" />
+        <image src="http://5.189.136.38:8090/svg/2.svg" class="recurso recurso_1" />
+        <image src="http://5.189.136.38:8090/svg/3.svg" class="recurso recurso_2" />
+        <image src="http://5.189.136.38:8090/svg/1.svg" class="recurso recurso_3" />
+        <image src="http://5.189.136.38:8090/svg/4.svg" class="recurso recurso_4" />
 
     </div>
 
         <div class="login_container login_container_id" style="display:none">
             <div class="login_wrapper ">
-                <image src="http://localhost:8090/svg/logo.svg" class="logo" />
+                <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
 
                 <div class="wrapper">
                     <span class="title">Iniciar Sesión</span>
