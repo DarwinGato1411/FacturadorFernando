@@ -52,7 +52,7 @@ const showPassword = () => {
 
 const stopLoading = () => {
     const loading = document.querySelector(".loading_inicio");
-    const body = document.querySelector("body");
+    console.log(loading)
     loading.style.display = "none";
 };
 
@@ -61,21 +61,38 @@ const onLoad = () => {
     a.removeAttribute('style');
     let b = document.querySelector('.z-north');
     b.removeAttribute('style');
+
+    let c = document.querySelector('.z-west-noborder');
+    c.removeAttribute('style');
+
+    let d = document.querySelector('. z-west-body');
+    d.removeAttribute('style');
+
     document.querySelector('body').onresize = () => {
         setTimeout(() => {
             let a = document.querySelector('.z-north-body');
             a.removeAttribute('style');
             let b = document.querySelector('.z-north');
             b.removeAttribute('style');
-        }, 1000);
+            let c = document.querySelector('.z-west-noborder');
+            c.removeAttribute('style');
+
+            let d = document.querySelector('.z-west-body');
+            d.removeAttribute('style');
+        }, 100);
 
     };
 };
 
+const mouse=()=>{
+    
+}
+
 (() => {
     document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
-            onLoad();
+//            onLoad();
+            stopLoading();
         }, 2000);
     });
 })();

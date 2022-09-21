@@ -7,16 +7,16 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <zk>
     <borderlayout class="menu" >
-        <north   border="none" >
+<!--        <north   border="none" >
             <include src="/plantilla/banner.zul"/>
-        </north>
+        </north>-->
         <west width="auto"  border="none"  autoscroll="true" collapsible="true" splittable="true"  >
             <include src="/plantilla/menuOpciones.zul"/>
         </west>
 
     </borderlayout>
    
- <div class="factura" id="mainContentAsesor"  self="@{insert(content)}"  >
- </div>
+    <div class="factura" id="mainContentAsesor"  self="@{insert(content)}"  >
+    </div>
 
 </zk>
