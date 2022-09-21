@@ -57,7 +57,7 @@ const stopLoading = () => {
 };
 
 (() => {
-  document.addEventListener("DOMContentLoaded", () => {
+  zk.afterMount(function () {
     setTimeout(() => {
       deleteTags(".wrapper_inicio"); //inicio.zul
       openLogin();

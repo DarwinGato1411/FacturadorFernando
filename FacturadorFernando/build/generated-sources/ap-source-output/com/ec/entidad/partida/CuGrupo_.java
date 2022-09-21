@@ -8,7 +8,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-09-20T19:18:28")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2022-09-20T20:19:16")
 @StaticMetamodel(CuGrupo.class)
 public class CuGrupo_ { 
 

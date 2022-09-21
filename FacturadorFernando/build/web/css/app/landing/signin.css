@@ -633,7 +633,6 @@ body {
   width: 80px !important;
 }
 
-@import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 :root {
   --primary-color: 224, 95, 6;
   --secondary-color: 31, 57, 111;

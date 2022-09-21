@@ -57,12 +57,16 @@
         };
 
         (() => {
-           setTimeout(() => {
-            windowModal();
-            deleteTags(".register_container_id");
-            showPassword();
-            stopLoading();
-           }, 500);
+
+            zk.afterMount(function () {
+                setTimeout(() => {
+                windowModal();
+                        deleteTags(".register_container_id");
+                        showPassword();
+                        stopLoading();
+                }, 500);
+            });
+
         })();
     </script>
 
