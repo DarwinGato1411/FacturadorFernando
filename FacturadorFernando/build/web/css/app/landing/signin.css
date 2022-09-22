@@ -22,11 +22,11 @@ body {
 }
 @font-face {
   font-family: "Bank_Gothic_Medium";
-  src: url("http://localhost:8090/fonts/Bank_Gothic_Medium.otf");
+  src: url("http://velchfact-facturacionelectronica.com:8090/fonts/Bank_Gothic_Medium.otf");
 }
 @font-face {
   font-family: "Century_Gothic";
-  src: url("http://localhost:8090/fonts/Century_Gothic.ttf");
+  src: url("http://velchfact-facturacionelectronica.com:8090/fonts/Century_Gothic.ttf");
 }
 .inicio_container {
   position: relative;

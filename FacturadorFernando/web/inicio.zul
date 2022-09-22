@@ -2,7 +2,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="./js/inicio.js?v1"?>
 
-<?link rel="icon" type="image/x-icon" href="/iconos/defact.ico"?>  
+<?link rel="icon" type="image/x-icon" href="http://velchfact-facturacionelectronica.com:8090/svg/logo.svg"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -11,16 +11,16 @@
     <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="inicio_container">
         <div class="nav">
-            <image src="http://localhost:8090/svg/logo.svg" class="logo" />
+            <image src="http://velchfact-facturacionelectronica.com:8090/svg/logo.svg" class="logo" />
             <div class="title_wrapper">
-                <span class="title">PICHINCHA</span>
+                <span class="title">VELCHFACT</span>
                 <span class="hr" />
                 <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
             </div>
         </div>
 
         <div class="main">
-            <image src="http://localhost:8090/svg/banner.svg" class="banner" />
+            <image src="http://velchfact-facturacionelectronica.com:8090/svg/banner.svg" class="banner" />
 
             <div class="left">
                 <div class="desc">
@@ -124,10 +124,10 @@
             </div>
         </div>
 
-        <image src="http://localhost:8090/svg/2.svg" class="recurso recurso_1" />
-        <image src="http://localhost:8090/svg/3.svg" class="recurso recurso_2" />
-        <image src="http://localhost:8090/svg/1.svg" class="recurso recurso_3" />
-        <image src="http://localhost:8090/svg/4.svg" class="recurso recurso_4" />
+        <image src="http://velchfact-facturacionelectronica.com:8090/svg/2.svg" class="recurso recurso_1" />
+        <image src="http://velchfact-facturacionelectronica.com:8090/svg/3.svg" class="recurso recurso_2" />
+        <image src="http://velchfact-facturacionelectronica.com:8090/svg/1.svg" class="recurso recurso_3" />
+        <image src="http://velchfact-facturacionelectronica.com:8090/svg/4.svg" class="recurso recurso_4" />
 
     </div>
 
