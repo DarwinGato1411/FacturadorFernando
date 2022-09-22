@@ -179,9 +179,10 @@ public class ServicioUsuario {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
           
-            Query query = em.createQuery("SELECT u FROM Usuario u  WHERE UPPER( u.usuNombre) like :usuNombre OR UPPER(u.usuLogin) like :usuLogin ORDER BY u.usuNombre");
+            Query query = em.createQuery("SELECT u FROM Usuario u  WHERE UPPER( u.usuNombre) like :usuNombre OR UPPER(u.usuLogin) like :usuLogin OR u.usuRuc like :usuRuc ORDER BY u.usuNombre");
             query.setParameter("usuNombre", "%" + busqueda + "%");
             query.setParameter("usuLogin", "%" + busqueda + "%");
+            query.setParameter("usuRuc", "%" + busqueda + "%");
             
 
             listaUsuarios = (List<Usuario>) query.getResultList();
