@@ -167,4 +167,31 @@ public class ServicioUsuario {
 
         return usuarioObtenido;
     }
+    
+    public List<Usuario> findByCoincidencia(String busqueda) {
+
+//        Usuario usuarioLogeado = new Usuario();
+        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+        try {
+            System.out.println("Entra a consultar usuarios ");
+
+           
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+          
+            Query query = em.createQuery("SELECT u FROM Usuario u  WHERE UPPER( u.usuNombre) like :usuNombre OR UPPER(u.usuLogin) like :usuLogin ORDER BY u.usuNombre");
+            query.setParameter("usuNombre", "%" + busqueda + "%");
+            query.setParameter("usuLogin", "%" + busqueda + "%");
+            
+
+            listaUsuarios = (List<Usuario>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta usuarios " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaUsuarios;
+    }
 }

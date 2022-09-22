@@ -166,11 +166,11 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt("recibos@facturado.ec");
+                tipoambiente.setAmPassword("Lampara&Luz$");
+                tipoambiente.setAmHost("smtp.office365.com");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -213,11 +213,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmPort("587");
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmUsuarioSmpt("recibos@facturado.ec");
+                tipoambienteProd.setAmPassword("Lampara&Luz$");
+                tipoambienteProd.setAmHost("smtp.office365.com");
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);

@@ -110,6 +110,7 @@ public class MailerClass {
             m.setFrom(addressfrom);
 
             BodyPart texto = new MimeBodyPart();
+             String HTMLENVIO3 ="";
             String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
                         + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
                         + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"
@@ -117,7 +118,7 @@ public class MailerClass {
                         + "                                   text-align: right;\n"
                         + "                                   padding-right: 25px;\n"
                         + "                                   padding-bottom: 10px;\">\n"
-                        + "      DESAROLLO DE SOFTWARE SOBRE MEDIDA\n"
+                        + "      SISTEMA DE FACTURACION ELECTRONICA FACTURADO\n"
                         + "    </div>\n"
                         + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
                         + "                                 border-top-left-radius: 10px;\n"
@@ -160,18 +161,18 @@ public class MailerClass {
                         + "	\n"
                         + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
                         + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Copyright © 2022 DECKXEL, All rights reserved.</td>\n"
+                        + "			  <td style=\" font-size:9px\">Copyright © 2022 FACTURADO</td>\n"
                         + "\n"
                         + "			 </tr>\n"
                         + "			 <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
                         + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">DECKXEL - Tlf. 0993530018</td>\n"
+                        + "			  <td style=\" font-size:9px\">FACTURADO</td>\n"
                         + "\n"
                         + "			 </tr>\n"
                         + "\n"
                         + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
                         + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Tabacundo - Ecuador</td>\n"
+                        + "			  <td style=\" font-size:9px\">QUITO - ECUADOR</td>\n"
                         + "\n"
                         + "			 </tr>\n"
                         + "\n"
