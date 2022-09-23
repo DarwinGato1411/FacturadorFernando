@@ -58,8 +58,34 @@ body {
     display: grid;
     margin: auto;
     overflow-y: scroll;
-
 }
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.login_container .wrapper_login .container_signin::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+
 .login_container .wrapper_login .container_signin .logo {
     display: none;
     text-align: center;

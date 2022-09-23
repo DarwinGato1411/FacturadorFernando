@@ -575,7 +575,7 @@ div.z-listheader-cnt {
 }
 
 .td-tabla {
-    background-color: var(--primary-color);
+    background-color: #4CA64C;
 }
 
 .container_headers .icon {
@@ -639,7 +639,7 @@ div.z-listheader-cnt {
     position: fixed;
     height: 100vh;
     background: black;
-    
+
 }
 .z-page .factura{
     display: block;
@@ -647,15 +647,16 @@ div.z-listheader-cnt {
     height: 100vh;
     margin: 0 0 0 auto;
 }
-table{
+
+.factura_body table,.factura_body table tbody,.factura_body table tbody tr th,
+.factura_body table tbody tr td,.factura table,.factura table tbody,.factura  table tbody  tr,
+.factura table tbody tr td,.facturaAjuste tr,.factura table tbody tr td{
     display: block;
+    width: 100%;
 }
-tbody{
-    display: block;
-}
-tr, td{
-    display: block;
-}
+
+
+
 .facturar_wrapper_data{
     display: grid !important;
     grid-template-columns: repeat(2,1fr);
@@ -668,30 +669,179 @@ tr, td{
 }
 
 .tabla1{
-    display: grid;
-    grid-template-columns: 18% 39% 11% 14% 13% 5%
+    display: grid !important;
+    grid-template-columns: 10% 50% 10% 10% 10% 10%;
 }
 
 
 
 .encabezado1{
-    display: grid;
-    grid-template-columns: 18% 39% 11% 14% 13% 5%
+    display: grid !important;
+    grid-template-columns: 10% 50% 10% 10% 10% 10%;
 }
 
 .tabla2
 {
-    display: grid;
-    grid-template-columns: 5% 15% 10% 10% 30% 10% 10% 10%;
+    display: grid !important;
+    grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
 }
 
 .encabezado2{
+    display: grid !important;
+    grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
+}
+
+.tabla3
+{
+    display: grid !important;
+    grid-template-columns: 3% 10% 10% 10% 10% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+}
+
+.encabezado3{
+    display: grid !important;
+    grid-template-columns: 3% 10% 10% 10% 10% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+}
+
+.tabla4,.encabezado4{
+    display: grid !important;
+    grid-template-columns: 4% 10% 18% 18% 10% 8% 5% 5% 5% 5% 3% 3% 3% 3%;
+}
+
+
+
+.tabla5,.encabezado5{
+    display: grid !important;
+    grid-template-columns: repeat(5,1fr)
+}
+
+.tabla6,.encabezado6{
+    display: grid !important;
+    grid-template-columns: repeat(10,1fr)
+}
+
+.tabla7,.encabezado7{
+    display: grid !important;
+    grid-template-columns: repeat(4,1fr)
+}
+
+.tabla8,.encabezado8{
+    display: grid !important;
+    grid-template-columns: repeat(3,1fr)
+}
+
+.tabla9,.encabezado9{
+    display: grid !important;
+    grid-template-columns: repeat(4,1fr)
+}
+
+.tabla10,.encabezado10{
+    display: grid !important;
+    grid-template-columns: repeat(4,1fr)
+}
+
+.tabla11,.encabezado11{
+    display: grid !important;
+    grid-template-columns: 6% 9% 9% 9% 9% 40% 9% 9%
+}
+
+.tabla12,.encabezado12{
+    display: grid !important;
+    grid-template-columns: 12% 29% 30% 29%;
+}
+
+.tabla13,.encabezado13{
+    display: grid !important;
+    grid-template-columns: 25% 75%;
+}
+
+.tabla14,.encabezado14{
+    display: grid !important;
+    grid-template-columns: 10% 10% 10% 25% 10% 10% 10% 15%;
+}
+.tabla15,.encabezado15{
+    display: grid !important;
+    grid-template-columns: 10% 60% 10% 10% 10%;
+}
+
+.tabla16,.encabezado16{
+    display: grid !important;
+    grid-template-columns: 70% 10% 10% 10%;
+}
+
+.tabla17,.encabezado17{
+    display: grid !important;
+    grid-template-columns: 25% 50% 15% 10%;
+}
+
+.tabla18,.encabezado18{
+    display: grid !important;
+    grid-template-columns: 12% 10% 78%;
+}
+
+.tabla19,.encabezado19{
+    display: grid !important;
+    grid-template-columns: repeat(10,1fr);
+}
+
+.tabla20,.encabezado20{
+    display: grid !important;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.tabla21,.encabezado21{
+    display: grid !important;
+    grid-template-columns: 8% 14% 15% 13% 15% 7% 8% 15% 5%;
+}
+
+.tabla22,.encabezado22{
+    display: grid !important;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
+
+.tabla23,.encabezado23{
+    display: grid !important;
+    grid-template-columns: 10% 25% 30% 10% 10% 10% 5%;
+    border: none;
+}
+
+.z-toolbar-body{
     display: grid;
-    grid-template-columns: 5% 15% 10% 10% 30% 10% 10% 10%;
+}
+
+.banner{
+    background: #393d42;
+    display: grid;
+    height: 200px
 }
 
 .z-west-noborder,.z-west-body{
     width: 100% !important;
+}
+
+.z-west-body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.z-west-body::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.z-west-body::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+    display: none;
+} 
+
+.z-west-body::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+.z-west-body::-webkit-scrollbar-thumb {
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.z-west-body::-webkit-scrollbar-track {
+    border-radius: 10px;  
 }
 
 .z-menubar-ver .z-menu-body .z-menu-inner-l,.z-menubar-ver .z-menu-body .z-menu-inner-r{
@@ -720,7 +870,7 @@ tr, td{
 }
 
 .z-menu-body{
-    background: black;
+    background: transparent;
 }
 
 .menu_child{
@@ -731,11 +881,14 @@ tr, td{
 
 .z-menu-body-seld .z-menu-inner-m{
     background-image: none !important;
-    
+    color: white !important;
 }
+
+
 
 .z-menubar-ver .z-menu-body .z-menu-inner-m{
     text-align: left !important;
+    color: white !important;
 }
 
 .z-menubar-ver .z-menu-body .z-menu-inner-m{
@@ -754,7 +907,7 @@ tr, td{
 
 .wrapper_menu {
 
-    background-color: black;
+    background-color: #393d42;
     height: 100vh;
 }
 .z-menubar-ver{
@@ -762,5 +915,9 @@ tr, td{
 }
 
 .contenedorMenu{
-    background-color: black;
+    background-color: #393d42;
+}
+
+.z-menu-body-seld .z-menu-inner-m .z-menu-btn{
+    color: white !important;
 }

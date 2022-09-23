@@ -28,18 +28,18 @@
                                      nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead sizable="false">
-                                    <listheader label="Anio"  align="left" hflex="1"></listheader>
-                                    <listheader label="Mes"  align="left" hflex="2"></listheader>
-                                    <listheader label="Descripcion"  align="left" hflex="8"></listheader>
-                                    <listheader label="Declaracion"  align="center" hflex="1"></listheader>
+                                <listhead class="encabezado20" sizable="false">
+                                    <listheader label="Anio"  align="left"></listheader>
+                                    <listheader label="Mes"  align="left"></listheader>
+                                    <listheader label="Descripcion"  align="left"></listheader>
+                                    <listheader label="Declaracion"  align="center"></listheader>
                                     <listheader label="Pago"  align="center" hflex="1"></listheader>
                                     <!--<listheader label="Editar"  align="center" hflex="1"></listheader>-->
                                 </listhead>
                                 
                             
                                 <template name="model">
-                                    <listitem  >
+                                    <listitem class="tabla20">
                                          
                                         <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 

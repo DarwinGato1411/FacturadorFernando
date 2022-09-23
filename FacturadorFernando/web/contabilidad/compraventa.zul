@@ -174,46 +174,39 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                     
                                     <auxhead>
-                                        <auxheader colspan="12" >  
-                                            <div class="row">
-                                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
-                                                    
-                                                    <label value="Total de ventas"   />
-                                                   
-                                                </div>
-                                            </div>
-                                
+                                        <auxheader width="100%">                                        
+                                            <label value="Total de ventas" width="100%"  />
                                         </auxheader>
                                     </auxhead>       
                                     
-                                    <listhead> 
-                                        <listheader width="25%"  label="Fecha" /> 
-                                        <listheader width="25%"  label="Factura" /> 
-                                        <listheader width="25%"  label="Subtotal" />    
-                                        <listheader width="25%"  label="Total" />                                                                 
+                                    <listhead class="encabezado7"> 
+                                        <listheader width="100%%"  label="Fecha" /> 
+                                        <listheader width="100%"  label="Factura" /> 
+                                        <listheader width="100%"  label="Subtotal" />    
+                                        <listheader width="100%"  label="Total" />                                                                 
                                     </listhead>  
                         
                     
                                     <template name="model">                                                            
-                                        <listitem>
+                                        <listitem class="tabla7">
                                             <listcell>
                                                 <datebox value="@bind(each.facFecha)" 
                                                          buttonVisible="false" 
                                                          lenient="true" 
-                                                         format="medium" width="98%"  />
+                                                         format="medium" width="100%"  />
                                             </listcell>
                                             <listcell>
-                                                <label value="@bind(each.facNumeroText)" width="96%" />
-                                            </listcell>
-                                            <listcell>
-                                                <decimalbox format="###.##" 
-                                                            readonly="true"  
-                                                            value="@bind(each.facSubtotal)" width="96%" />
+                                                <label value="@bind(each.facNumeroText)" width="100%" />
                                             </listcell>
                                             <listcell>
                                                 <decimalbox format="###.##" 
                                                             readonly="true"  
-                                                            value="@bind(each.facTotal)" width="96%" />
+                                                            value="@bind(each.facSubtotal)" width="100%" />
+                                            </listcell>
+                                            <listcell>
+                                                <decimalbox format="###.##" 
+                                                            readonly="true"  
+                                                            value="@bind(each.facTotal)" width="100%" />
                                             </listcell>                                            
                                         </listitem>
                                     </template>
@@ -240,34 +233,34 @@
                                         </auxheader>
                                     </auxhead>       
                                     
-                                    <listhead> 
-                                        <listheader width="25%"  label="Fecha" /> 
-                                        <listheader width="25%"  label="Factura" /> 
-                                        <listheader width="25%"  label="Subtotal" />    
-                                        <listheader width="25%"  label="Total" />                                                                 
+                                    <listhead class="encabezado7"> 
+                                        <listheader width="100%"  label="Fecha" /> 
+                                        <listheader width="100%"  label="Factura" /> 
+                                        <listheader width="100%"  label="Subtotal" />    
+                                        <listheader width="100%"  label="Total" />                                                                 
                                     </listhead>  
                         
                     
                                     <template name="model">                                                            
-                                        <listitem>
+                                        <listitem class="tabla7">
                                             <listcell>
                                                 <datebox value="@bind(each.cabFecha)" 
                                                          buttonVisible="false" 
                                                          lenient="true" 
-                                                         format="medium" width="98%"  />
+                                                         format="medium" width="100%"  />
                                             </listcell>
                                             <listcell>
-                                                <label value="@bind(each.cabNumFactura)" width="96%" />
-                                            </listcell>
-                                            <listcell>
-                                                <decimalbox format="###.##" 
-                                                            readonly="true"  
-                                                            value="@bind(each.cabSubTotal)" width="96%" />
+                                                <label value="@bind(each.cabNumFactura)" width="100%" />
                                             </listcell>
                                             <listcell>
                                                 <decimalbox format="###.##" 
                                                             readonly="true"  
-                                                            value="@bind(each.cabTotal)" width="96%" />
+                                                            value="@bind(each.cabSubTotal)" width="100%" />
+                                            </listcell>
+                                            <listcell>
+                                                <decimalbox format="###.##" 
+                                                            readonly="true"  
+                                                            value="@bind(each.cabTotal)" width="100%" />
                                             </listcell>                                            
                                         </listitem>
                                     </template>

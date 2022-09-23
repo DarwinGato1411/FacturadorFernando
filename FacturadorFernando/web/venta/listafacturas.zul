@@ -145,9 +145,9 @@
                                 nonselectableTags=""  mold="paging" pageSize="12"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead> 
-                                <listheader width="40px"  label="" align="rigth" />  
-                                <listheader width="8%"  
+                            <listhead class="encabezado3 encabezado"> 
+                                <listheader width="100%"  label="" align="rigth" />  
+                                <listheader width="100%%"  
                                             sort="auto(facNumeroText)">
                                     <textbox value="@bind(vm.buscarNumFactura)"  
                                             tooltiptext="# Factura"
@@ -157,7 +157,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                 </listheader> 
-                                <listheader width="10%"  >
+                                <listheader width="100%"  >
                                     <textbox value="@bind(vm.buscarCedula)"  
                                             tooltiptext="Cedula"
                                             class="form-control form-control-sm"                                         
@@ -166,7 +166,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                 </listheader>    
-                                <listheader width="13%"  >
+                                <listheader width="100%"  >
                                     <textbox value="@bind(vm.buscarCliente)"  
                                             class="form-control form-control-sm"
                                             tooltiptext="Nombre del cliente"
@@ -175,33 +175,33 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                 </listheader> 
-                                <listheader width="8%"  label="Fecha" sort="auto(facFecha)" /> 
-                                <listheader width="5%"  label="Total "  /> 
-                                <listheader width="4%"  label="Estado " align="rigth" /> 
-                                <listheader width="8%"  label="Estado SRI" align="rigth" /> 
-                                <listheader width="8%"  label="Fecha Aut." align="rigth" /> 
+                                <listheader width="100%"  label="Fecha" sort="auto(facFecha)" /> 
+                                <listheader width="100%"  label="Total "  /> 
+                                <listheader width="100%"  label="Estado " align="rigth" /> 
+                                <listheader width="100%"  label="Estado SRI" align="rigth" /> 
+                                <listheader width="100%"  label="Fecha Aut." align="rigth" /> 
                                 <!--<listheader width="20%"  label="Clave Autorizacion"  />-->                                   
-                                <listheader width="10%"  label="Responsable / Cuenta"  />                                   
-                                <listheader width="3%"  label="" align="rigth" />        
-                                <listheader width="3%"  label="" align="rigth" />        
-                                <listheader width="3%"  label="" align="rigth" />        
-                                <listheader width="3%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="Responsable / Cuenta"  />                                   
+                                <listheader width="100%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />        
                                     
-                                <listheader width="3%"  label="" align="rigth" />
-                                <listheader width="3%"  label="" align="rigth" />                                 
-                                <listheader width="3%"  label="" align="rigth" />        
-                                <listheader width="3%"  label="" align="rigth" />        
-                                <listheader width="3%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />
+                                <listheader width="100%"  label="" align="rigth" />                                 
+                                <listheader width="100%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />        
+                                <listheader width="100%"  label="" align="rigth" />        
                                     
                             </listhead>  
                             
                         
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla3 tabla">
                                     <listcell zclass = "mycss-listcell">
                                         <image  zclass = "mycss-listcell"  src="/iconos/inf.png"   
                                             class="btn btn btn-secondary btn-sm grow"            
-                                            height=" 30px"                             
+                                            height=" 100%"                             
                                             onClick="@command('verInformacion',valor=each)"
                                             tooltiptext="Imprimir comprobante"/>
                                     </listcell>

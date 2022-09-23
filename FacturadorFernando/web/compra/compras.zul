@@ -397,8 +397,8 @@
                                         <custom-attributes org.zkoss.zul.listbox.rod="true"/>
     
                     
-                                        <listhead> 
-                                            <listheader width="20%"      align="left"   >
+                                        <listhead class="encabezado10"> 
+                                            <listheader width="100%" align="left">
                                                 <textbox value="@bind(vm.buscarCodigoProd)"  
                                         
                                                         class="form-control form-control-sm"
@@ -407,7 +407,7 @@
                                                         onOK="@command('buscarLikeKardexCodigoProdComp')"
                                                         onChange="self.setValue(self.getValue().toUpperCase());" />
                                             </listheader>     
-                                            <listheader width="60%" align="left"   >
+                                            <listheader width="100%" align="left"   >
                                                 <textbox value="@bind(vm.buscarNombreProd)"  
                                                         id="idBusquedaProd"
                                                         class="form-control form-control-sm"
@@ -416,13 +416,13 @@
                                                         onOK="@command('buscarLikeKardexNombreProdComp')"                                                     
                                                         onChange="self.setValue(self.getValue().toUpperCase());" />
                                             </listheader>                                                                    
-                                            <listheader width="15%"  label="P COMPRA" align="center" /> 
-                                            <listheader width="10%"  label="" align="center"/>
+                                            <listheader width="100%"  label="P. compra" align="center" /> 
+                                            <listheader width="100%"  label="Asignar" align="center"/>
                         
                                         </listhead>  
                     
                                         <template name="model">                                                            
-                                            <listitem  onOK="@command('agregarItemLista',valor=each.idProducto)">
+                                            <listitem class="tabla10"  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                                 <listcell  style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                         onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
                                                     <textbox value="@bind(each.idProducto.prodCodigo)"     onCreate="self.focus()"
@@ -486,26 +486,28 @@
                                         <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                             
                                         
-                                        <listhead>
-                                            <listheader width="6%"  label="" align="left" >
-                                                <button label="" src="/iconos/delete.png"   
+                                        <listhead class="encabezado2">
+                                            <listheader width="100%"  label="" align="left" >
+                                                <button label="Anular" 
                                                         onClick="@command('eliminarRegistros')"  
                                                         class="btn btn btn-secondary btn-sm "
-                                                        tooltiptext="Eliminar registros seleccionados"/>
+                                                        tooltiptext="Eliminar registros seleccionados"
+                                                        style="color:white;font-size:12px;background:black;"
+                                                />
                                                                 
                                             </listheader> 
-                                            <listheader width="10%"  label="CODIGO" align="left" />
-                                            <listheader width="10%"  label="CANT" align="left"  /> 
-                                            <listheader width="10%"  label="FACTOR" align="left"  /> 
-                                            <listheader width="10%"  label="TRANSF" align="left"  /> 
-                                            <listheader width="40%"  label="DESCRIPCIÓN" align="left" />
-                                            <listheader width="10%"  label="V.UNIT" align="left" /> 
-                                            <listheader width="10%"  label="V. TOTAL" align="left" />
+                                            <listheader width="100%"  label="Codigo" align="left" />
+                                            <listheader width="100%"  label="Cant" align="left"  /> 
+                                            <listheader width="100%"  label="Factor" align="left"  /> 
+                                            <listheader width="100%"  label="Transf." align="left"  /> 
+                                            <listheader width="100%"  label="Descripción" align="left" />
+                                            <listheader width="100%"  label="V. unit" align="left" /> 
+                                            <listheader width="100%"  label="V. total" align="left" />
                                                                                                                             
                                         </listhead>
                     
                                         <template name="model">                                                            
-                                            <listitem>
+                                            <listitem class="tabla2">
                                                 <listcell>
                                                     
                                                 </listcell>
