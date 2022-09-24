@@ -170,17 +170,17 @@
                                 
                                             
                                     
-                                <listhead sizable="true">
-                                    <listheader label="Nombre de la cuenta"  align="left" width="35%"></listheader>
-                                    <listheader label="Usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Contraseña"  align="left" width="20%"></listheader>
-                                    <listheader label="Tipo Usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Modificar"  align="left" width="5%"></listheader>
+                                <listhead class="encabezado25" sizable="true">
+                                    <listheader label="Nombre de la cuenta"  align="left" width="100%"></listheader>
+                                    <listheader label="Usuario"  align="left" width="100%"></listheader>
+                                    <listheader label="Contraseña"  align="left" width="100%"></listheader>
+                                    <listheader label="Tipo Usuario"  align="left" width="100%"></listheader>
+                                    <listheader label="Modificar"  align="left" width="100%"></listheader>
                                 </listhead>
                         
                         
                                 <template name="model">
-                                    <listitem width="100%" > 
+                                    <listitem width="100%"  class="tabla25"> 
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" value="@bind(each.usuNombre)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />

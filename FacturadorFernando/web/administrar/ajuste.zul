@@ -103,7 +103,7 @@
                                             </listhead>  
                         
                                             <template name="model">                                                            
-                                                <listitem class="tabla12"  onOK="@command('agregarItemLista',valor=each.idProducto)">
+                                                <listitem class="tabla12 tabla"  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                                     <listcell  style="font-size:11px;background-color:#d6eefd" 
                                                             zclass = "mycss-listcell" 
                                                             onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
@@ -187,7 +187,7 @@
                                             </listhead>
                         
                                             <template name="model" >                                                            
-                                                <listitem class="tabla12">
+                                                <listitem class="tabla tabla12">
                                                     <listcell  >                                                                                                    
                                                     </listcell>
                                             

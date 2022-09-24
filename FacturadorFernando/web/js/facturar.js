@@ -52,7 +52,7 @@ const showPassword = () => {
 
 const stopLoading = () => {
     const loading = document.querySelector(".loading_inicio");
-    console.log(loading)
+    console.log("hola",loading)
     loading.style.display = "none";
 };
 

@@ -109,7 +109,7 @@
                             
                         
                             <template name="model">                                                            
-                                <listitem class="tabla15">
+                                <listitem class="tabla tabla15">
                                     <listcell  zclass = "mycss-listcell" if="${each.verificaStock}" 
                                             style="font-size:11px;background-color:#C7FEC1">
                                         <textbox readonly="true" style="font-size:12px ;background:#C7FEC1"

@@ -2,20 +2,33 @@
 
 <zk>
 
-    <div class="banner" id="loginWin"  style="height:auto"  width="100%"
-         apply="com.ec.controlador.LogoutController" >
+    <div  id="loginWin"  style="height:auto"  width="100%"
+          apply="com.ec.controlador.LogoutController" >
         <div class="row" >
             <div class="" align="start">
                 <image  src="/imagenes/tucontador/logo.png" class="logo_defact" />
-                <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  -->         
             </div>
-            <div class="" align="start" >
+            
+            <div class="usuario" apply="org.zkoss.bind.BindComposer" 
+                     viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
+                <toolbar class="usuarioData" id="tb"   style="background:transparent ;display:grid;" align="end">
+<!--                    <toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />-->
+                      
+         
+                    <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" style="color: white;"/>
+                    <label  style="color: white;" value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                        
+                </toolbar>
+            </div>
+               
+          
+<!--            <div class="" align="start" >
                 <div apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
-                    <toolbar id="tb" height="30px"  style="background:transparent ;display:grid;" align="end">
-                        <!--                       <toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />
+                    <toolbar id="tba" height="600px"  style="background:transparent ;display:grid;" align="end">
+                        <toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />
                         <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
-                        <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />-->
+                        <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
          
                         <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" style="color: white;"/>
                         <label  style="color: white;" value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
@@ -28,8 +41,8 @@
                                 <label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/> 
                                 
                                 
-                                <!--                            <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
-                                <span>Salir</span>-->
+                                <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
+                                <span>Salir</span>
                             </a>
 
                 
@@ -37,7 +50,7 @@
                     </toolbar>
                 </div>
                
-            </div>
+            </div>-->
         </div>
     </div>
 </zk>

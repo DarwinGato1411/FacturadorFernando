@@ -422,7 +422,7 @@
                                         </listhead>  
                     
                                         <template name="model">                                                            
-                                            <listitem class="tabla10"  onOK="@command('agregarItemLista',valor=each.idProducto)">
+                                            <listitem class="tabla tabla10"  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                                 <listcell  style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                         onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
                                                     <textbox value="@bind(each.idProducto.prodCodigo)"     onCreate="self.focus()"

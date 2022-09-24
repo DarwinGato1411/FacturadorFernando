@@ -2,10 +2,11 @@
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+
 <zk>
 
     <div class="contenedorMenu" viewModel="@id('vm')" id="gridMenu" apply="com.ec.controlador.MenuOpciones" >
-<!--        <image style="margin: auto;" src="/imagenes/tucontador/logo.png" class="logo_defact" />   -->
+        <!--        <image style="margin: auto;" src="/imagenes/tucontador/logo.png" class="logo_defact" />   -->
         <menubar id="menubar" orient="vertical"  class="wrapper_menu" autodrop="true">
             <menu label="Ventas" id="menuEmitirfact" class="menu_child">
                 <menupopup class="submenu"> 
@@ -14,8 +15,8 @@
                     <menuitem label="Emitir Facturas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>                             
                     <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
                     <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />
-                     <menuitem label="Reporte compras vs ventas" id="btnBalanceUtilidad" class="fa-solid fa-gear menu_item" />
-                         <menuitem label="Reporte acumulado de ventas" id="btnAcumuladoventas" class="fa-solid fa-gear menu_item"/>
+                    <menuitem label="Reporte compras vs ventas" id="btnBalanceUtilidad" class="fa-solid fa-gear menu_item" />
+                    <menuitem label="Reporte acumulado de ventas" id="btnAcumuladoventas" class="fa-solid fa-gear menu_item"/>
                 </menupopup>
             </menu>
                         
@@ -50,6 +51,29 @@
             
 
         </menubar>
+        <div  id="loginWin"  style="height:auto"  width="100%"
+              apply="com.ec.controlador.LogoutController" >
+           
+            
+               
+            <div apply="org.zkoss.bind.BindComposer" 
+                 viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
+                    
+                                              
+                <div >
+                    <a sclass="logout labelLogout" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group salir" >  
+                        <div class="btnSalir">
+                            <label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/> 
+                            <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />   
+                        </div>                          
+                    </a>             
+                </div>
+                    
+            </div>
+               
+                
+           
+        </div>
     </div>
                 
 </zk>

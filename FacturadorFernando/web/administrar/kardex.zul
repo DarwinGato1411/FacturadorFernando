@@ -75,7 +75,7 @@
                             </listhead>  
                         
                             <template name="model">                                                            
-                                <listitem class="tabla13">
+                                <listitem class="tabla tabla13">
                                         
                                     <listcell onClick="@command('seleccionarProductoLista',valor=each)"
                                               style="font-size:11px;background-color:#d6eefd"  
@@ -154,7 +154,7 @@
                             </listhead>  
                     
                             <template name="model">                                                            
-                                <listitem class="tabla14">
+                                <listitem class="tabla tabla14">
                                     
                                     <listcell zclass = "mycss-listcell">
                                         <datebox compact="true" value="@bind(each.detkFechakardex)" 
