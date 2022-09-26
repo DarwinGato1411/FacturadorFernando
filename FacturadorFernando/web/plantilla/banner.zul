@@ -4,9 +4,9 @@
 
     <div  id="loginWin"  style="height:auto"  width="100%"
           apply="com.ec.controlador.LogoutController" >
-        <div class="row" >
-            <div class="" align="start">
-                <image  src="/imagenes/tucontador/logo.png" class="logo_defact" />
+        <div class="" >
+            <div class="" style="width:100%;"  align="start">
+                <image style="margin:auto; display block;"   src="/imagenes/tucontador/logo.png" class="logo_defact" />
             </div>
             
             <div class="usuario" apply="org.zkoss.bind.BindComposer" 

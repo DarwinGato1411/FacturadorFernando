@@ -69,18 +69,15 @@ public class MenuOpciones extends SelectorComposer<Component> {
 
             if (credential.getUsuarioSistema().getUsuNivel() == 1) {
                 menuEmitirfact.setVisible(Boolean.FALSE);
-                menuVentas.setVisible(Boolean.FALSE);
                 menuCompras.setVisible(Boolean.FALSE);
                 menuGuias.setVisible(Boolean.FALSE);
-                menuKardex.setVisible(Boolean.FALSE);
-                menuReportes.setVisible(Boolean.FALSE);
-                btnAdministarVenta.setVisible(Boolean.FALSE);
                 btnHisDeclaraciones.setVisible(Boolean.FALSE);
-
+                btnAdministarVenta.setVisible(Boolean.FALSE);
+                
             } else {
-//                muenGestionUsu.setVisible(Boolean.FALSE);
-//                muenGestionEmpresas.setVisible(Boolean.FALSE);
-//                btnGestionFactura.setVisible(Boolean.FALSE);
+                muenGestionUsu.setVisible(Boolean.FALSE);
+                muenGestionEmpresas.setVisible(Boolean.FALSE);
+                btnGestionFactura.setVisible(Boolean.FALSE);
             }
         }
     }
@@ -292,6 +289,11 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnlistaOrden")
     public void btnlistaOrden() {
         Executions.sendRedirect("/venta/listaorden.zul");
+    }
+    
+    @Listen("onClick = #btnConfSRI")
+    public void btnConfSRI() {
+        Executions.sendRedirect("/administrar/configuracion.zul");
     }
 
     @Command

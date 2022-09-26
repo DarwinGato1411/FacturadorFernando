@@ -816,44 +816,51 @@ div.z-listheader-cnt {
 
 }
 
+.tabla26,.encabezado26{
+    display: grid !important;
+    grid-template-columns: 10% 20% 20% 20% 10% 15% 5%;
+
+}
+
 .z-toolbar-body{
     display: grid;
 }
 
 .banner{
     background: #393d42;
-    display: grid;
-    height: 200px
+    display: flex;
+    flex-direction: column;
+
 }
 
-.z-west-noborder,.z-west-body{
+.banner{
     width: 100% !important;
-    overflow:hidden !important;
+    overflow-y:scroll !important;
 }
 
-.z-west-body::-webkit-scrollbar {
+.banner::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.z-west-body::-webkit-scrollbar:vertical {
+.banner::-webkit-scrollbar:vertical {
     width:10px;
 }
 
-.z-west-body::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+.banner::-webkit-scrollbar-button:increment,.banner::-webkit-scrollbar-button {
     display: none;
 } 
 
-.z-west-body::-webkit-scrollbar:horizontal {
+.banner::-webkit-scrollbar:horizontal {
     height: 10px;
 }
 
-.z-west-body::-webkit-scrollbar-thumb {
-    background-color: #797979;
+.banner::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
 
-.z-west-body::-webkit-scrollbar-track {
+.banner::-webkit-scrollbar-track {
     border-radius: 10px;  
 }
 
@@ -883,7 +890,7 @@ div.z-listheader-cnt {
 }
 
 .z-menubar-hor .z-menu-body .z-menu-inner-m, .z-menubar-hor .z-menuitem-body .z-menuitem-inner-m, .z-menubar-ver .z-menu-body .z-menu-inner-m, .z-menubar-ver .z-menuitem-body .z-menuitem-inner-m {
-   padding: 20px;
+    padding: 20px;
     text-align: left;
     padding-right: 5px;
 }
@@ -983,24 +990,24 @@ input[type='radio']:checked:after {
 }
 
 .z-west-body{
-background: #393d42;
+    background: #393d42;
 }
 
 
 
-.contenedorMenu .salir{
-    
+.salir{
+
     display: grid;
     width: 90%;
     margin: auto;
     color: white;
-    padding: 15px;
+    padding: 10px;
     border-radius: 20px;
     background: var(--primary-color);
-  
+
 }
 
-.contenedorMenu .salir .btnSalir{
+.salir .btnSalir{
     margin: auto;
 }
 
@@ -1011,4 +1018,33 @@ background: #393d42;
 .usuario{
     display: block;
     width: 100%
+}
+
+.z-north-noborder,.z-north-body{
+    height: 100%  !important;
+    width: 100% !important;
+}
+
+.usuarioData{
+    display: grid;
+    border-radius: 20px;
+    height: auto;
+    gap:10px;
+    
+}
+
+.z-listbox-header,.z-listbox-body{
+    width: 100% !important;
+}
+
+.z-toolbarbutton-cnt{
+    border: none !important;
+}
+
+.z-tab-text{
+    color: black !important;
+}
+
+.z-tab .z-tab-hl:hover .z-tab-text {
+    color: black !important;
 }

@@ -1,5 +1,5 @@
 
-<?link rel="stylesheet" type="text/css" href="/css/app/base.css"?>   
+<?link rel="stylesheet" type="text/css" href="/css/app/base.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/landing/signin.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
 
@@ -7,16 +7,14 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <zk>
     <borderlayout class="menu" >
-        <north style="height:220px;background:#393d42;"  border="none" >
-            <include src="/plantilla/banner.zul"/>
+        <north style=""  border="none" >
+            <include src="/plantilla/banner1.zul"/>
         </north>
-        <west width="auto"  border="none"  autoscroll="true" collapsible="true" splittable="true"  >
-            <include src="/plantilla/menuOpciones.zul"/>
-        </west>
+      
 
     </borderlayout>
-   
+
     <div class="factura" id="mainContentAsesor"  self="@{insert(content)}"  >
     </div>
-   
+
 </zk>
