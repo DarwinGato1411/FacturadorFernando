@@ -91,7 +91,7 @@
                         </div>
                     
                         <div class="wrapper_input_mod">
-                            <span>LLeva Contabilidad: </span>
+                            <span>Lleva Contabilidad: </span>
                             <div class="wrapper_input_text">
                                 <radiogroup 
                                     class="radio_group" 
