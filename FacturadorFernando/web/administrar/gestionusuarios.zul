@@ -36,9 +36,7 @@
                             <listbox width="100%" model="@load(vm.listaUsuarios)" 
                                      nonselectableTags="*"  mold="paging"
                                      pageSize="20">
-                         
-                                
-                                            
+    
                                     
                                 <listhead class="encabezado26"  sizable="true">
                                     <listheader label="RUC"  align="left" ></listheader>

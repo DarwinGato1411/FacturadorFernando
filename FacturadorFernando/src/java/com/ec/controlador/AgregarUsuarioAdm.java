@@ -146,6 +146,7 @@ public class AgregarUsuarioAdm {
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
+       
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
                     && !usuarioSistema.getUsuLogin().equals("")
                     && !tipoUSuario.equals("")) {

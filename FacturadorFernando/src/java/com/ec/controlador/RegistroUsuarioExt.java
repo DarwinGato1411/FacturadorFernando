@@ -89,28 +89,19 @@ public class RegistroUsuarioExt {
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
-        
-        
-//        if (usuarioSistema != null 
-//                && !usuarioSistema.getUsuNombre().equals("") 
-//                && !usuarioSistema.getUsuLogin().equals("") 
-//                && !tipoUSuario.equals("")) {
 
-            if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                     && !usuarioSistema.getUsuCorreo().equals("")
-                     && !usuarioSistema.getUsuWhatsapp().equals("")
-                     && !usuarioSistema.getUsuPassword().equals("")
-                     && !usuarioSistema.getUsuRuc().equals("")
-                    && !tipoUSuario.equals("")) {
-                
+          System.out.println("Registro externo "+" "+usuarioSistema.getUsuNombre());
+        if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !usuarioSistema.getUsuCorreo().equals("")
+                && !usuarioSistema.getUsuWhatsapp().equals("")
+                && !usuarioSistema.getUsuPassword().equals("")
+                && !usuarioSistema.getUsuRuc().equals("")
+                && !tipoUSuario.equals("")) {
+
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
-            
-            
-            
-            
-            /* verifica si tiene tipo ambiente */
 
+            /* verifica si tiene tipo ambiente */
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
                         Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
