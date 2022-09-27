@@ -4,32 +4,31 @@
 
     <div class="banner" id="loginWin"  style="height:auto"  width="100%"
          apply="com.ec.controlador.LogoutController" >
-        <div class="row" >
+        <div class="asdasd" >
 
 
-            <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/logo/logopi.png" class="logo_defact" />
-                <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
-                
-                     
-            </div>
-            <div class="col-12 col-sm-12 col-md-7 col-lg-7  " align="start" style="float: right; " >
-                <div apply="org.zkoss.bind.BindComposer" 
+            
+            <div class="menulogo">
+                <div class="menulog1" align="start">
+                    <image  src="/imagenes/logo/logopi.png" class="logo_defact" />                                  
+                </div>
+                <div class="menulog2" apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
-                    <toolbar class="menuA" id="tb"   style="background:transparent;border:none;" align="end" >
+                    <toolbar class="menuA" id="tb"   style="background:transparent;border:none;" >
                         <!--<toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />-->
-                        <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
-                        <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
-         
-                        <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
-                        <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
-                       <!--<label value="( / " class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />--> 
-                       <!--<label value="  )" class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />-->
-                        <!--<div  align="end" style="float: right; " >-->
-                            <a sclass="logout labelLogout" style="color:red;margin:20px;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
-                                <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>--> 
-                                
-                                
+                        <div class="containerPC">                        
+                            <div class="">                       
+                                <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
+                                <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
+                            </div>
+                            <div>
+                                <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
+                                <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                            </div>                     
+                        </div >
+
+                            <a  sclass="logout labelLogout" style="color:red;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group btnSalir" >  
+                                <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>-->   
                             <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
                                 <span>Salir</span>
                             </a>
@@ -41,7 +40,7 @@
                
             </div>
         </div>
-        <div class="row">
+        <div class="menu">
             <div  viewModel="@id('vm')" id="gridMenu" 
                   apply="com.ec.controlador.MenuOpciones" 
             class="row col-12 col-sm-12 col-md-12 col-lg-12" >
