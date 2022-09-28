@@ -671,6 +671,8 @@ public class ListaFacturas {
 //                                    nombreArchivoXML,
 //                                    amb.getAmClaveAccesoSri(),
 //                                    amb, foldervoAutorizado);
+                            valor.setFacpath(archivoEnvioCliente.replace(".xml", ".pdf"));
+                            servicioFactura.modificar(valor);
 
                             fEnvio = new File(archivoEnvioCliente);
 
@@ -678,10 +680,8 @@ public class ListaFacturas {
                             ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
-                            valor.setFacpath(archivoEnvioCliente.replace(".xml", ".pdf"));
-                            servicioFactura.modificar(valor);
-                            /*envia el mail*/
 
+ /*envia el mail*/
                             String[] attachFiles = new String[2];
                             attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
                             attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
