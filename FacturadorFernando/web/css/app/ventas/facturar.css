@@ -822,6 +822,12 @@ div.z-listheader-cnt {
 
 }
 
+.tabla27, .encabezado27{
+    display: grid !important;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 20% 11% 3% 3% 3%;
+
+}
+
 .z-toolbar-body{
     display: grid;
 }
@@ -1011,7 +1017,7 @@ input[type='radio']:checked:after {
     margin: auto;
 }
 
-.tabla td,.tabla td div,.tabla td div span,.tabla td div input{
+.tabla td,.tabla td div,.tabla td div span,.tabla td div input,.z-datebox-inp{
     background-color:white !important;
 }
 
