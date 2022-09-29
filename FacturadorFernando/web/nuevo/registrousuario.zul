@@ -73,11 +73,11 @@
 
     <div class="container_registro register_container_id">
         <div class="wapper_registro register_wrapper_id">
-            <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo logo2_register" />
+            <image src="./imagenes/velch/logoh.png" style="width:300px" />
 
             <div class="info_wrapper">
                 <span class="title">Registro</span>
-                <span class="subtitle">Ingresa tu datos y enviaremos un correo con tus credenciales</span>
+                <span class="subtitle">Administrar tus facturas nunca a sido tan fácil</span>
 
             </div>
 

@@ -10,19 +10,52 @@
 
     <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="inicio_container">
-        <div class="nav">
-            <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
-            <div class="title_wrapper">
-                <span class="title">VELCH FACT</span>
-                <span class="hr" />
-                <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
-            </div>
-        </div>
+        
 
         <div class="main">
-            <image src="http://5.189.136.38:8090/svg/banner.svg" class="banner" />
+            
+            
+            <div class="rigth">
+               <div class="login_wrapper ">
+                
+
+                <div class="wrapper">
+                    <span class="title">Iniciar Sesión</span>
+                    <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
+
+                    <div class="wrapper_inputs">
+                        <div class="wrapper_input">
+                            <span class="fa-solid fa-user icon"></span>
+                            <textbox type="text" class="input" id="account" onCreate="self.focus()" placeholder="Usuario" />
+                        </div>
+                        <div class="wrapper_input">
+                            <span class="fa-solid fa-key icon"></span>
+                            <textbox type="password" id="password" class="input input_password" placeholder="Contraseña" />
+                            <span class="fa-solid fa-eye icon icon_eye"></span>
+                        </div>
+                        <span class="forgot" id="linkOlvideContrasena" style="cursor:pointer;">Olvide la contraseña</span>
+                        <a style="display:block;width: 100%;text-align:right;" id="btnRegistra" class="">Registrarse</a>
+                        <button type="button"  id="buttonEntrar"  class="btn btn_signin">
+                            Iniciar Sesión
+                        </button>
+                         
+                    </div>
+                </div>
+
+            </div>
+            </div>
 
             <div class="left">
+               
+                <div class="nav">
+                    <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
+                    <div class="title_wrapper">
+                        <span class="title">VELCH FACT</span>
+                        <span class="hr" />
+                        <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
+                    </div>
+                </div>
+                
                 <div class="desc">
                     <div class="ul">
                         <div class="li">
@@ -71,33 +104,30 @@
                             <span>Respaldo de declaraciones</span>
                         </div>
                     </div>
+                    <div class="ul">
+                        <span class="title">Servicios:</span>
+
+                        <div class="li">
+                            <span class="fa-solid fa-circle-notch icon"></span>
+                            <span >Contables, Tributarios y Laborales</span>
+                        </div>
+                        <div class="li">
+                            <span class="fa-solid fa-circle-notch icon"></span>
+                            <span>Capacitaciones</span>
+
+                        </div>
+                        <div class="li">
+                            <span class="fa-solid fa-circle-notch icon"></span>
+                            <span>Asesorías Personalizadas</span>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="buttons_wrapper">
-                    <button type="button" class="btn btn_signin btnLogin">Iniciar Sesión</button>
-                    <button type="button" id="btnRegistra" class="btn btn_reg">Registrarse</button>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="services">
-            <span class="title">Servicios:</span>
-
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Contables, Tributarios y Laborales</span>
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Capacitaciones</span>
-
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Asesorías Personalizadas</span>
+                
             </div>
         </div>
+        
 
         <div class="footer">
             <div class="section">
@@ -124,41 +154,16 @@
             </div>
         </div>
 
+       
         <image src="http://5.189.136.38:8090/svg/2.svg" class="recurso recurso_1" />
         <image src="http://5.189.136.38:8090/svg/3.svg" class="recurso recurso_2" />
         <image src="http://5.189.136.38:8090/svg/1.svg" class="recurso recurso_3" />
         <image src="http://5.189.136.38:8090/svg/4.svg" class="recurso recurso_4" />
-
+        <image src="./imagenes/velch/logoh.png" class="recurso recurso_5" />
+ <image src="http://5.189.136.38:8090/svg/banner.svg" class="recurso recurso_6" />  
     </div>
 
-        <div class="login_container login_container_id" style="display:none">
-            <div class="login_wrapper ">
-                <image src="http://5.189.136.38:8090/svg/logo.svg" class="logo" />
-
-                <div class="wrapper">
-                    <span class="title">Iniciar Sesión</span>
-                    <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
-
-                    <div class="wrapper_inputs">
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-user icon"></span>
-                            <textbox type="text" class="input" id="account" onCreate="self.focus()" placeholder="Usuario" />
-                        </div>
-                        <div class="wrapper_input">
-                            <span class="fa-solid fa-key icon"></span>
-                            <textbox type="password" id="password" class="input input_password" placeholder="Contraseña" />
-                            <span class="fa-solid fa-eye icon icon_eye"></span>
-                        </div>
-                        <span class="forgot" id="linkOlvideContrasena" style="cursor:pointer;">Olvide la contraseña</span>
-
-                        <button type="button"  id="buttonEntrar"  class="btn btn_signin">
-                            Iniciar Sesión
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        
     </div>
 
 </zk>
