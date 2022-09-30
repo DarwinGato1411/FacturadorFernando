@@ -125,13 +125,13 @@
                                     Reenviar Lote de Factura
                                 </button>
                                 <button 
-                                    class="fa-solid fa-magnifying-glass btn_fact btn_alert"
+                                    class="fa-solid fa-magnifying-glass btn_fact btn_primary"
                                     onClick="@command('buscarDevueltaSRIPorCorregir')" 
                                     tooltiptext="Buscar facturas pendientes para enviar al SRI"
                                     label="Facturas Devueltas por Corregir"
                                 />
                                 <button 
-                                    class="fa-solid fa-file-excel btn_fact btn_access"
+                                    class="fa-solid fa-file-excel btn_fact btn_primary"
                                     onClick="@command('exportListboxToExcel')"  
                                     tooltiptext="Descargar"
                                     label="Descargar Registros de Factura"

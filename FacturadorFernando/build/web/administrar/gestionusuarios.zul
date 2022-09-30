@@ -93,7 +93,8 @@
                                                    onClick="@command('modificarUsario',valor=each)" 
                                                    tooltiptext="Editar usuario"/> 
                                             
-                                        </listcell>     
+                                        </listcell>
+                                          
                                     
                                     </listitem>
                                 </template>   

@@ -2,7 +2,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="./js/inicio.js?v1"?>
 
-<?link rel="icon" type="image/x-icon" href="/iconos/defact.ico"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/favicon.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -59,20 +59,21 @@
                 <div class="desc">
                     <div class="ul">
                         <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
+                            
+                            <image src="./imagenes/velch/flechaT.png" style="height:25px" class="icon" />
                             <span>
                                 Soporte permanente
                             </span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
+                           <image src="./imagenes/velch/flechaT.png" style="height:25px" class="icon" />
 
                             <span>
                                 Capacitación gratuita
                             </span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                             <image src="./imagenes/velch/flechaT.png" style="height:25px" class="icon" />
 
                             <span>
                                 Planes mensuales a su necesidad
@@ -82,25 +83,25 @@
 
                     <div class="ul">
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                            <image src="./imagenes/velch/flechaA.png" style="height:25px" class="icon" />
                             <span>
                                 Guías de remisión
                             </span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                            <image src="./imagenes/velch/flechaA.png" style="height:25px" class="icon" />
                             <span>Facturas</span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                            <image src="./imagenes/velch/flechaA.png" style="height:25px" class="icon" />
                             <span>Retenciones</span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                            <image src="./imagenes/velch/flechaA.png" style="height:25px" class="icon" />
                             <span>Notas de Crédito</span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
+                            <image src="./imagenes/velch/flechaA.png" style="height:25px" class="icon" />
                             <span>Respaldo de declaraciones</span>
                         </div>
                     </div>
@@ -108,16 +109,16 @@
                         <span class="title">Servicios:</span>
 
                         <div class="li">
-                            <span class="fa-solid fa-circle-notch icon"></span>
+                           <image src="./imagenes/velch/flechaR.png" style="height:25px" class="icon" />
                             <span >Contables, Tributarios y Laborales</span>
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-circle-notch icon"></span>
+                            <image src="./imagenes/velch/flechaR.png" style="height:25px" class="icon" />
                             <span>Capacitaciones</span>
 
                         </div>
                         <div class="li">
-                            <span class="fa-solid fa-circle-notch icon"></span>
+                            <image src="./imagenes/velch/flechaR.png" style="height:25px" class="icon" />
                             <span>Asesorías Personalizadas</span>
                         </div>
                     </div>
@@ -133,7 +134,7 @@
             <div class="section">
                 <div>
                     <span class="fa-solid i fa-mobile-retro"></span>
-                    <span>098 203 8008</span>
+                    <a  class="link" href="https://wa.me/593982038008"><span>098 203 8008</span></a>
                 </div>
 
                 <div>
@@ -143,12 +144,13 @@
 
                 <div>
                     <span class="fa-solid i fa-envelope"></span>
-                    <span>velch_sa@hotmail.com</span>
+                    <a  class="link" href="mailto:elch_sa@hotmail.com"><span>velch_sa@hotmail.com</span></a>
+                   
                 </div>
 
                 <div>
                     <span class="fa-solid i fa-globe"></span>
-                    <span>www.velch.com.ec</span>
+                     <a  class="link" href="www.velch.com.ec"><span><span>www.velch.com.ec</span></span></a>
                 </div>
 
             </div>
