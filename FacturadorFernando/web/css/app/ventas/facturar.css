@@ -668,38 +668,28 @@ div.z-listheader-cnt {
 
 }
 
-.tabla1{
+
+
+
+
+.encabezado1,.tabla1{
     display: grid !important;
     grid-template-columns: 10% 50% 10% 10% 10% 10%;
 }
 
 
 
-.encabezado1{
-    display: grid !important;
-    grid-template-columns: 10% 50% 10% 10% 10% 10%;
-}
 
-.tabla2
-{
+.encabezado2, .tabla2{
     display: grid !important;
     grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
 }
 
-.encabezado2{
-    display: grid !important;
-    grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
-}
 
-.tabla3
-{
-    display: grid !important;
-    grid-template-columns: 3% 10% 10% 10% 10% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
-}
 
-.encabezado3{
+.encabezado3,.tabla3{
     display: grid !important;
-    grid-template-columns: 3% 10% 10% 10% 10% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+    grid-template-columns: 2% 10% 9% 10% 9% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
 }
 
 .tabla4,.encabezado4{
@@ -1036,7 +1026,7 @@ input[type='radio']:checked:after {
     border-radius: 20px;
     height: auto;
     gap:10px;
-    
+
 }
 
 .z-listbox-header,.z-listbox-body{

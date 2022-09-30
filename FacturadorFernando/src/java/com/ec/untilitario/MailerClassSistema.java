@@ -66,8 +66,8 @@ public class MailerClassSistema {
 //            amb = servicioTipoAmbiente.FindALlTipoambiente();
 //            String username = amb.getAmUsuarioSmpt().trim();
 //            String password = amb.getAmPassword().trim();
-            String username = "defact@deckxel.com";
-            String password = "Dereckandre02!";
+            String username = "no-reply@defactec.com";
+            String password = "1h@t3Pap3r";
             return new PasswordAuthentication(username, password);
 
         }
@@ -86,17 +86,12 @@ public class MailerClassSistema {
             amb = ambiente;
 
             String asunto = asuntoInf;
-            String host = "mail.deckxel.com";
-            String port = "26";
+            String host = "smtp.office365.com";
+            String port = "587";
             String protocol = "smtp";
-            String usuarioSmpt = "defact@deckxel.com";
-            String password = "Dereckandre02!";
-//            String asunto = asuntoInf;
-//            String host = amb.getAmHost();
-//            String port = amb.getAmPort();
-//            String protocol = amb.getAmProtocol();
-//            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
+            String usuarioSmpt = "no-reply@defactec.com";
+            String password = "1h@t3Pap3r";
+
 
             // Propiedades de la conexión
             // Get system properties
