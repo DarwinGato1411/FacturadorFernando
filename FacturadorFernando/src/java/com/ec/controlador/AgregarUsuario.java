@@ -39,21 +39,21 @@ import org.zkoss.zul.Window;
  * @author gato
  */
 public class AgregarUsuario {
-    
+
     @Wire
     Window windowIdUsuario;
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private Usuario usuarioSistema = new Usuario();
     private String tipoUSuario = "2";
     private String accion = "create";
-    
+
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
     UserCredential credential = new UserCredential();
     private String amRuc = "";
     private Tipoambiente amb = new Tipoambiente();
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Boolean readOnly = true;
-    
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -61,63 +61,63 @@ public class AgregarUsuario {
             this.usuarioSistema = usuarioSistema;
             tipoUSuario = this.usuarioSistema.getUsuNivel().toString();
             accion = "update";
-            
+
         } else {
             this.usuarioSistema = new Usuario();
             accion = "create";
-            
+
         }
     }
-    
+
     public AgregarUsuario() {
-        
+
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
         readOnly = credential.getUsuarioSistema().getUsuNivel() == 1 ? Boolean.FALSE : Boolean.TRUE;
     }
-    
+
     public Usuario getUsuarioSistema() {
         return usuarioSistema;
     }
-    
+
     public void setUsuarioSistema(Usuario usuarioSistema) {
         this.usuarioSistema = usuarioSistema;
     }
-    
+
     public String getTipoUSuario() {
         return tipoUSuario;
     }
-    
+
     public void setTipoUSuario(String tipoUSuario) {
         this.tipoUSuario = tipoUSuario;
     }
-    
+
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
-         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                    && !tipoUSuario.equals("")) {
+        if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*verifica si tiene tipo ambiente*/
 
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             if (usuarioSistema.getUsuRuc().length() != 13) {
                 Clients.showNotification("Ingrese un RUC valido..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
 
             Usuario usuariovalida = servicioUsuario.FindUsuarioPorNombre(usuarioSistema.getUsuLogin());
             if (usuariovalida != null) {
                 Clients.showNotification("El nombre de usuario ya se encuentra en uso..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             usuarioSistema.setUsuFechaRegistro(new Date());
@@ -222,11 +222,11 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
-                tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmPort("587");
+                tipoambiente.setAmProtocol("smtp");
+                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
+                tipoambiente.setAmPassword("1h@t3Pap3r");
+                tipoambiente.setAmHost("smtp.office365.com");
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
@@ -262,10 +262,10 @@ public class AgregarUsuario {
                 MailerClassSistema mail = new MailerClassSistema();
                 mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
                 Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
             } catch (RemoteException ex) {
                 Clients.showNotification("Ocurrio un error al recuperar su password",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
             }
             windowIdUsuario.detach();
@@ -274,13 +274,13 @@ public class AgregarUsuario {
             Messagebox.show("Verifique la informacion ingresada", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-    
+
     public Boolean getReadOnly() {
         return readOnly;
     }
-    
+
     public void setReadOnly(Boolean readOnly) {
         this.readOnly = readOnly;
     }
-    
+
 }

@@ -213,11 +213,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
-                tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+               tipoambiente.setAmPort("587");
+                tipoambiente.setAmProtocol("smtp");
+                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
+                tipoambiente.setAmPassword("1h@t3Pap3r");
+                tipoambiente.setAmHost("smtp.office365.com");
                 
                 
 

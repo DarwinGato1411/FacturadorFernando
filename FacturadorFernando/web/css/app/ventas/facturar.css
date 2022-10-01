@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
-@font-face {
-    font-family: myFirstFont;
-    src: url(../../../fuente/fuente.ttf);
-}
+
 
 :root{
     --primary-color:#1f396f;
@@ -14,7 +11,7 @@ body,
 html {
     width: 100%;
     height: 100%;
-    font-family: myFirstFont;
+   
     
 }
 
