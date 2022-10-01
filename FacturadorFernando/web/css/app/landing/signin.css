@@ -92,7 +92,7 @@ body {
     width: 350px;
     top: 1;
     right: 0;
-
+    display: none;
 }
 
 .inicio_container .nav {
@@ -299,9 +299,7 @@ body {
 }
 @media screen and (min-width: 768px) {
     .inicio_container .nav {
-        display: grid;
-        width: 70%;
-        grid-template-columns:30% 70%;
+        display: none;
     }
     .inicio_container .nav .logo {
         width: 120px;
@@ -323,6 +321,12 @@ body {
     }
 }
 @media screen and (min-width: 1280px) {
+    
+    .inicio_container .nav {
+        display: grid;
+        width: 70%;
+        grid-template-columns:30% 70%;
+    }
 
     .inicio_container .nav .logo {
         width: 130px;
@@ -351,6 +355,10 @@ body {
         display: block;
     }
     .inicio_container .recurso_4 {
+        display: block;
+    }
+    
+    .inicio_container .recurso_6 {
         display: block;
     }
     .inicio_container .main {
