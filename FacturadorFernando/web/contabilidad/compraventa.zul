@@ -13,7 +13,7 @@
         
         <tabbox  width="100%"  tabscroll="true" >
             <tabs >
-                <tab label="Reporte de compra y Venta" sclass="menutabs"/>
+                <tab label="Reporte compras vs ventas" sclass="menutabs"/>
                 
             </tabs>
             <tabpanels >

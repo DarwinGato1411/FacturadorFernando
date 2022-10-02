@@ -15,7 +15,7 @@
           viewModel="@id('vm') @init('com.ec.controlador.ListaNC')" >
         <tabbox id="tboxPrincipal"  width="100%" >
             <tabs >
-                <tab label="Lista de notas de credito" sclass="menutabs" /> 
+                <tab label="Notas de crédito" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 

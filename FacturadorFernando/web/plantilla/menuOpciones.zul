@@ -10,12 +10,13 @@
         <menubar id="menubar" orient="vertical"  class="wrapper_menu" autodrop="true">
             <menu label="Ventas" id="menuEmitirfact" class="menu_child">
                 <menupopup class="submenu"> 
-                    <menuitem label="Generar Factura" id="btnFacturar" class="fa-solid fa-receipt menu_item" />
-                    <menuitem label="Facturas por cobrar" id="btnfactCobra" class="fa-solid fa-dollar-sign menu_item" />
-                    <menuitem label="Emitir Facturas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>                             
-                    <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
-                    <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />
+                    <menuitem label="Grabar factura" id="btnFacturar" class="fa-solid fa-receipt menu_item" />
+                    <menuitem label="Emitir Facturas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>                    
                     <menuitem label="Reporte compras vs ventas" id="btnBalanceUtilidad" class="fa-solid fa-gear menu_item" />
+                    
+                    <menuitem label="Facturas por cobrar" id="btnfactCobra" class="fa-solid fa-dollar-sign menu_item" />                     
+                    <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
+                    <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />                  
                     <menuitem label="Reporte acumulado de ventas" id="btnAcumuladoventas" class="fa-solid fa-gear menu_item"/>
                 </menupopup>
             </menu>
@@ -24,12 +25,10 @@
                 <menupopup class="submenu">                     
                     <menuitem label="Ingreso de mercaderia" id="btnIngresoCompras" class="fa-solid fa-paper-plane menu_item" />                                
                     <menuitem label="Lista de facturas de compra    " id="btnListaCompras" class="fa-solid fa-list menu_item" />                                                          
-                    <menuitem label="Lista de retenciones" id="btnRetenciones" class="fa-solid fa-list menu_item" />
-                     
+                    <menuitem label="Lista de retenciones" id="btnRetenciones" class="fa-solid fa-list menu_item" />                     
                     <menuitem label="Ajuste de Entrada/Salida" id="btnAjuste" class="fa-solid fa-gear menu_item" />                                                                       
                     <menuitem label="Kardex detallado" id="btnKardex"  class="fa-solid fa-list menu_item" /> 
-                    <menuitem label="Kardex general" id="btnKardexPorProd"  class="fa-solid fa-list-check menu_item" />   
-                
+                    <menuitem label="Kardex general" id="btnKardexPorProd"  class="fa-solid fa-list-check menu_item" />    
                     <menuitem label="Rotacion productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                 </menupopup>
             </menu> 
@@ -42,8 +41,7 @@
             </menu>          
                                 
             <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
-            <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
-         
+            <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />         
             <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
             <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
             <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />

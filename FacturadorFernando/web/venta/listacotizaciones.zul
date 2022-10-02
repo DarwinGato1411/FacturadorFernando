@@ -13,11 +13,11 @@
           viewModel="@id('vm') @init('com.ec.controlador.ListaCotizaciones')" width="100%">
         <tabbox id="tboxPrincipal"  width="100%">
             <tabs >
-                <tab label="Proformas enviadas" sclass="menutabs" /> 
+                <tab label="Proformas emitidas" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 
-                <tabpanel  height="98%" width="99%" class="factura" >     
+                <tabpanel  width="99%" class="factura" >     
                                    
                     <div class="row container-fluid">
                     
@@ -44,9 +44,9 @@
                             </div>
                         </div>
 
-                        <div class="factura_body">
+                        <div style="width:100%" class="factura_body">
                             <listbox model="@load(vm.lstFacturas)" 
-                                     nonselectableTags="*"  mold="paging" pageSize="15"  >
+                                       >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
   
                                 <listhead class="encabezado4"> 
@@ -67,8 +67,8 @@
                                 </listhead>  
                         
                     
-                                <template name="model" >                                                            
-                                    <listitem class="tabla4" >
+                                <template width="100%" name="model" >                                                            
+                                    <listitem width="100%" class="tabla4" >
                                         <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                      class="form-control form-control-sm" value="@bind(each.facNumProforma)"  />

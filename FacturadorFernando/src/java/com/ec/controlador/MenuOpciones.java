@@ -52,6 +52,9 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menuitem btnOrden;
     @Wire("#btnlistaOrden")
     Menuitem btnlistaOrden;
+    
+    @Wire("#btnCrearCliente")
+    Menuitem btnCrearCliente;
             
     UserCredential credential = new UserCredential();
     private String acceso = "";
@@ -300,6 +303,14 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void facturar(@BindingParam("valor") DetalleFacturaDAO valor) {
         Executions.sendRedirect("/venta/facturar.zul");
     }
+    
+    
+    //Nuevos botones
+     @Listen("onClick = #btnCrearCliente")
+    public void irFacturar() {
+        Executions.sendRedirect("/venta/facturar.zul");
+    }
+    
 
     @Listen("onClick = #btnCierreCajaUsu")
     public void btnCierreCaja() {

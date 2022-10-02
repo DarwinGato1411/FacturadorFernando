@@ -15,7 +15,7 @@
           viewModel="@id('vm') @init('com.ec.controlador.ListaFacturas')" >
         <tabbox id="tboxPrincipal"  width="100%" >
             <tabs >
-                <tab label="Lista de facturas emitidas" sclass="menutabs" /> 
+                <tab label="Emitir facturas" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 
