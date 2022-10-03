@@ -89,28 +89,19 @@ public class RegistroUsuarioExt {
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
-        
-        
-//        if (usuarioSistema != null 
-//                && !usuarioSistema.getUsuNombre().equals("") 
-//                && !usuarioSistema.getUsuLogin().equals("") 
-//                && !tipoUSuario.equals("")) {
 
-            if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                     && !usuarioSistema.getUsuCorreo().equals("")
-                     && !usuarioSistema.getUsuWhatsapp().equals("")
-                     && !usuarioSistema.getUsuPassword().equals("")
-                     && !usuarioSistema.getUsuRuc().equals("")
-                    && !tipoUSuario.equals("")) {
-                
+          System.out.println("Registro externo "+" "+usuarioSistema.getUsuNombre());
+        if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !usuarioSistema.getUsuCorreo().equals("")
+                && !usuarioSistema.getUsuWhatsapp().equals("")
+                && !usuarioSistema.getUsuPassword().equals("")
+                && !usuarioSistema.getUsuRuc().equals("")
+                && !tipoUSuario.equals("")) {
+
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
-            
-            
-            
-            
-            /* verifica si tiene tipo ambiente */
 
+            /* verifica si tiene tipo ambiente */
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
                         Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
@@ -183,11 +174,11 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
+                tipoambiente.setAmPassword("1h@t3Pap3r");
+                tipoambiente.setAmHost("smtp.office365.com");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);

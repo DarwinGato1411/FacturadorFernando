@@ -98,18 +98,18 @@
                                 nonselectableTags=""  mold="paging" pageSize="20"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead> 
-                                <listheader width="10%"  label="Codigo" />                            
-                                <listheader width="60%"  label="Nombre" align="center"/>                                                        
-                                <listheader width="10%"  label="Cantidad minima" align="center" />                            
-                                <listheader width="10%"  label="Cantidad actual" sort="auto(karTotal)" align="center" />                            
-                                <listheader width="10%"  label="Precio promedio" align="center" />                            
+                            <listhead class="encabezado15"> 
+                                <listheader width="100%"  label="Codigo" />                            
+                                <listheader width="100%"  label="Nombre" align="center"/>                                                        
+                                <listheader width="100%"  label="Cantidad minima" align="center" />                            
+                                <listheader width="100%"  label="Cantidad actual" sort="auto(karTotal)" align="center" />                            
+                                <listheader width="100%"  label="Precio promedio" align="center" />                            
                                 
                             </listhead>  
                             
                         
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla tabla15">
                                     <listcell  zclass = "mycss-listcell" if="${each.verificaStock}" 
                                             style="font-size:11px;background-color:#C7FEC1">
                                         <textbox readonly="true" style="font-size:12px ;background:#C7FEC1"

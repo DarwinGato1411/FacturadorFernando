@@ -52,7 +52,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menuitem btnOrden;
     @Wire("#btnlistaOrden")
     Menuitem btnlistaOrden;
-            
+
+    @Wire("#btnCrearCliente")
+    Menuitem btnCrearCliente;
+
     UserCredential credential = new UserCredential();
     private String acceso = "";
 
@@ -69,13 +72,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
 
             if (credential.getUsuarioSistema().getUsuNivel() == 1) {
                 menuEmitirfact.setVisible(Boolean.FALSE);
-                menuVentas.setVisible(Boolean.FALSE);
                 menuCompras.setVisible(Boolean.FALSE);
                 menuGuias.setVisible(Boolean.FALSE);
-                menuKardex.setVisible(Boolean.FALSE);
-                menuReportes.setVisible(Boolean.FALSE);
-                btnAdministarVenta.setVisible(Boolean.FALSE);
                 btnHisDeclaraciones.setVisible(Boolean.FALSE);
+                btnAdministarVenta.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);
@@ -90,16 +90,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/consultas.zul");
     }
 
-    @Listen("onClick = #btnFacturar")
-    public void doFacturar() {
-        Executions.sendRedirect("/venta/facturar.zul");
-    }
-
-    @Listen("onClick = #btnKardex")
-    public void btnKardex() {
-        Executions.sendRedirect("/administrar/kardex.zul");
-    }
-
+//    @Listen("onClick = #btnFacturar")
+//    public void doFacturar() {
+//        Executions.sendRedirect("/venta/facturar.zul");
+//    }
     @Listen("onClick = #btnSinFact")
     public void btnSinFactura() {
         Executions.sendRedirect("/venta/ventadiaria.zul");
@@ -125,11 +119,6 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/venta/listanotaventa.zul");
     }
 
-    @Listen("onClick = #btnNotaVentas")
-    public void doAdministrarNotaVenta() {
-        Executions.sendRedirect("/venta/listafacturas.zul");
-    }
-
     @Listen("onClick = #btnNotaVenta")
     public void btnNotaVenta() {
         Executions.sendRedirect("/venta/listanotaventa.zul");
@@ -145,24 +134,9 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/venta/cierrecaja.zul");
     }
 
-    @Listen("onClick = #btnProformasEmitidas")
-    public void doListaProformas() {
-        Executions.sendRedirect("/venta/listacotizaciones.zul");
-    }
-
-    @Listen("onClick = #btnIngresoCompras")
-    public void doIngresoCompras() {
-        Executions.sendRedirect("/compra/compras.zul");
-    }
-
     @Listen("onClick = #btnListaComprasSRI")
     public void btnListaComprasSRI() {
         Executions.sendRedirect("/compra/listacomprassri.zul");
-    }
-
-    @Listen("onClick = #btnListaCompras")
-    public void doInventario() {
-        Executions.sendRedirect("/compra/listacompras.zul");
     }
 
     @Listen("onClick = #btnListaVentaDiaria")
@@ -195,16 +169,6 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/contabilidad/ats.zul");
     }
 
-    @Listen("onClick = #btnRetenciones")
-    public void btnRetenciones() {
-        Executions.sendRedirect("/compra/listaretencion.zul");
-    }
-
-    @Listen("onClick = #btnBalanceUtilidad")
-    public void btnBalanceUtilidad() {
-        Executions.sendRedirect("/contabilidad/compraventa.zul");
-    }
-
     @Listen("onClick = #btnRetencionesCasillero")
     public void btnRetencionesCasillero() {
         Executions.sendRedirect("/compra/listaretencioncasillero.zul");
@@ -213,11 +177,6 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnFactAutori")
     public void btnFactAutori() {
         Executions.sendRedirect("/venta/facturasautorizadas.zul");
-    }
-
-    @Listen("onClick = #btnNotaCredito")
-    public void btnNotaCredito() {
-        Executions.sendRedirect("/venta/listanc.zul");
     }
 
     @Listen("onClick = #btnEmitirGuiaRemision")
@@ -233,26 +192,6 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnRepVentCant")
     public void btnRepVentCant() {
         Executions.sendRedirect("/contabilidad/cantproducto.zul");
-    }
-
-    @Listen("onClick = #btnAjuste")
-    public void btnAjuste() {
-        Executions.sendRedirect("/administrar/ajuste.zul");
-    }
-
-    @Listen("onClick = #btnAcumuladoventas")
-    public void btnAcumuladoventas() {
-        Executions.sendRedirect("/reportevistas/ventaaniomes.zul");
-    }
-
-    @Listen("onClick = #btnRotacionProducto")
-    public void btnRotacionProducto() {
-        Executions.sendRedirect("/reportevistas/rotacion.zul");
-    }
-
-    @Listen("onClick = #btnKardexPorProd")
-    public void btnKardexPorProd() {
-        Executions.sendRedirect("/reportevistas/kardexproductos.zul");
     }
 
     @Listen("onClick = #btnListarCierre")
@@ -280,18 +219,19 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/venta/listaorden.zul");
     }
 
-    @Listen("onClick = #btnfactCobra")
-    public void btnfactCobra() {
-        Executions.sendRedirect("/venta/facturasporcobrar.zul");
-    }
     @Listen("onClick = #btnOrden")
     public void btnOrden() {
         Executions.sendRedirect("/venta/ordentrabajo.zul");
     }
-    
+
     @Listen("onClick = #btnlistaOrden")
     public void btnlistaOrden() {
         Executions.sendRedirect("/venta/listaorden.zul");
+    }
+
+    @Listen("onClick = #btnConfSRI")
+    public void btnConfSRI() {
+        Executions.sendRedirect("/administrar/configuracion_1.zul");
     }
 
     @Command
@@ -299,11 +239,103 @@ public class MenuOpciones extends SelectorComposer<Component> {
         Executions.sendRedirect("/venta/facturar.zul");
     }
 
+    //Nuevos botones
+    @Listen("onClick = #btnCrearCliente")
+    public void irFacturar() {
+        Executions.sendRedirect("/venta/facturar.zul");
+    }
+
+    @Listen("onClick = #btnCrearProducto")
+    public void irCrearProducto() {
+        Executions.sendRedirect("/menuNuevoVentas/crearProducto.zul");
+    }
+
+    @Listen("onClick = #btnFacturar")
+    public void doFacturar() {
+        Executions.sendRedirect("/menuNuevoVentas/grabarFactura.zul");
+    }
+
+    @Listen("onClick = #btnNotaVentas")
+    public void doAdministrarNotaVenta() {
+        Executions.sendRedirect("/menuNuevoVentas/emitirFactura.zul");
+    }
+
+    @Listen("onClick = #btnfactCobra")
+    public void btnfactCobra() {
+        Executions.sendRedirect("/menuNuevoVentas/facturasPorCobrar.zul");
+    }
+
+    @Listen("onClick = #btnNotaCredito")
+    public void btnNotaCredito() {
+        Executions.sendRedirect("/menuNuevoVentas/notasCredito.zul");
+    }
+
+    @Listen("onClick = #btnProformasEmitidas")
+    public void doListaProformas() {
+        Executions.sendRedirect("/menuNuevoVentas/proformasEmitidas.zul");
+    }
+
+    @Listen("onClick = #btnAcumuladoventas")
+    public void btnAcumuladoventas() {
+        Executions.sendRedirect("/menuNuevoVentas/reporteacumuladoventas.zul");
+    }
+
+    @Listen("onClick = #btnBalanceUtilidad")
+    public void btnBalanceUtilidad() {
+        Executions.sendRedirect("/menuNuevoVentas/reportecompraventa.zul");
+    }
+
+    @Listen("onClick = #btnCrearProveedor")
+    public void btnCrearProveedor() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnCrearProd")
+    public void btnCrearProd() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnIngresoCompras")
+    public void doIngresoCompras() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnListaCompras")
+    public void doInventario() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnRetenciones")
+    public void btnRetenciones() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnKardex")
+    public void btnKardex() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnKardexPorProd")
+    public void btnKardexPorProd() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnRotacionProducto")
+    public void btnRotacionProducto() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    @Listen("onClick = #btnAjuste")
+    public void btnAjuste() {
+        Executions.sendRedirect("/menuNuevoCompra/compras.zul");
+    }
+
+    //final Nuevos botones
     @Listen("onClick = #btnCierreCajaUsu")
     public void btnCierreCaja() {
 //        if (credential.getUsuarioSistema().getUsuNivel() != 1) {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/cierrecaja.zul", null, null);
+                "/nuevo/cierrecaja.zul", null, null);
         window.doModal();
 //        } else {
 //            Clients.showNotification("El usuario administrador no puede cerrar una caja",
@@ -316,7 +348,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void nuevoProducto() {
 
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/producto.zul", null, null);
+                "/nuevo/producto.zul", null, null);
         window.doModal();
 
     }
@@ -325,7 +357,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void nuevoCliente() {
 
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/cliente.zul", null, null);
+                "/nuevo/cliente.zul", null, null);
         window.doModal();
 
     }

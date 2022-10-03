@@ -88,18 +88,17 @@
                                 nonselectableTags=""  mold="paging" pageSize="12"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead> 
-                                <listheader width="10%"  label="N° Fact" /> 
-                                                            
-                                <listheader width="10%"  label="Cedula" />                                                        
-                                <listheader width="60%"  label="Nombre" align="rigth" /> 
-                                <listheader width="10%"  label="Saldo ($)" align="rigth" /> 
-                                <listheader width="10%"  label="Dias "  />                      
+                            <listhead class="encabezado5 encabezado"> 
+                                <listheader width="100%"  label="N° Fact" />                                                            
+                                <listheader width="100%"  label="Cedula" />                                                        
+                                <listheader width="100%"  label="Nombre" align="rigth" /> 
+                                <listheader width="100%"  label="Saldo ($)" align="rigth" /> 
+                                <listheader width="100%"  label="Dias "  />                      
                             </listhead>  
                             
                         
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla5 tabla">
                                     <listcell  zclass = "mycss-listcell">
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                 class="form-control form-control-sm" 

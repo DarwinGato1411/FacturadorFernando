@@ -72,9 +72,9 @@
                                 nonselectableTags=""  mold="paging" pageSize="12"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead> 
-                                <listheader width="10%"  label="N° Fact" /> 
-                                <listheader width="10%"  >
+                            <listhead class="encabezado19"> 
+                                <listheader width="100%"  label="N° Fact" /> 
+                                <listheader width="100%"  >
                                     <textbox value="@bind(vm.buscarCedula)"  
                                             tooltiptext="Cedula"
                                             class="form-control form-control-sm"                                         
@@ -83,7 +83,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                 </listheader>    
-                                <listheader width="15%"  >
+                                <listheader width="100%"  >
                                     <textbox value="@bind(vm.buscarCliente)"  
                                             class="form-control form-control-sm"
                                             tooltiptext="Nombre del cliente"
@@ -92,18 +92,18 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                 </listheader> 
-                                <listheader width="8%"  label="Fecha" />                                                        
-                                <listheader width="10%"  label="Estado SRI" align="rigth" /> 
-                                <listheader width="8%"  label="Fecha Aut." align="rigth" /> 
-                                <listheader width="48%"  label="Clave Autorizacion"  />                                   
-                                <listheader width="5%"  label="" align="center" />        
-                                <listheader width="5%"  label="" align="center" />        
-                                <listheader width="5%"  label="" align="center" />               
+                                <listheader width="100%"  label="Fecha" />                                                        
+                                <listheader width="100%"  label="Estado SRI" align="rigth" /> 
+                                <listheader width="100%"  label="Fecha Aut." align="rigth" /> 
+                                <listheader width="100%"  label="Clave Autorizacion"  />                                   
+                                <listheader width="100%"  label="" align="center" />        
+                                <listheader width="100%"  label="" align="center" />        
+                                <listheader width="100%"  label="" align="center" />               
                             </listhead>  
                             
                         
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla19">
                                     <listcell  zclass = "mycss-listcell">
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                 class="form-control form-control-sm" value="@bind(each.facNumeroText)"  />

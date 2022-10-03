@@ -10,7 +10,7 @@
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 
 
-<zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
+<zk  contentStyle="overflow:auto" >
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.vistas.ListaVentasAnioMes')" >
         <tabbox id="tboxPrincipal"  width="100%" >
@@ -20,7 +20,7 @@
             </tabs>
             <tabpanels >
                 
-                <tabpanel  width="99%"  class="factura">                    
+                <tabpanel  width="100%"  class="factura">                    
                     <!-- <div class="row">
                        
                         <div class=" input-group col-12 col-sm-12 col-md-4 col-lg-4 ">
@@ -121,16 +121,16 @@
                                     nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead> 
-                                    <listheader width="70%"  label="Total con facturas" />                            
+                                <listhead class="encabezado8"> 
+                                    <listheader width="100%"  label="Total con facturas" />                            
                                     <!--<listheader width="25%"  label="Total con Notas Venta" />-->                                                        
-                                    <listheader width="15%"  label="Total" align="rigth" /> 
-                                    <listheader width="15%"  label="Fecha" align="lefth" />                             
+                                    <listheader width="100%"  label="Total" align="rigth" /> 
+                                    <listheader width="100%"  label="Fecha" align="lefth" />                             
                                 </listhead>  
                                 
                             
                                 <template name="model">                                                            
-                                    <listitem>
+                                    <listitem class="tabla8">
                                         <listcell  zclass = "mycss-listcell">
                                             <decimalbox readonly="true" format="###.##" 
                                                         value="@bind(each.facTotal)" width="100%" />
@@ -162,7 +162,7 @@
                 </tabpanel>
                 
                 
-                <tabpanel  width="99%" class="factura" >                    
+                <tabpanel  width="100%" class="factura" >                    
                     
                     <!-- <div class="row">
                        
@@ -263,18 +263,18 @@
                                     nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead> 
-                                    <listheader width="40%"  label="Ventas con facturas" />                            
+                                <listhead class="encabezado9"> 
+                                    <listheader width="100%%"  label="Ventas con facturas" />                            
                                     <!--<listheader width="20%"  label="Ventas con Notas Venta" />-->                                                        
-                                    <listheader width="20%"  label="Total" align="rigth" /> 
-                                    <listheader width="20%"  label="Mes" align="center"  /> 
-                                    <listheader width="20%"  label="Año" align="center" /> 
+                                    <listheader width="100%%"  label="Total" align="rigth" /> 
+                                    <listheader width="100%%"  label="Mes" align="center"  /> 
+                                    <listheader width="100%%"  label="Año" align="center" /> 
                                     
                                 </listhead>  
                                 
                             
                                 <template name="model">                                                            
-                                    <listitem>
+                                    <listitem class="tabla9">
                                         <listcell  zclass = "mycss-listcell">
                                             <decimalbox readonly="true" format="###.##" 
                                                         value="@bind(each.facTotal)" width="100%" />

@@ -110,9 +110,9 @@
                     nonselectableTags="*">
                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
 
-                <listhead> 
-                    <listheader width="30px"   sort="auto(prodCodigo)" ></listheader>
-                    <listheader width="18%"   sort="auto(prodCodigo)" >
+                <listhead class="encabezado22"> 
+                    <listheader width="100%" label="Seleccionar"   sort="auto(prodCodigo)" ></listheader>
+                    <listheader width="100%"   sort="auto(prodCodigo)" >
                         <textbox value="@bind(vm.buscarCodigo)" 
                                 class="form-control form-control-sm"
                                 tooltiptext="Codigo "                         
@@ -120,7 +120,7 @@
                                 onOK="@command('buscarLikeCodigo')"
                                 onChange="self.setValue(self.getValue().toUpperCase());" />
                     </listheader>     
-                    <listheader width="35%"  sort="auto(prodNombre)" >
+                    <listheader width="100%"  sort="auto(prodNombre)" >
                         <textbox value="@bind(vm.buscarNombre)" 
                                 class="form-control form-control-sm"
                                 tooltiptext="Nombre "                         
@@ -130,18 +130,18 @@
 
                         
                     </listheader> 
-                    <listheader width="10%"  label="Cantidad Inicial" />  
-                    <listheader width="10%"  label="Precio Compra" />  
-                    <listheader width="10%"  label="Precio por unidad"  /> 
-                    <listheader width="10%"  label="Precio por 3 unidades"  /> 
-                    <listheader width="10%"  label="Precio por 6 unidades"  /> 
-                    <listheader width="10%"  label="Precio por caja"  /> 
-                    <listheader width="5%"  label="" align="center"/>
+                    <listheader width="100%"  label="Cantidad Inicial" />  
+                    <listheader width="100%"  label="Precio Compra" />  
+                    <listheader width="100%"  label="Precio por unidad"  /> 
+                    <listheader width="100%"  label="Precio por 3 unidades"  /> 
+                    <listheader width="100%"  label="Precio por 6 unidades"  /> 
+                    <listheader width="100%"  label="Precio por caja"  /> 
+                    <listheader width="100%"  label="Editar" align="center"/>
                     <!--<listheader width="5%"  label="" align="center"/>-->
                 </listhead>  
                 <template name="model">                                                            
-                    <listitem>
-                        <listcell   style="height: 10px;overflow: hidden;">  </listcell>
+                    <listitem class="tabla22">
+                        <listcell   >  </listcell>
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
                                     class="form-control form-control-sm"  value="@bind(each.prodCodigo)"  />

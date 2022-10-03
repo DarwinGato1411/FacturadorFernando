@@ -54,8 +54,6 @@ public class MailerClassSistema {
      * @return
      * @throws java.rmi.RemoteException
      */
-   
-
     class SmtpAuthenticator extends Authenticator {
 
         public SmtpAuthenticator() {
@@ -68,19 +66,18 @@ public class MailerClassSistema {
 //            amb = servicioTipoAmbiente.FindALlTipoambiente();
 //            String username = amb.getAmUsuarioSmpt().trim();
 //            String password = amb.getAmPassword().trim();
-            String username = "defact@deckxel.com";
-            String password = "Dereckandre02!";
+            String username = "no-reply@defactec.com";
+            String password = "1h@t3Pap3r";
             return new PasswordAuthentication(username, password);
 
         }
     }
 
-   
     /*MAIL RECUPERA CONTRASEÑA*/
     public boolean sendMailRecuperarPassword(String address,
-                String asuntoInf, String usuarioRecup,
-                String passwordRecup, Tipoambiente ambiente)
-                throws java.rmi.RemoteException {
+            String asuntoInf, String usuarioRecup,
+            String passwordRecup, Tipoambiente ambiente)
+            throws java.rmi.RemoteException {
 
         try {
 //                        String usuarioSmpt = "deckxelec@gmail.com";
@@ -89,17 +86,12 @@ public class MailerClassSistema {
             amb = ambiente;
 
             String asunto = asuntoInf;
-            String host = "mail.deckxel.com";
-            String port = "26";
+            String host = "smtp.office365.com";
+            String port = "587";
             String protocol = "smtp";
-            String usuarioSmpt = "defact@deckxel.com";
-            String password = "Dereckandre02!";
-//            String asunto = asuntoInf;
-//            String host = amb.getAmHost();
-//            String port = amb.getAmPort();
-//            String protocol = amb.getAmProtocol();
-//            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
+            String usuarioSmpt = "no-reply@defactec.com";
+            String password = "1h@t3Pap3r";
+
 
             // Propiedades de la conexión
             // Get system properties
@@ -126,83 +118,52 @@ public class MailerClassSistema {
             m.setFrom(addressfrom);
 
             BodyPart texto = new MimeBodyPart();
-            String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
-                        + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
-                        + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"
-                        + "                                   color: #010e07;\n"
-                        + "                                   text-align: right;\n"
-                        + "                                   padding-right: 25px;\n"
-                        + "                                   padding-bottom: 10px;\">\n"
-                        + "      DESAROLLO DE SOFTWARE SOBRE MEDIDA\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
-                        + "                                 border-top-left-radius: 10px;\n"
-                        + "                                 border-top-right-radius: 10px;\n"
-                        + "                                 background: #007ff7;\n"
-                        + "                                 color: #fff;\n"
-                        + "                                 overflow: hidden;\n"
-                        + "                                 line-height: 32px;\">\n"
-                        + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
-                        + "		 USUARIO DEFACT : " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
-                        + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
-                        + "		SISTEMA DE FACTURACION ELECTRONICA DEFACT  </strong></div>\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-wrap\" style=\"border-bottom-left-radius: 10px;\n"
-                        + "                                  border-bottom-right-radius: 10px;\n"
-                        + "                                  border:1px solid #ddd;\n"
-                        + "                                  overflow: hidden;\n"
-                        + "                                  padding: 15px 15px 20px;\">\n"
-                        + "        <div class=\"tips\" style=\"padding:15px;\">\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Estimado cliente,</p>\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">" + amb.getAmRazonSocial() + "</p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Su acceso a la plataforma ha sido generado correctamente </p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Usuario:"
-                        + "                 <strong style=\"color:#010e07\"> " + usuarioRecup + "</strong></p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Password:"
-                        + "                 <strong style=\"color:#010e07\"> " + passwordRecup + "</strong></p>\n"
-                        //                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Sus archivos PDF y XML se enviaron de forma adjunta, por favor reviselos</p>\n"
-                        + "        </div>\n"
-                        + "        <div class=\"time\" style=\"text-align: right; color: #999; padding: 0 15px 15px;\">"
-                        + "<strong style=\"color:#010e07\"></strong> </div>\n"
-                        + "        <br>\n"
-                        + "        <table class=\"list\" style=\"width: 100%; border-collapse: collapse; border-top:1px solid #eee\">\n"
-                        + "            <thead>\n"
-                        + "            <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee\">\n"
-                        + "                Si tienes alguna consulta con respecto a esta informacion no dudes en comunicarte con nosotros, "
-                        + "caso contrario no es necesario responder a este correo electronico.\n"
-                        + "            </tr>\n"
-                        + "            </thead>\n"
-                        + "            <tbody>\n"
-                        + "	\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:10px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Copyright © 2022 DECKXEL, All rights reserved.</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "			 <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:10px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">DECKXEL - Tlf. 0993530018</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:10px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Tabacundo - Ecuador</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "            </tbody>\n"
-                        + "        </table>\n"
-                        + "    </div>\n"
-                        + "</div>\n"
-                        + "</body>\n"
-                        + "";
+            String HTMLENVIO = "<body>\n"
+                    + "    <img style=\"height:100px;margin: auto;display: block;\"\n"
+                    + "        src=\"https://northcentralus1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Futneduec-my.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb!gqNSjMxCKUqlSIcNlH_W3qK_bUSzQ8NDmhYRqMNUsxrc3kSHbZELQb_5zsOXXWVq%2Fitems%2F01MOQ3UUF44JVILFUMZZBKFB2372QBQQ7T%3Fversion%3DPublished&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdXRuZWR1ZWMtbXkuc2hhcmVwb2ludC5jb21AOGRiZTE0NjktYzc5Yy00ZTIxLTlkNDMtY2E2NWQ5ZTljNDc1IiwiaXNzIjoiMDAwMDAwMDMtMDAwMC0wZmYxLWNlMDAtMDAwMDAwMDAwMDAwIiwibmJmIjoiMTY2NDE3MjAwMCIsImV4cCI6IjE2NjQxOTM2MDAiLCJlbmRwb2ludHVybCI6IlZiSHFaUU5tdzY1c3NlL281N2JlaGV0NmxtcUczUzUyUnNXdmtjSGN4K2M9IiwiZW5kcG9pbnR1cmxMZW5ndGgiOiIxMTgiLCJpc2xvb3BiYWNrIjoiVHJ1ZSIsInZlciI6Imhhc2hlZHByb29mdG9rZW4iLCJzaXRlaWQiOiJPR00xTW1Fek9ESXROREpqWXkwMFlUSTVMV0UxTkRndE9EY3daRGswTjJaa05tUmwiLCJuYW1laWQiOiIwIy5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhYW5vbiM2OTNmZjhjYTkxYjhmYTdlYWJiZDc3MGYwMDg1YTY3MDBhOTVjZDc1MjkyODg1MDZmMjhiMDc4MWY5ZTU5ZDhjIiwibmlpIjoibWljcm9zb2Z0LnNoYXJlcG9pbnQiLCJpc3VzZXIiOiJ0cnVlIiwiY2FjaGVrZXkiOiIwaC5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhYW5vbiM2OTNmZjhjYTkxYjhmYTdlYWJiZDc3MGYwMDg1YTY3MDBhOTVjZDc1MjkyODg1MDZmMjhiMDc4MWY5ZTU5ZDhjIiwic2hhcmluZ2lkIjoiVzBub1ZCajdGMGFFSjI0elZvU21NQSIsInR0IjoiMCIsInVzZVBlcnNpc3RlbnRDb29raWUiOiIyIiwiaXBhZGRyIjoiMTc3LjUzLjIxMy4zNSJ9.MDFRalRpQjdhbWw4YUhSUUJJS0xtUmljMmRLRFYrdHRpSWRGYmd5ZVZwTT0&cTag=%22c%3A%7B856AE2BC-8C96-42CE-A287-5BFEA01843F3%7D%2C1%22&encodeFailures=1&width=1366&height=573&srcWidth=&srcHeight=\"\n"
+                    + "        alt=\"\">\n"
+                    + "    <div style=\"height: 10px;background:#fbc620;\"></div>\n"
+                    + "    <p style=\"margin-bottom: 0;\">Estimado (a) "+ amb.getAmRazonSocial() +",</p>\n"
+                    + "    <p>Gracias por seleccionar FACTURAS.EC, Nos complace confirmar sus credenciales:</p>\n"
+                    + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>USUARIO:</strong>"+ usuarioRecup +" </p>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>CONTRASEÑA:</strong>"+passwordRecup+"</p>\n"
+                        
+                    + "    <br>\n"
+                    + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
+                    + "    <p>Si tiene cualquier duda o pregunta nos puede escribir al mail <a href=\"\">send@facturas.ec</a> o llámenos al\n"
+                    + "        0992553708.</p>\n"
+                    + "    <p>Saludos Cordiales,\n"
+                    + "        <br>\n"
+                    + "        Patrick Arch\n"
+                    + "        <br>\n"
+                    + "        Director\n"
+                    + "    </p>\n"
+                    + "\n"
+                    + "    <div style=\"display: grid;\">\n"
+                    + "        <div style=\"width: auto;margin:auto;\">\n"
+                    + "            <p style=\"text-align: center;\">FACTURAS.EC\n"
+                    + "                <br>\n"
+                    + "                QUITO - ECUADOR\n"
+                    + "            </p>\n"
+                    + "        </div>\n"
+                    + "    </div>\n"
+                    + "\n"
+                    + "    <div style=\"height: 10px;background:black;\"></div>\n"
+                    + "\n"
+                    + "    <p style=\"font-weight: 900;color:#7f7f7f;\">Disclaimer</p>\n"
+                    + "    <p  style=\"color:#7f7f7f;\">The information contained in this communication from the sender is confidential.\n"
+                    + "        It is intended solely for use by the recipient and others authorized to receive it.\n"
+                    + "        If you are not the recipient, you are hereby notified that any disclosure, copying,\n"
+                    + "        distribution or taking action in relation of the contents of this information is strictly\n"
+                    + "        prohibited and may be unlawful.</p>\n"
+                    + "</body>";
 
             texto.setContent(HTMLENVIO, "text/html");
 
             MimeMultipart multiParte = new MimeMultipart();
             m.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse(address));
+                    InternetAddress.parse(address));
             multiParte.addBodyPart(texto);
 
 //            m.setRecipients(Message.RecipientType.TO, addresTto);
@@ -228,6 +189,5 @@ public class MailerClassSistema {
             return false;
         }
     }
-    
 
 }

@@ -48,13 +48,13 @@
                         <listbox model="@load(vm.listaProductos)" 
                                  nonselectableTags=""  
                                  mold="paging"
-                                 pageSize="17"  >
+                                 pageSize="17" style="width:100%;"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
         
                         
-                            <listhead> 
+                            <listhead class="encabezado13"> 
                                     
-                                <listheader width="25%"  >
+                                <listheader width="100%%"  >
                                     <textbox value="@bind(vm.buscarProductoCodigo) "  
                                              class="form-control form-control-sm"
                                              tooltiptext="Codigo"
@@ -62,7 +62,7 @@
                                              onOK="@command('buscarProductoLikeCodigo')"
                                              onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader> 
-                                <listheader width="75%"  >
+                                <listheader width="100%%"  >
                                     <textbox value="@bind(vm.buscarProducto)"  
                                              class="form-control form-control-sm"
                                              tooltiptext="Nombre del producto"
@@ -75,12 +75,12 @@
                             </listhead>  
                         
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla tabla13">
                                         
                                     <listcell onClick="@command('seleccionarProductoLista',valor=each)"
                                               style="font-size:11px;background-color:#d6eefd"  
                                               zclass = "mycss-listcell">
-                                        <textbox value="@bind(each.prodCodigo)" width="96%" 
+                                        <textbox value="@bind(each.prodCodigo)" width="100%" 
                                                  class="form-control form-control-sm"
                                                  style="font-size:10px;background-color:#d6eefd"
                                                  readonly="true"
@@ -138,23 +138,23 @@
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
     
                     
-                            <listhead> 
+                            <listhead class="encabezado14"> 
                                 
-                                <listheader width="10%" label="Fecha kardex" sort="auto(detkFechakardex)" />
-                                <listheader width="10%" label="Cantidad" sort="auto(detkCantidad)" />
-                                <listheader width="10%" label="Unidad" sort="auto(detkCantidad)" />
-                                <listheader width="35%" label="Detalle" sort="auto(detkDetalles)" />
-                                <listheader width="10%" label="Fecha registro" sort="auto(detkFechacreacion)" />
-                                <listheader width="10%" label="Tipo" sort="auto(idTipokardex.tipkDescripcion)" />
-                                <listheader width="10%" label="Kardex Manual" sort="auto(detkKardexmanual)" />
-                                <listheader width="15%" label="Nº Documento"  />
+                                <listheader width="100%" label="Fecha kardex" sort="auto(detkFechakardex)" />
+                                <listheader width="100%" label="Cantidad" sort="auto(detkCantidad)" />
+                                <listheader width="100%" label="Unidad" sort="auto(detkCantidad)" />
+                                <listheader width="100%" label="Detalle" sort="auto(detkDetalles)" />
+                                <listheader width="100%" label="Fecha registro" sort="auto(detkFechacreacion)" />
+                                <listheader width="100%" label="Tipo" sort="auto(idTipokardex.tipkDescripcion)" />
+                                <listheader width="100%" label="Kardex Manual" sort="auto(detkKardexmanual)" />
+                                <listheader width="100%" label="Nº Documento"  />
                                     
                                 
                             
                             </listhead>  
                     
                             <template name="model">                                                            
-                                <listitem>
+                                <listitem class="tabla tabla14">
                                     
                                     <listcell zclass = "mycss-listcell">
                                         <datebox compact="true" value="@bind(each.detkFechakardex)" 

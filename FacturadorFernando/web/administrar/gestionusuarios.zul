@@ -36,23 +36,21 @@
                             <listbox width="100%" model="@load(vm.listaUsuarios)" 
                                      nonselectableTags="*"  mold="paging"
                                      pageSize="20">
-                         
-                                
-                                            
+    
                                     
-                                <listhead sizable="true">
-                                    <listheader label="RUC"  align="left" width="15%"></listheader>
-                                    <listheader label="Nombre de la cuenta"  align="left" width="35%"></listheader>
-                                    <listheader label="Usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Contraseña"  align="left" width="20%"></listheader>
-                                    <listheader label="Tipo usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Fecha caduca"  align="left" width="20%"></listheader>
-                                    <listheader label="Modificar"  align="left" width="5%"></listheader>
+                                <listhead class="encabezado26"  sizable="true">
+                                    <listheader label="RUC"  align="left" ></listheader>
+                                    <listheader label="Nombre de la cuenta"  align="left" ></listheader>
+                                    <listheader label="Usuario"  align="left" ></listheader>
+                                    <listheader label="Contraseña"  align="left" ></listheader>
+                                    <listheader label="Tipo usuario"  align="left"></listheader>
+                                    <listheader label="Fecha caduca"  align="left" ></listheader>
+                                    <listheader label="Modificar"  align="left" ></listheader>
                                 </listhead>
                         
                         
                                 <template name="model">
-                                    <listitem width="100%" > 
+                                    <listitem class="tabla26" width="100%" > 
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" value="@bind(each.usuRuc)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />

@@ -144,19 +144,20 @@
                                     nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead> 
-                                    <listheader width="70%"  label="Producto" />                            
-                                    <listheader width="10%"  label="Cantidad vendida" align="center" sort="auto(cantidadVenta)" />                                                        
-                                    <listheader width="10%"  label="Valor vendido" align="center" sort="auto(valorVentaProducto)" />                            
-                                    <listheader width="10%"  label="Porcentaje (%)" align="center" sort="auto(porcentaje)" />                            
+                                <listhead class="encabezado16"> 
+                                    <listheader width="100%"  label="Producto" />                            
+                                    <listheader width="100%"  label="Cantidad vendida" align="center" sort="auto(cantidadVenta)" />                                                        
+                                    <listheader width="100%"  label="Valor vendido" align="center" sort="auto(valorVentaProducto)" />                            
+                                    <listheader width="100%"  label="Porcentaje (%)" align="center" sort="auto(porcentaje)" />                            
                                 </listhead>  
                                 
                             
                                 <template name="model">                                                            
-                                    <listitem>
+                                    <listitem class="tabla16">
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
                                                     class="form-control form-control-sm" 
+                                                    
                                                     value="@bind(each.prodNombre)" width="100%" />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">

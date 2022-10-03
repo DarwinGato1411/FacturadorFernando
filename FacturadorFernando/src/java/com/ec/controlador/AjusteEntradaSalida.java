@@ -75,7 +75,7 @@ public class AjusteEntradaSalida {
     @Wire
     Window windowProductoBuscar;
     @Wire
-    Textbox idBusquedaProd;
+    Textbox idBusquedaProd1;
     @Wire
     Window windowModCotizacionFact;
     /*DETALLE DEL KARDEX Y DETALLE KARDEX*/
@@ -207,7 +207,7 @@ public class AjusteEntradaSalida {
         codigoBusqueda = "";
 
         buscarNombreProd = "";
-        idBusquedaProd.setFocus(Boolean.TRUE);
+        idBusquedaProd1.setFocus(Boolean.TRUE);
         /*COLOCA EL FOCO EN EL BUSCADOR*/
 //        idBusquedaProd.setFocus(Boolean.TRUE);
     }

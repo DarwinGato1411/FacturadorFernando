@@ -9,24 +9,24 @@
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 
 
-<zk  contentStyle="overflow:auto" with="100%" class="container" >
+<zk  contentStyle="overflow:auto" with="100%" class="container facturaAjuste" >
     
               
-    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer"     
+    <hbox  class="container facturaAjuste"  self="@define(content)" apply="org.zkoss.bind.BindComposer"     
           ctrlKeys="^P" onCtrlKey="@command('Guardar',valor='SG')" 
-          viewModel="@id('vm') @init('com.ec.controlador.AjusteEntradaSalida')" width="100%">
+          viewModel="@id('vm') @init('com.ec.controlador.AjusteEntradaSalida')" width="100%" style="display:block;width:100%">
         
         
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
-        <tabbox  width="100%"  tabscroll="true" >
-            <tabs >
+        <tabbox  width="100%"  tabscroll="true" style="display:block;width:100%" >
+            <tabs style="display:block;width:100%" >
                 <tab label="AJUSTE DE ENTRADA/SALIDA" sclass="menutabs"/>
             </tabs>
-            <tabpanels >
+            <tabpanels style="display:block;width:100%" >
                 
-                <tabpanel  height="100%" width="98%" class="factura" >
+                <tabpanel  height="100%" width="100%%"  style="display:block;width:100%" >
                     
-                    <div class="container-fluid " >
+                    <div class="container-fluid " style="display:block;width:100%" >
                         
                               
                                 <div class="factura_header paint_all_row">
@@ -78,8 +78,8 @@
                                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
         
                         
-                                            <listhead> 
-                                                <listheader width="20%"      align="left"   >
+                                            <listhead class="encabezado12"> 
+                                                <listheader width="100%"      align="left"   >
                                                     <textbox value="@bind(vm.buscarCodigoProd)"                                             
                                                             class="form-control form-control-sm"
                                                             tooltiptext="Código"
@@ -88,7 +88,7 @@
                                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                                 
                                                 </listheader>     
-                                                <listheader width="55%" align="left"   >
+                                                <listheader width="100%" align="left"   >
                                                     <textbox value="@bind(vm.buscarNombreProd)"  
                                                             id="idBusquedaProd"
                                                             class="form-control form-control-sm"
@@ -97,13 +97,13 @@
                                                             onOK="@command('buscarLikeKardexNombreProd')"                                                     
                                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                                 </listheader>                         
-                                                <listheader width="15%"  label="KARDEX" align="center" />      
-                                                <listheader width="10%"  label="" align="center"/>
+                                                <listheader width="100%"  label="KARDEX" align="center" />      
+                                                <listheader width="100%"  label="Asignar" align="center"/>
                             
                                             </listhead>  
                         
                                             <template name="model">                                                            
-                                                <listitem  onOK="@command('agregarItemLista',valor=each.idProducto)">
+                                                <listitem class="tabla12 tabla"  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                                     <listcell  style="font-size:11px;background-color:#d6eefd" 
                                                             zclass = "mycss-listcell" 
                                                             onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
@@ -169,23 +169,25 @@
                                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                                 
                         
-                                            <listhead >
-                                                <listheader width="35px"  label="" align="left" >
-                                                    <button label="" src="/iconos/delete.png"  
+                                            <listhead  class="encabezado12">
+                                                <listheader width="100%"  label="" align="left" >
+                                                    <button label="Anular"   
                                                             onClick="@command('eliminarRegistros')"  
                                                             class="btn btn btn-secondary btn-sm "
-                                                            tooltiptext="Eliminar registros seleccionados"/>
+                                                            tooltiptext="Eliminar registros seleccionados"
+                                                            style="background:black;color:white;font-size:12px"
+                                                    />
                                                 </listheader>
-                                                <listheader width="20%"   label="COD" align="left" />
-                                                <listheader width="10%"   label="CANT" align="left"  />
+                                                <listheader width="100%%"   label="COD" align="left" />
+                                                <listheader width="100%"   label="CANT" align="left"  />
                                     
-                                                <listheader width="70%"  label="DESCRIPCIÓN" align="left" />
+                                                <listheader width="100%"  label="DESCRIPCIÓN" align="left" />
                                         
                                                                                                                                 
                                             </listhead>
                         
                                             <template name="model" >                                                            
-                                                <listitem>
+                                                <listitem class="tabla tabla12">
                                                     <listcell  >                                                                                                    
                                                     </listcell>
                                             

@@ -193,11 +193,11 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
       
                     
-                                    <listhead> 
-                                        <listheader width="25%"  label="Codigo"     align="left"   >
+                                    <listhead class="encabezado17"> 
+                                        <listheader width="100%"  label="Codigo"     align="left"   >
                                                 
                                         </listheader>     
-                                        <listheader width="65%" align="left"   >
+                                        <listheader width="100%" align="left"   >
                                             <textbox value="@bind(vm.buscarNombreProd)"  
                                                      id="idBusquedaProd"
                                                      class="form-control form-control-sm"
@@ -206,13 +206,13 @@
                                                      onOK="@command('buscarLikeNombreProd')"                                                     
                                                      onChange="self.setValue(self.getValue().toUpperCase());" />
                                         </listheader>                         
-                                        <listheader width="15%"  label="PVP" align="center" /> 
-                                        <listheader width="10%"  label="" align="center"/>
+                                        <listheader width="100%"  label="PVP" align="center" /> 
+                                        <listheader width="100%"  label="Ai=signar" align="center"/>
                            
                                     </listhead>  
                     
                                     <template name="model">                                                            
-                                        <listitem onOK="@command('agregarItemLista',valor=each)">
+                                        <listitem class="tabla17" onOK="@command('agregarItemLista',valor=each)">
                                             <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                       onDoubleClick="@command('agregarItemLista',valor=each)">
                                                 <label class="form-control form-control-sm"
@@ -261,19 +261,21 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                               
                                         
-                                    <listhead>
-                                        <listheader width="10%"  label="" align="left" >
-                                            <button label="" src="/iconos/delete.png"   
+                                    <listhead class="encabezado18">
+                                        <listheader width="100%"  label="" align="left" >
+                                            <button label="Anular"    
                                                     onClick="@command('eliminarRegistros')"  
                                                     class="btn btn btn-secondary btn-sm "
-                                                    tooltiptext="Eliminar registros seleccionados"/>
+                                                    tooltiptext="Eliminar registros seleccionados"
+                                                    style="background:black;color:white;font-size:13px width:100%;"
+                                            />
                                         </listheader>
-                                        <listheader width="10%"  label="Cantidad" align="left" />
-                                        <listheader width="90%"  label="Descripcion" align="left"  />                                                                                 
+                                        <listheader width="100%"  label="Cantidad" align="left" />
+                                        <listheader width="100%"  label="Descripcion" align="left"  />                                                                                 
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem>
+                                        <listitem class="tabla18">
                                             <listcell zclass = "mycss-listcell">
                                                     
                                             </listcell>                                                      
