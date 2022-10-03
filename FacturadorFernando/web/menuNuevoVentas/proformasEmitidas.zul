@@ -20,12 +20,12 @@
         <tabbox  width="100%"  tabscroll="true" >
             <tabs >
                 <tab label="Crear cliente" sclass="menutabs" />
-                <tab label="Crear producto" sclass="menutabs" />
-                <tab label="Grabar factura" sclass="menutabs" />
+                <tab label="Crear producto" sclass="menutabs"  />
+                <tab label="Grabar factura" sclass="menutabs"  />
                 <tab label="Emitir factura" sclass="menutabs" />
-                <tab label="Cuentas por cobrar" sclass="menutabs"/>
-                <tab label="Notas de crédito" sclass="menutabs"/>
-                <tab label="Proformas emitidas" sclass="menutabs"/>
+                <tab label="Cuentas por cobrar" sclass="menutabs" />
+                <tab label="Notas de crédito" sclass="menutabs"  />
+                <tab label="Proformas emitidas" sclass="menutabs" selected="true"/>
                 <tab label="Reporte acumulado de ventas" sclass="menutabs"/>
                 <tab label="Reporte compras vs ventas" sclass="menutabs"/>
             </tabs>

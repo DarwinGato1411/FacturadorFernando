@@ -136,7 +136,7 @@
                     <listheader width="100%"  label="Precio por 3 unidades"  /> 
                     <listheader width="100%"  label="Precio por 6 unidades"  /> 
                     <listheader width="100%"  label="Precio por caja"  /> 
-                    <listheader width="100%"  label="" align="center"/>
+                    <listheader width="100%"  label="Editar" align="center"/>
                     <!--<listheader width="5%"  label="" align="center"/>-->
                 </listhead>  
                 <template name="model">                                                            

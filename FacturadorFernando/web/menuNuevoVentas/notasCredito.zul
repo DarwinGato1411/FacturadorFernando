@@ -9,7 +9,7 @@
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
-<zk  width="100%" class="container" 
+<zk   width="100%" class="container" 
 >
 
     <!--onCreate="@command('aperturaCaja')"-->
@@ -20,11 +20,11 @@
         <tabbox  width="100%"  tabscroll="true" >
             <tabs >
                 <tab label="Crear cliente" sclass="menutabs" />
-                <tab label="Crear producto" sclass="menutabs" />
-                <tab label="Grabar factura" sclass="menutabs" />
+                <tab label="Crear producto" sclass="menutabs"  />
+                <tab label="Grabar factura" sclass="menutabs"  />
                 <tab label="Emitir factura" sclass="menutabs" />
-                <tab label="Cuentas por cobrar" sclass="menutabs"/>
-                <tab label="Notas de crédito" sclass="menutabs"/>
+                <tab label="Cuentas por cobrar" sclass="menutabs" />
+                <tab label="Notas de crédito" sclass="menutabs"  selected="true"/>
                 <tab label="Proformas emitidas" sclass="menutabs"/>
                 <tab label="Reporte acumulado de ventas" sclass="menutabs"/>
                 <tab label="Reporte compras vs ventas" sclass="menutabs"/>

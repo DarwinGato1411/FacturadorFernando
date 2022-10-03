@@ -10,7 +10,7 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 
-<zk  contentStyle="overflow:auto" with="100%" >
+<zk width="100%" >
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.ListaRetenciones')" width="100%">
         <tabbox id="tboxPrincipal"  width="100%">
@@ -123,8 +123,8 @@
                             </auxheader>
                         </auxhead>
                        
-                        <listhead> 
-                            <listheader width="15%"   >
+                        <listhead class="encabezado28"> 
+                            <listheader  width="100%"   >
                                 <textbox value="@bind(vm.buscarNumFac)"  
                                           tooltiptext="Factura compra"
                                           class="form-control form-control-sm"                                         
@@ -132,8 +132,8 @@
                                           onOK="@command('buscarForNumeroFactura')"
                                           onChange="self.setValue(self.getValue().toUpperCase());" />
                             </listheader> 
-                            <listheader width="10%"  label="Fecha emisiona" />    
-                            <listheader width="20%"   >
+                            <listheader width="100%"  label="Fecha emisiona" />    
+                            <listheader width="100%"   >
                                 <textbox value="@bind(vm.buscarSecuencial)"  
                                          tooltiptext="Secuencial de la retencion"
                                          class="form-control form-control-sm"                                         
@@ -141,13 +141,13 @@
                                          onOK="@command('buscarForRetencion')"
                                          onChange="self.setValue(self.getValue().toUpperCase());" />
                             </listheader>        
-                            <listheader width="20%"  label="Estado SRI" />  
-                            <listheader width="12%"  label="Fecha Autorizacion" />       
-                            <listheader width="43%"  label="Autorizacion" />                             
-                            <listheader width="3%"  label="" />             
-                            <listheader width="3%"  label="" />             
-                            <listheader width="3%"  label="" />             
-                            <listheader width="3%"  label="" />             
+                            <listheader width="100%"  label="Estado SRI" />  
+                            <listheader width="100%"  label="Fecha Autorizacion" />       
+                            <listheader width="100%"  label="Autorizacion" />                             
+                            <listheader width="100%"  label="" />             
+                            <listheader width="100%"  label="" />             
+                            <listheader width="100%"  label="" />             
+                            <listheader width="100%"  label="" />             
                         </listhead>  
                         
                     

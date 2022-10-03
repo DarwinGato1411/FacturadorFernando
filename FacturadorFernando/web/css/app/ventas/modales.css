@@ -237,9 +237,7 @@ body {
 }
 
 @media only screen and (min-width: 632px) {
-  .container_modal {
-    width: 1200px;
-  }
+  
 
   .container_modal > .header {
     flex-direction: row;

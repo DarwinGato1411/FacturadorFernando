@@ -566,6 +566,7 @@ div.z-listbox-header th.z-listheader,
 div.z-listbox-header th.z-auxheader {
     background: var(--primary-color) !important;
     color: #fff !important;
+    width: 100%;
 }
 
 div.z-listfooter-cnt,
@@ -674,6 +675,7 @@ div.z-listheader-cnt {
 
 .encabezado1,.tabla1{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 50% 10% 10% 10% 10%;
 }
 
@@ -682,6 +684,7 @@ div.z-listheader-cnt {
 
 .encabezado2, .tabla2{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
 }
 
@@ -689,11 +692,13 @@ div.z-listheader-cnt {
 
 .encabezado3,.tabla3{
     display: grid !important;
-    grid-template-columns: 2% 10% 9% 10% 9% 5% 5% 10% 5% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
+    align-items: center;
+    grid-template-columns: 3% 10% 9% 10% 9% 5% 5% 8% 6% 5% 3% 3% 3% 3% 3% 3% 3% 3% 3% 3%;
 }
 
 .tabla4,.encabezado4{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 4% 10% 18% 18% 10% 8% 5% 5% 5% 5% 3% 3% 3% 3%;
 }
 
@@ -701,121 +706,156 @@ div.z-listheader-cnt {
 
 .tabla5,.encabezado5{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(5,1fr)
 }
 
 .tabla6,.encabezado6{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(10,1fr)
 }
 
 .tabla7,.encabezado7{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(4,1fr)
 }
 
 .tabla8,.encabezado8{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(3,1fr)
 }
 
 .tabla9,.encabezado9{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(4,1fr)
 }
 
 .tabla10,.encabezado10{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(4,1fr)
 }
 
 .tabla11,.encabezado11{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 6% 9% 9% 9% 9% 40% 9% 9%
 }
 
 .tabla12,.encabezado12{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 12% 29% 30% 29%;
 }
 
 .tabla13,.encabezado13{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 25% 75%;
 }
 
 .tabla14,.encabezado14{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 10% 10% 25% 10% 10% 10% 15%;
 }
 .tabla15,.encabezado15{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 60% 10% 10% 10%;
 }
 
 .tabla16,.encabezado16{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 70% 10% 10% 10%;
 }
 
 .tabla17,.encabezado17{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 25% 50% 15% 10%;
 }
 
 .tabla18,.encabezado18{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 12% 10% 78%;
 }
 
 .tabla19,.encabezado19{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(10,1fr);
 }
 
 .tabla20,.encabezado20{
     display: grid !important;
+    align-items: center;
     grid-template-columns: repeat(5,1fr);
 }
 
 .tabla21,.encabezado21{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 8% 14% 15% 13% 15% 7% 8% 15% 5%;
 }
 
 .tabla22,.encabezado22{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
 
 .tabla23,.encabezado23{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 25% 30% 10% 10% 10% 5%;
     border: none;
 }
 
 .tabla24,.encabezado24{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 15% 25% 8% 7% 20% 10% 5%;
 
 }
 
 .tabla25,.encabezado25{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 35% 20% 20% 20% 5%;
 
 }
 
 .tabla26,.encabezado26{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 20% 20% 20% 10% 15% 5%;
 
 }
 
 .tabla27, .encabezado27{
     display: grid !important;
+    align-items: center;
     grid-template-columns: 10% 10% 10% 10% 10% 10% 20% 11% 3% 3% 3%;
 
+}
+
+.tabla28, .encabezado28{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 15% 15% 15% 15% 14% 14% 3% 3% 3% 3%;
+
+}
+
+.z-listhead{
+    background: var(--primary-color) !important;
+    background-image: none !important;
 }
 
 .z-toolbar-body{
@@ -911,6 +951,16 @@ div.z-listheader-cnt {
 .z-menubar-ver .z-menu-body .z-menu-inner-m{
     text-align: left !important;
     color: white !important;
+}
+
+.mycss-listcell-cnt input{
+    background: white !important;
+    font-size: 12px !important;
+}
+
+.z-listheader input::placeholder{
+   
+    font-size: 10px !important;
 }
 
 .z-menubar-ver .z-menu-body .z-menu-inner-m{
