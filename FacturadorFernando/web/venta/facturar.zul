@@ -282,7 +282,7 @@
                         <div class="factura_body factura_body_content">
                     
 
-                            <div class="factura_body_item" >
+                            <div class="factura_body_item_fl" >
                                 <listbox model="@load(vm.listaKardexProducto)" 
                                          nonselectableTags=""    mold="paging" pageSize="10"  >
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
@@ -309,7 +309,7 @@
                                                      onChange="self.setValue(self.getValue().toUpperCase());" />
                                         </listheader>                         
                                         <listheader width="100%"   label="Kardex" align="center" /> 
-                                        <listheader width="100%"  label="Pv v Mayor" align="center" /> 
+<!--                                        <listheader style="display:none;" width="100%"  label="Pv v Mayor" align="center" /> -->
                                         <listheader width="100%"  label="Pvp" align="center" /> 
                                         <listheader width="100%"  label="Asignar" align="center"/>
                                     </listhead>  
@@ -353,14 +353,14 @@
                                                        value="@bind(each.karTotal)" 
                                                        width="100%" />
                                             </listcell>
-                                            <listcell zclass = "mycss-listcell" 
+<!--                                            <listcell style="display:none;" zclass = "mycss-listcell" 
                                                       onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                                 <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
                                                        class="form-control form-control-sm"
                                                        value="@bind(each.idProducto.prodCostoPreferencial)"
                                                        style="font-size:11px; font-weight: bold" 
                                                        width="100%" />
-                                            </listcell>
+                                            </listcell>-->
                                             <listcell zclass = "mycss-listcell" 
                                                       onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                                 <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
@@ -387,7 +387,7 @@
                                 </listbox>
                             </div>
 
-                            <div class="factura_body_item">
+                            <div class="factura_body_item_fr">
                                 <listbox id="lstFacturar"
                                          model="@load(vm.listaDetalleFacturaDAOMOdel)"
                                          mold="paging" pageSize="14"

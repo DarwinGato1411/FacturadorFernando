@@ -240,13 +240,15 @@ body {
 
 .factura_body_content {
     display: flex;
-    flex-direction: column;
+    
     gap: 1em;
 }
 
 .factura_body_content > .factura_body_item {
     width: 100%;
 }
+
+
 
 .wrapper_total > span * {
     color: var(--secondary-color);
@@ -529,17 +531,17 @@ body {
 @media only screen and (min-width: 1070px) {
     .factura_header {
         flex-direction: row;
-        
+
     }
-    
+
     .factura_empresa{
         flex-direction: row;
     }
-    
+
     .factura_empresa .factura_body_item_l{
         width: 60%
     }
-    
+
     .factura_empresa .factura_body_item_r{
         width: 40%
     }
@@ -557,7 +559,7 @@ body {
     }
 
     .factura_body_content {
-        
+
     }
 
     .factura_body_content > .factura_body_item {
@@ -595,10 +597,23 @@ div.z-listheader-cnt {
     color: var(--primary-color);
 }
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1024px) {
     .logo_defact {
-        width: 200px;
+        width: 100px;
     }
+    .factura_body{
+        flex-direction: row;
+       
+    }
+    
+    .factura_body_item_fl{
+        width: 40%
+    }
+    
+    .factura_body_item_fr{
+        width: 60%
+    }
+    
 }
 
 
@@ -688,7 +703,7 @@ div.z-listheader-cnt {
 .encabezado1,.tabla1{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 10% 50% 10% 10% 10% 10%;
+    grid-template-columns: 13% 49% 13% 13% 11%;
 }
 
 
@@ -697,7 +712,7 @@ div.z-listheader-cnt {
 .encabezado2, .tabla2{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 5% 5% 8% 8% 21% 21% 12% 10% 10%;
+    grid-template-columns: 7% 7% 7% 7% 22% 22% 10% 9% 9%;
 }
 
 
@@ -1012,7 +1027,7 @@ div.z-listheader-cnt {
 }
 
 .z-listheader input::placeholder{
-   
+
     font-size: 10px !important;
 }
 
@@ -1133,7 +1148,7 @@ input[type='radio']:checked:after {
 }
 
 .z-listbox-header,.z-listbox-body{
-    
+
     width: 100% !important;
 }
 

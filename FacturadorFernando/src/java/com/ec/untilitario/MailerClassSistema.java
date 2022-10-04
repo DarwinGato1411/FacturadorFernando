@@ -66,8 +66,8 @@ public class MailerClassSistema {
 //            amb = servicioTipoAmbiente.FindALlTipoambiente();
 //            String username = amb.getAmUsuarioSmpt().trim();
 //            String password = amb.getAmPassword().trim();
-            String username = "no-reply@defactec.com";
-            String password = "1h@t3Pap3r";
+            String username = "qbs@intersys-it.com";
+            String password = "TCsender2021$";
             return new PasswordAuthentication(username, password);
 
         }
@@ -89,8 +89,8 @@ public class MailerClassSistema {
             String host = "smtp.office365.com";
             String port = "587";
             String protocol = "smtp";
-            String usuarioSmpt = "no-reply@defactec.com";
-            String password = "1h@t3Pap3r";
+            String usuarioSmpt = "qbs@intersys-it.com";
+            String password = "TCsender2021$";
 
 
             // Propiedades de la conexión
@@ -111,7 +111,7 @@ public class MailerClassSistema {
             // Get the default Session object.
             Session session = Session.getInstance(properties, auth);
             MimeMessage m = new MimeMessage(session);
-            String nickFrom = MimeUtility.encodeText("DEFACT");
+            String nickFrom = MimeUtility.encodeText("Facturas.ec");
 //            String nickTo = MimeUtility.encodeText(amb.getAmNombreComercial());
             Address addressfrom = new InternetAddress(usuarioSmpt, nickFrom);
 
