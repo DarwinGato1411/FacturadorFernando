@@ -15,7 +15,7 @@
           viewModel="@id('vm') @init('com.ec.controlador.KardexGeneral')" >
         <tabbox id="tbRotacion"  width="100%" >
             <tabs >
-                <tab label="Gestion de kardex" sclass="menutabs" /> 
+                <tab label="Kardex general" sclass="menutabs" /> 
                 <!--<tab label="Ventas por mes" sclass="menutabs" />--> 
             </tabs>
             <tabpanels >

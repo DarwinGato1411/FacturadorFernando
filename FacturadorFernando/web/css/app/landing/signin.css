@@ -226,7 +226,7 @@ body {
 }
 .container_registro .wapper_registro,
 .container_forgot_registro .wapper_registro {
-    width: 80%;
+   
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
     background-color: #fff;
     border-radius: 20px;
@@ -265,7 +265,7 @@ body {
 }
 .container_registro .wapper_registro .wrapper_all_inputs,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs {
-    margin-top: 3em;
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -320,7 +320,7 @@ body {
 }
 .container_registro .wapper_registro .wrapper_button,
 .container_forgot_registro .wapper_registro .wrapper_button {
-    margin: 3em 0;
+    margin: 2em 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -395,6 +395,8 @@ body {
         display: flex;
         
     }
+    
+    
      .login_container .wrapper_login .container_img{
         display: block; 
         width:  100%;

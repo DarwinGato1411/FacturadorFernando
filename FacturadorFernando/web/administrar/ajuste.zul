@@ -97,7 +97,7 @@
                                                             onOK="@command('buscarLikeKardexNombreProd')"                                                     
                                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                                 </listheader>                         
-                                                <listheader width="100%"  label="KARDEX" align="center" />      
+                                                <listheader width="100%"  label="Kardex" align="center" />      
                                                 <listheader width="100%"  label="Asignar" align="center"/>
                             
                                             </listhead>  
@@ -178,10 +178,10 @@
                                                             style="background:black;color:white;font-size:12px"
                                                     />
                                                 </listheader>
-                                                <listheader width="100%%"   label="COD" align="left" />
-                                                <listheader width="100%"   label="CANT" align="left"  />
+                                                <listheader width="100%%"   label="Cod" align="left" />
+                                                <listheader width="100%"   label="Cant" align="left"  />
                                     
-                                                <listheader width="100%"  label="DESCRIPCIÓN" align="left" />
+                                                <listheader width="100%"  label="Descripción" align="left" />
                                         
                                                                                                                                 
                                             </listhead>

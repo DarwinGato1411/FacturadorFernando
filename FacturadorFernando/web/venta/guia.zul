@@ -74,15 +74,15 @@
                                             width="100%"         
                                        class="  textoFechaDateBox"      
                                         >                             
-                                            <comboitem label="COMPRA" value="COMPRA" />                    
-                                            <comboitem label="CONSIGNACION" value="CONSIGNACION" />
-                                            <comboitem label="DEVOLUCION" value="DEVOLUCION" />
-                                            <comboitem label="EXPORTACION" value="EXPORTACION" />
-                                            <comboitem label="IMPORTACION" value="IMPORTACION" />
-                                            <comboitem label="TRANSFORMACION" value="TRANSFORMACION" />
-                                            <comboitem label="TRASLADO" value="TRASLADO" />
-                                            <comboitem label="VENTA" value="VENTA" />
-                                            <comboitem label="OTROS" value="OTROS" />
+                                            <comboitem label="Compra" value="COMPRA" />                    
+                                            <comboitem label="Consignación" value="CONSIGNACION" />
+                                            <comboitem label="Devolución" value="DEVOLUCION" />
+                                            <comboitem label="Exportación" value="EXPORTACION" />
+                                            <comboitem label="Importación" value="IMPORTACION" />
+                                            <comboitem label="Transformación" value="TRANSFORMACION" />
+                                            <comboitem label="Traslado" value="TRASLADO" />
+                                            <comboitem label="Venta" value="VENTA" />
+                                            <comboitem label="Otros" value="OTROS" />
                                         </combobox>
                                         <!--<div class="fa-solid fa-chevron-down icon"/>-->
                                     </div>
@@ -194,20 +194,20 @@
       
                     
                                     <listhead class="encabezado17"> 
-                                        <listheader width="100%"  label="Codigo"     align="left"   >
+                                        <listheader width="100%"  label="Código"     align="left"   >
                                                 
                                         </listheader>     
                                         <listheader width="100%" align="left"   >
                                             <textbox value="@bind(vm.buscarNombreProd)"  
                                                      id="idBusquedaProd"
                                                      class="form-control form-control-sm"
-                                                     tooltiptext="Descripcion"
-                                                     placeholder="Descripcion"
+                                                     tooltiptext="Descripción"
+                                                     placeholder="Descripción"
                                                      onOK="@command('buscarLikeNombreProd')"                                                     
                                                      onChange="self.setValue(self.getValue().toUpperCase());" />
                                         </listheader>                         
-                                        <listheader width="100%"  label="PVP" align="center" /> 
-                                        <listheader width="100%"  label="Ai=signar" align="center"/>
+                                        <listheader width="100%"  label="Pvp" align="center" /> 
+                                        <listheader width="100%"  label="Asignar" align="center"/>
                            
                                     </listhead>  
                     
@@ -271,7 +271,7 @@
                                             />
                                         </listheader>
                                         <listheader width="100%"  label="Cantidad" align="left" />
-                                        <listheader width="100%"  label="Descripcion" align="left"  />                                                                                 
+                                        <listheader width="100%"  label="Descripción" align="left"  />                                                                                 
                                     </listhead>
                     
                                     <template name="model">                                                            

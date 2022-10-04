@@ -377,9 +377,10 @@ body {
 .logo_defact {
     display: block;
     object-fit: cover;
-    width: 120px;
+    width: 100px;
     position: relative;
     z-index: 100;
+    padding-bottom: 10px;
 }
 
 .icon_exit span * {
@@ -528,11 +529,11 @@ body {
 @media only screen and (min-width: 1070px) {
     .factura_header {
         flex-direction: row;
-        justify-content: space-between;
+        
     }
 
     .factura_header > .fact_row {
-        width: 50%;
+        width: 100%;
     }
 
     .factura_header > .fact_row:first-child:after {
@@ -544,12 +545,11 @@ body {
     }
 
     .factura_body_content {
-        flex-direction: row;
-        justify-content: space-between;
+        
     }
 
     .factura_body_content > .factura_body_item {
-        width: 50%;
+        width: 100%;
     }
 
     .factura_body_content > .factura_body_item_lefth {
@@ -685,7 +685,7 @@ div.z-listheader-cnt {
 .encabezado2, .tabla2{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 10% 10% 8% 8% 30% 12% 12% 10%;
+    grid-template-columns: 5% 5% 8% 8% 21% 21% 12% 10% 10%;
 }
 
 
@@ -853,9 +853,44 @@ div.z-listheader-cnt {
 
 }
 
+.tabla29, .encabezado29{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 14% 14% 14% 12% 12% 12% 14% 8%;
+
+}
+
+.tabla30, .encabezado30{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 13% 16% 7% 7% 10% 14% 14% 7% 7% 5%;
+}
+
+.tabla31, .encabezado31{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 18% 18% 18% 18% 18% 10%;
+}
+
+.tabla32, .encabezado32{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 10% 17% 17% 17% 17% 17% 5%;
+}
+
+.tabla33, .encabezado33{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 30% 30% 30% 10%;
+}
+
 .z-listhead{
     background: var(--primary-color) !important;
     background-image: none !important;
+}
+
+.z-listbox-header table,.z-listbox-header table tbody{
+    display: block;
 }
 
 .z-toolbar-body{
@@ -953,7 +988,7 @@ div.z-listheader-cnt {
     color: white !important;
 }
 
-.mycss-listcell-cnt input{
+.mycss-listcell-cnt input,.mycss-listcell-cnt span{
     background: white !important;
     font-size: 12px !important;
 }
@@ -1080,7 +1115,12 @@ input[type='radio']:checked:after {
 }
 
 .z-listbox-header,.z-listbox-body{
+    
     width: 100% !important;
+}
+
+.z-listbox-body table,.z-listbox-body table tbody{
+    display: block;
 }
 
 .z-toolbarbutton-cnt{

@@ -11,30 +11,30 @@
         <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                     
                     
-        <listhead> 
-            <listheader width="10%"  label="" >
+        <listhead class="encabezado31"> 
+            <listheader width="100%"  label="" >
                 <textbox value="@bind(vm.buscarProvCedula)" 
                          class="form-control form-control-sm"
                          placeholder="Cèdula"
                          onOK="@command('buscarProveedorCedula')"  />
             </listheader>     
-            <listheader width="27%"  label="" >
+            <listheader width="100%"  label="" >
                 <textbox value="@bind(vm.buscarProvNombre)" 
                          class="form-control form-control-sm"
                          onChange="self.setValue(self.getValue().toUpperCase());"
                          placeholder="Nombre"
                          onOK="@command('buscarProveedorNombre')" />
             </listheader> 
-            <listheader width="33%"  label="DIRECCION "  /> 
+            <listheader width="100%"  label="DIRECCION "  /> 
             <!--<listheader width="8%"  label="TELEFONO "  />-->        
-            <listheader width="8%"  label="MOVIL"/>
-            <listheader width="20%"  label="CORREO"/>
-            <listheader width="5%"  label="OPCIONES" align="center"/>
+            <listheader width="100%" label="MOVIL"/>
+            <listheader width="100%"  label="CORREO"/>
+            <listheader width="100%" label="OPCIONES" align="center"/>
                             
         </listhead>  
                     
         <template name="model">                                                            
-            <listitem>
+            <listitem class="tabla31">
                 <listcell  style="font-size:10px;background-color:#d6eefd" zclass = "mycss-listcell"
                           onClick="@command('seleccionarProveedorLista',valor=each)" >
                     <textbox readonly="true" style="font-size:12px ;background:#EBF5FB" 

@@ -70,10 +70,10 @@
                                     <listheader width="100%"  label="Estado " align="rigth" /> 
                                     <listheader width="100%"  label="Abono "  /> 
                                     <listheader width="100%"  label="Saldo "  />        
-                                    <listheader width="100%"  label=" " align="center" />        
-                                    <listheader width="100%"  label=" " align="center" />        
-                                    <listheader width="100%"  label=" " align="center" />        
-                                    <listheader width="100%"  label="" align="center" />        
+                                    <listheader width="100%"  label="VF" align="center" />        
+                                    <listheader width="100%"  label="IC" align="center" />        
+                                    <listheader width="100%"  label="VF" align="center" />        
+                                    <listheader width="100%"  label="MC" align="center" />        
                                 </listhead>  
                         
                     

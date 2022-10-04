@@ -112,9 +112,9 @@
                                 <listheader width="100%"  label="Estado SRI" align="rigth" /> 
                                 <listheader width="100%"  label="Fecha Aut." align="rigth" /> 
                                 <listheader width="100%"  label="Clave Autorizacion"  />                                   
-                                <listheader width="100%"  label="" align="center" />        
-                                <listheader width="100%"  label="" align="center" />        
-                                <listheader width="100%"  label="" align="center" />               
+                                <listheader width="100%"  label="Autorizado" align="center" />        
+                                <listheader width="100%"  label="Reenviar guía Aut." align="center" />        
+                                <listheader width="100%"  label="Reenviar Fact." align="center" />               
                             </listhead>  
                             
                         

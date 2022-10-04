@@ -144,10 +144,10 @@
                             <listheader width="100%"  label="Estado SRI" />  
                             <listheader width="100%"  label="Fecha Autorizacion" />       
                             <listheader width="100%"  label="Autorizacion" />                             
-                            <listheader width="100%"  label="" />             
-                            <listheader width="100%"  label="" />             
-                            <listheader width="100%"  label="" />             
-                            <listheader width="100%"  label="" />             
+                            <listheader width="100%"  label="ER" />             
+                            <listheader width="100%"  label="AF" />             
+                            <listheader width="100%"  label="RR" />             
+                            <listheader width="100%"  label="IR" />             
                         </listhead>  
                         
                     

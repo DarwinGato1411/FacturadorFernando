@@ -14,7 +14,7 @@
           viewModel="@id('vm') @init('com.ec.controlador.ListaCompras')" width="100%">
         <tabbox id="tboxPrincipal"  width="100%">
             <tabs >
-                <tab label="Lista de compras" sclass="menutabs" /> 
+                <tab label="Lista de facturas  compras" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 
@@ -145,9 +145,9 @@
                                          onChange="self.setValue(self.getValue().toUpperCase());"/>
                             </listheader>        
                             <listheader   label="Quien ingreso" />        
-                            <listheader   label="" align="center" />        
-                            <listheader   label="" align="center" />        
-                            <listheader   label="" align="center" />        
+                            <listheader   label="IF" align="center" />        
+                            <listheader   label="CR" align="center" />        
+                            <listheader   label="MF" align="center" />        
                         </listhead>  
                         
                     
