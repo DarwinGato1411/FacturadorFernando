@@ -163,6 +163,8 @@ public class Producto implements Serializable {
     
     @Column(name = "prod_porcentaje_ice")
     private BigDecimal prodPorcentajeIce;
+    @Column(name = "prod_detalle")
+    private String prodDetalle;
 
     public Producto() {
     }
@@ -546,6 +548,14 @@ public class Producto implements Serializable {
 
     public void setProdPorcentajeIce(BigDecimal prodPorcentajeIce) {
         this.prodPorcentajeIce = prodPorcentajeIce;
+    }
+
+    public String getProdDetalle() {
+        return prodDetalle;
+    }
+
+    public void setProdDetalle(String prodDetalle) {
+        this.prodDetalle = prodDetalle;
     }
 
     @Override

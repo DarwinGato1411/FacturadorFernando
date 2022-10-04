@@ -629,6 +629,7 @@ public class Facturar extends SelectorComposer<Component> {
             valor.setCantidad(BigDecimal.ONE);
             valor.setProducto(productoBuscado);
             valor.setDescripcion(productoBuscado.getProdNombre());
+            valor.setDetDetalle(productoBuscado.getProdDetalle());
             valor.setDetPordescuento(DESCUENTOGENERAL);
             valor.setCodigo(productoBuscado.getProdCodigo());
             valor.setEsProducto(producto.getProdEsproducto());

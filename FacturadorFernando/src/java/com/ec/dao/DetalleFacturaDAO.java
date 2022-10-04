@@ -55,6 +55,7 @@ public class DetalleFacturaDAO {
     private String provincia = "217";
     private String numerotel = "";
     private String codigoCantonMatriculacion = "21702";
+    private String detDetalle = "";
 
     
     
@@ -367,6 +368,14 @@ public class DetalleFacturaDAO {
 
     public void setValorBaseIce(BigDecimal valorBaseIce) {
         this.valorBaseIce = valorBaseIce;
+    }
+
+    public String getDetDetalle() {
+        return detDetalle;
+    }
+
+    public void setDetDetalle(String detDetalle) {
+        this.detDetalle = detDetalle;
     }
     
 

@@ -97,43 +97,11 @@ public class AgregarUsuario {
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
-
-        System.out.println("Registro admin " + " " + usuarioSistema.getUsuNombre());
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                && !usuarioSistema.getUsuLogin().equals("")
-                && !usuarioSistema.getUsuCorreo().equals("")
-                && !usuarioSistema.getUsuWhatsapp().equals("")
-                && !usuarioSistema.getUsuPassword().equals("")
-                && !usuarioSistema.getUsuRuc().equals("")
-                && !tipoUSuario.equals("")) {
-
+                    && !usuarioSistema.getUsuLogin().equals("")
+                    && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
-
-            /* verifica si tiene tipo ambiente */
-            if (usuarioSistema.getUsuWhatsapp() == null) {
-                Clients.showNotification("Ingrese un numero de contacto..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                return;
-            }
-            if (usuarioSistema.getUsuRuc().length() != 13) {
-                Clients.showNotification("Ingrese un RUC valido..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                return;
-            }
-
-            Usuario usuariovalida = servicioUsuario.FindUsuarioPorNombre(usuarioSistema.getUsuLogin());
-            if (usuariovalida != null) {
-                Clients.showNotification("El nombre de usuario ya se encuentra en uso..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                return;
-            }
-            usuarioSistema.setUsuFechaRegistro(new Date());
-            Date fecha = new Date();
-            Calendar c = Calendar.getInstance();
-            c.setTime(fecha);
-            c.add(Calendar.DATE, 30);
-            usuarioSistema.setUsuFechaPago(c.getTime());
-            usuarioSistema.setUsuIlimitado(Boolean.TRUE);
+            /*crea el usuario*/
             if (accion.contains("create")) {
                 if (Integer.valueOf(tipoUSuario) == 1) {
                     usuarioSistema.setUsuTipoUsuario("ADMINISTRADOR");
@@ -149,12 +117,13 @@ public class AgregarUsuario {
                 }
                 servicioUsuario.modificar(usuarioSistema);
             }
-            // verifica si existe sino lo crea
-            Tipoambiente tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
 
-            if (tipoAmbienteRecup == null) {
+            // verifica si existe sino lo crea
+            Tipoambiente tipoAmbiente = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
+            if (tipoAmbiente == null) {
                 // PRUEBAS
                 Tipoambiente tipoambiente = new Tipoambiente();
+
                 tipoambiente.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambiente.setAmCodigo("1");
                 tipoambiente.setAmDescripcion("PRUEBAS");
@@ -175,34 +144,26 @@ public class AgregarUsuario {
                 tipoambiente.setAmTipoEmision("1");
                 tipoambiente.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambiente.setAmRuc(usuarioSistema.getUsuRuc());
-                tipoambiente.setAmNombreComercial(usuarioSistema.getUsuNombre());
-                tipoambiente.setAmRazonSocial(usuarioSistema.getUsuNombre());
-                tipoambiente.setAmDireccionMatriz("");
-                tipoambiente.setAmDireccionSucursal("");
-                tipoambiente.setAmEstab("001");
-                tipoambiente.setAmPtoemi("001");
+                tipoambiente.setAmNombreComercial("");
+                tipoambiente.setAmRazonSocial("");
+                tipoambiente.setAmDireccionMatriz("QUITO");
+                tipoambiente.setAmDireccionSucursal("QUITO");
 
                 tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
-                tipoambiente.setAmPassword("1h@t3Pap3r");
+                tipoambiente.setAmUsuarioSmpt("qbs@intersys-it.com");
+                tipoambiente.setAmPassword("TCsender2021$");
                 tipoambiente.setAmHost("smtp.office365.com");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
-                tipoambiente.setIdUsuario(usuarioSistema);
-                tipoambiente.setAmUnidadDisco("/");
-                tipoambiente.setAmGrabaIce(Boolean.FALSE);
-                tipoambiente.setAmValorIce(BigDecimal.ZERO);
-                tipoambiente.setAmCodigoIce("0");
-                tipoambiente.setAmComprobanteImprime("factura.jasper");
+                tipoAmbiente.setIdUsuario(usuarioSistema);
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
                 Tipoambiente tipoambienteProd = new Tipoambiente();
-                tipoambienteProd.setAmUnidadDisco("/");
                 tipoambienteProd.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambienteProd.setAmCodigo("2");
                 tipoambienteProd.setAmDescripcion("PRODUCCION");
@@ -222,29 +183,22 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmTipoEmision("1");
                 tipoambienteProd.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambienteProd.setAmRuc(usuarioSistema.getUsuRuc());
-                tipoambienteProd.setAmNombreComercial(usuarioSistema.getUsuNombre());
-                tipoambienteProd.setAmRazonSocial(usuarioSistema.getUsuNombre());
-                tipoambienteProd.setAmEstab("001");
-                tipoambienteProd.setAmPtoemi("001");
-                tipoambienteProd.setAmDireccionMatriz("");
-                tipoambienteProd.setAmDireccionSucursal("");
-                tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
-                tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmNombreComercial("");
+                tipoambienteProd.setAmRazonSocial("");
+                tipoambienteProd.setAmDireccionMatriz("QUITO");
+                tipoambienteProd.setAmDireccionSucursal("QUITO");
 
+                tipoambienteProd.setAmPort("587");
+                tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmUsuarioSmpt("qbs@intersys-it.com");
+                tipoambienteProd.setAmPassword("TCsender2021$");
+                tipoambienteProd.setAmHost("smtp.office365.com");
+                tipoambienteProd.setLlevarContabilidad("NO");
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
                 tipoambienteProd.setAmContrEsp(Boolean.FALSE);
                 tipoambienteProd.setAmExp(Boolean.FALSE);
                 tipoambienteProd.setIdUsuario(usuarioSistema);
-                tipoambienteProd.setAmGrabaIce(Boolean.FALSE);
-                tipoambienteProd.setAmValorIce(BigDecimal.ZERO);
-                tipoambienteProd.setAmCodigoIce("0");
-                tipoambienteProd.setAmComprobanteImprime("factura.jasper");
-
                 servicioTipoAmbiente.crear(tipoambienteProd);
 
                 Parametrizar parametrizar = new Parametrizar();
@@ -263,19 +217,7 @@ public class AgregarUsuario {
                 servicioParametrizar.crear(parametrizar);
             }
 
-            // usuarioSistema = new Usuario();
-            try {
-                tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
-                MailerClassSistema mail = new MailerClassSistema();
-                mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada",
-                        usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
-                Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
-            } catch (RemoteException ex) {
-                Clients.showNotification("Ocurrio un error al recuperar su password",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            usuarioSistema = new Usuario();
             windowIdUsuario.detach();
 
         } else {

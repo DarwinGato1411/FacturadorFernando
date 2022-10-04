@@ -4,37 +4,28 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
+<?script src="../js/facturar.js"?>
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/tucontador/logo.png"?> 
+<?link rel="icon" type="image/x-icon" href="/imagenes/tucontador/logo.png"?>  
+<zk  width="100%" class="container" 
+>
 
-
-<zk  contentStyle="overflow:auto" with="100%" >
+    <!--onCreate="@command('aperturaCaja')"-->
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
-          viewModel="@id('vm') @init('com.ec.controlador.AdministrarVenta')" width="100%">
-        <tabbox id="tboxPrincipal"  width="100%">
+          viewModel="@id('vm') @init('com.ec.controlador.Facturar')" width="100%">
+    
+        <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
+        <tabbox  width="100%"  tabscroll="true" >
             <tabs >
-                <tab label="Clientes" sclass="menutabs" /> 
-                <tab label="Productos" sclass="menutabs" /> 
-                <tab label="Proveedores" sclass="menutabs" /> 
-                <tab label="Conductor" sclass="menutabs" /> 
-
-                <tab label="Usuario" sclass="menutabs" /> 
-
-                <tab label="Configuracion SRI" sclass="menutabs" /> 
-                <!--<tab label="Parametrizar Empresa" sclass="menutabs" />--> 
-                <!--<tab label="Consultar catastro" sclass="menutabs" />--> 
-<!--
-                <tab label="Configuraciones" sclass="menutabs" /> 
-                <tab label="Parametrizar Empresa" sclass="menutabs" /> -->
-
-
+                <tab label="Crear cliente" sclass="menutabs" />
+               
             </tabs>
-            
-            <tabpanels >
-                
-                <tabpanel  height="98%" width="99%"  > 
+
+           <tabpanels>
+                <tabpanel apply="org.zkoss.bind.BindComposer" 
+          viewModel="@id('vm') @init('com.ec.controlador.AdministrarVenta')" height="98%" width="99%"  > 
 
                 <div class="container_headers" style="margin-bottom:1em">
                     <div 
@@ -69,9 +60,9 @@
                                             onOK="@command('buscarClienteCedula')"
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>     
-                                <listheader width="100%"   >
+                                <listheader label="Nombre" width="100%"   >
                                 </listheader> 
-                                <listheader width="100%"   >
+                                <listheader label="Apellido" width="100%"   >
                                     
                                 </listheader> 
                                 <listheader width="100%"   > 
@@ -87,7 +78,7 @@
                                 <listheader width="100%"  label="Telefono "  />        
                                 <listheader width="100%"  label="Movil"/>
                                 <listheader width="100%"  label="Correo"/>
-                                <listheader width="100%"  label="" align="center"/>
+                                <listheader width="100%"  label="Editar" align="center"/>
                                 
                             </listhead>  
                         
@@ -142,90 +133,11 @@
 
                 
                 </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/venta/admproducto.zul"/>  
-                </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/compra/admproveedor.zul"/>  
-                </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/venta/admconductor.zul"/>  
-                </tabpanel>      
-                <tabpanel height="100%" hflex="min">
-
-                    <div class="container_headers" style="margin-bottom:1em">
-                        <div 
-                            class="fa-solid fa-plus-circle fa-2x icon"
-                            onClick="@command('agregarUsario')"
-                            tooltiptext="Nuevo usuario"
-                        >
-                            <span>Nuevo usuario</span>
-                    </div>
-                    </div>
-
-                    <div class="cont_body">
-                        <div class="cont_body_item">
-                            <listbox width="100%" model="@load(vm.listaUsuarios)" nonselectableTags="*"  mold="paging" pageSize="9">
-                         
-                                
-                                            
-                                    
-                                <listhead class="encabezado25" sizable="true">
-                                    <listheader label="Nombre de la cuenta"  align="left" width="100%"></listheader>
-                                    <listheader label="Usuario"  align="left" width="100%"></listheader>
-                                    <listheader label="Contraseña"  align="left" width="100%"></listheader>
-                                    <listheader label="Tipo Usuario"  align="left" width="100%"></listheader>
-                                    <listheader label="Modificar"  align="left" width="100%"></listheader>
-                                </listhead>
-                        
-                        
-                                <template name="model">
-                                    <listitem width="100%"  class="tabla25"> 
-                                        <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuNombre)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm" />
-                                        </listcell>  
-                                        <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuLogin)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm" />
-                                        </listcell>   
-                                        <listcell  zclass = "mycss-listcell">      
-                                            <textbox readonly="true" value="@bind(each.usuPassword)" 
-                                                     class="form-control form-control-sm"
-                                                     style="font-size:12px;background:#EBF5FB"
-                                                     type="password" />
-                                        </listcell>  
-                                        <listcell  zclass = "mycss-listcell">                          
-                                            <textbox readonly="true" value="@bind(each.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm"  />
-                                        </listcell>                  
-                                        <listcell  zclass = "mycss-listcell">
-                                            <image src="/iconos/editar.png"
-                                                   class="grow"
-                                                   onClick="@command('modificarUsario',valor=each)" 
-                                                   tooltiptext="Editar usuario"/> 
-                                            
-                                        </listcell>     
-                                    
-                                    </listitem>
-                                </template>   
-                            
-                            </listbox>
-                        </div>
-                    </div>
-
-
-
-                </tabpanel>              
-                <tabpanel height="100%" hflex="min">
-                    <include src="/administrar/configuracion.zul"/>  
-                </tabpanel>
-
-
+                
             </tabpanels>
-            
-        </tabbox>
+        </tabbox>   
     </hbox>
-
-
+    <div class="wrapper_loading loading_inicio">
+        <div class="lds-dual-ring"></div>
+    </div>
 </zk>

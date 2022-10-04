@@ -113,6 +113,8 @@ public class DetalleFactura implements Serializable {
     private String numerotel;
     @Column(name = "codigo_canton_matriculacion")
     private String codigoCantonMatriculacion;
+    @Column(name = "det_detalle")
+    private String detDetalle;
 
     @Column(name = "det_tarifa")
     private BigDecimal detTarifa;
@@ -429,6 +431,14 @@ public class DetalleFactura implements Serializable {
 
     public void setDetValorIce(BigDecimal detValorIce) {
         this.detValorIce = detValorIce;
+    }
+
+    public String getDetDetalle() {
+        return detDetalle;
+    }
+
+    public void setDetDetalle(String detDetalle) {
+        this.detDetalle = detDetalle;
     }
 
     @Override

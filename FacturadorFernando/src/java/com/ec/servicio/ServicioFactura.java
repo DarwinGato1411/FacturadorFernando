@@ -23,20 +23,20 @@ import javax.persistence.Query;
  * @author gato
  */
 public class ServicioFactura {
-
+    
     ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
     private EntityManager em;
-
+    
     public EntityManager getEm() {
         return em;
     }
-
+    
     public void setEm(EntityManager em) {
         this.em = em;
     }
-
+    
     public void crear(Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
@@ -47,11 +47,11 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
     }
-
+    
     public void guardarFactura(List<DetalleFacturaDAO> detalleFacturaDAOs, Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
@@ -67,7 +67,7 @@ public class ServicioFactura {
                             factura, item.getTipoVenta());
                 detalleFactura.setDetIva(item.getDetIva());
                 detalleFactura.setDetTotalconiva(item.getDetTotalconiva());
-
+                
                 detalleFactura.setDetSubtotaldescuento(item.getSubTotalDescuento());
                 detalleFactura.setDetTotaldescuento(item.getDetTotaldescuento());
                 detalleFactura.setDetPordescuento(item.getDetPordescuento());
@@ -94,6 +94,7 @@ public class ServicioFactura {
                 detalleFactura.setProvincia(item.getProvincia());
                 detalleFactura.setNumerotel(item.getNumerotel());
                 detalleFactura.setCodigoCantonMatriculacion(item.getCodigoCantonMatriculacion());
+                detalleFactura.setDetDetalle(item.getDetDetalle());
                 // servicioDetalleFactura.crear(detalleFactura);
                 em.persist(detalleFactura);
                 em.flush();
@@ -104,11 +105,11 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
     }
-
+    
     public void modificarFactura(List<DetalleFacturaDAO> detalleFacturaDAOs, Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
@@ -135,12 +136,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
     }
 
     //guarda para la venta diaria desde nota venta
     public void guardarFacturaVentaDiaria(List<DetalleFacturaDAO> detalleFacturaDAOs, Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
@@ -171,27 +172,27 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
     }
-
+    
     public void eliminar(Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             em.remove(em.merge(factura));
             em.getTransaction().commit();
-
+            
         } catch (Exception e) {
             System.out.println("Error en eliminar  factura" + e);
         } finally {
             em.close();
         }
-
+        
     }
-
+    
     public void modificar(Factura factura) {
-
+        
         try {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
@@ -202,11 +203,11 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
     }
-
+    
     public List<Factura> FindALlFactura() {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -221,12 +222,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public Factura FindUltimaFactura(Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -249,12 +250,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
-
+    
     public Factura FindUltimaProforma(Tipoambiente tipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -262,7 +263,7 @@ public class ServicioFactura {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT f FROM Factura f WHERE f.facTipo='PROF' AND f.facNumProforma IS NOT NULL AND f.cod_tipoambiente=:tipoambiente ORDER BY f.idFactura DESC");
-
+            
             query.setParameter("tipoambiente", tipoambiente);
             query.setMaxResults(2);
             listaFacturas = (List<Factura>) query.getResultList();
@@ -277,12 +278,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
-
+    
     public Factura findFirIdFact(Integer idFactura) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -304,12 +305,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
-
+    
     public Factura findByIdCotizacion(Integer idFactura) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -331,12 +332,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
-
+    
     public Factura findFirIdFactDiaria(Integer idFactura) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -358,12 +359,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
-
-    public List<Factura> FindLikeCliente(String cliente,Tipoambiente codTipoambiente) {
-
+    
+    public List<Factura> FindLikeCliente(String cliente, Tipoambiente codTipoambiente) {
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -380,12 +381,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> FindLikeNumeroFacturaText(String numfac, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -402,12 +403,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findLikeProformaCliente(String cliente, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -419,7 +420,7 @@ public class ServicioFactura {
             query.setParameter("razon", "%" + cliente + "%");
 //            query.setParameter("numero", "%" + cliente + "%");
             query.setParameter("codTipoambiente", codTipoambiente);
-
+            
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -427,13 +428,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //consulta las 20 primeras notas de venta
     public List<Factura> findALlFacturaMax(Tipoambiente codTipoAmbiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -442,7 +443,7 @@ public class ServicioFactura {
             Query query = em.createQuery("SELECT f FROM Factura f WHERE f.facNumero > 0 AND f.facTipo='FACT' AND f.cod_tipoambiente=:codTipoAmbiente ORDER BY f.facNumero DESC");
             query.setParameter("codTipoAmbiente", codTipoAmbiente);
             query.setMaxResults(400);
-
+            
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -450,12 +451,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findAllProformas() {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -471,21 +472,21 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
     
     public List<Factura> findAllProformas(Tipoambiente codTipoAmbiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT f FROM Factura f WHERE  f.facTipo='PROF' AND f.cod_tipoambiente=:codTipoAmbiente ORDER BY f.facFecha DESC");
-           query.setParameter("codTipoAmbiente", codTipoAmbiente);
+            query.setParameter("codTipoAmbiente", codTipoAmbiente);
             query.setMaxResults(400);
-      
+            
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -493,13 +494,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //buscar por estado
     public List<Factura> FindEstado(String estado) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -515,13 +516,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //buscar por estado
     public List<Factura> findEstadoFactura(String estado, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -537,7 +538,7 @@ public class ServicioFactura {
                 query.setParameter("codTipoambiente", codTipoambiente);
                 query.setMaxResults(2000);
             }
-
+            
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -545,12 +546,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findEstadoCliente(String estado, Cliente cliente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -567,13 +568,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //ultima venta diaria
     public Factura ultimaVentaDiaria(Date fecha) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -597,14 +598,14 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
 
     /*CONSULTAS DEL PORTAL*/
     //consulta las 20 primeras notas de venta
     public List<Factura> findAllMaxUltimoVeinteForCliente(Cliente idCliente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -621,12 +622,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findBetweenFacFecha(Date inicio, Date fin, Cliente idCliente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -645,12 +646,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findFacFecha(Date inicio, Date fin, String estado, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             Query query;
@@ -680,12 +681,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findBetweenFecha(Date inicio, Date fin, Tipoambiente tipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -703,12 +704,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findBetweenPendientesEnviarSRI(Date inicio, Date fin, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -726,12 +727,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findBetweenDevueltaPorReenviarSRI(Date inicio, Date fin, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -749,12 +750,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findBetweenDevueltaPorCorregirSRI(Date inicio, Date fin, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -772,12 +773,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Totales> totalVenta(Date inicio, Date fin) {
-
+        
         List<Totales> listaFacturas = new ArrayList<Totales>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -794,12 +795,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Totales> acumuladosVentas(Date inicio, Date fin) {
-
+        
         List<Totales> listaFacturas = new ArrayList<Totales>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -816,12 +817,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findLikeCedula(String valor, Tipoambiente codTipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -838,13 +839,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     /*NOTA DE ENTREGA*/
     public Factura findUltimaNotaEnt(Tipoambiente tipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -854,7 +855,7 @@ public class ServicioFactura {
             Query query = em.createQuery("SELECT f FROM Factura f WHERE f.facTipo='NTE' AND f.facNumNotaEntrega IS NOT NULL AND f.cod_tipoambiente=:tipoambiente ORDER BY f.facNumNotaEntrega DESC");
             query.setParameter("tipoambiente", tipoambiente);
             query.setMaxResults(2);
-
+            
             listaFacturas = (List<Factura>) query.getResultList();
             if (listaFacturas.size() > 0) {
                 facturas = listaFacturas.get(0);
@@ -867,13 +868,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
 
     /*NOTA DE ENTREGA POR CLIENTE*/
     public List<Factura> findNotaEntPorCliente(String cedula) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -890,13 +891,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     /*TODAS LASNOTA DE ENTREGA */
     public List<Factura> findAllNotaEnt() {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -913,13 +914,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     /*NOTA DE venta numero*/
     public Factura findUltimaNotaVent(Tipoambiente tipoambiente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -941,7 +942,7 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
 
@@ -949,7 +950,7 @@ public class ServicioFactura {
      * BUSQUE DE NOTAS DE VENTA
      */
     public List<Factura> findNVLikeCliente(String cliente) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -965,12 +966,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findNVLikeCedula(String valor) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -986,12 +987,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Factura> findNVFacFecha(Date inicio, Date fin, String estado) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             Query query;
@@ -1019,13 +1020,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //consulta las 20 primeras notas de venta
     public List<Factura> FindALlNVMaxVeinte() {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -1041,13 +1042,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 
     //recupera la nota de venta
     public Factura findFirIdFactNTV(Integer idFactura) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         Factura facturas = new Factura();
         try {
@@ -1069,13 +1070,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return facturas;
     }
 
     /*precio de venta promedio*/
     public List<CompraPromedio> findFacFechaPromedio(Date inicio, Date fin) {
-
+        
         List<CompraPromedio> listaFacturas = new ArrayList<CompraPromedio>();
         try {
             Query query;
@@ -1084,7 +1085,7 @@ public class ServicioFactura {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-
+            
             query = em.createQuery("SELECT NEW com.ec.untilitario.CompraPromedio( max(f.idProducto.prodNombre),sum(f.detCantidad),(sum(f.detSubtotaldescuentoporcantidad)/ sum(f.detCantidad)), max(f.idProducto.pordCostoVentaFinal),max(f.idFactura.facFecha)) FROM DetalleFactura f WHERE f.idFactura.facFecha BETWEEN :inicio and :fin  AND (f.idFactura.facTipo='NTV' OR f.idFactura.facTipo='FACT') GROUP BY f.idProducto");
             query.setParameter("inicio", inicio);
             query.setParameter("fin", fin);
@@ -1097,12 +1098,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Totales> acumuladosVentasDiaria() {
-
+        
         List<Totales> listaFacturas = new ArrayList<Totales>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -1110,7 +1111,7 @@ public class ServicioFactura {
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT new com.ec.untilitario.Totales(SUM(f.facTotal)) FROM Factura f WHERE f.facFecha =:inicio AND f.facNumero > 0 AND f.facTipo='FACT' GROUP BY F.facFecha");
             query.setParameter("inicio", new Date());
-
+            
             query.setMaxResults(400);
             listaFacturas = (List<Totales>) query.getResultList();
             em.getTransaction().commit();
@@ -1119,13 +1120,13 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
     //buscar por estado
 
     public List<Factura> findEstadoNotaVenta(String estado) {
-
+        
         List<Factura> listaFacturas = new ArrayList<Factura>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -1139,7 +1140,7 @@ public class ServicioFactura {
                 query = em.createQuery("SELECT f FROM Factura f  WHERE  f.facTipo='NTV'");
                 query.setMaxResults(2000);
             }
-
+            
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -1147,12 +1148,12 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
-
+    
     public List<Totales> acumuladosVentasDiariaPorUsuario(Usuario usuario) {
-
+        
         List<Totales> listaFacturas = new ArrayList<Totales>();
         try {
             //Connection connection = em.unwrap(Connection.class);
@@ -1161,7 +1162,7 @@ public class ServicioFactura {
             Query query = em.createQuery("SELECT new com.ec.untilitario.Totales(SUM(f.facTotal)) FROM Factura f WHERE f.facFecha =:inicio AND f.facNumero > 0 AND f.idUsuario=:idUsuario AND f.facTipo='FACT' GROUP BY F.facFecha");
             query.setParameter("inicio", new Date());
             query.setParameter("idUsuario", usuario);
-
+            
             query.setMaxResults(400);
             listaFacturas = (List<Totales>) query.getResultList();
             em.getTransaction().commit();
@@ -1170,7 +1171,7 @@ public class ServicioFactura {
         } finally {
             em.close();
         }
-
+        
         return listaFacturas;
     }
 }

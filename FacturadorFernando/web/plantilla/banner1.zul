@@ -62,7 +62,7 @@
             <menu label="Compras" id="menuCompras" class="menu_child">
                 <menupopup class="submenu">             
                     <menuitem label="Crear proveedor" id="btnCrearProveedor" class="fa-solid fa-user menu_item" />
-                    <menuitem label="Crear producto" id="btnCreaProd" class="fa-solid fa-paper-plane menu_item"/>
+                    <menuitem label="Crear producto" id="btnCrearProd" class="fa-solid fa-paper-plane menu_item"/>
                     <menuitem label="Ingreso de mercaderia" id="btnIngresoCompras" class="fa-solid fa-paper-plane menu_item" />                                
                     <menuitem label="Lista de facturas de compra    " id="btnListaCompras" class="fa-solid fa-list menu_item" />                                                                     
                     <menuitem label="Lista de retenciones" id="btnRetenciones" class="fa-solid fa-list menu_item" />                                                                   

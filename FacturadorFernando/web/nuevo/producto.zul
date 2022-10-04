@@ -91,26 +91,26 @@
                 </div>
                 
             </div>
-        </div>
-        <div class="body" visible="@bind(!vm.esUnProdcuto)">
             <div class="container_row_input">
-              
-                <div class="wrapper_input_mod" >
-                    <span>Nombre: </span>
-                    <div class="wrapper_input_text">
-                        <div class="fa-solid fa-user icon"></div>
-                        <textbox  
+                <div class="wrapper_input_mod" style="flex:auto">
+                    <span style="margin:0 0.5em">Detalle: </span>
+                    <div class="wrapper_input_text" style="width:100%">
+                        <div class="fa-solid fa-barcode icon"></div>
+                       <textbox  
                             maxlength="100" 
-                            value="@bind(vm.producto.prodNombre)"
+                            style="width:100%"
+                            value="@bind(vm.producto.prodDetalle)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
                             class="input_text" />
                     </div>
                 </div>
-                  
-                
+
             </div>
         </div>
+     
+        
+        
         
         <div class="body" visible="@bind(vm.esUnProdcuto)">
             <div class="container_row_input">
