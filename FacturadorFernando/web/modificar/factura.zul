@@ -531,8 +531,8 @@
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
 
             
-                                <listhead> 
-                                    <listheader width="20%"      align="left"   >
+                                <listhead class="encabezado1"> 
+                                    <listheader width="100%"      align="left"   >
                                         <textbox value="@bind(vm.buscarCodigoProd)"  
                                     
                                                     class="form-control form-control-sm"
@@ -542,7 +542,7 @@
                                                     onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader>     
-                                    <listheader width="45%" align="left"   >
+                                    <listheader width="100%" align="left"   >
                                         <textbox value="@bind(vm.buscarNombreProd)"  
                                                     id="idBusquedaProd"
                                                     class="form-control form-control-sm"
@@ -551,14 +551,14 @@
                                                     onOK="@command('buscarLikeNombreProd')"                                                     
                                                     onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>                         
-                                    <listheader width="20%"  label="PV X MAYOR" align="center" /> 
-                                    <listheader width="20%"  label="PVP" align="center" /> 
-                                    <listheader width="10%"  label="" align="center"/>
+                                    <listheader width="100%"  label="Pv x mayor" align="center" /> 
+                                    <listheader width="100%"  label="Pvp" align="center" /> 
+                                    <listheader width="100%"  label="Asignar" align="center"/>
                     
                                 </listhead>  
             
                                 <template name="model">                                                            
-                                    <listitem  onOK="@command('agregarItemLista',valor=each)">
+                                    <listitem  class="tabla1" onOK="@command('agregarItemLista',valor=each)">
                                         <listcell  style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" onDoubleClick="@command('agregarItemLista',valor=each)">
                                             <textbox value="@bind(each.prodCodigo)"     onCreate="self.focus()"
                                                     class="form-control form-control-sm"
@@ -607,27 +607,28 @@
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                         
                 
-                                <listhead >
-                                    <listheader width="35px"  label="" align="left" >
-                                        <button label="" src="/iconos/delete.png"  
+                                <listhead class="encabezado34" >
+                                    <listheader width="100%"  label="" align="left" >
+                                        <button label="Anular"
+                                                style="background:black;color:white;font-size:10px;"
                                                 onClick="@command('eliminarRegistros')"  
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="15%"   label="COD" align="left" />
-                                    <listheader width="10%"   label="CANT" align="left"  />
-                                    <listheader width="10%"   label="% DESC" align="left"  />
+                                    <listheader width="100%"    label="Cod" align="left" />
+                                    <listheader width="100%"    label="Cant" align="left"  />
+                                    <listheader width="100%"    label="% Desc" align="left"  />
                                     <!--<listheader width="5%"  label="TV" align="left" />-->
-                                    <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="15%"  label="PRE REAL" align="left" />
-                                    <listheader width="15%"  label="PRECIO" align="left" />                                         
-                                    <listheader width="15%"  label="TOTAL" align="left" />
+                                    <listheader width="100%"   label="Descripción" align="left" />
+                                    <listheader width="100%"   label="Pre. real" align="left" />
+                                    <listheader width="100%"   label="Precio" align="left" />                                         
+                                    <listheader width="100%"  label="Total" align="left" />
                                                                                                                     
                                 </listhead>
             
                                 <template name="model" >                                                            
-                                    <listitem>
-                                        <listcell style="height: 15px; overflow: hidden;" >                                                    
+                                    <listitem class="tabla34">
+                                        <listcell style="" >                                                    
                                             <!--                                                    <button src="/iconos/car_add.png"   
                                             autodisable="self"                                        
                                             onClick="@command('datosMoto',valor=each)"
