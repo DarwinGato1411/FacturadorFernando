@@ -723,7 +723,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</staticText>
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
-							<textField pattern="" isBlankWhenNull="true">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
 								<reportElement mode="Transparent" x="0" y="0" width="111" height="15" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 									<bottomPen lineWidth="0.0"/>
