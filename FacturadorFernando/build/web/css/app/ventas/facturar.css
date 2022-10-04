@@ -531,6 +531,18 @@ body {
         flex-direction: row;
         
     }
+    
+    .factura_empresa{
+        flex-direction: row;
+    }
+    
+    .factura_empresa .factura_body_item_l{
+        width: 60%
+    }
+    
+    .factura_empresa .factura_body_item_r{
+        width: 40%
+    }
 
     .factura_header > .fact_row {
         width: 100%;
@@ -883,6 +895,12 @@ div.z-listheader-cnt {
     align-items: center;
     grid-template-columns: 30% 30% 30% 10%;
 }
+
+.factura_empresa{
+    display: flex;
+    gap:10px;
+}
+
 
 .z-listhead{
     background: var(--primary-color) !important;

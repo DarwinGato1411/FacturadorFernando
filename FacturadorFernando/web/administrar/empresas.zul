@@ -40,16 +40,16 @@
             <tabpanels >
                 
                 <tabpanel  width="100%"  >                    
-                    <div class="factura_body factura_body_content">                            
-                        <div class="factura_body_item_lefth">
+                    <div class="factura_empresa">                            
+                        <div class="factura_body_item_l">
                             <listbox model="@load(vm.listaEmpresas)" 
                                      nonselectableTags=""  mold="paging" pageSize="12"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                     
-                                <listhead> 
-                                    <listheader width="20%"  label="RUC" align="rigth" /> 
+                                <listhead class="encabezado30"> 
+                                    <listheader width="100%"  label="RUC" align="rigth" /> 
                                     
-                                    <listheader width="40%"  
+                                    <listheader width="100%"  
                                                 sort="auto(amNombreComercial)">
                                         <textbox value="@bind(vm.amNombreComercial)"  
                                                  tooltiptext="Nombre empresa"
@@ -60,18 +60,18 @@
                                 
                                     </listheader>  
                                  
-                                    <listheader width="10%"  label="Estab" align="rigth" />  
-                                    <listheader width="10%"  label="Pto Emi" align="rigth" />  
-                                    <listheader width="20%"  label="Responsable" align="rigth" />  
+                                    <listheader width="100%"  label="Estab" align="rigth" />  
+                                    <listheader width="100%"  label="Pto Emi" align="rigth" />  
+                                    <listheader width="100%"  label="Responsable" align="rigth" />  
 
-                                    <listheader width="20%"  label="Usuario" align="rigth" />  
+                                    <listheader width="100%"  label="Usuario" align="rigth" />  
                                     <!--<listheader width="20%"  label="RUC" align="rigth" />-->  
                                                                                         
                                     <!--<listheader width="30%"  label="Direccion "  />-->
-                                    <listheader width="20%"  label="Ambiente"  /> 
-                                    <listheader width="10%"  label="RIMPE"  align="center" /> 
-                                    <listheader width="10%"  label="GENERAL"  align="center" /> 
-                                    <listheader width="5%"  label="" align="rigth" /> 
+                                    <listheader width="100%"  label="Ambiente"  /> 
+                                    <listheader width="100%"  label="RIMPE"  align="center" /> 
+                                    <listheader width="100%"  label="GENERAL"  align="center" /> 
+                                    <listheader width="100%"  label="" align="rigth" /> 
                                     <!--<listheader width="3%"  label="" align="rigth" />--> 
                           
 
@@ -80,64 +80,64 @@
                         
                     
                                 <template name="model">                                                            
-                                    <listitem>
+                                    <listitem class="tabla30">
                             
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amRuc)" width="100%" />
                                         </listcell>
                                        
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amNombreComercial)" width="100%" />
                                         </listcell>
                                        
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amEstab)" width="100%" />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amPtoemi)" width="100%" />
                                         </listcell>
                                  
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.idUsuario.usuNombre)" width="100%" />
                                             
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.idUsuario.usuLogin)" width="100%" />
                                             
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell"  >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      class="form-control form-control-sm"                             
                                                      value="@bind(each.amDescripcion)" width="100%" />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" >
                                    
                                             <checkbox  label="" 
                                     
                                                        checked="@bind(each.amRimpe)" 
                                             />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" >
                                             <checkbox  label="" 
                                                        checked="@bind(each.amGeneral)" 
                                             />
                                         </listcell>
-                                        <listcell class="td-tabla"  zclass = "mycss-listcell">
+                                        <listcell   zclass = "mycss-listcell">
                                             <div 
                                                 class="fa-solid fa-chevron-right"
-                                                style="font-size:16px; padding:0.5em; cursor:pointer;font-weight: bold; color: #fff;"
+                                                style="font-size:16px; padding:0.5em; cursor:pointer;font-weight: bold; color: #000;"
                                                 onClick="@command('seleccionarEmpresa',valor=each)"
                                                 tooltiptext="Seleccionar empresa"
                                             />
@@ -151,7 +151,7 @@
                                 </template>
                             </listbox>
                         </div>
-                        <div class="factura_body_item">
+                        <div class="factura_body_item_r">
                             <div class="container_headers" >
                                 <div class="col-12 col-sm-12 col-md-7 col-lg-7" >
                                     Empresa seleccionada: 
@@ -172,7 +172,7 @@
                                      nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead sizable="false">
+                                <listhead  class="encabezado31" sizable="false">
                                     <listheader label="Anio"  align="left" hflex="1"></listheader>
                                     <listheader label="Mes"  align="left" hflex="2"></listheader>
                                     <listheader label="Descripcion"  align="left" hflex="8"></listheader>
@@ -183,7 +183,7 @@
                                 
                             
                                 <template name="model">
-                                    <listitem  >
+                                    <listitem class="tabla31">
                                          
                                         <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 

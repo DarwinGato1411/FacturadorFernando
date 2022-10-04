@@ -64,9 +64,9 @@ public class MailerClass {
 //      m.setRecipients(Message.RecipientType.TO,
 //                    InternetAddress.parse(address));
     public boolean sendMailSimple(String address,
-                String[] attachFiles, String asuntoInf, String acceso,
-                String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
-                throws java.rmi.RemoteException {
+            String[] attachFiles, String asuntoInf, String acceso,
+            String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
+            throws java.rmi.RemoteException {
 
         try {
 
@@ -110,77 +110,43 @@ public class MailerClass {
             m.setFrom(addressfrom);
 
             BodyPart texto = new MimeBodyPart();
-            String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
-                        + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
-                        + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"
-                        + "                                   color: #010e07;\n"
-                        + "                                   text-align: right;\n"
-                        + "                                   padding-right: 25px;\n"
-                        + "                                   padding-bottom: 10px;\">\n"
-                        + "      DESAROLLO DE SOFTWARE SOBRE MEDIDA\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
-                        + "                                 border-top-left-radius: 10px;\n"
-                        + "                                 border-top-right-radius: 10px;\n"
-                        + "                                 background: #007ff7;\n"
-                        + "                                 color: #fff;\n"
-                        + "                                 overflow: hidden;\n"
-                        + "                                 line-height: 32px;\">\n"
-                        + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
-                        + "		 DOCUMENTO ELETRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
-                        + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
-                        + "		SISTEMA DE FACTURACION ELECTRONICA  </strong></div>\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-wrap\" style=\"border-bottom-left-radius: 10px;\n"
-                        + "                                  border-bottom-right-radius: 10px;\n"
-                        + "                                  border:1px solid #ddd;\n"
-                        + "                                  overflow: hidden;\n"
-                        + "                                  padding: 15px 15px 20px;\">\n"
-                        + "        <div class=\"tips\" style=\"padding:15px;\">\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Estimado cliente,</p>\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">" + cliente + "</p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Su documento electronico se ha generado correctamente</p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Numero de documento:"
-                        + "                 <strong style=\"color:#010e07\"> " + numeroDocumento + "</strong></p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Clave de acceso:"
-                        + "                 <strong style=\"color:#010e07\"> " + acceso + "</strong></p>\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Sus archivos PDF y XML se enviaron de forma adjunta, por favor reviselos</p>\n"
-                        + "        </div>\n"
-                        + "        <div class=\"time\" style=\"text-align: right; color: #999; padding: 0 15px 15px;\">Valor total:"
-                        + "<strong style=\"color:#010e07\"> $" + ArchivoUtils.redondearDecimales(valorTotal, 2) + "</strong> </div>\n"
-                        + "        <br>\n"
-                        + "        <table class=\"list\" style=\"width: 100%; border-collapse: collapse; border-top:1px solid #eee\">\n"
-                        + "            <thead>\n"
-                        + "            <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee\">\n"
-                        + "                Si tienes alguna consulta con respecto a esta informacion no dudes en comunicarte con nosotros, "
-                        + "caso contrario no es necesario responder a este correo electronico.\n"
-                        + "            </tr>\n"
-                        + "            </thead>\n"
-                        + "            <tbody>\n"
-                        + "	\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Copyright © 2022 DECKXEL, All rights reserved.</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "			 <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">DECKXEL - Tlf. 0993530018</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Tabacundo - Ecuador</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "            </tbody>\n"
-                        + "        </table>\n"
-                        + "    </div>\n"
-                        + "</div>\n"
-                        + "</body>\n"
-                        + "";
+            String HTMLENVIO = "<body>\n"
+                    + "    <img alt=\"logo\" style=\"height:100px;margin:auto;display:block\"\n"
+                    + "        src=\"https://southcentralus1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Futneduec-my.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb!gqNSjMxCKUqlSIcNlH_W3qK_bUSzQ8NDmhYRqMNUsxrc3kSHbZELQb_5zsOXXWVq%2Fitems%2F01MOQ3UUF44JVILFUMZZBKFB2372QBQQ7T%3Fversion%3DPublished&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdXRuZWR1ZWMtbXkuc2hhcmVwb2ludC5jb21AOGRiZTE0NjktYzc5Yy00ZTIxLTlkNDMtY2E2NWQ5ZTljNDc1IiwiaXNzIjoiMDAwMDAwMDMtMDAwMC0wZmYxLWNlMDAtMDAwMDAwMDAwMDAwIiwibmJmIjoiMTY2NDg3NDAwMCIsImV4cCI6IjE2NjQ4OTU2MDAiLCJlbmRwb2ludHVybCI6IlZiSHFaUU5tdzY1c3NlL281N2JlaGV0NmxtcUczUzUyUnNXdmtjSGN4K2M9IiwiZW5kcG9pbnR1cmxMZW5ndGgiOiIxMTgiLCJpc2xvb3BiYWNrIjoiVHJ1ZSIsInZlciI6Imhhc2hlZHByb29mdG9rZW4iLCJzaXRlaWQiOiJPR00xTW1Fek9ESXROREpqWXkwMFlUSTVMV0UxTkRndE9EY3daRGswTjJaa05tUmwiLCJzaWduaW5fc3RhdGUiOiJbXCJrbXNpXCJdIiwibmFtZWlkIjoiMCMuZnxtZW1iZXJzaGlwfHBqbWFsdGVhQHV0bi5lZHUuZWMiLCJuaWkiOiJtaWNyb3NvZnQuc2hhcmVwb2ludCIsImlzdXNlciI6InRydWUiLCJjYWNoZWtleSI6IjBoLmZ8bWVtYmVyc2hpcHwxMDAzMDAwMDliNmMwMDdmQGxpdmUuY29tIiwic2lkIjoiYTgyNzNkMjMtNzQ4Ny00YmQyLThkZTUtOTIzM2E4NTE1NTUyIiwidHQiOiIwIiwidXNlUGVyc2lzdGVudENvb2tpZSI6IjMiLCJpcGFkZHIiOiIxNzcuNTMuMjEzLjM1In0.WlNTOUsrSXBIY0trRlJwS1Z3VU5CNkRsWHlmOUsvWEdET2tzL28wNWw4UT0&cTag=%22c%3A%7B856AE2BC-8C96-42CE-A287-5BFEA01843F3%7D%2C1%22&encodeFailures=1&width=664&height=376&srcWidth=664&srcHeight=376\" />\n"
+                    + "    <div style=\"height: 10px;background:#fbc620;\"></div>\n"
+                    + "    <p style=\"margin-bottom: 0;\">Documento electrónico</p>\n"
+                    + "    <p style=\"margin-bottom: 0;\">Estimado (a) "+ cliente +",</p>\n"
+                    + "    <p>Gracias por seleccionar FACTURAS.EC, Nos complace informar que su documento se ha generado correctamente:</p>\n"
+                    + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>Número de documento:</strong>"+ numeroDocumento +" </p>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>Clave de acceso:</strong>"+acceso+"</p>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>Valor total:</strong>"+ ArchivoUtils.redondearDecimales(valorTotal, 2) +"</p>\n"
+                    + "\n"
+                    + "    <br>\n"
+                    + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
+                    + "    <p style=\"margin-bottom: 0;\">Sus archivos PDF y XML se enviaron de forma adjunta, por favor reviselos</p>\n"
+                    + "    <p>Si tiene cualquier duda o pregunta nos puede escribir al mail <a>send@facturas.ec</a> o llámenos al\n"
+                    + "        0992553708.</p>\n"
+                    + "    <p>Saludos Cordiales,\n"
+                    + "        <br>\n"
+                    + "        Patrick Arch\n"
+                    + "        <br>\n"
+                    + "        Director\n"
+                    + "    </p>\n"
+                    + "\n"
+                    + "    <div style=\"display: grid;\">\n"
+                    + "        <div style=\"width: auto;margin:auto;\">\n"
+                    + "            <p style=\"text-align: center;\">FACTURAS.EC\n"
+                    + "                <br>\n"
+                    + "                QUITO - ECUADOR\n"
+                    + "            </p>\n"
+                    + "        </div>\n"
+                    + "    </div>\n"
+                    + "\n"
+                    + "    <div style=\"height: 10px;background:black;\"></div>\n"
+                    + "\n"
+                    + "    \n"
+                    + "</body>";
 
             texto.setContent(HTMLENVIO, "text/html");
 
@@ -200,7 +166,7 @@ public class MailerClass {
                 }
             }
             m.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse(address));
+                    InternetAddress.parse(address));
             multiParte.addBodyPart(texto);
 
 //            m.setRecipients(Message.RecipientType.TO, addresTto);
@@ -226,6 +192,5 @@ public class MailerClass {
             return false;
         }
     }
-
 
 }
