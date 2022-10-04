@@ -83,7 +83,6 @@
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
                             constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
-                            onOK="@command('calculoutilidad')"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
                         />
