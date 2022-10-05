@@ -83,6 +83,7 @@ public class ListaVentaRuta {
         Calendar calendar = Calendar.getInstance(); //obtiene la fecha de hoy 
         //  calendar.add(Calendar.DATE, -7); //el -3 indica que se le restaran 3 dias 
         inicio = calendar.getTime();
+       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -309,28 +310,27 @@ public class ListaVentaRuta {
                 folderGen.mkdirs();
             }
             org.zkoss.util.media.Media media = Fileupload.get("Cargar su archivo que obtuvo en el SRI", "Subir Archivo SRI");
-            if (media != null) {
 
-                if (media.getName().contains(".txt")) {
-                    String builder = media.getStringData();
+            if (media.getName().contains(".txt")) {
+                String builder = media.getStringData();
 
-                    String[] campos = builder.split("\t");
-                    String[] campos1 = builder.split("\t|\n");
+                String[] campos = builder.split("\t");
+                String[] campos1 = builder.split("\t|\n");
 
-                    ComprasSri comprasSri;
-                    SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd");
-                    // myDate is the java.util.Date in yyyy-mm-dd format
-                    // Converting it into String using formatter
-                    String strDate = sm.format(inicio);
-                    //Converting the String back to java.util.Date
-                    Date dt = sm.parse(strDate);
-                    String existentes = "";
-                    VentaRuta nuevaVenta = null;
-                    Boolean existenRepetido = Boolean.FALSE;
-                    for (int i = 0; i < campos1.length; i++) {
+                ComprasSri comprasSri;
+                SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd");
+                // myDate is the java.util.Date in yyyy-mm-dd format
+                // Converting it into String using formatter
+                String strDate = sm.format(inicio);
+                //Converting the String back to java.util.Date
+                Date dt = sm.parse(strDate);
+                String existentes = "";
+                VentaRuta nuevaVenta = null;
+                Boolean existenRepetido = Boolean.FALSE;
+                for (int i = 0; i < campos1.length; i++) {
 
-                        String[] camposInd = campos1[i].split(";");
-                        String fecha[] = camposInd[7].split("/");
+                    String[] camposInd = campos1[i].split(";");
+                    String fecha[] = camposInd[7].split("/");
 //                    System.out.println("DATOS " + camposInd[0] + "  "
 //                            + camposInd[1] + "  "
 //                            + camposInd[2] + "  "
@@ -341,86 +341,85 @@ public class ListaVentaRuta {
 //                            + sm.format(new Date(new Date().getYear(), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[0]))) + "  "
 //                            + camposInd[8]);
 
-                        /*ARMA EL OBJETO PRA SUBIR*/
-                        nuevaVenta = new VentaRuta(camposInd[0],//cedula
-                                    camposInd[1].toUpperCase(),//nombre
-                                    camposInd[8],//cantidad
-                                    camposInd[2].toUpperCase(),//direccion
-                                    camposInd[4],//correo
-                                    camposInd[3],//celular
-                                    camposInd[5],//semana
-                                    new Date(new Date().getYear(), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[0])),//fecha
-                                    camposInd[6],//codigo venta
-                                    "N");
-                        nuevaVenta.setTransporte(camposInd[9]);
-                        /*CREAR EL CLIENTE SI NO EXISTE*/
-                        Cliente buscado = servicioCliente.FindClienteForCedula(camposInd[0], amb);
-                        Cliente cliNuevo = null;
-                        if (buscado == null) {
-                            cliNuevo = new Cliente();
-                            cliNuevo.setCliCedula(camposInd[0]);
-                            cliNuevo.setCiudad("OTAVALO");
-                            cliNuevo.setCliNombre(camposInd[1].toUpperCase());
-                            cliNuevo.setCliRazonSocial(camposInd[1].toUpperCase());
-                            cliNuevo.setCliDireccion(camposInd[2].toUpperCase());
-                            cliNuevo.setCliCorreo(camposInd[4]);
-                            cliNuevo.setCliMontoAsignado(BigDecimal.valueOf(100000.0));
-                            cliNuevo.setCliMovil(camposInd[3]);
-                            cliNuevo.setCodTipoambiente(amb);
-                            String nombreApellido[] = camposInd[1].split(" ");
-                            String nombrePersona = "";
-                            String apellidoPersona = "";
-                            switch (nombreApellido.length) {
-                                case 1:
-                                    apellidoPersona = nombreApellido[0];
-                                    nombrePersona = "S/N";
-                                    break;
-                                case 2:
-                                    apellidoPersona = nombreApellido[0];
-                                    nombrePersona = nombreApellido[1];
+                    /*ARMA EL OBJETO PRA SUBIR*/
+                    nuevaVenta = new VentaRuta(camposInd[0],//cedula
+                                camposInd[1].toUpperCase(),//nombre
+                                camposInd[8],//cantidad
+                                camposInd[2].toUpperCase(),//direccion
+                                camposInd[4],//correo
+                                camposInd[3],//celular
+                                camposInd[5],//semana
+                                new Date(new Date().getYear(), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[0])),//fecha
+                                camposInd[6],//codigo venta
+                                "N");
+                    nuevaVenta.setTransporte(camposInd[9]);
+                    /*CREAR EL CLIENTE SI NO EXISTE*/
+                    Cliente buscado = servicioCliente.FindClienteForCedula(camposInd[0], amb);
+                    Cliente cliNuevo = null;
+                    if (buscado == null) {
+                        cliNuevo = new Cliente();
+                        cliNuevo.setCliCedula(camposInd[0]);
+                        cliNuevo.setCiudad("OTAVALO");
+                        cliNuevo.setCliNombre(camposInd[1].toUpperCase());
+                        cliNuevo.setCliRazonSocial(camposInd[1].toUpperCase());
+                        cliNuevo.setCliDireccion(camposInd[2].toUpperCase());
+                        cliNuevo.setCliCorreo(camposInd[4]);
+                        cliNuevo.setCliMontoAsignado(BigDecimal.valueOf(100000.0));
+                        cliNuevo.setCliMovil(camposInd[3]);
+                        String nombreApellido[] = camposInd[1].split(" ");
+                        String nombrePersona = "";
+                        String apellidoPersona = "";
+                        switch (nombreApellido.length) {
+                            case 1:
+                                apellidoPersona = nombreApellido[0];
+                                nombrePersona = "S/N";
+                                break;
+                            case 2:
+                                apellidoPersona = nombreApellido[0];
+                                nombrePersona = nombreApellido[1];
 
-                                    break;
-                                case 3:
-                                    apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                                    nombrePersona = nombreApellido[2];
-                                    break;
-                                case 4:
-                                    apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                                    nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-                                    break;
-                                default:
-                                    break;
-                            }
-                            cliNuevo.setCliNombres(nombrePersona);
-                            cliNuevo.setCliApellidos(apellidoPersona);
-                            cliNuevo.setCliTelefono(camposInd[3]);
-                            cliNuevo.setClieFechaRegistro(new Date());
-                            cliNuevo.setClietipo(0);
-                            Tipoadentificacion tipIdent = null;
-                            if (camposInd[0].length() == 10) {
-                                tipIdent = servicioTipoIdentificacion.findByTipoIdentificacion("CEDULA");
-                            }
-                            if (camposInd[0].length() == 13) {
-                                tipIdent = servicioTipoIdentificacion.findByTipoIdentificacion("RUC");
-                            }
-                            cliNuevo.setIdTipoIdentificacion(tipIdent);
-
-                            servicioCliente.crear(cliNuevo);
+                                break;
+                            case 3:
+                                apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+                                nombrePersona = nombreApellido[2];
+                                break;
+                            case 4:
+                                apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+                                nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
+                                break;
+                            default:
+                                break;
                         }
-
-                        /*RIGISTRA LA VENTA SI NO ESXISTE*/
-                        VentaRuta valid = servicioVentaRuta.findByCodigo(camposInd[6]);
-                        if (valid == null) {
-                            servicioVentaRuta.crear(nuevaVenta);
-                        } else {
-                            System.out.println("EXISTE " + valid);
+                        cliNuevo.setCliNombres(nombrePersona);
+                        cliNuevo.setCliApellidos(apellidoPersona);
+                        cliNuevo.setCliTelefono(camposInd[3]);
+                        cliNuevo.setClieFechaRegistro(new Date());
+                        cliNuevo.setClietipo(0);
+                        Tipoadentificacion tipIdent = null;
+                        if (camposInd[0].length() == 10) {
+                            tipIdent = servicioTipoIdentificacion.findByTipoIdentificacion("CEDULA");
                         }
+                        if (camposInd[0].length() == 13) {
+                            tipIdent = servicioTipoIdentificacion.findByTipoIdentificacion("RUC");
+                        }
+                        cliNuevo.setIdTipoIdentificacion(tipIdent);
 
+                        servicioCliente.crear(cliNuevo);
                     }
-                    findBuscarDocumentos();
-                    Clients.showNotification("Informacion cargada", "info", null, "end_before", 1000, true);
+
+                    /*RIGISTRA LA VENTA SI NO ESXISTE*/
+                    VentaRuta valid = servicioVentaRuta.findByCodigo(camposInd[6]);
+                    if (valid == null) {
+                        servicioVentaRuta.crear(nuevaVenta);
+                    } else {
+                        System.out.println("EXISTE " + valid);
+                    }
+
                 }
+                findBuscarDocumentos();
+                Clients.showNotification("Informacion cargada", "info", null, "end_before", 1000, true);
             }
+
         } catch (NumberFormatException e) {
             System.out.println("ERROR al subir la imagen IOException " + e.getMessage());
             e.getStackTrace();

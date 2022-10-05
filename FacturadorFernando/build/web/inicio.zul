@@ -17,12 +17,12 @@
         <div class="container_landing login_container">
 
             <div class="header">
-                <div class="container_color">
+                <!--<div class="container_color">
                     <div class="color first"></div>
                      <div class="color second"></div>
                      <div class="color third"></div>
                     <div class="color fourth"></div>
-                </div>
+                </div>-->
 
                 <div class="wrapper_nav">
                     <div class="nav">
@@ -36,7 +36,7 @@
            
 
             <div class="wrapper_header">
-                <image src="./imagenes/grafica/logoPrincipal.png" class="logo2" />
+                <image src="./imagenes/deckxel/logo.png"  />
                 
             </div>
 
@@ -48,30 +48,35 @@
 
                     <div class="wrapper_items">  
                         <div class="wrapper_item">
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">SOPORTE PERMANENTE</span>
+                           <div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
+                                    <span class="item_desc">SOPORTE PERMANENTE</span>
+                                </div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
+                                    <span class="item_desc">DECLARACIONES</span>
+                                </div>
+                           </div>
+                           <div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
+                                    <span class="item_desc">IMPRENTA EN GENERAL</span>
+                                </div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
+                                    <span class="item_desc">CAPACITACIÓN GRATUITA</span>
+                                </div>
                             </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">DECLARACIONES</span>
-                            </div>
-
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">IMPRENTA EN GENERAL</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">CAPACITACIÓN GRATUITA</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">ANEXO GASTOS PERSONALES</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">FIRMA ELECTRÓNICA</span>
+                            <div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaT.png" class="img_icon" />
+                                    <span class="item_desc">ANEXO GASTOS PERSONALES</span>
+                                </div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaT.png" class="img_icon" />
+                                    <span class="item_desc">FIRMA ELECTRÓNICA</span>
+                                </div>
                             </div>
                         </div>
                         
@@ -80,14 +85,14 @@
             </div>
 
             <div class="footer">
-                <div class="container_color">
+                <!--<div class="container_color">
                     <div class="color first"></div>
                      <div class="color second"></div>
                      <div class="color third"></div>
                     <div class="color fourth"></div>
-                </div>
+                </div>-->
             
-                <div class="container_info">
+                <!-- <div class="container_info">
                     <div class="wrapper_item_foot">
                         <span class="fa-brands fa-whatsapp icon"></span>
                         <span> 098 465 0068 / 099 746 7720</span>
@@ -99,15 +104,16 @@
                     <div class="wrapper_item_foot"> 
                         <span class="fa-solid fa-code"></span>
                         <span>www.graficalelectronic.com</span>
-                    </div>
-                </div>
+                    </div> 
+                </div>-->
             </div>
 
         </div>
 
          <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
             <div class="wapper_registro wrapper_forgot wrapper_signin">
-                 <image src="./imagenes/grafica/logoPrincipal.png" class="logo" />
+
+                 <image src="./imagenes/deckxel/logo.png" class="logo" />
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>

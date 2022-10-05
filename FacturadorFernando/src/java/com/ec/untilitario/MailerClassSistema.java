@@ -125,7 +125,7 @@ public class MailerClassSistema {
 
             m.setFrom(addressfrom);
 
-            BodyPart texto = new MimeBodyPart();
+              BodyPart texto = new MimeBodyPart();
             String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
                         + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
                         + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"

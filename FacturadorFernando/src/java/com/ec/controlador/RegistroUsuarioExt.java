@@ -90,6 +90,10 @@ public class RegistroUsuarioExt {
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
                     && !usuarioSistema.getUsuLogin().equals("")
+                    && !usuarioSistema.getUsuCorreo().equals("")
+                    && !usuarioSistema.getUsuWhatsapp().equals("")
+                    && !usuarioSistema.getUsuPassword().equals("")
+                    && !usuarioSistema.getUsuRuc().equals("")
                     && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*verifica si tiene tipo ambiente*/
