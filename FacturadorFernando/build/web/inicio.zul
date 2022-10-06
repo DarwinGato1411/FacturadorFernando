@@ -7,13 +7,9 @@
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-
- 
-
-   
-
+    
     <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
-
+                
         <div class="container_landing login_container">
 
             <div class="header">
@@ -36,8 +32,7 @@
            
 
             <div class="wrapper_header">
-                <image src="./imagenes/deckxel/logo.png"  />
-                
+                <image src="./imagenes/deckxel/logow.png"  />                
             </div>
 
             <div class="main">
@@ -59,10 +54,7 @@
                                 </div>
                            </div>
                            <div>
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
-                                    <span class="item_desc">IMPRENTA EN GENERAL</span>
-                                </div>
+                                
                                 <div class="item">
                                     <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
                                     <span class="item_desc">CAPACITACIÓN GRATUITA</span>
@@ -92,7 +84,7 @@
                     <div class="color fourth"></div>
                 </div>-->
             
-                <!-- <div class="container_info">
+                <div class="container_info">
                     <div class="wrapper_item_foot">
                         <span class="fa-brands fa-whatsapp icon"></span>
                         <span> 098 465 0068 / 099 746 7720</span>
@@ -105,7 +97,7 @@
                         <span class="fa-solid fa-code"></span>
                         <span>www.graficalelectronic.com</span>
                     </div> 
-                </div>-->
+                </div>
             </div>
 
         </div>
@@ -161,6 +153,8 @@
                 <div />
             </div>
         </div>
+
+        <image class="fondo" src="./imagenes/deckxel/fondo2.png"  /> 
     </div>
 
 

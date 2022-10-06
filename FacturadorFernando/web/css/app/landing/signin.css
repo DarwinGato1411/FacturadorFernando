@@ -2,11 +2,11 @@
 
 
 :root {
-  --primary-color: #6273ab;
-  --secondary-color: #000;
-  --background-color: #fff;
-  --alpha: 0.5;
-  --base-color: #fff;
+    --primary-color: #6273ab;
+    --secondary-color: #000;
+    --background-color: #fff;
+    --alpha: 0.5;
+    --base-color: #fff;
 }
 * {
     margin: 0;
@@ -14,16 +14,31 @@
     box-sizing: border-box;
 }
 
+.all_wrapper{
+   
+    position:relative;
+}
+
+.all_wrapper .fondo{
+   
+    
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+
 .z-notification {
     width: 100%;
     height: auto;
-
+    
 }
 
 body {
     padding: 0 !important;
     font-family: "Poppins", sans-serif;
-    
+
 }
 .btn {
     width: 100%;
@@ -237,8 +252,8 @@ body {
 .container_landing {
     width: 100%;
 
-    overflow: hidden;
-    background-color: var(--background-color);
+
+  
     position: relative;
     z-index: 1;
 }
@@ -246,11 +261,17 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 2em;
+
     align-items: center;
     height: fit-content;
-    margin-top: 20%;
+    margin-top: 50px;
+    padding-top: 20px;
 }
+
+.wrapper_header img{
+    width:350px;
+}
+
 .wrapper_header .logo1,
 .wrapper_header .logo2 {
     display: block;
@@ -267,12 +288,12 @@ body {
     width: 100%;
     display: flex;
     margin-top: 2em;
-    margin-bottom: 100px;
-    display: flex;
+   
+    
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+    padding: 0 1em 100px 1em;
 }
 .main .wrapper_main {
     width: 80%;
@@ -280,8 +301,9 @@ body {
 
 
 .main .wrapper_main .wrapper_logo_ef .title{
-   margin: auto;
-   font-size: 20px;
+    margin: auto;
+    font-size: 20px;
+    color:white;
 }
 
 
@@ -323,9 +345,10 @@ body {
 .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
     font-size: 15px;
     font-family: "Raleway", sans-serif;
+    color: white;
 }
 .header{
- 
+    display:fixed;
 }
 
 .header .container_color{
@@ -333,12 +356,11 @@ body {
     grid-template-columns: repeat(4,1fr);
     width: 100%;
     height: 20px;
-    
 }
 
 .footer {
     position: fixed;
-    background: linear-gradient(90deg, rgba(18,30,76,1) 0%, rgba(70,82,146,1) 56%, rgba(51,72,147,1) 100%);
+    background: black;
     bottom: 0;
     width:100%;
     color: #fff;
@@ -362,7 +384,7 @@ body {
     grid-template-columns: repeat(3,1fr);
     margin:auto;
     width: 100%;
-    background: linear-gradient(90deg, rgba(18,30,76,1) 0%, rgba(70,82,146,1) 56%, rgba(51,72,147,1) 100%);
+    background: black;
 }
 
 .footer .container_info .wrapper_item_foot{
@@ -397,15 +419,19 @@ body {
 
 .wrapper_nav {
     width: 100%;
-    background: linear-gradient(90deg, rgba(18,30,76,1) 0%, rgba(70,82,146,1) 56%, rgba(51,72,147,1) 100%);
-    display: grid;  
+    background: black;
+    display: grid; 
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 50px;
 }
 .wrapper_nav .nav {
-   
+
     padding: 1em;
     font-family: "Nunito", sans-serif;
     background-color: black;
-  
+
     color: white;
     transform: translate(0, -100%);
     transition: transform 0.3s ease-in-out;
@@ -415,7 +441,7 @@ body {
     display: inline-block;
     margin-right: 1em;
     cursor: pointer;
-    
+
     position: relative;
 }
 .wrapper_nav .nav .item_nav::after {
@@ -467,7 +493,7 @@ body {
         display: flex;
     }
     .main .wrapper_main .wrapper_items {
-        margin-top: 2em;
+
         flex-direction: row;
     }
     .main .wrapper_main .wrapper_items .wrapper_item {
@@ -515,7 +541,7 @@ body {
         display: none !important;
     }
     .wrapper_nav {
-       
+
         right: 0;
     }
     .wrapper_nav .nav {
@@ -523,7 +549,7 @@ body {
         background-color: rgba(0, 0, 0, 0);
         box-shadow: none;
         border: none;
-       
+
     }
     .wrapper_nav .nav .item_nav {
         font-size: 18px;
@@ -532,7 +558,7 @@ body {
 
 @media screen and (min-width: 1536px) {
     .wrapper_header {
-        margin-top: 5em;
+        margin-top: 50px;
     }
     .main .wrapper_main {
         margin-top: 4em;
