@@ -1,10 +1,11 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-    --primary-color: #3e6e55;
-    --secondary-color: #3e6e55;
-    --tertiary-color: #d5ecfb;
+    --primary-color: #0071bc;
+    --secondary-color: #000;
     --background-color: #fff;
+    --alpha: 0.5;
+    --base-color: #fff;
 }
 
 body {
@@ -431,7 +432,7 @@ body {
 .logo_defact {
     display: block;
     object-fit: cover;
-    width: 150px;
+    width: 100px;
     position: relative;
     z-index: 100;
 }
