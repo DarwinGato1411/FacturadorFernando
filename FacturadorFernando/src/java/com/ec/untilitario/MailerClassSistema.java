@@ -92,7 +92,6 @@ public class MailerClassSistema {
             String usuarioSmpt = "qbs@intersys-it.com";
             String password = "TCsender2021$";
 
-
             // Propiedades de la conexión
             // Get system properties
             Properties properties = System.getProperties();
@@ -119,19 +118,17 @@ public class MailerClassSistema {
 
             BodyPart texto = new MimeBodyPart();
             String HTMLENVIO = "<body>\n"
-                    + "    <img style=\"height:100px;margin: auto;display: block;\"\n"
-                    + "        src=\"https://northcentralus1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Futneduec-my.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb!gqNSjMxCKUqlSIcNlH_W3qK_bUSzQ8NDmhYRqMNUsxrc3kSHbZELQb_5zsOXXWVq%2Fitems%2F01MOQ3UUF44JVILFUMZZBKFB2372QBQQ7T%3Fversion%3DPublished&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdXRuZWR1ZWMtbXkuc2hhcmVwb2ludC5jb21AOGRiZTE0NjktYzc5Yy00ZTIxLTlkNDMtY2E2NWQ5ZTljNDc1IiwiaXNzIjoiMDAwMDAwMDMtMDAwMC0wZmYxLWNlMDAtMDAwMDAwMDAwMDAwIiwibmJmIjoiMTY2NDE3MjAwMCIsImV4cCI6IjE2NjQxOTM2MDAiLCJlbmRwb2ludHVybCI6IlZiSHFaUU5tdzY1c3NlL281N2JlaGV0NmxtcUczUzUyUnNXdmtjSGN4K2M9IiwiZW5kcG9pbnR1cmxMZW5ndGgiOiIxMTgiLCJpc2xvb3BiYWNrIjoiVHJ1ZSIsInZlciI6Imhhc2hlZHByb29mdG9rZW4iLCJzaXRlaWQiOiJPR00xTW1Fek9ESXROREpqWXkwMFlUSTVMV0UxTkRndE9EY3daRGswTjJaa05tUmwiLCJuYW1laWQiOiIwIy5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhYW5vbiM2OTNmZjhjYTkxYjhmYTdlYWJiZDc3MGYwMDg1YTY3MDBhOTVjZDc1MjkyODg1MDZmMjhiMDc4MWY5ZTU5ZDhjIiwibmlpIjoibWljcm9zb2Z0LnNoYXJlcG9pbnQiLCJpc3VzZXIiOiJ0cnVlIiwiY2FjaGVrZXkiOiIwaC5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhYW5vbiM2OTNmZjhjYTkxYjhmYTdlYWJiZDc3MGYwMDg1YTY3MDBhOTVjZDc1MjkyODg1MDZmMjhiMDc4MWY5ZTU5ZDhjIiwic2hhcmluZ2lkIjoiVzBub1ZCajdGMGFFSjI0elZvU21NQSIsInR0IjoiMCIsInVzZVBlcnNpc3RlbnRDb29raWUiOiIyIiwiaXBhZGRyIjoiMTc3LjUzLjIxMy4zNSJ9.MDFRalRpQjdhbWw4YUhSUUJJS0xtUmljMmRLRFYrdHRpSWRGYmd5ZVZwTT0&cTag=%22c%3A%7B856AE2BC-8C96-42CE-A287-5BFEA01843F3%7D%2C1%22&encodeFailures=1&width=1366&height=573&srcWidth=&srcHeight=\"\n"
-                    + "        alt=\"\">\n"
+                    + "    <img alt=\"logo\" style=\"height:100px;margin:auto;display:block\"\n"
+                    + "        src=\"https://i.ibb.co/hH54V9F/logoh.png\" />\n"
                     + "    <div style=\"height: 10px;background:#fbc620;\"></div>\n"
-                    + "    <p style=\"margin-bottom: 0;\">Estimado (a) "+ amb.getAmRazonSocial() +",</p>\n"
+                    + "    <p style=\"margin-bottom: 0;\">Estimado (a) " + amb.getAmRazonSocial() + ",</p>\n"
                     + "    <p>Gracias por seleccionar FACTURAS.EC, Nos complace confirmar sus credenciales:</p>\n"
                     + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
-                    + "    <p style=\"margin-bottom: 0;\"><strong>USUARIO:</strong>"+ usuarioRecup +" </p>\n"
-                    + "    <p style=\"margin-bottom: 0;\"><strong>CONTRASEÑA:</strong>"+passwordRecup+"</p>\n"
-                        
+                    + "    <p style=\"margin-bottom: 0;\"><strong>USUARIO:</strong>" + usuarioRecup + " </p>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>CONTRASEÑA:</strong>" + passwordRecup + "</p>\n"
                     + "    <br>\n"
                     + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
-                    + "    <p>Si tiene cualquier duda o pregunta nos puede escribir al mail <a href=\"\">send@facturas.ec</a> o llámenos al\n"
+                    + "    <p>Si tiene cualquier duda o pregunta nos puede escribír al mail <a href=\"\">send@facturas.ec</a> o llámenos al\n"
                     + "        0992553708.</p>\n"
                     + "    <p>Saludos Cordiales,\n"
                     + "        <br>\n"

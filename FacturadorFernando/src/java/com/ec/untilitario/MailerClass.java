@@ -110,9 +110,9 @@ public class MailerClass {
             m.setFrom(addressfrom);
 
             BodyPart texto = new MimeBodyPart();
-            String HTMLENVIO = "<body>\n"
+            String HTMLENVIO = "<div>\n"
                     + "    <img alt=\"logo\" style=\"height:100px;margin:auto;display:block\"\n"
-                    + "        src=\"https://southcentralus1-mediap.svc.ms/transform/thumbnail?provider=spo&inputFormat=png&cs=fFNQTw&docid=https%3A%2F%2Futneduec-my.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb!gqNSjMxCKUqlSIcNlH_W3qK_bUSzQ8NDmhYRqMNUsxrc3kSHbZELQb_5zsOXXWVq%2Fitems%2F01MOQ3UUF44JVILFUMZZBKFB2372QBQQ7T%3Fversion%3DPublished&access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdXRuZWR1ZWMtbXkuc2hhcmVwb2ludC5jb21AOGRiZTE0NjktYzc5Yy00ZTIxLTlkNDMtY2E2NWQ5ZTljNDc1IiwiaXNzIjoiMDAwMDAwMDMtMDAwMC0wZmYxLWNlMDAtMDAwMDAwMDAwMDAwIiwibmJmIjoiMTY2NDg3NDAwMCIsImV4cCI6IjE2NjQ4OTU2MDAiLCJlbmRwb2ludHVybCI6IlZiSHFaUU5tdzY1c3NlL281N2JlaGV0NmxtcUczUzUyUnNXdmtjSGN4K2M9IiwiZW5kcG9pbnR1cmxMZW5ndGgiOiIxMTgiLCJpc2xvb3BiYWNrIjoiVHJ1ZSIsInZlciI6Imhhc2hlZHByb29mdG9rZW4iLCJzaXRlaWQiOiJPR00xTW1Fek9ESXROREpqWXkwMFlUSTVMV0UxTkRndE9EY3daRGswTjJaa05tUmwiLCJzaWduaW5fc3RhdGUiOiJbXCJrbXNpXCJdIiwibmFtZWlkIjoiMCMuZnxtZW1iZXJzaGlwfHBqbWFsdGVhQHV0bi5lZHUuZWMiLCJuaWkiOiJtaWNyb3NvZnQuc2hhcmVwb2ludCIsImlzdXNlciI6InRydWUiLCJjYWNoZWtleSI6IjBoLmZ8bWVtYmVyc2hpcHwxMDAzMDAwMDliNmMwMDdmQGxpdmUuY29tIiwic2lkIjoiYTgyNzNkMjMtNzQ4Ny00YmQyLThkZTUtOTIzM2E4NTE1NTUyIiwidHQiOiIwIiwidXNlUGVyc2lzdGVudENvb2tpZSI6IjMiLCJpcGFkZHIiOiIxNzcuNTMuMjEzLjM1In0.WlNTOUsrSXBIY0trRlJwS1Z3VU5CNkRsWHlmOUsvWEdET2tzL28wNWw4UT0&cTag=%22c%3A%7B856AE2BC-8C96-42CE-A287-5BFEA01843F3%7D%2C1%22&encodeFailures=1&width=664&height=376&srcWidth=664&srcHeight=376\" />\n"
+                    + "        src=\"https://i.ibb.co/hH54V9F/logoh.png\" />\n"
                     + "    <div style=\"height: 10px;background:#fbc620;\"></div>\n"
                     + "    <p style=\"margin-bottom: 0;\">Documento electrónico</p>\n"
                     + "    <p style=\"margin-bottom: 0;\">Estimado (a) "+ cliente +",</p>\n"
