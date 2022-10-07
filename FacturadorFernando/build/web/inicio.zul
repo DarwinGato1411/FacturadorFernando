@@ -2,7 +2,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="./js/inicio.js?v1"?>
 
-<?link rel="icon" type="image/x-icon" href="/imagenes/pichincha/logo2.png"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/deckxel/logo.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -11,16 +11,16 @@
         <div class="wrapper_login">
             <div class="container_img">
                 <image src="./imagenes/deckxel/logo.png" class="logo"/>
-                <!--<div class="wrapper_title">
+                <div class="wrapper_title">
                     <span class="title">Sistema de Facturación Electrónica</span>
-                   
-                  
-                </div>-->
+                    <span class="desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
+                    
+                </div>
             </div>
             <div class="container_signin">
                 <image src="./imagenes/deckxel/logo.png" class="logo"/>
                 <span class="title">Iniciar Sesión</span>
-                <span class="subtitle">Bienvenido a Defactjob</span> 
+                <span class="subtitle">Bienvenido a Dexkxelfact</span> 
                 <div class="wrapper_all_inputs">
                     <div class="wrapper_input">
                         <span class="fas fa-user icon"></span>
@@ -65,9 +65,7 @@
     </div>
 
     <div class="wrapper_loading loading_inicio">
-        <div class="lds-heart">
-            <div></div>
-        </div>
+       <div class="lds-facebook"><div></div><div></div><div></div></div>
     </div>
 
 </zk>

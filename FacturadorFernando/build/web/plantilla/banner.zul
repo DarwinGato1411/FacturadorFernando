@@ -1,5 +1,5 @@
    <?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
-
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
    <zk>
 
     <div class="banner" id="loginWin"  style="height:auto"  width="100%"
