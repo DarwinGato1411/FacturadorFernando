@@ -330,7 +330,7 @@ body {
 .main .wrapper_main .wrapper_items .wrapper_item {
     font-size: 12px;
     font-family: "Nunito", sans-serif;
-    display: grid;
+    
     grid-gap:10px;
 }
 .main .wrapper_main .wrapper_items .wrapper_item .item {

@@ -3,7 +3,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js?v1"?>
 <?script src="./js/inicio.js?v2"?>
 
-<?link rel="icon" type="image/x-icon" href="/imagenes/grafica/logo.png"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/deckxel/logo.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -43,14 +43,18 @@
 
                     <div class="wrapper_items">  
                         <div class="wrapper_item">
-                           <div>
+                                <div class="item">
+                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
+                                    <span class="item_desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
+                                </div>
+                            <!--<div>
                                 <div class="item">
                                     <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
                                     <span class="item_desc">SOPORTE PERMANENTE</span>
                                 </div>
                                 <div class="item">
                                     <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
-                                    <span class="item_desc">DECLARACIONES</span>
+                                    <span class="item_desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
                                 </div>
                            </div>
                            <div>
@@ -69,7 +73,7 @@
                                     <image src="./imagenes/deckxel/flechaT.png" class="img_icon" />
                                     <span class="item_desc">FIRMA ELECTRÓNICA</span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         
                     </div>
@@ -87,7 +91,7 @@
                 <div class="container_info">
                     <div class="wrapper_item_foot">
                         <span class="fa-brands fa-whatsapp icon"></span>
-                        <span> 099 353 0018-098 817 6386</span>
+                        <span> 099 353 0018 - 098 817 6386</span>
                     </div>
                     <div class="wrapper_item_foot">
                         <span class="fa-regular fa-envelope icon"></span>
