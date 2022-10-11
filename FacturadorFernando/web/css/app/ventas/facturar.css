@@ -1,8 +1,9 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-    --primary-color: #0071bc;
-    --secondary-color: #000;
+     --primary-color: #3e6e55;
+    --secondary-color: #97dddd;
+    --terciary-color:#243056;
     --background-color: #fff;
     --alpha: 0.5;
     --base-color: #fff;
@@ -599,9 +600,6 @@ div.z-listheader-cnt {
     color: #fff;
 }
 
-.td-tabla {
-    background-color: var(--primary-color);
-}
 
 .fa-chevron-icon {
     color: #fff;

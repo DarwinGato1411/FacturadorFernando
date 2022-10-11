@@ -5,7 +5,10 @@
         <group>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/WEB-INF/sun-web.xml</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/META-INF/context.xml</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/css/app/ventas/modales.css</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/css/app/landing/signin.css</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/css/app/ventas/facturar.css</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/inicio.zul</file>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/WEB-INF/glassfish-web.xml</file>
         </group>
     </open-files>
