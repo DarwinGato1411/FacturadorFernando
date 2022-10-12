@@ -13,9 +13,9 @@
                 <image src="./imagenes/logo/logoECP.png" class="logo"/>
                 <div class="wrapper_title">
                     <span class="title">Sistema de Facturación Electrónica</span>
-                    <span class="subtitle">Edificio Consultorios Pichincha</span>
+                    <span class="subtitle">Desarrollo de software sobre medida</span>
                     <div class="desc">
-                        Estimado doctor sea usted bienvenido, para ingresar al sistema
+                        Estimado usuario sea usted bienvenido, para ingresar al sistema
                         por favor digite su usuario y contraseña.
                     </div>
                     <!--<button class="btn btn_reg" id="btnRegistra" >Registro</button> -->
@@ -24,7 +24,7 @@
             <div class="container_signin">
                 <image src="./imagenes/pichincha/logo2.png" class="logo"/>
                 <span class="title">Iniciar Sesión</span>
-                <span class="subtitle">Bienvenido a Edificio Consultorios Pichincha</span> 
+                <span class="subtitle">Bienvenido a su sistema de facturación</span> 
                 <div class="wrapper_all_inputs">
                     <div class="wrapper_input">
                         <span class="fas fa-user icon"></span>
