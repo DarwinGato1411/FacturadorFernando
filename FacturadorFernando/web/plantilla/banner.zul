@@ -1,4 +1,5 @@
    <?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+<?link rel="icon" type="image/x-icon" href="/imagenes/favicon.png"?>  
 
    <zk>
 
@@ -8,7 +9,8 @@
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/logo/5.png" class="logo_defact" />
+               
+                <image src="../imagenes/velch/logoh.png" class="logo_defact" />
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      

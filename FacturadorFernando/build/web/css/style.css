@@ -2,6 +2,13 @@
   padding: 0px;
   margin: 0px;
 }
+
+
+:root{
+    --primary-color:#1f396f;
+    --secondary-color:#e9500E;
+}
+
 element.style {
   overflow: hidden;
 }
@@ -573,7 +580,7 @@ div.z-listbox-header th.z-auxheader {
   border-color: #cfcfcf #cfcfcf #cfcfcf white;
   border-top: 0;
   padding: 0;
-  background: #77dd77 !important;
+  background: var(--primary-color);
   font-weight: bold;
 }
 
@@ -616,7 +623,7 @@ div.z-auxheader-cnt {
   padding-bottom: 2px;
   padding-right: 1px;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 div.z-listfooter-cnt,
 div.z-listcell-cnt,
@@ -627,7 +634,7 @@ div.z-listheader-cnt {
   font-family: arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
-  color: black;
+  color: white;
   font-weight: bold;
   text-align: left;
 }

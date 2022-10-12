@@ -150,7 +150,7 @@
                         <div class="wrapper_input_text">
                             <div class="fa-solid fa-sack-dollar icon"></div>
                             <textbox  
-                                readonly="true"
+                                
                                 onChange="self.setValue(self.getValue().toUpperCase())"
                                 value="@bind(vm.retencionVenta.rveValorRetencionIva100)" 
                                 class="input_text" 

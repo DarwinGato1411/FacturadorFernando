@@ -57,7 +57,7 @@ const stopLoading = () => {
 };
 
 (() => {
-  document.addEventListener("DOMContentLoaded", () => {
+  zk.afterMount(function () {
     setTimeout(() => {
     
       openLogin();
