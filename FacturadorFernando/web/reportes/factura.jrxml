@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.9487171000000025"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="236"/>
+	<property name="ireport.zoom" value="2.8531167061100047"/>
+	<property name="ireport.x" value="36"/>
+	<property name="ireport.y" value="931"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -573,7 +573,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 			<textField>
 				<reportElement x="11" y="221" width="273" height="15"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ripme}?"CONTRIBUYENTE REGIMEN RIMPE": $F{am_general}?"REGIMEN GENERAL":""]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ripme}?"CONTRIBUYENTE REGIMEN RIMPE": ""]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -799,7 +799,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[SUBTOTAL EXENTO IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="50" width="100" height="20"/>
+				<reportElement positionType="Float" x="11" y="34" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
@@ -812,12 +812,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_iva}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="75" width="100" height="20"/>
+				<reportElement positionType="Float" x="11" y="54" width="100" height="20"/>
 				<textElement/>
 				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="110" y="75" width="267" height="20"/>
+				<reportElement positionType="Float" x="110" y="54" width="267" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_correo}]]></textFieldExpression>
 			</textField>
@@ -932,7 +932,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[IRBPNR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="22" width="367" height="20"/>
+				<reportElement positionType="Float" x="11" y="14" width="367" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -979,7 +979,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[DESCUENTO]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="110" y="50" width="267" height="20"/>
+				<reportElement positionType="Float" x="110" y="34" width="267" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
 			</textField>
@@ -1100,6 +1100,11 @@ Se recuerda que el envio de los comprobantes de retenciones debe realizarse dent
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_gravaba}.add($F{fac_total_base_cero})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="79" width="366" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"REGIMEN GENERAL":""]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
