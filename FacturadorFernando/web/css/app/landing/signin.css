@@ -1,8 +1,8 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 :root {
-  --primary-color: 31, 57, 111;
-  --secondary-color: 62, 110, 85;
-  --background-color: #aaa9a9;
+  --primary-color: 4, 172, 236;
+  --secondary-color: 140, 196, 65;
+  --background-color: #002e5b;
   --alpha: 0.5;
   --base-color: #fff;
 }
@@ -28,11 +28,12 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(
-    45deg,
-    rgb(var(--primary-color)),
-    rgb(var(--secondary-color))
-  );
+  background: url("../../../imagenes/best/slide.jpg");
+  background-origin: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
   position: fixed;
   top: 0;
   left: 0;
@@ -62,7 +63,7 @@ body {
   padding: 0 5em;
 }
 .login_container .wrapper_login .container_img .logo {
-  width: 400px;
+  width: 100px;
   position: absolute;
   z-index: 2;
   top: 50px;
@@ -112,6 +113,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  border-radius:20px 0 0 20px;
   background: linear-gradient(
     45deg,
     rgba(var(--primary-color), var(--alpha)),
@@ -128,7 +130,7 @@ body {
   right: 0;
   bottom: 0;
   width: 100%;
-  background: url("../../../imagenes/pichincha/nurse.jpg");
+  background: url("../../../imagenes/best/slide.jpg");
   background-size: cover;
   background-position: center;
   filter: brightness(20%);
@@ -541,5 +543,43 @@ body {
   }
   100% {
     transform: scale(0.9);
+  }
+}
+
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 8px;
+  width: 16px;
+  background: #fff;
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  background: rgb(var(--primary-color));
+}
+.lds-facebook div:nth-child(1) {
+  left: 8px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 32px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 56px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 8px;
+    height: 64px;
+  }
+  50%, 100% {
+    top: 24px;
+    height: 32px;
   }
 }

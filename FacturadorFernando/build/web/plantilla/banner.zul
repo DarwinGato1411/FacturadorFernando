@@ -10,7 +10,7 @@
             
             <div class="menulogo">
                 <div class="menulog1" align="start">
-                    <image  src="/imagenes/logo/logopi.png" class="logo_defact" />                                  
+                    <image  src="/imagenes/best/logo.png" class="logo_defact" />                                  
                 </div>
                 <div class="menulog2" apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">

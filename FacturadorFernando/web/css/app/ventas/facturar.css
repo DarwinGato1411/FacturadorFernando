@@ -1,9 +1,9 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-    --primary-color: #3e6e55;
-    --secondary-color: #3e6e55;
-    --tertiary-color: #d5ecfb;
+    --primary-color:#04acec;
+    --secondary-color: #8cc441;
+    --tertiary-color: #002e5b;
     --background-color: #fff;
 }
 
@@ -431,7 +431,7 @@ body {
 .logo_defact {
     display: block;
     object-fit: cover;
-    width: 150px;
+    height: 70px;
     position: relative;
     z-index: 100;
 }
@@ -675,7 +675,7 @@ div.z-listheader-cnt {
     display: flex;
     flex-direction: column;
     gap:10px;
-    
+
 }
 
 .menuA div{
@@ -689,6 +689,7 @@ div.z-listheader-cnt {
 .banner{
     display: grid;
     grid-gap:15px;
+    background: #002e5b;
 }
 
 .btnSalir{
@@ -696,16 +697,20 @@ div.z-listheader-cnt {
     padding: 10px;
     display: flex;
 }
+.containerPC .z-toolbarbutton-cnt,.containerPC .labelNuevo{
+    color: white !important;
+}
 
 @media screen and (min-width: 769px) {
     .menulogo{
         flex-direction: row;
     }
-    
+
     .containerPC{
-        width: 90%
+        width: 90%;
+        color: white !important;
     }
-    
+
     .btnSalir{
         width: 10%
     }
