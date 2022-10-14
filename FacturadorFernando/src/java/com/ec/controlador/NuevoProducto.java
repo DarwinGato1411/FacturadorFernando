@@ -57,13 +57,15 @@ public class NuevoProducto {
     @Wire
     Textbox txtIvaRec;
 
-    private String conIva = "S";
+    private String conIva = "N";
     private String conICE = "N";
-    private String esProducto = "P";
+    private String esProducto = "S";
     UserCredential credential = new UserCredential();
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
+
+    private Boolean esUnProdcuto = Boolean.FALSE;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
@@ -90,6 +92,7 @@ public class NuevoProducto {
         } else {
             this.producto = new Producto(0, Boolean.FALSE);
             this.producto.setProdIva(parametrizar.getParIva());
+            this.producto.setPordCostoVentaRef(BigDecimal.ZERO);
             this.producto.setProdManoObra(BigDecimal.ZERO);
             this.producto.setProdCantidadInicial(BigDecimal.ZERO);
             this.producto.setProdTrasnporte(BigDecimal.ZERO);
@@ -110,17 +113,29 @@ public class NuevoProducto {
 
             accion = "create";
         }
-
+        colocarIva();
     }
 
     public NuevoProducto() {
-         
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
 
+    }
+
+    @Command
+    @NotifyChange({"esUnProdcuto"})
+    public void verificarTipoProducto() {
+
+        if (esProducto.equals("P")) {
+            esUnProdcuto = Boolean.TRUE;
+        } else {
+            esUnProdcuto = Boolean.FALSE;
+            this.producto.setPordCostoVentaFinal(BigDecimal.ONE);
+        }
+        calculopreciofinal();
     }
 
     @Command
@@ -388,6 +403,14 @@ public class NuevoProducto {
 
     public void setConICE(String conICE) {
         this.conICE = conICE;
+    }
+
+    public Boolean getEsUnProdcuto() {
+        return esUnProdcuto;
+    }
+
+    public void setEsUnProdcuto(Boolean esUnProdcuto) {
+        this.esUnProdcuto = esUnProdcuto;
     }
 
 }
