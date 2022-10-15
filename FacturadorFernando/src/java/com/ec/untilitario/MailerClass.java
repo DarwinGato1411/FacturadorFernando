@@ -64,9 +64,9 @@ public class MailerClass {
 //      m.setRecipients(Message.RecipientType.TO,
 //                    InternetAddress.parse(address));
     public boolean sendMailSimple(String address,
-                String[] attachFiles, String asuntoInf, String acceso,
-                String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
-                throws java.rmi.RemoteException {
+            String[] attachFiles, String asuntoInf, String acceso,
+            String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
+            throws java.rmi.RemoteException {
 
         try {
 
@@ -111,76 +111,41 @@ public class MailerClass {
 
             BodyPart texto = new MimeBodyPart();
             String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
-                        + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
-                        + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"
-                        + "                                   color: #010e07;\n"
-                        + "                                   text-align: right;\n"
-                        + "                                   padding-right: 25px;\n"
-                        + "                                   padding-bottom: 10px;\">\n"
-                        + "      DESAROLLO DE SOFTWARE SOBRE MEDIDA\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
-                        + "                                 border-top-left-radius: 10px;\n"
-                        + "                                 border-top-right-radius: 10px;\n"
-                        + "                                 background: #007ff7;\n"
-                        + "                                 color: #fff;\n"
-                        + "                                 overflow: hidden;\n"
-                        + "                                 line-height: 32px;\">\n"
-                        + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
-                        + "		 DOCUMENTO ELETRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
-                        + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
-                        + "		SISTEMA DE FACTURACION ELECTRONICA  </strong></div>\n"
-                        + "    </div>\n"
-                        + "    <div class=\"info-wrap\" style=\"border-bottom-left-radius: 10px;\n"
-                        + "                                  border-bottom-right-radius: 10px;\n"
-                        + "                                  border:1px solid #ddd;\n"
-                        + "                                  overflow: hidden;\n"
-                        + "                                  padding: 15px 15px 20px;\">\n"
-                        + "        <div class=\"tips\" style=\"padding:15px;\">\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Estimado cliente,</p>\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">" + cliente + "</p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Su documento electronico se ha generado correctamente</p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Numero de documento:"
-                        + "                 <strong style=\"color:#010e07\"> " + numeroDocumento + "</strong></p>\n"
-                        + "			<p style=\" list-style: 160%; margin: 10px 0;\">Clave de acceso:"
-                        + "                 <strong style=\"color:#010e07\"> " + acceso + "</strong></p>\n"
-                        + "            <p style=\" list-style: 160%; margin: 10px 0;\">Sus archivos PDF y XML se enviaron de forma adjunta, por favor reviselos</p>\n"
-                        + "        </div>\n"
-                        + "        <div class=\"time\" style=\"text-align: right; color: #999; padding: 0 15px 15px;\">Valor total:"
-                        + "<strong style=\"color:#010e07\"> $" + ArchivoUtils.redondearDecimales(valorTotal, 2) + "</strong> </div>\n"
-                        + "        <br>\n"
-                        + "        <table class=\"list\" style=\"width: 100%; border-collapse: collapse; border-top:1px solid #eee\">\n"
-                        + "            <thead>\n"
-                        + "            <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee\">\n"
-                        + "                Si tienes alguna consulta con respecto a esta informacion no dudes en comunicarte con nosotros, "
-                        + "caso contrario no es necesario responder a este correo electronico.\n"
-                        + "            </tr>\n"
-                        + "            </thead>\n"
-                        + "            <tbody>\n"
-                        + "	\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Copyright © 2022 DECKXEL, All rights reserved.</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "			 <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">DECKXEL - Tlf. 0993530018</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
-                        + "				align-items: center;display: flex;justify-content: center;\">\n"
-                        + "			  <td style=\" font-size:9px\">Tabacundo - Ecuador</td>\n"
-                        + "\n"
-                        + "			 </tr>\n"
-                        + "\n"
-                        + "            </tbody>\n"
-                        + "        </table>\n"
-                        + "    </div>\n"
-                        + "</div>\n"
-                        + "</body>\n"
-                        + "";
+                    + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
+                    + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
+                    + "                                 border-top-left-radius: 10px;\n"
+                    + "                                 border-top-right-radius: 10px;\n"
+                    + "                                 background: #007ff7;\n"
+                    + "                                 color: #fff;\n"
+                    + "                                 overflow: hidden;\n"
+                    + "                                 line-height: 32px;\">\n"
+                    + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
+                    + "		 DOCUMENTO ELETRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
+                    + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
+                    + "		SISTEMA DE FACTURACION ELECTRONICA  </strong></div>\n"
+                    + "    </div>\n"
+                    + "    <div class=\"info-wrap\" style=\"border-bottom-left-radius: 10px;\n"
+                    + "                                  border-bottom-right-radius: 10px;\n"
+                    + "                                  border:1px solid #ddd;\n"
+                    + "                                  overflow: hidden;\n"
+                    + "                                  padding: 15px 15px 20px;\">\n"
+                    + "        <div class=\"tips\" style=\"padding:15px;\">\n"
+                    + "            <p style=\" list-style: 160%; margin: 10px 0;\">Estimado cliente,</p>\n"
+                    + "            <p style=\" list-style: 160%; margin: 10px 0;\">" + cliente + "</p>\n"
+                    + "			<p style=\" list-style: 160%; margin: 10px 0;\">Su documento electronico se ha generado correctamente</p>\n"
+                    + "			<p style=\" list-style: 160%; margin: 10px 0;\">Numero de documento:"
+                    + "                 <strong style=\"color:#010e07\"> " + numeroDocumento + "</strong></p>\n"
+                    + "			<p style=\" list-style: 160%; margin: 10px 0;\">Clave de acceso:"
+                    + "                 <strong style=\"color:#010e07\"> " + acceso + "</strong></p>\n"
+                    + "            <p style=\" list-style: 160%; margin: 10px 0;\">Sus archivos PDF y XML se enviaron de forma adjunta, por favor reviselos</p>\n"
+                    + "        </div>\n"
+                    + "        <div class=\"time\" style=\"text-align: right; color: #999; padding: 0 15px 15px;\">Valor total:"
+                    + "<strong style=\"color:#010e07\"> $" + ArchivoUtils.redondearDecimales(valorTotal, 2) + "</strong> </div>\n"
+                    + "        <br>\n"
+                    + "    </div>\n"
+                    + "</div>\n"
+                    + "</body>\n"
+                    + "";
 
             texto.setContent(HTMLENVIO, "text/html");
 
@@ -200,7 +165,7 @@ public class MailerClass {
                 }
             }
             m.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse(address));
+                    InternetAddress.parse(address));
             multiParte.addBodyPart(texto);
 
 //            m.setRecipients(Message.RecipientType.TO, addresTto);
@@ -226,6 +191,5 @@ public class MailerClass {
             return false;
         }
     }
-
 
 }

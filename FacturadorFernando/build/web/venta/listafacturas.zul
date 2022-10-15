@@ -420,8 +420,7 @@
                                                height=" 30px"
                                                onClick="@command('reenviarMail',valor=each)"    
                                                class="btn-secondary btn-sm grow"                                               
-                                               tooltiptext="Reenviar correo electrónico"/>
-                                
+                                               tooltiptext="Reenviar correo electrónico"/>                                
                                     </listcell>
                              
                                 </listitem>

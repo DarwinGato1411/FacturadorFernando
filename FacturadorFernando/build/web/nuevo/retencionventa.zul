@@ -191,7 +191,7 @@
                         <div class="wrapper_input_text" style="width:88%">
                             <div class="fa-solid fa-hand-holding-dollar icon"></div>
                             <textbox  
-                                maxlength="3" 
+                                maxlength="300" 
                                 value="@bind(vm.retencionVenta.rveAutorizacion)"
                                 onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                 constraint="no empty: Campo requerido"
