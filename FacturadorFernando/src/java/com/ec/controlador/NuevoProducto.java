@@ -101,6 +101,7 @@ public class NuevoProducto {
             this.producto.setPordCostoVentaRef(BigDecimal.ZERO);
             this.producto.setProdManoObra(BigDecimal.ZERO);
             this.producto.setProdCantidadInicial(BigDecimal.ZERO);
+
             this.producto.setProdTrasnporte(BigDecimal.ZERO);
             this.producto.setProdUtilidadNormal(parametrizar.getParUtilidad());
             this.producto.setProdUtilidadPreferencial(parametrizar.getParUtilidadPreferencial());
@@ -269,6 +270,10 @@ public class NuevoProducto {
             producto.setPordCostoVentaRef(compraMasIva);
             /*PRECIO FINAL*/
 
+        } else {
+            producto.setPordCostoCompra(BigDecimal.ONE);
+            BigDecimal compraMasIva = ArchivoUtils.redondearDecimales(producto.getPordCostoCompra().multiply(porcenIva), 3);
+            producto.setPordCostoVentaRef(compraMasIva);
         }
 
 
