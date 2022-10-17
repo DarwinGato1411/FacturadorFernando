@@ -3,7 +3,7 @@
 <?script src="./js/inicio.js?v1"?>
 
 <?link rel="icon" type="image/x-icon" href="/imagenes/deckxel/logo.png"?>  
-<?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
+<?page title="Estudio Contable" contentType="text/html;charset=UTF-8"?>
 
 <zk >
 
@@ -16,7 +16,10 @@
                     <span class="desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
                    
                 </div>
-                <!--<div class="caja">texto de ejemplo</div>-->
+                <div class="caja">
+                    <span>Comunicate al 099 9231 - 099 9828401</span>
+                    <span>Correo: studiocontable84@gmail.com</span>
+                </div>
             </div>
             <div class="container_signin">
                 <image src="./imagenes/deckxel/logo.png" class="logo"/>
