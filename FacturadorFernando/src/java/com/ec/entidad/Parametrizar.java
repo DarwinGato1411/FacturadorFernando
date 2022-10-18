@@ -89,6 +89,8 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_iva_actual")
     private BigDecimal parIvaActual;
+    @Column(name = "par_doc_contratado")
+    private BigDecimal parDocContratado;
 
     @Column(name = "par_credito_clientes")
     private Boolean parCreditoClientes;
@@ -430,4 +432,13 @@ public class Parametrizar implements Serializable {
         return "com.ec.entidad.Parametrizar[ codParametrizar=" + codParametrizar + " ]";
     }
 
+    public BigDecimal getParDocContratado() {
+        return parDocContratado==null?BigDecimal.ZERO:parDocContratado;
+    }
+
+    public void setParDocContratado(BigDecimal parDocContratado) {
+        this.parDocContratado = parDocContratado;
+    }
+
+    
 }

@@ -47,6 +47,8 @@
                                     <listheader label="Contraseña"  align="left" width="20%"></listheader>
                                     <listheader label="Tipo usuario"  align="left" width="20%"></listheader>
                                     <listheader label="Fecha caduca"  align="left" width="20%"></listheader>
+                                    <listheader label="Tipo"  align="left" width="20%"></listheader>
+                                    <listheader label="# Doc"  align="left" width="20%"></listheader>
                                     <listheader label="Modificar"  align="left" width="5%"></listheader>
                                 </listhead>
                         
@@ -86,6 +88,26 @@
                                                 format="dd/MM/yyyy" 
                                                 constraint="no empty: Ingrese la fecha "
                                             />
+                                        </listcell>  
+                                        <listcell  zclass = "mycss-listcell">                          
+                                           <textbox readonly="true" value="ILIMITADO" 
+                                                     if="${each.usuIlimitado}" 
+                                                     style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
+                                            <textbox readonly="true" value="POR DOCUMENTO" 
+                                                     if="${!each.usuIlimitado}" 
+                                                     style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
+                                        </listcell>  
+                                        <listcell  zclass = "mycss-listcell">                          
+                                            <textbox readonly="true" value="@bind(each.usuNumDocumentos)" 
+                                                     if="${!each.usuIlimitado}" 
+                                                     style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
+                                            <textbox readonly="true" value="---" 
+                                                     if="${each.usuIlimitado}" 
+                                                     style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
                                         </listcell>                  
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"

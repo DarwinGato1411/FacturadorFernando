@@ -79,7 +79,14 @@ public class LoginController extends SelectorComposer<Component> {
                 }
 
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.ADMINISTRADOR.getCodigo()) {
-                Executions.sendRedirect("/administrar/gestionusuarios.zul");
+                
+                     Executions.sendRedirect("/administrar/gestionusuarios.zul");
+                
+            
+            } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.SUPERADMIN.getCodigo()) {
+                
+                     Executions.sendRedirect("/superadmin/planempresa.zul");
+                
             }
 
         } else {
