@@ -67,7 +67,7 @@ public class RecuperarClave {
                 if (usuario != null) {
                     try {
                         MailerClassSistema mail = new MailerClassSistema();
-                        mail.sendMailRecuperarPassword(usuCorreo, "Recuperar accesos DEFACT", usuario.getUsuLogin(), usuario.getUsuPassword(), amb);
+                        mail.sendMailRecuperarPassword(usuCorreo, "Recuperar accesos Israel", usuario.getUsuLogin(), usuario.getUsuPassword(), amb);
                         Clients.showNotification("Los accesos se enviaron al correo electrónico",
                                     Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
                     } catch (RemoteException ex) {
