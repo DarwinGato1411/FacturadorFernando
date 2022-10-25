@@ -65,6 +65,7 @@ public class NuevoProducto {
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
     private Boolean esUnProdcuto = Boolean.TRUE;
+    private BigDecimal prodPrecioSubtotal = BigDecimal.ZERO;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
@@ -410,7 +411,26 @@ public class NuevoProducto {
             }
 
         }
-        calculopreciofinal();
+//        calculopreciofinal();
+    }
+
+    /*valida producto servicio*/
+    @Command
+    @NotifyChange({"producto"})
+    public void calcularPrecioFinalVenta() {
+
+        if (prodPrecioSubtotal != null) {
+            if (conIva.equals("S")) {
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(BigDecimal.valueOf(1.12)));
+            } else {
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal);
+            }
+             calculopreciofinal();
+        }else{
+         Clients.showNotification("Verifique el subtotal",
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
+        }
+       
     }
 
     public Boolean getEsUnProdcuto() {
@@ -419,6 +439,14 @@ public class NuevoProducto {
 
     public void setEsUnProdcuto(Boolean esUnProdcuto) {
         this.esUnProdcuto = esUnProdcuto;
+    }
+
+    public BigDecimal getProdPrecioSubtotal() {
+        return prodPrecioSubtotal;
+    }
+
+    public void setProdPrecioSubtotal(BigDecimal prodPrecioSubtotal) {
+        this.prodPrecioSubtotal = prodPrecioSubtotal;
     }
 
 }

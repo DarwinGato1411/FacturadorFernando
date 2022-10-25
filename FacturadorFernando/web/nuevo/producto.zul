@@ -61,20 +61,44 @@
                             class="input_text" />
                     </div>
                 </div>
-                <div class="wrapper_input_mod" >
-                    <span>Nombre: </span>
+<!--                <div class="wrapper_input_mod" >
+                    <span> </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
+                        
+                    </div>
+                </div>-->
+                <div class="wrapper_input_mod" style="flex:auto">
+                    <span style="margin:0 0.5em">Nombre: </span>
+                    <div class="wrapper_input_text" style="width:100%">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="1000" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
                             class="input_text" />
                     </div>
                 </div>
+                  
+                
+            </div>
+            <div class="container_row_input">
+                 
                   <div class="wrapper_input_mod">
-                    <span>Precio / Unidad: </span>
+                    <span>Subtotal: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
+                        <textbox    
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            value="@bind(vm.prodPrecioSubtotal)"  
+                              onOK="@command('calcularPrecioFinalVenta')"
+                            class="input_text"  
+                        />
+                    </div>
+                </div>
+                  <div class="wrapper_input_mod">
+                    <span>Precio Final:</span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
@@ -84,24 +108,12 @@
                         />
                     </div>
                 </div>
+                 <div class="wrapper_input_mod">
                 
             </div>
-<!--            <div class="container_row_input">
-                <div class="wrapper_input_mod" style="flex:auto">
-                    <span style="margin:0 0.5em">Detalle: </span>
-                    <div class="wrapper_input_text" style="width:100%">
-                        <div class="fa-solid fa-barcode icon"></div>
-                       <textbox  
-                            maxlength="100" 
-                            style="width:100%"
-                            value="@bind(vm.producto.prodDetalle)"
-                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                            constraint="no empty: Campo requerido"
-                            class="input_text" />
-                    </div>
-                </div>
+            
+            </div>
 
-            </div>-->
         </div>
         
         
@@ -125,7 +137,7 @@
                     <div class="wrapper_input_text" style="width:100%">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="1000" 
                             value="@bind(vm.producto.prodNombre)"
                             class="input_text" 
                         />
