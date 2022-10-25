@@ -213,11 +213,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-               tipoambiente.setAmPort("587");
+               tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
-                tipoambiente.setAmPassword("1h@t3Pap3r");
-                tipoambiente.setAmHost("smtp.office365.com");
+                tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+                tipoambiente.setAmPassword("kH0FVcqHaZ9X");
+                tipoambiente.setAmHost("mail.velch.com.ec");
                 
                 
 
