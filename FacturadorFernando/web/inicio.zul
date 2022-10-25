@@ -3,7 +3,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js?v1"?>
 <?script src="./js/inicio.js?v2"?>
 
-<?link rel="icon" type="image/x-icon" href="/iconos/defact.ico"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/grafica/logo.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -90,7 +90,7 @@
                 <div class="container_info">
                     <div class="wrapper_item_foot">
                         <span class="fa-brands fa-whatsapp icon"></span>
-                        <span> 099 465 0068 / 099 746 7720</span>
+                        <span> 098 465 0068 / 099 746 7720</span>
                     </div>
                     <div class="wrapper_item_foot">
                         <span class="fa-regular fa-envelope icon"></span>
