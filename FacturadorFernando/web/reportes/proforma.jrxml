@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proforma" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.zoom" value="1.7715610000000022"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -701,7 +701,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<reportElement positionType="Float" x="1" y="25" width="427" height="32"/>
 				<box leftPadding="2"/>
 				<textElement/>
-				<text><![CDATA[El documento tiene una vigencia de 30 dias a patrtir de su emisión]]></text>
+				<text><![CDATA[El documento tiene una vigencia de 30 dias a partir de su emisión]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="1" y="0" width="90" height="20"/>
@@ -709,7 +709,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<textElement/>
 				<text><![CDATA[Fecha de emisión:]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="91" y="0" width="219" height="20"/>
 				<textElement>
 					<font isBold="true"/>
