@@ -2168,7 +2168,8 @@ public class Facturar extends SelectorComposer<Component> {
                     factura.setIdCliente(clienteBuscado);
                     /*GENERAMOS LA CLAVE DE ACCESO PARA ENVIAR LA FACTURA DIRECTAMENTE ASI NO ESTE 
                     AUTORIZADA*/
-                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), "001001", factura.getFacNumeroText(), "12345678", "1");
+//                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), "001001", factura.getFacNumeroText(), "12345678", "1");
+                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
                     factura.setFacClaveAcceso(claveAcceso);
                     factura.setFacClaveAutorizacion(claveAcceso);
 

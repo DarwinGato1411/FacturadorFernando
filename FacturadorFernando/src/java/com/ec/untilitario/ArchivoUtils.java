@@ -516,51 +516,52 @@ public class ArchivoUtils {
         return ("" + claveTemporal).trim();
     }
 
-    /*CREAR LA CLAVE DE ACCESO*/
-    public static String generaClave(Date fechaEmision,
-                String tipoComprobante,
-                String ruc,
-                String ambiente,
-                String serie,
-                String numeroComprobante,
-                String codigoNumerico, String tipoEmision) {
-        String claveGenerada = "";
-        int verificador = 0;
-
-        String numeroCedulaText = "";
-        for (int i = ruc.length(); i < 13; i++) {
-            numeroCedulaText = numeroCedulaText + "0";
-        }
-
-        ruc = numeroCedulaText + ruc;
-        System.out.println("RUC CON CEROS " + ruc);
-//        if ((ruc != null) && (ruc.length() < 13)) {
-//            ruc = String.format("%013d", new Object[]{ruc});
-//           
+//    /*CREAR LA CLAVE DE ACCESO*/
+//    public static String generaClave(Date fechaEmision,
+//                String tipoComprobante,
+//                String ruc,
+//                Tipoambiente ambiente,
+//                String serie,
+//                String numeroComprobante,
+//                String codigoNumerico, String tipoEmision) {
+//        String claveGenerada = "";
+//        int verificador = 0;
+//
+//        String numeroCedulaText = "";
+//        for (int i = ruc.length(); i < 13; i++) {
+//            numeroCedulaText = numeroCedulaText + "0";
 //        }
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
-        String fecha = dateFormat.format(fechaEmision);
-
-        StringBuilder clave = new StringBuilder(fecha);
-        clave.append(tipoComprobante);
-        clave.append(ruc);
-        clave.append(ambiente);
-        clave.append(serie);
-        clave.append(numeroComprobante);
-        clave.append(codigoNumerico);
-        clave.append(tipoEmision);
-
-        verificador = generaDigitoModulo11(clave.toString());
-
-        clave.append(Integer.valueOf(verificador));
-        claveGenerada = clave.toString();
-
-        if (clave.toString().length() != 49) {
-            claveGenerada = null;
-        }
-        return claveGenerada;
-    }
+//
+//        ruc = numeroCedulaText + ruc;
+//        System.out.println("RUC CON CEROS " + ruc);
+////        if ((ruc != null) && (ruc.length() < 13)) {
+////            ruc = String.format("%013d", new Object[]{ruc});
+////           
+////        }
+//
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+//        String fecha = dateFormat.format(fechaEmision);
+//
+//        StringBuilder clave = new StringBuilder(fecha);
+//        clave.append(tipoComprobante);
+//        clave.append(ruc);
+//        clave.append(ambiente.getAmEstab());
+//        clave.append(ambiente.getAmPtoemi());
+//        clave.append(serie);
+//        clave.append(numeroComprobante);
+//        clave.append(codigoNumerico);
+//        clave.append(tipoEmision);
+//
+//        verificador = generaDigitoModulo11(clave.toString());
+//
+//        clave.append(Integer.valueOf(verificador));
+//        claveGenerada = clave.toString();
+//
+//        if (clave.toString().length() != 49) {
+//            claveGenerada = null;
+//        }
+//        return claveGenerada;
+//    }
 
     public static int generaDigitoModulo11(String cadena) {
         int baseMultiplicador = 7;
@@ -698,4 +699,50 @@ public class ArchivoUtils {
         byte[] bytes = bos.toByteArray();
         return bytes;
     }
+    
+    public static String generaClave(Date fechaEmision,
+                String tipoComprobante,
+                String ruc,
+                String ambiente,
+                String serie,
+                String numeroComprobante,
+                String codigoNumerico, String tipoEmision) /*     */ {
+        String claveGenerada = "";
+        /*  37 */ int verificador = 0;
+        /*     */
+// if ((ruc != null) && (ruc.length() < 13)) {
+//    ruc = String.format("%013d", new Object[]{ruc});
+//       }
+
+        String numeroCedulaText = "";
+        for (int i = ruc.length(); i < 13; i++) {
+            numeroCedulaText = numeroCedulaText + "0";
+        }
+
+        ruc = numeroCedulaText + ruc;
+        System.out.println("RUC CON CEROS AUTO DOC" + ruc);
+
+        /*  44 */ SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+        /*  45 */ String fecha = dateFormat.format(fechaEmision);
+        /*     */
+ /*  47 */ StringBuilder clave = new StringBuilder(fecha);
+        /*  48 */ clave.append(tipoComprobante);
+        /*  49 */ clave.append(ruc);
+        /*  50 */ clave.append(ambiente);
+        /*  51 */ clave.append(serie);
+        /*  52 */ clave.append(numeroComprobante);
+        /*  53 */ clave.append(codigoNumerico);
+        /*  54 */ clave.append(tipoEmision);
+        /*     */
+ /*  57 */ verificador = generaDigitoModulo11(clave.toString());
+        /*     */
+ /*  59 */ clave.append(Integer.valueOf(verificador));
+        /*  60 */ claveGenerada = clave.toString();
+        /*     */
+ /*  62 */ if (clave.toString().length() != 49) {
+            /*  63 */ claveGenerada = null;
+            /*     */        }
+        /*  65 */ return claveGenerada;
+        /*     */    }
+
 }

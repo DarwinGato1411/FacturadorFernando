@@ -204,5 +204,31 @@ public class ServicioTipoAmbiente {
 
         return listaTipoambientes;
     }
+    
+     public Tipoambiente findALlTipoambientePorUsuarioAmCodigo(Usuario usuario, String amCodigo) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE a.idUsuario=:idUsuario AND a.amCodigo=:amCodigo AND  a.amEstado=:amEstado");
+            query.setParameter("idUsuario", usuario);
+            query.setParameter("amCodigo", amCodigo);
+            query.setParameter("amEstado", Boolean.TRUE);
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+            if (listaTipoambientes.size() > 0) {
+                tipoambiente = listaTipoambientes.get(0);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta tipoambiente");
+        } finally {
+            em.close();
+        }
+
+        return tipoambiente;
+    }
 
 }

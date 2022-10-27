@@ -97,12 +97,11 @@ public class ListaFacturas {
 
     public ListaFacturas() {
 
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
@@ -617,8 +616,8 @@ public class ListaFacturas {
                             valor.setFacClaveAutorizacion(claveAccesoComprobante);
                             valor.setEstadosri(autorizacion.getEstado());
                             try {
-                                String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                                String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                                valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                             } catch (java.text.ParseException ex) {
                                 Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -795,8 +794,8 @@ public class ListaFacturas {
                     valor.setEstadosri(autorizacion.getEstado());
                     System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString());
                     try {
-                        String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                        String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                        valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -1212,8 +1211,7 @@ public class ListaFacturas {
         this.buscarNumFactura = buscarNumFactura;
     }
 
-    
-     @Command
+    @Command
     public void reenviarMail(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
@@ -1245,15 +1243,21 @@ public class ListaFacturas {
         attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
         MailerClass mail = new MailerClass();
         if (valor.getIdCliente().getCliCorreo() != null) {
-            mail.sendMailSimple(valor.getIdCliente().getCliCorreo(),
+            Boolean validar = mail.sendMailSimple(valor.getIdCliente().getCliCorreo(),
                         attachFiles,
                         "FACTURA ELECTRONICA",
                         valor.getFacClaveAcceso(),
                         valor.getFacNumeroText(),
                         valor.getFacTotal(),
                         valor.getIdCliente().getCliNombre(), amb);
+            if (validar) {
+                System.out.println("ENVIO CORRECTO ");
+            } else {
+                
+                System.out.println("NO ENVIO EL CORRREO");
+            }
         }
 
     }
-    
+
 }
