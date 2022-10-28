@@ -360,6 +360,7 @@ public class ListaVentaRuta {
                         cliNuevo = new Cliente();
                         cliNuevo.setCliCedula(camposInd[0]);
                         cliNuevo.setCiudad("OTAVALO");
+                        cliNuevo.setCodTipoambiente(amb);
                         cliNuevo.setCliNombre(camposInd[1].toUpperCase());
                         cliNuevo.setCliRazonSocial(camposInd[1].toUpperCase());
                         cliNuevo.setCliDireccion(camposInd[2].toUpperCase());
