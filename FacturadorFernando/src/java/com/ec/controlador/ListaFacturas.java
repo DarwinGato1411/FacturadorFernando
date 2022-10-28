@@ -155,6 +155,10 @@ public class ListaFacturas {
     public void reporteComprobante(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
         reporteGeneral(valor.getFacNumero(), "COMP");
     }
+     @Command
+    public void reporteComprobanteEnt(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
+        reporteGeneral(valor.getFacNumero(), "COMPENT");
+    }
 
     @Command
     public void reporteFacturaPerzonalizada(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
@@ -274,6 +278,8 @@ public class ListaFacturas {
                 reportPath = reportFile + File.separator + "facturaa5.jasper";
             } else if (tipo.equals("NTV")) {
                 reportPath = reportFile + File.separator + "notaventaticket.jasper";
+            }else if (tipo.equals("COMPENT")) {
+                reportPath = reportFile + File.separator + "comprobantentrega.jasper";
             }
 
             Map<String, Object> parametros = new HashMap<String, Object>();

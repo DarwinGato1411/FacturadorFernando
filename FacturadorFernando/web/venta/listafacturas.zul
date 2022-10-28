@@ -193,6 +193,7 @@
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
+                                <listheader width="3%"  label="" align="rigth" />        
                                     
                             </listhead>  
                             
@@ -330,6 +331,15 @@
                                     </listcell>
                                     <listcell  zclass = "mycss-listcell" >    
                                         
+                                        <image src="/iconos/pdfreporte.png"  
+                                               height=" 30px"   
+                                               class="btn btn btn-secondary btn-sm grow"                                         
+                                               onClick="@command('reporteComprobanteEnt',valor=each)"
+                                               tooltiptext="Imprimir respaldo de factura electronica"/>
+                                
+                                    </listcell>
+                                    <listcell  zclass = "mycss-listcell" >    
+                                        
                                         <image src="/iconos/armareval.png"
                                                height=" 30px"     
                                                class="btn btn btn-secondary btn-sm grow"                                         
@@ -364,7 +374,7 @@
                                     <zk if="${each.estadosri!='AUTORIZADO'}"  > 
                                         <listcell  zclass = "mycss-listcell" >    
                                             <image  src="/iconos/sri24x24.png" 
-                                                    height=" 30px"  
+                                                    height="30px"  
                                                     class="btn btn btn-secondary btn-sm grow"
                                                     onClick="@command('autorizarSRI',valor=each)" 
                                                     tooltiptext="Autorizar facturas"/>

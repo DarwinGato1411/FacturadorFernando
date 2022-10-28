@@ -377,7 +377,6 @@ public class Facturar extends SelectorComposer<Component> {
 
     public Facturar() {
 
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
@@ -1127,7 +1126,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     @Command
-    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero","valorIce"})
+    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce"})
     public void calcularValoresDesCantidad(@BindingParam("valor") DetalleFacturaDAO valor) {
         try {
 
@@ -1149,11 +1148,9 @@ public class Facturar extends SelectorComposer<Component> {
             }
             BigDecimal factorIva = (valor.getProducto().getProdIva().divide(BigDecimal.valueOf(100.0)));
             BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
-            
-            
-        BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
-        BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
+            BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
+            BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
             if (valor.getCantidad().doubleValue() > 0) {
                 /*CALCULO DEL PORCENTAJE DE DESCUENTO*/
@@ -1176,7 +1173,6 @@ public class Facturar extends SelectorComposer<Component> {
                 BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
 
 //                valor.setSubTotalDescuento(subTotalDescuento);
-                
                 /*Calculo del ICE*/
 //                BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 /*Calculamos el Subtotal ICE*/
@@ -1188,9 +1184,7 @@ public class Facturar extends SelectorComposer<Component> {
                 valorICE = ArchivoUtils.redondearDecimales(valorICE, 3);
 //                valor.setSubTotalDescuento(subTotalDescuento);
                 valor.setSubTotalDescuento(valorICE);
-                
-                
-                
+
                 //valor del descuento
                 BigDecimal valorDescuento = BigDecimal.ZERO;
                 if (!valor.getEsProducto()) {
@@ -1789,7 +1783,7 @@ public class Facturar extends SelectorComposer<Component> {
         BigDecimal valorTotalIce = BigDecimal.ZERO;
         BigDecimal valorTotalIcePorProducto = BigDecimal.ZERO;
 
-         List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
+        List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleFacturaDAO item : listaPedido) {
                 sumaDeItems = sumaDeItems.add(BigDecimal.ONE);
@@ -1857,7 +1851,7 @@ public class Facturar extends SelectorComposer<Component> {
         }
     }
 
-    private void guardarFactura(String valor) {
+    private void guardarFactura(String valorImprime) {
 
         try {
 
@@ -1904,22 +1898,6 @@ public class Facturar extends SelectorComposer<Component> {
             }
             /*Ubicacion del archivo firmado para obtener la informacion*/
 
-//            if (!parametrizar.getParCreditoClientes()) {
-//                if (saldoFacturas.doubleValue() < valorTotalCotizacion.doubleValue()) {
-//                    Clients.showNotification("Excedio el monto asignado al cliente",
-//                            Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-//                    return;
-//                }
-//            }
-            if (valor.equals("CG")) {
-                if (transportista == null || numeroPlaca.equals("")) {
-
-                    Clients.showNotification("Para generar una guia debe seleccionar un conductor e ingresar la placa",
-                                Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-                    return;
-
-                }
-            }
             /*VERIFICA SI ES FACTURA O PROFORMA Y COLOCAL EL NUMERO*/
             if ((accion.equals("create")) || (tipoVentaAnterior.equals("PROF") && (tipoVenta.equals("FACT")))) {
                 verificarSecNumeracion();
@@ -1982,7 +1960,7 @@ public class Facturar extends SelectorComposer<Component> {
             numeroFacturaTexto();
 
             //guarda con o sin guia de remision 
-            facConSinGuia = valor;
+//            facConSinGuia = valor;
 
             Tipoambiente amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
             //armar la cabecera de la factura
@@ -2191,40 +2169,7 @@ public class Facturar extends SelectorComposer<Component> {
                         servicioDetalleKardex.eliminarKardexVenta(factura.getIdFactura());
                         servicioFactura.guardarFactura(detalleFactura, factura);
                     }
-                    if (valor.equalsIgnoreCase("CG")) {
-
-                        numeroGuia();
-                        Guiaremision guiaremision = new Guiaremision();
-                        guiaremision.setFacNumero(numeroGuia);
-                        guiaremision.setFacNumeroText(numeroGuiaText);
-                        guiaremision.setIdFactura(factura);
-                        guiaremision.setIdUsuario(credential.getUsuarioSistema());
-                        guiaremision.setFacFecha(new Date());
-                        guiaremision.setFacEstado("PENDIENTE");
-                        guiaremision.setTipodocumento("06");
-                        guiaremision.setPuntoemision(factura.getPuntoemision());
-                        guiaremision.setCodestablecimiento(factura.getCodestablecimiento());
-                        guiaremision.setEstadosri("PENDIENTE");
-                        String claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(), "001001", guiaremision.getFacNumeroText(), "12345678", "1");
-                        guiaremision.setFacClaveAcceso(claveAccesoGuia);
-                        guiaremision.setFacClaveAutorizacion(claveAccesoGuia);
-                        guiaremision.setCodTipoambiente(factura.getCod_tipoambiente().getCodTipoambiente());
-                        guiaremision.setFacFechaSustento(factura.getFacFecha());
-                        guiaremision.setIdTransportista(transportista);
-                        guiaremision.setNumplacaguia(numeroPlaca);
-                        guiaremision.setIdCliente(factura.getIdCliente());
-                        guiaremision.setFechainitranspguia(incioTraslado);
-                        guiaremision.setFechafintranspguia(finTraslado);
-                        guiaremision.setMotivoGuia(motivoGuia);
-                        guiaremision.setPartida(partida);
-                        guiaremision.setLlegada(llegada);
-                        List<DetalleGuiaremision> detalleGuia = new ArrayList<DetalleGuiaremision>();
-                        for (DetalleFacturaDAO itemDet : detalleFactura) {
-                            detalleGuia.add(new DetalleGuiaremision(itemDet.getCantidad(), itemDet.getDescripcion(), itemDet.getProducto(), guiaremision));
-                        }
-                        servicioGuia.guardarGuiaremision(detalleGuia, guiaremision);
-
-                    }
+                   
                     /*VERIFICA SI EL CLINETE QUIERE AUTORIZAR LA FACTURA*/
                     if (!parametrizar.getParEstado() || tipoVenta.equals("PROF")) {
                         /*en el caso que no se desee autorizar la factura*/
@@ -2282,7 +2227,9 @@ public class Facturar extends SelectorComposer<Component> {
 
             }
 
-            reporteGeneral();
+            if (valorImprime.equals("S")) {
+                reporteGeneral();
+            }
             if (accion.equals("create")) {
                 Executions.sendRedirect("/venta/facturar.zul");
             } else {

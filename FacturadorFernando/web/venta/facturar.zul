@@ -237,8 +237,16 @@
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='SG')"
-                                        tooltiptext="Guardar"
+                                        onClick="@command('Guardar',valor='N')"
+                                        tooltiptext="Guardar sin impresion"
+                                        label="Guardar"
+                                        style="font-size:18px; height:46px"
+                                    />
+                                    <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='S')"
+                                        tooltiptext="Facturar e imprimir"
                                         label="Facturar"
                                         style="font-size:18px; height:46px"
                                     />
