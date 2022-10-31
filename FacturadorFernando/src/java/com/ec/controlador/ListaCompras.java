@@ -345,7 +345,7 @@ public class ListaCompras {
             parametros.put("id_cabecera", idCabera);
 
             if (con != null) {
-                System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                System.out.println("Conexión Realizada Correctamente");
             }
             FileInputStream is = null;
             is = new FileInputStream(reportPath);

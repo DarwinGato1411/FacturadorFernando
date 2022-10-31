@@ -290,7 +290,7 @@
                                         <div class="fa-solid fa-dollar-sign icon"></div>
                                         <decimalbox 
                                             format="###.###"  
-                                            readonly="true" 
+                                            
                                             class="input_text"
                                             value="@bind(vm.cabeceraCompra.cabIva)" 
                                         />

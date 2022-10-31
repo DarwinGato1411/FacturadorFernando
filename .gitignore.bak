@@ -13,7 +13,7 @@ tomcat
 *.dmg
 *.gz
 *.iso
-#*.jar
+*.jar
 *.rar
 *.tar
 *.zip
@@ -43,6 +43,9 @@ nbproject/private/
 build/
 nbbuild/
 dist/
+build/
+FacturadorFernando/dist/
+FacturadorFernando/build/
 nbdist/
 nbactions.xml
 nb-configuration.xml
@@ -57,3 +60,4 @@ nbproject/
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+

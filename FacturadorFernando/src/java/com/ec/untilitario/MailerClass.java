@@ -64,9 +64,9 @@ public class MailerClass {
 //      m.setRecipients(Message.RecipientType.TO,
 //                    InternetAddress.parse(address));
     public boolean sendMailSimple(String address,
-                String[] attachFiles, String asuntoInf, String acceso,
-                String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
-                throws java.rmi.RemoteException {
+            String[] attachFiles, String asuntoInf, String acceso,
+            String numeroDocumento, BigDecimal valorTotal, String cliente, Tipoambiente ambiente)
+            throws java.rmi.RemoteException {
 
         try {
 
@@ -112,6 +112,7 @@ public class MailerClass {
             BodyPart texto = new MimeBodyPart();
             String HTMLENVIO = "<body style=\"color: #666; font-size: 14px; font-family: 'Open Sans',Helvetica,Arial,sans-serif;\">\n"
                         + "<div class=\"box-content\" style=\"width: 80%; margin: 20px auto; max-width: 800px; min-width: 600px;\">\n"
+<<<<<<< HEAD
                         + "    <div class=\"header-tip\" style=\"font-size: 10px;\n"
                         + "                                   color: #010e07;\n"
                         + "                                   text-align: right;\n"
@@ -119,6 +120,9 @@ public class MailerClass {
                         + "                                   padding-bottom: 10px;\">\n"
                         + "      ASESORIA EMPRESARIAL\n"
                         + "    </div>\n"
+=======
+                      
+>>>>>>> 20f49c653932904ecd2357709f0fecbec34ee5d4
                         + "    <div class=\"info-top\" style=\"padding: 15px 25px;\n"
                         + "                                 border-top-left-radius: 10px;\n"
                         + "                                 border-top-right-radius: 10px;\n"
@@ -129,7 +133,7 @@ public class MailerClass {
                         + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
                         + "		 DOCUMENTO ELETRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
                         + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
-                        + "		SISTEMA DE FACTURACION ELECTRONICA  </strong></div>\n"
+                        + "		SISTEMA DE FACTURACION ELECTRONICA VELCH  </strong></div>\n"
                         + "    </div>\n"
                         + "    <div class=\"info-wrap\" style=\"border-bottom-left-radius: 10px;\n"
                         + "                                  border-bottom-right-radius: 10px;\n"
@@ -156,6 +160,7 @@ public class MailerClass {
                         + "caso contrario no es necesario responder a este correo electronico.\n"
                         + "            </tr>\n"
                         + "            </thead>\n"
+<<<<<<< HEAD
                         + "            <tbody>\n"
                         + "	\n"
                         + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
@@ -176,11 +181,34 @@ public class MailerClass {
                         + "			 </tr>\n"
                         + "\n"
                         + "            </tbody>\n"
+=======
+                        + "           <tbody>\n"
+                    + "	\n"
+                    + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
+                    + "				align-items: center;display: flex;justify-content: center;\">\n"
+                    + "			  <td style=\" font-size:9px\">Copyright *2022 Velch S.A.All rights reserved.</td>\n"
+                    + "\n"
+                    + "			 </tr>\n"
+                    + "			 <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
+                    + "				align-items: center;display: flex;justify-content: center;\">\n"
+                    + "			  <td style=\" font-size:9px\">Velch S.A. 0982038008</td>\n"
+                    + "\n"
+                    + "			 </tr>\n"
+                    + "\n"
+                    + "			  <tr style=\" background: #fafafa; color: #333; border-bottom: 1px solid #eee;;font-size:7px\n"
+                    + "				align-items: center;display: flex;justify-content: center;\">\n"
+                    + "			  <td style=\" font-size:9px\">Quito - Ecuador</td>\n"
+                    + "\n"
+                    + "			 </tr>\n"
+                    + "\n"
+                    + "            </tbody>\n"
+>>>>>>> 20f49c653932904ecd2357709f0fecbec34ee5d4
                         + "        </table>\n"
                         + "    </div>\n"
                         + "</div>\n"
                         + "</body>\n"
                         + "";
+
 
             texto.setContent(HTMLENVIO, "text/html");
 
@@ -200,7 +228,7 @@ public class MailerClass {
                 }
             }
             m.setRecipients(Message.RecipientType.TO,
-                        InternetAddress.parse(address));
+                    InternetAddress.parse(address));
             multiParte.addBodyPart(texto);
 
 //            m.setRecipients(Message.RecipientType.TO, addresTto);
@@ -226,6 +254,5 @@ public class MailerClass {
             return false;
         }
     }
-
 
 }

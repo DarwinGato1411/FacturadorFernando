@@ -8,9 +8,12 @@
             <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/MailerClassSistema.java</file>
 =======
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/venta/facturar.zul</file>
+<<<<<<< HEAD
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/nuevo/retencionventa.zul</file>
 >>>>>>> 325327ab12bbd95aaa3f955d341ce684d4836ab4
+=======
+>>>>>>> 20f49c653932904ecd2357709f0fecbec34ee5d4
         </group>
     </open-files>
 </project-private>
