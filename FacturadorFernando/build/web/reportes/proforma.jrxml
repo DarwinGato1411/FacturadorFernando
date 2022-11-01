@@ -698,7 +698,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<text><![CDATA[Total]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="1" y="25" width="427" height="32"/>
+				<reportElement positionType="Float" x="0" y="40" width="427" height="15"/>
 				<box leftPadding="2"/>
 				<textElement/>
 				<text><![CDATA[El documento tiene una vigencia de 30 dias a partir de su emisión]]></text>
@@ -771,6 +771,17 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="20" width="90" height="20"/>
+				<box leftPadding="2"/>
+				<textElement/>
+				<text><![CDATA[Forma de pago:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="20" width="219" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{for_nombre}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
