@@ -2,11 +2,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="./js/inicio.js?v1"?>
 
-<<<<<<< HEAD
-<?link rel="icon" type="image/x-icon" href="http://velchfact-facturacionelectronica.com:8090/svg/logo.svg"?>  
-=======
 <?link rel="icon" type="image/x-icon" href="/imagenes/favicon.png"?>  
->>>>>>> 325327ab12bbd95aaa3f955d341ce684d4836ab4
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -14,132 +10,6 @@
 
     <div class="wrapper_inicio" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="inicio_container">
-<<<<<<< HEAD
-        <div class="nav">
-            <image src="http://velchfact-facturacionelectronica.com:8090/svg/logo.svg" class="logo" />
-            <div class="title_wrapper">
-                <span class="title">VELCHFACT</span>
-                <span class="hr" />
-                <span class="subtitle">SISTEMA DE FACTURACIÓN ELECTRÓNICA</span>
-            </div>
-        </div>
-
-        <div class="main">
-            <image src="http://velchfact-facturacionelectronica.com:8090/svg/banner.svg" class="banner" />
-
-            <div class="left">
-                <div class="desc">
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
-                            <span>
-                                Soporte permanente
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon"></span>
-
-                            <span>
-                                Capacitación gratuita
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-
-                            <span>
-                                Planes mensuales a su necesidad
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="ul">
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>
-                                Guías de remisión
-                            </span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Facturas</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Retenciones</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Notas de Crédito</span>
-                        </div>
-                        <div class="li">
-                            <span class="fa-solid fa-check icon i"></span>
-                            <span>Respaldo de declaraciones</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="buttons_wrapper">
-                    <button type="button" class="btn btn_signin btnLogin">Iniciar Sesión</button>
-                    <button type="button" id="btnRegistra" class="btn btn_reg">Registrarse</button>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="services">
-            <span class="title">Servicios:</span>
-
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Contables, Tributarios y Laborales</span>
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Capacitaciones</span>
-
-            </div>
-            <div class="wrapper">
-                <span class="fa-solid fa-circle-notch icon"></span>
-                <span class="desc">Asesorías Personalizadas</span>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="section">
-                <div>
-                    <span class="fa-solid i fa-mobile-retro"></span>
-                    <span>098 203 8008</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-phone"></span>
-                    <span>022 298 908</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-envelope"></span>
-                    <span>velch_sa@hotmail.com</span>
-                </div>
-
-                <div>
-                    <span class="fa-solid i fa-globe"></span>
-                    <span>www.velch.com.ec</span>
-                </div>
-
-            </div>
-        </div>
-
-        <image src="http://velchfact-facturacionelectronica.com:8090/svg/2.svg" class="recurso recurso_1" />
-        <image src="http://velchfact-facturacionelectronica.com:8090/svg/3.svg" class="recurso recurso_2" />
-        <image src="http://velchfact-facturacionelectronica.com:8090/svg/1.svg" class="recurso recurso_3" />
-        <image src="http://velchfact-facturacionelectronica.com:8090/svg/4.svg" class="recurso recurso_4" />
-
-    </div>
-
-        <div class="login_container login_container_id" style="display:none">
-            <div class="login_wrapper ">
-                <image src="http://localhost:8090/svg/logo.svg" class="logo" />
-=======
         
 
         <div class="main">
@@ -148,7 +18,6 @@
             <div class="rigth">
                <div class="login_wrapper ">
                 
->>>>>>> 325327ab12bbd95aaa3f955d341ce684d4836ab4
 
                 <div class="wrapper">
                     <span class="title">Iniciar Sesión</span>
