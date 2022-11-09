@@ -14,7 +14,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-11-07T17:18:23")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-11-07T18:08:18")
 @StaticMetamodel(Tipoambiente.class)
 public class Tipoambiente_ { 
 
@@ -28,10 +28,13 @@ public class Tipoambiente_ {
     public static volatile SingularAttribute<Tipoambiente, Boolean> amEstado;
     public static volatile SingularAttribute<Tipoambiente, String> amNombreComercial;
     public static volatile CollectionAttribute<Tipoambiente, Transportista> transportistaCollection;
+    public static volatile SingularAttribute<Tipoambiente, String> amTelefonoSocio;
+    public static volatile SingularAttribute<Tipoambiente, String> amNombreSocio;
     public static volatile SingularAttribute<Tipoambiente, String> amDireccionSucursal;
     public static volatile SingularAttribute<Tipoambiente, String> amCodigoIce;
     public static volatile CollectionAttribute<Tipoambiente, Proveedores> proveedorCollection;
     public static volatile SingularAttribute<Tipoambiente, String> amCodigo;
+    public static volatile SingularAttribute<Tipoambiente, String> amRucSocio;
     public static volatile SingularAttribute<Tipoambiente, Boolean> amGeneral;
     public static volatile SingularAttribute<Tipoambiente, String> amUsuarioSmpt;
     public static volatile SingularAttribute<Tipoambiente, String> amAutorizados;
@@ -64,6 +67,7 @@ public class Tipoambiente_ {
     public static volatile SingularAttribute<Tipoambiente, String> amDireccionMatriz;
     public static volatile SingularAttribute<Tipoambiente, Boolean> amExp;
     public static volatile SingularAttribute<Tipoambiente, String> amHost;
+    public static volatile SingularAttribute<Tipoambiente, String> amPlacaSocio;
     public static volatile CollectionAttribute<Tipoambiente, CabeceraCompra> cabeceraCompraCollection;
     public static volatile SingularAttribute<Tipoambiente, String> amPort;
     public static volatile SingularAttribute<Tipoambiente, Integer> amSecNotaCredito;

@@ -185,6 +185,46 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="container_row_input">
+                        <div class="wrapper_input_mod">
+                            <span>RUC socio </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-user-pen icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amRucSocio)" 
+                                    placeholder="RUC SOCIO (1718264839001)"
+                                    class="input_text"
+                                    tooltiptext="RUC SOCIO" 
+                                />
+                            </div>
+                        </div>
+                        <div class="wrapper_input_mod">
+                            <span>Nombre socio: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-location-dot icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amNombreSocio)" 
+                                    placeholder="Nombre Socio"
+                                    class="input_text"
+                                    tooltiptext="Ingrese el Nombre y Apellido del socio"
+                                />
+                            </div>
+                        </div>
+                    
+                        <div class="wrapper_input_mod">
+                            <span>Telefono socio: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-location-dot icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amTelefonoSocio)" 
+                                    placeholder="Telefono socio"
+                                    class="input_text"
+                                    tooltiptext="Ingrese el numero de contacto del socio"
+                                />
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="container_row_input">
                     
