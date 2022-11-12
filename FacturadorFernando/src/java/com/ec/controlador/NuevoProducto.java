@@ -67,6 +67,9 @@ public class NuevoProducto {
 
     private Boolean esUnProdcuto = Boolean.FALSE;
 
+    private BigDecimal precioBase = BigDecimal.ZERO;
+    private Boolean grabaIva = Boolean.FALSE;
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -75,8 +78,13 @@ public class NuevoProducto {
             this.producto = producto;
             if (producto.getProdGrabaIva()) {
                 conIva = "S";
+                BigDecimal porcenIva = (producto.getProdIva().divide(BigDecimal.valueOf(100), 4, RoundingMode.FLOOR)).add(BigDecimal.ONE);
+                precioBase = producto.getPordCostoVentaFinal().divide(porcenIva);
+                precioBase=ArchivoUtils.redondearDecimales(precioBase, 2);
             } else {
                 conIva = "N";
+                precioBase = producto.getPordCostoVentaFinal();
+                precioBase=ArchivoUtils.redondearDecimales(precioBase, 2);
             }
             conICE = producto.getProdGrabaIce() ? "S" : "N";
 
@@ -88,6 +96,7 @@ public class NuevoProducto {
             producto.setProdUnidadMedida(producto.getProdUnidadMedida() == null ? "UNIDAD" : producto.getProdUnidadMedida());
             producto.setProdUnidadConversion(producto.getProdUnidadConversion() == null ? "UNIDAD" : producto.getProdUnidadConversion());
             producto.setProdFactorConversion(producto.getProdFactorConversion() == null ? BigDecimal.ONE : producto.getProdFactorConversion());
+
             accion = "update";
         } else {
             this.producto = new Producto(0, Boolean.FALSE);
@@ -126,7 +135,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto"})
+    @NotifyChange({"esUnProdcuto", "grabaIva"})
     public void verificarTipoProducto() {
 
         if (esProducto.equals("P")) {
@@ -139,14 +148,28 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"producto"})
+    @NotifyChange({"producto", "grabaIva"})
     public void colocarIva() {
         if (conIva.equals("S")) {
             txtIvaRec.setText("12");
             producto.setProdIva(parametrizar.getParIva());
+            grabaIva=Boolean.TRUE;
         } else {
             txtIvaRec.setText("0");
             producto.setProdIva(BigDecimal.ZERO);
+            grabaIva=Boolean.FALSE;
+        }
+        precioFinalServicio();
+    }
+
+    @Command
+    @NotifyChange({"producto"})
+    public void precioFinalServicio() {
+        if (conIva.equals("S")) {
+            BigDecimal porcenIva = (producto.getProdIva().divide(BigDecimal.valueOf(100), 4, RoundingMode.FLOOR)).add(BigDecimal.ONE);
+            producto.setPordCostoVentaFinal(ArchivoUtils.redondearDecimales(precioBase.multiply(porcenIva), 3) );
+        } else {
+            producto.setPordCostoVentaFinal(ArchivoUtils.redondearDecimales(precioBase,3));
         }
     }
 
@@ -411,6 +434,22 @@ public class NuevoProducto {
 
     public void setEsUnProdcuto(Boolean esUnProdcuto) {
         this.esUnProdcuto = esUnProdcuto;
+    }
+
+    public BigDecimal getPrecioBase() {
+        return precioBase;
+    }
+
+    public void setPrecioBase(BigDecimal precioBase) {
+        this.precioBase = precioBase;
+    }
+
+    public Boolean getGrabaIva() {
+        return grabaIva;
+    }
+
+    public void setGrabaIva(Boolean grabaIva) {
+        this.grabaIva = grabaIva;
     }
 
 }

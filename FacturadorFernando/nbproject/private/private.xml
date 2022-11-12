@@ -11,14 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/venta/facturar.zul</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/Facturar.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/Factura.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/Configuracion.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/nuevo/proveedor.zul</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/modificar/factura.zul</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/servicio/ServicioTipoAmbiente.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -205,7 +205,7 @@
                                         
                                     <textbox onCreate="self.focus()"                                                             
                                              class="form-control form-control-sm input"
-                                             value="@bind(vm.subTotalCotizacion)"                                                       
+                                             value="@bind(vm.ivaCotizacion)"                                                       
                                              readonly="true" 
                                              onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                                        

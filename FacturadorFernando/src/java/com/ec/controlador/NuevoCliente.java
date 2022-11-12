@@ -88,8 +88,6 @@ public class NuevoCliente {
 
     public NuevoCliente() {
 
-       
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
@@ -113,7 +111,7 @@ public class NuevoCliente {
                     cliente.setCliApellidos("");
                     cliente.setCliNombres("");
                     cliente.setCliNombre("");
-                    cliente.setCliRazonSocial("" );
+                    cliente.setCliRazonSocial("");
                     Clients.showNotification("Cliente no encontrado ingreselo manualmente...!! ",
                                 Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
                     return;
@@ -145,7 +143,7 @@ public class NuevoCliente {
                     }
                     cliente.setCliApellidos(apellidoPersona);
                     cliente.setCliNombres(nombrePersona);
-                    cliente.setCliNombre(nombrePersona + " " + apellidoPersona);
+                    cliente.setCliNombre(aduana.getNombre());
                     cliente.setCliRazonSocial(nombrePersona + " " + apellidoPersona);
                 }
             }
@@ -161,7 +159,7 @@ public class NuevoCliente {
     @Command
     public void guardar() {
         /*getCliNombre es el nombre comercial*/
-        if (cliente.getCliCedula() != null                   
+        if (cliente.getCliCedula() != null
                     && cliente.getCliNombre() != null
                     && cliente.getCliDireccion() != null
                     && cliente.getCliTelefono() != null
@@ -187,7 +185,7 @@ public class NuevoCliente {
             cliente.setCodTipoambiente(amb);
             if (accion.equals("create")) {
 
-                if (servicioCliente.FindClienteForCedula(cliente.getCliCedula(),amb) == null) {
+                if (servicioCliente.FindClienteForCedula(cliente.getCliCedula(), amb) == null) {
                     cliente.setClietipo(Integer.valueOf(clietipo));
                     cliente.setClieFechaRegistro(fechaReg);
                     cliente.setIdTipoIdentificacion(tipoadentificacion);

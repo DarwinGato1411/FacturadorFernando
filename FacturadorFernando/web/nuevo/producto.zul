@@ -31,7 +31,7 @@
                 >      
                         
                     <radio label="Sin IVA" value="N"/>    
-                     <space bar="false"  />           
+                    <space bar="false"  />           
                     <radio label="Graba IVA" value="S"/>
                                           
                 </radiogroup>
@@ -80,11 +80,24 @@
                             class="input_text" />
                     </div>
                 </div>
-                <div class="wrapper_input_mod">
-                    <span>Precio </span>
+                <div class="wrapper_input_mod"  visible="@bind(vm.grabaIva)" >
+                    <span>Precio base </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
+                            onOK="@command('precioFinalServicio')"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            value="@bind(vm.precioBase)"  
+                            class="input_text"  
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <span>Precio final </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
+                        <textbox    
+                            readonly="@bind(vm.grabaIva)"
                             constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
