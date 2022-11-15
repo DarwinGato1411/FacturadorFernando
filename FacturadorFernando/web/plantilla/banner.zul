@@ -10,7 +10,8 @@
             
             <div class="menulogo">
                 <div class="menulog1" align="start">
-                    <image  src="../imagenes/deckxel/logo.png" class="logo_defact" />                                  
+                     <label value="FACTURADOR - DECKXELFACT "  class="labelNuevo" />
+                    <!--<image  src="../imagenes/deckxel/logo.png" width="5%" class="logo_defact" />-->                                  
                 </div>
                 <div class="menulog2" apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
