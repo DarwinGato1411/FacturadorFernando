@@ -22,6 +22,8 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.xpath.XPathExpressionException;
+import org.json.JSONException;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -73,12 +75,12 @@ public class NuevoCliente {
             accion = "update";
         } else {
             this.cliente = new Cliente();
-            this.cliente.setCiudad(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : "");
-            this.cliente.setCliDireccion(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : "");
+            this.cliente.setCiudad(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : " ");
+            this.cliente.setCliDireccion(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : " ");
             this.cliente.setCliMontoAsignado(BigDecimal.valueOf(999999));
-            this.cliente.setCliMovil("0999999999");
-            this.cliente.setCliTelefono("099999999");
-            this.cliente.setCliCorreo(parametrizar.getParCorreoDefecto() != null ? parametrizar.getParCorreoDefecto() : "");
+            this.cliente.setCliMovil(" ");
+            this.cliente.setCliTelefono(" ");
+            this.cliente.setCliCorreo(parametrizar.getParCorreoDefecto() != null ? parametrizar.getParCorreoDefecto() : " ");
             accion = "create";
         }
 
@@ -97,7 +99,7 @@ public class NuevoCliente {
 
     @Command
     @NotifyChange({"cliente"})
-    public void buscarAduana() throws URISyntaxException, IOException {
+    public void buscarAduana() throws URISyntaxException, IOException, XPathExpressionException, JSONException {
         if (cliente.getCliCedula() != null) {
             if (!cliente.getCliCedula().equals("")) {
                 String cedulaBuscar = "";
@@ -143,7 +145,7 @@ public class NuevoCliente {
                     }
                     cliente.setCliApellidos(apellidoPersona);
                     cliente.setCliNombres(nombrePersona);
-                    cliente.setCliNombre(nombrePersona + " " + apellidoPersona);
+                    cliente.setCliNombre(aduana.getNombre());
                     cliente.setCliRazonSocial(nombrePersona + " " + apellidoPersona);
                 }
             }
@@ -159,9 +161,7 @@ public class NuevoCliente {
     @Command
     public void guardar() {
         /*getCliNombre es el nombre comercial*/
-        if (cliente.getCliCedula() != null
-                    && cliente.getCliNombres() != null
-                    && cliente.getCliApellidos() != null
+        if (cliente.getCliCedula() != null                   
                     && cliente.getCliNombre() != null
                     && cliente.getCliDireccion() != null
                     && cliente.getCliTelefono() != null
