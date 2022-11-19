@@ -373,21 +373,15 @@ public class AutorizarDocumentos {
             linea = ("    </detalles>\n");
             build.append(linea);
             linea = ("    <infoAdicional>\n"
-                        + (valor.getIdCliente().getCliDireccion().length() > 0 ? "<campoAdicional nombre=\"DIRECCION\">" + removeCaracteres(valor.getIdCliente().getCliDireccion()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliCorreo().length() > 0 ? "<campoAdicional nombre=\"E-MAIL\">" + removeCaracteres(valor.getIdCliente().getCliCorreo()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliApellidos().length() > 0 ? "<campoAdicional nombre=\"APELLIDO\">" + removeCaracteres(valor.getIdCliente().getCliApellidos()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliNombres().length() > 0 ? "<campoAdicional nombre=\"NOMBRE\">" + removeCaracteres(valor.getIdCliente().getCliNombres()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliNombre().length() > 0 ? "<campoAdicional nombre=\"NOMBRECOMERCIAL\">" + removeCaracteres(valor.getIdCliente().getCliNombre()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCiudad().length() > 0 ? "<campoAdicional nombre=\"CIUDAD\">" + removeCaracteres(valor.getIdCliente().getCiudad()) + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliTelefono().length() > 0 ? "<campoAdicional nombre=\"TELEFONO\">" + valor.getIdCliente().getCliTelefono() + "</campoAdicional>\n" : " ")
-                        //                    + (valor.getIdCliente().getCliMovil().length() > 0 ? "<campoAdicional nombre=\"CELULAR\">" + valor.getIdCliente().getCliMovil() + " </campoAdicional>\n" : " ")
+                        + (valor.getIdCliente().getCliDireccion().length() > 0  ? "<campoAdicional nombre=\"DIRECCION\">" + removeCaracteres(valor.getIdCliente().getCliDireccion()) + "</campoAdicional>\n" : " ")
+                        + (valor.getIdCliente().getCliCorreo().length() > 0 ? "<campoAdicional nombre=\"E-MAIL\">" + removeCaracteres(valor.getIdCliente().getCliCorreo()) + "</campoAdicional>\n" : " ")
+                        + (valor.getIdCliente().getCliTelefono().length() > 0  ? "<campoAdicional nombre=\"TELEFONO\">" + valor.getIdCliente().getCliTelefono() + "</campoAdicional>\n" : " ")
+                        //                        + (valor.getIdCliente().getCliMovil() != null ? "<campoAdicional nombre=\"CELULAR\">" + valor.getIdCliente().getCliMovil() + " </campoAdicional>\n" : " ")
                         + "<campoAdicional nombre=\"PLAZO\"> DIAS</campoAdicional>\n"
                         + (valor.getFacPlazo().toString().length() > 0 ? "<campoAdicional nombre=\"DIAS\">" + valor.getFacPlazo().setScale(0) + "</campoAdicional>\n" : " ")
-                        + (valor.getFacPorcentajeIva().length() > 0 ? "<campoAdicional nombre=\"TARIFAIMP\">" + valor.getFacPorcentajeIva() + "</campoAdicional>\n" : " ")
                         + (amb.getAmRimpe() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE REGIMEN RIMPE</campoAdicional>\n" : "")
                         + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
-                        + (!valor.getFacObservacion().equals("") ? "<campoAdicional nombre=\"OBSERVACION\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "")
-                        // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
+                        + (valor.getFacObservacion() != null ? "<campoAdicional nombre=\"OBSERVACION\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "")
                         + "   </infoAdicional>\n"
                         + "</factura>\n");
             build.append(linea);
