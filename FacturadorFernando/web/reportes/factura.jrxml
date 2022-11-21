@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="2.593742460100006"/>
-	<property name="ireport.x" value="1"/>
+	<property name="ireport.x" value="139"/>
 	<property name="ireport.y" value="1043"/>
 	<style name="table">
 		<box>
@@ -832,7 +832,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_gravaba}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_cero}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement style="table_TD" positionType="Float" x="403" y="82" width="104" height="12" isPrintWhenDetailOverflows="true"/>
@@ -878,7 +878,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textElement>
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[SUBTOTAL 12%]]></text>
+				<text><![CDATA[SUBTOTAL 0%]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="table_TD" positionType="Float" x="403" y="58" width="104" height="12" isPrintWhenDetailOverflows="true"/>
@@ -1054,7 +1054,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textElement>
 					<font size="7"/>
 				</textElement>
-				<text><![CDATA[SUBTOTAL]]></text>
+				<text><![CDATA[SUBTOTAL 12%]]></text>
 			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
 				<reportElement style="table_TD" positionType="Float" x="507" y="10" width="47" height="12"/>
@@ -1062,7 +1062,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textElement textAlignment="Right">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_gravaba}.add($F{fac_total_base_cero})]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_gravaba}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="11" y="70" width="366" height="15"/>
