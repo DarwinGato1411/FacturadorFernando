@@ -97,12 +97,11 @@ public class ListaFacturas {
 
     public ListaFacturas() {
 
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
@@ -617,8 +616,8 @@ public class ListaFacturas {
                             valor.setFacClaveAutorizacion(claveAccesoComprobante);
                             valor.setEstadosri(autorizacion.getEstado());
                             try {
-                                String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                                String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                                valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                             } catch (java.text.ParseException ex) {
                                 Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -778,7 +777,10 @@ public class ListaFacturas {
                 /*CREA EL ARCHIVO XML AUTORIZADO*/
                 System.out.println("pathArchivoNoAutorizado " + pathArchivoNoAutorizado);
                 nuevo = new FileOutputStream(pathArchivoNoAutorizado);
-                nuevo.write(autorizacion.getComprobante().getBytes());
+                if (autorizacion.getComprobante() != null) {
+                    nuevo.write(autorizacion.getComprobante().getBytes());
+                
+                }
                 if (!autorizacion.getEstado().equals("AUTORIZADO")) {
 
                     String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();
@@ -795,8 +797,8 @@ public class ListaFacturas {
                     valor.setEstadosri(autorizacion.getEstado());
                     System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString());
                     try {
-                        String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                        String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                        valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                     }
