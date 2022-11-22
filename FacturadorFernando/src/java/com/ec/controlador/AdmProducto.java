@@ -80,6 +80,7 @@ public class AdmProducto {
     ServicioDetalleKardex servicioDetalleKardex = new ServicioDetalleKardex();
     ServicioTipoKardex servicioTipoKardex = new ServicioTipoKardex();
     private List<Producto> listaProducto = new ArrayList<Producto>();
+    ServicioGeneral servicioGeneral= new ServicioGeneral();
 
     private ListModelList<Producto> listaProductosModel;
     private Set<Producto> registrosSeleccionados = new HashSet<Producto>();
@@ -98,8 +99,6 @@ public class AdmProducto {
     UserCredential credential = new UserCredential();
     private String amRuc = "";
     private Tipoambiente amb = null;
-
-    ServicioGeneral servicioGeneral = new ServicioGeneral();
 
     public AdmProducto() {
         Session sess = Sessions.getCurrent();
@@ -295,7 +294,7 @@ public class AdmProducto {
     public void inicializarKardex() {
         if (Messagebox.show("¿Seguro que desea inicializar el Kardex?", "Atención", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION) == Messagebox.YES) {
             Kardex kardex;
-            List<Producto> listaKardex = servicioProducto.FindALlProducto(amb);
+            List<Producto> listaKardex = servicioProducto.FindALlProducto();
             for (Producto producto : listaKardex) {
                 if (servicioKardex.FindALlKardexs(producto) == null) {
                     kardex = new Kardex();
@@ -654,19 +653,16 @@ public class AdmProducto {
             ch2.setCellStyle(estiloCelda);
 
             HSSFCell ch21 = r.createCell(j++);
-            ch21.setCellValue(new HSSFRichTextString("Precio 1"));
+            ch21.setCellValue(new HSSFRichTextString("% Util"));
             ch21.setCellStyle(estiloCelda);
 
             HSSFCell ch3 = r.createCell(j++);
-            ch3.setCellValue(new HSSFRichTextString("Precio 2"));
+            ch3.setCellValue(new HSSFRichTextString("P Venta"));
             ch3.setCellStyle(estiloCelda);
-            HSSFCell ch4 = r.createCell(j++);
-            ch4.setCellValue(new HSSFRichTextString("Precio 3"));
-            ch4.setCellStyle(estiloCelda);
 
-            HSSFCell ch5 = r.createCell(j++);
-            ch5.setCellValue(new HSSFRichTextString("Grava Iva (SI=1; NO=0)"));
-            ch5.setCellStyle(estiloCelda);
+            HSSFCell ch4 = r.createCell(j++);
+            ch4.setCellValue(new HSSFRichTextString("Grava Iva"));
+            ch4.setCellStyle(estiloCelda);
 
             int rownum = 1;
             int i = 0;
@@ -683,19 +679,16 @@ public class AdmProducto {
                 c0.setCellValue(new HSSFRichTextString(item.getProdNombre()));
 
                 HSSFCell c1 = r.createCell(i++);
-                c1.setCellValue(new HSSFRichTextString(item.getPordCostoCompra() != null ? item.getPordCostoCompra().toString() : "0"));
+                c1.setCellValue(new HSSFRichTextString(item.getPordCostoCompra().toString()));
 
                 HSSFCell c11 = r.createCell(i++);
-                c11.setCellValue(new HSSFRichTextString(item.getPordCostoVentaFinal().toString()));
+                c11.setCellValue(new HSSFRichTextString(item.getProdUtilidadNormal().toString()));
 
                 HSSFCell c2 = r.createCell(i++);
-                c2.setCellValue(new HSSFRichTextString(item.getProdCostoPreferencial().toString()));
+                c2.setCellValue(new HSSFRichTextString(item.getPordCostoVentaFinal().toString()));
 
                 HSSFCell c3 = r.createCell(i++);
-                c3.setCellValue(new HSSFRichTextString(item.getProdCostoPreferencialDos().toString()));
-
-                HSSFCell c4 = r.createCell(i++);
-                c4.setCellValue(new HSSFRichTextString(item.getProdGrabaIva() ? "1" : "0"));
+                c3.setCellValue(new HSSFRichTextString(item.getProdGrabaIva().toString()));
                 /*autemta la siguiente fila*/
                 rownum += 1;
 
