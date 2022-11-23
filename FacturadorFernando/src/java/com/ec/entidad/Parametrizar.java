@@ -135,6 +135,9 @@ public class Parametrizar implements Serializable {
     @Column(name = "par_ilimitado_permanente")
     private Boolean parIlimitadoPermanente;
 
+    @Column(name = "par_contratado")
+    private BigDecimal parContratado;
+
     public Parametrizar() {
     }
 
@@ -374,7 +377,7 @@ public class Parametrizar implements Serializable {
     }
 
     public Integer getParNumeroFactura() {
-        return parNumeroFactura==null?0:parNumeroFactura;
+        return parNumeroFactura == null ? 0 : parNumeroFactura;
     }
 
     public void setParNumeroFactura(Integer parNumeroFactura) {
@@ -414,6 +417,14 @@ public class Parametrizar implements Serializable {
         this.parIlimitadoPermanente = parIlimitadoPermanente;
     }
 
+    public BigDecimal getParContratado() {
+        return parContratado;
+    }
+
+    public void setParContratado(BigDecimal parContratado) {
+        this.parContratado = parContratado;
+    }
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -433,12 +444,11 @@ public class Parametrizar implements Serializable {
     }
 
     public BigDecimal getParDocContratado() {
-        return parDocContratado==null?BigDecimal.ZERO:parDocContratado;
+        return parDocContratado == null ? BigDecimal.ZERO : parDocContratado;
     }
 
     public void setParDocContratado(BigDecimal parDocContratado) {
         this.parDocContratado = parDocContratado;
     }
 
-    
 }

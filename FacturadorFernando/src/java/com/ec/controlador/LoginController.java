@@ -52,7 +52,9 @@ public class LoginController extends SelectorComposer<Component> {
         if (servicioAuth.login(account.getValue(), password.getValue())) {
             Session sess = Sessions.getCurrent();
             UserCredential cre = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
-
+            if (cre.getUsuarioSistema().getUsuLogin().toUpperCase().contains("SUPER")) {
+                Executions.sendRedirect("/superadmin/consumo.zul");
+            }
             if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.USUARIO.getCodigo()) {
                 NumeroDocumentosEmitidos emitidos = servicioNumeroDocumentosEmitidos.findByEmpresa(cre.getTipoambiente().getCodTipoambiente());
 
@@ -73,20 +75,19 @@ public class LoginController extends SelectorComposer<Component> {
                     } else {
                         Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",
                                     Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
-                        
+
                     }
 
                 }
 
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.ADMINISTRADOR.getCodigo()) {
-                
-                     Executions.sendRedirect("/administrar/gestionusuarios.zul");
-                
-            
+
+                Executions.sendRedirect("/administrar/gestionusuarios.zul");
+
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.SUPERADMIN.getCodigo()) {
-                
-                     Executions.sendRedirect("/superadmin/planempresa.zul");
-                
+
+                Executions.sendRedirect("/superadmin/planempresa.zul");
+
             }
 
         } else {
