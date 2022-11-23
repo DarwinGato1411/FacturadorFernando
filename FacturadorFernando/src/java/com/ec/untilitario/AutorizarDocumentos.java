@@ -277,7 +277,7 @@ public class AutorizarDocumentos {
                         + "        <secuencial>" + valor.getFacNumeroText() + "</secuencial>\n"
                         + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
                         + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
-                        + (!amb.getAmGeneral() ? ((amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")) : "")
+                        + (!amb.getAmGeneral() ? ((amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")) : "")
                         + "</infoTributaria>\n"
                         + "<infoFactura>\n"
                         + "        <fechaEmision>" + formato.format(valor.getFacFecha()) + "</fechaEmision>\n"
