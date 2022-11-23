@@ -292,6 +292,7 @@ public class Facturar extends SelectorComposer<Component> {
 
 //        UserCredential credential = new UserCredential();
     private String amRuc = "";
+    private String observacion = "";
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") ParamFactura valor, @ContextParam(ContextType.VIEW) Component view) {
@@ -376,7 +377,6 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public Facturar() {
-
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -1127,7 +1127,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     @Command
-    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero","valorIce"})
+    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce"})
     public void calcularValoresDesCantidad(@BindingParam("valor") DetalleFacturaDAO valor) {
         try {
 
@@ -1149,11 +1149,9 @@ public class Facturar extends SelectorComposer<Component> {
             }
             BigDecimal factorIva = (valor.getProducto().getProdIva().divide(BigDecimal.valueOf(100.0)));
             BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
-            
-            
-        BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
-        BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
+            BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
+            BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
             if (valor.getCantidad().doubleValue() > 0) {
                 /*CALCULO DEL PORCENTAJE DE DESCUENTO*/
@@ -1176,7 +1174,6 @@ public class Facturar extends SelectorComposer<Component> {
                 BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
 
 //                valor.setSubTotalDescuento(subTotalDescuento);
-                
                 /*Calculo del ICE*/
 //                BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 /*Calculamos el Subtotal ICE*/
@@ -1188,9 +1185,7 @@ public class Facturar extends SelectorComposer<Component> {
                 valorICE = ArchivoUtils.redondearDecimales(valorICE, 3);
 //                valor.setSubTotalDescuento(subTotalDescuento);
                 valor.setSubTotalDescuento(valorICE);
-                
-                
-                
+
                 //valor del descuento
                 BigDecimal valorDescuento = BigDecimal.ZERO;
                 if (!valor.getEsProducto()) {
@@ -1789,7 +1784,7 @@ public class Facturar extends SelectorComposer<Component> {
         BigDecimal valorTotalIce = BigDecimal.ZERO;
         BigDecimal valorTotalIcePorProducto = BigDecimal.ZERO;
 
-         List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
+        List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleFacturaDAO item : listaPedido) {
                 sumaDeItems = sumaDeItems.add(BigDecimal.ONE);
@@ -2010,6 +2005,7 @@ public class Facturar extends SelectorComposer<Component> {
             factura.setFacDestino(facDestino);
             factura.setIdReferencia(referenciaSelected);
             factura.setFacValorIce(valorIce);
+            factura.setFacObservacion(observacion);
             /*PARA MECANICAS*/
 //            factura.setFacPlaca(facPlaca);
 //            factura.setFacMarca(facMarca);
@@ -2324,8 +2320,8 @@ public class Facturar extends SelectorComposer<Component> {
         System.out.println("formaPagoSelected " + formaPagoSelected);
         facConSinGuia = valor;
         if (!clienteBuscado.getCliCedula().equals("") && formaPagoSelected != null) {
-            if (valorTotalCotizacion.intValue() >= 200 && clienteBuscado.getCliCedula().contains("999999999")) {
-                Clients.showNotification("El valor de la factura no puede pasar de $200 para enviarla como Consumidor Final ", "error", null, "end_before", 3000, true);
+            if (valorTotalCotizacion.intValue() >= 50 && clienteBuscado.getCliCedula().contains("999999999")) {
+                Clients.showNotification("El valor de la factura no puede pasar de $50 para enviarla como Consumidor Final ", "error", null, "end_before", 3000, true);
                 return;
             }
             if (listaDetalleFacturaDAOMOdel.size() > 0) {
@@ -3278,6 +3274,14 @@ public class Facturar extends SelectorComposer<Component> {
 
     public void setValorIce(BigDecimal valorIce) {
         this.valorIce = valorIce;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 
 }
