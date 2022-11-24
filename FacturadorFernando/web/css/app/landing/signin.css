@@ -2,11 +2,11 @@
 
 
 :root {
-  --primary-color: #264b9a;
-  --secondary-color: #49bab8;
-  --background-color: #fff;
-  --alpha: 0.5;
-  --base-color: #fff;
+    --primary-color:#005aa8;
+    --secondary-color:  #017dc5;
+    --background-color: #fff;
+    --alpha: 0.5;
+    --base-color: #fff;
 }
 * {
     margin: 0;
@@ -23,7 +23,7 @@
 body {
     padding: 0 !important;
     font-family: "Poppins", sans-serif;
-    
+
 }
 .btn {
     width: 100%;
@@ -280,8 +280,8 @@ body {
 
 
 .main .wrapper_main .wrapper_logo_ef .title{
-   margin: auto;
-   font-size: 20px;
+    margin: auto;
+    font-size: 20px;
 }
 
 
@@ -325,15 +325,15 @@ body {
     font-family: "Raleway", sans-serif;
 }
 .header{
- 
+
 }
 
 .header .container_color{
     display:grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(7,1fr);
     width: 100%;
     height: 20px;
-    
+
 }
 
 .footer {
@@ -352,7 +352,7 @@ body {
 
 .footer .container_color{
     display:grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(7,1fr);
     width: 100%;
     height: 10px;
 }
@@ -370,16 +370,25 @@ body {
 }
 
 .header .container_color .first, .footer .container_color .first{
-    background-color: cyan;
+    background-color: #d61820;
 }
 .header .container_color .second, .footer .container_color .second{
-    background-color: magenta;
+    background-color: #f5911f;
 }
 .header .container_color .third, .footer .container_color .third{
-    background-color: yellow;
+    background-color: #ffdc04;
 }
 .header .container_color .fourth, .footer .container_color .fourth{
-    background-color: black;
+    background-color: #39b24b;
+}
+.header .container_color .fifth, .footer .container_color .fifth{
+    background-color: #0dacee;
+}
+.header .container_color .sixth, .footer .container_color .sixth{
+    background-color: #1e196b;
+}
+.header .container_color .seventh, .footer .container_color .seventh{
+    background-color: #652d90;
 }
 
 .footer .wrapper_item_foot:last-child {
@@ -397,17 +406,16 @@ body {
 
 .wrapper_nav {
     width: 100%;
-    background-color: #1F1F1F; 
-    display: grid;  
+    background-color: var(--primary-color);
+    display: grid;
 }
 .wrapper_nav .nav {
-   
     padding: 1em;
     font-family: "Nunito", sans-serif;
     background-color: black;
-  
+
     color: white;
-    transform: translate(0, -100%);
+    transform: translate(0, -200%);
     transition: transform 0.3s ease-in-out;
     margin:0 0 0 auto;
 }
@@ -415,7 +423,7 @@ body {
     display: inline-block;
     margin-right: 1em;
     cursor: pointer;
-    
+
     position: relative;
 }
 .wrapper_nav .nav .item_nav::after {
@@ -462,6 +470,10 @@ body {
     }
     .wrapper_header .logo2 {
         width: 350px;
+    }
+    .main .wrapper_main{
+        display: flex;
+        flex-direction: row
     }
     .main .wrapper_main .wrapper_logo_ef {
         display: flex;
@@ -515,7 +527,7 @@ body {
         display: none !important;
     }
     .wrapper_nav {
-       
+
         right: 0;
     }
     .wrapper_nav .nav {
@@ -523,7 +535,7 @@ body {
         background-color: rgba(0, 0, 0, 0);
         box-shadow: none;
         border: none;
-       
+
     }
     .wrapper_nav .nav .item_nav {
         font-size: 18px;

@@ -21,7 +21,10 @@
                     <div class="color first"></div>
                      <div class="color second"></div>
                      <div class="color third"></div>
-                    <div class="color fourth"></div>
+                     <div class="color fourth"></div>
+                     <div class="color fifth"></div>
+                     <div class="color sixth"></div>
+                     <div class="color seventh"></div>
                 </div>
 
                 <div class="wrapper_nav">
@@ -35,48 +38,54 @@
 
            
 
-            <div class="wrapper_header">
-                <image src="./imagenes/grafica/logoPrincipal.png" class="logo2" />
-                
-            </div>
-
             <div class="main">
                 <div class="wrapper_main">
-                    <div class="wrapper_logo_ef">
-                        <span class="title">FACTURACIÓN ELECTRÓNICA</span>
+                    <div class="wrapper_candidatos">
+                        hola
                     </div> 
-
-                    <div class="wrapper_items">  
-                        <div class="wrapper_item">
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">SOPORTE PERMANENTE</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">DECLARACIONES</span>
-                            </div>
-
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">IMPRENTA EN GENERAL</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">CAPACITACIÓN GRATUITA</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">ANEXO GASTOS PERSONALES</span>
-                            </div>
-                            <div class="item">
-                                <image src="./imagenes/grafica/logo.png" class="img_icon" />
-                                <span class="item_desc">FIRMA ELECTRÓNICA</span>
+                    <div class="wapper_registro wrapper_forgot wrapper_signin">
+                        <image src="./imagenes/grafica/logoPrincipal.png" class="logo" />
+                        <div class="info_wrapper info_wrapper_forgot">
+                            <span class="title">Iniciar Sesión</span>
+                            <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
+                        </div>
+                        <div class="wrapper_all_inputs">
+                            <div class="left">
+                                <div class="wrapper_input">
+                                <span class="fas fa-user icon "> </span>
+                                    <textbox 
+                                        type="text" 
+                                        placeholder="Usuario" 
+                                        class="input" 
+                                        id="account"
+                                        onCreate="self.focus()"
+                                    />
+                                </div>
+                            <div class="wrapper_input">
+                                <span class="fas fa-key icon "> </span>
+                                <textbox 
+                                    type="password" 
+                                    placeholder="Contraseña" 
+                                    id="password"
+                                    class="input input_password"
+                                />
                             </div>
                         </div>
-                        
+                    </div>
+                    <div class="forgot_password_root" id="linkOlvideContrasena">
+                        Olvide la contraseña
+                    </div>
+
+                    <div class="wrapper_button">
+                        <button class="btn btn_reg" style="width: 100%" id="buttonEntrar">
+                            Iniciar Sesión
+                        </button>
                     </div>
                 </div>
+
+                   
+                </div>
+                
             </div>
 
             <div class="footer">
@@ -84,7 +93,10 @@
                     <div class="color first"></div>
                      <div class="color second"></div>
                      <div class="color third"></div>
-                    <div class="color fourth"></div>
+                     <div class="color fourth"></div>
+                     <div class="color fifth"></div>
+                     <div class="color sixth"></div>
+                     <div class="color seventh"></div>
                 </div>
             
                 <div class="container_info">
@@ -106,45 +118,7 @@
         </div>
 
          <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
-            <div class="wapper_registro wrapper_forgot wrapper_signin">
-                 <image src="./imagenes/grafica/logoPrincipal.png" class="logo" />
-                <div class="info_wrapper info_wrapper_forgot">
-                    <span class="title">Iniciar Sesión</span>
-                    <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
-                </div>
-                <div class="wrapper_all_inputs">
-                    <div class="left">
-                        <div class="wrapper_input">
-                            <span class="fas fa-user icon "> </span>
-                            <textbox 
-                                type="text" 
-                                placeholder="Usuario" 
-                                class="input" 
-                                id="account"
-                                onCreate="self.focus()"
-                            />
-                        </div>
-                        <div class="wrapper_input">
-                            <span class="fas fa-key icon "> </span>
-                            <textbox 
-                                type="password" 
-                                placeholder="Contraseña" 
-                                id="password"
-                                class="input input_password"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div class="forgot_password_root" id="linkOlvideContrasena">
-                    Olvide la contraseña
-                </div>
-
-                <div class="wrapper_button">
-                    <button class="btn btn_reg" style="width: 100%" id="buttonEntrar">
-                        Iniciar Sesión
-                    </button>
-                </div>
-            </div>
+            
         </div>
 
         <div class="wrapper_loading loading_inicio">
