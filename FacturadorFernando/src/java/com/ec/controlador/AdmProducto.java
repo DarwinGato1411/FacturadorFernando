@@ -5,7 +5,6 @@
 package com.ec.controlador;
 
 import com.ec.entidad.DetalleKardex;
-import com.ec.entidad.FacturasActorizadaSri;
 import com.ec.entidad.Kardex;
 import com.ec.entidad.Producto;
 import com.ec.entidad.Tipoambiente;
