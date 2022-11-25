@@ -88,7 +88,8 @@
                                             />
                                         </listcell>                  
                                         <listcell  zclass = "mycss-listcell">
-                                            <image src="/iconos/editar.png"
+                                            <image if="${each.usuLogin!='super'}"
+                                                   src="/iconos/editar.png"
                                                    class="grow"
                                                    onClick="@command('modificarUsario',valor=each)" 
                                                    tooltiptext="Editar usuario"/> 
