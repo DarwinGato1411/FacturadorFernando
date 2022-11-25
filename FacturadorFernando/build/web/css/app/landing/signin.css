@@ -51,69 +51,66 @@ body {
     justify-content: center;
     align-items: center;
 }
-.container_registro .wapper_registro,
-.container_forgot_registro .wapper_registro {
-    width: 80%;
+.wapper_registro,
+.wapper_registro {
+    width: 100%;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.63);
     background-color: #fff;
     border-radius: 20px;
     padding: 2em;
-    position: relative;
-    z-index: 3;
 }
-.container_registro .wapper_registro .logo,
-.container_forgot_registro .wapper_registro .logo {
-    width: 50%;
+.wapper_registro .logo,
+.wapper_registro .logo {
+    height: 100px;
     margin: auto;
     display: block;
 
 }
-.container_registro .wapper_registro .info_wrapper,
-.container_forgot_registro .wapper_registro .info_wrapper {
+.wapper_registro .info_wrapper,
+.wapper_registro .info_wrapper {
 
 }
-.container_registro .wapper_registro .info_wrapper .title,
-.container_registro .wapper_registro .info_wrapper .subtitle,
-.container_forgot_registro .wapper_registro .info_wrapper .title,
-.container_forgot_registro .wapper_registro .info_wrapper .subtitle {
+.wapper_registro .info_wrapper .title,
+.wapper_registro .info_wrapper .subtitle,
+.wapper_registro .info_wrapper .title,
+.wapper_registro .info_wrapper .subtitle {
     display: block;
     text-align: center;
 }
-.container_registro .wapper_registro .info_wrapper .title,
-.container_forgot_registro .wapper_registro .info_wrapper .title {
+.wapper_registro .info_wrapper .title,
+.wapper_registro .info_wrapper .title {
     font-family: "Poppins", sans-serif;
     font-size: 25px;
     color: var(--secondary-color);
 }
-.container_registro .wapper_registro .info_wrapper .subtitle,
-.container_forgot_registro .wapper_registro .info_wrapper .subtitle {
+.wapper_registro .info_wrapper .subtitle,
+.wapper_registro .info_wrapper .subtitle {
     font-size: 14px;
     font-family: "Raleway", sans-serif;
     margin-top: 7px;
 }
-.container_registro .wapper_registro .wrapper_all_inputs,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs {
+.wapper_registro .wrapper_all_inputs,
+.wapper_registro .wrapper_all_inputs {
     margin-top: 3em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     gap: 1em;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .left,
-.container_registro .wapper_registro .wrapper_all_inputs .right,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .left,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .right {
+.wapper_registro .wrapper_all_inputs .left,
+.wapper_registro .wrapper_all_inputs .right,
+.wapper_registro .wrapper_all_inputs .left,
+.wapper_registro .wrapper_all_inputs .right {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .wrapper_input {
+.wapper_registro .wrapper_all_inputs .wrapper_input,
+.wapper_registro .wrapper_all_inputs .wrapper_input {
     width: 100%;
     position: relative;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .input,
-.container_forgot_registro
+.wapper_registro .wrapper_all_inputs .wrapper_input .input,
 .wapper_registro
 .wrapper_all_inputs
 .wrapper_input
@@ -125,36 +122,32 @@ body {
     color: var(--secondary-color);
     width: 100%;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .icon,
-.container_forgot_registro
-.wapper_registro
-.wrapper_all_inputs
-.wrapper_input
-.icon {
+.wapper_registro .wrapper_all_inputs .wrapper_input .icon,
+.wapper_registro .wrapper_all_inputs .wrapper_input .icon {
     position: absolute;
     top: 10px;
     left: 10px;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .icon,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .icon {
+.wapper_registro .wrapper_all_inputs .icon,
+.wapper_registro .wrapper_all_inputs .icon {
     color: var(--secondary-color);
 }
-.container_registro .wapper_registro .wrapper_all_inputs .icon_eye,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .icon_eye {
+.wapper_registro .wrapper_all_inputs .icon_eye,
+.wapper_registro .wrapper_all_inputs .icon_eye {
     position: absolute;
     top: 10px;
     color: var(--secondary-color);
     right: 10px !important;
 }
-.container_registro .wapper_registro .wrapper_button,
-.container_forgot_registro .wapper_registro .wrapper_button {
-    margin: 3em 0;
+ .wapper_registro .wrapper_button,
+.wapper_registro .wrapper_button {
+    margin-top: 3em;
     width: 100%;
     display: flex;
     justify-content: center;
 }
-.container_registro .wapper_registro .wrapper_button .btn_reg,
-.container_forgot_registro .wapper_registro .wrapper_button .btn_reg {
+.wapper_registro .wrapper_button .btn_reg,
+.wapper_registro .wrapper_button .btn_reg {
     width: 98%;
     padding: 10px 30px;
     border-radius: 20px;
@@ -272,10 +265,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1em;
+  
 }
 .main .wrapper_main {
-    width: 80%;
+    width: 100%;
 }
 
 
@@ -461,6 +454,16 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+.main .contenedor_main{
+    display: grid;
+    
+}
+
+.contenedor_main{
+    display: grid;
+    margin: auto;
+}
+
 @media screen and (min-width: 768px) {
     .wrapper_header {
         margin-top: 50px;
@@ -472,6 +475,7 @@ body {
         width: 350px;
     }
     .main .wrapper_main{
+       
         display: flex;
         flex-direction: row
     }
@@ -500,6 +504,20 @@ body {
         grid-template-columns: repeat(2, 1fr);
         font-size: 20px;
 
+    }
+    
+    .main .contenedor_main{
+        width: 80%;
+        grid-template-columns: 50% 50%;
+    }
+    
+    .contenedor_main .wapper_registro{
+        width: 80%;
+        margin: auto;
+    }
+    
+    .wrapper_candidatos img{
+        width: 100%
     }
 }
 @media screen and (min-width: 769px) {
@@ -559,3 +577,4 @@ body {
         font-size: 25px;
     }
 }
+

@@ -1,11 +1,11 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-  --primary-color: #264b9a;
-  --secondary-color: #49bab8;
-  --background-color: #fff;
-  --alpha: 0.5;
-  --base-color: #fff;
+    --primary-color:#005aa8;
+    --secondary-color:  #017dc5;
+    --background-color: #fff;
+    --alpha: 0.5;
+    --base-color: #fff;
 }
 
 *,
