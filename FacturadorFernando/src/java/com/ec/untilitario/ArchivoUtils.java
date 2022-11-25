@@ -636,8 +636,7 @@ public class ArchivoUtils {
             }
             String contenido = EntityUtils
                         .toString(getStubResponse.getEntity());
-
-            System.out.println(contenido);
+            System.out.println("USUARIO CONSULTADO " + contenido);
 
             //JSONObject outlineArray = new JSONObject(contenido);
             if (!contenido.equals("")) {
@@ -647,7 +646,7 @@ public class ArchivoUtils {
                 String nombre = appObjectInf.getString("nombreComercial");
                 String mensaje = appObjectInf.getString("clase");
                 String cedula = appObjectInf.getString("identificacion");
-
+                System.out.println("nombre "+nombre);
                 respuesta.setCedula(cedula);
                 respuesta.setNombre(nombre);
                 respuesta.setMensaje(mensaje);
