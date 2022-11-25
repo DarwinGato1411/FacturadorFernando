@@ -7,11 +7,6 @@
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-
- 
-
-   
-
     <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
 
         <div class="container_landing login_container">
@@ -39,12 +34,22 @@
            
 
             <div class="main">
-                <div class="wrapper_main">
+                <div class="contenedor_main">
                     <div class="wrapper_candidatos">
-                        hola
+                        <div class="superior">
+
+                        </div>
+                        <div class="inferior">
+                            <div class="left"></div>
+                            <div class="rigth">
+                                <image src="./imagenes/vs/candiataPrincipal.png" class="logo" />
+                            </div>
+                           
+                        </div>
+                       
                     </div> 
                     <div class="wapper_registro wrapper_forgot wrapper_signin">
-                        <image src="./imagenes/grafica/logoPrincipal.png" class="logo" />
+                        <image src="./imagenes/vs/logo.png" class="logo" />
                         <div class="info_wrapper info_wrapper_forgot">
                             <span class="title">Iniciar Sesión</span>
                             <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
@@ -99,7 +104,7 @@
                      <div class="color seventh"></div>
                 </div>
             
-                <div class="container_info">
+                <!--<div class="container_info">
                     <div class="wrapper_item_foot">
                         <span class="fa-brands fa-whatsapp icon"></span>
                         <span> 098 465 0068 / 099 746 7720</span>
@@ -112,7 +117,7 @@
                         <span class="fa-solid fa-code"></span>
                         <span>www.graficalelectronic.com</span>
                     </div>
-                </div>
+                </div>-->
             </div>
 
         </div>
