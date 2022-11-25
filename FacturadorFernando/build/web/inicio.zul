@@ -24,7 +24,7 @@
 
                 <div class="wrapper_nav">
                     <div class="nav">
-                        <span class="item_nav login_btn">Iniciar Sesión</span>
+                     
                         <span class="item_nav" id="btnRegistra">Registro</span>
                     </div>
                     <span class="fa-solid fa-bars icon_menu"></span>
