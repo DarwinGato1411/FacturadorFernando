@@ -156,6 +156,54 @@ public class ServicioTipoAmbiente {
         return tipoambiente;
     }
 
+    public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo");
+            query.setParameter("usuNombre", "%"+usuario+"%");
+            query.setParameter("amEstado", Boolean.TRUE);
+            query.setParameter("amCodigo", amCodigo);
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+         
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta tipoambiente");
+        } finally {
+            em.close();
+        }
+
+        return listaTipoambientes;
+    }
+    public Tipoambiente findByIdUsuario(Tipoambiente tipoambiente, String amCodigo) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+//        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT t FROM Tipoambiente t WHERE  t.idUsuario =:idUsuario AND t.amCodigo =:amCodigo");
+//            query.setParameter("amEstado", Boolean.TRUE);
+            query.setParameter("idUsuario", tipoambiente.getIdUsuario());
+            query.setParameter("amCodigo", amCodigo);
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+            if (listaTipoambientes.size() > 0) {
+                tipoambiente = listaTipoambientes.get(0);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta tipoambiente " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return tipoambiente;
+    }
     public Tipoambiente findByAmCodigo(String amRuc, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
@@ -204,5 +252,7 @@ public class ServicioTipoAmbiente {
 
         return listaTipoambientes;
     }
+    
+    
 
 }
