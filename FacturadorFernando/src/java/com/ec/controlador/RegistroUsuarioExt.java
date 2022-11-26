@@ -166,11 +166,11 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt("docs.veronicasanchez@gmail.com");
+                tipoambiente.setAmPassword("svttlqcyueamzamx");
+                tipoambiente.setAmHost("smtp.gmail.com");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -213,11 +213,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmPort("587");
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmUsuarioSmpt("docs.veronicasanchez@gmail.com");
+                tipoambienteProd.setAmPassword("svttlqcyueamzamx");
+                tipoambienteProd.setAmHost("smtp.gmail.com");
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);

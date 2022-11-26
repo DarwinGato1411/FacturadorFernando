@@ -68,8 +68,8 @@ public class MailerClassSistema {
 //            amb = servicioTipoAmbiente.FindALlTipoambiente();
 //            String username = amb.getAmUsuarioSmpt().trim();
 //            String password = amb.getAmPassword().trim();
-            String username = "defact@deckxel.com";
-            String password = "Dereckandre02!";
+            String username = "docs.veronicasanchez@gmail.com";
+            String password = "svttlqcyueamzamx";
             return new PasswordAuthentication(username, password);
 
         }
@@ -89,11 +89,11 @@ public class MailerClassSistema {
             amb = ambiente;
 
             String asunto = asuntoInf;
-            String host = "mail.deckxel.com";
+            String host = "smtp.gmail.com";
             String port = "26";
             String protocol = "smtp";
-            String usuarioSmpt = "defact@deckxel.com";
-            String password = "Dereckandre02!";
+            String usuarioSmpt = "docs.veronicasanchez@gmail.com";
+            String password = "svttlqcyueamzamx";
 //            String asunto = asuntoInf;
 //            String host = amb.getAmHost();
 //            String port = amb.getAmPort();
