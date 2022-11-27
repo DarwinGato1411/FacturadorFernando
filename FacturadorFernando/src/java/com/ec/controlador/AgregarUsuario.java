@@ -222,11 +222,12 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambiente.setAmPort("587");
-                tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
-                tipoambiente.setAmPassword("1h@t3Pap3r");
-                tipoambiente.setAmHost("smtp.office365.com");
+                
+                tipoambienteProd.setAmPort("465");
+                tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+                tipoambienteProd.setAmPassword("kH0FVcqHaZ9X");
+                tipoambienteProd.setAmHost("smtp.mail.velch.com.ec");
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
