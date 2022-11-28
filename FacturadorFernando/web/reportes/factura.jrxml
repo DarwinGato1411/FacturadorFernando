@@ -505,7 +505,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_sucursal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="294" y="209" width="255" height="26" isPrintWhenDetailOverflows="true"/>
