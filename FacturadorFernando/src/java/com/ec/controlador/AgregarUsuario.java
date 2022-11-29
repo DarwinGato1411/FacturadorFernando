@@ -175,7 +175,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("465");
+                tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
                 tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
                 tipoambiente.setAmPassword("kH0FVcqHaZ9X");
@@ -222,7 +222,7 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("465");
+                tipoambienteProd.setAmPort("26");
                 tipoambienteProd.setAmProtocol("smtp");
                 tipoambienteProd.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
                 tipoambienteProd.setAmPassword("kH0FVcqHaZ9X");

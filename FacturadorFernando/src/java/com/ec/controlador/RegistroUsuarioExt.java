@@ -166,7 +166,7 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("465");
+                tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
                 tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
                 tipoambiente.setAmPassword("kH0FVcqHaZ9X");
@@ -216,7 +216,7 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
 
-                tipoambiente.setAmPort("465");
+                tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
                 tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
                 tipoambiente.setAmPassword("kH0FVcqHaZ9X");
