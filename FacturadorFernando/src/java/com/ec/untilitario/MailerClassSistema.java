@@ -87,7 +87,7 @@ public class MailerClassSistema {
 
             String asunto = asuntoInf;
             String host = "mail.velch.com.ec";
-            String port = "26";
+            String port = "465";
             String protocol = "smtp";
             String usuarioSmpt = "docs.electronicos@velch.com.ec";
             String password = "kH0FVcqHaZ9X";
