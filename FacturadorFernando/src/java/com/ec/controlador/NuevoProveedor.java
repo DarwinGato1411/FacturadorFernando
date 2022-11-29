@@ -98,31 +98,31 @@ public class NuevoProveedor {
                 AduanaJson aduana = ArchivoUtils.obtenerdatoAduana(cedulaBuscar);
                 if (aduana != null) {
 
-                    String nombreApellido[] = aduana.getNombre().split(" ");
-                    String nombrePersona = "";
-                    String apellidoPersona = "";
-                    switch (nombreApellido.length) {
-                        case 1:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = "A";
-                            break;
-                        case 2:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = nombreApellido[1];
-                            break;
-                        case 3:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2];
-                            break;
-                        case 4:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-                            break;
-                        default:
-                            break;
-                    }
-                    proveedor.setProvNombre(nombrePersona+" "+apellidoPersona);
-                    proveedor.setProvNomComercial(nombrePersona+" "+apellidoPersona);
+//                    String nombreApellido[] = aduana.getNombre().split(" ");
+//                    String nombrePersona = "";
+//                    String apellidoPersona = "";
+//                    switch (nombreApellido.length) {
+//                        case 1:
+//                            apellidoPersona = nombreApellido[0];
+//                            nombrePersona = "A";
+//                            break;
+//                        case 2:
+//                            apellidoPersona = nombreApellido[0];
+//                            nombrePersona = nombreApellido[1];
+//                            break;
+//                        case 3:
+//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+//                            nombrePersona = nombreApellido[2];
+//                            break;
+//                        case 4:
+//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+//                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
+//                            break;
+//                        default:
+//                            break;
+//                    }
+                    proveedor.setProvNombre(aduana.getNombre());
+                    proveedor.setProvNomComercial(aduana.getNombre());
                   
                 }
             }

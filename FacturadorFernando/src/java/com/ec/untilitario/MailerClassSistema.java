@@ -116,7 +116,7 @@ public class MailerClassSistema {
             // Get the default Session object.
             Session session = Session.getInstance(properties, auth);
             MimeMessage m = new MimeMessage(session);
-            String nickFrom = MimeUtility.encodeText("VELCH");
+            String nickFrom = MimeUtility.encodeText("VELCH S.A");
 //            String nickTo = MimeUtility.encodeText(amb.getAmNombreComercial());
             Address addressfrom = new InternetAddress(usuarioSmpt, nickFrom);
 

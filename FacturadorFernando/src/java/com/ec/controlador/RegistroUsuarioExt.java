@@ -168,9 +168,9 @@ public class RegistroUsuarioExt {
 
                 tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+                tipoambiente.setAmPassword("kH0FVcqHaZ9X");
+                tipoambiente.setAmHost("mail.velch.com.ec");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -213,13 +213,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-               tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
                 tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
                 tipoambiente.setAmPassword("kH0FVcqHaZ9X");
                 tipoambiente.setAmHost("mail.velch.com.ec");
-                
-                
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);

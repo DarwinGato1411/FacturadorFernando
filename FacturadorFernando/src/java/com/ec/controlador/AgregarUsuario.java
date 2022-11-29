@@ -98,26 +98,26 @@ public class AgregarUsuario {
     @NotifyChange("usuarioSistema")
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                && !usuarioSistema.getUsuLogin().equals("")
-                && !tipoUSuario.equals("")) {
+                    && !usuarioSistema.getUsuLogin().equals("")
+                    && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*verifica si tiene tipo ambiente*/
 
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             if (usuarioSistema.getUsuRuc().length() != 13) {
                 Clients.showNotification("Ingrese un RUC valido..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
 
             Usuario usuariovalida = servicioUsuario.FindUsuarioPorNombre(usuarioSistema.getUsuLogin());
             if (usuariovalida != null) {
                 Clients.showNotification("El nombre de usuario ya se encuentra en uso..!!",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             usuarioSistema.setUsuFechaRegistro(new Date());
@@ -177,9 +177,9 @@ public class AgregarUsuario {
 
                 tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+                tipoambiente.setAmPassword("kH0FVcqHaZ9X");
+                tipoambiente.setAmHost("mail.velch.com.ec");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -222,11 +222,11 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambiente.setAmPort("587");
-                tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("no-reply@defactec.com");
-                tipoambiente.setAmPassword("1h@t3Pap3r");
-                tipoambiente.setAmHost("smtp.office365.com");
+                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+                tipoambienteProd.setAmPassword("kH0FVcqHaZ9X");
+                tipoambienteProd.setAmHost("mail.velch.com.ec");
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
@@ -240,7 +240,6 @@ public class AgregarUsuario {
 
                 servicioTipoAmbiente.crear(tipoambienteProd);
 
-              
             }
 
 //            usuarioSistema = new Usuario();
@@ -249,10 +248,10 @@ public class AgregarUsuario {
                 MailerClassSistema mail = new MailerClassSistema();
                 mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
                 Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
             } catch (RemoteException ex) {
                 Clients.showNotification("Ocurrio un error al recuperar su password",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
             }
             windowIdUsuario.detach();
