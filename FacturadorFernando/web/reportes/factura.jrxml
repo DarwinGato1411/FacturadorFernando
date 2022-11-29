@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.948717100000004"/>
+	<property name="ireport.zoom" value="1.9487171000000025"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="479"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -240,9 +240,9 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 	<field name="am_valor_ice" class="java.math.BigDecimal"/>
 	<field name="am_comprobante_imprime" class="java.lang.String"/>
 	<field name="am_codigo_ice" class="java.lang.String"/>
+	<field name="id_usuario" class="java.lang.Integer"/>
 	<field name="id_factura" class="java.lang.Integer"/>
 	<field name="id_estado" class="java.lang.Integer"/>
-	<field name="id_usuario" class="java.lang.Integer"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
 	<field name="fac_numero" class="java.lang.Integer"/>
 	<field name="fac_fecha" class="java.sql.Date"/>
@@ -273,7 +273,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 	<field name="fac_unidad_tiempo" class="java.lang.String"/>
 	<field name="estadosri" class="java.lang.String"/>
 	<field name="mensajesri" class="java.lang.String"/>
-	<field name="fac_fecha_autorizacion" class="java.sql.Date"/>
+	<field name="fac_fecha_autorizacion" class="java.sql.Timestamp"/>
 	<field name="fac_clave_acceso" class="java.lang.String"/>
 	<field name="fac_clave_autorizacion" class="java.lang.String"/>
 	<field name="fac_path" class="java.lang.String"/>
@@ -388,10 +388,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				</textElement>
 				<text><![CDATA[FECHA Y HORA DE AUTORIZACIÓN]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
 				<reportElement x="407" y="125" width="143" height="30"/>
 				<textElement/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{fac_fecha_autorizacion}]]></textFieldExpression>
+				<textFieldExpression class="java.sql.Timestamp"><![CDATA[$F{fac_fecha_autorizacion}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="307" y="155" width="100" height="20"/>

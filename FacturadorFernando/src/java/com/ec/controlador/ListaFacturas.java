@@ -488,7 +488,7 @@ public class ListaFacturas {
 
     private void autorizarFacturasSRI(Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd");
+        SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
                     + File.separator + new Date().getYear()
                     + File.separator + new Date().getMonth();
