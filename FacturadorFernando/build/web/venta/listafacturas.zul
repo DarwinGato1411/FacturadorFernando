@@ -251,8 +251,8 @@
                                     </zk>
                                     <zk  choose="@bind(each.estadosri)" >
                                         <zk  when="${each.estadosri == 'AUTORIZADO'}"  >
-                                            <listcell    zclass = "mycss-listcell"  class="td-tabla"  >
-                                                <textbox readonly="true"  style="font-size:12px;background:transparent"    
+                                            <listcell    zclass = "mycss-listcell"  style="background:#C7FEC1"  >
+                                                <textbox readonly="true"  style="font-size:12px;background:transparent;"    
                                                          class="form-control form-control-sm"  
                                                          value="@bind(each.estadosri)" tooltiptext="@bind(each.facMsmInfoSri)" width="100%"/>
                                             </listcell>

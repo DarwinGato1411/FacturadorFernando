@@ -132,7 +132,7 @@
                                     </listcell>
                                    <zk  choose="@bind(each.estadosri)" >
                                         <zk  when="${each.estadosri == 'AUTORIZADO'}"  >
-                                            <listcell    zclass = "mycss-listcell"  class="td-tabla" style=" color:black"   >
+                                            <listcell    zclass = "mycss-listcell"  style="background:#C7FEC1"    >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;color:black"    
                                                          class="form-control form-control-sm"  
                                                          value="@bind(each.estadosri)"  width="100%"/>
