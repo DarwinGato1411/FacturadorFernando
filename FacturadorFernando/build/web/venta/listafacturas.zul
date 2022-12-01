@@ -302,13 +302,20 @@
                                                class="btn btn btn-secondary btn-sm grow"                                               
                                                tooltiptext="Cambiar estado de la factura"/> 
                                     </listcell>
-                                    <listcell  zclass = "mycss-listcell" >   
+                                   <listcell if="${each.estadosri=='AUTORIZADO'}"  zclass = "mycss-listcell" >   
                                             
                                         <image src="/iconos/notacredito.png"  
                                                height=" 30px"   
                                                onClick="@command('crearNotaCredito',valor=each)"                                    
                                                class="btn btn btn-secondary btn-sm grow"                                               
                                                tooltiptext="Generar Nota de Crédito"/> 
+                                    </listcell>
+                                    <listcell if="${each.estadosri!='AUTORIZADO'}"  zclass = "mycss-listcell" >   
+                                            
+                                         <image src="/iconos/delete.png"   
+                                                   height=" 30px"  
+                                                   class=" btn-secondary btn-sm"                                               
+                                                   tooltiptext="No se puede generar una nota de credito a un documento sin autorizar"/>
                                     </listcell>
                                     <listcell  zclass = "mycss-listcell" >    
                                         
@@ -416,14 +423,20 @@
                                 
                                     </listcell>
                                     
-                                    <listcell  zclass = "mycss-listcell" >   
-                                        <image src="/iconos/email.png"   
-                                        if="${each.estadosri=='AUTORIZADO'}"
+                                     <listcell if="${each.estadosri!='AUTORIZADO'}" zclass = "mycss-listcell" >   
+                                        <image src="/iconos/delete.png"      
                                                height="30px"  
                                                onClick="@command('reenviarMail',valor=each)" 
                                                class="btn-secondary btn-sm "       
                                                tooltiptext="Reenviar correo electronico"/>
-                                    </listcell> 
+                                    </listcell>
+                                    <listcell  if="${each.estadosri=='AUTORIZADO'}" zclass = "mycss-listcell" >   
+                                        <image src="/iconos/email.png"   
+                                               height="30px"  
+                                               onClick="@command('reenviarMail',valor=each)" 
+                                               class="btn-secondary btn-sm "       
+                                               tooltiptext="Reenviar correo electronico"/>
+                                    </listcell>
                                 </listitem>
                             </template>
                         </listbox>
