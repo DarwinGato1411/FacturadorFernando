@@ -93,12 +93,6 @@ public class MailerClassSistema {
             String protocol = "smtp";
             String usuarioSmpt = parametrizar.getParCorreo();
             String password = parametrizar.getParPasswordCorreo();
-//            String asunto = asuntoInf;
-//            String host = amb.getAmHost();
-//            String port = amb.getAmPort();
-//            String protocol = amb.getAmProtocol();
-//            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
 
             // Propiedades de la conexión
             // Get system properties
