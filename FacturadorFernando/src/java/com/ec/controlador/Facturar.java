@@ -1827,15 +1827,15 @@ public class Facturar extends SelectorComposer<Component> {
             //valorTotal.setScale(5, RoundingMode.UP);
             try {
                 subsidioTotal = sumaSubsidio;
-                subTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotal, 3);
+                subTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotal, 2);
                 // subTotalCotizacion.setScale(5, RoundingMode.UP);
-                subTotalBaseCero = ArchivoUtils.redondearDecimales(baseCero, 3);
+                subTotalBaseCero = ArchivoUtils.redondearDecimales(baseCero, 2);
                 /*Obtiene el porcentaje del IVA*/
 //                BigDecimal valorIva = subTotalCotizacion.multiply(parametrizar.getParIva());
 
-                ivaCotizacion = ArchivoUtils.redondearDecimales(valorIva, 3);
+                ivaCotizacion = ArchivoUtils.redondearDecimales(valorIva, 2);
 
-                valorIce = ArchivoUtils.redondearDecimales(valorTotalIce, 3);
+                valorIce = ArchivoUtils.redondearDecimales(valorTotalIce, 2);
 
                 // ivaCotizacion.setScale(5, RoundingMode.UP);
                 valorTotalCotizacion = subTotalCotizacion.add(subTotalBaseCero.add(ivaCotizacion).add(valorIce));
