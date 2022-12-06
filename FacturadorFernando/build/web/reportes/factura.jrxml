@@ -494,11 +494,11 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[Contribuyente Especial Nro]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="11" y="279" width="539" height="20"/>
-				<textElement>
+				<reportElement x="10" y="265" width="539" height="38"/>
+				<textElement verticalAlignment="Middle">
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Nombre: "+ $F{cli_nombre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Razón Social / Nombres Apellidos: "+ $F{cli_nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="302" y="303" width="75" height="20"/>
@@ -724,7 +724,9 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 									<bottomPen lineWidth="0.1"/>
 									<rightPen lineWidth="0.1"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="6"/>
+								</textElement>
 								<text><![CDATA[Descuento]]></text>
 							</staticText>
 						</jr:columnHeader>
