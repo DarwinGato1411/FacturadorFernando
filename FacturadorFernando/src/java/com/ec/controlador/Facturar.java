@@ -161,6 +161,7 @@ public class Facturar extends SelectorComposer<Component> {
     private String buscarRazonSocial = "";
     private String buscarCedula = "";
     public static String buscarCliente = "";
+    public static Cliente buscarClienteLista;
     //busacar producto
     ServicioProducto servicioProducto = new ServicioProducto();
     private List<Producto> listaProducto = new ArrayList<Producto>();
@@ -1564,7 +1565,8 @@ public class Facturar extends SelectorComposer<Component> {
                     "/venta/buscarcliente.zul", null, map);
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
-        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
+//        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
+        clienteBuscado=buscarClienteLista;
         if (clienteBuscado == null) {
             clienteBuscado = servicioCliente.findClienteLikeCedula("999999999");
         }
@@ -1699,6 +1701,7 @@ public class Facturar extends SelectorComposer<Component> {
     public void seleccionarClienteLista(@BindingParam("cliente") Cliente valor) {
         System.out.println("cliente seleccionado " + valor.getCliCedula());
         buscarCliente = valor.getCliCedula();
+        buscarClienteLista=valor;
         windowClienteBuscar.detach();
 
     }
@@ -1898,7 +1901,7 @@ public class Facturar extends SelectorComposer<Component> {
             }
             /*Ubicacion del archivo firmado para obtener la informacion*/
 
-            /*VERIFICA SI ES FACTURA O PROFORMA Y COLOCAL EL NUMERO*/
+ /*VERIFICA SI ES FACTURA O PROFORMA Y COLOCAL EL NUMERO*/
             if ((accion.equals("create")) || (tipoVentaAnterior.equals("PROF") && (tipoVenta.equals("FACT")))) {
                 verificarSecNumeracion();
                 descargarKardex = Boolean.TRUE;
@@ -1961,7 +1964,6 @@ public class Facturar extends SelectorComposer<Component> {
 
             //guarda con o sin guia de remision 
 //            facConSinGuia = valor;
-
             Tipoambiente amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
             //armar la cabecera de la factura
 //Coloca la fecha para el cobro de la totalidad de la factura
@@ -2146,7 +2148,7 @@ public class Facturar extends SelectorComposer<Component> {
                     factura.setIdCliente(clienteBuscado);
                     /*GENERAMOS LA CLAVE DE ACCESO PARA ENVIAR LA FACTURA DIRECTAMENTE ASI NO ESTE 
                     AUTORIZADA*/
-                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), "001001", factura.getFacNumeroText(), "12345678", "1");
+                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
                     factura.setFacClaveAcceso(claveAcceso);
                     factura.setFacClaveAutorizacion(claveAcceso);
 
@@ -2169,7 +2171,7 @@ public class Facturar extends SelectorComposer<Component> {
                         servicioDetalleKardex.eliminarKardexVenta(factura.getIdFactura());
                         servicioFactura.guardarFactura(detalleFactura, factura);
                     }
-                   
+
                     /*VERIFICA SI EL CLINETE QUIERE AUTORIZAR LA FACTURA*/
                     if (!parametrizar.getParEstado() || tipoVenta.equals("PROF")) {
                         /*en el caso que no se desee autorizar la factura*/

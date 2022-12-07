@@ -84,8 +84,6 @@ public class NuevoCliente {
 
     public NuevoCliente() {
 
-       
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
@@ -109,7 +107,7 @@ public class NuevoCliente {
                     cliente.setCliApellidos("");
                     cliente.setCliNombres("");
                     cliente.setCliNombre("");
-                    cliente.setCliRazonSocial("" );
+                    cliente.setCliRazonSocial("");
                     Clients.showNotification("Cliente no encontrado ingreselo manualmente...!! ",
                                 Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
                     return;
@@ -139,10 +137,10 @@ public class NuevoCliente {
                         default:
                             break;
                     }
-                    cliente.setCliApellidos(apellidoPersona);
-                    cliente.setCliNombres(nombrePersona);
-                    cliente.setCliNombre(nombrePersona + " " + apellidoPersona);
-                    cliente.setCliRazonSocial(nombrePersona + " " + apellidoPersona);
+                    cliente.setCliApellidos(aduana.getNombre());
+                    cliente.setCliNombres(aduana.getNombre());
+                    cliente.setCliNombre(aduana.getNombre());
+                    cliente.setCliRazonSocial(aduana.getNombre());
                 }
             }
         }
@@ -158,8 +156,6 @@ public class NuevoCliente {
     public void guardar() {
         /*getCliNombre es el nombre comercial*/
         if (cliente.getCliCedula() != null
-                    && cliente.getCliNombres() != null
-                    && cliente.getCliApellidos() != null
                     && cliente.getCliNombre() != null
                     && cliente.getCliDireccion() != null
                     && cliente.getCliTelefono() != null
@@ -184,8 +180,16 @@ public class NuevoCliente {
             cliente.setCliRazonSocial(cliente.getCliNombre());
             cliente.setCodTipoambiente(amb);
             if (accion.equals("create")) {
+                Cliente cliBusca = servicioCliente.FindClienteForCedula(cliente.getCliCedula(), amb);
+                if ((cliBusca == null)) {
+                    cliente.setClietipo(Integer.valueOf(clietipo));
+                    cliente.setClieFechaRegistro(fechaReg);
+                    cliente.setIdTipoIdentificacion(tipoadentificacion);
+                    cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
+                    servicioCliente.crear(cliente);
 
-                if (servicioCliente.FindClienteForCedula(cliente.getCliCedula(),amb) == null) {
+                    windowCliente.detach();
+                } else if (!cliBusca.getCliDireccion().equals(cliente.getCliDireccion())) {
                     cliente.setClietipo(Integer.valueOf(clietipo));
                     cliente.setClieFechaRegistro(fechaReg);
                     cliente.setIdTipoIdentificacion(tipoadentificacion);
