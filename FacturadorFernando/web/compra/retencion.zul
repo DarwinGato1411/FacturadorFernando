@@ -205,7 +205,7 @@
                     <div class="body">
                             <div class="container_row_input">
                                 <div class="wrapper_input_mod">
-                                    <span>Fecha Retención: </span>
+                                    <span>Fecha RetenciÃ³n: </span>
                                     <div class="wrapper_input_text">
                                         <div class="fa-solid fa-address-card icon"></div>
                                         <datebox 
@@ -351,12 +351,12 @@
                                            selectedItem="@bind(vm.tipoRetencionSelected)" width="60%"
                                            readonly="true" >
                                           
-                                    <template name="model">
-                                        <comboitem  label="@bind(each.tireNombre)"
-                                                    description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
-                                    </template>                                      
-                                </combobox>-->
-                                         <div 
+                                            <template name="model">
+                                                <comboitem  label="@bind(each.tireNombre)"
+                                                            description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
+                                            </template>                                      
+                                        </combobox>-->
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
@@ -378,14 +378,14 @@
                                                 <comboitem  label="@bind(each.tipivaretDescripcion.concat('%'))"/>
                                             </template>                                      
                                         </combobox>
-                                         <div 
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
                                     </div>
                                 </div>
                                 
-                                 <div style="display:flex;justify-content:flex-end;">
+                                <div style="display:flex;justify-content:flex-end;">
                                     <button 
                                         class="fa-solid fa-plus btn_modal" 
                                         style="width:200px" 
@@ -408,7 +408,7 @@
 
                             </div>
 
-                           <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
                                 <listbox id="DescripcionPedidoPrePost" 
                                          model="@load(vm.listaDetalleRetencionCompraModel)"
                                          nonselectableTags="*" 
@@ -441,25 +441,31 @@
                                             <listcell >
                                                 <decimalbox readonly="true" format="###.#####"
                                                             class="form-control form-control-sm"
+                                                            style="color:black"
                                                             value="@bind(each.drcBaseImponible)"  width="99%" />
                                             </listcell>                                     
                                             <listcell>
                                                 <label  value="@bind(each.tireCodigo.tireNombre)" width="99%"
+                                                        style="color:black"
                                                         if="${each.codImpuestoAsignado == '1'}"/>
                                                 <label  value="Retencion IVA" width="99%" 
-                                                          if="${each.codImpuestoAsignado == '2'}"/>
+                                                        style="color:black"
+                                                        if="${each.codImpuestoAsignado == '2'}"/>
                                             </listcell>
                                             <listcell>
-                                                <label  value="@bind(each.drcDescripcion)" width="99%" />
+                                                <label  value="@bind(each.drcDescripcion)"
+                                                        style="color:black" width="99%" />
                                               
                                             </listcell>
                                             <listcell>
                                                 <decimalbox readonly="true" format="###.#####"
+                                                            style="color:black"
                                                             class="form-control form-control-sm"
                                                             value="@bind(each.drcPorcentaje)"  width="99%" />
                                             </listcell>
                                             <listcell>
-                                                <decimalbox readonly="true" format="###.#####" 
+                                                <decimalbox readonly="true" format="###.#####"
+                                                            style="color:black" 
                                                             class="form-control form-control-sm"
                                                             value="@bind(each.drcValorRetenido)"  width="99%" />
                                             </listcell>
@@ -469,8 +475,8 @@
 
                                 </listbox>
                             </div>
+                        </div>
                     </div>
-                </div>
                     
                 </tabpanel>
             </tabpanels>
