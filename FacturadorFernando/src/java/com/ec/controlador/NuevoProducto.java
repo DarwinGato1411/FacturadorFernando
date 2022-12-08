@@ -79,7 +79,7 @@ public class NuevoProducto {
             if (producto.getProdGrabaIva()) {
                 conIva = "S";
                 BigDecimal porcenIva = (producto.getProdIva().divide(BigDecimal.valueOf(100), 4, RoundingMode.FLOOR)).add(BigDecimal.ONE);
-                precioBase = producto.getPordCostoVentaFinal().divide(porcenIva);
+                precioBase = producto.getPordCostoVentaFinal().divide(porcenIva,4,RoundingMode.CEILING);
                 precioBase=ArchivoUtils.redondearDecimales(precioBase, 2);
             } else {
                 conIva = "N";
