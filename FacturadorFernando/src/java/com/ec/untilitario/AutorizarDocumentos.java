@@ -277,7 +277,7 @@ public class AutorizarDocumentos {
                         + "        <secuencial>" + valor.getFacNumeroText() + "</secuencial>\n"
                         + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
                        + (!amb.getAmGeneral() ? ((amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")) : "")
-                        + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
+//                        + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
                         //  + "        <agenteRetencion>12345678</agenteRetencion>\n"
                         + "</infoTributaria>\n"
                         + "<infoFactura>\n"
@@ -382,6 +382,8 @@ public class AutorizarDocumentos {
                         //                    + (valor.getIdCliente().getCliTelefono().length() > 0 ? "<campoAdicional nombre=\"TELEFONO\">" + valor.getIdCliente().getCliTelefono() + "</campoAdicional>\n" : " ")
                         //                    + (valor.getIdCliente().getCliMovil().length() > 0 ? "<campoAdicional nombre=\"CELULAR\">" + valor.getIdCliente().getCliMovil() + " </campoAdicional>\n" : " ")
                         + "<campoAdicional nombre=\"PLAZO\"> DIAS</campoAdicional>\n"
+                         + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"agenteRetencion\"> 1</campoAdicional>\n" : "")
+//                        + "<campoAdicional nombre=\"PLAZO\"> DIAS</campoAdicional>\n"
                         + (valor.getFacPlazo().toString().length() > 0 ? "<campoAdicional nombre=\"DIAS\">" + valor.getFacPlazo().setScale(0) + "</campoAdicional>\n" : " ")
                         + (valor.getFacPorcentajeIva().length() > 0 ? "<campoAdicional nombre=\"TARIFAIMP\">" + valor.getFacPorcentajeIva() + "</campoAdicional>\n" : " ")
 //                        + (amb.getAmRimpe() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE REGIMEN RIMPE</campoAdicional>\n" : "")

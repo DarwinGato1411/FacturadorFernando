@@ -105,7 +105,7 @@ public class ServicioCliente {
              query.setParameter("codTipoambiente", codTipoambiente);
             List<Cliente> listaCliente = (List<Cliente>) query.getResultList();
             if (listaCliente.size() > 0) {
-                cliente = (Cliente) query.getSingleResult();
+                cliente = listaCliente.get(0);
             } else {
                 return null;
             }
