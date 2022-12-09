@@ -235,7 +235,48 @@
                                             value="@bind(vm.cambio)" 
                                         />
                                     </div>
+                                    <div class="wrapper_input">
+                                        <!--                                        <div class="wrapper_input wrapper_total">-->
+                                        <span >
+                                            <label value="Total:" style="color:#fbc620;text-align: center;font-size: 25px !important;"></label>
+                                        </span>
 
+                                        <decimalbox  
+                                            style="color:#fbc620;text-align: center;font-size: 25px !important;"
+                                            format="###.##"   
+                                            value="@bind(vm.valorTotalCotizacion)"                                                 
+                                            readonly="true"
+                                        
+                                        />
+                                        <!--</div>--> 
+                                    </div>
+
+                                </div>
+                                <div class="wrapper_buttons">
+                                
+                                
+                                    <!-- <button 
+                                        class="btn_fact btn_primary"
+                                        autodisable="self"                     
+                                        onClick="@command('verNotasEntrega')"
+                                        tooltiptext="Cargar notas de entrega"
+                                    >
+                                        Cargar notas
+                                    </button> -->
+                                
+                              
+                                    <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='ENV')"
+                                        tooltiptext="Guardar y Enviar al SRI"
+                                        label="Guardar - Enviar"
+                                        style="font-size:18px; height:46px"
+                                    />
+
+                                    
+
+                                
                                 </div>
                                 <div class="wrapper_buttons">
                                 
@@ -259,16 +300,7 @@
                                         style="font-size:18px; height:46px"
                                     />
 
-                                    <div class="wrapper_input wrapper_total">
-                                        <span style="text_total">Total:</span>
-
-                                        <decimalbox  
-                                            format="###.##"   
-                                            value="@bind(vm.valorTotalCotizacion)"                                                 
-                                            readonly="true"
-                                        
-                                        />
-                                    </div> 
+                                    
 
                                 
                                 </div>
@@ -309,7 +341,7 @@
                                                      onChange="self.setValue(self.getValue().toUpperCase());" />
                                         </listheader>                         
                                         <listheader width="100%"   label="Kardex" align="center" /> 
-<!--                                        <listheader style="display:none;" width="100%"  label="Pv v Mayor" align="center" /> -->
+                                        <!--                                        <listheader style="display:none;" width="100%"  label="Pv v Mayor" align="center" /> -->
                                         <listheader width="100%"  label="Pvp" align="center" /> 
                                         <listheader width="100%"  label="Asignar" align="center"/>
                                     </listhead>  
@@ -318,7 +350,7 @@
                                         <listitem class="tabla1 tabla"  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                             <listcell  style="width:100%; font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                        onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
-                                                <textbox value="@bind(each.idProducto.prodCodigo)"     onCreate="self.focus()"
+                                                <textbox value="@bind(each.idProducto.prodCodigo)"    
                                                          class="form-control form-control-sm"
                                                          style="font-size:11px;background-color:#d6eefd"
                                                          readonly="true"
@@ -353,7 +385,7 @@
                                                        value="@bind(each.karTotal)" 
                                                        width="100%" />
                                             </listcell>
-<!--                                            <listcell style="display:none;" zclass = "mycss-listcell" 
+                                            <!--                                            <listcell style="display:none;" zclass = "mycss-listcell" 
                                                       onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                                 <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
                                                        class="form-control form-control-sm"

@@ -1903,24 +1903,7 @@ public class Facturar extends SelectorComposer<Component> {
             if (!folderNoAut.exists()) {
                 folderNoAut.mkdirs();
             }
-            /*Ubicacion del archivo firmado para obtener la informacion*/
-
-//            if (!parametrizar.getParCreditoClientes()) {
-//                if (saldoFacturas.doubleValue() < valorTotalCotizacion.doubleValue()) {
-//                    Clients.showNotification("Excedio el monto asignado al cliente",
-//                            Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-//                    return;
-//                }
-//            }
-            if (valor.equals("CG")) {
-                if (transportista == null || numeroPlaca.equals("")) {
-
-                    Clients.showNotification("Para generar una guia debe seleccionar un conductor e ingresar la placa",
-                                Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-                    return;
-
-                }
-            }
+        
             /*VERIFICA SI ES FACTURA O PROFORMA Y COLOCAL EL NUMERO*/
             if ((accion.equals("create")) || (tipoVentaAnterior.equals("PROF") && (tipoVenta.equals("FACT")))) {
                 verificarSecNumeracion();
@@ -2169,7 +2152,7 @@ public class Facturar extends SelectorComposer<Component> {
                     factura.setIdCliente(clienteBuscado);
                     /*GENERAMOS LA CLAVE DE ACCESO PARA ENVIAR LA FACTURA DIRECTAMENTE ASI NO ESTE 
                     AUTORIZADA*/
-                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), "001001", factura.getFacNumeroText(), "12345678", "1");
+                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(),amb.getAmEstab()+amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
                     factura.setFacClaveAcceso(claveAcceso);
                     factura.setFacClaveAutorizacion(claveAcceso);
 
@@ -2192,46 +2175,12 @@ public class Facturar extends SelectorComposer<Component> {
                         servicioDetalleKardex.eliminarKardexVenta(factura.getIdFactura());
                         servicioFactura.guardarFactura(detalleFactura, factura);
                     }
-                    if (valor.equalsIgnoreCase("CG")) {
-
-                        numeroGuia();
-                        Guiaremision guiaremision = new Guiaremision();
-                        guiaremision.setFacNumero(numeroGuia);
-                        guiaremision.setFacNumeroText(numeroGuiaText);
-                        guiaremision.setIdFactura(factura);
-                        guiaremision.setIdUsuario(credential.getUsuarioSistema());
-                        guiaremision.setFacFecha(new Date());
-                        guiaremision.setFacEstado("PENDIENTE");
-                        guiaremision.setTipodocumento("06");
-                        guiaremision.setPuntoemision(factura.getPuntoemision());
-                        guiaremision.setCodestablecimiento(factura.getCodestablecimiento());
-                        guiaremision.setEstadosri("PENDIENTE");
-                        String claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(), "001001", guiaremision.getFacNumeroText(), "12345678", "1");
-                        guiaremision.setFacClaveAcceso(claveAccesoGuia);
-                        guiaremision.setFacClaveAutorizacion(claveAccesoGuia);
-                        guiaremision.setCodTipoambiente(factura.getCod_tipoambiente().getCodTipoambiente());
-                        guiaremision.setFacFechaSustento(factura.getFacFecha());
-                        guiaremision.setIdTransportista(transportista);
-                        guiaremision.setNumplacaguia(numeroPlaca);
-                        guiaremision.setIdCliente(factura.getIdCliente());
-                        guiaremision.setFechainitranspguia(incioTraslado);
-                        guiaremision.setFechafintranspguia(finTraslado);
-                        guiaremision.setMotivoGuia(motivoGuia);
-                        guiaremision.setPartida(partida);
-                        guiaremision.setLlegada(llegada);
-                        List<DetalleGuiaremision> detalleGuia = new ArrayList<DetalleGuiaremision>();
-                        for (DetalleFacturaDAO itemDet : detalleFactura) {
-                            detalleGuia.add(new DetalleGuiaremision(itemDet.getCantidad(), itemDet.getDescripcion(), itemDet.getProducto(), guiaremision));
-                        }
-                        servicioGuia.guardarGuiaremision(detalleGuia, guiaremision);
-
-                    }
+                    
                     /*VERIFICA SI EL CLINETE QUIERE AUTORIZAR LA FACTURA*/
                     if (!parametrizar.getParEstado() || tipoVenta.equals("PROF")) {
                         /*en el caso que no se desee autorizar la factura*/
                     } else {
-                        UtilitarioAutorizarSRI autorizarSRI = new UtilitarioAutorizarSRI();
-                        autorizarSRI.autorizarSRI(factura);
+                        
                     }
 
                 }
@@ -2281,6 +2230,11 @@ public class Facturar extends SelectorComposer<Component> {
                     }
                 }
 
+            }
+            
+            if (valor.equals("ENV")) {
+                UtilitarioAutorizarSRI autorizarSRI = new UtilitarioAutorizarSRI();
+                        autorizarSRI.autorizarSRI(factura);
             }
 
             reporteGeneral();
