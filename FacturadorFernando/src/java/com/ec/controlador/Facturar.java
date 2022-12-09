@@ -676,6 +676,7 @@ public class Facturar extends SelectorComposer<Component> {
                 valor.setSubTotalDescuento(valorICE);
                 //valor del descuento
                 BigDecimal valorDescuento = subTotal.subtract(subTotalDescuento).setScale(5, RoundingMode.FLOOR);
+                valorDescuento = valorDescuento.doubleValue() < 0 ? BigDecimal.ZERO : valorDescuento;
                 valor.setDetValdescuento(valorDescuento);
                 BigDecimal valorIva = subTotal.multiply(factorIva).multiply(valor.getCantidad());
 //                valor.setDetIva(valorIva);
@@ -1566,7 +1567,7 @@ public class Facturar extends SelectorComposer<Component> {
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
 //        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
-        clienteBuscado=buscarClienteLista;
+        clienteBuscado = buscarClienteLista;
         if (clienteBuscado == null) {
             clienteBuscado = servicioCliente.findClienteLikeCedula("999999999");
         }
@@ -1701,7 +1702,7 @@ public class Facturar extends SelectorComposer<Component> {
     public void seleccionarClienteLista(@BindingParam("cliente") Cliente valor) {
         System.out.println("cliente seleccionado " + valor.getCliCedula());
         buscarCliente = valor.getCliCedula();
-        buscarClienteLista=valor;
+        buscarClienteLista = valor;
         windowClienteBuscar.detach();
 
     }
