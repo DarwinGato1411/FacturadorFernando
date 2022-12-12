@@ -377,7 +377,6 @@ public class Facturar extends SelectorComposer<Component> {
 
     public Facturar() {
 
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
@@ -676,7 +675,8 @@ public class Facturar extends SelectorComposer<Component> {
                 valor.setSubTotalDescuento(valorICE);
                 //valor del descuento
                 BigDecimal valorDescuento = subTotal.subtract(subTotalDescuento).setScale(5, RoundingMode.FLOOR);
-                valor.setDetValdescuento(valorDescuento);
+                valorDescuento = valorDescuento.doubleValue() < 0 ? BigDecimal.ZERO : valorDescuento;
+                valor.setDetValdescuento();
                 BigDecimal valorIva = subTotal.multiply(factorIva).multiply(valor.getCantidad());
 //                valor.setDetIva(valorIva);
                 //valor del iva con descuento
@@ -1127,7 +1127,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     @Command
-    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero","valorIce"})
+    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce"})
     public void calcularValoresDesCantidad(@BindingParam("valor") DetalleFacturaDAO valor) {
         try {
 
@@ -1149,11 +1149,9 @@ public class Facturar extends SelectorComposer<Component> {
             }
             BigDecimal factorIva = (valor.getProducto().getProdIva().divide(BigDecimal.valueOf(100.0)));
             BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
-            
-            
-        BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
-        BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
+            BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
+            BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
 
             if (valor.getCantidad().doubleValue() > 0) {
                 /*CALCULO DEL PORCENTAJE DE DESCUENTO*/
@@ -1176,7 +1174,6 @@ public class Facturar extends SelectorComposer<Component> {
                 BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
 
 //                valor.setSubTotalDescuento(subTotalDescuento);
-                
                 /*Calculo del ICE*/
 //                BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 /*Calculamos el Subtotal ICE*/
@@ -1188,9 +1185,7 @@ public class Facturar extends SelectorComposer<Component> {
                 valorICE = ArchivoUtils.redondearDecimales(valorICE, 3);
 //                valor.setSubTotalDescuento(subTotalDescuento);
                 valor.setSubTotalDescuento(valorICE);
-                
-                
-                
+
                 //valor del descuento
                 BigDecimal valorDescuento = BigDecimal.ZERO;
                 if (!valor.getEsProducto()) {
@@ -1199,7 +1194,7 @@ public class Facturar extends SelectorComposer<Component> {
                 if (valor.getEsProducto()) {
                     valorDescuento = ArchivoUtils.redondearDecimales(valor.getSubTotal(), 5).subtract(ArchivoUtils.redondearDecimales(valor.getSubTotalDescuento(), 5));
                 }
-                valor.setDetValdescuento(valorDescuento);
+                valor.setDetValdescuento(valorDescuento.doubleValue() < 0 ? BigDecimal.ZERO : valorDescuento);
                 //valor del iva con descuento
                 BigDecimal valorIvaDesc = subTotalDescuento.multiply(factorIva).multiply(valor.getCantidad());
 
@@ -1789,7 +1784,7 @@ public class Facturar extends SelectorComposer<Component> {
         BigDecimal valorTotalIce = BigDecimal.ZERO;
         BigDecimal valorTotalIcePorProducto = BigDecimal.ZERO;
 
-         List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
+        List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleFacturaDAO item : listaPedido) {
                 sumaDeItems = sumaDeItems.add(BigDecimal.ONE);
