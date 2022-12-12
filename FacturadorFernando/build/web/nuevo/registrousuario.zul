@@ -71,7 +71,13 @@
 
     <div class="container_registro register_container_id">
         <div class="wapper_registro register_wrapper_id">
-            <image src="./imagenes/israel/logo.png" class="logo" />
+            <div class="wrapper_header">
+                    <image src="./imagenes/factufast/logo.jpg" class="logo" />
+                    <div class="text">
+                        <span class="title">FactuFast</span>
+                        <span class="subtitle">SIEMPRE EVOLUCIOANDO CONTIGO</span>
+                    </div>
+                  </div>
 
             <div class="info_wrapper">
                 <span class="title">Registro</span>

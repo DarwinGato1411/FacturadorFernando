@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 :root {
-  --primary-color: 0, 70, 148;
-  --secondary-color: 184, 160, 38;
+  --primary-color: 143,1,13,255;
+  --secondary-color: 143,1,13,255;
   --background-color: #fff;
   --alpha: 0.5;
   --base-color: #fff;
@@ -50,16 +50,46 @@ body {
   position: relative;
   z-index: 3;
 }
+
+.container_forgot_registro .wapper_registro .wrapper_header {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1em;
+  align-items: center;
+  height: fit-content;
+  margin-top: 20%;
+}
+
+.container_forgot_registro .wapper_registro .wrapper_header .logo{
+    border-radius: 10px;
+}
+
+.container_forgot_registro .wapper_registro .wrapper_header .texto{
+    display: flex;
+    flex-direction: row;
+}
+
+.container_forgot_registro .wapper_registro .wrapper_header .text .title {
+    display: flex;
+    flex-direction: row;
+    font-size: 36px;
+    font-family: "Raleway", sans-serif;
+}
+
+.container_forgot_registro .wapper_registro .wrapper_header .text .subtitle {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+}
 .container_registro .wapper_registro .logo,
 .container_forgot_registro .wapper_registro .logo {
-  width: 100px;
-  position: absolute;
-  top: 30px;
-  left: 30px;
+  border-radius: 20px;
 }
 .container_registro .wapper_registro .info_wrapper,
 .container_forgot_registro .wapper_registro .info_wrapper {
-  margin-top: 5em;
+  
 }
 .container_registro .wapper_registro .info_wrapper .title,
 .container_registro .wapper_registro .info_wrapper .subtitle,
@@ -159,7 +189,7 @@ body {
 }
 .container_registro .wrapper_forgot .info_wrapper_forgot,
 .container_forgot_registro .wrapper_forgot .info_wrapper_forgot {
-  margin-top: 7em;
+  margin-top: 1em;
 }
 .container_registro .wrapper_forgot .wrapper_button .btn_reg,
 .container_forgot_registro .wrapper_forgot .wrapper_button .btn_reg {
@@ -234,28 +264,39 @@ body {
 .wrapper_header {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-  gap: 2em;
+  flex-direction: row;
+  gap: 1em;
   align-items: center;
   height: fit-content;
   margin-top: 20%;
 }
-.wrapper_header .logo1,
-.wrapper_header .logo2 {
-  display: block;
-  object-fit: cover;
-  pointer-events: none;
+
+.wrapper_header .logo{
+    border-radius: 10px;
 }
-.wrapper_header .logo1 {
-  width: 150px;
+
+.wrapper_header .texto{
+    display: flex;
+    flex-direction: row;
 }
-.wrapper_header .logo2 {
-  width: 250px;
+
+.wrapper_header .text .title {
+    display: flex;
+    flex-direction: row;
+    font-size: 36px;
+    font-family: "Raleway", sans-serif;
 }
+
+.wrapper_header .text .subtitle {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+}
+
 .main {
   width: 100%;
   display: flex;
-  margin-top: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;

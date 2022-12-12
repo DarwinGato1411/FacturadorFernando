@@ -1,4 +1,4 @@
-   <?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+   <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 
    <zk>
 
@@ -8,7 +8,13 @@
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/israel/logo2.png" class="logo_defact" />
+                <div class="wrapper_header">
+                    <image src="../imagenes/factufast/logo.jpg" class="logo" />
+                    <div class="text">
+                        <span class="title">FactuFast</span>
+                        <span class="subtitle">SIEMPRE EVOLUCIOANDO CONTIGO</span>
+                    </div>
+                </div>
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      
