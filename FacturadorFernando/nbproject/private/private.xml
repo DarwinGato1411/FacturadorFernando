@@ -5,14 +5,9 @@
         <group>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/css/app/landing/signin.css</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/plantilla/plantilla.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/nuevo/olvidemiclave.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/plantilla/menuOpciones.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/css/app/ventas/facturar.css</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/plantilla/banner.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/css/app/ventas/modales.css</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/venta/facturar.zul</file>
+            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/nuevo/registrousuario.zul</file>
             <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/inicio.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/imagenes/pichincha/logo.png</file>
         </group>
     </open-files>
 </project-private>

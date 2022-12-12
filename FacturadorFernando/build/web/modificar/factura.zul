@@ -3,11 +3,11 @@
          apply="org.zkoss.bind.BindComposer" >
     
     <caption label="Modificar " style="font-weight:bold" /> 
-   <style>
-     .z-listbox-autopaging .z-listcell-cnt {
-    height: 14px;
-    overflow: hidden;
-}
+    <style>
+        .z-listbox-autopaging .z-listcell-cnt {
+        height: 14px;
+        overflow: hidden;
+        }
         
     </style>
               
@@ -383,17 +383,17 @@
                         </div>
 
                         <div class="factura_body_item">
-                            <div class="wrapper_input_mod" style="flex:auto">
-                    <span style="margin:0 4em"> Observacion paciente:</span>
-                    <div class="wrapper_input_text" style="width:100%">
-                        <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
-                        <textbox  
-                            maxlength="100" 
-                            value="@bind(vm.factura.facObservacion)"
-                            class="input_text" 
-                        />
-                    </div>
-                </div>
+                            <div  class="wrapper_input_mod" style="display:none">
+                                <span style="margin:0 4em"> Observacion paciente:</span>
+                                <div class="wrapper_input_text" style="width:100%">
+                                    <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
+                                    <textbox  
+                                        maxlength="100" 
+                                        value="@bind(vm.factura.facObservacion)"
+                                        class="input_text" 
+                                    />
+                                </div>
+                            </div>
                             <listbox id="lstFacturar"
                                      model="@load(vm.listaDetalleFacturaDAOMOdel)"
                                      mold="paging" pageSize="14"
