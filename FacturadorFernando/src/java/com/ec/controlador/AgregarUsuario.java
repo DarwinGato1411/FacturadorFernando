@@ -119,7 +119,6 @@ public class AgregarUsuario {
             if (tipoAmbiente == null) {
                 // PRUEBAS
                 Tipoambiente tipoambiente = new Tipoambiente();
-                
                 tipoambiente.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambiente.setAmCodigo("1");
                 tipoambiente.setAmDescripcion("PRUEBAS");
@@ -127,7 +126,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmIdEmpresa(1);
                 tipoambiente.setAmUsuariosri("PRUEBA");
                 tipoambiente.setAmUrlsri("celcer.sri.gob.ec");
-                
+
                 tipoambiente.setAmDirReportes("REPORTES");
                 tipoambiente.setAmGenerados("GENERADOS");
                 tipoambiente.setAmDirXml("XML");
@@ -140,23 +139,34 @@ public class AgregarUsuario {
                 tipoambiente.setAmTipoEmision("1");
                 tipoambiente.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambiente.setAmRuc(usuarioSistema.getUsuRuc());
-                tipoambiente.setAmNombreComercial("");
-                tipoambiente.setAmRazonSocial("");
-                tipoambiente.setAmDireccionMatriz("QUITO");
-                tipoambiente.setAmDireccionSucursal("QUITO");
-                
-                tipoambiente.setAmPort("587");
+                tipoambiente.setAmNombreComercial(usuarioSistema.getUsuNombre());
+                tipoambiente.setAmRazonSocial(usuarioSistema.getUsuNombre());
+                tipoambiente.setAmDireccionMatriz("");
+                tipoambiente.setAmDireccionSucursal("");
+                tipoambiente.setAmEstab("001");
+                tipoambiente.setAmPtoemi("001");
+
+                tipoambiente.setAmPort("26");
                 tipoambiente.setAmProtocol("smtp");
+                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
+                tipoambiente.setAmPassword("Dereckandre02!");
+                tipoambiente.setAmHost("mail.deckxel.com");
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
-                tipoAmbiente.setIdUsuario(usuarioSistema);
+                tipoambiente.setIdUsuario(usuarioSistema);
+                tipoambiente.setAmUnidadDisco("/");
+                tipoambiente.setAmGrabaIce(Boolean.FALSE);
+                tipoambiente.setAmValorIce(BigDecimal.ZERO);
+                tipoambiente.setAmCodigoIce("0");
+                tipoambiente.setAmComprobanteImprime("factura.jasper");
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
                 Tipoambiente tipoambienteProd = new Tipoambiente();
+                tipoambienteProd.setAmUnidadDisco("/");
                 tipoambienteProd.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambienteProd.setAmCodigo("2");
                 tipoambienteProd.setAmDescripcion("PRODUCCION");
@@ -176,19 +186,29 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmTipoEmision("1");
                 tipoambienteProd.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambienteProd.setAmRuc(usuarioSistema.getUsuRuc());
-                tipoambienteProd.setAmNombreComercial("");
-                tipoambienteProd.setAmRazonSocial("");
-                tipoambienteProd.setAmDireccionMatriz("QUITO");
-                tipoambienteProd.setAmDireccionSucursal("QUITO");
-                
-                tipoambienteProd.setAmPort("587");
-                tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmNombreComercial(usuarioSistema.getUsuNombre());
+                tipoambienteProd.setAmRazonSocial(usuarioSistema.getUsuNombre());
+                tipoambienteProd.setAmEstab("001");
+                tipoambienteProd.setAmPtoemi("001");
+                tipoambienteProd.setAmDireccionMatriz("");
+                tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
+                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
+                tipoambienteProd.setAmPassword("Dereckandre02!");
+                tipoambienteProd.setAmHost("mail.deckxel.com");
+
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
                 tipoambienteProd.setAmContrEsp(Boolean.FALSE);
                 tipoambienteProd.setAmExp(Boolean.FALSE);
                 tipoambienteProd.setIdUsuario(usuarioSistema);
+                tipoambienteProd.setAmGrabaIce(Boolean.FALSE);
+                tipoambienteProd.setAmValorIce(BigDecimal.ZERO);
+                tipoambienteProd.setAmCodigoIce("0");
+                tipoambienteProd.setAmComprobanteImprime("factura.jasper");
+
                 servicioTipoAmbiente.crear(tipoambienteProd);
                 
           
