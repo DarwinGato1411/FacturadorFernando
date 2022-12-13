@@ -97,12 +97,11 @@ public class ListaFacturas {
 
     public ListaFacturas() {
 
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
@@ -602,8 +601,8 @@ public class ListaFacturas {
                                 if (!autorizacion.getMensajes().getMensaje().isEmpty()) {
                                     texto = autorizacion.getMensajes().getMensaje().size() > 0 ? autorizacion.getMensajes().getMensaje().get(0).getMensaje() : "ERROR SIN DEFINIR " + autorizacion.getEstado();
                                     smsInfo = autorizacion.getMensajes().getMensaje().size() > 0 ? autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() : " ERROR SIN DEFINIR " + autorizacion.getEstado();
-                                    nuevo.write(smsInfo.getBytes());
-                                    nuevo.write(smsInfo.getBytes());
+                                    nuevo.write(smsInfo != null ? smsInfo.getBytes() : "".getBytes());
+//                                    nuevo.write(smsInfo.getBytes());
                                 }
 
                                 valor.setMensajesri(texto);
@@ -617,8 +616,8 @@ public class ListaFacturas {
                             valor.setFacClaveAutorizacion(claveAccesoComprobante);
                             valor.setEstadosri(autorizacion.getEstado());
                             try {
-                                String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                                String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                                valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                             } catch (java.text.ParseException ex) {
                                 Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -795,8 +794,8 @@ public class ListaFacturas {
                     valor.setEstadosri(autorizacion.getEstado());
                     System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString());
                     try {
-                        String fechaForm= sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                               valor.setFacFechaAutorizacion(sm.parse(fechaForm));
+                        String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                        valor.setFacFechaAutorizacion(sm.parse(fechaForm));
                     } catch (java.text.ParseException ex) {
                         Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
                     }
