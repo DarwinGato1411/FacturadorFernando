@@ -86,7 +86,7 @@
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
                             onOK="@command('precioFinalServicio')"
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                             value="@bind(vm.precioBase)"  
                             class="input_text"  
                         />
@@ -98,7 +98,7 @@
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
                             readonly="@bind(vm.grabaIva)"
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
                         />
@@ -139,7 +139,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-sack-dollar icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                                        
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"                                                        
                             onOK="@command('calcularValores')"
                             onChange="@command('calcularValores')"
                             value="@bind(vm.producto.pordCostoCompra)"   
@@ -203,7 +203,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                             onOK="@command('calculoutilidad')"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
@@ -241,7 +241,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros" 
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros" 
                             onOK="@command('calculoutilidadUno')"
                             value="@bind(vm.producto.prodCostoPreferencial)"  
                             class="input_text" 
@@ -283,7 +283,7 @@
                     <span>Precio / 6 Unid.: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
-                        <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                        <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                                     onOK="@command('calculoutilidadDos')"
                                     value="@bind(vm.producto.prodCostoPreferencialDos)" 
                                     class="input_text" 
@@ -310,7 +310,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.prodCostoPreferencialTres)" 
                             class="input_text" 
                         />
