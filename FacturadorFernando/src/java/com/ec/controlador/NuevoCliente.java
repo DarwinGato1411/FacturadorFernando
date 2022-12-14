@@ -121,30 +121,30 @@ public class NuevoCliente {
                     String nombreApellido[] = aduana.getNombre().split(" ");
                     String nombrePersona = "";
                     String apellidoPersona = "";
-                    switch (nombreApellido.length) {
-                        case 1:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = "";
-                            break;
-                        case 2:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = nombreApellido[1];
-                            break;
-                        case 3:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2];
-                            break;
-                        case 4:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-                            break;
-                        default:
-                            break;
-                    }
-                    cliente.setCliApellidos(apellidoPersona);
-                    cliente.setCliNombres(nombrePersona);
+//                    switch (nombreApellido.length) {
+//                        case 1:
+//                            apellidoPersona = nombreApellido[0];
+//                            nombrePersona = "";
+//                            break;
+//                        case 2:
+//                            apellidoPersona = nombreApellido[0];
+//                            nombrePersona = nombreApellido[1];
+//                            break;
+//                        case 3:
+//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+//                            nombrePersona = nombreApellido[2];
+//                            break;
+//                        case 4:
+//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
+//                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
+//                            break;
+//                        default:
+//                            break;
+//                    }
+                    cliente.setCliApellidos(aduana.getNombre());
+                    cliente.setCliNombres(aduana.getNombre());
                     cliente.setCliNombre(aduana.getNombre());
-                    cliente.setCliRazonSocial(nombrePersona + " " + apellidoPersona);
+                    cliente.setCliRazonSocial(aduana.getNombre());
                 }
             }
         }

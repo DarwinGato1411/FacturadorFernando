@@ -121,8 +121,8 @@ public class NuevoProveedor {
                         default:
                             break;
                     }
-                    proveedor.setProvNombre(nombrePersona+" "+apellidoPersona);
-                    proveedor.setProvNomComercial(nombrePersona+" "+apellidoPersona);
+                    proveedor.setProvNombre(aduana.getNombre());
+                    proveedor.setProvNomComercial(aduana.getNombre());
                   
                 }
             }
