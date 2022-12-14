@@ -61,7 +61,7 @@
                                 nonselectableTags="*"  mold="paging" pageSize="15"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             <listhead class="encabezado21"> 
-                                <listheader  width="100%" >
+                                <listheader  width="10%" >
                                     <textbox value="@bind(vm.buscarCedula)" 
                                             class="form-control form-control-sm"
                                             tooltiptext="Cedula"
@@ -69,12 +69,8 @@
                                             onOK="@command('buscarClienteCedula')"
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>     
-                                <listheader width="100%"   >
-                                </listheader> 
-                                <listheader width="100%"   >
-                                    
-                                </listheader> 
-                                <listheader width="100%"   > 
+                               
+                                <listheader width="35%"   > 
                                     <textbox value="@bind(vm.buscarNombre)" 
                                             class="form-control form-control-sm"
                                             tooltiptext="Nombre Comercial"
@@ -83,11 +79,11 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>
                                 
-                                <listheader width="100%"  label="Direccion "  /> 
-                                <listheader width="100%"  label="Telefono "  />        
-                                <listheader width="100%"  label="Movil"/>
-                                <listheader width="100%"  label="Correo"/>
-                                <listheader width="100%"  label="" align="center"/>
+                                <listheader width="35%"  label="Direccion "  /> 
+                                <listheader width="10%"  label="Telefono "  />        
+                                <listheader width="10%"  label="Movil"/>
+                                <listheader width="20%"  label="Correo"/>
+                                <listheader width="10%"  label="" align="center"/>
                                 
                             </listhead>  
                         
@@ -97,14 +93,7 @@
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                 class="form-control form-control-sm"  value="@bind(each.cliCedula)"  />
                                     </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm"  value="@bind(each.cliNombres)"  />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
-                                            class="form-control form-control-sm"  value="@bind(each.cliApellidos)"  />
-                                    </listcell>
+                               
                                     <listcell zclass = "mycss-listcell">
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                 class="form-control form-control-sm"  value="@bind(each.cliNombre)"  />

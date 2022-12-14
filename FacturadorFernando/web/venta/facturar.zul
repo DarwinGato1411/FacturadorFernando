@@ -422,7 +422,8 @@
                             <div class="factura_body_item_fr">
                                 <listbox id="lstFacturar"
                                          model="@load(vm.listaDetalleFacturaDAOMOdel)"
-                                         mold="paging" pageSize="14"
+                                         mold="paging" pageSize="10"
+                                         height= "350px"
                                          nonselectableTags="*" checkmark="true"  
                                          multiple="true" 
                                          onSelect="@command('seleccionarRegistros')"  >
@@ -521,6 +522,21 @@
                                         </listitem>
                                     </template>
                                 </listbox>
+                                <div class="wrapper_input_mod" style="flex:auto;display: contents">
+                                    <span style="margin:0 4em"> Observacion:</span>
+                                    <div class="wrapper_input_text" style="width:100%;margin-left:1px">
+                                        <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
+                                        <textbox  
+                                            maxlength="450" 
+                                            multiline="true"
+                                            width="100%"
+                                            style="margin-bottom:15px; margin-left:1px"  
+                                            rows="3"
+                                            value="@bind(vm.factura.facObservacion)"
+                                            class="input_text" 
+                                        />
+                                    </div>
+                                </div>
                             </div>                         
                         </div>
                          

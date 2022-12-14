@@ -29,14 +29,17 @@ public class GestionUsuarios {
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
-    
-   
+    private List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+
     UserCredential credential = new UserCredential();
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    
+      private String amCodigo = "2";
+    private String nombreUsuario = "";
 
     public GestionUsuarios() {
 
@@ -44,13 +47,9 @@ public class GestionUsuarios {
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-      
-        cosultarUsuarios("");
-    }
 
-  
-  
-   
+        consultarUsuarios();
+    }
 
     /*ADMINISTRAR USUARIO*/
     private void cosultarUsuarios(String buscar) {
@@ -63,6 +62,16 @@ public class GestionUsuarios {
 
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+
+    @Command
+    @NotifyChange("listaTipoambientes")
+    public void consultarUsuariosPorCodigo() {
+        consultarUsuarios();
+    }
+
+    private void consultarUsuarios() {
+        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
     }
 
     //usuarios
@@ -101,5 +110,47 @@ public class GestionUsuarios {
     public void setEsVisisible(Boolean esVisisible) {
         this.esVisisible = esVisisible;
     }
+
+    public String getAmRuc() {
+        return amRuc;
+    }
+
+    public void setAmRuc(String amRuc) {
+        this.amRuc = amRuc;
+    }
+
+    public String getAmCodigo() {
+        return amCodigo;
+    }
+
+    public void setAmCodigo(String amCodigo) {
+        this.amCodigo = amCodigo;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public List<Tipoambiente> getListaTipoambientes() {
+        return listaTipoambientes;
+    }
+
+    public void setListaTipoambientes(List<Tipoambiente> listaTipoambientes) {
+        this.listaTipoambientes = listaTipoambientes;
+    }
+
+    public Tipoambiente getAmb() {
+        return amb;
+    }
+
+    public void setAmb(Tipoambiente amb) {
+        this.amb = amb;
+    }
+    
+    
 
 }
