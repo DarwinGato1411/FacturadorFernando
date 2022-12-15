@@ -511,7 +511,7 @@ element.style {
 .z-notification .z-notification-cnt {
   width: 100%;
   height: auto;
-  border:black solid 10px !important;
+  /*border:black solid 10px !important;*/
 }
 
 .z-auxheader-content {

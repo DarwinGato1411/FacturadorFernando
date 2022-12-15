@@ -244,7 +244,7 @@
                                 />
                                 <button 
                                     autodisable="self"   
-                                    class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                    class="fa-solid fa-floppy-disk btn_fact btn_primary bg-primary"                  
                                     onClick="@command('Guardar',valor='S')"
                                     tooltiptext="Facturar e imprimir"
                                     label="Facturar"
@@ -301,7 +301,7 @@
                                     <listheader width="10%"   label="KARDEX" align="center" /> 
                                     <listheader width="13%"  label="PV X MAYOR" align="center" /> 
                                     <listheader width="13%"  label="PVP" align="center" /> 
-                                    <listheader width="8%"  label="" align="center"/>
+                                    <listheader width="5%"  label="AC" align="center"/>
                                 </listhead>  
             
                                 <template name="model">                                                            

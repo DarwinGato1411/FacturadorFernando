@@ -52,7 +52,9 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menuitem btnOrden;
     @Wire("#btnlistaOrden")
     Menuitem btnlistaOrden;
-            
+    @Wire("#btnCodigoRet")
+    Menuitem btnCodigoRet;
+
     UserCredential credential = new UserCredential();
     private String acceso = "";
 
@@ -81,6 +83,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 muenGestionUsu.setVisible(Boolean.FALSE);
                 muenGestionEmpresas.setVisible(Boolean.FALSE);
                 btnGestionFactura.setVisible(Boolean.FALSE);
+                btnCodigoRet.setVisible(Boolean.FALSE);
             }
         }
     }
@@ -284,14 +287,20 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnfactCobra() {
         Executions.sendRedirect("/venta/facturasporcobrar.zul");
     }
+
     @Listen("onClick = #btnOrden")
     public void btnOrden() {
         Executions.sendRedirect("/venta/ordentrabajo.zul");
     }
-    
+
     @Listen("onClick = #btnlistaOrden")
     public void btnlistaOrden() {
         Executions.sendRedirect("/venta/listaorden.zul");
+    }
+
+    @Listen("onClick = #btnCodigoRet")
+    public void btnCodigoRet() {
+        Executions.sendRedirect("/administrar/codigoretenciones.zul");
     }
 
     @Command

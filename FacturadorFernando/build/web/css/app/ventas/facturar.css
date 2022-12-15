@@ -294,7 +294,7 @@ body {
   > .z-listbox
   > .z-listbox-body
   > table {
-  table-layout: unset !important;
+  table-layout: fixed !important;
 }
 
 .wrapper_total > span * {
