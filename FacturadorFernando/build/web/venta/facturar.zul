@@ -478,11 +478,11 @@
                                 </template>
                             </listbox>
                             <div class="wrapper_input_mod" style="display:none;">
-                                <span style="margin:0 4em"> Observacion paciente:</span>
+                                <span style="margin:0 4em"> Observacion:</span>
                                 <div class="wrapper_input_text" style="width:100%;margin-left:1px">
                                     <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
                                     <textbox  
-                                        maxlength="450" 
+                                        maxlength="300" 
                                         multiline="true"
                                         width="100%"
                                         style="margin-bottom:15px; margin-left:1px"  
