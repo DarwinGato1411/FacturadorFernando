@@ -1147,6 +1147,14 @@ public class Facturar extends SelectorComposer<Component> {
 
                 valor.setTotalInicial(valor.getTotal());
             }
+            if (valor.getEsProducto()) {
+                if (valor.getTotalInicial().doubleValue() <= valor.getTotal().doubleValue()) {
+
+                    Clients.showNotification("En el producto no puede colocar un precio superior al registrado, \n Modifique a servicio para colocar un precio superior",
+                                Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
+                    return;
+                }
+            }
             BigDecimal factorIva = (valor.getProducto().getProdIva().divide(BigDecimal.valueOf(100.0)));
             BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
 
