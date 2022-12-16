@@ -1153,12 +1153,19 @@ public class Facturar extends SelectorComposer<Component> {
 
                 valor.setTotalInicial(valor.getTotal());
             }
+            if (valor.getEsProducto()) {
+                if (valor.getTotalInicial().doubleValue() < valor.getTotal().doubleValue()) {
+
+                    Clients.showNotification("En el producto no puede colocar un precio superior al registrado, \n Modifique a servicio para colocar un precio superior",
+                                Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
+                    return;
+                }
+            }
             if (valor.getEsProducto() && valor.getTotalInicial().doubleValue() < valor.getTotal().doubleValue()) {
                 valor.setTotalInicial(valor.getTotal());
                 BigDecimal subTotal = valor.getTotal().divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 valor.setSubTotal(subTotal);
             }
-            
 
             BigDecimal factorice = valor.getProducto().getProdGrabaIce() ? (valor.getProducto().getProdPorcentajeIce().divide(BigDecimal.valueOf(100.0))) : BigDecimal.ZERO;
             BigDecimal factorSacarSubtotalIce = (factorice.add(BigDecimal.ONE));
