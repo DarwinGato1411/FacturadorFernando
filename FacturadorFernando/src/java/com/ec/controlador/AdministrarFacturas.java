@@ -7,12 +7,10 @@ package com.ec.controlador;
 import com.ec.entidad.Factura;
 import com.ec.entidad.HistorialDeclaraciones;
 import com.ec.entidad.Tipoambiente;
-import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioFactura;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.untilitario.ArchivoUtils;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -25,8 +23,6 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.Session;
-import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zul.Messagebox;
 
 /**
