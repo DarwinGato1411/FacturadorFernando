@@ -1150,7 +1150,7 @@ public class Facturar extends SelectorComposer<Component> {
             }
 
             if (valor.getEsProducto()) {
-                if (valor.getTotalInicial().doubleValue() <= valor.getTotal().doubleValue()) {
+                if (valor.getTotalInicial().doubleValue() < valor.getTotal().doubleValue()) {
 
                     Clients.showNotification("En el producto no puede colocar un precio superior al registrado, \n Modifique a servicio para colocar un precio superior",
                                 Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
