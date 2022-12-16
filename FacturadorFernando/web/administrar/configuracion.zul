@@ -121,6 +121,11 @@
                             label="CONTRIBUYENTE REGIMEN RIMPE" 
                             checked="@bind(vm.tipoambiente.amRimpe)" 
                         />
+                        <checkbox 
+                            id="" 
+                            label="CONTRIBUYENTE NEGOCIO POPULAR - REGIMEN RIMPE" 
+                            checked="@bind(vm.tipoambiente.amRimpePopular)" 
+                        />
 
                         <checkbox 
                             id="chkAR" 
