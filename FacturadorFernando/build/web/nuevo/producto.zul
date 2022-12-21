@@ -23,7 +23,7 @@
                 </radiogroup>
             </div>
             <div class="wrapper_input_mod">
-                <span>Declaración: </span>
+               
                 <radiogroup
                     class="radio_group" 
                     onCheck="@command('colocarIva')" 
@@ -73,7 +73,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="300" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
@@ -127,7 +127,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="300" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
