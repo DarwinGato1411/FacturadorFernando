@@ -11,24 +11,30 @@
             <div class="wrapper_input_mod">
                 <span>Tipo: </span>
                 <radiogroup  
+                    onCheck="@command('verificarTipoProducto')"
                     class="radio_group"
                     selectedItem="@bind(vm.esProducto)" 
-                >                                            
+                >           
+                      
+                    <radio label="SERVICIO" value="S"/>  
+                    <space bar="false"  />                                  
                     <radio label="PRODUCTO" value="P"/>
-                    <space bar="false"  />   
-                    <radio label="SERVICIO" value="S"/>                          
+                                           
                 </radiogroup>
             </div>
             <div class="wrapper_input_mod">
-                <span>Declaración: </span>
+               
                 <radiogroup
                     class="radio_group" 
                     onCheck="@command('colocarIva')" 
                     selectedItem="@bind(vm.conIva)"  
-                >                   
-                    <radio label="Graba IVA" value="S"/>
-                    <space bar="false"  />   
-                    <radio label="Sin IVA" value="N"/>                          
+                >      
+                              
+                    <radio label="Graba IVA" value="S"/> 
+                    <space bar="false"  />     
+                    <radio label="Sin IVA" value="N"/>    
+                  
+                                          
                 </radiogroup>
             </div>
             <div class="wrapper_input_mod" style="position: relative">
@@ -49,8 +55,62 @@
             </div>
 
         </div>
+        
+        <div class="body" visible="@bind(!vm.esUnProdcuto)">
+            <div class="container_row_input">
+                <div class="wrapper_input_mod">
+                    <span>Código: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-barcode icon"></div>
+                        <textbox  
+                            maxlength="20"   
+                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                            value="@bind(vm.producto.prodCodigo)"  
+                            class="input_text" />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod" >
+                    <span>Nombre: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-user icon"></div>
+                        <textbox  
+                            maxlength="300" 
+                            value="@bind(vm.producto.prodNombre)"
+                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                            constraint="no empty: Campo requerido"
+                            class="input_text" />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod"  visible="@bind(vm.grabaIva)" >
+                    <span>Precio base </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
+                        <textbox    
+                            onOK="@command('precioFinalServicio')"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
+                            value="@bind(vm.precioBase)"  
+                            class="input_text"  
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <span>Precio final </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
+                        <textbox    
+                            readonly="@bind(vm.grabaIva)"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
+                            value="@bind(vm.producto.pordCostoVentaFinal)"  
+                            class="input_text"  
+                        />
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
 
-        <div class="body">
+        <div class="body" visible="@bind(vm.esUnProdcuto)">
             <div class="container_row_input">
                 <div class="wrapper_input_mod">
                     <span>Código: </span>
@@ -68,7 +128,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="300" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
@@ -80,7 +140,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-sack-dollar icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                                        
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"                                                        
                             onOK="@command('calcularValores')"
                             onChange="@command('calcularValores')"
                             value="@bind(vm.producto.pordCostoCompra)"   
@@ -144,7 +204,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,6})?$/:Ingrese solo numeros"
                             onOK="@command('calculoutilidad')"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
@@ -182,7 +242,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros" 
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros" 
                             onOK="@command('calculoutilidadUno')"
                             value="@bind(vm.producto.prodCostoPreferencial)"  
                             class="input_text" 
@@ -224,7 +284,7 @@
                     <span>Precio / 6 Unid.: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
-                        <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                        <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"
                                     onOK="@command('calculoutilidadDos')"
                                     value="@bind(vm.producto.prodCostoPreferencialDos)" 
                                     class="input_text" 
@@ -251,7 +311,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.prodCostoPreferencialTres)" 
                             class="input_text" 
                         />
@@ -286,7 +346,7 @@
 
             </div>
         </div>
-        <div class="body">
+        <div class="body" visible="@bind(vm.esUnProdcuto)">
             <div class="container_row_input">
               
                 

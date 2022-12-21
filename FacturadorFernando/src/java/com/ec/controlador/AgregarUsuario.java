@@ -32,21 +32,22 @@ import org.zkoss.zul.Window;
  * @author gato
  */
 public class AgregarUsuario {
-    
+
     @Wire
     Window windowIdUsuario;
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private Usuario usuarioSistema = new Usuario();
     private String tipoUSuario = "2";
     private String accion = "create";
-    
+
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
     UserCredential credential = new UserCredential();
     private String amRuc = "";
     private Tipoambiente amb = new Tipoambiente();
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Boolean readOnly = true;
-    
+    private Parametrizar parametrizar = null;
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -54,39 +55,40 @@ public class AgregarUsuario {
             this.usuarioSistema = usuarioSistema;
             tipoUSuario = this.usuarioSistema.getUsuNivel().toString();
             accion = "update";
-            
+
         } else {
             this.usuarioSistema = new Usuario();
             accion = "create";
-            
+
         }
+        parametrizar = servicioParametrizar.FindALlParametrizar();
     }
-    
+
     public AgregarUsuario() {
-        
+
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
         readOnly = credential.getUsuarioSistema().getUsuNivel() == 1 ? Boolean.FALSE : Boolean.TRUE;
     }
-    
+
     public Usuario getUsuarioSistema() {
         return usuarioSistema;
     }
-    
+
     public void setUsuarioSistema(Usuario usuarioSistema) {
         this.usuarioSistema = usuarioSistema;
     }
-    
+
     public String getTipoUSuario() {
         return tipoUSuario;
     }
-    
+
     public void setTipoUSuario(String tipoUSuario) {
         this.tipoUSuario = tipoUSuario;
     }
-    
+
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
@@ -110,9 +112,6 @@ public class AgregarUsuario {
                 }
                 servicioUsuario.modificar(usuarioSistema);
             }
-            
-            
-            
 
             // verifica si existe sino lo crea
             Tipoambiente tipoAmbiente = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
@@ -146,11 +145,11 @@ public class AgregarUsuario {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort(parametrizar.getParPuerto());
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambiente.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambiente.setAmHost(parametrizar.getParSmtp());
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -193,11 +192,11 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmPort(parametrizar.getParPuerto());
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambienteProd.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambienteProd.setAmHost(parametrizar.getParSmtp());
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
@@ -210,26 +209,23 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmComprobanteImprime("factura.jasper");
 
                 servicioTipoAmbiente.crear(tipoambienteProd);
-                
-          
+
             }
-            
-            
 
 //            usuarioSistema = new Usuario();
             windowIdUsuario.detach();
-            
+
         } else {
             Messagebox.show("Verifique la informacion ingresada", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-    
+
     public Boolean getReadOnly() {
         return readOnly;
     }
-    
+
     public void setReadOnly(Boolean readOnly) {
         this.readOnly = readOnly;
     }
-    
+
 }

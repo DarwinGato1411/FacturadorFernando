@@ -6,7 +6,6 @@
   --tertiary-color: #d5ecfb;
   --background-color: #fff;
 }
-
 body {
   line-height: 1.5 !important;
   -webkit-font-smoothing: antialiased !important;
@@ -293,7 +292,7 @@ body {
   > .z-listbox
   > .z-listbox-body
   > table {
-  table-layout: unset !important;
+  table-layout: fixed !important;
 }
 
 .wrapper_total > span * {
@@ -431,7 +430,7 @@ body {
 .logo_defact {
   display: block;
   object-fit: cover;
-  width: 300px;
+ 
   position: relative;
   z-index: 100;
 }
@@ -453,7 +452,6 @@ body {
 }
 
 /*
-
     fact
 */
 
@@ -598,7 +596,7 @@ div.z-listheader-cnt {
 }
 
 .td-tabla {
-  background-color: var(--primary-color);
+  background-color:#65ab65 ;
 }
 
 .fa-chevron-icon {
@@ -661,9 +659,10 @@ div.z-listheader-cnt {
 
 @media screen and (min-width: 1400px) {
   .logo_defact {
-    width: 220px;
+    
   }
 }
+
 
 .wrapper_header {
   display: flex;

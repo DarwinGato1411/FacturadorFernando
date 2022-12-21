@@ -49,6 +49,7 @@ public class RegistroUsuarioExt {
 //    private Tipoambiente amb = new Tipoambiente();
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
 //    private Boolean readOnly = true;
+    private Parametrizar parametrizar = null;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
@@ -63,6 +64,7 @@ public class RegistroUsuarioExt {
             accion = "create";
 
         }
+        parametrizar = servicioParametrizar.FindALlParametrizar();
     }
 
     public RegistroUsuarioExt() {
@@ -166,12 +168,11 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort(parametrizar.getParPuerto());
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
-                tipoambiente.setLlevarContabilidad("NO");
+                tipoambiente.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambiente.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambiente.setAmHost(parametrizar.getParSmtp());
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
@@ -213,11 +214,11 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmPort(parametrizar.getParPuerto());
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambienteProd.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambienteProd.setAmHost(parametrizar.getParSmtp());
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
@@ -231,7 +232,6 @@ public class RegistroUsuarioExt {
 
                 servicioTipoAmbiente.crear(tipoambienteProd);
 
-     
             }
 
 //            usuarioSistema = new Usuario();
