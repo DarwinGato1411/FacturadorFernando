@@ -2,6 +2,9 @@
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?init class="com.ec.seguridad.Autentificador"?>
+<?link rel="stylesheet" type="text/css" href="../css/app/landing/signin.css?v1"?>
+<?script src=".,/js/inicio.js?v2"?>
+
 <zk class="border border-primary">
     
     <script>
@@ -203,19 +206,26 @@
                     </div>
 
                     <div class="container_row_input">
-                    
+                        
+                        
                         <div class="wrapper_input_mod">
+                            
                             <span>Clave Firma </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-key icon"></div>
-                                <textbox 
+                            
+                            
+                            <div class="wrapper_input">
+                        <span class="fas fa-lock icon"></span>
+                        <textbox 
                                     type="password"
                                     value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
                                     placeholder="Clave firma electronica"
                                     class="input_text"
                                     tooltiptext="Clave firma electronica" 
                                 />
-                            </div>
+                        <span class="fa-solid fa-eye icon_eye icon"></span>
+                        </div>
+                    
+                           
                         </div>
                         <div class="wrapper_input_mod" style="flex:auto;">
                             <span style="margin:0 0.5em;">Firma Electrónica </span>

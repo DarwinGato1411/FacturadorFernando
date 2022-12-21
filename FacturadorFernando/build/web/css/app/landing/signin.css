@@ -285,6 +285,8 @@ body {
     flex-direction: row;
 }
 
+
+
 .wrapper_header .text .title {
     display: flex;
     flex-direction: row;
@@ -534,4 +536,11 @@ body {
     .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
         font-size: 25px;
     }
+}
+
+  .icon_eye {
+  position: absolute;
+  left: unset;
+  right: 10px !important;
+  left: 90% !important;
 }
