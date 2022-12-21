@@ -24,6 +24,26 @@ const showMenu = () => {
   });
 };
 
+const showPassword = () => {
+  const password = document.querySelector(".input_password");
+  const icon = document.querySelector(".icon_eye");
+
+  const toggleShowPass = () => {
+    if (password.type === "password") {
+      password.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      password.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+  };
+
+  icon.addEventListener("click", toggleShowPass);
+};
+
+
 const showLogin = () => {
   const wrapper_modal = document.querySelector(
     ".container_wrapper_signin_root"
@@ -47,6 +67,7 @@ const showLogin = () => {
       stopLoading();
       showMenu();
       showLogin();
+       showPassword();
     }, 2000);
   });
 })();

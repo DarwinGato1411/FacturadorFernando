@@ -142,15 +142,15 @@
                             />
                         </div>
                         <div class="wrapper_input">
-                             <!--<span class="fas fa-lock icon"></span>-->
-                            <textbox 
-                                type="password" 
-                                placeholder="Contraseña" 
-                                id="password"
-                                class="input input_password"
-                            />
-                            <span class="fa-solid fa-eye icon_eye icon"></span>
-                        </div>
+                        <span class="fas fa-lock icon"></span>
+                        <textbox 
+                            type="password" 
+                            placeholder="Contraseña" 
+                             id="password"
+                            class="input input_password"
+                        />
+                        <span class="fa-solid fa-eye icon_eye icon"></span>
+                    </div>
                     </div>
                 </div>
                 <div class="forgot_password_root" id="linkOlvideContrasena">
