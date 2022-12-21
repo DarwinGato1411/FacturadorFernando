@@ -3,6 +3,17 @@
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?init class="com.ec.seguridad.Autentificador"?>
 <zk class="border border-primary">
+    
+    <script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("password");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
 
     <div  apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Configuracion')" >
@@ -194,15 +205,15 @@
                     <div class="container_row_input">
                     
                         <div class="wrapper_input_mod">
-                            <span>Clave SRI: </span>
+                            <span>Clave Firma </span>
                             <div class="wrapper_input_text">
                                 <div class="fa-solid fa-key icon"></div>
                                 <textbox 
                                     type="password"
                                     value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
-                                    placeholder="Clave SRI"
+                                    placeholder="Clave firma electronica"
                                     class="input_text"
-                                    tooltiptext="Clave SRI" 
+                                    tooltiptext="Clave firma electronica" 
                                 />
                             </div>
                         </div>
