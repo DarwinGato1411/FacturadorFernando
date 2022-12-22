@@ -80,36 +80,43 @@ public class ListaCompras {
     Connection con = null;
 
     public ListaCompras() {
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
-         findByBetweenFecha();
+        findByBetweenFecha();
     }
 
     private void buscarLikeNombre() {
-        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar,amb);
+        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar, amb);
     }
 
     private void findByBetweenFecha() {
-        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin,amb);
+        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin, amb);
     }
 
     private void findByNumFac() {
-        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac,amb);
+        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac, amb);
     }
 
     @Command
     @NotifyChange({"listaCabeceraCompras", "buscar"})
     public void buscarForProveedor() {
         buscarLikeNombre();
+    }
+
+    @Command
+    @NotifyChange({"listaCabeceraCompras", "buscar"})
+    public void eliminarCompra(@BindingParam("valor") CabeceraCompra valor) {
+        if (Messagebox.show("Esta seguro de eliminar la factura recuerde que se eliminaran las retenciones generadas a esta factura?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+            servicioCompra.eliminar(valor);
+            findByBetweenFecha();
+        }
     }
 
     @Command

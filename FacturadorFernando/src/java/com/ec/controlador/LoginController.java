@@ -4,14 +4,19 @@
  */
 package com.ec.controlador;
 
+import com.ec.controlador.superadmin.entidad.ConsumoClientes;
+import com.ec.controlador.superadmin.servicio.ServicioConsumoCliente;
 import com.ec.entidad.NumeroDocumentosEmitidos;
+import com.ec.entidad.Parametrizar;
 import com.ec.seguridad.AutentificadorLogeo;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.GrupoUsuarioEnum;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioParametrizar;
 import com.ec.vista.servicios.ServicioNumeroDocumentosEmitidos;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -39,6 +44,10 @@ public class LoginController extends SelectorComposer<Component> {
     Label message;
 
     Integer numeroDocumentos = 0;
+    private ConsumoClientes consumoDocumentos;
+    ServicioConsumoCliente servicioConsumoCliente = new ServicioConsumoCliente();
+
+    private List<ConsumoClientes> listaClienteses = new ArrayList<ConsumoClientes>();
 
     public void LoginController() {
     }
@@ -47,6 +56,25 @@ public class LoginController extends SelectorComposer<Component> {
     public void doLogin() {
         Date actual = new Date();
         Date caduca = new Date();
+//        listaClienteses = servicioConsumoCliente.findAll();
+//        for (ConsumoClientes item : listaClienteses) {
+//            if (item.getDetalleCobroPlanContratado().contains("ILIMIT")) {
+//
+//            } else {
+//                consumoDocumentos = item;
+//            }
+//        }
+//        Parametrizar paramCaduca = servicioParametrizar.FindALlParametrizar();
+//        if (paramCaduca != null) {
+//            if (paramCaduca.getParContratado() != null) {
+//                if (paramCaduca.getParContratado().doubleValue() <= consumoDocumentos.getDocumentos().doubleValue()) {
+//                    Clients.showNotification("El numero de documentos emitido por la plataforma excede el contratado,"
+//                                + "contactese con el adminstrador ",
+//                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+//                    
+//                }
+//            }
+//        }
 
         AutentificadorLogeo servicioAuth = new AutentificadorLogeo();
         if (servicioAuth.login(account.getValue(), password.getValue())) {

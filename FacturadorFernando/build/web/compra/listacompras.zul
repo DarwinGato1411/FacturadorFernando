@@ -66,16 +66,16 @@
 
                                             <div class="wrapper_input" >
                                                 <span style="width:unset">Inicio:</span>
-                                                    <datebox   
-                                                        value="@bind(vm.inicio)" 
-                                                        readonly="true"
-                                                        onCreate="self.value = new Date()"                                                    
-                                                        buttonVisible="true" 
-                                                        lenient="true"  
-                                                        format="dd/MM/yyyy" 
-                                                        constraint="no empty: Ingrese de inicio de la busqueda"
-                                                        class="input_date"
-                                                    />
+                                                <datebox   
+                                                    value="@bind(vm.inicio)" 
+                                                    readonly="true"
+                                                    onCreate="self.value = new Date()"                                                    
+                                                    buttonVisible="true" 
+                                                    lenient="true"  
+                                                    format="dd/MM/yyyy" 
+                                                    constraint="no empty: Ingrese de inicio de la busqueda"
+                                                    class="input_date"
+                                                />
                                                 <div class="fa-solid fa-calendar icon" />
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@
                                                 Buscar por fecha
                                             </button>
 
-                                             <button 
+                                            <button 
                                                 class="fa-solid fa-file-excel btn_fact btn_access btn_one_element"
                                                 style="height:unset;width:fit-content !important;"
                                                 onClick="@command('exportListboxToExcel')"
@@ -148,19 +148,20 @@
                             <listheader width="3%"  label="" align="center" />        
                             <listheader width="3%"  label="" align="center" />        
                             <listheader width="3%"  label="" align="center" />        
+                            <listheader width="3%"  label="" align="center" />        
                         </listhead>  
                         
                     
                         <template name="model">                                                            
                             <listitem>
                                 <listcell zclass = "mycss-listcell">
-                                  <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
-                                           class="form-control form-control-sm" 
-                                           value="@bind(each.cabNumFactura)" />
+                                    <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
+                                             class="form-control form-control-sm" 
+                                             value="@bind(each.cabNumFactura)" />
                                 </listcell>
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
                                     <datebox style="font-size:12px"
-                                              class=" form-control-sm" 
+                                             class=" form-control-sm" 
                                              value="@bind(each.cabFechaEmision)" 
                                              buttonVisible="false" 
                                              lenient="true" 
@@ -189,24 +190,24 @@
                                 </listcell>
                                 <listcell zclass = "mycss-listcell">
                                     <textbox readonly="true"  style="font-size:12px"
-                                           class="form-control form-control-sm" 
-                                           value="@bind(each.cabEstado)" />
+                                             class="form-control form-control-sm" 
+                                             value="@bind(each.cabEstado)" />
                                 </listcell>
                                 <listcell zclass = "mycss-listcell">
                                     <textbox readonly="true"  style="font-size:12px ;background:#EBF5FB"
-                                           class="form-control form-control-sm" 
-                                           value="@bind(each.cabProveedor)" />
+                                             class="form-control form-control-sm" 
+                                             value="@bind(each.cabProveedor)" />
                                 </listcell>
                                 <listcell zclass = "mycss-listcell">
                                     <textbox readonly="true"  style="font-size:12px ;background:#EBF5FB"
-                                           class="form-control form-control-sm" 
-                                           value="@bind(each.idUsuario.usuNombre)"  />
+                                             class="form-control form-control-sm" 
+                                             value="@bind(each.idUsuario.usuNombre)"  />
                                     
                                 </listcell>
-                                 <listcell  zclass = "mycss-listcell" >    
+                                <listcell  zclass = "mycss-listcell" >    
                                      
                                     <image src="/iconos/factelect.jpg"  
-                                       height=" 30px"   
+                                           height=" 30px"   
                                            class="btn btn btn-secondary btn-sm grow"                                         
                                            onClick="@command('reporteFacturaCompra',valor=each)"
                                            tooltiptext="Imprimir factura"/>
@@ -221,7 +222,7 @@
                                     
                                     <image if="${each.cabRetencionAutori=='S'}" 
                                            src="/iconos/listo_uno.png"   
-                                            class=" grow"                                          
+                                           class=" grow"                                          
                                            tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
                                 </listcell>
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
@@ -232,8 +233,21 @@
                                            tooltiptext="Modificar factura"/>
                                     <image if="${each.cabRetencionAutori=='S'}" 
                                            src="/iconos/listo_uno.png"   
-                                                 class=" grow"                                       
+                                           class=" grow"                                       
                                            tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
+                                </listcell>
+                                <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    
+                                    <image if="${each.cabRetencionAutori=='S'}" 
+                                           src="/iconos/listo_uno.png"   
+                                           class=" grow"                                       
+                                           tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
+                                    <image if="${each.cabRetencionAutori!='S'}"
+                                           src="/iconos/delete.png"
+                                           class=" grow"
+                                           onClick="@command('eliminarCompra',valor=each)" 
+                                           tooltiptext="Eliminar factura"/>
+                                    
                                 </listcell>
                                 
                                 

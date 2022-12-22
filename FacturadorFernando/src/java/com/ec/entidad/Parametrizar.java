@@ -424,7 +424,7 @@ public class Parametrizar implements Serializable {
     }
 
     public BigDecimal getParContratado() {
-        return parContratado;
+        return parContratado==null?BigDecimal.ZERO:parContratado;
     }
 
     public void setParContratado(BigDecimal parContratado) {
