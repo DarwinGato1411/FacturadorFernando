@@ -105,6 +105,14 @@ public class ListaCompras {
     private void findByNumFac() {
         listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac);
     }
+    @Command
+    @NotifyChange({"listaCabeceraCompras", "buscar"})
+    public void eliminarCompra(@BindingParam("valor") CabeceraCompra valor) {
+        if (Messagebox.show("Esta seguro de eliminar la factura recuerde que se eliminaran las retenciones generadas a esta factura?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+            servicioCompra.eliminar(valor);
+            findByBetweenFecha();
+        }
+    }
 
     @Command
     @NotifyChange({"listaCabeceraCompras", "buscar"})

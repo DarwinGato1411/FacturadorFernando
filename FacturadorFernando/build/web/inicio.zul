@@ -8,15 +8,15 @@
 <zk >
 
     <script>
-  function mostrarContrasena(){
-      var tipo = document.getElementById("password");
-      if(tipo.type == "password"){
-          tipo.type = "text";
-      }else{
-          tipo.type = "password";
-      }
-  }
-</script>
+        function mostrarContrasena(){
+        var tipo = document.getElementById("password");
+        if(tipo.type == "password"){
+        tipo.type = "text";
+        }else{
+        tipo.type = "password";
+        }
+        }
+    </script>
 
     <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
 
@@ -32,11 +32,11 @@
             </div>
 
             <div class="wrapper_header">
-                 <image src="./imagenes/factufast/logo.jpg" class="logo" />
-                 <div class="text">
+                <image src="./imagenes/factufast/logo.jpg" class="logo" />
+                <div class="text">
                     <span class="title">FactuFast</span>
-                        <span class="subtitle">SIEMPRE EVOLUCIONANDO CONTIGO</span>
-                 </div>
+                    <span class="subtitle">SIEMPRE EVOLUCIONANDO CONTIGO</span>
+                </div>
             </div>
 
             <div class="main">
@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-             <div class="footer">
+            <div class="footer">
              
                 <div class="wrapper_item_foot">
                     <span class="fa-brands fa-whatsapp icon"></span>
@@ -116,15 +116,15 @@
 
         </div>
 
-         <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
+        <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
             <div class="wapper_registro wrapper_forgot wrapper_signin">
-                 <div class="wrapper_header">
+                <div class="wrapper_header">
                     <image src="./imagenes/factufast/logo.jpg" class="logo" />
                     <div class="text">
                         <span class="title">FactuFast</span>
                         <span class="subtitle">SIEMPRE EVOLUCIONANDO CONTIGO</span>
                     </div>
-                  </div>
+                </div>
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
@@ -141,16 +141,16 @@
                                 onCreate="self.focus()"
                             />
                         </div>
-<div class="wrapper_input">
-                        <span class="fas fa-lock icon"></span>
-                        <textbox 
-                            type="password" 
-                            placeholder="Contraseña" 
-                             id="password"
-                            class="input input_password"
-                        />
-                        <span class="fa-solid fa-eye icon_eye icon"></span>
-                    </div>
+                        <div class="wrapper_input">
+                            <span class="fas fa-lock icon"></span>
+                            <textbox 
+                                type="password" 
+                                placeholder="Contraseña" 
+                                id="password"
+                                class="input input_password"
+                            />
+                            <span class="fa-solid fa-eye icon_eye icon"></span>
+                        </div>
                         
                     </div>
                 </div>
