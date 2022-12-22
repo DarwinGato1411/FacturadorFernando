@@ -27,7 +27,7 @@ const showMenu = () => {
 const showPassword = () => {
   const password = document.querySelector(".input_password");
   const icon = document.querySelector(".icon_eye");
-
+  console.log("asdasd");
   const toggleShowPass = () => {
     if (password.type === "password") {
       password.type = "text";

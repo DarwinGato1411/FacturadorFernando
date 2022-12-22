@@ -700,3 +700,8 @@ div.z-listheader-cnt {
     font-family: "Raleway", sans-serif;
     color:var(--primary-color);
 }
+
+.input_contrasenia{
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+}

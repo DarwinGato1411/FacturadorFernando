@@ -2,21 +2,44 @@
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?init class="com.ec.seguridad.Autentificador"?>
-<?link rel="stylesheet" type="text/css" href="../css/app/landing/signin.css?v1"?>
-<?script src=".,/js/inicio.js?v2"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/landing/signin.css?v1"?>
+<?script src="../js/inicio.js?v2"?>
 
 <zk class="border border-primary">
     
-    <script>
-  function mostrarContrasena(){
-      var tipo = document.getElementById("password");
-      if(tipo.type == "password"){
-          tipo.type = "text";
-      }else{
-          tipo.type = "password";
-      }
-  }
-</script>
+    <script type="text/javascript">
+        
+
+        const showPassword = () => {
+        const password = document.querySelector(".input_password");
+        const icon = document.querySelector(".icon_eye");
+        console.log("asdasd");
+        const toggleShowPass = () => {
+        if (password.type === "password") {
+        password.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+        } else {
+        password.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+        }
+        };
+
+        icon.addEventListener("click", toggleShowPass);
+        };
+
+       
+
+        (() => {
+        zk.afterMount(function () {
+        setTimeout(() => {
+                   
+        showPassword();
+        }, 500);
+        });
+        })();
+    </script>
 
     <div  apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Configuracion')" >
@@ -208,22 +231,22 @@
                     <div class="container_row_input">
                         
                         
-                        <div class="wrapper_input_mod">
+                        <div class="wrapper_input_mod ">
                             
                             <span>Clave Firma </span>
                             
-                            
-                            <div class="wrapper_input">
-                        <span class="fas fa-lock icon"></span>
-                        <textbox 
+                            <div class="wrapper_input_text">
+                          
+                                <span class="fa-solid fa-eye icon_eye icon"></span>
+                                <textbox 
                                     type="password"
                                     value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
                                     placeholder="Clave firma electronica"
-                                    class="input_text"
+                                    class="input_text input input_password"
                                     tooltiptext="Clave firma electronica" 
                                 />
-                        <span class="fa-solid fa-eye icon_eye icon"></span>
-                        </div>
+                               
+                            </div>
                     
                            
                         </div>
@@ -309,7 +332,7 @@
                         </div>
                     </div>
                     
-                     <div class="container_row_input">
+                    <div class="container_row_input">
                         <div class="wrapper_input_mod">
                         
                             <span style="margin:0 0.5em;">Graba ICE: </span>
@@ -439,7 +462,7 @@
                                 </radiogroup> 
                             </div>
                         </div>
-<!--                        <div class="wrapper_input_mod">
+                        <!--                        <div class="wrapper_input_mod">
                             <span> </span>
                             <div class="wrapper_input_text">
                                 <div ></div>
