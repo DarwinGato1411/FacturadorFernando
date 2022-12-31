@@ -73,7 +73,7 @@ public class MailerClass {
             amb = ambiente;
 
 //            String asunto = asuntoInf;
-//              String host = "mail.deckxel.com";
+//            String host = "mail.deckxel.com";
 //            String port = "26";
 //            String protocol = "smtp";
 //            String usuarioSmpt = "defact@deckxel.com";

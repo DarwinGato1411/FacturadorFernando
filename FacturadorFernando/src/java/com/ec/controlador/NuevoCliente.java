@@ -191,7 +191,6 @@ public class NuevoCliente {
                     cliente.setIdTipoIdentificacion(tipoadentificacion);
                     cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
                     servicioCliente.crear(cliente);
-
                     windowCliente.detach();
                 } else {
 
