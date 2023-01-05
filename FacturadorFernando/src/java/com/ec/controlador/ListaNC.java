@@ -52,6 +52,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zul.Messagebox;
 
 /**
  *
@@ -94,7 +95,7 @@ public class ListaNC {
     }
 
     private void consultarFactura() {
-        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin);
+        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
 
     public List<NotaCreditoDebito> getLstCreditoDebitos() {
@@ -211,6 +212,16 @@ public class ListaNC {
 
     }
 
+    @Command
+    @NotifyChange({"lstCreditoDebitos", "buscarCliente"})
+    public void eliminarNC(@BindingParam("valor") NotaCreditoDebito valor) {
+        if (Messagebox.show("Esta seguro de eliminar la noto de credito?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+            servicioNotaCredito.eliminar(valor);
+            consultarFacturaFecha();
+        }
+
+    }
+
     private void consultarFacturasForCedula() {
         lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula);
 
@@ -224,7 +235,7 @@ public class ListaNC {
     }
 
     private void consultarFacturaFecha() {
-        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin);
+        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
     //GRAFICA POR UBICACION
     JFreeChart jfreechartMes;

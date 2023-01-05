@@ -63,6 +63,7 @@
                             <div class="wrapper_data ">
                             
                                 <button 
+                                     onClick="@command('buscarFechas')"
                                     class="fa-solid fa-magnifying-glass btn_fact btn_primary btn_one_element"
                                     style="height:unset;"
                                 >
@@ -105,6 +106,7 @@
                                 <listheader width="40%"  label="Clave Autorizacion"  />                                   
                                 <listheader width="3%"  label="" align="center" />        
                                 <listheader width="3%"  label="" align="center" />        
+                                <listheader width="3%"  label="" align="center" />               
                                 <listheader width="3%"  label="" align="center" />               
                             </listhead>  
                             
@@ -197,7 +199,16 @@
                                         </listcell>
                                     </zk>
                                                                 
-                                    
+                                    <listcell zclass = "mycss-listcell">   
+                                            <image if="${each.estadosri!='AUTORIZADO'}" 
+                                                src="/iconos/delete.png" 
+                                                    class="grow"
+                                                    onClick="@command('eliminarNC',valor=each)" 
+                                                    tooltiptext="elimnarnota de credito"/>
+                                             <image if="${each.estadosri=='AUTORIZADO'}" src="/iconos/listo_uno.png"   
+                                                class="grow "       
+                                                tooltiptext="Ya se encuentra autorizado"/>
+                                        </listcell>
                                 </listitem>
                             </template>
                         </listbox>

@@ -8,6 +8,7 @@ import com.ec.dao.DetalleFacturaDAO;
 import com.ec.entidad.Cliente;
 import com.ec.entidad.DetalleNotaDebitoCredito;
 import com.ec.entidad.NotaCreditoDebito;
+import com.ec.entidad.Tipoambiente;
 import com.ec.untilitario.Totales;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,11 +58,11 @@ public class ServicioNotaCredito {
             DetalleNotaDebitoCredito detalleNotaCreditoDebito = null;
             for (DetalleFacturaDAO item : detalleNotaCreditoDebitoDAOs) {
                 detalleNotaCreditoDebito = new DetalleNotaDebitoCredito(item.getCantidad(),
-                        item.getDescripcion(),
-                        item.getSubTotal(),
-                        item.getTotal(),
-                        item.getProducto(),
-                        notaCreditoDebito, item.getTipoVenta());
+                            item.getDescripcion(),
+                            item.getSubTotal(),
+                            item.getTotal(),
+                            item.getProducto(),
+                            notaCreditoDebito, item.getTipoVenta());
                 detalleNotaCreditoDebito.setDetIva(item.getDetIva());
                 detalleNotaCreditoDebito.setDetTotalconiva(item.getDetTotalconiva());
 
@@ -145,6 +146,34 @@ public class ServicioNotaCredito {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createNamedQuery("NotaCreditoDebito.findUltimaNC", NotaCreditoDebito.class);
+            query.setMaxResults(2);
+//           query.setParameter("codigoUsuario", notaCreditoDebito);
+            listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
+            if (listaNotaCreditoDebitos.size() > 0) {
+                notaCreditoDebitos = listaNotaCreditoDebitos.get(0);
+            } else {
+                notaCreditoDebitos = null;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta notaCreditoDebito " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return notaCreditoDebitos;
+    }
+
+    public NotaCreditoDebito FindUltimaNotaCreditoDebito(Tipoambiente codTipoambiente) {
+
+        List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
+        NotaCreditoDebito notaCreditoDebitos = new NotaCreditoDebito();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT n FROM NotaCreditoDebito n WHERE n.codTipoambiente=:codTipoambiente AND n.facNumero IS NOT NULL ORDER BY  n.facNumero DESC");
+            query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             query.setMaxResults(2);
 //           query.setParameter("codigoUsuario", notaCreditoDebito);
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
@@ -284,15 +313,15 @@ public class ServicioNotaCredito {
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta notaCreditoDebito findLikeCedula"+e.getMessage());
+            System.out.println("Error en lsa consulta notaCreditoDebito findLikeCedula" + e.getMessage());
         } finally {
             em.close();
         }
 
         return listaNotaCreditoDebitos;
     }
-    
-     public List<NotaCreditoDebito> findLikeCliente(String cliente) {
+
+    public List<NotaCreditoDebito> findLikeCliente(String cliente) {
 
         List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
         try {
@@ -305,7 +334,7 @@ public class ServicioNotaCredito {
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta notaCreditoDebito findLikeCedula"+e.getMessage());
+            System.out.println("Error en lsa consulta notaCreditoDebito findLikeCedula" + e.getMessage());
         } finally {
             em.close();
         }
@@ -474,16 +503,17 @@ public class ServicioNotaCredito {
         return listaNotaCreditoDebitos;
     }
 
-    public List<NotaCreditoDebito> findBetweenFecha(Date inicio, Date fin) {
+    public List<NotaCreditoDebito> findBetweenFecha(Date inicio, Date fin, Tipoambiente codTipoambiente) {
 
         List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM NotaCreditoDebito a WHERE a.facFecha BETWEEN :inicio AND :fin ORDER BY a.facFecha DESC");
+            Query query = em.createQuery("SELECT a FROM NotaCreditoDebito a WHERE a.codTipoambiente=:codTipoambiente and  a.facFecha BETWEEN :inicio AND :fin ORDER BY a.facFecha DESC");
             query.setParameter("inicio", inicio);
             query.setParameter("fin", fin);
+            query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             query.setMaxResults(400);
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
             em.getTransaction().commit();

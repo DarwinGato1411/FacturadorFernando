@@ -54,6 +54,8 @@ public class AgregarUsuario {
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Boolean readOnly = true;
 
+    Parametrizar parametrizar = new Parametrizar();
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -67,6 +69,7 @@ public class AgregarUsuario {
             accion = "create";
 
         }
+        parametrizar = servicioParametrizar.FindALlParametrizar();
     }
 
     public AgregarUsuario() {
@@ -175,11 +178,17 @@ public class AgregarUsuario {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+//                tipoambiente.setAmPort("26");
+//                tipoambiente.setAmProtocol("smtp");
+//                tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
+//                tipoambiente.setAmPassword("kH0FVcqHaZ9X");
+//                tipoambiente.setAmHost("mail.velch.com.ec");
+                tipoambiente.setAmPort(parametrizar.getParPuerto());
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
-                tipoambiente.setAmPassword("kH0FVcqHaZ9X");
-                tipoambiente.setAmHost("mail.velch.com.ec");
+                tipoambiente.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambiente.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambiente.setAmHost(parametrizar.getParSmtp());
+
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -222,12 +231,11 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                tipoambienteProd.setAmPort(parametrizar.getParPuerto());
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("docs.electronicos@velch.com.ec");
-                tipoambienteProd.setAmPassword("kH0FVcqHaZ9X");
-                tipoambienteProd.setAmHost("mail.velch.com.ec");
-
+                tipoambienteProd.setAmUsuarioSmpt(parametrizar.getParCorreo());
+                tipoambienteProd.setAmPassword(parametrizar.getParPasswordCorreo());
+                tipoambienteProd.setAmHost(parametrizar.getParSmtp());
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);

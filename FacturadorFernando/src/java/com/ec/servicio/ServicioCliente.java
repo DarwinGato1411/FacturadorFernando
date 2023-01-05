@@ -126,14 +126,14 @@ public class ServicioCliente {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT c FROM Cliente c WHERE (c.cliNombre like :cliNombre AND c.codTipoambiente=:codTipoambiente) OR c.cliNombres LIKE '%CONSUMIDOR%'");
+            Query query = em.createQuery("SELECT c FROM Cliente c WHERE (c.cliNombre like :cliNombre AND c.codTipoambiente=:codTipoambiente) OR c.cliCedula='9999999999999'");
             query.setParameter("cliNombre", "%" + buscar + "%");
             query.setParameter("codTipoambiente", codTipoambiente);
             query.setMaxResults(200);
             listaClientes = (List<Cliente>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta cliente");
+            System.out.println("Error en lsa consulta cliente "+e.getMessage());
         } finally {
             em.close();
         }
@@ -148,7 +148,7 @@ public class ServicioCliente {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT c FROM Cliente c WHERE (c.cliNombres like :cliRazonSocial OR c.cliApellidos LIKE :cliApellidos AND c.codTipoambiente=:codTipoambiente) OR c.cliNombres LIKE '%CONSUMIDOR%'");
+            Query query = em.createQuery("SELECT c FROM Cliente c WHERE (c.cliNombres like :cliRazonSocial OR c.cliApellidos LIKE :cliApellidos AND c.codTipoambiente=:codTipoambiente) OR c.cliCedula='9999999999999' ");
             query.setParameter("cliRazonSocial", "%" + buscar + "%");
             query.setParameter("cliApellidos", "%" + buscar + "%");
             query.setParameter("codTipoambiente", codTipoambiente);
@@ -171,7 +171,7 @@ public class ServicioCliente {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            String SELECT = "SELECT c FROM Cliente c WHERE c.cliCedula like :cliCedula ";
+            String SELECT = "SELECT c FROM Cliente c WHERE c.cliCedula like :cliCedula OR c.cliCedula='9999999999999'";
             String WHERE = " ";
             if (!buscar.contains("9999999999999")) {
                 WHERE = "AND c.codTipoambiente=:codTipoambiente";
@@ -179,7 +179,7 @@ public class ServicioCliente {
             Query query = em.createQuery(SELECT + WHERE);
             query.setParameter("cliCedula", "%" + buscar + "%");
             if (!buscar.contains("9999999999999")) {
-                query.setParameter("codTipoambiente", codTipoambiente);
+                query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             }
             query.setMaxResults(200);
             listaClientes = (List<Cliente>) query.getResultList();
