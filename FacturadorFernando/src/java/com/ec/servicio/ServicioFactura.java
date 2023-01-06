@@ -1173,4 +1173,26 @@ public class ServicioFactura {
 
         return listaFacturas;
     }
+    
+    public List<Factura> findAllTipoAmbiente(Tipoambiente codTipoambiente) {
+
+        List<Factura> listaFacturas = new ArrayList<Factura>();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT f FROM Factura f WHERE  f.facNumero > 0 AND f.facTipo='FACT' AND f.cod_tipoambiente=:codTipoambiente ORDER BY f.idFactura DESC");
+            query.setMaxResults(400);
+//            query.setParameter("cliCedula", "%" + valor + "%");
+            query.setParameter("codTipoambiente", codTipoambiente);
+            listaFacturas = (List<Factura>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta factura");
+        } finally {
+            em.close();
+        }
+
+        return listaFacturas;
+    }
 }

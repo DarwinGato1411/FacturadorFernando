@@ -153,7 +153,7 @@
                         </div>
                         <div class="factura_body_item">
                             <div class="container_headers" >
-                                <div class="col-12 col-sm-12 col-md-7 col-lg-7" >
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6" >
                                     Empresa seleccionada: 
                                     <label 
                                         value="@bind(vm.ambSelected.amNombreComercial)"
@@ -161,12 +161,20 @@
                                         class="input" />
                                 </div>
                                 <div align="end"
-                                     class="fa-solid fa-plus-circle fa-2x icon col-12 col-sm-12 col-md-4 col-lg-4"
+                                     class="fa-solid fa-plus-circle fa-2x icon col-12 col-sm-12 col-md-2 col-lg-2"
                                      onClick="@command('registrarDeclaracion')"
                                      tooltiptext="Registrar declaracion"
                                 >
-                                    <span>Registrar declaracion </span>
+                                    <!--<span>Registrar declaracion </span>-->
                                 </div>
+                                <div align="end"
+                                     class="fa-solid fa-reply-all fa-2x icon col-12 col-sm-12 col-md-2 col-lg-2"
+                                     onClick="@command('verificarFactura')"
+                                     tooltiptext="Verificar consumidor final"
+                                >
+                                    <!--<span>Registrar declaracion </span>-->
+                                </div>
+                                
                             </div>
                             <listbox model="@load(vm.listaDatos)"
                                      nonselectableTags=""  mold="paging" pageSize="20"  >
