@@ -164,6 +164,34 @@ public class ServicioNotaCredito {
         return notaCreditoDebitos;
     }
 
+    public NotaCreditoDebito FindUltimaNotaCreditoDebito(Tipoambiente amb) {
+
+        List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
+        NotaCreditoDebito notaCreditoDebitos = new NotaCreditoDebito();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT n FROM NotaCreditoDebito n WHERE n.codTipoambiente=:tipoambiente and n.facNumero IS NOT NULL ORDER BY  n.facNumero DESC");
+            query.setParameter("tipoambiente", amb.getCodTipoambiente());
+            query.setMaxResults(2);
+//           query.setParameter("codigoUsuario", notaCreditoDebito);
+            listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
+            if (listaNotaCreditoDebitos.size() > 0) {
+                notaCreditoDebitos = listaNotaCreditoDebitos.get(0);
+            } else {
+                notaCreditoDebitos = null;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta notaCreditoDebito " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return notaCreditoDebitos;
+    }
+
     public NotaCreditoDebito FindUltimaProforma() {
 
         List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
