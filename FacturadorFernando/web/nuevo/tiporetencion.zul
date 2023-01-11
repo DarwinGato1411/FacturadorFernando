@@ -16,14 +16,14 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                 <label value="(*) " style="color:red;font-weight:bold"/>Descripcion:
                 
-                <textbox  maxlength="250" 
+                <textbox  maxlength="1000" 
                           multiline="true" rows="2"                        
                           value="@bind(vm.entidad.tireNombre)" 
                           class="form-control" />
             </div>
            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
                 <label value="(*) " style="color:red;font-weight:bold"/>Porcentaje:                
-                <decimalbox  maxlength="100"                          
+                <decimalbox  maxlength="1000"                          
                              value="@bind(vm.entidad.tirePorcentajeRetencion)" 
                              class="form-control" />
             </div>
