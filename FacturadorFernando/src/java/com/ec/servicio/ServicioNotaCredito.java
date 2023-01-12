@@ -8,6 +8,7 @@ import com.ec.dao.DetalleFacturaDAO;
 import com.ec.entidad.Cliente;
 import com.ec.entidad.DetalleNotaDebitoCredito;
 import com.ec.entidad.NotaCreditoDebito;
+import com.ec.entidad.Tipoambiente;
 import com.ec.untilitario.Totales;
 import java.util.ArrayList;
 import java.util.Date;
@@ -136,7 +137,7 @@ public class ServicioNotaCredito {
         return listaNotaCreditoDebitos;
     }
 
-    public NotaCreditoDebito FindUltimaNotaCreditoDebito() {
+    public NotaCreditoDebito FindUltimaNotaCreditoDebito(Tipoambiente amb) {
 
         List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
         NotaCreditoDebito notaCreditoDebitos = new NotaCreditoDebito();
@@ -144,9 +145,9 @@ public class ServicioNotaCredito {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createNamedQuery("NotaCreditoDebito.findUltimaNC", NotaCreditoDebito.class);
+            Query query = em.createQuery("SELECT n FROM NotaCreditoDebito n WHERE n.facNumero IS NOT NULL AND n.codTipoambiente=:codTipoambiente ORDER BY  n.facNumero DESC");
             query.setMaxResults(2);
-//           query.setParameter("codigoUsuario", notaCreditoDebito);
+           query.setParameter("codTipoambiente", amb.getCodTipoambiente());
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
             if (listaNotaCreditoDebitos.size() > 0) {
                 notaCreditoDebitos = listaNotaCreditoDebitos.get(0);
