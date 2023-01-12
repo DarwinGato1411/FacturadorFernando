@@ -56,12 +56,10 @@ public class DetalleFacturaDAO {
     private String numerotel = "";
     private String codigoCantonMatriculacion = "21702";
 
-    
-    
     private BigDecimal valorIce = BigDecimal.ZERO;
     private BigDecimal valorBaseIce = BigDecimal.ZERO;
-    
-    
+    private BigDecimal subTotalCalcu = BigDecimal.ZERO;
+
     public DetalleFacturaDAO() {
     }
 
@@ -368,6 +366,13 @@ public class DetalleFacturaDAO {
     public void setValorBaseIce(BigDecimal valorBaseIce) {
         this.valorBaseIce = valorBaseIce;
     }
-    
+
+    public BigDecimal getSubTotalCalcu() {
+        return subTotalCalcu;
+    }
+
+    public void setSubTotalCalcu(BigDecimal subTotalCalcu) {
+        this.subTotalCalcu = subTotalCalcu;
+    }
 
 }

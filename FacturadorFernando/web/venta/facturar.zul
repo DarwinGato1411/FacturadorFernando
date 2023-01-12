@@ -401,11 +401,12 @@
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="15%"   label="COD" align="left" />
+                                  <listheader width="15%"   label="COD" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
                                     <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
                                     <listheader width="15%"  label="PRE REAL" align="left" />
+                                    <listheader width="15%"  label="SUBTOTAL" align="left" />                                         
                                     <listheader width="15%"  label="PRECIO" align="left" />                                         
                                     <listheader width="15%"  label="TOTAL" align="left" />
                                                                                                                     
@@ -457,6 +458,13 @@
                                             <decimalbox readonly="true" format="###.###" 
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.totalInicial)"  width="99%" />
+                                        </listcell>
+                                          <listcell zclass = "mycss-listcell">
+                                            <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"                                            
+                                                        onOK="@command('calcularValoresDesCantidadCalcu',valor=each)"
+                                                        class="form-control form-control-sm"                                                                                                                            
+                                                        readonly="@bind(each.esProducto)"
+                                                        value="@bind(each.subTotalCalcu)"  width="99%" />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
