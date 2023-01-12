@@ -199,7 +199,7 @@ public class ListaNC {
     }
 
     private void consultarFacturas() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente, amb);
 
     }
 
@@ -223,7 +223,7 @@ public class ListaNC {
     }
 
     private void consultarFacturasForCedula() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula,amb);
 
     }
 
