@@ -237,6 +237,7 @@ public class Factura implements Serializable {
     @ManyToOne
     private Referencia idReferencia;
 
+    
     public Factura() {
     }
 
