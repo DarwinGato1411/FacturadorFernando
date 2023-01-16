@@ -59,6 +59,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
@@ -86,7 +87,6 @@ public class ListaRetenciones {
 
     public ListaRetenciones() {
         buscarPorFechas();
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -100,17 +100,17 @@ public class ListaRetenciones {
     }
 
     private void buscarPorFechas() {
-        listaRetencionCompras = servicioRetencionCompra.findByFecha(inicio, fin);
+        listaRetencionCompras = servicioRetencionCompra.findByFecha(inicio, fin, amb);
 
     }
 
     private void buscarFacturaCompra() {
-        listaRetencionCompras = servicioRetencionCompra.findByNumeroFactura(buscarNumFac);
+        listaRetencionCompras = servicioRetencionCompra.findByNumeroFactura(buscarNumFac, amb);
 
     }
 
     private void buscarPorSecuencialRetencion() {
-        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRet(buscarSecuencial);
+        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRet(buscarSecuencial, amb);
     }
 
     @Command
@@ -247,7 +247,7 @@ public class ListaRetenciones {
         /*GUARDAMOS LA CLAVE DE ACCESO ANTES DE ENVIAR A AUTORIZAR*/
         valor.setRcoAutorizacion(claveAccesoComprobante);
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
-        RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos,amb);
+        RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos, amb);
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
             // Autorizacion autorizacion = null;
 
@@ -259,7 +259,7 @@ public class ListaRetenciones {
                 }
                 try {
 
-                    RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante,amb);
+                    RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
                     for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                         FileOutputStream nuevo = null;
 
@@ -302,7 +302,7 @@ public class ListaRetenciones {
 
                             servicioRetencionCompra.modificar(valor);
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getRcoCodigo(), "RET",amb);
+                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getRcoCodigo(), "RET", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
                             valor.setRcoPathRet(archivoEnvioCliente.replace(".xml", ".pdf"));
@@ -326,7 +326,7 @@ public class ListaRetenciones {
                                             valor.getRcoAutorizacion(),
                                             valor.getRcoSecuencialText(),
                                             BigDecimal.ZERO,
-                                            valor.getIdCabecera().getIdProveedor().getProvNombre(),amb);
+                                            valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
 
                             }
                         }
@@ -443,7 +443,7 @@ public class ListaRetenciones {
 
         try {
 
-            RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante,amb);
+            RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
             for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                 FileOutputStream nuevo = null;
 
@@ -486,7 +486,7 @@ public class ListaRetenciones {
 
                     servicioRetencionCompra.modificar(valor);
                     System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                    ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getRcoCodigo(), "RET",amb);
+                    ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getRcoCodigo(), "RET", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                     /*GUARDA EL PATH PDF CREADO*/
                     valor.setRcoPathRet(archivoEnvioCliente.replace(".xml", ".pdf"));
@@ -509,7 +509,7 @@ public class ListaRetenciones {
                                     valor.getRcoAutorizacion(),
                                     valor.getRcoSecuencialText(),
                                     BigDecimal.ZERO,
-                                    valor.getIdCabecera().getIdProveedor().getProvNombre(),amb);
+                                    valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
                     }
                 }
 
@@ -727,6 +727,39 @@ public class ListaRetenciones {
 //            window.detach();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
+    @Command
+    public void cambiarEstado(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            final HashMap<String, RetencionCompra> map = new HashMap<String, RetencionCompra>();
+
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                        "/modificar/estadoret.zul", null, map);
+            window.doModal();
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
+    @Command
+    @NotifyChange({"listaRetencionCompras", "buscarSecuencial"})
+    public void eliminarRetencion(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("¿Esta seguro de eliminar la retencion?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+
+                servicioRetencionCompra.eliminar(valor);
+                buscarPorFechas();
+                Clients.showNotification("Eliminado correctamente...",
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+            }
+
+        } catch (Exception e) {
+//            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+            Clients.showNotification("Ocurrio un errot al eliminar " + e.getMessage(),
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         }
     }
 }

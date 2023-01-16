@@ -99,6 +99,8 @@
                                 <listheader width="5%"  label="" align="center" />        
                                 <listheader width="5%"  label="" align="center" />        
                                 <listheader width="5%"  label="" align="center" />               
+                                <listheader width="5%"  label="" align="center" />               
+                                <listheader width="5%"  label="" align="center" />               
                             </listhead>  
                             
                         
@@ -144,7 +146,13 @@
                                         width="100%"
                                                 value="@bind(each.facClaveAutorizacion)" />
                                     </listcell>
-                            
+                             <listcell   zclass = "mycss-listcell" >   
+                                        
+                                    <image src="/iconos/armareval.png"   
+                                           onClick="@command('cambiarEstado',valor=each)"                                    
+                                           class="btn-secondary btn-sm"                                               
+                                           tooltiptext="Cambiar estado de la retencion"/> 
+                                </listcell>
                                     <listcell zclass = "mycss-listcell">    
                                         
                                         <image src="/iconos/factelect.jpg"   
@@ -192,6 +200,21 @@
                                                 tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> -->
                                         </listcell>
                                     </zk>
+                                    
+                                    
+                                     <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    
+                                    
+                                    <image if="${each.estadosri!='AUTORIZADO'}"
+                                           src="/iconos/delete.png"   
+                                           class="grow"  
+                                           onClick="@command('eliminarGuia',valor=each)"                                              
+                                           tooltiptext="Eliminar guia"/> 
+                                    <image if="${each.estadosri=='AUTORIZADO'}" 
+                                           src="/iconos/listo_uno.png"   
+                                           class="grow"                                               
+                                           tooltiptext="No se puede eliminar por que se encuentra en estado autorizado"/> 
+                                </listcell>
                                                                 
                                     
                                 </listitem>
