@@ -192,6 +192,7 @@
                                                 tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> -->
                                         </listcell>
                                     </zk>
+                                    
                                                                 
                                     
                                 </listitem>

@@ -40,8 +40,6 @@ public class CambioEstadoRetencion {
     @Command
     public void guardar() {
 
-//            facturar.setEstadosri(estado);
-//            facturar.setMensajesri(descripcionAnula);
         servicioRetencionCompra.modificar(entidad);
 
         Clients.showNotification("Guardado correctamente",

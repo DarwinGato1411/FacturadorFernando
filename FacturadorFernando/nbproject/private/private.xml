@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NuevoCliente.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/MailerClassSistema.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/Parametrizar.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaFacturas.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/ArchivoUtils.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/css/app/ventas/facturar.css</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/MailerClass.java</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/nuevo/registrousuario.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/web/administrar/configuracion.zul</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Facturacion/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/AgregarUsuario.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/modificar/estadoret.zul</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/setup/glassfish-resources.xml</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaRetenciones.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/venta/listaguia.zul</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/compra/listaretencion.zul</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/CambioEstadoRetencion.java</file>
         </group>
     </open-files>
 </project-private>

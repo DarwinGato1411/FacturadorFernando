@@ -177,9 +177,9 @@
                                             src="/iconos/editar.png" 
                                             class=" grow"
                                             onClick="@command('crearRetencionCompra',valor=each)" 
-                                            tooltiptext="editar retencion"/>
+                                            tooltiptext="Editar retencion"/>
                                     
-                                    <image if="${each.drcEstadosri=='S'}" 
+                                    <image if="${each.drcEstadosri=='AUTORIZADO'}" 
                                            src="/iconos/listo_uno.png"   
                                            class=" grow"                                          
                                            tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
