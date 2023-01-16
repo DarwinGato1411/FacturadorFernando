@@ -37,8 +37,9 @@ public class GestionUsuarios {
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    
     private String nombreUsuario = " ";
-    private String amCodigo = "";
+    private String amCodigo = "2";
 
     public GestionUsuarios() {
 
@@ -47,16 +48,16 @@ public class GestionUsuarios {
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
 
-        cosultarUsuarios();
+       consultarUsuarios();
     }
 
 //    private void consultarUsuarios(){
 //        listaTipoAmbiente =servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(amRuc, amRuc)
 //    }
     @Command
-    @NotifyChange("listaUsuarios")
+    @NotifyChange("listaTipoAmbiente")
     public void consultarUsuarioPorCodigo() {
-        cosultarUsuarios();
+        consultarUsuarios();
     }
 
     private void consultarUsuarios() {
@@ -128,4 +129,14 @@ public class GestionUsuarios {
     public void setListaTipoAmbiente(List<Tipoambiente> listaTipoAmbiente) {
         this.listaTipoAmbiente = listaTipoAmbiente;
     }
+
+    public String getAmCodigo() {
+        return amCodigo;
+    }
+
+    public void setAmCodigo(String amCodigo) {
+        this.amCodigo = amCodigo;
+    }
+    
+    
 }

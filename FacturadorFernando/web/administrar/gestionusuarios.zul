@@ -32,8 +32,8 @@
                             <span>Tipo ambiente</span>
                             <radiogroup 
                                 class="radio_group"
-                                onCheck=""
-                                
+                                onCheck="@command('consultarUsuarioPorCodigo')" 
+                                selectedItem="@bind(vm.amCodigo)"
                             >
                             <radio label="PRODUCIÓN" value="2" />
                             <radio label="PRUEBAS" value="1" />
@@ -44,7 +44,7 @@
 
                     <div class="factura_body factura_content">
                         <div class="factura_item">
-                            <listbox width="100%" model="@load(vm.listaUsuarios)" 
+                            <listbox width="100%" model="@load(vm.listaTipoAmbiente)" 
                                      nonselectableTags="*"  mold="paging"
                                      pageSize="20">
         
@@ -73,32 +73,32 @@
                                 <template name="model">
                                     <listitem width="100%" > 
                                         <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuRuc)"  style="font-size:12px;background:#EBF5FB"
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuRuc)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuNombre)"  style="font-size:12px;background:#EBF5FB"
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuNombre)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuLogin)"  style="font-size:12px;background:#EBF5FB"
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuLogin)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
                                         </listcell>   
                                         <listcell  zclass = "mycss-listcell">      
-                                            <textbox readonly="true" value="@bind(each.usuPassword)" 
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuPassword)" 
                                                      class="form-control form-control-sm"
                                                      style="font-size:12px;background:#EBF5FB"
                                                      type="password" />
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">                          
-                                            <textbox readonly="true" value="@bind(each.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                         </listcell>                  
                                         <listcell  zclass = "mycss-listcell">                          
                                             <datebox 
                                                 width="100%"
                                                 compact="true" 
-                                                value="@bind(each.usuFechaPago)" 
+                                                value="@bind(each.idUsuario.usuFechaPago)" 
                                                 readonly="true" 
                                                 buttonVisible="true" 
                                                 lenient="true" 
@@ -108,28 +108,28 @@
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">                          
                                            <textbox readonly="true" value="ILIMITADO" 
-                                                     if="${each.usuIlimitado}" 
+                                                     if="${each.idUsuario.usuIlimitado}" 
                                                      style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                             <textbox readonly="true" value="POR DOCUMENTO" 
-                                                     if="${!each.usuIlimitado}" 
+                                                     if="${!each.idUsuario.usuIlimitado}" 
                                                      style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">                          
-                                            <textbox readonly="true" value="@bind(each.usuNumDocumentos)" 
-                                                     if="${!each.usuIlimitado}" 
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuNumDocumentos)" 
+                                                     if="${!each.idUsuario.usuIlimitado}" 
                                                      style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                             <textbox readonly="true" value="---" 
-                                                     if="${each.usuIlimitado}" 
+                                                     if="${each.idUsuario.usuIlimitado}" 
                                                      style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                         </listcell>                  
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"
                                                    class="grow"
-                                                   onClick="@command('modificarUsario',valor=each)" 
+                                                   onClick="@command('modificarUsario',valor=each.idUsuario)" 
                                                    tooltiptext="Editar usuario"/> 
                                             
                                         </listcell>     
