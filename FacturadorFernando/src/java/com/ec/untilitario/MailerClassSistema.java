@@ -64,10 +64,10 @@ public class MailerClassSistema {
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
 //            amb = servicioTipoAmbiente.FindALlTipoambiente();
-//            String username = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
-            String username = "docs.electronicos@velch.com.ec";
-            String password = "kH0FVcqHaZ9X";
+            String username = amb.getAmUsuarioSmpt().trim();
+            String password = amb.getAmPassword().trim();
+//            String username = "docs.electronicos@velch.com.ec";
+//            String password = "kH0FVcqHaZ9X";
             return new PasswordAuthentication(username, password);
 
         }
@@ -85,18 +85,18 @@ public class MailerClassSistema {
 
             amb = ambiente;
 
-            String asunto = asuntoInf;
-            String host = "mail.velch.com.ec";
-            String port = "26";
-            String protocol = "smtp";
-            String usuarioSmpt = "docs.electronicos@velch.com.ec";
-            String password = "kH0FVcqHaZ9X";
 //            String asunto = asuntoInf;
-//            String host = amb.getAmHost();
-//            String port = amb.getAmPort();
-//            String protocol = amb.getAmProtocol();
-//            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
+//            String host = "mail.velch.com.ec";
+//            String port = "26";
+//            String protocol = "smtp";
+//            String usuarioSmpt = "docs.electronicos@velch.com.ec";
+//            String password = "kH0FVcqHaZ9X";
+            String asunto = asuntoInf;
+            String host = amb.getAmHost();
+            String port = amb.getAmPort();
+            String protocol = amb.getAmProtocol();
+            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
+            String password = amb.getAmPassword().trim();
 
             // Propiedades de la conexión
             // Get system properties
