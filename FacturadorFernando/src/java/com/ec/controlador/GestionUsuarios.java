@@ -28,15 +28,17 @@ public class GestionUsuarios {
 
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    private List<Tipoambiente> listaTipoAmbiente = new ArrayList<Tipoambiente>();
 
-    
-   
     UserCredential credential = new UserCredential();
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
+
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    private String nombreUsuario = " ";
+    private String amCodigo = "";
 
     public GestionUsuarios() {
 
@@ -44,17 +46,26 @@ public class GestionUsuarios {
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-      
-        cosultarUsuarios("");
+
+        cosultarUsuarios();
     }
 
-  
-  
-   
+//    private void consultarUsuarios(){
+//        listaTipoAmbiente =servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(amRuc, amRuc)
+//    }
+    @Command
+    @NotifyChange("listaUsuarios")
+    public void consultarUsuarioPorCodigo() {
+        cosultarUsuarios();
+    }
+
+    private void consultarUsuarios() {
+        listaTipoAmbiente = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
+    }
 
     /*ADMINISTRAR USUARIO*/
-    private void cosultarUsuarios(String buscar) {
-        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar, credential.getUsuarioSistema());
+    private void cosultarUsuarios() {
+        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(nombreUsuario, credential.getUsuarioSistema());
     }
 
     public List<Usuario> getListaUsuarios() {
@@ -70,9 +81,9 @@ public class GestionUsuarios {
     @NotifyChange("listaUsuarios")
     public void agregarUsario() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/usuario.zul", null, null);
+                "/nuevo/usuario.zul", null, null);
         window.doModal();
-        cosultarUsuarios("");
+        cosultarUsuarios();
     }
 
     @Command
@@ -81,9 +92,9 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevoadmin/usuario.zul", null, map);
+                "/nuevoadmin/usuario.zul", null, map);
         window.doModal();
-        cosultarUsuarios("");
+        cosultarUsuarios();
     }
 
     public UserCredential getCredential() {
@@ -102,4 +113,19 @@ public class GestionUsuarios {
         this.esVisisible = esVisisible;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public List<Tipoambiente> getListaTipoAmbiente() {
+        return listaTipoAmbiente;
+    }
+
+    public void setListaTipoAmbiente(List<Tipoambiente> listaTipoAmbiente) {
+        this.listaTipoAmbiente = listaTipoAmbiente;
+    }
 }

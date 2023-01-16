@@ -109,7 +109,7 @@ public class ServicioUsuario {
         try {
             System.out.println("Entra a consultar usuarios ");
 
-            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre ";
+            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre";
             String WHERE = "";
             String ORDERBY = " ORDER BY u.usuNombre ";
             //Connection connection = em.unwrap(Connection.class);
