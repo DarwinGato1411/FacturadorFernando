@@ -7,6 +7,7 @@ package com.ec.servicio;
 import com.ec.entidad.Cliente;
 import com.ec.entidad.DetalleGuiaremision;
 import com.ec.entidad.Guiaremision;
+import com.ec.entidad.Tipoambiente;
 import com.ec.untilitario.Totales;
 import java.util.ArrayList;
 import java.util.Date;
@@ -253,16 +254,17 @@ public class ServicioGuia {
         return guias;
     }
 
-    public List<Guiaremision> FindLikeCliente(String cliente) {
+    public List<Guiaremision> FindLikeCliente(String cliente, Tipoambiente tipoambiente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a from Guiaremision a WHERE a.idCliente.cliRazonSocial like :cliente and a.tipoGuia='EMITIDA'");
+            Query query = em.createQuery("SELECT a from Guiaremision a WHERE a.idCliente.cliRazonSocial like :cliente AND a.codTipoambiente=:codTipoambiente and a.tipoGuia='EMITIDA'");
 //            query.setMaxResults(2);
             query.setParameter("cliente", "%" + cliente + "%");
+            query.setParameter("codTipoambiente", tipoambiente.getCodTipoambiente());
             listaGuiaremisions = (List<Guiaremision>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -273,6 +275,7 @@ public class ServicioGuia {
 
         return listaGuiaremisions;
     }
+
     public List<Guiaremision> FindLikeClienteRecibida(String cliente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
@@ -508,7 +511,7 @@ public class ServicioGuia {
         return listaGuiaremisions;
     }
 
-    public List<Guiaremision> findFacFecha(Date inicio, Date fin, String estado) {
+    public List<Guiaremision> findFacFecha(Date inicio, Date fin, String estado, Tipoambiente codTipoambiente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         try {
@@ -519,14 +522,16 @@ public class ServicioGuia {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             if (!estado.equals("TODO")) {
-                query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.facFecha BETWEEN :inicio and :fin and f.tipoGuia='EMITIDA'  ORDER BY f.facNumero DESC");
+                query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.facFecha BETWEEN :inicio and :fin and f.tipoGuia='EMITIDA' and f.codTipoambiente=:codTipoambiente ORDER BY f.facNumero DESC");
                 query.setParameter("inicio", inicio);
                 query.setParameter("fin", fin);
+                query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
 //                query.setParameter("facEstado", estado);
             } else {
-                query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.facFecha BETWEEN :inicio and :fin and f.tipoGuia='EMITIDA' ORDER BY f.facNumero  DESC");
+                query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.facFecha BETWEEN :inicio and :fin and f.tipoGuia='EMITIDA' and f.codTipoambiente=:codTipoambiente ORDER BY f.facNumero  DESC");
                 query.setParameter("inicio", inicio);
                 query.setParameter("fin", fin);
+                query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             }
 
 //            query.setMaxResults(400);
@@ -540,6 +545,7 @@ public class ServicioGuia {
 
         return listaGuiaremisions;
     }
+
     public List<Guiaremision> findFacFechaRecibida(Date inicio, Date fin, String estado) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
@@ -573,16 +579,17 @@ public class ServicioGuia {
         return listaGuiaremisions;
     }
 
-    public List<Guiaremision> findBetweenFecha(Date inicio, Date fin) {
+    public List<Guiaremision> findBetweenFecha(Date inicio, Date fin, Tipoambiente codTipoambiente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a from Guiaremision a where a.facFecha BETWEEN :inicio AND :fin and a.tipoGuia='EMITIDA'");
+            Query query = em.createQuery("SELECT a from Guiaremision a where a.facFecha BETWEEN :inicio AND :fin AND a.codTipoambiente=:codTipoambiente and a.tipoGuia='EMITIDA'");
             query.setParameter("inicio", inicio);
             query.setParameter("fin", fin);
+            query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             query.setMaxResults(400);
             listaGuiaremisions = (List<Guiaremision>) query.getResultList();
             em.getTransaction().commit();
@@ -594,6 +601,7 @@ public class ServicioGuia {
 
         return listaGuiaremisions;
     }
+
     public List<Guiaremision> findBetweenFechaRecibida(Date inicio, Date fin) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
@@ -660,16 +668,17 @@ public class ServicioGuia {
         return listaGuiaremisions;
     }
 
-    public List<Guiaremision> findLikeCedula(String valor) {
+    public List<Guiaremision> findLikeCedula(String valor, Tipoambiente codTipoambiente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.idCliente.cliCedula LIKE :cliCedula AND f.facNumero > 0 and f.tipoGuia='EMITIDA'  ORDER BY f.idGuiaremision DESC");
+            Query query = em.createQuery("SELECT f FROM Guiaremision f WHERE f.idCliente.cliCedula LIKE :cliCedula AND f.codTipoambiente=:codTipoambiente AND f.facNumero > 0 and f.tipoGuia='EMITIDA'  ORDER BY f.idGuiaremision DESC");
 //            query.setMaxResults(2);
             query.setParameter("cliCedula", "%" + valor + "%");
+            query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             listaGuiaremisions = (List<Guiaremision>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -680,7 +689,8 @@ public class ServicioGuia {
 
         return listaGuiaremisions;
     }
-      public List<Guiaremision> findLikeCedulaRecibida(String valor) {
+
+    public List<Guiaremision> findLikeCedulaRecibida(String valor) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         try {

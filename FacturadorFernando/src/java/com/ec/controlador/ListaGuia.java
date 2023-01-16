@@ -6,6 +6,7 @@ package com.ec.controlador;
 
 import com.ec.entidad.Cliente;
 import com.ec.entidad.Guiaremision;
+import com.ec.entidad.RetencionCompra;
 import com.ec.entidad.Tipoambiente;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
@@ -50,6 +51,8 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Messagebox;
 
 /**
  *
@@ -93,7 +96,7 @@ public class ListaGuia {
     }
 
     private void consultarFactura() {
-        lstGuiaRemision = servicioGuia.findBetweenFecha(fechainicio, fechafin);
+        lstGuiaRemision = servicioGuia.findBetweenFecha(fechainicio, fechafin,amb);
     }
 
     public List<Guiaremision> getLstGuiaRemision() {
@@ -197,7 +200,7 @@ public class ListaGuia {
     }
 
     private void consultarFacturas() {
-        lstGuiaRemision = servicioGuia.FindLikeCliente(buscarCliente);
+        lstGuiaRemision = servicioGuia.FindLikeCliente(buscarCliente,amb);
 
     }
 
@@ -211,7 +214,7 @@ public class ListaGuia {
     }
 
     private void consultarFacturasForCedula() {
-        lstGuiaRemision = servicioGuia.findLikeCedula(buscarCedula);
+        lstGuiaRemision = servicioGuia.findLikeCedula(buscarCedula,amb);
 
     }
 
@@ -223,7 +226,7 @@ public class ListaGuia {
     }
 
     private void consultarFacturaFecha() {
-        lstGuiaRemision = servicioGuia.findFacFecha(fechainicio, fechafin, estadoBusqueda);
+        lstGuiaRemision = servicioGuia.findFacFecha(fechainicio, fechafin, estadoBusqueda,amb);
     }
 
     //GRAFICA POR UBICACION
@@ -654,6 +657,39 @@ public class ListaGuia {
 
     public void setBuscarCedula(String buscarCedula) {
         this.buscarCedula = buscarCedula;
+    }
+    
+     @Command
+    public void cambiarEstado(@BindingParam("valor") Guiaremision valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            final HashMap<String, Guiaremision> map = new HashMap<String, Guiaremision>();
+
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                        "/modificar/estadoguia.zul", null, map);
+            window.doModal();
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
+    @Command
+    @NotifyChange({"lstGuiaRemision", "buscarSecuencial"})
+    public void eliminarGuia(@BindingParam("valor") Guiaremision valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("¿Esta seguro de eliminar la retencion?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+
+                servicioGuia.eliminar(valor);
+                buscarFechas();
+                Clients.showNotification("Eliminado correctamente...",
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+            }
+
+        } catch (Exception e) {
+//            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+            Clients.showNotification("Ocurrio un errot al eliminar " + e.getMessage(),
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+        }
     }
 
 }
