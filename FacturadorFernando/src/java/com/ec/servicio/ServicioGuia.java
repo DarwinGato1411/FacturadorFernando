@@ -119,7 +119,7 @@ public class ServicioGuia {
         return listaGuiaremisions;
     }
 
-    public Guiaremision findUltimaGuiaremision() {
+    public Guiaremision findUltimaGuiaremision(Tipoambiente codTipoambiente) {
 
         List<Guiaremision> listaGuiaremisions = new ArrayList<Guiaremision>();
         Guiaremision guias = new Guiaremision();
@@ -127,7 +127,8 @@ public class ServicioGuia {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM Guiaremision a where (a.facNumero<>'0' or a.facNumero IS NOT NULL) ORDER BY  a.facNumero DESC");
+            Query query = em.createQuery("SELECT a FROM Guiaremision a where (a.facNumero<>'0' or a.facNumero IS NOT NULL) AND a.codTipoambiente=:codTipoambiente ORDER BY  a.facNumero DESC");
+            query.setParameter("codTipoambiente", codTipoambiente.getCodTipoambiente());
             query.setMaxResults(2);
 //           query.setParameter("codigoUsuario", guia);
             listaGuiaremisions = (List<Guiaremision>) query.getResultList();
