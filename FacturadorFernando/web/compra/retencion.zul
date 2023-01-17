@@ -200,9 +200,9 @@
                         
                         </div>
                     </div> -->
-                <div class="container_modal">
+                    <div class="container_modal">
 
-                    <div class="body">
+                        <div class="body">
                             <div class="container_row_input">
                                 <div class="wrapper_input_mod">
                                     <span>Fecha Retención: </span>
@@ -246,7 +246,7 @@
                                             readonly="false" 
                                             format="###.#####"
                                             class="input_text"
-                                           value="@bind(vm.baseImponible)"
+                                            value="@bind(vm.baseImponible)"
                                         />
                                     </div>
                                 </div>
@@ -268,9 +268,9 @@
 
 
                             </div>
-                    </div>
+                        </div>
 
-                    <div class="body">
+                        <div class="body">
                             <div class="container_row_input">
                                 <div class="wrapper_input_mod">
                                     <span>Subtotal: </span>
@@ -312,9 +312,9 @@
                             </div>
 
                            
-                    </div>
+                        </div>
 
-                    <div class="body">
+                        <div class="body">
                             <div class="container_row_input">
                                 <div class="wrapper_input_mod">
                                     <span></span>
@@ -343,20 +343,20 @@
                                                         
                                             <template name="model">
                                                 <comboitem  label="@bind(each.tireNombre)"
-                                                    description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
+                                                            description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
                                             </template>                                      
                                         </combobox>
                                         
-<!--                                        <combobox  model="@load(vm.listaTipoRetencion)"                                             
-                                           selectedItem="@bind(vm.tipoRetencionSelected)" width="60%"
-                                           readonly="true" >
-                                          
-                                    <template name="model">
-                                        <comboitem  label="@bind(each.tireNombre)"
-                                                    description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
-                                    </template>                                      
-                                </combobox>-->
-                                         <div 
+                                        <!--                                        <combobox  model="@load(vm.listaTipoRetencion)"                                             
+                                                   selectedItem="@bind(vm.tipoRetencionSelected)" width="60%"
+                                                   readonly="true" >
+                                                  
+                                            <template name="model">
+                                                <comboitem  label="@bind(each.tireNombre)"
+                                                            description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
+                                            </template>                                      
+                                        </combobox>-->
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
@@ -378,14 +378,14 @@
                                                 <comboitem  label="@bind(each.tipivaretDescripcion.concat('%'))"/>
                                             </template>                                      
                                         </combobox>
-                                         <div 
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
                                     </div>
                                 </div>
                                 
-                                 <div style="display:flex;justify-content:flex-end;">
+                                <div style="display:flex;justify-content:flex-end;">
                                     <button 
                                         class="fa-solid fa-plus btn_modal" 
                                         style="width:200px" 
@@ -408,7 +408,7 @@
 
                             </div>
 
-                           <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
                                 <listbox id="DescripcionPedidoPrePost" 
                                          model="@load(vm.listaDetalleRetencionCompraModel)"
                                          nonselectableTags="*" 
@@ -418,23 +418,23 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                               
                                         
-                                    <listhead>
-                                        <listheader width="10%"  label="" align="left" >
+                                    <listhead class="encabezado35">
+                                        <listheader  label="" align="left" >
                                             <button label="" src="/iconos/eliminar.png"  
                                                     onClick="@command('eliminarRegistros')"  
                                                     class="btn btn btn-secondary btn-sm "
                                                     tooltiptext="Eliminar registros seleccionados"/>
                                         </listheader>
-                                        <listheader width="15%"  label="Base Imponible" align="left" />
-                                        <listheader width="34%"  label="Descripcion" align="left"  /> 
-                                        <listheader width="10%"  label="IVA/FUENTE" align="left"  /> 
-                                        <listheader width="15%"  label="Porcentaje" align="left" />
-                                        <listheader width="15%"  label="Valor retenido" align="left" /> 
+                                        <listheader  label="Base Imponible" align="left" />
+                                        <listheader   label="Descripcion" align="left"  /> 
+                                        <listheader   label="IVA/FUENTE" align="left"  /> 
+                                        <listheader  label="Porcentaje" align="left" />
+                                        <listheader   label="Valor retenido" align="left" /> 
                                                                                                                             
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem>
+                                        <listitem class="tabla35">
                                             <listcell>
                                                     
                                             </listcell>
@@ -447,7 +447,7 @@
                                                 <label  value="@bind(each.tireCodigo.tireNombre)" width="99%"
                                                         if="${each.codImpuestoAsignado == '1'}"/>
                                                 <label  value="Retencion IVA" width="99%" 
-                                                          if="${each.codImpuestoAsignado == '2'}"/>
+                                                        if="${each.codImpuestoAsignado == '2'}"/>
                                             </listcell>
                                             <listcell>
                                                 <label  value="@bind(each.drcDescripcion)" width="99%" />
@@ -469,8 +469,8 @@
 
                                 </listbox>
                             </div>
+                        </div>
                     </div>
-                </div>
                     
                 </tabpanel>
             </tabpanels>

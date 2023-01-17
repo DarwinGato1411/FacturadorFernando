@@ -152,7 +152,7 @@
                         
                     
                         <template name="model">                                                            
-                            <listitem>
+                            <listitem class="tabla28">
                                 <listcell zclass = "mycss-listcell">
                                   <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"                                           class="form-control form-control-sm"
                                            value="@bind(each.idCabecera.cabNumFactura)"  />

@@ -917,6 +917,18 @@ div.z-listheader-cnt {
     grid-template-columns: 10% 10% 10% 10% 30% 10% 10% 10%;
 }
 
+.encabezado35, .tabla35{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 10% 15% 30% 15% 15% 15%;
+}
+
+.encabezado36, .tabla36{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 10% 15% 30% 15% 15% 15%;
+}
+
 .factura_empresa{
     display: flex;
     gap:10px;
