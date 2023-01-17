@@ -45,11 +45,6 @@ public class CambioEstadoRetencion {
         Clients.showNotification("Guardado correctamente",
                     Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         windowEstFact.detach();
-//        } else {
-//            Clients.showNotification("Verifique el estado de la factura",
-//                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
-//            windowEstFact.detach();
-//        }
 
     }
 
