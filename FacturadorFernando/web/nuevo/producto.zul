@@ -23,7 +23,8 @@
                 <span>Declaración: </span>
                 <radiogroup
                     class="radio_group" 
-                    onCheck="@command('colocarIva')" 
+                     onCheck="@command('verificarTipoProducto')"
+                   
                     selectedItem="@bind(vm.conIva)"  
                 >                   
                     <radio label="Graba IVA" value="S"/>
@@ -78,7 +79,19 @@
                     </div>
                 </div>
                   <div class="wrapper_input_mod">
-                    <span>Precio / Unidad: </span>
+                    <span>Subtotal: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-dollar-sign icon"></div>
+                        <textbox    
+                            constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
+                            value="@bind(vm.prodPrecioSubtotal)"  
+                              onOK="@command('calcularPrecioFinalVenta')"
+                            class="input_text"  
+                        />
+                    </div>
+                </div>
+                  <div class="wrapper_input_mod">
+                    <span>Precio final: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    

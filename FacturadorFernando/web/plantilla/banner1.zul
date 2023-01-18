@@ -70,6 +70,7 @@
                     <menuitem label="Kardex general" id="btnKardexPorProd"  class="fa-solid fa-list-check menu_item" />   
                     <menuitem label="Rotacion productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                     <menuitem label="Ajuste de Entrada/Salida" id="btnAjuste" class="fa-solid fa-gear menu_item" />    
+                    <!--<menuitem label="Descargar compras SRI" id="btnComprasSRI" class="fa-solid fa-gear menu_item" />-->    
                 </menupopup>
             </menu>
              <menu label="Guias"  id="menuGuias" class="menu_child">

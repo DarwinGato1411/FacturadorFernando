@@ -4,33 +4,14 @@
  */
 package com.ec.servicio;
 
-import com.ec.entidad.CabeceraCompra;
 import com.ec.entidad.ComprasSri;
-import com.ec.entidad.sri.CabeceraCompraSri;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperRunManager;
-import org.zkoss.bind.annotation.BindingParam;
-import org.zkoss.bind.annotation.Command;
-import org.zkoss.util.media.AMedia;
-import org.zkoss.zk.ui.Executions;
 
 /**
  *
@@ -182,4 +163,23 @@ public class ServicioComprasSri {
     }
      
     
+    public void eliminarCabeceraSri(Date inicio, Date fin) {
+
+        try {
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("DELETE FROM ComprasSri a WHERE a.csriFechaEmision BETWEEN :inicio and :fin ");
+            query.setParameter("inicio", inicio);
+            query.setParameter("fin", fin);
+            int i = query.executeUpdate();
+
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println("Error en eliminar  comprasSri " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+    }
 }

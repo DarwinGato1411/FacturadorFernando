@@ -66,6 +66,7 @@ public class NuevoProducto {
     private String amRuc = "";
 
     private Boolean esUnProdcuto = Boolean.TRUE;
+    private BigDecimal prodPrecioSubtotal = BigDecimal.ZERO;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
@@ -93,7 +94,7 @@ public class NuevoProducto {
             this.producto.setProdUnidadMedida(producto.getProdUnidadMedida() == null ? "UNIDAD" : producto.getProdUnidadMedida());
             this.producto.setProdUnidadConversion(producto.getProdUnidadConversion() == null ? "UNIDAD" : producto.getProdUnidadConversion());
             this.producto.setProdFactorConversion(producto.getProdFactorConversion() == null ? BigDecimal.ONE : producto.getProdFactorConversion());
-
+            prodPrecioSubtotal = this.producto.getPordCostoVentaFinal().divide(BigDecimal.valueOf(1.12), 5, RoundingMode.FLOOR);
             accion = "update";
         } else {
             this.producto = new Producto(0, Boolean.FALSE);
@@ -133,16 +134,21 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto"})
+    @NotifyChange({"esUnProdcuto", "producto"})
     public void verificarTipoProducto() {
-
+        colocarIva();
         if (esProducto.equals("P")) {
             esUnProdcuto = Boolean.TRUE;
+            calculopreciofinal();
         } else {
+            this.producto.setPordCostoCompra(BigDecimal.ONE);
             esUnProdcuto = Boolean.FALSE;
-            this.producto.setPordCostoVentaFinal(BigDecimal.ONE);
+            //            this.producto.setPordCostoVentaFinal(BigDecimal.ONE);
+            prodPrecioSubtotal = prodPrecioSubtotal == null ? BigDecimal.ZERO : prodPrecioSubtotal;
+            calcularPrecioFinalVenta();
         }
-        calculopreciofinal();
+
+//        
     }
 
     @Command
@@ -155,7 +161,7 @@ public class NuevoProducto {
             txtIvaRec.setText("0");
             producto.setProdIva(BigDecimal.ZERO);
         }
-        calculopreciofinal();
+//        calculopreciofinal();
     }
 
     @Command
@@ -423,6 +429,33 @@ public class NuevoProducto {
 
     public void setEsUnProdcuto(Boolean esUnProdcuto) {
         this.esUnProdcuto = esUnProdcuto;
+    }
+
+    public BigDecimal getProdPrecioSubtotal() {
+        return prodPrecioSubtotal;
+    }
+
+    public void setProdPrecioSubtotal(BigDecimal prodPrecioSubtotal) {
+        this.prodPrecioSubtotal = prodPrecioSubtotal;
+    }
+
+    /*valida producto servicio*/
+    @Command
+    @NotifyChange({"producto"})
+    public void calcularPrecioFinalVenta() {
+
+        if (prodPrecioSubtotal != null) {
+            if (conIva.equals("S")) {
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(BigDecimal.valueOf(1.12)));
+            } else {
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal);
+            }
+//            calculopreciofinal();
+        } else {
+            Clients.showNotification("Verifique el subtotal",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
+        }
+
     }
 
 }

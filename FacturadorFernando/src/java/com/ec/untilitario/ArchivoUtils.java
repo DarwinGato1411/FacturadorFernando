@@ -1,7 +1,21 @@
 package com.ec.untilitario;
 
+import com.ec.entidad.CabeceraCompra;
+import com.ec.entidad.DetalleCompra;
+import com.ec.entidad.Parametrizar;
+import com.ec.entidad.Producto;
+import com.ec.entidad.Proveedores;
+import com.ec.entidad.TipoIdentificacionCompra;
 import com.ec.entidad.Tipoambiente;
+import com.ec.entidad.sri.CabeceraCompraSri;
+import com.ec.entidad.sri.DetalleCompraSri;
+import com.ec.seguridad.UserCredential;
 import com.ec.servicio.HelperPersistencia;
+import com.ec.servicio.ServicioEstadoFactura;
+import com.ec.servicio.ServicioParametrizar;
+import com.ec.servicio.ServicioProducto;
+import com.ec.servicio.ServicioProveedor;
+import com.ec.servicio.ServicioTipoIdentificacionCompra;
 import ec.gob.sri.comprobantes.util.xml.LectorXPath;
 import ec.gob.sri.comprobantes.util.xml.XStreamUtil;
 import ec.gob.sri.comprobantes.ws.RespuestaSolicitud;
@@ -23,6 +37,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -83,6 +98,13 @@ import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
 
 public class ArchivoUtils {
+
+    private static UserCredential credential = new UserCredential();
+    private static ServicioEstadoFactura servicioEstadoFactura = new ServicioEstadoFactura();
+    private static ServicioProveedor servicioProveedor = new ServicioProveedor();
+    private static ServicioTipoIdentificacionCompra servicioTipoIdentificacionCompra = new ServicioTipoIdentificacionCompra();
+    private static ServicioProducto servicioProducto = new ServicioProducto();
+    private static ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
 
     public static String archivoToString(String rutaArchivo) {
         /*  70 */ StringBuffer buffer = new StringBuffer();
@@ -664,19 +686,19 @@ public class ArchivoUtils {
                 respuesta.setMensaje("");
             }
         } catch (URISyntaxException ex) {
-             //                Log.e("ERROR", e.getMessage());
+            //                Log.e("ERROR", e.getMessage());
             respuesta.setCedula("");
             respuesta.setNombre("");
             respuesta.setMensaje("");
             Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-             //                Log.e("ERROR", e.getMessage());
+            //                Log.e("ERROR", e.getMessage());
             respuesta.setCedula("");
             respuesta.setNombre("");
             respuesta.setMensaje("");
             Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
-             //                Log.e("ERROR", e.getMessage());
+            //                Log.e("ERROR", e.getMessage());
             respuesta.setCedula("");
             respuesta.setNombre("");
             respuesta.setMensaje("");
@@ -707,5 +729,104 @@ public class ArchivoUtils {
 
         byte[] bytes = bos.toByteArray();
         return bytes;
+    }
+
+    public static CabeceraCompra compraSriToCompra(CabeceraCompraSri valor, Tipoambiente amb) {
+        CabeceraCompra compra = new CabeceraCompra();
+        Proveedores prov = servicioProveedor.findProvCedula(valor.getCabRucProveedor(),amb);
+        if (prov != null) {
+            compra.setIdProveedor(prov);
+        } else {
+            Proveedores provNuevo = new Proveedores();
+            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
+            TipoIdentificacionCompra identificacionCompra = null;
+            if (valor.getCabRucProveedor().length() == 13) {
+                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
+            } else if (valor.getCabRucProveedor().length() == 10) {
+                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
+            }
+            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
+            provNuevo.setProvBanco("S/N");
+            provNuevo.setProvNombre(valor.getCabProveedor());
+            provNuevo.setProvNomComercial(valor.getCabProveedor());
+            provNuevo.setProvCedula(valor.getCabRucProveedor());
+            provNuevo.setProvDireccion(valor.getCabDireccion());
+            servicioProveedor.crear(provNuevo);
+            compra.setIdProveedor(provNuevo);
+//            prov = provNuevo;
+        }
+
+        compra.setCabDescripcion("PROCESADA");
+        compra.setIdUsuario(credential.getUsuarioSistema());
+        compra.setIdEstado(servicioEstadoFactura.findByEstCodigo("PA"));
+        compra.setCabNumFactura(valor.getCabNumFactura());
+        compra.setCabEstado("PE");
+
+        compra.setCabFecha(valor.getCabFecha());
+        compra.setCabSubTotal(valor.getCabSubTotal());
+        compra.setCabIva(valor.getCabIva());
+        compra.setCabTotal(valor.getCabTotal());
+        compra.setCabSubTotalCero(valor.getCabSubTotalCero());
+
+        compra.setCabEstado("PE");
+        compra.setCabProveedor(valor.getCabProveedor());
+        compra.setCabClaveAcceso(valor.getCabAutorizacion());
+        compra.setCabAutorizacion(valor.getCabAutorizacion());
+        compra.setCabFechaEmision(valor.getCabFecha());
+        compra.setDrcCodigoSustento("01");
+        compra.setCabRetencionAutori("N");
+        compra.setCabTraeSri(Boolean.TRUE);
+        compra.setCabEstablecimiento(valor.getCabEstablecimiento());
+        compra.setCabPuntoEmi(valor.getCabPuntoEmision());
+
+        return compra;
+    }
+
+    public static DetalleCompra detalleSriToDetalleCompra(DetalleCompraSri valor, CabeceraCompra compra,Tipoambiente amb) {
+        DetalleCompra detalleCom = new DetalleCompra();
+        Parametrizar parametrizar = new Parametrizar();
+        parametrizar = servicioParametrizar.FindALlParametrizar();
+        BigDecimal factorIva = BigDecimal.ONE.add(parametrizar.getParIvaActual().divide(BigDecimal.valueOf(100)));
+        BigDecimal factorUtilidad = BigDecimal.ONE.add(BigDecimal.valueOf(0.47));
+        Producto buscado = servicioProducto.findByProdCodigo(valor.getIprodCodigoProducto(),amb);
+        Producto nuevoProd = new Producto();
+        if (buscado == null) {
+            BigDecimal costoInicial = valor.getIprodSubtotal().setScale(2, RoundingMode.CEILING);
+            BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
+            System.out.println("PRODUCTO NUEVO " + valor.getIprodDescripcion());
+            nuevoProd = new Producto();
+            nuevoProd.setPordCostoCompra(calCostoCompr);
+            nuevoProd.setPordCostoVentaFinal(costoInicial.multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
+            nuevoProd.setPordCostoVentaRef(costoInicial.setScale(4, RoundingMode.CEILING));
+            nuevoProd.setProdAbreviado("");
+            nuevoProd.setProdCantMinima(BigDecimal.TEN);
+            nuevoProd.setProdCantidadInicial(BigDecimal.TEN);
+            nuevoProd.setProdCodigo(valor.getIprodCodigoProducto().length() > 199 ? valor.getIprodCodigoProducto().substring(0, 199) : valor.getIprodCodigoProducto());
+            nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
+            nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
+            nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
+            nuevoProd.setProdIsPrincipal(Boolean.FALSE);
+            nuevoProd.setProdIva(parametrizar.getParIvaActual());
+            nuevoProd.setProdManoObra(BigDecimal.ZERO);
+            nuevoProd.setProdNombre(valor.getIprodDescripcion().length() > 199 ? valor.getIprodDescripcion().substring(0, 199) : valor.getIprodDescripcion());
+            nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
+            nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
+            nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
+            servicioProducto.crear(nuevoProd);
+            detalleCom.setIdProducto(nuevoProd);
+        }
+
+        if (buscado != null) {
+            detalleCom.setIdProducto(buscado);
+        }
+        detalleCom.setIdCabecera(compra);
+        detalleCom.setIprodCantidad(valor.getIprodCantidad());
+        detalleCom.setDetDescripcion(valor.getIprodDescripcion());
+        detalleCom.setIprodSubtotal(valor.getIprodSubtotal());
+        detalleCom.setIprodTotal(valor.getIprodTotal());
+        detalleCom.setDetValorInicial(BigDecimal.ONE);
+        detalleCom.setDetFactor(BigDecimal.ONE);
+
+        return detalleCom;
     }
 }

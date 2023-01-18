@@ -341,4 +341,26 @@ public class ServicioCompra {
 
         return listaCabeceraCompras;
     }
+
+
+    public List<CabeceraCompra> findByNumeroFacturaAndProveedor(String cabNumFactura, String cabProveedor) {
+
+        List<CabeceraCompra> listaCabeceraCompras = new ArrayList<CabeceraCompra>();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM CabeceraCompra c WHERE c.cabNumFactura LIKE :cabNumFactura AND c.cabProveedor LIKE :cabProveedor ORDER BY c.cabNumFactura DESC");
+            query.setParameter("cabNumFactura", "%" + cabNumFactura + "%");
+            query.setParameter("cabProveedor", "%" + cabProveedor + "%");
+            listaCabeceraCompras = (List<CabeceraCompra>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta compra " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaCabeceraCompras;
+    }
 }

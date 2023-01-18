@@ -4,6 +4,7 @@
  */
 package com.ec.controlador;
 
+import com.ec.dao.DetalleFacturaDAO;
 import com.ec.dao.xml.Impuesto;
 import com.ec.dao.xml.RetencionXML;
 import com.ec.dao.xml.factura.Detalle;
@@ -11,10 +12,9 @@ import com.ec.dao.xml.factura.FacturaCompraXML;
 import com.ec.dao.xml.factura.TotalImpuesto;
 import com.ec.entidad.CabeceraCompra;
 import com.ec.entidad.ComprasSri;
+import com.ec.entidad.DetalleCompra;
 import com.ec.entidad.Parametrizar;
 import com.ec.entidad.Producto;
-import com.ec.entidad.Proveedores;
-import com.ec.entidad.TipoIdentificacionCompra;
 import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.docsri.RetencionCompraSri;
 import com.ec.entidad.sri.CabeceraCompraSri;
@@ -54,7 +54,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -62,9 +61,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.activation.MimetypesFileTypeMap;
@@ -103,6 +104,7 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
+import org.zkoss.zul.ListModelList;
 
 /**
  *
@@ -130,7 +132,7 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     private Date fin = new Date();
     ServicioProveedor servicioProveedor = new ServicioProveedor();
     ServicioEstadoFactura servicioEstadoFactura = new ServicioEstadoFactura();
-
+    UserCredential credential = new UserCredential();
     Parametrizar parametrizar = new Parametrizar();
 
     ServicioTipoIdentificacionCompra servicioTipoIdentificacionCompra = new ServicioTipoIdentificacionCompra();
@@ -149,6 +151,9 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     private Date inicioComp = new Date();
     private Date finComp = new Date();
 
+    /*Compras*/
+    private ListModelList<CabeceraCompraSri> listaComprasSriModel;
+    private Set<CabeceraCompraSri> registrosSeleccionados = new HashSet<CabeceraCompraSri>();
     private List<CabeceraCompraSri> listaCabeceraCompraSris = new ArrayList<CabeceraCompraSri>();
 
     ServicioRetencionSri retencionSri = new ServicioRetencionSri();
@@ -159,9 +164,6 @@ public class ListaComprasSri extends SelectorComposer<Component> {
 
     private static String SRIFACCOMPRAS = "SRIFACCOMPRAS";
     private static String SRIRETENCION = "SRIRETENCION";
-//    UserCredential credential = new UserCredential();
-    UserCredential credential = new UserCredential();
-    private String amRuc = "";
 
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
@@ -175,16 +177,12 @@ public class ListaComprasSri extends SelectorComposer<Component> {
         calendar.add(Calendar.DATE, -7); //el -3 indica que se le restaran 3 dias 
         inicio = calendar.getTime();
 
-  
         Session sess = Sessions.getCurrent();
-        credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
-//        amRuc = credential.getUsuarioSistema().getUsuRuc();
-        amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
-
+        UserCredential cre = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
+        credential = cre;
         parametrizar = servicioParametrizar.FindALlParametrizar();
         findByBetweenFecha();
-
+        amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(cre.getUsuarioSistema());
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
@@ -202,6 +200,11 @@ public class ListaComprasSri extends SelectorComposer<Component> {
 
     }
 
+    @Command
+    public void seleccionarRegistros() {
+        registrosSeleccionados = ((ListModelList<CabeceraCompraSri>) getListaComprasSriModel()).getSelection();
+    }
+
     private void buscarLikeNombre() {
         listaCabeceraCompras = servicioCompra.findCabProveedorSRI(buscar);
     }
@@ -216,7 +219,10 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     }
 
     private void findCabeceraComprasSriByBetweenFecha() {
-        listaCabeceraCompraSris = servicioCabeceraComprasri.findByBetweenFechaSRI(inicioComp, finComp);
+
+        listaCabeceraCompraSris = servicioCabeceraComprasri.findByBetweenFechaSRI(inicio, fin);
+        setListaComprasSriModel(new ListModelList<CabeceraCompraSri>(getListaCabeceraCompraSris()));
+        ((ListModelList<CabeceraCompraSri>) listaComprasSriModel).setMultiple(true);
 
     }
 
@@ -229,9 +235,39 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     }
 
     @Command
-    @NotifyChange({"listaComprasSris", "inicio", "fin", "listaCabeceraCompraSris"})
+    @NotifyChange({"listaComprasSris", "inicio", "fin", "listaComprasSriModel"})
+    public void eliminarCabeceraSRI() {
+
+        servicioComprasSri.eliminarCabeceraSri(inicio, fin);
+        findComprasSriByBetweenFecha();
+        Clients.showNotification("Registros eliminados correctamente ",
+                    Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
+    }
+
+    @Command
+    @NotifyChange({"listaComprasSris", "inicio", "fin", "listaComprasSriModel"})
+    public void cargarfacturasSistema() {
+        for (CabeceraCompraSri item : registrosSeleccionados) {
+            if (servicioCompra.findByNumeroFacturaAndProveedor(item.getCabNumFactura(), item.getCabProveedor()).isEmpty()) {
+                CabeceraCompra cabecera = ArchivoUtils.compraSriToCompra(item,amb);
+                servicioCompra.crear(cabecera);
+                for (DetalleCompraSri object : servicioDetalleComprasSri.detallebyCompraSri(item)) {
+                    DetalleCompra detalleCompra = ArchivoUtils.detalleSriToDetalleCompra(object, cabecera,amb);
+                    servicioDetalleCompra.crear(detalleCompra);
+                }
+            }
+
+        }
+        Clients.showNotification("Facturas cargadas correctamente ",
+                    Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
+
+    }
+
+    @Command
+    @NotifyChange({"listaComprasSris", "inicio", "fin", "listaComprasSriModel"})
     public void buscarComprasSri() {
         findComprasSriByBetweenFecha();
+        findCabeceraComprasSriByBetweenFecha();
     }
 
     @Command
@@ -241,7 +277,7 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     }
 
     @Command
-    @NotifyChange({"listaCabeceraCompraSris", "inicioComp", "finComp"})
+    @NotifyChange({"listaComprasSriModel", "inicioComp", "finComp"})
     public void buscarComprasSriProcesadas() {
 
         findCabeceraComprasSriByBetweenFecha();
@@ -344,7 +380,7 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     }
 
     private String exportarExcel() throws FileNotFoundException, IOException, ParseException {
-        List<DetalleCompraSri> descargar = servicioDetalleComprasSri.findByBetweenFechaSRI(inicioComp, finComp);
+        List<DetalleCompraSri> descargar = servicioDetalleComprasSri.findByBetweenFechaSRI(inicio, fin);
         String directorioReportes = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/reportes");
 
         Date date = new Date();
@@ -411,12 +447,16 @@ public class ListaComprasSri extends SelectorComposer<Component> {
             ch5.setCellStyle(estiloCelda);
 
             HSSFCell ch6 = r.createCell(j++);
-            ch6.setCellValue(new HSSFRichTextString("SUBTOTAL"));
+            ch6.setCellValue(new HSSFRichTextString("% IVA"));
             ch6.setCellStyle(estiloCelda);
 
             HSSFCell ch7 = r.createCell(j++);
-            ch7.setCellValue(new HSSFRichTextString("TOTAL"));
+            ch7.setCellValue(new HSSFRichTextString("SUBTOTAL"));
             ch7.setCellStyle(estiloCelda);
+
+            HSSFCell ch8 = r.createCell(j++);
+            ch8.setCellValue(new HSSFRichTextString("TOTAL"));
+            ch8.setCellStyle(estiloCelda);
 
             int rownum = 1;
             int i = 0;
@@ -445,9 +485,13 @@ public class ListaComprasSri extends SelectorComposer<Component> {
                 c5.setCellValue(new HSSFRichTextString(item.getIprodDescripcion().toString()));
 
                 HSSFCell c6 = r.createCell(i++);
-                c6.setCellValue(new HSSFRichTextString(ArchivoUtils.redondearDecimales(item.getIprodSubtotal(), 2).toString()));
+                c6.setCellValue(new HSSFRichTextString(item.getIprodGrabaIva() ? "12" : "0"));
+
                 HSSFCell c7 = r.createCell(i++);
-                c7.setCellValue(new HSSFRichTextString(ArchivoUtils.redondearDecimales(item.getIprodTotal(), 2).toString()));
+                c7.setCellValue(new HSSFRichTextString(ArchivoUtils.redondearDecimales(item.getIprodSubtotal(), 2).toString()));
+
+                HSSFCell c8 = r.createCell(i++);
+                c8.setCellValue(new HSSFRichTextString(ArchivoUtils.redondearDecimales(item.getIprodTotal(), 2).toString()));
                 /*autemta la siguiente fila*/
                 rownum += 1;
 
@@ -601,7 +645,7 @@ public class ListaComprasSri extends SelectorComposer<Component> {
         /*formato de la fecha*/
         try {
             Date dt = sm.parse(adto.getInfoFactura().getFechaEmision());
-            cabeceraCompra.setCabFecha(new Date());
+            cabeceraCompra.setCabFecha(dt);
             cabeceraCompra.setCabFechaEmision(dt);
         } catch (java.text.ParseException e) {
             System.out.println("ERROR FECHA " + e.getMessage());
@@ -632,30 +676,34 @@ public class ListaComprasSri extends SelectorComposer<Component> {
         cabeceraCompra.setIdUsuario(credential.getUsuarioSistema());
         cabeceraCompra.setCategoriaFactura("Inventario");
         cabeceraCompra.setCabSubTotalCero(baseCero);
-        /*VERIFICAMOS EL PROVEEDOR Y SI NO LO CREAMOS*/
-        Proveedores prov = servicioProveedor.findProvCedula(adto.getInfoTributaria().getRuc(),amb);
-        if (prov != null) {
-            cabeceraCompra.setIdProveedor(prov);
-        } else {
-            Proveedores provNuevo = new Proveedores();
-            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
-            TipoIdentificacionCompra identificacionCompra = null;
-            if (adto.getInfoTributaria().getRuc().length() == 13) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
-            } else if (adto.getInfoTributaria().getRuc().length() == 10) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
-            }
-            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
-            provNuevo.setProvBanco("S/N");
-            provNuevo.setProvNombre(adto.getInfoTributaria().getRazonSocial());
-            provNuevo.setProvNomComercial(adto.getInfoTributaria().getNombreComercial());
-            provNuevo.setProvCedula(adto.getInfoTributaria().getRuc());
-            provNuevo.setProvDireccion(adto.getInfoTributaria().getDirMatriz());
-            servicioProveedor.crear(provNuevo);
-            cabeceraCompra.setIdProveedor(provNuevo);
-            prov = provNuevo;
-        }
+        cabeceraCompra.setCabCorreo(buscar);
+        cabeceraCompra.setCabDireccion(adto.getInfoTributaria().getDirMatriz());
+        cabeceraCompra.setCabEstablecimiento(adto.getInfoTributaria().getEstab());
+        cabeceraCompra.setCabPuntoEmision(adto.getInfoTributaria().getPtoEmi());
 
+        /*VERIFICAMOS EL PROVEEDOR Y SI NO LO CREAMOS*/
+//        Proveedores prov = servicioProveedor.findProvCedula(adto.getInfoTributaria().getRuc());
+//        if (prov != null) {
+//            cabeceraCompra.setIdProveedor(prov);
+//        } else {
+//            Proveedores provNuevo = new Proveedores();
+//            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
+//            TipoIdentificacionCompra identificacionCompra = null;
+//            if (adto.getInfoTributaria().getRuc().length() == 13) {
+//                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
+//            } else if (adto.getInfoTributaria().getRuc().length() == 10) {
+//                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
+//            }
+//            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
+//            provNuevo.setProvBanco("S/N");
+//            provNuevo.setProvNombre(adto.getInfoTributaria().getRazonSocial());
+//            provNuevo.setProvNomComercial(adto.getInfoTributaria().getNombreComercial());
+//            provNuevo.setProvCedula(adto.getInfoTributaria().getRuc());
+//            provNuevo.setProvDireccion(adto.getInfoTributaria().getDirMatriz());
+//            servicioProveedor.crear(provNuevo);
+//            cabeceraCompra.setIdProveedor(provNuevo);
+//            prov = provNuevo;
+//        }
         servicioCabeceraComprasri.crear(cabeceraCompra);
 
         DetalleCompraSri detalleCom = null;
@@ -667,41 +715,43 @@ public class ListaComprasSri extends SelectorComposer<Component> {
             Producto buscado = servicioProducto.findByProdCodigo(detalle.getCodigoPrincipal(),amb);
             Producto nuevoProd = new Producto();
             detalleCom = new DetalleCompraSri();
-            if (buscado == null && prov != null) {
-                BigDecimal costoInicial = detalle.getPrecioUnitario().setScale(2, RoundingMode.FLOOR);
-                BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
-                System.out.println("PRODUCTO NUEVO " + detalle.getDescripcion());
-                nuevoProd = new Producto();
-                nuevoProd.setPordCostoCompra(calCostoCompr);
-                nuevoProd.setPordCostoVentaFinal(detalle.getPrecioUnitario().multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
-                nuevoProd.setPordCostoVentaRef(detalle.getPrecioUnitario().setScale(4, RoundingMode.CEILING));
-                nuevoProd.setProdAbreviado("");
-                nuevoProd.setProdCantMinima(BigDecimal.TEN);
-                nuevoProd.setProdCantidadInicial(detalle.getCantidad());
-                nuevoProd.setProdCodigo(detalle.getCodigoPrincipal().length() > 199 ? detalle.getCodigoPrincipal().substring(0, 199) : detalle.getCodigoPrincipal());
-                nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
-                nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
-                nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
-                nuevoProd.setProdIsPrincipal(Boolean.FALSE);
-                nuevoProd.setProdIva(parametrizar.getParIvaActual());
-                nuevoProd.setProdManoObra(BigDecimal.ZERO);
-                nuevoProd.setProdNombre(detalle.getDescripcion().length() > 199 ? detalle.getDescripcion().substring(0, 199) : detalle.getDescripcion());
-                nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
-                nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
-                nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
-                servicioProducto.crear(nuevoProd);
-                detalleCom.setIdProducto(nuevoProd);
-            }
-
-            if (buscado != null) {
-                detalleCom.setIdProducto(buscado);
-            }
+//            if (buscado == null && prov != null) {
+//                BigDecimal costoInicial = detalle.getPrecioUnitario().setScale(2, RoundingMode.FLOOR);
+//                BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
+//                System.out.println("PRODUCTO NUEVO " + detalle.getDescripcion());
+//                nuevoProd = new Producto();
+//                nuevoProd.setPordCostoCompra(calCostoCompr);
+//                nuevoProd.setPordCostoVentaFinal(detalle.getPrecioUnitario().multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
+//                nuevoProd.setPordCostoVentaRef(detalle.getPrecioUnitario().setScale(4, RoundingMode.CEILING));
+//                nuevoProd.setProdAbreviado("");
+//                nuevoProd.setProdCantMinima(BigDecimal.TEN);
+//                nuevoProd.setProdCantidadInicial(detalle.getCantidad());
+//                nuevoProd.setProdCodigo(detalle.getCodigoPrincipal().length() > 199 ? detalle.getCodigoPrincipal().substring(0, 199) : detalle.getCodigoPrincipal());
+//                nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
+//                nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
+//                nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
+//                nuevoProd.setProdIsPrincipal(Boolean.FALSE);
+//                nuevoProd.setProdIva(parametrizar.getParIvaActual());
+//                nuevoProd.setProdManoObra(BigDecimal.ZERO);
+//                nuevoProd.setProdNombre(detalle.getDescripcion().length() > 199 ? detalle.getDescripcion().substring(0, 199) : detalle.getDescripcion());
+//                nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
+//                nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
+//                nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
+//                servicioProducto.crear(nuevoProd);
+//                detalleCom.setIdProducto(nuevoProd);
+//            }
+//
+//            if (buscado != null) {
+//                detalleCom.setIdProducto(buscado);
+//            }
             // detalleCom.setIdProducto(buscado);
             detalleCom.setIdCabeceraSri(cabeceraCompra);
             detalleCom.setIprodCantidad(detalle.getCantidad());
             detalleCom.setIprodDescripcion(detalle.getDescripcion());
             detalleCom.setIprodSubtotal(detalle.getPrecioUnitario());
             detalleCom.setIprodTotal(detalle.getCantidad().multiply(detalle.getPrecioUnitario()));
+            detalleCom.setIprodGrabaIva(detalle.getImpuestos().getImpuesto().get(0).getCodigo().equals("2") ? Boolean.TRUE : Boolean.FALSE);
+            detalleCom.setIprodCodigoProducto(detalle.getCodigoPrincipal());
 
             servicioDetalleComprasSri.crear(detalleCom);
             System.out.println("DETALLE " + detalle.getCantidad()
@@ -1914,28 +1964,28 @@ public class ListaComprasSri extends SelectorComposer<Component> {
         cabeceraCompra.setCategoriaFactura("Inventario");
         cabeceraCompra.setCabSubTotalCero(baseCero);
         /*VERIFICAMOS EL PROVEEDOR Y SI NO LO CREAMOS*/
-        Proveedores prov = servicioProveedor.findProvCedula(adto.getComprobante().getFactura().getInfoTributaria().getRuc(),amb);
-        if (prov != null) {
-            cabeceraCompra.setIdProveedor(prov);
-        } else {
-            Proveedores provNuevo = new Proveedores();
-            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
-            TipoIdentificacionCompra identificacionCompra = null;
-            if (adto.getComprobante().getFactura().getInfoTributaria().getRuc().length() == 13) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
-            } else if (adto.getComprobante().getFactura().getInfoTributaria().getRuc().length() == 10) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
-            }
-            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
-            provNuevo.setProvBanco("S/N");
-            provNuevo.setProvNombre(adto.getComprobante().getFactura().getInfoTributaria().getRazonSocial());
-            provNuevo.setProvNomComercial(adto.getComprobante().getFactura().getInfoTributaria().getNombreComercial());
-            provNuevo.setProvCedula(adto.getComprobante().getFactura().getInfoTributaria().getRuc());
-            provNuevo.setProvDireccion(adto.getComprobante().getFactura().getInfoTributaria().getDirMatriz());
-            servicioProveedor.crear(provNuevo);
-            cabeceraCompra.setIdProveedor(provNuevo);
-            prov = provNuevo;
-        }
+//        Proveedores prov = servicioProveedor.findProvCedula(adto.getComprobante().getFactura().getInfoTributaria().getRuc());
+//        if (prov != null) {
+//            cabeceraCompra.setIdProveedor(prov);
+//        } else {
+//            Proveedores provNuevo = new Proveedores();
+//            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
+//            TipoIdentificacionCompra identificacionCompra = null;
+//            if (adto.getComprobante().getFactura().getInfoTributaria().getRuc().length() == 13) {
+//                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
+//            } else if (adto.getComprobante().getFactura().getInfoTributaria().getRuc().length() == 10) {
+//                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
+//            }
+//            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
+//            provNuevo.setProvBanco("S/N");
+//            provNuevo.setProvNombre(adto.getComprobante().getFactura().getInfoTributaria().getRazonSocial());
+//            provNuevo.setProvNomComercial(adto.getComprobante().getFactura().getInfoTributaria().getNombreComercial());
+//            provNuevo.setProvCedula(adto.getComprobante().getFactura().getInfoTributaria().getRuc());
+//            provNuevo.setProvDireccion(adto.getComprobante().getFactura().getInfoTributaria().getDirMatriz());
+//            servicioProveedor.crear(provNuevo);
+//            cabeceraCompra.setIdProveedor(provNuevo);
+//            prov = provNuevo;
+//        }
 
         servicioCabeceraComprasri.crear(cabeceraCompra);
 
@@ -1945,38 +1995,38 @@ public class ListaComprasSri extends SelectorComposer<Component> {
 //                                CabeceraCompra_.cabEstado
         for (Detalle detalle : adto.getComprobante().getFactura().getDetalles().getDetalle()) {
             // detalleCom = new DetalleCompra();
-            Producto buscado = servicioProducto.findByProdCodigo(detalle.getCodigoPrincipal(),amb);
-            Producto nuevoProd = new Producto();
-            detalleCom = new DetalleCompraSri();
-            if (buscado == null && prov != null) {
-                BigDecimal costoInicial = detalle.getPrecioUnitario().setScale(2, RoundingMode.FLOOR);
-                BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
-                System.out.println("PRODUCTO NUEVO " + detalle.getDescripcion());
-                nuevoProd = new Producto();
-                nuevoProd.setPordCostoCompra(calCostoCompr);
-                nuevoProd.setPordCostoVentaFinal(detalle.getPrecioUnitario().multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
-                nuevoProd.setPordCostoVentaRef(detalle.getPrecioUnitario().setScale(4, RoundingMode.CEILING));
-                nuevoProd.setProdAbreviado("");
-                nuevoProd.setProdCantMinima(BigDecimal.TEN);
-                nuevoProd.setProdCantidadInicial(detalle.getCantidad());
-                nuevoProd.setProdCodigo(detalle.getCodigoPrincipal().length() > 199 ? detalle.getCodigoPrincipal().substring(0, 199) : detalle.getCodigoPrincipal());
-                nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
-                nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
-                nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
-                nuevoProd.setProdIsPrincipal(Boolean.FALSE);
-                nuevoProd.setProdIva(parametrizar.getParIvaActual());
-                nuevoProd.setProdManoObra(BigDecimal.ZERO);
-                nuevoProd.setProdNombre(detalle.getDescripcion().length() > 199 ? detalle.getDescripcion().substring(0, 199) : detalle.getDescripcion());
-                nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
-                nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
-                nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
-                servicioProducto.crear(nuevoProd);
-                detalleCom.setIdProducto(nuevoProd);
-            }
-
-            if (buscado != null) {
-                detalleCom.setIdProducto(buscado);
-            }
+//            Producto buscado = servicioProducto.findByProdCodigo(detalle.getCodigoPrincipal());
+//            Producto nuevoProd = new Producto();
+//            detalleCom = new DetalleCompraSri();
+//            if (buscado == null && prov != null) {
+//                BigDecimal costoInicial = detalle.getPrecioUnitario().setScale(2, RoundingMode.FLOOR);
+//                BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
+//                System.out.println("PRODUCTO NUEVO " + detalle.getDescripcion());
+//                nuevoProd = new Producto();
+//                nuevoProd.setPordCostoCompra(calCostoCompr);
+//                nuevoProd.setPordCostoVentaFinal(detalle.getPrecioUnitario().multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
+//                nuevoProd.setPordCostoVentaRef(detalle.getPrecioUnitario().setScale(4, RoundingMode.CEILING));
+//                nuevoProd.setProdAbreviado("");
+//                nuevoProd.setProdCantMinima(BigDecimal.TEN);
+//                nuevoProd.setProdCantidadInicial(detalle.getCantidad());
+//                nuevoProd.setProdCodigo(detalle.getCodigoPrincipal().length() > 199 ? detalle.getCodigoPrincipal().substring(0, 199) : detalle.getCodigoPrincipal());
+//                nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
+//                nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
+//                nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
+//                nuevoProd.setProdIsPrincipal(Boolean.FALSE);
+//                nuevoProd.setProdIva(parametrizar.getParIvaActual());
+//                nuevoProd.setProdManoObra(BigDecimal.ZERO);
+//                nuevoProd.setProdNombre(detalle.getDescripcion().length() > 199 ? detalle.getDescripcion().substring(0, 199) : detalle.getDescripcion());
+//                nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
+//                nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
+//                nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
+//                servicioProducto.crear(nuevoProd);
+//                detalleCom.setIdProducto(nuevoProd);
+//            }
+//            
+//            if (buscado != null) {
+//                detalleCom.setIdProducto(buscado);
+//            }
             // detalleCom.setIdProducto(buscado);
             detalleCom.setIdCabeceraSri(cabeceraCompra);
             detalleCom.setIprodCantidad(detalle.getCantidad());
@@ -2128,6 +2178,22 @@ public class ListaComprasSri extends SelectorComposer<Component> {
         }
         return pathSalida;
 
+    }
+
+    public ListModelList<CabeceraCompraSri> getListaComprasSriModel() {
+        return listaComprasSriModel;
+    }
+
+    public void setListaComprasSriModel(ListModelList<CabeceraCompraSri> listaComprasSriModel) {
+        this.listaComprasSriModel = listaComprasSriModel;
+    }
+
+    public Set<CabeceraCompraSri> getRegistrosSeleccionados() {
+        return registrosSeleccionados;
+    }
+
+    public void setRegistrosSeleccionados(Set<CabeceraCompraSri> registrosSeleccionados) {
+        this.registrosSeleccionados = registrosSeleccionados;
     }
 
 }

@@ -332,6 +332,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnAjuste() {
         Executions.sendRedirect("/administrar/ajuste.zul");
     }
+    @Listen("onClick = #btnComprasSRI")
+    public void btnComprasSRI() {
+        Executions.sendRedirect("/compra/listacomprassri.zul");
+    }
 
     //final Nuevos botones
     @Listen("onClick = #btnCierreCajaUsu")
