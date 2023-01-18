@@ -83,9 +83,9 @@
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>
                                 
-                                    <listheader width="30%"  label="Direccion "  /> 
-                                    <listheader width="7%"  label="Telefono "  />        
-                                    <listheader width="8%"  label="Movil"/>
+                                    <listheader width="37%"  label="Direccion "  /> 
+                                    <!--<listheader width="7%"  label="Telefono "  />-->        
+                                    <listheader width="8%"  label="Telefono"/>
                                     <listheader width="15%"  label="Correo"/>
                                     <listheader width="5%"  label="" align="center"/>
                                 
@@ -113,10 +113,10 @@
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" value="@bind(each.cliDireccion)" />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell">
+<!--                                        <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" value="@bind(each.cliTelefono)" />
-                                        </listcell>
+                                        </listcell>-->
                                         <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" value="@bind(each.cliMovil)" />
@@ -127,7 +127,7 @@
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">    
                                             <image src="/iconos/editar.png"
-                                                   if="${each.cliNombre !='9999999999999' }"
+                                                   if="${each.cliCedula !='9999999999999' }"
                                                    class="grow "
                                                    onClick="@command('actualizarCliente',valor=each)" 
                                                    tooltiptext="Modificar cliente"/>
@@ -203,7 +203,7 @@
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"
                                                    class="grow"
-                                                   if="${each.cliCedula!='9999999999999'}"
+                                                   
                                                    onClick="@command('modificarUsario',valor=each)" 
                                                    tooltiptext="Editar usuario"/> 
                                             

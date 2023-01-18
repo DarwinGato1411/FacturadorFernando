@@ -1838,7 +1838,7 @@ public class Facturar extends SelectorComposer<Component> {
                 valorTotalInicialVent = valorTotalInicial;
                 //  valorTotalInicialVent.setScale(5, RoundingMode.UP);
 
-                descuentoValorFinal = valorDescuento.multiply(facturIvaMasBase);
+                descuentoValorFinal = valorDescuento;
                 //  descuentoValorFinal.setScale(5, RoundingMode.UP);
                 totalDescuento = valorDescuento;
                 //descuentoValorFinal.setScale(5, RoundingMode.UP);

@@ -162,7 +162,6 @@ public class NuevoCliente {
         if (cliente.getCliCedula() != null
                     && cliente.getCliNombre() != null
                     && cliente.getCliDireccion() != null
-                    && cliente.getCliTelefono() != null
                     && cliente.getCliMovil() != null
                     && cliente.getCiudad() != null
                     && cliente.getCliCorreo() != null

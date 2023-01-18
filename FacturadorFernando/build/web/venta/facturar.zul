@@ -63,7 +63,7 @@
                                     />
                                 </div>
                                 <div class="wrapper_input">
-                                    <span>EmisiÃ³n:</span>
+                                    <span>Emisión:</span>
                                         
                                     <datebox 
 
@@ -290,8 +290,8 @@
                                         <textbox value="@bind(vm.buscarCodigoProd)"  
                                     
                                                  class="form-control form-control-sm"
-                                                 tooltiptext="CÃ³digo"
-                                                 placeholder="CÃ³digo"
+                                                 tooltiptext="Código"
+                                                 placeholder="Código"
                                                  onOK="@command('buscarLikeKardexCodigoProd')"
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
@@ -405,7 +405,7 @@
                                     <listheader width="15%"   label="COD" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
-                                    <listheader width="30%"  label="DESCRIPCIÃ“N" align="left" />
+                                    <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
                                     <listheader width="10%"  label="PRE REAL" align="left" />
                                     <listheader width="10%"  label="PRECIO" align="left" />                                         
                                     <listheader width="10%"  label="TOTAL" align="left" />
