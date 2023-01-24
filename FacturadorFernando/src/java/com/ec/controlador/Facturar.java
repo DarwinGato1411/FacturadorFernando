@@ -1165,7 +1165,7 @@ public class Facturar extends SelectorComposer<Component> {
                 }
 
                 /*COLOCAMOS EN EL CAMPO DE DESCUENTO*/
-                BigDecimal porcentajeDiferencia = BigDecimal.valueOf(100.0).subtract(valorPorcentaje).setScale(5, RoundingMode.FLOOR);
+                BigDecimal porcentajeDiferencia = valor.getEsProducto() ? BigDecimal.valueOf(100.0).subtract(valorPorcentaje).setScale(5, RoundingMode.FLOOR) : BigDecimal.ZERO;
                 valor.setDetPordescuento(porcentajeDiferencia);
                 //valor unitario con descuento ioncluido iva
                 BigDecimal valorTotalIvaDesc = valor.getTotalInicial().subtract(valorDescuentoIva);
@@ -1274,7 +1274,9 @@ public class Facturar extends SelectorComposer<Component> {
                 valor.setDetValdescuento(valorDescuento);
 
                 //valor del iva con descuento
-                BigDecimal valorIvaDesc = subTotalDescuento.multiply(factorIva).multiply(valor.getCantidad());
+                BigDecimal valorIvarCal = valorTotalIvaDesc.subtract(subTotalDescuento);
+                BigDecimal valorIvaDesc = valorIvarCal.multiply(valor.getCantidad());
+//                BigDecimal valorIvaDesc = subTotalDescuento.multiply(factorIva).multiply(valor.getCantidad());
 
                 valor.setDetIva(valorIvaDesc);
 
@@ -1783,14 +1785,14 @@ public class Facturar extends SelectorComposer<Component> {
         BigDecimal sumaDeItems = BigDecimal.ZERO;
         BigDecimal valorTotalIce = BigDecimal.ZERO;
         BigDecimal valorTotalIcePorProducto = BigDecimal.ZERO;
-
+        BigDecimal valotTotalCompleto = BigDecimal.ZERO;
         List<DetalleFacturaDAO> listaPedido = listaDetalleFacturaDAOMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleFacturaDAO item : listaPedido) {
                 sumaDeItems = sumaDeItems.add(BigDecimal.ONE);
                 if (item.getProducto() != null) {
                     valorTotal = valorTotal.add(item.getProducto().getProdGrabaIva() ? item.getSubTotalDescuento().multiply(item.getCantidad()) : BigDecimal.ZERO);
-
+                    valotTotalCompleto =valotTotalCompleto.add(item.getDetTotalconivadescuento());
                     /*productos que graban ICE*/
                     valorTotalIcePorProducto = item.getValorIce();
                     valorTotalIce = valorTotalIcePorProducto.add(valorTotalIce);
@@ -1816,18 +1818,19 @@ public class Facturar extends SelectorComposer<Component> {
             //valorTotal.setScale(5, RoundingMode.UP);
             try {
                 subsidioTotal = sumaSubsidio;
-                subTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotal, 3);
+                subTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotal, 5);
                 // subTotalCotizacion.setScale(5, RoundingMode.UP);
-                subTotalBaseCero = ArchivoUtils.redondearDecimales(baseCero, 3);
+                subTotalBaseCero = ArchivoUtils.redondearDecimales(baseCero, 5);
                 /*Obtiene el porcentaje del IVA*/
 //                BigDecimal valorIva = subTotalCotizacion.multiply(parametrizar.getParIva());
 
-                ivaCotizacion = ArchivoUtils.redondearDecimales(valorIva, 3);
+                ivaCotizacion = ArchivoUtils.redondearDecimales(valorIva, 5);
 
-                valorIce = ArchivoUtils.redondearDecimales(valorTotalIce, 3);
+                valorIce = ArchivoUtils.redondearDecimales(valorTotalIce, 5);
 
                 // ivaCotizacion.setScale(5, RoundingMode.UP);
-                valorTotalCotizacion = subTotalCotizacion.add(subTotalBaseCero.add(ivaCotizacion).add(valorIce));
+                valorTotalCotizacion = valotTotalCompleto;
+//                valorTotalCotizacion = subTotalCotizacion.add(subTotalBaseCero.add(ivaCotizacion).add(valorIce));
                 // valorTotalCotizacion.setScale(5, RoundingMode.UP);
 
                 valorTotalInicialVent = valorTotalInicial;
@@ -1838,12 +1841,12 @@ public class Facturar extends SelectorComposer<Component> {
                 totalDescuento = valorDescuento;
                 //descuentoValorFinal.setScale(5, RoundingMode.UP);
 
-                subTotalCotizacion = ArchivoUtils.redondearDecimales(subTotalCotizacion, 2);
-                subTotalBaseCero = ArchivoUtils.redondearDecimales(subTotalBaseCero, 2);
-                valorTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotalCotizacion, 2);
-                valorTotalInicialVent = ArchivoUtils.redondearDecimales(valorTotalInicialVent, 2);
-                ivaCotizacion = ArchivoUtils.redondearDecimales(ivaCotizacion, 2);
-                descuentoValorFinal = ArchivoUtils.redondearDecimales(descuentoValorFinal, 2);
+                subTotalCotizacion = ArchivoUtils.redondearDecimales(subTotalCotizacion, 3);
+                subTotalBaseCero = ArchivoUtils.redondearDecimales(subTotalBaseCero, 3);
+                valorTotalCotizacion = ArchivoUtils.redondearDecimales(valorTotalCotizacion, 3);
+                valorTotalInicialVent = ArchivoUtils.redondearDecimales(valorTotalInicialVent, 3);
+                ivaCotizacion = ArchivoUtils.redondearDecimales(ivaCotizacion, 3);
+                descuentoValorFinal = ArchivoUtils.redondearDecimales(descuentoValorFinal, 3);
 
             } catch (Exception e) {
                 System.out.println("error de calculo de valores " + e);
@@ -2164,7 +2167,7 @@ public class Facturar extends SelectorComposer<Component> {
                     factura.setIdCliente(clienteBuscado);
                     /*GENERAMOS LA CLAVE DE ACCESO PARA ENVIAR LA FACTURA DIRECTAMENTE ASI NO ESTE 
                     AUTORIZADA*/
-                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab()+amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
+                    String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
                     factura.setFacClaveAcceso(claveAcceso);
                     factura.setFacClaveAutorizacion(claveAcceso);
 
@@ -2201,7 +2204,7 @@ public class Facturar extends SelectorComposer<Component> {
                         guiaremision.setPuntoemision(factura.getPuntoemision());
                         guiaremision.setCodestablecimiento(factura.getCodestablecimiento());
                         guiaremision.setEstadosri("PENDIENTE");
-                        String claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab()+amb.getAmPtoemi(), guiaremision.getFacNumeroText(), "12345678", "1");
+                        String claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), guiaremision.getFacNumeroText(), "12345678", "1");
                         guiaremision.setFacClaveAcceso(claveAccesoGuia);
                         guiaremision.setFacClaveAutorizacion(claveAccesoGuia);
                         guiaremision.setCodTipoambiente(factura.getCod_tipoambiente().getCodTipoambiente());
@@ -2626,7 +2629,7 @@ public class Facturar extends SelectorComposer<Component> {
     @Command
     @NotifyChange({"cambio"})
     public void calcularCambio() {
-        cambio = cobro.add(valorTotalCotizacion.negate());
+        cambio = cobro.subtract(valorTotalCotizacion);
         cambio.setScale(2, RoundingMode.FLOOR);
     }
 

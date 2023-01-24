@@ -248,7 +248,7 @@
                                     <span style="text_total">Total:</span>
 
                                     <decimalbox  
-                                        format="###.##"   
+                                        format="###.###"   
                                         value="@bind(vm.valorTotalCotizacion)"                                                 
                                         readonly="true"
                                             
@@ -468,7 +468,7 @@
                                     
                                 
                                         <listcell zclass = "mycss-listcell">
-                                            <decimalbox readonly="true" format="###.###" 
+                                            <decimalbox readonly="true" 
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.detTotalconivadescuento)"  width="99%" />
                                         </listcell>
@@ -484,4 +484,6 @@
             </tabpanels>
         </tabbox>   
     </hbox>
+    
+    
 </zk>

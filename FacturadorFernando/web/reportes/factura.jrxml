@@ -384,11 +384,11 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 			<staticText>
 				<reportElement x="307" y="109" width="100" height="30"/>
 				<textElement>
-					<font isBold="false"/>
+					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[FECHA Y HORA DE AUTORIZACIÓN]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+			<textField pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="true">
 				<reportElement x="407" y="109" width="143" height="30"/>
 				<textElement/>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fac_fecha_autorizacion}]]></textFieldExpression>
@@ -449,13 +449,6 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[Direcciòn Sucursal:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="279" width="178" height="20"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Razón Social / Nombres Apellidos: ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="11" y="201" width="219" height="14"/>
 				<textElement>
 					<font isBold="true"/>
@@ -501,46 +494,45 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[Contribuyente Especial Nro]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="189" y="279" width="361" height="20"/>
+				<reportElement x="11" y="279" width="539" height="20"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombre}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA["Razón Social / Nombres Apellidos: "+ $F{cli_nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="302" y="303" width="75" height="20"/>
+				<reportElement x="295" y="303" width="112" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Identificación:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="377" y="303" width="173" height="20"/>
-				<textElement/>
+				<reportElement x="407" y="303" width="143" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_cedula}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="303" width="95" height="20"/>
+				<reportElement x="11" y="303" width="121" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Fecha de emisión: ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="11" y="327" width="65" height="20"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Dirección:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="76" y="327" width="479" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
+				<reportElement x="11" y="325" width="539" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Dirección: "+ $F{cli_direccion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="106" y="303" width="189" height="20"/>
-				<textElement/>
+				<reportElement x="132" y="303" width="163" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fac_fecha}]]></textFieldExpression>
 			</textField>
 			<textField>
