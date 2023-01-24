@@ -29,8 +29,6 @@ public class GestionUsuarios {
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
 
-    
-   
     UserCredential credential = new UserCredential();
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
@@ -38,19 +36,30 @@ public class GestionUsuarios {
 
     private Boolean esVisisible = Boolean.FALSE;
 
+    private List<Tipoambiente> listaTipoAmbiente = new ArrayList<Tipoambiente>();
+    private String nombreUsuario = " ";
+    private String amCodigo = "2";
+
     public GestionUsuarios() {
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-      
-        cosultarUsuarios("");
+
+        consultarUsuarios();
     }
 
-  
-  
-   
+    @Command
+    @NotifyChange("listaTipoAmbiente")
+    public void consultarUsuarioPorCodigo() {
+        consultarUsuarios();
+    }
+
+    private void consultarUsuarios() {
+        listaTipoAmbiente = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
+    }
+
 
     /*ADMINISTRAR USUARIO*/
     private void cosultarUsuarios(String buscar) {
@@ -70,7 +79,7 @@ public class GestionUsuarios {
     @NotifyChange("listaUsuarios")
     public void agregarUsario() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/usuario.zul", null, null);
+                "/nuevo/usuario.zul", null, null);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -81,7 +90,7 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevoadmin/usuario.zul", null, map);
+                "/nuevoadmin/usuario.zul", null, map);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -100,6 +109,38 @@ public class GestionUsuarios {
 
     public void setEsVisisible(Boolean esVisisible) {
         this.esVisisible = esVisisible;
+    }
+
+    public Tipoambiente getAmb() {
+        return amb;
+    }
+
+    public void setAmb(Tipoambiente amb) {
+        this.amb = amb;
+    }
+
+    public List<Tipoambiente> getListaTipoAmbiente() {
+        return listaTipoAmbiente;
+    }
+
+    public void setListaTipoAmbiente(List<Tipoambiente> listaTipoAmbiente) {
+        this.listaTipoAmbiente = listaTipoAmbiente;
+    }
+
+    public String getAmCodigo() {
+        return amCodigo;
+    }
+
+    public void setAmCodigo(String amCodigo) {
+        this.amCodigo = amCodigo;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
 }

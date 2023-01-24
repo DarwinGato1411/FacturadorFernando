@@ -117,7 +117,7 @@ public class ServicioRetencionCompra {
             em.getTransaction().commit();
 
         } catch (Exception e) {
-            System.out.println("Error en eliminar  retencionCompra" + e);
+            System.out.println("Error en eliminar  retencionCompra" + e.getMessage());
         } finally {
             em.close();
         }
