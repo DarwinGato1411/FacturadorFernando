@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000019"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="288"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -34,7 +34,7 @@ FROM
 guiaremision
 INNER JOIN detalle_guiaremision ON detalle_guiaremision.id_guiaremision= guiaremision.id_guiaremision
 INNER JOIN producto ON detalle_guiaremision.id_producto = producto.id_producto
-where guiaremision.fac_numero=$P{id_factura}]]>
+where guiaremision.id_guiaremision=$P{id_factura}]]>
 		</queryString>
 		<field name="id_guiaremision" class="java.lang.Integer"/>
 		<field name="id_factura" class="java.lang.Integer"/>
@@ -77,13 +77,16 @@ where guiaremision.fac_numero=$P{id_factura}]]>
 		<field name="fac_numero" class="java.lang.Integer"/>
 		<field name="documentoaduanerounico" class="java.lang.String"/>
 		<field name="id_transportista" class="java.lang.Integer"/>
-		<field name="fechainitranspguia" class="java.sql.Date"/>
-		<field name="fechafintranspguia" class="java.sql.Date"/>
+		<field name="fechainitranspguia" class="java.sql.Timestamp"/>
+		<field name="fechafintranspguia" class="java.sql.Timestamp"/>
 		<field name="numplacaguia" class="java.lang.String"/>
 		<field name="id_cliente" class="java.lang.Integer"/>
 		<field name="motivoguia" class="java.lang.String"/>
 		<field name="partida" class="java.lang.String"/>
 		<field name="llegada" class="java.lang.String"/>
+		<field name="tipo_guia" class="java.lang.String"/>
+		<field name="fac_numero_text_recibida" class="java.lang.String"/>
+		<field name="numero_guia_recibida" class="java.lang.String"/>
 		<field name="id_detalle_guiaremision" class="java.lang.Integer"/>
 		<field name="id_producto" class="java.lang.Integer"/>
 		<field name="det_cantidad" class="java.math.BigDecimal"/>
@@ -130,8 +133,27 @@ where guiaremision.fac_numero=$P{id_factura}]]>
 		<field name="prod_subsidio" class="java.math.BigDecimal"/>
 		<field name="prod_tiene_subsidio" class="java.lang.String"/>
 		<field name="prod_precio_sin_subsidio" class="java.math.BigDecimal"/>
+		<field name="prod_glp" class="java.lang.String"/>
+		<field name="prod_descripcion" class="java.lang.String"/>
+		<field name="id_parroquia" class="java.lang.Integer"/>
+		<field name="prod_imagen" class="java.lang.String"/>
+		<field name="prod_publicado" class="java.lang.Boolean"/>
+		<field name="prod_servlet_url" class="java.lang.String"/>
+		<field name="prod_espropina" class="java.lang.String"/>
+		<field name="pord_costo_promedio_compra" class="java.math.BigDecimal"/>
+		<field name="prod_fecha_registro" class="java.sql.Date"/>
+		<field name="prod_factor_conversion" class="java.math.BigDecimal"/>
+		<field name="prod_unidad_medida" class="java.lang.String"/>
+		<field name="prod_unidad_conversion" class="java.lang.String"/>
+		<field name="prod_esreceta" class="java.lang.Boolean"/>
+		<field name="prod_porcentaje_ice" class="java.math.BigDecimal"/>
+		<field name="prod_graba_ice" class="java.lang.Boolean"/>
+		<field name="prod_detalle" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="numfactura" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="codTipoAmbiente" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -142,7 +164,7 @@ tipoambiente
 INNER JOIN guiaremision ON guiaremision.cod_tipoambiente = tipoambiente.cod_tipoambiente
 INNER JOIN cliente ON  guiaremision.id_cliente = cliente.id_cliente
 INNER JOIN transportista b ON guiaremision.id_transportista = b.id_transportista
-where  guiaremision.fac_numero=$P{numfactura};]]>
+where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  guiaremision.fac_numero=$P{numfactura};]]>
 	</queryString>
 	<field name="cod_tipoambiente" class="java.lang.Integer"/>
 	<field name="am_codigo" class="java.lang.String"/>
@@ -202,6 +224,7 @@ where  guiaremision.fac_numero=$P{numfactura};]]>
 	<field name="am_comprobante_imprime" class="java.lang.String"/>
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.Integer"/>
+	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
 	<field name="id_guiaremision" class="java.lang.Integer"/>
 	<field name="id_factura" class="java.lang.Integer"/>
 	<field name="fac_fecha" class="java.sql.Date"/>
@@ -241,8 +264,8 @@ where  guiaremision.fac_numero=$P{numfactura};]]>
 	<field name="fac_numero" class="java.lang.Integer"/>
 	<field name="documentoaduanerounico" class="java.lang.String"/>
 	<field name="id_transportista" class="java.lang.Integer"/>
-	<field name="fechainitranspguia" class="java.sql.Date"/>
-	<field name="fechafintranspguia" class="java.sql.Date"/>
+	<field name="fechainitranspguia" class="java.sql.Timestamp"/>
+	<field name="fechafintranspguia" class="java.sql.Timestamp"/>
 	<field name="numplacaguia" class="java.lang.String"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
 	<field name="motivoguia" class="java.lang.String"/>
@@ -640,7 +663,7 @@ where  guiaremision.fac_numero=$P{numfactura};]]>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="detallefactura">
 						<datasetParameter name="id_factura">
-							<datasetParameterExpression><![CDATA[$P{numfactura}]]></datasetParameterExpression>
+							<datasetParameterExpression><![CDATA[$F{id_guiaremision}]]></datasetParameterExpression>
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>

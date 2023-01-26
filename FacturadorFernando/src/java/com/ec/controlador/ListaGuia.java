@@ -159,6 +159,7 @@ public class ListaGuia {
 
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
             parametros.put("numfactura", numeroFactura);
+             parametros.put("codTipoAmbiente", amb.getCodTipoambiente());
 
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
@@ -424,7 +425,7 @@ public class ListaGuia {
                             fEnvio = new File(archivoEnvioCliente);
 
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT",amb);
+                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "GUIA",amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
 
@@ -446,7 +447,7 @@ public class ListaGuia {
                                             "GUIA DE REMISION ELECTRONICA",
                                             valor.getFacClaveAcceso(),
                                             valor.getFacNumeroText(),
-                                            valor.getFacTotal(),
+                                            BigDecimal.ZERO,
                                             valor.getIdCliente().getCliNombre(),amb);
                             }
                         }
