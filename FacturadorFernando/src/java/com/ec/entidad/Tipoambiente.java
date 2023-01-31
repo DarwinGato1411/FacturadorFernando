@@ -31,25 +31,25 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "tipoambiente")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Tipoambiente.findAll", query = "SELECT t FROM Tipoambiente t")
-    ,@NamedQuery(name = "Tipoambiente.findAllActivo", query = "SELECT t FROM Tipoambiente t WHERE t.amEstado=TRUE")
-    , @NamedQuery(name = "Tipoambiente.findByCodTipoambiente", query = "SELECT t FROM Tipoambiente t WHERE t.codTipoambiente = :codTipoambiente")
-    , @NamedQuery(name = "Tipoambiente.findByAmCodigo", query = "SELECT t FROM Tipoambiente t WHERE t.amCodigo = :amCodigo")
-    , @NamedQuery(name = "Tipoambiente.findByAmDescripcion", query = "SELECT t FROM Tipoambiente t WHERE t.amDescripcion = :amDescripcion")
-    , @NamedQuery(name = "Tipoambiente.findByAmEstado", query = "SELECT t FROM Tipoambiente t WHERE t.amEstado = :amEstado")
-    , @NamedQuery(name = "Tipoambiente.findByAmIdEmpresa", query = "SELECT t FROM Tipoambiente t WHERE t.amIdEmpresa = :amIdEmpresa")
-    , @NamedQuery(name = "Tipoambiente.findByAmUsuariosri", query = "SELECT t FROM Tipoambiente t WHERE t.amUsuariosri = :amUsuariosri")
-    , @NamedQuery(name = "Tipoambiente.findByAmUrlsri", query = "SELECT t FROM Tipoambiente t WHERE t.amUrlsri = :amUrlsri")
-    , @NamedQuery(name = "Tipoambiente.findByAmDirReportes", query = "SELECT t FROM Tipoambiente t WHERE t.amDirReportes = :amDirReportes")
-    , @NamedQuery(name = "Tipoambiente.findByAmDirFirma", query = "SELECT t FROM Tipoambiente t WHERE t.amDirFirma = :amDirFirma")
-    , @NamedQuery(name = "Tipoambiente.findByAmDirBaseArchivos", query = "SELECT t FROM Tipoambiente t WHERE t.amDirBaseArchivos = :amDirBaseArchivos")
-    , @NamedQuery(name = "Tipoambiente.findByAmDirXml", query = "SELECT t FROM Tipoambiente t WHERE t.amDirXml = :amDirXml")
-    , @NamedQuery(name = "Tipoambiente.findByAmFirmados", query = "SELECT t FROM Tipoambiente t WHERE t.amFirmados = :amFirmados")
-    , @NamedQuery(name = "Tipoambiente.findByAmTrasmitidos", query = "SELECT t FROM Tipoambiente t WHERE t.amTrasmitidos = :amTrasmitidos")
-    , @NamedQuery(name = "Tipoambiente.findByAmDevueltos", query = "SELECT t FROM Tipoambiente t WHERE t.amDevueltos = :amDevueltos")
-    , @NamedQuery(name = "Tipoambiente.findByAmAutorizados", query = "SELECT t FROM Tipoambiente t WHERE t.amAutorizados = :amAutorizados")
-    , @NamedQuery(name = "Tipoambiente.findByAmNoAutorizados", query = "SELECT t FROM Tipoambiente t WHERE t.amNoAutorizados = :amNoAutorizados")
-    , @NamedQuery(name = "Tipoambiente.findByAmClaveAccesoSri", query = "SELECT t FROM Tipoambiente t WHERE t.amClaveAccesoSri = :amClaveAccesoSri")})
+    @NamedQuery(name = "Tipoambiente.findAll", query = "SELECT t FROM Tipoambiente t"),
+    @NamedQuery(name = "Tipoambiente.findAllActivo", query = "SELECT t FROM Tipoambiente t WHERE t.amEstado=TRUE"),
+    @NamedQuery(name = "Tipoambiente.findByCodTipoambiente", query = "SELECT t FROM Tipoambiente t WHERE t.codTipoambiente = :codTipoambiente"),
+    @NamedQuery(name = "Tipoambiente.findByAmCodigo", query = "SELECT t FROM Tipoambiente t WHERE t.amCodigo = :amCodigo"),
+    @NamedQuery(name = "Tipoambiente.findByAmDescripcion", query = "SELECT t FROM Tipoambiente t WHERE t.amDescripcion = :amDescripcion"),
+    @NamedQuery(name = "Tipoambiente.findByAmEstado", query = "SELECT t FROM Tipoambiente t WHERE t.amEstado = :amEstado"),
+    @NamedQuery(name = "Tipoambiente.findByAmIdEmpresa", query = "SELECT t FROM Tipoambiente t WHERE t.amIdEmpresa = :amIdEmpresa"),
+    @NamedQuery(name = "Tipoambiente.findByAmUsuariosri", query = "SELECT t FROM Tipoambiente t WHERE t.amUsuariosri = :amUsuariosri"),
+    @NamedQuery(name = "Tipoambiente.findByAmUrlsri", query = "SELECT t FROM Tipoambiente t WHERE t.amUrlsri = :amUrlsri"),
+    @NamedQuery(name = "Tipoambiente.findByAmDirReportes", query = "SELECT t FROM Tipoambiente t WHERE t.amDirReportes = :amDirReportes"),
+    @NamedQuery(name = "Tipoambiente.findByAmDirFirma", query = "SELECT t FROM Tipoambiente t WHERE t.amDirFirma = :amDirFirma"),
+    @NamedQuery(name = "Tipoambiente.findByAmDirBaseArchivos", query = "SELECT t FROM Tipoambiente t WHERE t.amDirBaseArchivos = :amDirBaseArchivos"),
+    @NamedQuery(name = "Tipoambiente.findByAmDirXml", query = "SELECT t FROM Tipoambiente t WHERE t.amDirXml = :amDirXml"),
+    @NamedQuery(name = "Tipoambiente.findByAmFirmados", query = "SELECT t FROM Tipoambiente t WHERE t.amFirmados = :amFirmados"),
+    @NamedQuery(name = "Tipoambiente.findByAmTrasmitidos", query = "SELECT t FROM Tipoambiente t WHERE t.amTrasmitidos = :amTrasmitidos"),
+    @NamedQuery(name = "Tipoambiente.findByAmDevueltos", query = "SELECT t FROM Tipoambiente t WHERE t.amDevueltos = :amDevueltos"),
+    @NamedQuery(name = "Tipoambiente.findByAmAutorizados", query = "SELECT t FROM Tipoambiente t WHERE t.amAutorizados = :amAutorizados"),
+    @NamedQuery(name = "Tipoambiente.findByAmNoAutorizados", query = "SELECT t FROM Tipoambiente t WHERE t.amNoAutorizados = :amNoAutorizados"),
+    @NamedQuery(name = "Tipoambiente.findByAmClaveAccesoSri", query = "SELECT t FROM Tipoambiente t WHERE t.amClaveAccesoSri = :amClaveAccesoSri")})
 public class Tipoambiente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -213,6 +213,9 @@ public class Tipoambiente implements Serializable {
     private String amCodigoIce;
     @Column(name = "am_comprobante_imprime")
     private String amComprobanteImprime;
+
+    @Column(name = "am_rimpe_popular")
+    private Boolean amRimpePopular;
 
     public Tipoambiente() {
     }
@@ -749,6 +752,14 @@ public class Tipoambiente implements Serializable {
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Boolean getAmRimpePopular() {
+        return  amRimpePopular == null ? Boolean.FALSE : amRimpePopular;
+    }
+
+    public void setAmRimpePopular(Boolean amRimpePopular) {
+        this.amRimpePopular = amRimpePopular;
     }
 
 }
