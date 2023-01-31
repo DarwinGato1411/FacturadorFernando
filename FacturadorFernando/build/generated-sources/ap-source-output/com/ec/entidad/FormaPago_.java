@@ -6,7 +6,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2022-11-25T09:27:43")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-01-31T13:30:34")
 @StaticMetamodel(FormaPago.class)
 public class FormaPago_ { 
 

@@ -75,7 +75,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 menuKardex.setVisible(Boolean.FALSE);
                 menuReportes.setVisible(Boolean.FALSE);
                 btnAdministarVenta.setVisible(Boolean.FALSE);
-                btnHisDeclaraciones.setVisible(Boolean.FALSE);
+//                btnHisDeclaraciones.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);

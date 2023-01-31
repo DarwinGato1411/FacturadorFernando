@@ -235,6 +235,9 @@ public class Factura implements Serializable {
     @ManyToOne
     private Referencia idReferencia;
 
+    @Column(name = "fac_observacion")
+    private String facObservacion;
+
     public Factura() {
     }
 
@@ -793,7 +796,7 @@ public class Factura implements Serializable {
     }
 
     public BigDecimal getFacValorIce() {
-        return facValorIce==null?BigDecimal.ZERO:facValorIce;
+        return facValorIce == null ? BigDecimal.ZERO : facValorIce;
     }
 
     public void setFacValorIce(BigDecimal facValorIce) {
@@ -801,11 +804,19 @@ public class Factura implements Serializable {
     }
 
     public BigDecimal getFacBaseIce() {
-        return facBaseIce==null?BigDecimal.ZERO:facBaseIce;
+        return facBaseIce == null ? BigDecimal.ZERO : facBaseIce;
     }
 
     public void setFacBaseIce(BigDecimal facBaseIce) {
         this.facBaseIce = facBaseIce;
+    }
+
+    public String getFacObservacion() {
+        return facObservacion;
+    }
+
+    public void setFacObservacion(String facObservacion) {
+        this.facObservacion = facObservacion;
     }
 
 }
