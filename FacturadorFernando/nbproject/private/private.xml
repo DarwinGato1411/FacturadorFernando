@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaFacturas.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/paneles/InfoFactura.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/AdmParametrizar.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/AperturaCajaVm.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/servicio/ServicioNotaCredito.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/web/nuevo/notacrdb.zul</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaNC.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/ArchivoUtils.java</file>
+            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NotaCreditoDebitoVm.java</file>
         </group>
     </open-files>
 </project-private>

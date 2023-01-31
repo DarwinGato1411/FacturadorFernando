@@ -12,7 +12,6 @@ import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.HelperPersistencia;
 import com.ec.servicio.ServicioCliente;
-import com.ec.servicio.ServicioGuia;
 import com.ec.servicio.ServicioNotaCredito;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.untilitario.ArchivoUtils;
@@ -94,7 +93,7 @@ public class ListaNC {
     }
 
     private void consultarFactura() {
-        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin);
+        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin,amb);
     }
 
     public List<NotaCreditoDebito> getLstCreditoDebitos() {
@@ -198,7 +197,7 @@ public class ListaNC {
     }
 
     private void consultarFacturas() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente,amb);
 
     }
 
@@ -212,7 +211,7 @@ public class ListaNC {
     }
 
     private void consultarFacturasForCedula() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula,amb);
 
     }
 
@@ -224,7 +223,7 @@ public class ListaNC {
     }
 
     private void consultarFacturaFecha() {
-        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin);
+        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
     //GRAFICA POR UBICACION
     JFreeChart jfreechartMes;
@@ -421,7 +420,7 @@ public class ListaNC {
                             fEnvio = new File(archivoEnvioCliente);
 
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
+                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
 
@@ -604,7 +603,7 @@ public class ListaNC {
                 }
 
                 System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
+                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                 /*GUARDA EL PATH PDF CREADO*/
 
@@ -684,7 +683,7 @@ public class ListaNC {
 
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
             parametros.put("numfactura", valor.getFacNumero());
-
+            parametros.put("codTipoAmbiente", amb.getCodTipoambiente());
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             }

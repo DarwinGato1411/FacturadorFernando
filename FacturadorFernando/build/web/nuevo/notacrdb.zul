@@ -333,8 +333,9 @@
                                                         value="@bind(each.detValdescuento)"  width="99%" />
                                         </listcell>
                                         <listcell>
-                                            <decimalbox readonly="true" format="###.##" 
+                                            <decimalbox readonly="false" format="###.##" 
                                                         class="form-control form-control-sm"
+                                                           onOK="@command('calcularValores',valor=each)"
                                                         value="@bind(each.detTotaldescuento)"  width="99%" />
                                         </listcell>
                                         <listcell>
