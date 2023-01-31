@@ -93,7 +93,7 @@ public class ListaNC {
     }
 
     private void consultarFactura() {
-        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin,amb);
+        lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
 
     public List<NotaCreditoDebito> getLstCreditoDebitos() {
@@ -197,7 +197,7 @@ public class ListaNC {
     }
 
     private void consultarFacturas() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente,amb);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente, amb);
 
     }
 
@@ -211,7 +211,7 @@ public class ListaNC {
     }
 
     private void consultarFacturasForCedula() {
-        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula,amb);
+        lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula, amb);
 
     }
 
@@ -418,15 +418,13 @@ public class ListaNC {
 //                                    amb, foldervoAutorizado);
 
                             fEnvio = new File(archivoEnvioCliente);
-
+                            servicioNotaCredito.modificar(valor);
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
                             ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
 
-                            servicioNotaCredito.modificar(valor);
-                            /*envia el mail*/
-
+ /*envia el mail*/
                             String[] attachFiles = new String[2];
                             attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
                             attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
@@ -586,6 +584,7 @@ public class ListaNC {
                     valor.setMensajesri(texto);
                     valor.setMensajeInf(smsInfo);
                     nuevo.flush();
+                    servicioNotaCredito.modificar(valor);
                 } else {
 
                     valor.setFacClaveAutorizacion(claveAccesoComprobante);
@@ -600,34 +599,32 @@ public class ListaNC {
                                 amb, foldervoAutorizado);
 
                     fEnvio = new File(archivoEnvioCliente);
-                }
-
-                System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
+                    servicioNotaCredito.modificar(valor);
+                    System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
+                    ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
-                /*GUARDA EL PATH PDF CREADO*/
+                    /*GUARDA EL PATH PDF CREADO*/
 
-                servicioNotaCredito.modificar(valor);
-                /*envia el mail*/
+ /*envia el mail*/
+                    String[] attachFiles = new String[2];
+                    attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
+                    attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
+                    MailerClass mail = new MailerClass();
+                    if (valor.getIdFactura().getIdCliente().getCliClave() == null) {
+                        Cliente mod = valor.getIdFactura().getIdCliente();
+                        mod.setCliClave(ArchivoUtils.generaraClaveTemporal());
+                        servicioCliente.modificar(mod);
+                    }
+                    if (valor.getIdFactura().getIdCliente().getCliCorreo() != null) {
+                        mail.sendMailSimple(valor.getIdFactura().getIdCliente().getCliCorreo(),
+                                    attachFiles,
+                                    "NOTA DE CREDITO ELECTRONICA",
+                                    valor.getFacClaveAcceso(),
+                                    valor.getFacNumeroText(),
+                                    valor.getFacTotal(),
+                                    valor.getIdFactura().getIdCliente().getCliNombre(), amb);
 
-                String[] attachFiles = new String[2];
-                attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
-                attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
-                MailerClass mail = new MailerClass();
-                if (valor.getIdFactura().getIdCliente().getCliClave() == null) {
-                    Cliente mod = valor.getIdFactura().getIdCliente();
-                    mod.setCliClave(ArchivoUtils.generaraClaveTemporal());
-                    servicioCliente.modificar(mod);
-                }
-                if (valor.getIdFactura().getIdCliente().getCliCorreo() != null) {
-                    mail.sendMailSimple(valor.getIdFactura().getIdCliente().getCliCorreo(),
-                                attachFiles,
-                                "NOTA DE CREDITO ELECTRONICA",
-                                valor.getFacClaveAcceso(),
-                                valor.getFacNumeroText(),
-                                valor.getFacTotal(),
-                                valor.getIdFactura().getIdCliente().getCliNombre(), amb);
-
+                    }
                 }
 
             }
