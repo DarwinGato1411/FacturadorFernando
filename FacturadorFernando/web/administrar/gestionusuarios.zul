@@ -77,6 +77,7 @@
                                     <listheader label="Fecha registro"  align="left" width="20%"></listheader>
                                     <listheader label="Fecha caduca"  align="left" width="20%"></listheader>
                                     <listheader label="Plan"  align="left" width="20%"></listheader>
+                                    <listheader label="# Doc"  align="left" width="20%"></listheader>
                                     <listheader label="Modificar"  align="left" width="5%"></listheader>
                                 </listhead>
                         
@@ -137,6 +138,16 @@
                                                      style="font-size:12px;background:#EBF5FB"/>
                                             <textbox if="${!each.idUsuario.usuIlimitado}" 
                                                       readonly="true" value="POR DOCUMENTOS" 
+                                                      class="form-control form-control-sm"
+                                                      style="font-size:12px;background:#EBF5FB"/>
+                                        </listcell>        
+                                        <listcell  zclass = "mycss-listcell">      
+                                            <textbox if="${each.idUsuario.usuIlimitado}" 
+                                                     readonly="true" value="" 
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:12px;background:#EBF5FB"/>
+                                            <textbox if="${!each.idUsuario.usuIlimitado}" 
+                                                      readonly="true" value="@bind(each.idUsuario.usuNumDocumentos)" 
                                                       class="form-control form-control-sm"
                                                       style="font-size:12px;background:#EBF5FB"/>
                                         </listcell>        

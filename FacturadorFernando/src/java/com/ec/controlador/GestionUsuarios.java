@@ -264,6 +264,9 @@ public class GestionUsuarios {
 
                 HSSFCell c1 = r.createCell(i++);
                 c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado()?"ILIMITADO":"DOCUMENTOS"));
+                
+                HSSFCell c11 = r.createCell(i++);
+                c11.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado()?"":item.getIdUsuario().getUsuNumDocumentos()!=null?item.getIdUsuario().getUsuNumDocumentos().toString():""));
 
                 
                 rownum += 1;

@@ -111,7 +111,7 @@
 
                 <div class="body">
                     <div class="wrapper_checkbox">
-                       <checkbox 
+                        <checkbox 
                             id="chkRM" 
                             label="CONTRIBUYENTE REGIMEN GENERAL" 
                             checked="@bind(vm.tipoambiente.amGeneral)" 
