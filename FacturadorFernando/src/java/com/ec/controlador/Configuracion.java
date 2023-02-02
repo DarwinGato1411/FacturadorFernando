@@ -101,21 +101,7 @@ public class Configuracion extends SelectorComposer<Component> {
                 chkAR.setChecked(Boolean.FALSE);
                 chkCE.setChecked(Boolean.FALSE);
                 chkEX.setChecked(Boolean.FALSE);
-//                for (SriCatastro catastro : servicioSriCatastro.findCatastro(tipoambiente.getAmRuc())) {
-//                    if (catastro.getSigla().equals("MC")) {
-//                        tipoambiente.setAmMicroEmp(Boolean.TRUE);
-//                        chkRM.setChecked(Boolean.TRUE);
-//                    } else if (catastro.getSigla().equals("AR")) {
-//                        tipoambiente.setAmAgeRet(Boolean.TRUE);
-//                        chkAR.setChecked(Boolean.TRUE);
-//                    } else if (catastro.getSigla().equals("CE")) {
-//                        tipoambiente.setAmContrEsp(Boolean.TRUE);
-//                        chkCE.setChecked(Boolean.TRUE);
-//                    } else if (catastro.getSigla().equals("EX")) {
-//                        tipoambiente.setAmExp(Boolean.TRUE);
-//                        chkEX.setChecked(Boolean.FALSE);
-//                    }
-//                }
+
 
             }
         }

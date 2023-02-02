@@ -171,7 +171,8 @@ public class Tipoambiente implements Serializable {
 
     @Column(name = "am_general")
     private Boolean amGeneral;
-
+    @Column(name = "am_rimpe_popular")
+    private Boolean amRimpePopular;
     @OneToMany(mappedBy = "codTipoambiente")
     private Collection<Producto> productoCollection;
 
@@ -222,7 +223,6 @@ public class Tipoambiente implements Serializable {
 //    private String amPlacaSocio;
 //    @Column(name = "am_telefono_socio")
 //    private String amTelefonoSocio;
-
     public Tipoambiente() {
     }
 
@@ -760,36 +760,12 @@ public class Tipoambiente implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-//    public String getAmNombreSocio() {
-//        return amNombreSocio;
-//    }
-//
-//    public void setAmNombreSocio(String amNombreSocio) {
-//        this.amNombreSocio = amNombreSocio;
-//    }
-//
-//    public String getAmRucSocio() {
-//        return amRucSocio;
-//    }
-//
-//    public void setAmRucSocio(String amRucSocio) {
-//        this.amRucSocio = amRucSocio;
-//    }
-//
-//    public String getAmPlacaSocio() {
-//        return amPlacaSocio;
-//    }
-//
-//    public void setAmPlacaSocio(String amPlacaSocio) {
-//        this.amPlacaSocio = amPlacaSocio;
-//    }
-//
-//    public String getAmTelefonoSocio() {
-//        return amTelefonoSocio;
-//    }
-//
-//    public void setAmTelefonoSocio(String amTelefonoSocio) {
-//        this.amTelefonoSocio = amTelefonoSocio;
-//    }
+    public Boolean getAmRimpePopular() {
+        return amRimpePopular;
+    }
+
+    public void setAmRimpePopular(Boolean amRimpePopular) {
+        this.amRimpePopular = amRimpePopular;
+    }
 
 }
