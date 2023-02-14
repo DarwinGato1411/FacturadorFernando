@@ -303,11 +303,18 @@
                                     </listcell>
                                     <listcell  zclass = "mycss-listcell" >   
                                             
-                                        <image src="/iconos/notacredito.png"  
-                                        height=" 30px"   
-                                            onClick="@command('crearNotaCredito',valor=each)"                                    
-                                            class="btn btn btn-secondary btn-sm grow"                                               
-                                            tooltiptext="Generar Nota de Crédito"/> 
+                                        <image if="${each.estadosri=='AUTORIZADO' }"
+                                               src="/iconos/notacredito.png"  
+                                               height=" 30px"   
+                                               onClick="@command('crearNotaCredito',valor=each)"                                    
+                                               class="btn btn btn-secondary btn-sm grow"                                               
+                                               tooltiptext="Generar Nota de Crédito"/> 
+                                        
+                                        <image if="${each.estadosri!='AUTORIZADO' }" 
+                                                  src="/iconos/listo_uno.png"   
+                                                  height=" 30px"  
+                                                  class="  btn-secondary btn-sm "       
+                                                  tooltiptext="No se puede generar una nota de credito a un documento si AUTORIZAR"/>
                                     </listcell>
                                     <listcell  zclass = "mycss-listcell" >    
                                         
