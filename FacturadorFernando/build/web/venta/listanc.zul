@@ -156,7 +156,7 @@
                                         
                                         <image src="/iconos/factelect.jpg"   
                                             class="grow"                                         
-                                            onClick="@command('reporteGeneral',valor=each)"
+                                            onClick="@command('reporteGeneralNC',valor=each)"
                                             tooltiptext="Imprimir guia"/>
                                 
                                     </listcell>

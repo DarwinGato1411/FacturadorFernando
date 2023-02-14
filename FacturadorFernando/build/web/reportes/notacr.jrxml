@@ -246,7 +246,7 @@ where nota_credito_debito.fac_numero=$P{numfactura};]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="390" splitType="Stretch">
+		<band height="396" splitType="Stretch">
 			<rectangle radius="0">
 				<reportElement x="0" y="258" width="555" height="132"/>
 			</rectangle>
@@ -264,7 +264,7 @@ where nota_credito_debito.fac_numero=$P{numfactura};]]>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[R.U.C.;]]></text>
+				<text><![CDATA[R.U.C:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="307" y="34" width="168" height="20"/>
@@ -388,7 +388,7 @@ where nota_credito_debito.fac_numero=$P{numfactura};]]>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_sucursal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="307" y="227" width="243" height="20"/>
@@ -412,7 +412,7 @@ where nota_credito_debito.fac_numero=$P{numfactura};]]>
 			<textField>
 				<reportElement x="189" y="272" width="189" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombres}+" "+$F{cli_apellidos}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="378" y="272" width="75" height="20"/>
@@ -505,9 +505,9 @@ where nota_credito_debito.fac_numero=$P{numfactura};]]>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<detail>
-		<band height="45">
+		<band height="46">
 			<componentElement>
-				<reportElement key="table" style="table" positionType="Float" x="0" y="0" width="555" height="45"/>
+				<reportElement key="table" style="table" positionType="Float" x="-1" y="0" width="555" height="45"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="detallefactura">
 						<datasetParameter name="id_factura">
@@ -787,7 +787,7 @@ Principal]]></text>
 		</band>
 		<band height="155" splitType="Prevent">
 			<rectangle>
-				<reportElement x="0" y="10" width="393" height="132"/>
+				<reportElement x="1" y="10" width="393" height="132"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>

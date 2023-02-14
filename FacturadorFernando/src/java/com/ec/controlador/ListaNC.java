@@ -675,7 +675,7 @@ public class ListaNC {
     }
 
     @Command
-    public void reporteGeneral(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
+    public void reporteGeneralNC(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
         EntityManager emf = HelperPersistencia.getEMF();
 
         try {
