@@ -190,7 +190,7 @@
                                         <listcell>
                                             <textbox
                                                 onChange="self.setValue(self.getValue().toUpperCase());" 
-                                                value="@bind(each.producto.prodNombre)" width="99%"
+                                                value="@bind(each.descripcion)" width="99%"
                                                 style="color:black" />
                                         </listcell>
                                     
