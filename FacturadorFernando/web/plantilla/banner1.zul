@@ -8,7 +8,7 @@
 
 
             <div class="" style="width:100%;">
-                <image style="margin:auto; display block;"  src="/imagenes/tucontador/logo.png" class="logo_defact" />                       
+                <image style="margin:auto; display block;"  src="/imagenes/gfsistemas/logogf.png" class="logo_defact" />                       
             </div>
             <div class=" " >
                 <div class="usuario" apply="org.zkoss.bind.BindComposer" 

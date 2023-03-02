@@ -9,7 +9,7 @@
     <div class="login_container" id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="wrapper_login">
             <div class="container_img"> 
-               <image src="./imagenes/tucontador/contador1.jpeg" class="logo" />
+             
             </div>
             <div class="container_signin">
                 
