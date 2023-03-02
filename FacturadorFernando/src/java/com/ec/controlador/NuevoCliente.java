@@ -16,6 +16,7 @@ import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioTipoIdentificacion;
 import com.ec.untilitario.AduanaJson;
 import com.ec.untilitario.ArchivoUtils;
+import com.ec.untilitario.InfoPersona;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
@@ -98,54 +99,28 @@ public class NuevoCliente {
     @Command
     @NotifyChange({"cliente"})
     public void buscarAduana() throws URISyntaxException, IOException, XPathExpressionException, JSONException {
+        InfoPersona aduana = new InfoPersona();
+        String nombre = "";
         if (cliente.getCliCedula() != null) {
             if (!cliente.getCliCedula().equals("")) {
                 String cedulaBuscar = "";
-                if (cliente.getCliCedula().length() > 10) {
-                    cedulaBuscar = cliente.getCliCedula().substring(0, 10);
-                } else {
+                if (cliente.getCliCedula().length() == 13) {
                     cedulaBuscar = cliente.getCliCedula();
-                }
-                AduanaJson aduana = ArchivoUtils.obtenerdatoAduana(cedulaBuscar);
-                if (aduana.getNombre().equals("")) {
-                    cliente.setCliApellidos("");
-                    cliente.setCliNombres("");
-                    cliente.setCliNombre("");
-                    cliente.setCliRazonSocial("");
-                    Clients.showNotification("Cliente no encontrado ingreselo manualmente...!! ",
-                                Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
-                    return;
-                }
-                if (aduana != null) {
-
-                    String nombreApellido[] = aduana.getNombre().split(" ");
-                    String nombrePersona = "";
-                    String apellidoPersona = "";
-                    switch (nombreApellido.length) {
-                        case 1:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = "";
-                            break;
-                        case 2:
-                            apellidoPersona = nombreApellido[0];
-                            nombrePersona = nombreApellido[1];
-                            break;
-                        case 3:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2];
-                            break;
-                        case 4:
-                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-                            break;
-                        default:
-                            break;
-                    }
-                    cliente.setCliApellidos(apellidoPersona);
-                    cliente.setCliNombres(nombrePersona);
+                    nombre = ArchivoUtils.obtenerPorRuc(cedulaBuscar);
+                    cliente.setCliApellidos(nombre);
+                    cliente.setCliNombres(nombre);
+                    cliente.setCliNombre(nombre);
+                    cliente.setCliRazonSocial(nombre);
+                } else if (cliente.getCliCedula().length() == 10) {
+                    cedulaBuscar = cliente.getCliCedula();
+                    aduana = ArchivoUtils.obtenerPorCedula(cedulaBuscar);
+                    cliente.setCliApellidos(aduana.getNombre());
+                    cliente.setCliNombres(aduana.getNombre());
                     cliente.setCliNombre(aduana.getNombre());
-                    cliente.setCliRazonSocial(nombrePersona + " " + apellidoPersona);
+                    cliente.setCliRazonSocial(aduana.getNombre());
+                    cliente.setCliDireccion(aduana.getDireccion());
                 }
+
             }
         }
 
@@ -160,23 +135,23 @@ public class NuevoCliente {
     public void guardar() {
         /*getCliNombre es el nombre comercial*/
         if (cliente.getCliCedula() != null
-                    && cliente.getCliNombre() != null
-                    && cliente.getCliDireccion() != null
-                    && cliente.getCliMovil() != null
-                    && cliente.getCiudad() != null
-                    && cliente.getCliCorreo() != null
-                    && tipoadentificacion != null) {
+                && cliente.getCliNombre() != null
+                && cliente.getCliDireccion() != null
+                && cliente.getCliMovil() != null
+                && cliente.getCiudad() != null
+                && cliente.getCliCorreo() != null
+                && tipoadentificacion != null) {
 
             if (tipoadentificacion.getTidCodigo().equals("04")) {
                 if (cliente.getCliCedula().length() != 13) {
                     Clients.showNotification("Verifique el RUC ingresada debe tener 13 caracteres ",
-                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                     return;
                 }
             } else if (tipoadentificacion.getTidCodigo().equals("05")) {
                 if (cliente.getCliCedula().length() != 10) {
                     Clients.showNotification("Verifique la CEDULA ingresada debe tener 10 caracteres ",
-                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                     return;
                 }
             }
@@ -195,7 +170,7 @@ public class NuevoCliente {
                 } else {
 
                     Clients.showNotification("El número de documento (CI / RUC) ya se encuentra registrado ",
-                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                 }
 
             } else {
@@ -213,7 +188,7 @@ public class NuevoCliente {
         } else {
 
             Clients.showNotification("Verifique la informacion requerida",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
         }
     }
 
