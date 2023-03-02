@@ -163,7 +163,7 @@ body {
 }
 
 .btn_secondary{
-  background-color: var(---color);
+  background-color: var(--color);
   color: #fff;
 }
 
