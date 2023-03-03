@@ -413,7 +413,7 @@ public class ServicioFactura {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT f FROM Factura f WHERE (f.idCliente.cliNombres LIKE :cliente OR f.idCliente.cliRazonSocial like :razon ) AND f.facTipo='PROF' and f.cod_tipoambiente=:codTipoambiente ORDER BY f.idFactura DESC");
+            Query query = em.createQuery("SELECT f FROM Factura f WHERE (f.idCliente.cliNombres LIKE :cliente OR f.idCliente.cliRazonSocial like :razon ) AND f.facTipo='PROF' and f.cod_tipoambiente=:codTipoambiente ORDER BY f.facNumProforma DESC");
             query.setMaxResults(400);
             query.setParameter("cliente", "%" + cliente + "%");
             query.setParameter("razon", "%" + cliente + "%");
@@ -482,7 +482,7 @@ public class ServicioFactura {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT f FROM Factura f WHERE  f.facTipo='PROF' AND f.cod_tipoambiente=:codTipoAmbiente ORDER BY f.facFecha DESC");
+            Query query = em.createQuery("SELECT f FROM Factura f WHERE  f.facTipo='PROF' AND f.cod_tipoambiente=:codTipoAmbiente ORDER BY f.facNumProforma DESC");
            query.setParameter("codTipoAmbiente", codTipoAmbiente);
             query.setMaxResults(400);
       
