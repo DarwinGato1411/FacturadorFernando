@@ -52,7 +52,7 @@ import javax.xml.namespace.QName;
  *
  * @author Darwin
  */
-public class AutorizarDocumentos {
+public class AutorizarDocumentos1 {
 
     ServicioDetalleFactura servicioDetalleFactura = new ServicioDetalleFactura();
     ServicioDetalleGuia servicioDetalleGuia = new ServicioDetalleGuia();
@@ -219,7 +219,7 @@ public class AutorizarDocumentos {
         } catch (KeyManagementException e) {
 
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutorizarDocumentos1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -753,9 +753,9 @@ public class AutorizarDocumentos {
             //GRABA DATOS EN FACTURA//
             return pathArchivoSalida;
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutorizarDocumentos1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutorizarDocumentos1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
     }

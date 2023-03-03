@@ -14,6 +14,7 @@ import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioTipoIdentificacionCompra;
 import com.ec.untilitario.AduanaJson;
 import com.ec.untilitario.ArchivoUtils;
+import com.ec.untilitario.InfoPersona;
 import java.util.ArrayList;
 import java.util.List;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -70,13 +71,11 @@ public class NuevoProveedor {
     }
 
     public NuevoProveedor() {
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-
 
     }
 
@@ -87,57 +86,36 @@ public class NuevoProveedor {
     @Command
     @NotifyChange({"proveedor"})
     public void buscarAduana() {
-        if (proveedor.getProvCedula()!= null) {
+        InfoPersona aduana = new InfoPersona();
+        String nombre = "";
+        if (proveedor.getProvCedula() != null) {
             if (!proveedor.getProvCedula().equals("")) {
                 String cedulaBuscar = "";
-                if (proveedor.getProvCedula().length() > 10) {
-                    cedulaBuscar = proveedor.getProvCedula().substring(0, 10);
-                } else {
+                if (proveedor.getProvCedula().length() == 13) {
                     cedulaBuscar = proveedor.getProvCedula();
-                }
-                AduanaJson aduana = ArchivoUtils.obtenerdatoAduana(cedulaBuscar);
-                if (aduana != null) {
-
-//                    String nombreApellido[] = aduana.getNombre().split(" ");
-//                    String nombrePersona = "";
-//                    String apellidoPersona = "";
-//                    switch (nombreApellido.length) {
-//                        case 1:
-//                            apellidoPersona = nombreApellido[0];
-//                            nombrePersona = "A";
-//                            break;
-//                        case 2:
-//                            apellidoPersona = nombreApellido[0];
-//                            nombrePersona = nombreApellido[1];
-//                            break;
-//                        case 3:
-//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-//                            nombrePersona = nombreApellido[2];
-//                            break;
-//                        case 4:
-//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-//                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-//                            break;
-//                        default:
-//                            break;
-//                    }
+                    nombre = ArchivoUtils.obtenerPorRuc(cedulaBuscar);
+                    proveedor.setProvNombre(nombre);
+                    proveedor.setProvNomComercial(nombre);
+                } else if (proveedor.getProvCedula().length() == 10) {
+                    cedulaBuscar = proveedor.getProvCedula();
+                    aduana = ArchivoUtils.obtenerPorCedula(cedulaBuscar);
                     proveedor.setProvNombre(aduana.getNombre());
                     proveedor.setProvNomComercial(aduana.getNombre());
-                  
+                    proveedor.setProvDireccion(aduana.getDireccion());
                 }
+
             }
         }
 
     }
-    
-    
+
     @Command
     public void guardar() {
         if (proveedor.getProvCedula() != null
-                    && proveedor.getProvNombre() != null
-                    && proveedor.getProvTelefono() != null
-                    && proveedor.getProvDireccion() != null
-                    && identificacionCompra != null) {
+                && proveedor.getProvNombre() != null
+                && proveedor.getProvTelefono() != null
+                && proveedor.getProvDireccion() != null
+                && identificacionCompra != null) {
             proveedor.setIdTipoIdentificacionCompra(identificacionCompra);
             proveedor.setCodTipoambiente(amb);
             if (accion.equals("create")) {
