@@ -19,8 +19,6 @@ import org.zkoss.zk.ui.select.annotation.Listen;
  */
 public class MenuOpcionesSuper extends SelectorComposer<Component> {
 
-    
-            
     UserCredential credential = new UserCredential();
     private String acceso = "";
 
@@ -33,17 +31,37 @@ public class MenuOpcionesSuper extends SelectorComposer<Component> {
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);
-        
+
     }
 
-    @Listen("onClick = #menuPlanEmpresa")
+    @Listen("onClick = #btnReportes")
     public void buttonConsultar() {
-        Executions.sendRedirect("/superadmin/planempresa.zul");
+        Executions.sendRedirect("/superadmin/consumo.zul");
     }
-    @Listen("onClick = #menuparametrizar")
-    public void menuparametrizar() {
+
+    @Listen("onClick = #btnCobros")
+    public void doFacturar() {
+        Executions.sendRedirect("/superadmin/gestionusuarios.zul");
+    }
+    @Listen("onClick = #btnParametrizar")
+    public void btnParametrizar() {
         Executions.sendRedirect("/superadmin/parametrizar.zul");
     }
 
-   
+    public UserCredential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(UserCredential credential) {
+        this.credential = credential;
+    }
+
+    public String getAcceso() {
+        return acceso;
+    }
+
+    public void setAcceso(String acceso) {
+        this.acceso = acceso;
+    }
+
 }
