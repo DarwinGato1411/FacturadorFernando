@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/tucontador/logo.png"?> 
+<?link rel="icon" type="image/x-icon" href="/imagenes/gfsistemas/logogf.png"?> 
 <zk  width="100%" class="container" 
 >
 
