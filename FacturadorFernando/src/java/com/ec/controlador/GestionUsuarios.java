@@ -108,7 +108,7 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/superadmin/usuario.zul", null, map);
+                    "/nuevoadmin/usuario.zul", null, map);
         window.doModal();
         cosultarUsuarios("");
     }

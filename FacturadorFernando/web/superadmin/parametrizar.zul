@@ -246,7 +246,7 @@
                         <div class="wrapper_input_mod">
                             <span>Numero de documentos: </span>
                             <decimalbox  format="#####" 
-                                         value="@bind(vm.parametrizar.parDocContratado)" 
+                                         value="@bind(vm.parametrizar.parContratado)" 
                                          placeholder="Docuentos contratados"
                                          class="input_text"
                                          tooltiptext="Docuentos contratados" />

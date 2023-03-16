@@ -121,7 +121,7 @@ public class LoginController extends SelectorComposer<Component> {
 
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.SUPERADMIN.getCodigo()) {
 
-                Executions.sendRedirect("/superadmin/planempresa.zul");
+                Executions.sendRedirect("/superadmin/consumo.zul");
 
             }
 
