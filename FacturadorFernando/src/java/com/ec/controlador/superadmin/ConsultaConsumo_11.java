@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,18 +31,16 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
-import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
-import org.zkoss.zk.ui.util.Clients;
 
 /**
  *
  * @author gato
  */
-public class ConsultaConsumo {
+public class ConsultaConsumo_11 {
 
     /*RUTAS PARA LOS ARCHIVPOS XML SRI*/
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
@@ -64,9 +61,8 @@ public class ConsultaConsumo {
 
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Parametrizar parametrizar = null;
-    private BigDecimal recargar = BigDecimal.ZERO;
 
-    public ConsultaConsumo() {
+    public ConsultaConsumo_11() {
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -82,25 +78,6 @@ public class ConsultaConsumo {
             } else {
                 consumoDocumentos = item;
             }
-        }
-    }
-
-    @Command
-    @NotifyChange({"consumoIlimitado", "consumoDocumentos", "parametrizar", "recargar"})
-    public void recargar() {
-        try {
-            if (recargar.intValue() > 0) {
-                BigDecimal totalDocum = parametrizar.getParContratado() != null ? parametrizar.getParContratado().add(recargar) : BigDecimal.ZERO.add(recargar);
-                parametrizar.setParContratado(totalDocum);
-                servicioParametrizar.modificar(parametrizar);
-                consultarConsumo();
-                recargar = BigDecimal.ZERO;
-                Clients.showNotification("Recarga correcta ", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-            } else {
-                Clients.showNotification("Debe ingresar un valor mayora cero", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
-            }
-        } catch (Exception e) {
-            Clients.showNotification("Ocurrio un error al recargar", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
         }
     }
 
@@ -253,13 +230,4 @@ public class ConsultaConsumo {
         }
 
     }
-
-    public BigDecimal getRecargar() {
-        return recargar;
-    }
-
-    public void setRecargar(BigDecimal recargar) {
-        this.recargar = recargar;
-    }
-
 }
