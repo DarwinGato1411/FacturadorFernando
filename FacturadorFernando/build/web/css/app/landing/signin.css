@@ -15,8 +15,31 @@
 }
 
 .all_wrapper{
+   display: grid;
+   grid-template-columns: repeat(2,1fr);
+   align-items: center;
    
-    position:relative;
+   width: 100vw;
+   height: 100vh; 
+}
+
+.all_wrapper .contenedorInico{
+    background-color: rgba(80, 134, 193, 1);
+    width: 100%;
+    height: 100%;
+}
+
+
+.all_wrapper .container_wrapper_signin_root{
+    margin: auto;
+  
+    height: 100%;
+    width: 100%;
+    display: grid;
+}
+
+.all_wrapper .container_wrapper_signin_root .wapper_registro{
+    width: 80%;
 }
 
 .all_wrapper .fondo{
@@ -41,11 +64,12 @@ body {
 
 }
 .btn {
-    width: 100%;
+   
     padding: 12px;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+    margin: auto;
 }
 .btn:hover {
     transform: scale(0.95);
@@ -66,9 +90,10 @@ body {
     justify-content: center;
     align-items: center;
 }
-.container_registro .wapper_registro,
-.container_forgot_registro .wapper_registro {
-    width: 80%;
+ .wapper_registro,
+ .wapper_registro {
+  
+    margin: auto;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.63);
     background-color: #fff;
     border-radius: 20px;
@@ -76,8 +101,8 @@ body {
     position: relative;
     z-index: 3;
 }
-.container_registro .wapper_registro .logo,
-.container_forgot_registro .wapper_registro .logo {
+ .wapper_registro .logo,
+.wapper_registro .logo {
     width: 50%;
     margin: auto;
     display: block;
@@ -87,26 +112,26 @@ body {
 .container_forgot_registro .wapper_registro .info_wrapper {
 
 }
-.container_registro .wapper_registro .info_wrapper .title,
-.container_registro .wapper_registro .info_wrapper .subtitle,
+ .wapper_registro .info_wrapper .title,
+.wapper_registro .info_wrapper .subtitle,
 .container_forgot_registro .wapper_registro .info_wrapper .title,
 .container_forgot_registro .wapper_registro .info_wrapper .subtitle {
     display: block;
     text-align: center;
 }
-.container_registro .wapper_registro .info_wrapper .title,
+ .wapper_registro .info_wrapper .title,
 .container_forgot_registro .wapper_registro .info_wrapper .title {
     font-family: "Poppins", sans-serif;
     font-size: 25px;
     color: var(--secondary-color);
 }
-.container_registro .wapper_registro .info_wrapper .subtitle,
+.wapper_registro .info_wrapper .subtitle,
 .container_forgot_registro .wapper_registro .info_wrapper .subtitle {
     font-size: 14px;
     font-family: "Raleway", sans-serif;
     margin-top: 7px;
 }
-.container_registro .wapper_registro .wrapper_all_inputs,
+.wapper_registro .wrapper_all_inputs,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs {
     margin-top: 3em;
     display: flex;
@@ -114,20 +139,20 @@ body {
     justify-content: space-around;
     gap: 1em;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .left,
-.container_registro .wapper_registro .wrapper_all_inputs .right,
+.wapper_registro .wrapper_all_inputs .left,
+.wapper_registro .wrapper_all_inputs .right,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs .left,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs .right {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input,
+ .wrapper_all_inputs .wrapper_input,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs .wrapper_input {
     width: 100%;
     position: relative;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .input,
+ .wrapper_all_inputs .wrapper_input .input,
 .container_forgot_registro
 .wapper_registro
 .wrapper_all_inputs
@@ -140,7 +165,7 @@ body {
     color: var(--secondary-color);
     width: 100%;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .icon,
+ .wrapper_all_inputs .wrapper_input .icon,
 .container_forgot_registro
 .wapper_registro
 .wrapper_all_inputs
@@ -150,32 +175,34 @@ body {
     top: 10px;
     left: 10px;
 }
-.container_registro .wapper_registro .wrapper_all_inputs .icon,
+ .wrapper_all_inputs .icon,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs .icon {
     color: var(--secondary-color);
 }
-.container_registro .wapper_registro .wrapper_all_inputs .icon_eye,
+o .wrapper_all_inputs .icon_eye,
 .container_forgot_registro .wapper_registro .wrapper_all_inputs .icon_eye {
     position: absolute;
     top: 10px;
     color: var(--secondary-color);
     right: 10px !important;
 }
-.container_registro .wapper_registro .wrapper_button,
+ .wrapper_button,
 .container_forgot_registro .wapper_registro .wrapper_button {
     margin: 3em 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: grid;
+   
+    gap: 5px;
+    font-size: 14px;
+    text-align: center;
 }
-.container_registro .wapper_registro .wrapper_button .btn_reg,
-.container_forgot_registro .wapper_registro .wrapper_button .btn_reg {
-    width: 98%;
+ .wrapper_button .btn_reg,
+ .wrapper_button .btn_reg {
+    width: 80%;
     padding: 10px 30px;
     border-radius: 20px;
     filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.199));
-    border: none;
-    outline: none;
+ 
     color: var(--base-color);
     background-color: var(--secondary-color);
 }
@@ -572,4 +599,23 @@ body {
     .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
         font-size: 25px;
     }
+}
+
+
+.contenedorInico{
+    
+    display: grid;
+    align-items: center;
+    width: 90%;
+   
+}
+.contenedorInico .logo{
+    
+    margin: auto;
+   
+}
+
+.contenedorInico .logo img{
+    
+    
 }
