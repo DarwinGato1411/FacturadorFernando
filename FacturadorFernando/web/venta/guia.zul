@@ -286,7 +286,9 @@
                                             <listcell zclass = "mycss-listcell">
                                                 <textbox  style="font-size:10px"
                                                           class="form-control form-control-sm" 
-                                                          value="@bind(each.detDescripcion)"  />
+                                                          value="@bind(each.detDescripcion)"  
+                                                          maxlength="500"
+                                                />
                                             </listcell>
                                             
                                         </listitem>
