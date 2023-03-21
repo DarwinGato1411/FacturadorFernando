@@ -50,6 +50,7 @@ public class RegistroUsuarioExt {
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
 //    private Boolean readOnly = true;
 
+    private Parametrizar parametrizar = new Parametrizar();
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -137,6 +138,14 @@ public class RegistroUsuarioExt {
             Tipoambiente tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
 
             if (tipoAmbienteRecup == null) {
+                 //Tomar correo parametrizar
+                parametrizar = servicioParametrizar.FindALlParametrizar();
+                String correo = parametrizar.getParCorreo();
+                String password = parametrizar.getParPasswordCorreo();
+                String puerto = parametrizar.getParPuerto();
+                String smtp = parametrizar.getParSmtp();
+                
+                
                 // PRUEBAS
                 Tipoambiente tipoambiente = new Tipoambiente();
                 tipoambiente.setAmDirBaseArchivos("//DOCUMENTOSRI");
@@ -166,11 +175,12 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmEstab("001");
                 tipoambiente.setAmPtoemi("001");
 
-                tipoambiente.setAmPort("26");
+                tipoambiente.setAmPort(puerto);
                 tipoambiente.setAmProtocol("smtp");
-                tipoambiente.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambiente.setAmPassword("Dereckandre02!");
-                tipoambiente.setAmHost("mail.deckxel.com");
+                tipoambiente.setAmUsuarioSmpt(correo);
+                tipoambiente.setAmPassword(password);
+                tipoambiente.setAmHost(smtp);
+                
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -213,11 +223,12 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmDireccionMatriz("");
                 tipoambienteProd.setAmDireccionSucursal("");
                 tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
+                             
+                tipoambienteProd.setAmPort(puerto);
                 tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
+                tipoambienteProd.setAmUsuarioSmpt(correo);
+                tipoambienteProd.setAmPassword(password);
+                tipoambienteProd.setAmHost(smtp);
 
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);
@@ -230,21 +241,6 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmComprobanteImprime("factura.jasper");
 
                 servicioTipoAmbiente.crear(tipoambienteProd);
-
-//                Parametrizar parametrizar = new Parametrizar();
-//                parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
-//                parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
-//                parametrizar.setParRucEmpresa(tipoambiente.getAmRuc());
-//                parametrizar.setParIva(BigDecimal.valueOf(12));
-//                parametrizar.setParUtilidad(BigDecimal.ZERO);
-//                parametrizar.setParUtilidadPreferencial(BigDecimal.TEN);
-//                parametrizar.setParUtilidadPreferencialDos(BigDecimal.ZERO);
-//                parametrizar.setParEstado(Boolean.FALSE);
-//                parametrizar.setIsprincipal(Boolean.FALSE);
-//                parametrizar.setParDescuentoGeneral(BigDecimal.ZERO);
-//                parametrizar.setParCodigoIva("2");
-//                parametrizar.setParIvaActual(BigDecimal.valueOf(12));
-//                servicioParametrizar.crear(parametrizar);
             }
 
 //            usuarioSistema = new Usuario();
