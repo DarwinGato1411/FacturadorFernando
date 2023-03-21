@@ -14,7 +14,7 @@
         <div class="container_wrapper_signin_root">
                 <div class="wapper_registro wrapper_forgot wrapper_signin">
                    
-                 <!--<image src="./imagenes/deckxel/logo.png" class="logo" />-->
+                 <image src="./imagenes/deckxel/logo.png" class="logo" />
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
@@ -56,7 +56,7 @@
             </div>
         </div>      
         <div class="contenedorInico">
-            <image src="./imagenes/deckxel/logow.png" class="logo" />
+            
         </div>
     
             
