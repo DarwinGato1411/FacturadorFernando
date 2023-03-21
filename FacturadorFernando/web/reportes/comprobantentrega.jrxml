@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprobantentrega" language="groovy" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.143588810000005"/>
+	<property name="ireport.zoom" value="1.4641000000000035"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="203"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -339,21 +339,21 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 	<title>
 		<band height="194" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="246" y="56" width="96" height="12"/>
+				<reportElement x="241" y="57" width="111" height="20"/>
 				<textElement>
-					<font size="8"/>
+					<font size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["Nº FACT : "+$F{fac_numero_text}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="228" y="70" width="114" height="40"/>
+				<reportElement x="228" y="77" width="114" height="40"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_clave_acceso}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="133" y="138" width="248" height="11"/>
+				<reportElement x="114" y="138" width="267" height="11"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -374,7 +374,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="133" y="128" width="248" height="11"/>
+				<reportElement x="114" y="128" width="267" height="11"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -444,9 +444,9 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nombre_comercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="256" y="45" width="86" height="12"/>
+				<reportElement x="256" y="37" width="96" height="20"/>
 				<textElement>
-					<font size="8"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc}]]></textFieldExpression>
 			</textField>
@@ -517,7 +517,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<elementGroup/>
 			</elementGroup>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
-				<reportElement style="table_TD" positionType="Float" x="332" y="294" width="47" height="12"/>
+				<reportElement style="table_TD" positionType="Float" x="332" y="285" width="47" height="15"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -526,12 +526,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font size="8"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_iva}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" x="228" y="306" width="104" height="12" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="table_TD" positionType="Float" x="230" y="300" width="104" height="15" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -540,12 +540,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement>
-					<font size="7"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[VALOR TOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" x="228" y="294" width="104" height="12" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="table_TD" positionType="Float" x="228" y="285" width="104" height="15" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -554,12 +554,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement>
-					<font size="7"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[IVA 12%]]></text>
 			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
-				<reportElement style="table_TD" positionType="Float" x="332" y="282" width="47" height="12"/>
+				<reportElement style="table_TD" positionType="Float" x="332" y="270" width="47" height="15"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -568,12 +568,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font size="8"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total_base_gravaba}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" x="228" y="282" width="104" height="12" isPrintWhenDetailOverflows="true"/>
+				<reportElement style="table_TD" positionType="Float" x="228" y="270" width="104" height="15" isPrintWhenDetailOverflows="true"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -582,12 +582,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement>
-					<font size="7"/>
+					<font size="10"/>
 				</textElement>
 				<text><![CDATA[SUBTOTAL]]></text>
 			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
-				<reportElement style="table_TD" positionType="Float" x="332" y="306" width="47" height="12"/>
+				<reportElement style="table_TD" positionType="Float" x="332" y="300" width="47" height="15"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -596,7 +596,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Right">
-					<font size="8"/>
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_total}]]></textFieldExpression>
 			</textField>
