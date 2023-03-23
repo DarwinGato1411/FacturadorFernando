@@ -93,7 +93,7 @@
                     <span>Telf. Conv. </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-phone icon"></div>
-                        <textbox  maxlength="100"
+                        <textbox  maxlength="20"
                                   value="@bind(vm.cliente.cliTelefono)" 
                           
                                   class="input_text" 
@@ -104,7 +104,7 @@
                     <span>Telf. Cel. </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-mobile icon"></div>
-                        <textbox  maxlength="10"  
+                        <textbox  maxlength="11"  
                                   value="@bind(vm.cliente.cliMovil)"
                                   class="input_text" 
                         />

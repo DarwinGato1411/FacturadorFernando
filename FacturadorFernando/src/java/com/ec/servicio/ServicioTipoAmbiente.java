@@ -106,56 +106,30 @@ public class ServicioTipoAmbiente {
 
         return tipoambiente;
     }
-    
-     public Tipoambiente findByIdUsuario(Tipoambiente tipoambiente, String amCodigo) {
+
+    public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
-//        Tipoambiente tipoambiente = null;
+        Tipoambiente tipoambiente = null;
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT t FROM Tipoambiente t WHERE  t.idUsuario =:idUsuario AND t.amCodigo =:amCodigo");
-//            query.setParameter("amEstado", Boolean.TRUE);
-            query.setParameter("idUsuario", tipoambiente.getIdUsuario());
+            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE  UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amCodigo=:amCodigo AND a.amEstado=:amEstado");
+            query.setParameter("usuNombre", "%" + usuario + "%");
+            query.setParameter("amEstado", Boolean.TRUE);
             query.setParameter("amCodigo", amCodigo);
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
-            if (listaTipoambientes.size() > 0) {
-                tipoambiente = listaTipoambientes.get(0);
-            }
+
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta tipoambiente " + e.getMessage());
+            System.out.println("findALlTipoambientePorUsuarioAdm " + e.getMessage());
         } finally {
             em.close();
         }
 
-        return tipoambiente;
+        return listaTipoambientes;
     }
-//    public Tipoambiente findALlTipoambientePorUsuario(String amRuc) {
-//
-//        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
-//        Tipoambiente tipoambiente = null;
-//        try {
-//            //Connection connection = em.unwrap(Connection.class);
-//            em = HelperPersistencia.getEMF();
-//            em.getTransaction().begin();
-//            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE a.amRuc=:amRuc AND a.amEstado=:amEstado");
-//            query.setParameter("amRuc", amRuc);
-//            query.setParameter("amEstado", Boolean.TRUE);
-//            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
-//            if (listaTipoambientes.size() > 0) {
-//                tipoambiente = listaTipoambientes.get(0);
-//            }
-//            em.getTransaction().commit();
-//        } catch (Exception e) {
-//            System.out.println("Error en lsa consulta tipoambiente");
-//        } finally {
-//            em.close();
-//        }
-//
-//        return tipoambiente;
-//    }
 
     public Tipoambiente findByAmCodigo(String amRuc) {
 
@@ -182,7 +156,7 @@ public class ServicioTipoAmbiente {
         return tipoambiente;
     }
 
-    public Tipoambiente findByAmCodigo(String amRuc, String amCodigo) {
+    public Tipoambiente findByAmCodigo(Usuario usuario, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
         Tipoambiente tipoambiente = null;
@@ -190,9 +164,9 @@ public class ServicioTipoAmbiente {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT t FROM Tipoambiente t WHERE  t.amRuc=:amRuc AND t.amCodigo =:amCodigo");
+            Query query = em.createQuery("SELECT t FROM Tipoambiente t WHERE  t.idUsuario=:idUsuario AND t.amCodigo =:amCodigo");
 //            query.setParameter("amEstado", Boolean.TRUE);
-            query.setParameter("amRuc", amRuc);
+            query.setParameter("idUsuario", usuario);
             query.setParameter("amCodigo", amCodigo);
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
             if (listaTipoambientes.size() > 0) {
@@ -231,4 +205,29 @@ public class ServicioTipoAmbiente {
         return listaTipoambientes;
     }
 
+    public Tipoambiente findByIdUsuario(Tipoambiente tipoambiente, String amCodigo) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+//        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT t FROM Tipoambiente t WHERE  t.idUsuario =:idUsuario AND t.amCodigo =:amCodigo");
+//            query.setParameter("amEstado", Boolean.TRUE);
+            query.setParameter("idUsuario", tipoambiente.getIdUsuario());
+            query.setParameter("amCodigo", amCodigo);
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+            if (listaTipoambientes.size() > 0) {
+                tipoambiente = listaTipoambientes.get(0);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta tipoambiente " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return tipoambiente;
+    }
 }

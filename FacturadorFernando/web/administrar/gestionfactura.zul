@@ -73,31 +73,31 @@
                                 <template name="model">                                                            
                                     <listitem>
                             
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.codTipoambiente)" width="100%" />
                                          
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.idUsuario.usuNombre)" width="100%" />
                                             
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.idUsuario.usuLogin)" width="100%" />
                                             
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amRuc)" width="100%" />
                                             
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
                                                      class="form-control form-control-sm"                            
                                                      value="@bind(each.amNombreComercial)" width="100%" />
@@ -108,13 +108,13 @@
                                                      value="@bind(each.amDireccionSucursal)" width="100%" />
                                         </listcell>-->
                              
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      class="form-control form-control-sm"                             
                                                      value="@bind(each.amRazonSocial)" width="100%" />
                                         </listcell>
                                         
-                                        <listcell class="td-tabla"  zclass = "mycss-listcell">
+                                        <listcell style="background:#C7FEC1" zclass = "mycss-listcell">
                                             <div 
                                                 class="fa-solid fa-chevron-right"
                                                 style="font-size:16px; padding:0.5em; cursor:pointer;font-weight: bold"
@@ -148,26 +148,26 @@
                                 <template name="model">
                                     <listitem  >
                                          
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      value="@bind(each.facNumeroText)" 
                                                      width="100%"/>
                                         </listcell>  
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             
                                             <datebox compact="true" value="@bind(each.facFecha)" 
                                                      height=" 30px" 
                                                      buttonVisible="false" lenient="true" readonly="true"
                                                      format="medium" width="100%"  />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" class="td-tabla" >
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
                                                      value="@bind(each.idCliente.nombresCompletso)" 
                                                      width="100%"/>
                                         </listcell>  
                                         
                                         
-                                        <listcell zclass = "mycss-listcell" class="td-tabla"  
+                                        <listcell zclass = "mycss-listcell" style="background:#C7FEC1" 
                                                   onClick="@command('eliminarFactura',valor=each)" >
                                             <div class="wrapper_input"    >
                                                 <span></span>

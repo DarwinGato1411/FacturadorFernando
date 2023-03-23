@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
-
 <?init class="com.ec.seguridad.Autentificador"?>
-<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
-
-
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantillasuper/plantilla.zul"?>
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.GestionUsuarios')" >
         <tabbox id="tboxPrincipal"  width="100%" >
             <tabs >
-                <tab label="Gestion de usuarios" sclass="menutabs" /> 
+                <tab label="Gestion de usuarios administrador" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 <tabpanel  width="99%" class="factura">                    
@@ -42,8 +38,19 @@
                                     <radio label="PRUEBAS" value="1"/>                          
                                 </radiogroup>
                             </div>
-
+                            
                         </div>
+                         <div class="fact_row">
+                        <div class="" >
+                             
+                                <button 
+                                    class="fa-solid fa-file-excel btn_fact btn_access"
+                                    onClick="@command('exportListboxToExcel')"  
+                                    tooltiptext="Descargar"
+                                    label="Descargar usuarios"
+                                />
+                            </div>
+                            </div>
                     </div>
 
                     <div class="factura_body factura_content">
@@ -55,17 +62,21 @@
                                     <listheader label="RUC"  align="left" width="15%"></listheader>
                                     <listheader  align="left" width="35%">
                                         <textbox value="@bind(vm.nombreUsuario)"  
-                                             tooltiptext="Responsable de la cuenta"
-                                             class="form-control form-control-sm"                                         
-                                             placeholder="Responsable de la cuenta"
-                                             onOK="@command('consultarUsuariosPorCodigo')"
-                                             onChange="self.setValue(self.getValue().toUpperCase());" />
+                                                 tooltiptext="Responsable de la cuenta"
+                                                 class="form-control form-control-sm"                                         
+                                                 placeholder="Responsable de la cuenta"
+                                                 onOK="@command('consultarUsuariosPorCodigo')"
+                                                 onChange="self.setValue(self.getValue().toUpperCase());" />
                                         
                                     </listheader>
                                     <listheader label="Usuario"  align="left" width="20%"></listheader>
                                     <listheader label="Contraseña"  align="left" width="20%"></listheader>
-                                    <listheader label="Tipo usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Fecha caduca"  align="left" width="20%"></listheader>
+                                    
+                                    <listheader label="Tipo usuario"  align="left" width="10%"></listheader>
+                                    <listheader label="Contraseña Firma"  align="left" width="20%"></listheader>
+                                    <listheader label="Fecha caduca"  align="left" width="10%"></listheader>
+                                    <listheader label="Fecha ultimo cobro"  align="left" width="10%"></listheader>
+                                      <listheader label="Plan"  align="left" width="10%"></listheader>
                                     <listheader label="Modificar"  align="center" width="5%"></listheader>
                                     <listheader label=""  align="center" width="5%"></listheader>
                                 </listhead>
@@ -94,6 +105,12 @@
                                         <listcell  zclass = "mycss-listcell">                          
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
+                                        </listcell>  
+                                        <listcell  zclass = "mycss-listcell">      
+                                            <textbox readonly="true" value="@bind(each.amClaveAccesoSri)" 
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:12px;background:#EBF5FB"
+                                            />
                                         </listcell>                  
                                         <listcell  zclass = "mycss-listcell">                          
                                             <datebox 
@@ -106,11 +123,33 @@
                                                 format="dd/MM/yyyy" 
                                                 constraint="no empty: Ingrese la fecha "
                                             />
-                                        </listcell>                  
+                                        </listcell> 
+                                        <listcell  zclass = "mycss-listcell">                          
+                                            <datebox 
+                                                width="100%"
+                                                compact="true" 
+                                                value="@bind(each.idUsuario.usuFechaCaduca)" 
+                                                readonly="true" 
+                                                buttonVisible="true" 
+                                                lenient="true" 
+                                                format="dd/MM/yyyy" 
+                                                constraint="no empty: Ingrese la fecha "
+                                            />
+                                        </listcell> 
+                                           <listcell  zclass = "mycss-listcell">      
+                                            <textbox if="${each.idUsuario.usuIlimitado}" 
+                                                     readonly="true" value="ILIMITADO" 
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:12px;background:#EBF5FB"/>
+                                            <textbox if="${!each.idUsuario.usuIlimitado}" 
+                                                      readonly="true" value="POR DOCUMENTOS" 
+                                                      class="form-control form-control-sm"
+                                                      style="font-size:12px;background:#EBF5FB"/>
+                                        </listcell>                   
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"
                                                    class="grow"
-                                                   onClick="@command('modificarUsario',valor=each.idUsuario)" 
+                                                   onClick="@command('modificarUsarioSuper',valor=each.idUsuario)" 
                                                    tooltiptext="Editar usuario"/> 
                                             
                                         </listcell>    
