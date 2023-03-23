@@ -83,7 +83,6 @@ public class ListaVentaRuta {
         Calendar calendar = Calendar.getInstance(); //obtiene la fecha de hoy 
         //  calendar.add(Calendar.DATE, -7); //el -3 indica que se le restaran 3 dias 
         inicio = calendar.getTime();
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -219,7 +218,7 @@ public class ListaVentaRuta {
                 factura.setFacIva(ivaUnidad.multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
                 factura.setFacTotal(factura.getFacTotalBaseCero().add(factura.getFacTotalBaseGravaba()).add(factura.getFacIva()));
 
-                String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), "001001", factura.getFacNumeroText(), "12345678", "1");
+                String claveAcceso = ArchivoUtils.generaClave(factura.getFacFecha(), "01", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), factura.getFacNumeroText(), "12345678", "1");
                 factura.setFacClaveAcceso(claveAcceso);
                 factura.setFacClaveAutorizacion(claveAcceso);
                 servicioFactura.crear(factura);
