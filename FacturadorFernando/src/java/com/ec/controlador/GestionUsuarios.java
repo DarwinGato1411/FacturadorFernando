@@ -114,6 +114,7 @@ public class GestionUsuarios {
     }
 
     @Command
+
     @NotifyChange("listaUsuarios")
     public void modificarUsarioSuper(@BindingParam("valor") Usuario usuario) {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
@@ -260,7 +261,8 @@ public class GestionUsuarios {
             ch2.setCellValue(new HSSFRichTextString("F Caduca"));
             ch2.setCellStyle(estiloCelda);
 
-            HSSFCell ch222 = r.createCell(j++);
+
+             HSSFCell ch222 = r.createCell(j++);
             ch222.setCellValue(new HSSFRichTextString("F ultimo pago"));
             ch222.setCellStyle(estiloCelda);
 
@@ -290,8 +292,9 @@ public class GestionUsuarios {
                 HSSFCell c01 = r.createCell(i++);
                 c01.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaPago() != null ? sm.format(item.getIdUsuario().getUsuFechaPago()) : ""));
 
-                HSSFCell c011 = r.createCell(i++);
-                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca() != null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
+
+                 HSSFCell c011 = r.createCell(i++);
+                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca()!= null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
 
                 HSSFCell c1 = r.createCell(i++);
                 c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado() ? "ILIMITADO" : "DOCUMENTOS"));
@@ -314,4 +317,6 @@ public class GestionUsuarios {
         return pathSalida;
 
     }
+
 }
+

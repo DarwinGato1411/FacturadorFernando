@@ -150,6 +150,7 @@
                                             <image src="/iconos/editar.png"
                                                    class="grow"
                                                    onClick="@command('modificarUsarioSuper',valor=each.idUsuario)" 
+
                                                    tooltiptext="Editar usuario"/> 
                                             
                                         </listcell>    
