@@ -51,7 +51,7 @@
                     <menubar  orient="horizontal"  autodrop="true" class="wrapper_menu">
                        <menuitem label="Reporte" id="btnReportes" class="menu_child" /> 
                        <menuitem label="Cobros" id="btnCobros" class="menu_child" />  
-
+                       <menuitem label="Parametrizar" id="btnParametrizar" class="menu_child" />  
                       </menubar>
                 </div>              
             </div>

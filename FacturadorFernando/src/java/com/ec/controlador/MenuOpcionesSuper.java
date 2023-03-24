@@ -51,6 +51,11 @@ public class MenuOpcionesSuper extends SelectorComposer<Component> {
     public void doFacturar() {
         Executions.sendRedirect("/superadmin/gestionusuarios.zul");
     }
+    
+    @Listen("onClick = #btnParametrizar")
+    public void btnParametrizar() {
+        Executions.sendRedirect("/superadmin/parametrizar.zul");
+    }
 
    
 
