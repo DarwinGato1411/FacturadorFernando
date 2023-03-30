@@ -623,3 +623,49 @@ o .wrapper_all_inputs .icon_eye,
 
 
 }
+
+.contenedorInico .contenedorPlanes{
+    width: 90%;
+    margin: auto;
+    color:white;
+}
+
+.contenedorInico .contenedorPlanes .titulo{
+    border: solid white 1px;
+    padding: 10px;
+    text-align: center;
+}
+
+.contenedorInico .contenedorPlanes .planes{
+    border: solid white 1px;
+    display: block;
+    text-align: center;
+    display: grid;
+    grid-template-columns:50% 50%;
+}
+
+.contenedorInico .contenedorPlanes .planes span span{
+    border: solid white 1px;
+    padding: 10px;
+    display: block;
+    color:white;
+}
+
+.contenedorInico .contenedorPlanes .contacto{
+    margin-top: 5px;
+    
+}
+
+.contenedorInico .contenedorPlanes .contacto .title{
+    text-align: center;
+}
+
+.contenedorInico .contenedorPlanes .contacto .info{
+    display: grid;
+    gap:5px;
+}
+
+.contenedorInico .contenedorPlanes .contacto .info span span{
+    display: block;
+    text-align: center;
+}
