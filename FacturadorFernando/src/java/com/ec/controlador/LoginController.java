@@ -68,14 +68,14 @@ public class LoginController extends SelectorComposer<Component> {
 
         boolean bloquear = false;
 
-        Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
-        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()) {
-            bloquear = true;
-        }
-
-        if (!cantidadContratada.getParBloqueoSistema()) {
-            bloquear = Boolean.FALSE;
-        }
+//        Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
+//        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()) {
+//            bloquear = true;
+//        }
+//
+//        if (!cantidadContratada.getParBloqueoSistema()) {
+//            bloquear = Boolean.FALSE;
+//        }
 
         AutentificadorLogeo servicioAuth = new AutentificadorLogeo();
         if (servicioAuth.login(account.getValue(), password.getValue())) {
