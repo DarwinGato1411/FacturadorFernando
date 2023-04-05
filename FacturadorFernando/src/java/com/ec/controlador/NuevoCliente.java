@@ -99,7 +99,7 @@ public class NuevoCliente {
     @Command
     @NotifyChange({"cliente"})
     public void buscarAduana() throws URISyntaxException, IOException, XPathExpressionException, JSONException {
-       InfoPersona aduana = new InfoPersona();
+        InfoPersona aduana = new InfoPersona();
         String nombre = "";
         if (cliente.getCliCedula() != null) {
             if (!cliente.getCliCedula().equals("")) {

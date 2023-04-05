@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -61,6 +61,11 @@ public class AutorizarDocumentos {
 
     ServicioDetalleRetencionCompra servicioDetalleRetencionCompra = new ServicioDetalleRetencionCompra();
 
+    public AutorizarDocumentos() {
+    }
+
+    
+    
     public static String removeCaracteres(String input) {
         // Cadena de caracteres original a sustituir.
         String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ$&¨\"";
@@ -244,7 +249,7 @@ public class AutorizarDocumentos {
                 tipoAmbiente = "PRODUCCION";
             }
             linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                        + "<factura id=\"comprobante\" version=\"1.1.0\">\n");
+                    + "<factura id=\"comprobante\" version=\"1.1.0\">\n");
             build.append(linea);
             linea = "";
             if (autorizada) {
@@ -276,8 +281,10 @@ public class AutorizarDocumentos {
                         + "        <ptoEmi>" + amb.getAmPtoemi() + "</ptoEmi>\n"
                         + "        <secuencial>" + valor.getFacNumeroText() + "</secuencial>\n"
                         + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
+                       
                         + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
-                        + (!amb.getAmGeneral() ? ((amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")) : "")
+                        //  + "        <agenteRetencion>12345678</agenteRetencion>\n"
+                          + (amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : amb.getAmRimpePopular()?" <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n":"")
                         + "</infoTributaria>\n"
                         + "<infoFactura>\n"
                         + "        <fechaEmision>" + formato.format(valor.getFacFecha()) + "</fechaEmision>\n"
@@ -371,6 +378,14 @@ public class AutorizarDocumentos {
 //            build.append(linea);
             linea = ("    </detalles>\n");
             build.append(linea);
+//            linea = ("<otrosRubrosTerceros>\n"
+//                        + " <rubro>\n"
+//                        + "     <concepto>OTRO</concepto>\n"
+//                        + "     <total>0</total>\n"
+//                        + " </rubro>\n"
+//                        + " </otrosRubrosTerceros>\n");
+//
+//            build.append(linea);
             linea = ("    <infoAdicional>\n"
                         + (valor.getIdCliente().getCliDireccion().length() > 0 ? "<campoAdicional nombre=\"DIRECCION\">" + removeCaracteres(valor.getIdCliente().getCliDireccion()) + "</campoAdicional>\n" : " ")
                         //                    + (valor.getIdCliente().getCliCorreo().length() > 0 ? "<campoAdicional nombre=\"E-MAIL\">" + removeCaracteres(valor.getIdCliente().getCliCorreo()) + "</campoAdicional>\n" : " ")
@@ -383,9 +398,9 @@ public class AutorizarDocumentos {
                         + "<campoAdicional nombre=\"PLAZO\"> DIAS</campoAdicional>\n"
                         + (valor.getFacPlazo().toString().length() > 0 ? "<campoAdicional nombre=\"DIAS\">" + valor.getFacPlazo().setScale(0) + "</campoAdicional>\n" : " ")
                         + (valor.getFacPorcentajeIva().length() > 0 ? "<campoAdicional nombre=\"TARIFAIMP\">" + valor.getFacPorcentajeIva() + "</campoAdicional>\n" : " ")
-                        //                        + (amb.getAmRimpe() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE REGIMEN RIMPE EMPRENDEDORES</campoAdicional>\n" : "")
+                        //                        + (!amb.getAmGeneral() ? ((amb.getAmRimpe() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE REGIMEN RIMPE</campoAdicional>\n" : "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE NEGOCIO POPULAR REGIMEN RIMPE </campoAdicional>\n")) : "")
                         + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
-                        + (valor.getFacObservacion() != null ? (!valor.getFacObservacion().isEmpty() ? "<campoAdicional nombre=\"Observacion\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "") : "")
+                        + (valor.getFacObservacion() != null ? (valor.getFacObservacion().length() > 0 ? "<campoAdicional nombre=\"Observacion\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "") : "")
                         + "   </infoAdicional>\n"
                         + "</factura>\n");
             build.append(linea);
