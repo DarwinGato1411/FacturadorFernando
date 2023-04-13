@@ -59,6 +59,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
@@ -100,17 +101,17 @@ public class ListaRetenciones {
     }
 
     private void buscarPorFechas() {
-        listaRetencionCompras = servicioRetencionCompra.findByFecha(inicio, fin);
+        listaRetencionCompras = servicioRetencionCompra.findByFecha(inicio, fin, amb);
 
     }
 
     private void buscarFacturaCompra() {
-        listaRetencionCompras = servicioRetencionCompra.findByNumeroFactura(buscarNumFac);
+        listaRetencionCompras = servicioRetencionCompra.findByNumeroFactura(buscarNumFac,amb);
 
     }
 
     private void buscarPorSecuencialRetencion() {
-        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRet(buscarSecuencial);
+        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRet(buscarSecuencial,amb);
     }
 
     @Command
@@ -727,6 +728,36 @@ public class ListaRetenciones {
 //            window.detach();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+    
+    @Command
+    public void cambiarEstado(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            final HashMap<String, RetencionCompra> map = new HashMap<String, RetencionCompra>();
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                        "/modificar/estadoret.zul", null, map);
+            window.doModal();
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+    
+    @Command
+    @NotifyChange({"listaRetencionCompras", "buscarSecuencial"})
+    public void eliminarRetencion(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("¿Esta seguro de eliminar la retención?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+                servicioRetencionCompra.eliminar(valor);     
+                Clients.showNotification("Retención eliminada correctamente",
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+            }
+
+        } catch (Exception e) {
+
+            Clients.showNotification("Ocurrio un errot al eliminar la retención" + e.getMessage(),
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         }
     }
 }

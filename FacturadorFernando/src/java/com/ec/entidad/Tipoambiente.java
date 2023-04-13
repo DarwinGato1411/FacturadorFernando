@@ -171,7 +171,8 @@ public class Tipoambiente implements Serializable {
 
     @Column(name = "am_general")
     private Boolean amGeneral;
-
+    @Column(name = "am_rimpe_popular")
+    private Boolean amRimpePopular;
     @OneToMany(mappedBy = "codTipoambiente")
     private Collection<Producto> productoCollection;
 
@@ -214,6 +215,14 @@ public class Tipoambiente implements Serializable {
     @Column(name = "am_comprobante_imprime")
     private String amComprobanteImprime;
 
+//    @Column(name = "am_nombre_socio")
+//    private String amNombreSocio;
+//    @Column(name = "am_ruc_socio")
+//    private String amRucSocio;
+//    @Column(name = "am_placa_socio")
+//    private String amPlacaSocio;
+//    @Column(name = "am_telefono_socio")
+//    private String amTelefonoSocio;
     public Tipoambiente() {
     }
 
@@ -749,6 +758,14 @@ public class Tipoambiente implements Serializable {
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Boolean getAmRimpePopular() {
+        return amRimpePopular;
+    }
+
+    public void setAmRimpePopular(Boolean amRimpePopular) {
+        this.amRimpePopular = amRimpePopular;
     }
 
 }
