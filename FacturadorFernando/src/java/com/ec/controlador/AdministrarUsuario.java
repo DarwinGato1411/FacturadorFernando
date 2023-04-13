@@ -32,7 +32,7 @@ public class AdministrarUsuario {
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
-
+  private Boolean activo=Boolean.TRUE;
     public AdministrarUsuario() {
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -43,7 +43,7 @@ public class AdministrarUsuario {
     }
 
     private void cosultarUsuarios(String buscar) {
-        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar,credential.getUsuarioSistema());
+        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar,credential.getUsuarioSistema(),activo);
     }
 
     public List<Usuario> getListaUsuarios() {

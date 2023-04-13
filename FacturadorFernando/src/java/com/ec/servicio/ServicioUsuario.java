@@ -102,14 +102,14 @@ public class ServicioUsuario {
         return usuarioObtenido;
     }
 
-    public List<Usuario> FindALlUsuarioPorLikeNombre(String nombre, Usuario usuario) {
+    public List<Usuario> FindALlUsuarioPorLikeNombre(String nombre, Usuario usuario, Boolean activo) {
 
 //        Usuario usuarioLogeado = new Usuario();
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
         try {
             System.out.println("Entra a consultar usuarios ");
 
-            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre ";
+            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre AND a.amActivo=:amActivo  ";
             String WHERE = "";
             String ORDERBY = " ORDER BY u.usuNombre ";
             //Connection connection = em.unwrap(Connection.class);
@@ -120,6 +120,7 @@ public class ServicioUsuario {
             }
             Query query = em.createQuery(SELECT + WHERE+ORDERBY);
             query.setParameter("usuNombre", "%" + nombre + "%");
+            query.setParameter("amActivo", activo);
             if (usuario.getUsuNivel() != 1) {
                 query.setParameter("usuRuc", usuario.getUsuRuc());
             }

@@ -67,6 +67,7 @@ public class AdministrarVenta {
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    private Boolean activo = Boolean.TRUE;
 
     public AdministrarVenta() {
 //        Session sess = Sessions.getCurrent();
@@ -233,7 +234,7 @@ public class AdministrarVenta {
 
     /*ADMINISTRAR USUARIO*/
     private void cosultarUsuarios(String buscar) {
-        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar, credential.getUsuarioSistema());
+        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar, credential.getUsuarioSistema(), activo);
     }
 
     public List<Usuario> getListaUsuarios() {

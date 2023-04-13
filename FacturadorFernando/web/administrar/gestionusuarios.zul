@@ -30,7 +30,7 @@
                                 <span>Nuevo usuario</span>
                             </div>
                         
-                            <div class="wrapper_input_mod">
+                            <div >
                                 <span>Tipo ambiente </span>
                                 <radiogroup
                                     class="radio_group" 
@@ -40,6 +40,18 @@
                                     <radio label="PRODUCCION" value="2"/>
                                     <space bar="false"  />   
                                     <radio label="PRUEBAS" value="1"/>                          
+                                </radiogroup>
+                            </div>
+                            <div class="wrapper_input_mod">
+                                <span>Estado usuario</span>
+                                <radiogroup
+                                    class="radio_group" 
+                                    onCheck="@command('consultarUsuariosPorCodigo')" 
+                                    selectedItem="@bind(vm.activo)"  
+                                >                   
+                                    <radio label="ACTIVO" value="${true}"/>
+                                    <space bar="false"  />   
+                                    <radio label="INACTIVO" value="${false}"/>                          
                                 </radiogroup>
                             </div>
 
@@ -67,7 +79,7 @@
                                     <listheader label="Contraseña"  align="left" width="100%"></listheader>
                                     <listheader label="Tipo usuario"  align="left" width="100%"></listheader>
                                     <listheader label="Fecha caduca"  align="left" width="100%"></listheader>
-                                    <listheader label="Modificar"  align="left" width="100%"></listheader>
+                                    <listheader label="Modificar"  align="center" width="100%"></listheader>
                                 </listhead>
                         
                         
@@ -112,6 +124,14 @@
                                                    class="grow"
                                                    onClick="@command('modificarUsario',valor=each.idUsuario)" 
                                                    tooltiptext="Editar usuario"/> 
+                                            <image src="/iconos/delete.png" if="${each.amActivo}"
+                                                   class="grow"
+                                                   onClick="@command('desactivarUsuario',valor=each)" 
+                                                   tooltiptext="Desactivar usuario"/> 
+                                            <image src="/iconos/ok24x24.png" if="${!each.amActivo}"
+                                                   class="grow"
+                                                   onClick="@command('activarUsuario',valor=each)" 
+                                                   tooltiptext="Desactivar usuario"/> 
                                             
                                         </listcell>     
                                     
