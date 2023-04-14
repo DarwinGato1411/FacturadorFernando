@@ -59,6 +59,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
@@ -66,7 +67,7 @@ import org.zkoss.zul.Messagebox;
  *
  * @author gato
  */
-public class ListaRetenciones {
+public class ListaRetencionesManual {
 
     /*RUTAS PARA LOS ARCHIVPOS XML SRI*/
     private static String PATH_BASE = "";
@@ -84,8 +85,7 @@ public class ListaRetenciones {
     UserCredential credential = new UserCredential();
     private String amRuc = "";
 
-    public ListaRetenciones() {
-        buscarPorFechas();
+    public ListaRetencionesManual() {
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -96,20 +96,21 @@ public class ListaRetenciones {
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
+        buscarPorFechas();
     }
 
     private void buscarPorFechas() {
-        listaRetencionCompras = servicioRetencionCompra.findByFecha(inicio, fin, amb);
+        listaRetencionCompras = servicioRetencionCompra.findByFechaManual(inicio, fin, amb);
 
     }
 
     private void buscarFacturaCompra() {
-        listaRetencionCompras = servicioRetencionCompra.findByNumeroFactura(buscarNumFac, amb);
+        listaRetencionCompras = servicioRetencionCompra.findByNumeroFacturaManual(buscarNumFac, amb);
 
     }
 
     private void buscarPorSecuencialRetencion() {
-        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRet(buscarSecuencial, amb);
+        listaRetencionCompras = servicioRetencionCompra.findBySecuencialRetManual(buscarSecuencial, amb);
     }
 
     @Command
@@ -230,7 +231,7 @@ public class ListaRetenciones {
         //tipoambiente tiene los parameteos para los directorios y la firma digital
         AutorizarDocumentos aut = new AutorizarDocumentos();
         /*Generamos el archivo XML de la factura*/
-        String archivo = aut.generaXMLComprobanteRetencion(valor, amb, folderGenerados, nombreArchivoXML);
+        String archivo = aut.generaXMLComprobanteRetencionManual(valor, amb, folderGenerados, nombreArchivoXML);
 
         /*amb.getAmClaveAccesoSri() es el la clave proporcionada por el SRI
         archivo es la ruta del archivo xml generado
@@ -263,8 +264,8 @@ public class ListaRetenciones {
                         FileOutputStream nuevo = null;
 
                         /*CREA EL ARCHIVO XML AUTORIZADO*/
-                        System.out.println("pathArchivoNoAutorizado " + pathArchivoAutorizado);
-                        nuevo = new FileOutputStream(pathArchivoAutorizado);
+                        System.out.println("pathArchivoNoAutorizado " + pathArchivoNoAutorizado);
+                        nuevo = new FileOutputStream(pathArchivoNoAutorizado);
                         nuevo.write(autorizacion.getComprobante().getBytes());
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
 
@@ -283,15 +284,15 @@ public class ListaRetenciones {
                             nuevo.flush();
                         } else {
                             /*COLOCAL LA VALIDACION DE RETENCION AUTORIZADA EN LA COMPRA*/
-                            CabeceraCompra compra = valor.getIdCabecera();
-                            compra.setCabRetencionAutori("S");
-                            servicioCompra.modificar(compra);
+//                            CabeceraCompra compra = valor.getIdCabecera();
+//                            compra.setCabRetencionAutori("S");
+//                            servicioCompra.modificar(compra);
                             valor.setRcoAutorizacion(claveAccesoComprobante);
                             valor.setDrcEstadosri(autorizacion.getEstado());
                             valor.setRcoFechaAutorizacion(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
 
                             /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
-                            archivoEnvioCliente = aut.generaXMLComprobanteRetencion(valor, amb, foldervoAutorizado, nombreArchivoXML);
+                            archivoEnvioCliente = aut.generaXMLComprobanteRetencionManual(valor, amb, foldervoAutorizado, nombreArchivoXML);
                             XAdESBESSignature.firmar(archivoEnvioCliente,
                                         nombreArchivoXML,
                                         amb.getAmClaveAccesoSri(),
@@ -317,15 +318,15 @@ public class ListaRetenciones {
 //                            mod.setCliClave(ArchivoUtils.generaraClaveTemporal());
 //                            servicioRetencionCompra.modificar(mod);
 //                        }
-                            if (valor.getIdCabecera().getIdProveedor().getProvCorreo() != null) {
+                            if (valor.getRcoCorreoProveedor() != null) {
 
-                                mail.sendMailSimple(valor.getIdCabecera().getIdProveedor().getProvCorreo(),
+                                mail.sendMailSimple(valor.getRcoCorreoProveedor(),
                                             attachFiles,
                                             "RETENCION ELECTRONICA",
                                             valor.getRcoAutorizacion(),
                                             valor.getRcoSecuencialText(),
                                             BigDecimal.ZERO,
-                                            valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
+                                            valor.getRcoRazonSocial(), amb);
 
                             }
                         }
@@ -423,7 +424,7 @@ public class ListaRetenciones {
         //tipoambiente tiene los parameteos para los directorios y la firma digital
         AutorizarDocumentos aut = new AutorizarDocumentos();
         /*Generamos el archivo XML de la factura*/
-        String archivo = aut.generaXMLComprobanteRetencion(valor, amb, folderGenerados, nombreArchivoXML);
+        String archivo = aut.generaXMLComprobanteRetencionManual(valor, amb, folderGenerados, nombreArchivoXML);
 
         /*amb.getAmClaveAccesoSri() es el la clave proporcionada por el SRI
         archivo es la ruta del archivo xml generado
@@ -466,16 +467,16 @@ public class ListaRetenciones {
 
                     nuevo.flush();
                 } else {
-                    /*COLOCAL LA VALIDACION DE RETENCION AUTORIZADA EN LA COMPRA*/
-                    CabeceraCompra compra = valor.getIdCabecera();
-                    compra.setCabRetencionAutori("S");
-                    servicioCompra.modificar(compra);
+//                    /*COLOCAL LA VALIDACION DE RETENCION AUTORIZADA EN LA COMPRA*/
+//                    CabeceraCompra compra = valor.getIdCabecera();
+//                    compra.setCabRetencionAutori("S");
+//                    servicioCompra.modificar(compra);
                     valor.setRcoAutorizacion(claveAccesoComprobante);
                     valor.setDrcEstadosri(autorizacion.getEstado());
                     valor.setRcoFechaAutorizacion(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
 
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
-                    archivoEnvioCliente = aut.generaXMLComprobanteRetencion(valor, amb, foldervoAutorizado, nombreArchivoXML);
+                    archivoEnvioCliente = aut.generaXMLComprobanteRetencionManual(valor, amb, foldervoAutorizado, nombreArchivoXML);
                     XAdESBESSignature.firmar(archivoEnvioCliente,
                                 nombreArchivoXML,
                                 amb.getAmClaveAccesoSri(),
@@ -501,15 +502,17 @@ public class ListaRetenciones {
 //                            mod.setCliClave(ArchivoUtils.generaraClaveTemporal());
 //                            servicioRetencionCompra.modificar(mod);
 //                        }
-                    if (valor.getIdCabecera().getIdProveedor().getProvCorreo() != null) {
-                        mail.sendMailSimple(valor.getIdCabecera().getIdProveedor().getProvCorreo(),
-                                    attachFiles,
-                                    "RETENCION ELECTRONICA",
-                                    valor.getRcoAutorizacion(),
-                                    valor.getRcoSecuencialText(),
-                                    BigDecimal.ZERO,
-                                    valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
-                    }
+                   if (valor.getRcoCorreoProveedor() != null) {
+
+                                mail.sendMailSimple(valor.getRcoCorreoProveedor(),
+                                            attachFiles,
+                                            "RETENCION ELECTRONICA",
+                                            valor.getRcoAutorizacion(),
+                                            valor.getRcoSecuencialText(),
+                                            BigDecimal.ZERO,
+                                            valor.getRcoRazonSocial(), amb);
+
+                            }
                 }
 
             }
@@ -596,9 +599,9 @@ public class ListaRetenciones {
             chfe.setCellValue(new HSSFRichTextString("Factura Compra"));
             chfe.setCellStyle(estiloCelda);
 
-            HSSFCell ch1 = r.createCell(j++);
-            ch1.setCellValue(new HSSFRichTextString("F Emision"));
-            ch1.setCellStyle(estiloCelda);
+//            HSSFCell ch1 = r.createCell(j++);
+//            ch1.setCellValue(new HSSFRichTextString("F Emision"));
+//            ch1.setCellStyle(estiloCelda);
 
             HSSFCell ch2 = r.createCell(j++);
             ch2.setCellValue(new HSSFRichTextString("Secuencial Ret"));
@@ -625,10 +628,10 @@ public class ListaRetenciones {
                 r = s.createRow(rownum);
 
                 HSSFCell cf = r.createCell(i++);
-                cf.setCellValue(new HSSFRichTextString(item.getIdCabecera().getCabNumFactura().toString()));
+                cf.setCellValue(new HSSFRichTextString(item.getRcoNumFactura()));
 
-                HSSFCell c0 = r.createCell(i++);
-                c0.setCellValue(new HSSFRichTextString(sm.format(item.getIdCabecera().getCabFechaEmision())));
+//                HSSFCell c0 = r.createCell(i++);
+//                c0.setCellValue(new HSSFRichTextString(sm.format(item.getIdCabecera().getCabFechaEmision())));
 
                 HSSFCell c1 = r.createCell(i++);
                 c1.setCellValue(new HSSFRichTextString(item.getRcoSecuencialText()));
@@ -726,6 +729,39 @@ public class ListaRetenciones {
 //            window.detach();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
+    @Command
+    public void cambiarEstado(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            final HashMap<String, RetencionCompra> map = new HashMap<String, RetencionCompra>();
+
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                        "/modificar/estadoret.zul", null, map);
+            window.doModal();
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
+    @Command
+    @NotifyChange({"listaRetencionCompras", "buscarSecuencial"})
+    public void eliminarRetencion(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("¿Esta seguro de eliminar la retencion?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+
+                servicioRetencionCompra.eliminar(valor);
+                buscarPorFechas();
+                Clients.showNotification("Eliminado correctamente...",
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+            }
+
+        } catch (Exception e) {
+//            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+            Clients.showNotification("Ocurrio un errot al eliminar " + e.getMessage(),
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         }
     }
 }

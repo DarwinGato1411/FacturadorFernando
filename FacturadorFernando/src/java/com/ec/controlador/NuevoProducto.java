@@ -67,6 +67,9 @@ public class NuevoProducto {
 
     private Boolean esUnProdcuto = Boolean.TRUE;
     private BigDecimal prodPrecioSubtotal = BigDecimal.ZERO;
+    private Boolean incluyeIva = Boolean.TRUE;
+    private Boolean muestraIncluye = Boolean.TRUE;
+    private Boolean muestraSubtotal = Boolean.TRUE;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
@@ -122,6 +125,8 @@ public class NuevoProducto {
             accion = "create";
         }
         verificarTipoProducto();
+        muestraSubtotal();
+
     }
 
     public NuevoProducto() {
@@ -134,7 +139,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye","muestraSubtotal"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -146,6 +151,24 @@ public class NuevoProducto {
             //            this.producto.setPordCostoVentaFinal(BigDecimal.ONE);
             prodPrecioSubtotal = prodPrecioSubtotal == null ? BigDecimal.ZERO : prodPrecioSubtotal;
             calcularPrecioFinalVenta();
+        }
+        if (!esUnProdcuto && conIva.equals("S")) {
+            muestraIncluye = Boolean.TRUE;
+        } else {
+            muestraIncluye = Boolean.FALSE;
+        }
+        muestraSubtotal();
+//        
+    }
+
+    @Command
+    @NotifyChange({"muestraSubtotal"})
+    public void muestraSubtotal() {
+
+        if (!esUnProdcuto && incluyeIva) {
+            muestraSubtotal = Boolean.FALSE;
+        } else {
+            muestraSubtotal = Boolean.TRUE;
         }
 
 //        
@@ -456,6 +479,30 @@ public class NuevoProducto {
                         Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
         }
 
+    }
+
+    public Boolean getIncluyeIva() {
+        return incluyeIva;
+    }
+
+    public void setIncluyeIva(Boolean incluyeIva) {
+        this.incluyeIva = incluyeIva;
+    }
+
+    public Boolean getMuestraIncluye() {
+        return muestraIncluye;
+    }
+
+    public void setMuestraIncluye(Boolean muestraIncluye) {
+        this.muestraIncluye = muestraIncluye;
+    }
+
+    public Boolean getMuestraSubtotal() {
+        return muestraSubtotal;
+    }
+
+    public void setMuestraSubtotal(Boolean muestraSubtotal) {
+        this.muestraSubtotal = muestraSubtotal;
     }
 
 }

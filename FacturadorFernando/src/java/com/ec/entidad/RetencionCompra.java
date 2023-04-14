@@ -124,6 +124,20 @@ public class RetencionCompra implements Serializable {
     @ManyToOne
     private Tipoambiente codTipoambiente;
 
+    /*Retencion manual*/
+    @Column(name = "rco_tipo_documento")
+    private String rcoTipoDocumento;
+    @Column(name = "rco_identificacion")
+    private String rcoIdentificacion;
+    @Column(name = "rco_razon_social")
+    private String rcoRazonSocial;
+    @Column(name = "rco_cod_sustento")
+    private String rcoCodSustento;
+    @Column(name = "rco_num_factura")
+    private String rcoNumFactura;
+    @Column(name = "rco_correo_proveedor")
+    private String rcoCorreoProveedor;
+
     public RetencionCompra() {
     }
 
@@ -320,6 +334,56 @@ public class RetencionCompra implements Serializable {
         this.rcoBaseGravaIva = rcoBaseGravaIva;
     }
 
+    public String getRcoTipoDocumento() {
+        return rcoTipoDocumento;
+    }
+
+    public void setRcoTipoDocumento(String rcoTipoDocumento) {
+        this.rcoTipoDocumento = rcoTipoDocumento;
+    }
+
+    public String getRcoIdentificacion() {
+        return rcoIdentificacion;
+    }
+
+    public void setRcoIdentificacion(String rcoIdentificacion) {
+        this.rcoIdentificacion = rcoIdentificacion;
+    }
+
+    public String getRcoRazonSocial() {
+        return rcoRazonSocial;
+    }
+
+    public void setRcoRazonSocial(String rcoRazonSocial) {
+        this.rcoRazonSocial = rcoRazonSocial;
+    }
+
+    public String getRcoCodSustento() {
+        return rcoCodSustento;
+    }
+
+    public void setRcoCodSustento(String rcoCodSustento) {
+        this.rcoCodSustento = rcoCodSustento;
+    }
+
+    public String getRcoNumFactura() {
+        return rcoNumFactura;
+    }
+
+    public void setRcoNumFactura(String rcoNumFactura) {
+        this.rcoNumFactura = rcoNumFactura;
+    }
+
+    public String getRcoCorreoProveedor() {
+        return rcoCorreoProveedor;
+    }
+
+    public void setRcoCorreoProveedor(String rcoCorreoProveedor) {
+        this.rcoCorreoProveedor = rcoCorreoProveedor;
+    }
+
+    
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set

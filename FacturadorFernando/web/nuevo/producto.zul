@@ -9,7 +9,7 @@
     <div class="container_modal">
         <div class="header">
             <div class="wrapper_input_mod">
-                <span>Tipo: </span>
+                <!--<span>Tipo: </span>-->
                 <radiogroup  
                     onCheck="@command('verificarTipoProducto')"
                     class="radio_group"
@@ -20,19 +20,33 @@
                 </radiogroup>
             </div>
             <div class="wrapper_input_mod">
-                <span>Declaración: </span>
+                <!--<span>Declaración: </span>-->
                 <radiogroup
                     class="radio_group" 
-                     onCheck="@command('verificarTipoProducto')"
+                    onCheck="@command('verificarTipoProducto')"
                    
                     selectedItem="@bind(vm.conIva)"  
-                >                   
-                    <radio label="Graba IVA" value="S"/>
-                    <space bar="false"  />   
-                    <radio label="Sin IVA" value="N"/>                          
+                >          
+                    <radio label="SIN IVA" value="N"/>   
+                    <space bar="false"  />        
+                    <radio label="GRABA IVA" value="S"/>
+                
+                                           
                 </radiogroup>
             </div>
-            <div class="wrapper_input_mod" style="position: relative">
+            <div class="wrapper_input_mod" visible="@bind(vm.muestraIncluye)">
+                <!--<span>Opción: </span>-->
+                <radiogroup
+                    class="radio_group" 
+                    onCheck="@command('muestraSubtotal')"
+                    selectedItem="@bind(vm.incluyeIva)"  
+                >                   
+                    <radio label="NO INCLUYE IVA" value="${true}"/>
+                    <space bar="false"  />   
+                    <radio label="INCLUYE IVA" value="${false}"/>                          
+                </radiogroup>
+            </div>
+            <div class="wrapper_input_mod" style=" margin-left:20px;position: relative">
                 <span>F. Registro: </span>
                 <datebox 
                     compact="true" 
@@ -55,7 +69,7 @@
 
         <div class="body" visible="@bind(!vm.esUnProdcuto)">
             <div class="container_row_input">
-                  <div class="wrapper_input_mod">
+                <div class="wrapper_input_mod">
                     <span>Código: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-barcode icon"></div>
@@ -78,23 +92,24 @@
                             class="input_text" />
                     </div>
                 </div>
-                  <div class="wrapper_input_mod">
+                <div class="wrapper_input_mod" visible="@bind(vm.muestraSubtotal)">
                     <span>Subtotal: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
                             constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                             value="@bind(vm.prodPrecioSubtotal)"  
-                              onOK="@command('calcularPrecioFinalVenta')"
+                            onOK="@command('calcularPrecioFinalVenta')"
                             class="input_text"  
                         />
                     </div>
                 </div>
-                  <div class="wrapper_input_mod">
+                <div class="wrapper_input_mod">
                     <span>Precio final: </span>
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
+                            
                             constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  
@@ -108,7 +123,7 @@
                     <span style="margin:0 0.5em">Detalle: </span>
                     <div class="wrapper_input_text" style="width:100%">
                         <div class="fa-solid fa-barcode icon"></div>
-                       <textbox  
+                        <textbox  
                             maxlength="100" 
                             style="width:100%"
                             value="@bind(vm.producto.prodDetalle)"

@@ -57,6 +57,8 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menuitem btnCrearCliente;
     @Wire("#btnConfSRI")
     Menuitem btnConfSRI;
+    @Wire("#btnRetencionManual")
+    Menuitem btnRetencionManual;
 
     UserCredential credential = new UserCredential();
     private String acceso = "";
@@ -79,6 +81,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 btnHisDeclaraciones.setVisible(Boolean.FALSE);
                 btnAdministarVenta.setVisible(Boolean.FALSE);
                 btnConfSRI.setVisible(Boolean.FALSE);
+                btnRetencionManual.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);
@@ -332,9 +335,18 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnAjuste() {
         Executions.sendRedirect("/administrar/ajuste.zul");
     }
+
     @Listen("onClick = #btnComprasSRI")
     public void btnComprasSRI() {
         Executions.sendRedirect("/compra/listacomprassri.zul");
+    }
+    @Listen("onClick = #btnRetencionManual")
+    public void btnRetencionManual() {
+        Executions.sendRedirect("/contabilidad/retencion.zul");
+    }
+    @Listen("onClick = #btnEmitRetencionManual")
+    public void btnEmitRetencionManual() {
+        Executions.sendRedirect("/contabilidad/listaretencion.zul");
     }
 
     //final Nuevos botones

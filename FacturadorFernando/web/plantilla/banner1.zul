@@ -73,6 +73,12 @@
                     <!--<menuitem label="Descargar compras SRI" id="btnComprasSRI" class="fa-solid fa-gear menu_item" />-->    
                 </menupopup>
             </menu>
+            <menu label="Retencion" id="menuRetencion" class="menu_child">
+                <menupopup class="submenu">                     
+                    <menuitem label="Grabar retención" id="btnRetencionManual" class="fa-solid fa-paper-plane menu_item" />                                                   
+                    <menuitem label="Emitir retención" id="btnEmitRetencionManual" class="fa-solid fa-paper-plane menu_item" />                                                   
+                </menupopup>
+            </menu> 
              <menu label="Guias"  id="menuGuias" class="menu_child">
                 <menupopup class="submenu">                        
                     <menuitem label="Emitir Guias de remision" id="btnEmitirGuiaRemision" class="fa-solid fa-paper-plane menu_item" />

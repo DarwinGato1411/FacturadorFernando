@@ -776,4 +776,100 @@ public class AutorizarDocumentos {
         return "";
     }
     //</editor-fold>
+    
+     //<editor-fold defaultstate="collapsed" desc=" ARMAR RETENCION MANUAL">
+     public String generaXMLComprobanteRetencionManual(RetencionCompra retencion, Tipoambiente amb, String folderDestino, String nombreArchivoXML) {
+        FileOutputStream out;
+        try {
+//            Empresa empresa = empresaFacade.findById(retencion.getIdempresa().longValue());
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatoPeriodo = new SimpleDateFormat("MM/yyyy");
+            //tipoEmision(); //dependiendo de la coneccion al sri.
+            String tipoemision = "1"; //en offline solo existe emision normal
+            String claveAcceso = generaClave(retencion.getRcoFecha(), "07", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab().trim() + amb.getAmPtoemi().trim(), retencion.getRcoSecuencialText(), "12345678", "1");
+//            String claveAcceso = generaClave(retencion.getRcoFecha(), "07", MB.getRucempresa(), ambienteTb.getCodigotipoamb(), serie, retencion.getSecuencialcaracter(), "12345678", tipoemision);
+//            String claveAcceso = !contingencia
+//                    ? generaClave(retencion.getFechaemision(), retencion.getCodigodcto(), empresa.getRucempresa(), ambienteTb.getCodigotipoamb(), serie, retencion.getSecuencialcaracter(), "12345678", tipoemision)
+//                    //                    : generaClave(new Date(), "07", empresa.getRucempresa(), "1", serie, retencion.getSecuencialCaracter(), "12345678", "1");
+//                    : generaClaveContingencia(retencion.getFechaemision(), retencion.getCodigodcto(), tipoemision);
+            StringBuilder build = new StringBuilder();
+            String linea = "";
+            linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
+                        + "<comprobanteRetencion id=\"comprobante\" version=\"1.0.0\">\n"
+                        + "     <infoTributaria>\n"
+                        + "        <ambiente>" + amb.getAmCodigo() + "</ambiente>\n"
+                        + "        <tipoEmision>" + tipoemision + "</tipoEmision>\n"
+                        + "        <razonSocial>" + removeCaracteres(amb.getAmRazonSocial()) + "</razonSocial>\n"
+                        + "        <nombreComercial>" + removeCaracteres(amb.getAmNombreComercial()) + "</nombreComercial>\n"
+                        + "        <ruc>" + amb.getAmRuc() + "</ruc>\n"
+                        + "        <claveAcceso>" + claveAcceso + "</claveAcceso>\n"
+                        + "        <codDoc>07</codDoc>\n"
+                        + "        <estab>" + amb.getAmEstab() + "</estab>\n"
+                        + "        <ptoEmi>" + amb.getAmPtoemi() + "</ptoEmi>\n"
+                        + "        <secuencial>" + retencion.getRcoSecuencialText() + "</secuencial>\n"
+                        + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
+                        + "    </infoTributaria>\n"
+                        + "    <infoCompRetencion>\n"
+                        + "        <fechaEmision>" + formato.format(retencion.getRcoFecha()) + "</fechaEmision>\n"
+                        + "        <dirEstablecimiento>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirEstablecimiento>\n"
+                        //        + "        <contribuyenteEspecial>5368</contribuyenteEspecial>\n"
+                        + "        <obligadoContabilidad>" + amb.getLlevarContabilidad() + "</obligadoContabilidad>\n"
+                        + "        <tipoIdentificacionSujetoRetenido>" + retencion.getRcoTipoDocumento() + "</tipoIdentificacionSujetoRetenido>\n"
+                        + "        <razonSocialSujetoRetenido>" + retencion.getRcoRazonSocial() + "</razonSocialSujetoRetenido>\n"
+                        + "        <identificacionSujetoRetenido>" + retencion.getRcoIdentificacion()+ "</identificacionSujetoRetenido>\n"
+                        + "        <periodoFiscal>" + formatoPeriodo.format(retencion.getRcoFecha()) + "</periodoFiscal>\n"
+                        + "    </infoCompRetencion>\n"
+                        + "<impuestos>\n");
+            build.append(linea);
+            Float suma = Float.MIN_VALUE;
+
+            List<DetalleRetencionCompra> dret = servicioDetalleRetencionCompra.findByCanRetencion(retencion);
+            for (DetalleRetencionCompra detalle : dret) {
+                suma = suma + detalle.getDrcValorRetenido().setScale(2, RoundingMode.FLOOR).floatValue();
+
+                linea = ("  <impuesto>\n"
+                            + "         <codigo>" + detalle.getDrcCodImpuestoAsignado() + "</codigo>\n"
+                            + "         <codigoRetencion>" + (detalle.getDrcDescripcion().equals("RENTA") ? detalle.getTireCodigo().getTireCodigo() : detalle.getIdTipoivaretencion().getTipivaretValor()) + "</codigoRetencion>\n"
+                            + "         <baseImponible>" + ArchivoUtils.redondearDecimales(detalle.getDrcBaseImponible(), 2) + "</baseImponible>\n"
+                            + "         <porcentajeRetener>" + detalle.getDrcPorcentaje() + "</porcentajeRetener>\n"
+                            + "         <valorRetenido>" + ArchivoUtils.redondearDecimales(detalle.getDrcValorRetenido(), 2) + "</valorRetenido>\n"
+                            + "         <codDocSustento>" + detalle.getRcoCodigo().getRcoCodSustento() + "</codDocSustento>\n"
+                            + "         <numDocSustento>" + detalle.getRcoCodigo().getRcoNumFactura() + "</numDocSustento>\n"
+                            + "         <fechaEmisionDocSustento>" + formato.format(detalle.getRcoCodigo().getCabFechaEmision()) + "</fechaEmisionDocSustento>\n"
+                            + "   </impuesto>\n");
+                build.append(linea);
+            }
+
+            linea = ("</impuestos>\n"
+                        + " <infoAdicional>\n"
+                        + ("<campoAdicional nombre=\"SUMA\">" + suma.toString() + "</campoAdicional>\n")
+//                        + (amb.getAmMicroEmp() ? "<campoAdicional nombre=\"Contribuyente Regimen Microempresas\">Contribuyente Regimen Microempresas</campoAdicional>\n" : "")
+                        + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
+                        + "    </infoAdicional>\n"
+                        + "</comprobanteRetencion>");
+            build.append(linea);
+
+            /*IMPRIME EL XML DE LA NOTA DE CREDITO O DEBITO*/
+            System.out.println("XML " + build);
+            String pathArchivoSalida = "";
+
+            /*ruta de salida del archivo XML 
+            generados o autorizados para enviar al cliente 
+            dependiendo la ruta enviada en el parametro del metodo */
+            pathArchivoSalida = folderDestino
+                        + nombreArchivoXML;
+
+            //String pathArchivoSalida = "D:\\";
+            out = new FileOutputStream(pathArchivoSalida);
+            out.write(build.toString().getBytes());
+            //GRABA DATOS EN FACTURA//
+            return pathArchivoSalida;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+         //</editor-fold>
 }
