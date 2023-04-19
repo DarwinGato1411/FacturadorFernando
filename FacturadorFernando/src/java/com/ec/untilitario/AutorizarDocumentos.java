@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -64,8 +64,6 @@ public class AutorizarDocumentos {
     public AutorizarDocumentos() {
     }
 
-    
-    
     public static String removeCaracteres(String input) {
         // Cadena de caracteres original a sustituir.
         String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ$&¨\"";
@@ -249,7 +247,7 @@ public class AutorizarDocumentos {
                 tipoAmbiente = "PRODUCCION";
             }
             linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                    + "<factura id=\"comprobante\" version=\"1.1.0\">\n");
+                        + "<factura id=\"comprobante\" version=\"1.1.0\">\n");
             build.append(linea);
             linea = "";
             if (autorizada) {
@@ -281,10 +279,9 @@ public class AutorizarDocumentos {
                         + "        <ptoEmi>" + amb.getAmPtoemi() + "</ptoEmi>\n"
                         + "        <secuencial>" + valor.getFacNumeroText() + "</secuencial>\n"
                         + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
-                       
                         + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
                         //  + "        <agenteRetencion>12345678</agenteRetencion>\n"
-                          + (amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : amb.getAmRimpePopular()?" <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n":"")
+                        + (amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : amb.getAmRimpePopular() ? " <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")
                         + "</infoTributaria>\n"
                         + "<infoFactura>\n"
                         + "        <fechaEmision>" + formato.format(valor.getFacFecha()) + "</fechaEmision>\n"
@@ -342,6 +339,10 @@ public class AutorizarDocumentos {
             List<DetalleFactura> listaDetalle = servicioDetalleFactura.findDetalleForIdFactuta(valor);
             for (DetalleFactura item : listaDetalle) {
 
+                String adicional = item.getIdProducto().getProdDetalle() != null ? ("            <detallesAdicionales>\n"
+                            + "           <detAdicional valor=\"" + item.getIdProducto().getProdDetalle() + "\"  nombre=\"DETALLE\"/>\n"
+                            + "            </detallesAdicionales>\n") : "";
+
                 String subsidio = "            <precioSinSubsidio>" + item.getIdProducto().getProdPrecioSinSubsidio() + "</precioSinSubsidio>\n";
                 BigDecimal valorICeProd = (item.getDetSubtotaldescuento().multiply(item.getDetCantidad()).multiply(amb.getAmValorIce())).divide(BigDecimal.valueOf(100), 2, RoundingMode.FLOOR);
                 String ICEIMPUESTO = "                <impuesto>\n"
@@ -361,6 +362,7 @@ public class AutorizarDocumentos {
                             + (item.getIdProducto().getProdTieneSubsidio().equals("S") ? subsidio : "")
                             + "            <descuento>" + ArchivoUtils.redondearDecimales(item.getDetCantpordescuento(), 2) + "</descuento>\n"
                             + "            <precioTotalSinImpuesto>" + ArchivoUtils.redondearDecimales(item.getDetSubtotaldescuento().multiply(item.getDetCantidad()), 2) + "</precioTotalSinImpuesto>\n"
+                            + adicional
                             + "            <impuestos>\n"
                             + "                <impuesto>\n"
                             + "                    <codigo>" + item.getDetCodIva() + "</codigo>\n"
@@ -776,9 +778,9 @@ public class AutorizarDocumentos {
         return "";
     }
     //</editor-fold>
-    
-     //<editor-fold defaultstate="collapsed" desc=" ARMAR RETENCION MANUAL">
-     public String generaXMLComprobanteRetencionManual(RetencionCompra retencion, Tipoambiente amb, String folderDestino, String nombreArchivoXML) {
+
+    //<editor-fold defaultstate="collapsed" desc=" ARMAR RETENCION MANUAL">
+    public String generaXMLComprobanteRetencionManual(RetencionCompra retencion, Tipoambiente amb, String folderDestino, String nombreArchivoXML) {
         FileOutputStream out;
         try {
 //            Empresa empresa = empresaFacade.findById(retencion.getIdempresa().longValue());
@@ -816,7 +818,7 @@ public class AutorizarDocumentos {
                         + "        <obligadoContabilidad>" + amb.getLlevarContabilidad() + "</obligadoContabilidad>\n"
                         + "        <tipoIdentificacionSujetoRetenido>" + retencion.getRcoTipoDocumento() + "</tipoIdentificacionSujetoRetenido>\n"
                         + "        <razonSocialSujetoRetenido>" + retencion.getRcoRazonSocial() + "</razonSocialSujetoRetenido>\n"
-                        + "        <identificacionSujetoRetenido>" + retencion.getRcoIdentificacion()+ "</identificacionSujetoRetenido>\n"
+                        + "        <identificacionSujetoRetenido>" + retencion.getRcoIdentificacion() + "</identificacionSujetoRetenido>\n"
                         + "        <periodoFiscal>" + formatoPeriodo.format(retencion.getRcoFecha()) + "</periodoFiscal>\n"
                         + "    </infoCompRetencion>\n"
                         + "<impuestos>\n");
@@ -843,7 +845,7 @@ public class AutorizarDocumentos {
             linea = ("</impuestos>\n"
                         + " <infoAdicional>\n"
                         + ("<campoAdicional nombre=\"SUMA\">" + suma.toString() + "</campoAdicional>\n")
-//                        + (amb.getAmMicroEmp() ? "<campoAdicional nombre=\"Contribuyente Regimen Microempresas\">Contribuyente Regimen Microempresas</campoAdicional>\n" : "")
+                        //                        + (amb.getAmMicroEmp() ? "<campoAdicional nombre=\"Contribuyente Regimen Microempresas\">Contribuyente Regimen Microempresas</campoAdicional>\n" : "")
                         + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
                         + "    </infoAdicional>\n"
                         + "</comprobanteRetencion>");
@@ -871,5 +873,5 @@ public class AutorizarDocumentos {
         }
         return "";
     }
-         //</editor-fold>
+    //</editor-fold>
 }

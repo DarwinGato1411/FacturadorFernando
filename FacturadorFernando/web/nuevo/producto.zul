@@ -41,9 +41,9 @@
                     onCheck="@command('muestraSubtotal')"
                     selectedItem="@bind(vm.incluyeIva)"  
                 >                   
-                    <radio label="NO INCLUYE IVA" value="${true}"/>
+                    <radio label="INCLUYE IVA" value="${true}"/>
                     <space bar="false"  />   
-                    <radio label="INCLUYE IVA" value="${false}"/>                          
+                    <radio label="NO INCLUYE IVA" value="${false}"/>                          
                 </radiogroup>
             </div>
             <div class="wrapper_input_mod" style=" margin-left:20px;position: relative">
