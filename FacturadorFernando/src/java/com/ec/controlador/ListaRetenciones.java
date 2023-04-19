@@ -731,10 +731,12 @@ public class ListaRetenciones {
         }
     }
     
+    
     @Command
     public void cambiarEstado(@BindingParam("valor") RetencionCompra valor) throws JRException, IOException, NamingException, SQLException {
         try {
             final HashMap<String, RetencionCompra> map = new HashMap<String, RetencionCompra>();
+
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
                         "/modificar/estadoret.zul", null, map);
