@@ -139,7 +139,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye","muestraSubtotal"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -323,6 +323,12 @@ public class NuevoProducto {
                     && producto.getPordCostoVentaRef() != null
                     && producto.getPordCostoVentaFinal() != null
                     && producto.getProdCantidadInicial() != null) {
+
+            if (producto.getProdNombre().length() > 300 || producto.getProdDetalle().length() > 300) {
+                Clients.showNotification("El nombre o descripción no puede tener mas de 300 caracteres",
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                return;
+            }
             producto.setCodTipoambiente(amb);
             if (conIva.equals("S")) {
                 producto.setProdGrabaIva(Boolean.TRUE);
