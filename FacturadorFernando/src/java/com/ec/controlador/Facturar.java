@@ -513,8 +513,8 @@ public class Facturar extends SelectorComposer<Component> {
     }
 //numero de guia
 
-    private void numeroGuia() {
-        Guiaremision recuperada = servicioGuia.findUltimaGuiaremision();
+     private void numeroGuia() {
+        Guiaremision recuperada = servicioGuia.findUltimaGuiaremision(amb);
         if (recuperada != null) {
             // System.out.println("numero de factura " + recuperada);
             numeroGuia = recuperada.getFacNumero() + 1;

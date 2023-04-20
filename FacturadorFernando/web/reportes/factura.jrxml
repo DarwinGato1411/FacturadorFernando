@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.9487171000000045"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="254"/>
+	<property name="ireport.y" value="571"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -581,6 +581,16 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_telefono}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="11" y="213" width="273" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"RÉGIMEN GENERA":""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="213" width="273" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ripme}?"CONTRIBUYENTE RÉGIMEN RIMPE":""]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -1146,25 +1156,15 @@ Se recuerda que el envio de los comprobantes de retenciones debe realizarse dent
 				</textElement>
 				<text><![CDATA[(Incluye IVA cuando corresponde)]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="10" y="58" width="332" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ripme}?"CONTRIBUYENTE RÉGIMEN RIMPE":""]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="10" y="58" width="297" height="15"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"RÉGIMEN GENERA":""]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="11" y="73" width="65" height="14">
+				<reportElement positionType="Float" x="11" y="59" width="65" height="14">
 					<printWhenExpression><![CDATA[$F{fac_observacion}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement/>
 				<text><![CDATA[Observación:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="76" y="73" width="267" height="21">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="76" y="59" width="267" height="21">
 					<printWhenExpression><![CDATA[$F{fac_observacion}!=null]]></printWhenExpression>
 				</reportElement>
 				<textElement/>
