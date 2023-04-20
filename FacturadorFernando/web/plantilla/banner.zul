@@ -78,7 +78,7 @@
                     <menupopup class="submenu">                     
                 
                         <menuitem label="Ingreso de mercaderia" id="btnIngresoCompras" class="fa-solid fa-paper-plane menu_item" />                                
-                        <menuitem label="Lista de facturas de compra    " id="btnListaCompras" class="fa-solid fa-list menu_item" />                                                          
+                        <menuitem label="Lista de facturas de compra" id="btnListaCompras" class="fa-solid fa-list menu_item" />                                                          
                         <menuitem label="Lista de retenciones" id="btnRetenciones" class="fa-solid fa-list menu_item" />
                         
                     </menupopup>
@@ -111,6 +111,7 @@
                 <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
                 <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
+                <menuitem label="Codigos de retencion" id="btnCodigoretencion" class="menu_child" />
             </menubar> 
 
             <!-- <div class="menu_nav">

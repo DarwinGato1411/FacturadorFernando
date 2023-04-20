@@ -7,106 +7,14 @@
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-    
+
+
     <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
-                
-        <div class="container_landing login_container">
-
-            <div class="header">
-                <!--<div class="container_color">
-                    <div class="color first"></div>
-                     <div class="color second"></div>
-                     <div class="color third"></div>
-                    <div class="color fourth"></div>
-                </div>-->
-
-                <div class="wrapper_nav">
-                    <div class="nav">
-                        <span class="item_nav login_btn">Iniciar Sesión</span>
-                        <span class="item_nav" id="btnRegistra">Registro</span>
-                    </div>
-                    <span class="fa-solid fa-bars icon_menu"></span>
-                </div>
-            </div>
-
-           
-
-            <div class="wrapper_header">
-                <image src="./imagenes/deckxel/logow.png"  />                
-            </div>
-
-            <div class="main">
-                <div class="wrapper_main">
-                    <div class="wrapper_logo_ef">
-                        <span class="title">FACTURACIÓN ELECTRÓNICA</span>
-                    </div> 
-
-                    <div class="wrapper_items">  
-                        <div class="wrapper_item">
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
-                                    <span class="item_desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
-                                </div>
-                            <!--<div>
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
-                                    <span class="item_desc">SOPORTE PERMANENTE</span>
-                                </div>
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaA.png" class="img_icon" />
-                                    <span class="item_desc">Lo hacemos por ti, procesamos y gestionames tus documentos con el estado</span>
-                                </div>
-                           </div>
-                           <div>
-                                
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaR.png" class="img_icon" />
-                                    <span class="item_desc">CAPACITACIÓN GRATUITA</span>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaT.png" class="img_icon" />
-                                    <span class="item_desc">ANEXO GASTOS PERSONALES</span>
-                                </div>
-                                <div class="item">
-                                    <image src="./imagenes/deckxel/flechaT.png" class="img_icon" />
-                                    <span class="item_desc">FIRMA ELECTRÓNICA</span>
-                                </div>
-                            </div>-->
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">
-                <!--<div class="container_color">
-                    <div class="color first"></div>
-                     <div class="color second"></div>
-                     <div class="color third"></div>
-                    <div class="color fourth"></div>
-                </div>-->
-            
-                <div class="container_info">
-                    <div class="wrapper_item_foot">
-                        <span class="fa-brands fa-whatsapp icon"></span>
-                        <span> 099 353 0018 - 098 817 6386</span>
-                    </div>
-                    <div class="wrapper_item_foot">
-                        <span class="fa-regular fa-envelope icon"></span>
-                        <span>no-reply@defactec.com</span>
-                    </div>
-                    
-                </div>
-            </div>
-
-        </div>
-
-         <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
+         
+        <div class="container_wrapper_signin_root">
             <div class="wapper_registro wrapper_forgot wrapper_signin">
-
-                 <image src="./imagenes/deckxel/logo.png" class="logo" />
+                   
+                <image src="./imagenes/deckxel/logo.png" class="logo" />
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
@@ -139,25 +47,69 @@
                 </div>
 
                 <div class="wrapper_button">
-                    <button class="btn btn_reg" style="width: 100%" id="buttonEntrar">
+                    <button class="btn btn_reg" id="buttonEntrar">
                         Iniciar Sesión
                     </button>
+                    <span class="btn btn_reg" id="btnRegistra">Registro</span>
+                </div>
+                
+            </div>
+        </div>      
+        <div class="contenedorInico">
+            <div class="contenedorPlanes">
+                <div class="titulo">
+                    PLANES
+                </div>
+                <div class="planes">
+                    <span># Documentos</span>
+                    <span>VALOR DEFACT</span>
+                    <span>12</span>
+                    <span>$ 15.99</span>
+                    <span>24</span>
+                    <span>$ 20.99</span>
+                    <span>36</span>
+                    <span>$ 26.99</span>
+                    <span>48</span>
+                    <span>$ 29.99</span>
+                    <span>60</span>
+                    <span>$ 33.99</span>
+                    <span>ILIMITADO MENSUAL</span>
+                    <span>$ 9.99</span>
+                    <span>ILIMITADO ANUAL</span>
+                    <span>$ 100</span>
+                </div>
+                <div class="contacto">
+                    <div class="title">
+                        
+                        LOS VALORES REGISTRADOS NO INCLUYEN IVA
+                    </div>
+                    <div class="info">
+                        <span>------------------------</span>
+                        <span>REGISTRO GRATUITO</span>
+                        <span>CONTACTOS:</span>
+                        <span>098 817 6386</span>
+                        <span>Oficina - Juan Carlos Bedoya</span>
+                        <span>------------------------</span>
+                        <span>099 742 8125</span>
+                        <span>Ing. Lady Medina</span>
+                    </div>
                 </div>
             </div>
         </div>
+    
+            
+       
+        
 
-        <div class="wrapper_loading loading_inicio">
-            <div class="lds-ring">
-                <div />
-                <div />
-                <div />
-                <div />
-            </div>
-        </div>
-
-        <image class="fondo" src="./imagenes/deckxel/fondo2.png"  /> 
     </div>
 
-
+    <div class="wrapper_loading loading_inicio">
+        <div class="lds-ring">
+            <div />
+            <div />
+            <div />
+            <div />
+        </div>
+    </div>
 
 </zk>

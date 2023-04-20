@@ -89,6 +89,8 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_iva_actual")
     private BigDecimal parIvaActual;
+    @Column(name = "par_doc_contratado")
+    private BigDecimal parDocContratado;
 
     @Column(name = "par_credito_clientes")
     private Boolean parCreditoClientes;
@@ -132,6 +134,20 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_ilimitado_permanente")
     private Boolean parIlimitadoPermanente;
+
+    @Column(name = "par_smtp")
+    private String parSmtp;
+    @Column(name = "par_correo")
+    private String parCorreo;
+    @Column(name = "par_password_correo")
+    private String parPasswordCorreo;
+    @Column(name = "par_puerto")
+    private String parPuerto;
+    @Column(name = "par_contratado")
+    private BigDecimal parContratado;
+
+    @Column(name = "par_bloqueo_sistema")
+    private Boolean parBloqueoSistema;
 
     public Parametrizar() {
     }
@@ -372,7 +388,7 @@ public class Parametrizar implements Serializable {
     }
 
     public Integer getParNumeroFactura() {
-        return parNumeroFactura==null?0:parNumeroFactura;
+        return parNumeroFactura == null ? 0 : parNumeroFactura;
     }
 
     public void setParNumeroFactura(Integer parNumeroFactura) {
@@ -412,6 +428,46 @@ public class Parametrizar implements Serializable {
         this.parIlimitadoPermanente = parIlimitadoPermanente;
     }
 
+    public BigDecimal getParContratado() {
+        return parContratado;
+    }
+
+    public void setParContratado(BigDecimal parContratado) {
+        this.parContratado = parContratado;
+    }
+
+    public String getParSmtp() {
+        return parSmtp;
+    }
+
+    public void setParSmtp(String parSmtp) {
+        this.parSmtp = parSmtp;
+    }
+
+    public String getParCorreo() {
+        return parCorreo;
+    }
+
+    public void setParCorreo(String parCorreo) {
+        this.parCorreo = parCorreo;
+    }
+
+    public String getParPasswordCorreo() {
+        return parPasswordCorreo;
+    }
+
+    public void setParPasswordCorreo(String parPasswordCorreo) {
+        this.parPasswordCorreo = parPasswordCorreo;
+    }
+
+    public String getParPuerto() {
+        return parPuerto;
+    }
+
+    public void setParPuerto(String parPuerto) {
+        this.parPuerto = parPuerto;
+    }
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -428,6 +484,22 @@ public class Parametrizar implements Serializable {
     @Override
     public String toString() {
         return "com.ec.entidad.Parametrizar[ codParametrizar=" + codParametrizar + " ]";
+    }
+
+    public BigDecimal getParDocContratado() {
+        return parDocContratado == null ? BigDecimal.ZERO : parDocContratado;
+    }
+
+    public void setParDocContratado(BigDecimal parDocContratado) {
+        this.parDocContratado = parDocContratado;
+    }
+
+    public Boolean getParBloqueoSistema() {
+        return parBloqueoSistema == null ? Boolean.FALSE : parBloqueoSistema;
+    }
+
+    public void setParBloqueoSistema(Boolean parBloqueoSistema) {
+        this.parBloqueoSistema = parBloqueoSistema;
     }
 
 }

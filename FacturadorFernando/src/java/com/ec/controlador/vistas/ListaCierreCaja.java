@@ -5,13 +5,11 @@
 package com.ec.controlador.vistas;
 
 import com.ec.entidad.CierreCaja;
-import com.ec.entidad.Factura;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioCierreCaja;
 import com.ec.untilitario.ArchivoUtils;
 import com.ec.untilitario.DispararReporte;
-import com.ec.untilitario.ModeloAcumuladoDiaUsuario;
 import com.ec.vista.servicios.ServicioAcumuladoDiarioUsuario;
 import java.io.File;
 import java.io.FileInputStream;
