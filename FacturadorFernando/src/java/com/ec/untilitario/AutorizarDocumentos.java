@@ -340,7 +340,7 @@ public class AutorizarDocumentos {
             for (DetalleFactura item : listaDetalle) {
 
                 String adicional = item.getIdProducto().getProdDetalle() != null ? ("            <detallesAdicionales>\n"
-                            + "           <detAdicional valor=\"" + item.getIdProducto().getProdDetalle() + "\"  nombre=\"DETALLE\"/>\n"
+                            + "           <detAdicional valor=\"" +removeCaracteres( item.getIdProducto().getProdDetalle()) + "\"  nombre=\"DETALLE\"/>\n"
                             + "            </detallesAdicionales>\n") : "";
 
                 String subsidio = "            <precioSinSubsidio>" + item.getIdProducto().getProdPrecioSinSubsidio() + "</precioSinSubsidio>\n";
