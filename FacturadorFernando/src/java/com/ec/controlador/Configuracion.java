@@ -129,7 +129,7 @@ public class Configuracion extends SelectorComposer<Component> {
         tipoambiente.setAmEstado(Boolean.FALSE);
 
         servicioTipoAmbiente.modificar(tipoambiente);
-        tipoambiente = servicioTipoAmbiente.findByAmCodigo(credential.getUsuarioSistema(), amCodigo);
+        tipoambiente = servicioTipoAmbiente.findByIdUsuario(tipoambiente, amCodigo);
         /*COLOCA EL NUEVO AMBIENTE EN ACTIVO*/
         tipoambiente.setAmEstado(Boolean.TRUE);
         servicioTipoAmbiente.modificar(tipoambiente);
@@ -297,7 +297,4 @@ public class Configuracion extends SelectorComposer<Component> {
     public void setGrabaICE(String grabaICE) {
         this.grabaICE = grabaICE;
     }
-    
-    
-
 }

@@ -100,16 +100,15 @@ public class ServicioProducto {
 
         return listaProductos;
     }
-
-    public List<Producto> FindALlProducto(Tipoambiente amb) {
+    public List<Producto> findALlProductoCodTipoAmbiente(Tipoambiente tipoambiente) {
 
         List<Producto> listaProductos = new ArrayList<Producto>();
         try {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codTipoambiente=:codTipoambiente ORDER BY p.prodNombre ASC");
-            query.setParameter("codTipoambiente", amb);
+            Query query = em.createQuery("SELECT p FROM Producto p Where p.codTipoambiente=:codTipoambiente ORDER BY p.prodNombre ASC");
+           query.setParameter("codTipoambiente", tipoambiente);
             listaProductos = (List<Producto>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -136,7 +135,7 @@ public class ServicioProducto {
             listaProductos = (List<Producto>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta producto");
+            System.out.println("Error en lsa consulta producto " + e.getMessage());
         } finally {
             em.close();
         }
