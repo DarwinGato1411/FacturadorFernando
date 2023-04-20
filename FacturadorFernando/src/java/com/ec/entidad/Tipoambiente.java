@@ -172,6 +172,7 @@ public class Tipoambiente implements Serializable {
     @Column(name = "am_general")
     private Boolean amGeneral;
     @Column(name = "am_rimpe_popular")
+    
     private Boolean amRimpePopular;
     @OneToMany(mappedBy = "codTipoambiente")
     private Collection<Producto> productoCollection;
