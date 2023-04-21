@@ -157,6 +157,8 @@ public class ListaGuia {
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
             parametros.put("numfactura", numeroFactura);
             parametros.put("codTipoAmbiente", amb.getCodTipoambiente());
+            System.out.println("numfactura"+ numeroFactura);
+            System.out.println("codTipoAmbiente"+ amb.getCodTipoambiente());
 
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
