@@ -217,7 +217,8 @@
 
 
 
-                </tabpanel>              
+                </tabpanel> 
+                             
                 <tabpanel height="100%" hflex="min">
                     <include src="/administrar/configuracion.zul"/>  
                 </tabpanel>

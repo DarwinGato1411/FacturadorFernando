@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/administrar/configuracion.zul</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/administrar.zul</file>
+        </group>
+>>>>>>> 66d7ece728e317ed9390073355d8ede24d72122c
     </open-files>
 </project-private>
