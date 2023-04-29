@@ -4,7 +4,6 @@
  */
 package com.ec.servicio;
 
-import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.Usuario;
 import java.util.ArrayList;
 import java.util.List;
