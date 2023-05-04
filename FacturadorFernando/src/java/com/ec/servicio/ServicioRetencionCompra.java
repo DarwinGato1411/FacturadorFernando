@@ -150,7 +150,7 @@ public class ServicioRetencionCompra {
             listaRetencionCompras = (List<RetencionCompra>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta retencionCompra " + e.getMessage());
+            System.out.println("Error en la consulta retencionCompra " + e.getMessage());
         } finally {
             em.close();
         }
