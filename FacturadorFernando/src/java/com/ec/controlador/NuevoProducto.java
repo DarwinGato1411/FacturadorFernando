@@ -66,6 +66,7 @@ public class NuevoProducto {
     private String amRuc = "";
     private Boolean esUnProdcuto = Boolean.TRUE;
     private BigDecimal prodPrecioSubtotal = BigDecimal.ZERO;
+       private Boolean incluyeIva = Boolean.TRUE;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
@@ -447,6 +448,14 @@ public class NuevoProducto {
 
     public void setProdPrecioSubtotal(BigDecimal prodPrecioSubtotal) {
         this.prodPrecioSubtotal = prodPrecioSubtotal;
+    }
+
+    public Boolean getIncluyeIva() {
+        return incluyeIva;
+    }
+
+    public void setIncluyeIva(Boolean incluyeIva) {
+        this.incluyeIva = incluyeIva;
     }
 
 }

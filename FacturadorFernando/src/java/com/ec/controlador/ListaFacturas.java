@@ -155,7 +155,8 @@ public class ListaFacturas {
     public void reporteComprobante(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
         reporteGeneral(valor.getFacNumero(), "COMP");
     }
-     @Command
+
+    @Command
     public void reporteComprobanteEnt(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
         reporteGeneral(valor.getFacNumero(), "COMPENT");
     }
@@ -278,7 +279,7 @@ public class ListaFacturas {
                 reportPath = reportFile + File.separator + "facturaa5.jasper";
             } else if (tipo.equals("NTV")) {
                 reportPath = reportFile + File.separator + "notaventaticket.jasper";
-            }else if (tipo.equals("COMPENT")) {
+            } else if (tipo.equals("COMPENT")) {
                 reportPath = reportFile + File.separator + "comprobantentrega.jasper";
             }
 
@@ -845,7 +846,7 @@ public class ListaFacturas {
                     Instant instant = autorizacion.getFechaAutorizacion().toGregorianCalendar().toZonedDateTime().toInstant();
                     Date date = Date.from(instant);
                     valor.setFacFechaAutorizacion(date);
-
+                    servicioFactura.modificar(valor);
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
                     XAdESBESSignature.firmar(archivoEnvioCliente,
@@ -860,9 +861,8 @@ public class ListaFacturas {
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                     /*GUARDA EL PATH PDF CREADO*/
                     valor.setFacpath(archivoEnvioCliente.replace(".xml", ".pdf"));
-                    servicioFactura.modificar(valor);
-                    /*envia el mail*/
 
+                    /*envia el mail*/
                     String[] attachFiles = new String[2];
                     attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
                     attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");

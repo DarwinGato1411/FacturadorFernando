@@ -149,7 +149,7 @@
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"
                                                    class="grow"
-                                                   onClick="@command('modificarUsario',valor=each.idUsuario)" 
+                                                   onClick="@command('modificarUsarioSuper',valor=each.idUsuario)" 
                                                    tooltiptext="Editar usuario"/> 
                                             
                                         </listcell>    

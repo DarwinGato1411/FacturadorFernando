@@ -112,6 +112,16 @@ public class GestionUsuarios {
         window.doModal();
         cosultarUsuarios("");
     }
+    @Command
+    @NotifyChange("listaUsuarios")
+    public void modificarUsarioSuper(@BindingParam("valor") Usuario usuario) {
+        final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
+        map.put("usuario", usuario);
+        org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                    "/superadmin/usuario.zul", null, map);
+        window.doModal();
+        cosultarUsuarios("");
+    }
 
     @Command
     public void descargarFirma(@BindingParam("valor") Tipoambiente amb) {

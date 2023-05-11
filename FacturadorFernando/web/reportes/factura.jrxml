@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.zoom" value="1.948717100000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="292"/>
+	<property name="ireport.y" value="192"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -241,6 +241,8 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 	<field name="am_comprobante_imprime" class="java.lang.String"/>
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.Integer"/>
+	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
+	<field name="am_codigo_artesano" class="java.lang.String"/>
 	<field name="id_factura" class="java.lang.Integer"/>
 	<field name="id_estado" class="java.lang.Integer"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
@@ -428,21 +430,21 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nombre_comercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="11" y="87" width="273" height="20"/>
+				<reportElement x="11" y="87" width="273" height="10"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_razon_social}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="107" width="65" height="26"/>
+				<reportElement x="10" y="97" width="65" height="26"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Direcciòn Matriz:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="133" width="65" height="26"/>
+				<reportElement x="10" y="125" width="65" height="26"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
@@ -456,30 +458,30 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[Razón Social / Nombres Apellidos: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="201" width="219" height="20"/>
+				<reportElement x="11" y="185" width="219" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBLIGADO A LLEVAR CONTABILIDAD]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="230" y="201" width="54" height="20"/>
+				<reportElement x="230" y="185" width="54" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{llevar_contabilidad}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="107" width="208" height="26"/>
+				<reportElement x="75" y="97" width="208" height="26"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="133" width="208" height="26"/>
+				<reportElement x="75" y="125" width="208" height="26"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_sucursal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="295" y="221" width="255" height="34" isPrintWhenDetailOverflows="true"/>
@@ -494,7 +496,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_clave_acceso}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="181" width="165" height="20"/>
+				<reportElement x="11" y="165" width="165" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -549,7 +551,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_tipo_emision}.equals( "1" ) ? "NORMAL":""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="176" y="181" width="108" height="20"/>
+				<reportElement x="177" y="165" width="108" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nro_contribuyente}]]></textFieldExpression>
 			</textField>
@@ -558,21 +560,21 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" x="11" y="221" width="274" height="14">
+				<reportElement positionType="Float" x="11" y="205" width="274" height="14">
 					<printWhenExpression><![CDATA[$F{am_age_ret}]]></printWhenExpression>
 				</reportElement>
 				<textElement/>
 				<text><![CDATA[AGENTE DE RETENCIÓN: NAC-DNCRASC20-00000001]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="159" width="65" height="14"/>
+				<reportElement x="10" y="151" width="65" height="14"/>
 				<textElement>
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Contacto:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="159" width="208" height="14"/>
+				<reportElement x="77" y="149" width="208" height="14"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
@@ -587,6 +589,11 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<reportElement x="11" y="240" width="316" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"CONTRIBUYENTE REGIMEN GENERAL":""]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="Float" x="11" y="219" width="272" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_codigo_artesano}?"Código artesano: "+$F{am_codigo_artesano}:""]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -1146,19 +1153,12 @@ Se recuerda que el envio de los comprobantes de retenciones debe realizarse dent
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_movil}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" x="11" y="74" width="100" height="14"/>
-				<textElement>
-					<font size="9"/>
-				</textElement>
-				<text><![CDATA[Observación:]]></text>
-			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="111" y="74" width="267" height="14"/>
+				<reportElement positionType="Float" x="11" y="74" width="367" height="14"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}?"Observacón: "+$F{fac_observacion}:" "]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

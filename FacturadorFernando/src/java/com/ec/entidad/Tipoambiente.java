@@ -213,6 +213,8 @@ public class Tipoambiente implements Serializable {
     private String amCodigoIce;
     @Column(name = "am_comprobante_imprime")
     private String amComprobanteImprime;
+    @Column(name = "am_codigo_artesano")
+    private String amCodigoArtesano;
 
     public Tipoambiente() {
     }
@@ -751,4 +753,12 @@ public class Tipoambiente implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public String getAmCodigoArtesano() {
+        return amCodigoArtesano;
+    }
+
+    public void setAmCodigoArtesano(String amCodigoArtesano) {
+        this.amCodigoArtesano = amCodigoArtesano;
+    }
+    
 }
