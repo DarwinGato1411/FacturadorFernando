@@ -137,33 +137,6 @@ public class ServicioNotaCredito {
         return listaNotaCreditoDebitos;
     }
 
-    public NotaCreditoDebito FindUltimaNotaCreditoDebito() {
-
-        List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
-        NotaCreditoDebito notaCreditoDebitos = new NotaCreditoDebito();
-        try {
-            //Connection connection = em.unwrap(Connection.class);
-            em = HelperPersistencia.getEMF();
-            em.getTransaction().begin();
-            Query query = em.createNamedQuery("NotaCreditoDebito.findUltimaNC", NotaCreditoDebito.class);
-            query.setMaxResults(2);
-//           query.setParameter("codigoUsuario", notaCreditoDebito);
-            listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
-            if (listaNotaCreditoDebitos.size() > 0) {
-                notaCreditoDebitos = listaNotaCreditoDebitos.get(0);
-            } else {
-                notaCreditoDebitos = null;
-            }
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println("Error en lsa consulta notaCreditoDebito " + e.getMessage());
-        } finally {
-            em.close();
-        }
-
-        return notaCreditoDebitos;
-    }
-
     public NotaCreditoDebito FindUltimaNotaCreditoDebito(Tipoambiente amb) {
 
         List<NotaCreditoDebito> listaNotaCreditoDebitos = new ArrayList<NotaCreditoDebito>();
@@ -172,10 +145,10 @@ public class ServicioNotaCredito {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT n FROM NotaCreditoDebito n WHERE n.codTipoambiente=:tipoambiente and n.facNumero IS NOT NULL ORDER BY  n.facNumero DESC");
-            query.setParameter("tipoambiente", amb.getCodTipoambiente());
+            Query query = em.createQuery("SELECT n FROM NotaCreditoDebito n WHERE n.codTipoambiente=:codTipoambiente and n.facNumero IS NOT NULL ORDER BY  n.facNumero DESC");
+            query.setParameter("codTipoambiente", amb.getCodTipoambiente());
             query.setMaxResults(2);
-//           query.setParameter("codigoUsuario", notaCreditoDebito);
+
             listaNotaCreditoDebitos = (List<NotaCreditoDebito>) query.getResultList();
             if (listaNotaCreditoDebitos.size() > 0) {
                 notaCreditoDebitos = listaNotaCreditoDebitos.get(0);
@@ -512,7 +485,7 @@ public class ServicioNotaCredito {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM NotaCreditoDebito a WHERE a.facFecha BETWEEN :inicio AND :fin AND a.codTipoambiente=:tipoambiente ORDER BY a.facFecha DESC");
+            Query query = em.createQuery("SELECT a FROM NotaCreditoDebito a WHERE a.codTipoambiente=:tipoambiente  AND a.facFecha BETWEEN :inicio AND :fin ORDER BY a.facFecha DESC");
             query.setParameter("inicio", inicio);
             query.setParameter("fin", fin);
             query.setParameter("tipoambiente", tipoambiente.getCodTipoambiente());

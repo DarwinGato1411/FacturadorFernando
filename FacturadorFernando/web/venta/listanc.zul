@@ -63,6 +63,7 @@
                             <div class="wrapper_data ">
                             
                                 <button 
+                                    onClick="@command('buscarFechas')"
                                     class="fa-solid fa-magnifying-glass btn_fact btn_primary btn_one_element"
                                     style="height:unset;"
                                 >
@@ -130,9 +131,7 @@
                                                  width="100%"
                                                  format="medium"   />
                                     </listcell>
-                                    
-                                    
-                                    <zk  choose="@bind(each.estadosri)" >
+                                   <zk  choose="@bind(each.estadosri)" >
                                         <zk  when="${each.estadosri == 'AUTORIZADO'}"  >
                                             <listcell    zclass = "mycss-listcell"  class="td-tabla" style=" color:black"   >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;color:black"    
@@ -158,8 +157,6 @@
                                         </zk>
                                     </zk>
                                     
-                                    
-                                  
                                     <listcell zclass = "mycss-listcell">
                                         <datebox compact="true" value="@bind(each.facFechaAutorizacion)" 
                                                  buttonVisible="false" lenient="true" 
