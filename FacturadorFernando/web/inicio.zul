@@ -2,7 +2,7 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="./js/inicio.js?v1"?>
 
-<?link rel="icon" type="image/x-icon" href="/imagenes/graficaR/logo.png"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/lead.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
@@ -10,23 +10,19 @@
    <div class="login_container"  id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="wrapper_login">
             <div class="container_img">
-                <image src="./imagenes/graficaR/logo.png" class="logo"/>
+                <image src="./imagenes/lead.png" class="logo"/>
                 <div class="wrapper_title">
-                    <span class="title">Facturación Electrónica Gráficas Rumiñahui</span>
+                    <span class="title">Facturación Electrónica </span>
                     
-                    <div class="desc">
+<!--                    <div class="desc">
                         Papelería en general.
                     </div>
                     <div class="desc">
                         Todo tipo de Material Publicitario.
-                    </div>
+                    </div>-->
                            
-                    <div style="text-align:center;" class="desc">
-                        Dirección:
-                        Sangolquí - La Carolina calle Atahualpa
-                        Lote #1 y Av. General Rumiñahui
-                        Teléfonos: 2087-013 / 0995-805-118
-                        E-mail: robertopullupaxi@hotmail.com
+                    <div  class="desc">
+                        Seguimos una estrategia de creación de valor, con una oferta de servicios de tecnología de la información que van desde la consultoría, pasando por el desarrollo de software a medida, implantación de soluciones de gestión empresarial, gestión documental y gestión por procesos, hasta el outsourcing de sistemas de información.
                     </div>
 
 
@@ -36,7 +32,7 @@
                
             </div>
             <div class="container_signin">
-                <image src="./imagenes/graficaR/logo.png" class="logo"/>
+                <image src="./imagenes/lead.png" class="logo"/>
                 <span class="title">Iniciar Sesión</span>
                 <span class="subtitle">Bienvenido a su sistema de facturación</span> 
                 <div class="wrapper_all_inputs">

@@ -10,7 +10,7 @@
             
             <div class="menulogo">
                 <div class="menulog1" align="start">
-                    <image  src="/imagenes/graficaR/logo.png" class="logo_defact" />                                  
+                    <image  src="/imagenes/lead.png" class="logo_defact" />                                  
                 </div>
                 <div class="menulog2" apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
@@ -103,7 +103,7 @@
                         <menuitem label="Rotacion Productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                     </menupopup>
                 </menu>
-                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
+                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" visible="false" class="menu_child" />
                 <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
                 <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
