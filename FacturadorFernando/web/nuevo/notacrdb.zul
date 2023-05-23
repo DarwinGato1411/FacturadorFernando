@@ -297,7 +297,7 @@
                                         </listcell>
                                         <listcell>
                                             <decimalbox class="input-group-append"
-                                                onOK="@command('calcularValores',valor=each)"
+                                                onOK="@command('calcularValoresDesCantidad',valor=each)"
                                                     
                                                         format="###.##" value="@bind(each.cantidad)" width="95%"  />
                                         </listcell>
@@ -307,19 +307,8 @@
                                                         format="###.##" value="@bind(each.detPordescuento)" width="95%"  />
                                         </listcell>
                                         <listcell>
-                                            <label  value="@bind(each.producto.prodNombre)" width="99%" />
+                                            <label  value="@bind(each.producto.prodNombre)" style="color:black" width="99%" />
                                         </listcell>
-                                        <!--                                            <listcell>
-                                            <decimalbox readonly="true" format="###.##"
-                                                        class="form-control form-control-sm"
-                                                        value="@bind(each.subTotal)"  width="99%" />
-                                        </listcell>-->
-                                    
-                                        <!--                                            <listcell>
-                                            <decimalbox readonly="true" format="###.##" 
-                                                        class="form-control form-control-sm"
-                                                        value="@bind(each.subTotalDescuento)"  width="99%" />
-                                        </listcell>-->
                                         <listcell>
                                             <decimalbox readonly="true" format="###.##" 
                                                         class="form-control form-control-sm"

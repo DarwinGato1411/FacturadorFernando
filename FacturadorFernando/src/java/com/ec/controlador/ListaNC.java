@@ -132,7 +132,7 @@ public class ListaNC {
 
     @Command
     public void reporteNotaVenta(@BindingParam("valor") Guiaremision valor) throws JRException, IOException, NamingException, SQLException {
-        reporteGeneral(valor.getFacNumero(), "GUIA");
+        reporteGeneral(valor.getFacNumero(), "NC");
     }
 
     public void reporteGeneral(Integer numeroFactura, String tipo) throws JRException, IOException, NamingException, SQLException {
@@ -152,6 +152,8 @@ public class ListaNC {
                 reportPath = reportFile + File.separator + "factura.jasper";
             } else if (tipo.equals("GUIA")) {
                 reportPath = reportFile + File.separator + "guia.jasper";
+            } else if (tipo.equals("NC")) {
+                reportPath = reportFile + File.separator + "notacr.jasper";
             }
 
             Map<String, Object> parametros = new HashMap<String, Object>();
@@ -422,7 +424,7 @@ public class ListaNC {
                             fEnvio = new File(archivoEnvioCliente);
 
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
+                            ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
 
@@ -605,7 +607,7 @@ public class ListaNC {
                 }
 
                 System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
+                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                 /*GUARDA EL PATH PDF CREADO*/
 
