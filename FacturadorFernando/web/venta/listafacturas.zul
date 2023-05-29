@@ -177,6 +177,7 @@
                                 </listheader> 
                                 <listheader width="8%"  label="Fecha" sort="auto(facFecha)" /> 
                                 <listheader width="5%"  label="Total "  /> 
+                                <listheader width="5%"  label="Saldo "  /> 
                                 <listheader width="4%"  label="Estado " align="rigth" /> 
                                 <listheader width="8%"  label="Estado SRI" align="rigth" /> 
                                 <listheader width="8%"  label="Fecha Aut." align="rigth" /> 
@@ -234,6 +235,12 @@
                                                     style="font-size:12px;background:#EBF5FB"
                                                     class="form-control form-control-sm"  
                                                     value="@bind(each.facTotal)" width="100%"/>
+                                    </listcell>
+                                    <listcell zclass = "mycss-listcell">
+                                        <decimalbox format="###.##" readonly="true" 
+                                                    style="font-size:12px;background:#EBF5FB"
+                                                    class="form-control form-control-sm"  
+                                                    value="@bind(each.facSaldoAmortizado)" width="100%"/>
                                     </listcell>
                                     <zk if="${each.facEstado=='PE'}" > 
                                         <listcell zclass = "mycss-listcell" style="background:#FFB1A0;color: red" >
