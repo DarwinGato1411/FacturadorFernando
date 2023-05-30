@@ -434,7 +434,7 @@
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla35">
+                                        <listitem  class="tabla35">
                                             <listcell>
                                                     
                                             </listcell>
@@ -444,13 +444,13 @@
                                                             value="@bind(each.drcBaseImponible)"  width="99%" />
                                             </listcell>                                     
                                             <listcell>
-                                                <label  value="@bind(each.tireCodigo.tireNombre)" width="99%"
-                                                        if="${each.codImpuestoAsignado == '1'}"/>
-                                                <label  value="Retencion IVA" width="99%" 
-                                                        if="${each.codImpuestoAsignado == '2'}"/>
+                                                <label style="color:black"  value="@bind(each.tireCodigo.tireNombre)" width="99%"
+                                                       if="${each.codImpuestoAsignado == '1'}"/>
+                                                <label style="color:black"  value="Retencion IVA" width="99%" 
+                                                       if="${each.codImpuestoAsignado == '2'}"/>
                                             </listcell>
                                             <listcell>
-                                                <label  value="@bind(each.drcDescripcion)" width="99%" />
+                                                <label style="color:black" value="@bind(each.drcDescripcion)" width="99%" />
                                               
                                             </listcell>
                                             <listcell>
