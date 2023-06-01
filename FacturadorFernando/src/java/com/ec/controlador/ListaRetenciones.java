@@ -700,9 +700,6 @@ public class ListaRetenciones {
                         "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (Exception e) {
-            if (emf != null) {
-                emf.getTransaction().rollback();
-            }
             System.out.println("ERROR EL PRESENTAR EL REPORTE " + e.getMessage());
         } finally {
             if (emf != null) {

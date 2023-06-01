@@ -78,18 +78,21 @@ import java.security.cert.X509Certificate;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.xpath.*;
-import org.apache.http.*;
-import org.apache.http.client.*;
-import org.apache.http.client.methods.*;
-import org.apache.http.client.utils.*;
-import org.apache.http.impl.client.*;
-import org.apache.http.util.*;
+
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.tls.Certificates;
 import okhttp3.tls.HandshakeCertificates;
+import org.apache.http.*;
+import org.apache.http.client.*;
+import org.apache.http.client.methods.*;
+import org.apache.http.client.utils.*;
+import org.apache.http.impl.client.*;
+import org.apache.http.util.*;
+
+
 
 public class ArchivoUtils {
 
@@ -870,18 +873,18 @@ public class ArchivoUtils {
         SSLSocketFactory sslSocketFactory;
         try {
             HandshakeCertificates certificates = new HandshakeCertificates.Builder()
-                        .addTrustedCertificate(letsEncryptCertificateAuthority)
-                        .addTrustedCertificate(entrustRootCertificateAuthority)
-                        .addTrustedCertificate(comodoRsaCertificationAuthority)
-                        // Uncomment if standard certificates are also required.
-                        //.addPlatformTrustedCertificates()
-                        .build();
+                    .addTrustedCertificate(letsEncryptCertificateAuthority)
+                    .addTrustedCertificate(entrustRootCertificateAuthority)
+                    .addTrustedCertificate(comodoRsaCertificationAuthority)
+                    // Uncomment if standard certificates are also required.
+                    //.addPlatformTrustedCertificates()
+                    .build();
             OkHttpClient client = new OkHttpClient.Builder()
-                        .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
-                        .build();
+                    .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+                    .build();
             Request request = new Request.Builder()
-                        .url("https://www.gestiondocumental.gob.ec/Administracion/usuarios/validar_datos_registro_civil.php?cedula=" + cedula)
-                        .build();
+                    .url("https://www.gestiondocumental.gob.ec/Administracion/usuarios/validar_datos_registro_civil.php?cedula=" + cedula)
+                    .build();
             System.out.println("EEEE");
 
             try {
@@ -918,7 +921,7 @@ public class ArchivoUtils {
                 System.out.println("ERROR IOException " + e.getMessage());
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return new InfoPersona("", "");
         }
 //            
 
