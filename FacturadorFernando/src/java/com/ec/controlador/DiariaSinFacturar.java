@@ -595,6 +595,7 @@ public class DiariaSinFacturar {
     @NotifyChange({"listaClientesAll", "buscarRazonSocial"})
     public void buscarClienteRazon(@BindingParam("valor") String valor) {
         buscarRazonSocial = valor;
+        
         FindClienteLikeRazon();
     }
 
