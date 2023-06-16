@@ -43,8 +43,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Wire
     Label message;
 
-    Integer numeroDocumentos = 0;
-    
+//    Integer numeroDocumentos = 0;
     ServicioConsumoCliente servicioConsumoCliente = new ServicioConsumoCliente();
     private List<ConsumoClientes> listaClienteses = new ArrayList<ConsumoClientes>();
     private ConsumoClientes consumoDocumentos;
@@ -65,17 +64,15 @@ public class LoginController extends SelectorComposer<Component> {
             }
         }
 
-        boolean bloquear = false;
-
+//        boolean bloquear = false;
         Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
-        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()) {
-            bloquear = true;
-        }
+//        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()) {
+//            bloquear = true;
+//        }
 
-        if (!cantidadContratada.getParBloqueoSistema()) {
-            bloquear = Boolean.FALSE;
-        }
-
+//        if (!cantidadContratada.getParBloqueoSistema()) {
+//            bloquear = Boolean.FALSE;
+//        }
         AutentificadorLogeo servicioAuth = new AutentificadorLogeo();
         if (servicioAuth.login(account.getValue(), password.getValue())) {
             Session sess = Sessions.getCurrent();
@@ -84,36 +81,35 @@ public class LoginController extends SelectorComposer<Component> {
                 Executions.sendRedirect("/superadmin/consumo.zul");
             }
 
-            if (bloquear) {
-                Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra bloqueado por falta de pago<br/> Por favor verifique con el proveedor</div>",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
-                return;
-            }
+//            if (bloquear) {
+//                Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra bloqueado por falta de pago<br/> Por favor verifique con el proveedor</div>",
+//                            Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+//                return;
+//            }
             if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.USUARIO.getCodigo()) {
-                NumeroDocumentosEmitidos emitidos = servicioNumeroDocumentosEmitidos.findByEmpresa(cre.getTipoambiente().getCodTipoambiente());
+//                NumeroDocumentosEmitidos emitidos = servicioNumeroDocumentosEmitidos.findByEmpresa(cre.getTipoambiente().getCodTipoambiente());
+//
+//                numeroDocumentos = emitidos == null ? 0 : emitidos.getNumero().intValue();
 
-                numeroDocumentos = emitidos == null ? 0 : emitidos.getNumero().intValue();
-
-                if (cre.getUsuarioSistema().getUsuIlimitado()) {
-                    if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
-                        Executions.sendRedirect("/venta/facturar.zul");
-                    } else {
-                        Clients.showNotification("<div style:'width=200px;'>Su plan ilimitado no ha sido<br/> renovado contactese con el administrador.</div>",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
-                    }
-
+//                if (cre.getUsuarioSistema().getUsuIlimitado()) {
+                if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
+                    Executions.sendRedirect("/venta/facturar.zul");
                 } else {
-                    if (cre.getUsuarioSistema().getUsuTotalContratado() > numeroDocumentos) {
-                        Executions.sendRedirect("/venta/facturar.zul");
-
-                    } else {
-                        Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
-
-                    }
-
+                    Clients.showNotification("<div style:'width=200px;'>Su plan ilimitado no ha sido<br/> renovado contactese con el administrador.</div>",
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
                 }
 
+//                } else {
+//                    if (cre.getUsuarioSistema().getUsuTotalContratado() > numeroDocumentos) {
+//                        Executions.sendRedirect("/venta/facturar.zul");
+//
+//                    } else {
+//                        Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",
+//                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+//
+//                    }
+//
+//                }
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.ADMINISTRADOR.getCodigo()) {
 
                 Executions.sendRedirect("/administrar/gestionusuarios.zul");
@@ -126,7 +122,7 @@ public class LoginController extends SelectorComposer<Component> {
 
         } else {
             Clients.showNotification("<div  style='width:200px;'>Usuario o Contraseña incorrecto.<br/>Contáctese con el administrador.</div>",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
         }
 
     }
@@ -134,7 +130,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick= #linkOlvideContrasena")
     public void linkOlvideContrasena() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/olvidemiclave.zul", null, null);
+                "/nuevo/olvidemiclave.zul", null, null);
         window.doModal();
     }
 
@@ -151,7 +147,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick = #btnRegistra")
     public void btnRegistra() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/registrousuario.zul", null, null);
+                "/nuevo/registrousuario.zul", null, null);
         window.doModal();
 
     }

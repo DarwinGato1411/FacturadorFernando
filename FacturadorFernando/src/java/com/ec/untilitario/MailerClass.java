@@ -127,7 +127,7 @@ public class MailerClass {
                         + "                                 overflow: hidden;\n"
                         + "                                 line-height: 32px;\">\n"
                         + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
-                        + "		 DOCUMENTO ELETRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
+                        + "		 DOCUMENTO ELECTRONICO DE: " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
                         + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
                         + "		SISTEMA DE FACTURACION ELECTRONICA  </strong></div>\n"
                         + "    </div>\n"
