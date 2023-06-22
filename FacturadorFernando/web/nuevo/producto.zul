@@ -10,7 +10,7 @@
         <div class="header">
             <div class="wrapper_input_mod">
                 <span>Tipo: </span>
-                <radiogroup   onCheck="@command('verificarTipoProducto')"
+                <radiogroup onCheck="@command('verificarTipoProducto')"
                     class="radio_group"
                     selectedItem="@bind(vm.esProducto)" >                                            
                     <radio label="PRODUCTO" value="P"/>
