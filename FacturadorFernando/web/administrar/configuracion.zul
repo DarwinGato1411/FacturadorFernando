@@ -109,6 +109,7 @@
                     </div>
                 </div>
 
+                
                 <div class="body">
                     <div class="wrapper_checkbox">
                         <checkbox 
@@ -121,7 +122,11 @@
                             label="CONTRIBUYENTE REGIMEN RIMPE" 
                             checked="@bind(vm.tipoambiente.amRimpe)" 
                         />
-
+                        <checkbox 
+                            id="chkRGP" 
+                            label="CONTRIBUYENTE NEGOCIO POPULAR - RÉGIMEN RIMPE" 
+                            checked="@bind(vm.tipoambiente.amRimpePopular)" 
+                        />
                         <checkbox 
                             id="chkAR" 
                             label="AGENTE DE RETENCION" 

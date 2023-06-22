@@ -215,6 +215,8 @@ public class Tipoambiente implements Serializable {
     private String amComprobanteImprime;
     @Column(name = "am_codigo_artesano")
     private String amCodigoArtesano;
+    @Column(name = "am_rimpe_popular")
+    private Boolean amRimpePopular;
 
     public Tipoambiente() {
     }
@@ -688,6 +690,14 @@ public class Tipoambiente implements Serializable {
         this.historialDeclaracionesCollection = historialDeclaracionesCollection;
     }
 
+    public Boolean getAmRimpePopular() {
+        return amRimpePopular == null ? Boolean.FALSE : amRimpePopular;
+    }
+
+    public void setAmRimpePopular(Boolean amRimpePopular) {
+        this.amRimpePopular = amRimpePopular;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -760,5 +770,5 @@ public class Tipoambiente implements Serializable {
     public void setAmCodigoArtesano(String amCodigoArtesano) {
         this.amCodigoArtesano = amCodigoArtesano;
     }
-    
+
 }
