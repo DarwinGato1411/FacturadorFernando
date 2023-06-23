@@ -302,6 +302,8 @@
                                                class="btn btn btn-secondary btn-sm grow"                                               
                                                tooltiptext="Cambiar estado de la factura"/> 
                                     </listcell>
+                                    
+                                    
                                    <listcell if="${each.estadosri=='AUTORIZADO'}"  zclass = "mycss-listcell" >   
                                             
                                         <image src="/iconos/notacredito.png"  

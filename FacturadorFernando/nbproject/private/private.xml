@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/MenuOpcionesSuper.java</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/superadmin/parametrizar.zul</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/superadmin/consumo.zul</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/pantillasuper/banner.zul</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/listanotaventa.zul</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaNotaVenta.java</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/LoginController.java</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/Parametrizar.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NotaCreditoDebitoVm.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/listafacturas.zul</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/dao/DetalleFacturaDAO.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/RetencionCompraVm.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/servicio/ServicioRetencionCompra.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/compra/retencion.zul</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ListaCompras.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/RetencionCompra.java</file>
         </group>
     </open-files>
 </project-private>
