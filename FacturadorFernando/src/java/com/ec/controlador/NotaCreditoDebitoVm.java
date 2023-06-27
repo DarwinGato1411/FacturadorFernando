@@ -759,14 +759,20 @@ public class NotaCreditoDebitoVm {
 //    }
 
     private void numeroFactura() {
-        NotaCreditoDebito recuperada = servicioNotaCredito.FindUltimaNotaCreditoDebito();
-        if (recuperada != null) {
-            // System.out.println("numero de factura " + recuperada);
-            numeroFactura = recuperada.getFacNumero() + 1;
-            numeroFacturaTexto();
-        } else {
+        NotaCreditoDebito recuperada = servicioNotaCredito.FindUltimaNotaCreditoDebito(amb);
+        if (recuperada == null) {
             numeroFactura = 1;
             numeroFacturaText = "000000001";
+        } else {
+
+            if (recuperada.getFacNumero() != null) {
+                // System.out.println("numero de factura " + recuperada);
+                numeroFactura = recuperada.getFacNumero() + 1;
+                numeroFacturaTexto();
+            } else {
+                numeroFactura = 1;
+                numeroFacturaText = "000000001";
+            }
         }
     }
 
