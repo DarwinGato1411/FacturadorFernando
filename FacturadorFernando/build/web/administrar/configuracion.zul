@@ -328,6 +328,15 @@
                                 />
                             </div>
                         </div>
+                        <div class="wrapper_input_mod" style="flex:auto;" >
+                            <span style="margin:0 0.5em;">Código artesano:</span>
+                            <div class="fa-solid fa-location-dot icon"></div>
+                            <textbox value="@bind(vm.tipoambiente.amCodigoArtesano)" 
+                             placeholder="Codigo artesano"
+                             maxlength="20"
+                             class="input_text"
+                             tooltiptext="Código artesano" />
+                        </div>
                     </div>
                 </div>
 

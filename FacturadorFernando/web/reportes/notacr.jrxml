@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notacr" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="144"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -195,7 +195,12 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 	<field name="am_comprobante_imprime" class="java.lang.String"/>
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.Integer"/>
+	<field name="am_nombre_socio" class="java.lang.String"/>
+	<field name="am_ruc_socio" class="java.lang.String"/>
+	<field name="am_placa_socio" class="java.lang.String"/>
+	<field name="am_telefono_socio" class="java.lang.String"/>
 	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
+	<field name="am_codigo_artesano" class="java.lang.String"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
 	<field name="cli_cedula" class="java.lang.String"/>
 	<field name="cli_nombre" class="java.lang.String"/>
@@ -344,31 +349,31 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_estab}+"-"+$F{am_ptoemi}+"-"+$F{fac_numero_text}]]></textFieldExpression>
 			</textField>
 			<rectangle radius="10">
-				<reportElement x="0" y="99" width="284" height="148"/>
+				<reportElement x="1" y="74" width="284" height="173"/>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement x="11" y="103" width="273" height="20"/>
+				<reportElement x="12" y="78" width="273" height="20"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nombre_comercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="11" y="123" width="273" height="20"/>
+				<reportElement x="12" y="98" width="273" height="20"/>
 				<textElement>
 					<font size="6"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_razon_social}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="143" width="65" height="30"/>
+				<reportElement x="12" y="118" width="65" height="30"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Direcciòn Matriz:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="173" width="65" height="30"/>
+				<reportElement x="12" y="148" width="65" height="30"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -382,26 +387,26 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<text><![CDATA[Razón Social / Nombres Apellidos: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="223" width="195" height="20"/>
+				<reportElement x="12" y="198" width="195" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBLIGADO A LLEVAR CONTABILIDAD]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="206" y="223" width="54" height="20"/>
+				<reportElement x="207" y="198" width="54" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{llevar_contabilidad}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="143" width="208" height="30"/>
+				<reportElement x="77" y="118" width="208" height="30"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="76" y="173" width="208" height="30"/>
+				<reportElement x="77" y="148" width="208" height="30"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
@@ -420,7 +425,7 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_clave_acceso}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="203" width="165" height="20"/>
+				<reportElement x="12" y="178" width="165" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -468,7 +473,7 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_tipo_emision}.equals( "1" ) ? "NORMAL":""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="176" y="203" width="108" height="20"/>
+				<reportElement x="177" y="178" width="108" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nro_contribuyente}]]></textFieldExpression>
 			</textField>
@@ -513,9 +518,16 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<text><![CDATA[DEVOLUCION DE MERCADERIA]]></text>
 			</staticText>
 			<image onErrorType="Blank">
-				<reportElement x="26" y="14" width="219" height="70"/>
+				<reportElement x="10" y="4" width="258" height="55"/>
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="13" y="218" width="272" height="15"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ripme}? "CONTRIBUYENTE REGIMEN RIMPE": $F{am_rimpe_popular}? "CONTRIBUYENTE NEGOCIO POPULAR - REGIMEN RIMPE":$F{am_general}? "CONTRIBUYENTE REGIMEN GENERAL":""]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -818,8 +830,10 @@ Principal]]></text>
 				<text><![CDATA[SUBTOTAL EXENTO IVA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="50" width="100" height="20"/>
-				<textElement/>
+				<reportElement positionType="Float" x="10" y="64" width="100" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -831,9 +845,11 @@ Principal]]></text>
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_iva}.setScale(2, RoundingMode.FLOOR)]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="75" width="100" height="20"/>
-				<textElement/>
-				<text><![CDATA[Email:]]></text>
+				<reportElement positionType="Float" x="12" y="106" width="100" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Correo:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="table_TD" positionType="Float" x="403" y="22" width="104" height="12" isPrintWhenDetailOverflows="true"/>
@@ -844,8 +860,10 @@ Principal]]></text>
 				<text><![CDATA[SUBTOTAL IVA 0%]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="110" y="75" width="267" height="20"/>
-				<textElement/>
+				<reportElement positionType="Float" x="112" y="106" width="267" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_correo}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -960,8 +978,10 @@ Principal]]></text>
 				<text><![CDATA[DESCUENTO]]></text>
 			</staticText>
 			<textField>
-				<reportElement positionType="Float" x="110" y="50" width="267" height="20"/>
-				<textElement/>
+				<reportElement positionType="Float" x="110" y="64" width="267" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -1042,6 +1062,48 @@ Principal]]></text>
 				</textElement>
 				<text><![CDATA[0.00]]></text>
 			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="92" width="100" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Celular:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="112" y="92" width="255" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_movil}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="11" y="50" width="100" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[PUNTO DE EMISIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="111" y="50" width="256" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ptoemi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="13" y="78" width="100" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="113" y="78" width="255" height="14"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_telefono}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

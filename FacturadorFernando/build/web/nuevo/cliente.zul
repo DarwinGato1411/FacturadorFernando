@@ -95,7 +95,6 @@
                         <div class="fa-solid fa-phone icon"></div>
                         <textbox  maxlength="100"
                                   value="@bind(vm.cliente.cliTelefono)" 
-                          
                                   class="input_text" 
                         />
                     </div>
