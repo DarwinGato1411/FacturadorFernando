@@ -108,6 +108,9 @@ public class Compras {
     public Cliente clienteBuscado = new Cliente("");
     private static BigDecimal DESCUENTOGENERAL = BigDecimal.valueOf(5.0);
     private String clietipo = "0";
+    private int cabNumero = 0;
+    private String cabNumeroTexto = "";
+
     @Wire
     Textbox idBusquedaProd;
     /*DETALLE DEL KARDEX Y DETALLE KARDEX*/
@@ -130,7 +133,7 @@ public class Compras {
         findKardexProductoLikeNombre();
         fechafacturacion = new Date();
         parametrizar = servicioParametrizar.FindALlParametrizar();
-
+        
     }
 
     private void buscarProveedoresLikeNombre() {
@@ -346,7 +349,7 @@ public class Compras {
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("valor", "proveedor");
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/compra/buscarproveedor.zul", null, map);
+                "/compra/buscarproveedor.zul", null, map);
         window.doModal();
         proveedorSeleccionado = servicioProveedor.findProvCedula(buscarCedulaProveedor, amb);
     }
@@ -377,7 +380,7 @@ public class Compras {
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("valor", "producto");
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/compra/buscarproducto.zul", null, map);
+                "/compra/buscarproducto.zul", null, map);
         window.doModal();
         productoBuscado = servicioProducto.findByProdCodigo(codigoBusqueda, amb);
         if (productoBuscado != null) {
@@ -541,20 +544,20 @@ public class Compras {
     @NotifyChange({"listaCompraProductosMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion"})
     public void Guardar() {
         if (!proveedorSeleccionado.getProvCedula().equals("")
-                    && !numeroFactura.equals("")) {
+                && !numeroFactura.equals("")) {
             if (numeroFactura.length() == 9) {
 
                 guardarCompra();
                 Clients.showNotification("Compra registrada correctamente",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
             } else {
                 Clients.showNotification("El número de factura debe tener 9 digitos",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
             }
 
         } else {
             Clients.showNotification("Verifique el proveedor, numero de factura, numero de autorizacion, proveedor",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
 //            Messagebox.show("", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
@@ -566,7 +569,9 @@ public class Compras {
             BigDecimal facturIvaMasBase = (factorIva.add(BigDecimal.ONE));
             if (true) {
                 //armar la cabecera de la factura
-
+                secuencialCompra();
+                cabeceraCompra.setCabSecuencial(cabNumero);
+                cabeceraCompra.setCabSecuencialText(cabNumeroTexto);
                 cabeceraCompra.setCabRetencionAutori("N");
                 cabeceraCompra.setCabFechaEmision(fechafacturacion);
                 cabeceraCompra.setCabFecha(new Date());
@@ -630,7 +635,7 @@ public class Compras {
                             kardex = servicioKardex.FindALlKardexs(item.getProducto());
                             detalleKardex.setIdKardex(kardex);
                             detalleKardex.setDetkFechakardex(fechafacturacion);
-                            detalleKardex.setDetkFechacreacion(new Date());
+                             detalleKardex.setDetkFechacreacion(new Date());
                             detalleKardex.setIdTipokardex(tipokardex);
                             detalleKardex.setDetkKardexmanual(Boolean.FALSE);
                             detalleKardex.setDetkDetalles("Aumenta al kardex facturacion con: FACTC-" + cabeceraCompra.getCabNumFactura());
@@ -658,6 +663,18 @@ public class Compras {
         } catch (Exception e) {
             System.out.println("error guardar compra " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
+        }
+
+    }
+
+    public void secuencialCompra() {
+        CabeceraCompra ultimoSecuencial = servicioCompra.findUltimaCompra(amb);
+        if (ultimoSecuencial == null) {
+            cabNumero = 1;
+            cabNumeroTexto = "0000000001";
+        } else {
+            cabNumero = ultimoSecuencial.getCabSecuencial()+1;
+            cabNumeroTexto = String.format("%0" + 10 + "d", cabNumero);
         }
 
     }
@@ -747,6 +764,22 @@ public class Compras {
 
     public void setSubTotalFacturaCero(BigDecimal subTotalFacturaCero) {
         this.subTotalFacturaCero = subTotalFacturaCero;
+    }
+
+    public int getCabNumero() {
+        return cabNumero;
+    }
+
+    public void setCabNumero(int cabNumero) {
+        this.cabNumero = cabNumero;
+    }
+
+    public String getCabNumeroTexto() {
+        return cabNumeroTexto;
+    }
+
+    public void setCabNumeroTexto(String cabNumeroTexto) {
+        this.cabNumeroTexto = cabNumeroTexto;
     }
 
 }

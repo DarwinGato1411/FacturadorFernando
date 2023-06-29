@@ -110,11 +110,11 @@ public class ServicioCompra {
             DetalleCompra ingreso = null;
             for (DetalleCompraUtil item : detalleCompra) {
                 ingreso = new DetalleCompra(item.getCantidad(),
-                            item.getDescripcion(),
-                            item.getSubtotal(),
-                            item.getTotal(),
-                            compra,
-                            item.getProducto());
+                        item.getDescripcion(),
+                        item.getSubtotal(),
+                        item.getTotal(),
+                        compra,
+                        item.getProducto());
                 ingreso.setDetValorInicial(item.getCantidad());
                 ingreso.setDetFactor(item.getFactor());
                 ingreso.setIprodCantidad(item.getTotalTRanformado());
@@ -149,7 +149,7 @@ public class ServicioCompra {
         return listaCabeceraCompras;
     }
 
-    public List<CabeceraCompra> findByBetweenFecha(Date incio, Date fin,Tipoambiente codTipoambiente) {
+    public List<CabeceraCompra> findByBetweenFecha(Date incio, Date fin, Tipoambiente codTipoambiente) {
 
         List<CabeceraCompra> listaCabeceraCompras = new ArrayList<CabeceraCompra>();
         try {
@@ -340,5 +340,30 @@ public class ServicioCompra {
         }
 
         return listaCabeceraCompras;
+    }
+
+    public CabeceraCompra findUltimaCompra(Tipoambiente amb) {
+        CabeceraCompra cabeceraCompra = null;
+        List<CabeceraCompra> listaCabeceraCompras = new ArrayList<CabeceraCompra>();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM CabeceraCompra c WHERE c.codTipoambiente=:tipoambiente ORDER BY c.cabSecuencial DESC");
+            query.setParameter("tipoambiente", amb);
+            listaCabeceraCompras = (List<CabeceraCompra>) query.getResultList();
+            if (listaCabeceraCompras.size() > 0) {
+                cabeceraCompra = listaCabeceraCompras.get(0);
+            } else {
+                cabeceraCompra = null;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta compra " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return cabeceraCompra;
     }
 }

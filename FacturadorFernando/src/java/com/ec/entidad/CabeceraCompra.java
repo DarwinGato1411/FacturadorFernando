@@ -106,6 +106,15 @@ public class CabeceraCompra implements Serializable {
     private String cabHomologado;
     @Column(name = "cab_establecimiento")
     private String cabEstablecimiento;
+    @Column(name = "cheque")
+    private String cheque;
+    
+    @Column(name = "cab_secuencial")
+    private int cabSecuencial;
+    
+    @Column(name = "cab_secuencial_text")
+    private String cabSecuencialText;
+    
     @Column(name = "cab_punto_emi")
     private String cabPuntoEmi;
     @JoinColumn(name = "id_estado", referencedColumnName = "id_estado")
@@ -391,6 +400,7 @@ public class CabeceraCompra implements Serializable {
     public void setUsuIdUsuario(Usuario usuIdUsuario) {
         this.usuIdUsuario = usuIdUsuario;
     }
+    
 
 //    @XmlTransient
 //    public Collection<RetencionCompraSri> getRetencionCompraSriCollection() {
@@ -400,4 +410,32 @@ public class CabeceraCompra implements Serializable {
 //    public void setRetencionCompraSriCollection(Collection<RetencionCompraSri> retencionCompraSriCollection) {
 //        this.retencionCompraSriCollection = retencionCompraSriCollection;
 //    }
+
+    public String getCheque() {
+        return cheque;
+    }
+
+    public void setCheque(String cheque) {
+        this.cheque = cheque;
+    }
+
+    public int getCabSecuencial() {
+        return cabSecuencial;
+    }
+
+    public void setCabSecuencial(int cabSecuencial) {
+        this.cabSecuencial = cabSecuencial;
+    }
+
+   
+
+    public String getCabSecuencialText() {
+        return cabSecuencialText;
+    }
+
+    public void setCabSecuencialText(String cabSecuencialText) {
+        this.cabSecuencialText = cabSecuencialText;
+    }
+    
+    
 }

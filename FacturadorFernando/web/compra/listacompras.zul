@@ -146,6 +146,7 @@
                             </listheader>        
                             <listheader width="25%"  label="QUIEN INGRESO" />        
                             <listheader width="3%"  label="" align="center" />        
+                            <listheader width="3%"  label="" align="center" />
                             <listheader width="3%"  label="" align="center" />        
                             <listheader width="3%"  label="" align="center" />        
                         </listhead>  
@@ -212,6 +213,15 @@
                                            tooltiptext="Imprimir factura"/>
                               
                                 </listcell>
+                                 <listcell  zclass = "mycss-listcell" >    
+                                     
+                                    <image src="/iconos/pdfreporte.png"  
+                                       height=" 30px"   
+                                           class="btn btn btn-secondary btn-sm grow"                                         
+                                           onClick="@command('reporteFacturaCompraReportePersonalizado',valor=each)"
+                                           tooltiptext="Factura personareporteFacturaCompralizada"/>
+                              
+                                </listcell>
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
                                     <image if="${each.cabRetencionAutori!='S'}"
                                            src="/iconos/pdfcotizacion.png" 
@@ -224,6 +234,7 @@
                                             class=" grow"                                          
                                            tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
                                 </listcell>
+                                
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
                                     <image if="${each.cabRetencionAutori!='S'}" 
                                            src="/iconos/editar.png"

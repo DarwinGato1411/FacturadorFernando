@@ -80,18 +80,16 @@ public class ListaCompras {
     Connection con = null;
 
     public ListaCompras() {
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
-         findByBetweenFecha();
+                + amb.getAmDirXml();
+        findByBetweenFecha();
     }
 
     private void buscarLikeNombre() {
@@ -99,7 +97,7 @@ public class ListaCompras {
     }
 
     private void findByBetweenFecha() {
-        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin,amb);
+        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin, amb);
     }
 
     private void findByNumFac() {
@@ -131,7 +129,7 @@ public class ListaCompras {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/compra/retencion.zul", null, map);
+                    "/compra/retencion.zul", null, map);
             window.doModal();
 //            window.detach();
         } catch (Exception e) {
@@ -147,7 +145,7 @@ public class ListaCompras {
 
                 map.put("valor", valor);
                 org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                            "/compra/modificarcompra.zul", null, map);
+                        "/compra/modificarcompra.zul", null, map);
                 window.doModal();
             }
 //            window.detach();
@@ -326,23 +324,32 @@ public class ListaCompras {
 
     @Command
     public void reporteFacturaCompra(@BindingParam("valor") CabeceraCompra valor) throws JRException, IOException, NamingException, SQLException {
-        reporteGeneral(valor.getIdCabecera());
+        reporteGeneral(valor.getIdCabecera(), "N");
     }
 
-    public void reporteGeneral(Integer idCabera) throws JRException, IOException, NamingException, SQLException {
+    @Command
+    public void reporteFacturaCompraReportePersonalizado(@BindingParam("valor") CabeceraCompra valor) throws JRException, IOException, NamingException, SQLException {
+        reporteGeneral(valor.getIdCabecera(), "P");
+    }
+
+    public void reporteGeneral(Integer idCabera, String reporte) throws JRException, IOException, NamingException, SQLException {
         EntityManager emf = HelperPersistencia.getEMF();
         try {
 
             emf.getTransaction().begin();
             con = emf.unwrap(Connection.class);
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = reportFile + File.separator + "facturacompra.jasper";
+            if (reporte.equals("P")) {
+                reportPath = reportFile + File.separator + "facturacomprapersonalizada.jasper";
+            }
 
             Map<String, Object> parametros = new HashMap<String, Object>();
 
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
             parametros.put("id_cabecera", idCabera);
+            parametros.put("tipoambiente", amb.getCodTipoambiente());
 
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
@@ -358,7 +365,7 @@ public class ListaCompras {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException " + e.getMessage());

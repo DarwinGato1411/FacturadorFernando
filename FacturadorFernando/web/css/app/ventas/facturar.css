@@ -617,7 +617,7 @@ div.z-listheader-cnt {
     }
 
     .factura_header > .fact_row {
-        width: 50%;
+        
         flex-direction: row;
     }
 
