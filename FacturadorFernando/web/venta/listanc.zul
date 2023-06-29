@@ -193,7 +193,7 @@
                                             <image  src="/iconos/sri24x24.png" 
                                                     class="grow"
                                                     onClick="@command('autorizarSRI',valor=each)" 
-                                                    tooltiptext="Autorizar guia"/>
+                                                    tooltiptext="Autorizar nota de venta"/>
                                         </listcell>
                                     </zk>
                             
