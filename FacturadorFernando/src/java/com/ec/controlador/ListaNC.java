@@ -424,6 +424,8 @@ public class ListaNC {
 
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
                             ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
+//                            parametros.put("numfactura", valor.getFacNumero());
+//                            parametros.put("tipoambiente", amb.getCodTipoambiente());
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
 
@@ -606,7 +608,7 @@ public class ListaNC {
                 }
 
                 System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
-                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
+                ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "NCRE", amb);
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                 /*GUARDA EL PATH PDF CREADO*/
 

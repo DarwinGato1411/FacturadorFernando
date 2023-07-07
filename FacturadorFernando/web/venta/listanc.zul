@@ -189,7 +189,7 @@
                                     
                                     <zk if="${each.estadosri=='PENDIENTE'}"  > 
                                         <listcell zclass = "mycss-listcell">  
-                                            <label value="${each.estadosri}"/>  
+                                           
                                             <image  src="/iconos/sri24x24.png" 
                                                     class="grow"
                                                     onClick="@command('autorizarSRI',valor=each)" 
