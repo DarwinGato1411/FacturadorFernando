@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/ArchivoUtils.java</file>
-            <file>file:/D:/PROYECTOS/FACTURACION_CLIENTES/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NuevoCliente.java</file>
-=======
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/WEB-INF/sun-web.xml</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/jowel/OneDrive/Escritorio/Sistema%20Factura/FacturadorFernando/FacturadorFernando/web/WEB-INF/glassfish-web.xml</file>
->>>>>>> 257bc9925d4d4441d5099c77eaa464c3ea9d3b6e
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/listanc.zul</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/listaventaruta.zul</file>
         </group>
     </open-files>
 </project-private>

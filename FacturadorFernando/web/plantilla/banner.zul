@@ -66,7 +66,7 @@
                         <menuitem label="Facturas emitidas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>                             
                         <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
                         <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />
-                        
+                        <menuitem label="Venta en ruta (GLP)" id="btnVentaRuta" class="fa-solid fa-clipboard menu_item"  />
 
                     </menupopup>
                 </menu> 
