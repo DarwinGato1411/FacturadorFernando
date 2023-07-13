@@ -297,7 +297,7 @@ public class Facturar extends SelectorComposer<Component> {
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") ParamFactura valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
-
+        
         if (valor == null) {
 
             accion = "create";
@@ -406,6 +406,7 @@ public class Facturar extends SelectorComposer<Component> {
         if (tipoVenta.equals("FACT")) {
             factura = servicioFactura.findFirIdFact(idFactuta);
             facConSinGuia = factura.getFaConSinGuia();
+            
             facplazo = factura.getFacPlazo() == null ? "30" : factura.getFacPlazo().setScale(0).toString();
         } else {
             factura = servicioFactura.findByIdCotizacion(idFactuta);
@@ -442,6 +443,7 @@ public class Facturar extends SelectorComposer<Component> {
         ivaCotizacion = factura.getFacIva();
         valorTotalCotizacion = factura.getFacTotal();
         totalDescuento = factura.getFacDescuento();
+        observacion=factura.getFacObservacion();
         List<DetalleFactura> detalleFac = servicioDetalleFactura.findDetalleForIdFac(idFactuta);
         DetalleFacturaDAO nuevoRegistro;
         listaDetalleFacturaDAODatos.clear();

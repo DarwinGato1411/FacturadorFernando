@@ -118,6 +118,7 @@
                                         class="textoFechaDateBox"                              
                                         selectedItem="@bind(vm.facplazo)">
                                         <comboitem label="CONTADO" value="0"/> 
+                                        <comboitem label="7 DIAS" value="7" />
                                         <comboitem label="15 DIAS" value="15" />                    
                                         <comboitem label="30 DIAS" value="30" />
                                         <comboitem label="45 DIAS" value="45" />

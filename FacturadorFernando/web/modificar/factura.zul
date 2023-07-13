@@ -10,7 +10,7 @@
 }
         
     </style>
-  <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+   <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Facturar')" width="100%" class="wrapper_container_facturar">
     
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
@@ -115,6 +115,7 @@
                                         class="textoFechaDateBox"                              
                                         selectedItem="@bind(vm.facplazo)">
                                         <comboitem label="CONTADO" value="0"/> 
+                                        <comboitem label="7 DIAS" value="7" />
                                         <comboitem label="15 DIAS" value="15" />                    
                                         <comboitem label="30 DIAS" value="30" />
                                         <comboitem label="45 DIAS" value="45" />
