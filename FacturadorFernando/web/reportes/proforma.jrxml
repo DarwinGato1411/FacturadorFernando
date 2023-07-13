@@ -697,25 +697,6 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="1" y="25" width="427" height="32"/>
-				<box leftPadding="2"/>
-				<textElement/>
-				<text><![CDATA[El documento tiene una vigencia de 30 dias a patrtir de su emisión]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="1" y="0" width="90" height="20"/>
-				<box leftPadding="2"/>
-				<textElement/>
-				<text><![CDATA[Fecha de emisión:]]></text>
-			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="91" y="0" width="219" height="20"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement positionType="Float" x="196" y="154" width="135" height="1"/>
 			</line>
@@ -770,6 +751,32 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 					<font fontName="SansSerif" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="5" y="61" width="309" height="32"/>
+				<box leftPadding="2"/>
+				<textElement/>
+				<text><![CDATA[El documento tiene una vigencia de 30 dias a patrtir de su emisión]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="96" y="4" width="219" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new Locale("es")).format($F{fac_fecha})]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="8" y="24" width="306" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}?"Observación: "+$F{fac_observacion}:""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="6" y="4" width="90" height="20"/>
+				<box leftPadding="2"/>
+				<textElement/>
+				<text><![CDATA[Fecha de emisión:]]></text>
 			</staticText>
 		</band>
 	</detail>
