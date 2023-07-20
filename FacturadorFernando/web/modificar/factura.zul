@@ -428,7 +428,7 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                         
                 
-                                    <listhead class="encabezado2">
+                                    <listhead class="encabezado2 encabezado">
                                         <listheader  width="100%"  label="" align="left" >
                                             <button label="Anular" 
                                                     width="100%" 
@@ -449,7 +449,7 @@
                                     </listhead>
             
                                     <template name="model" >                                                            
-                                        <listitem class="tabla2">
+                                        <listitem class="tabla2 tabla">
                                             <listcell  >                                                                                                  
                                             </listcell>
                                     

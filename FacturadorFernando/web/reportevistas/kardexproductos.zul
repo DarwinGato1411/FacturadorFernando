@@ -98,10 +98,10 @@
                                 nonselectableTags=""  mold="paging" pageSize="20"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead class="encabezado15"> 
+                            <listhead class="encabezado15 encabezado"> 
                                 <listheader width="100%"  label="Codigo" />                            
                                 <listheader width="100%"  label="Nombre" align="center"/>                                                        
-                                <listheader width="100%"  label="Cantidad minima" align="center" />                            
+                                <listheader width="100%"  label="Cantidad mínima" align="center" />                            
                                 <listheader width="100%"  label="Cantidad actual" sort="auto(karTotal)" align="center" />                            
                                 <listheader width="100%"  label="Precio promedio" align="center" />                            
                                 

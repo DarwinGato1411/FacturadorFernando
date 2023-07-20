@@ -23,7 +23,7 @@
                 
             </tabs>
 
-           <tabpanels>
+            <tabpanels>
           
                 <tabpanel  width="99%" class="factura" >                    
                  
@@ -59,7 +59,7 @@
                                             format="dd/MM/yyyy" 
                                             constraint="no empty: Ingrese la fecha"
                                         /> 
-                                        <div class="fa-solid fa-calendar icon" />                                 
+                                                                      
                                     </div>
                                     <div class="wrapper_input">
                                         <span>Fin:</span>
@@ -73,7 +73,7 @@
                                             format="dd/MM/yyyy" 
                                             constraint="no empty: Ingrese la fecha"
                                         />
-                                        <div class="fa-solid fa-calendar icon" />
+                                        
                                     </div>
                                 </div>
                                 <div class="wrapper_data">
@@ -158,28 +158,31 @@
                                     <listheader width="100%%"  
                                                 sort="auto(facNumeroText)">
                                         <textbox value="@bind(vm.buscarNumFactura)"  
-                                                 tooltiptext="# Factura"
+                                                 tooltiptext="Número factura"
                                                  class="form-control form-control-sm"                                         
-                                                 placeholder="Numero de factura"
+                                                 placeholder="# Factura"
                                                  onOK="@command('buscarLikeNumFactura')"
+                                                 style="font-size:12px;" 
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader> 
                                     <listheader width="100%"  >
                                         <textbox value="@bind(vm.buscarCedula)"  
-                                                 tooltiptext="Cedula"
+                                                 tooltiptext="Cédula"
                                                  class="form-control form-control-sm"                                         
                                                  placeholder="Cedula"
                                                  onOK="@command('buscarLikeCedula')"
+                                                 style="font-size:12px;" 
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader>    
-                                    <listheader width="100%"  style="font-size:10px;" >
+                                    <listheader width="100%"  >
                                         <textbox value="@bind(vm.buscarCliente)"  
                                                  class="form-control form-control-sm"
                                                  tooltiptext="Nombre del cliente"
                                                  placeholder="Nombre del cliente"
                                                  onOK="@command('buscarLikeCliente')"
+                                                 style="font-size:12px;" 
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader> 
@@ -231,11 +234,10 @@
                                         </listcell>
                                 
                                         <listcell  zclass = "mycss-listcell">
-                                            <datebox compact="true" value="@bind(each.facFecha)" 
-                                        
-                                                     height=" 30px" 
-                                                     buttonVisible="false" lenient="true" readonly="true"
-                                                     format="medium" width="100%"  />
+                                            
+                                            <datebox value="@bind(each.facFecha)" 
+                                                     buttonVisible="false" readonly="true"
+                                                     width="100%" height="100%" />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <decimalbox format="###.##" readonly="true" 
@@ -287,10 +289,8 @@
                                             <datebox compact="true" value="@bind(each.facFechaAutorizacion)" 
                                                      buttonVisible="false" lenient="true" 
                                                      tooltiptext="@bind(each.mensajesri)"
-                                                
-                                                     readonly="true"
-                                                     height=" 30px" 
-                                                     style="font-size:12px;background:#EBF5FB"
+                                                     readonly="true"          
+                                                     style=""
                                                      format="medium" width="100%"  />
                                         </listcell>
                 

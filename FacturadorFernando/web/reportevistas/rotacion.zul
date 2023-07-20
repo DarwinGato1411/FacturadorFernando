@@ -144,7 +144,7 @@
                                     nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead class="encabezado16"> 
+                                <listhead class="encabezado16 encabezado"> 
                                     <listheader width="100%"  label="Producto" />                            
                                     <listheader width="100%"  label="Cantidad vendida" align="center" sort="auto(cantidadVenta)" />                                                        
                                     <listheader width="100%"  label="Valor vendido" align="center" sort="auto(valorVentaProducto)" />                            
@@ -153,7 +153,7 @@
                                 
                             
                                 <template name="model">                                                            
-                                    <listitem class="tabla16">
+                                    <listitem class="tabla16 tabla">
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
                                                     class="form-control form-control-sm" 

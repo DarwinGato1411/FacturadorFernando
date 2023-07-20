@@ -11,35 +11,35 @@
     <div class="container_headers" style="margin-bottom:1em">
 
         <div 
-            class="fa-solid fa-plus-circle fa-2x icon"
+            class="fa-solid fa-plus-circle fa-1x icon"
             onClick="@command('nuevoCliente')"
             tooltiptext="Nuevo producto"
         >
-             <span>Nuevo producto </span>
+            <span>Nuevo producto </span>
         </div>
        
         <div 
-            class="fa-solid fa-list-check fa-2x icon"
+            class="fa-solid fa-list-check fa-1x icon"
             onClick="@command('inicializarKardex')"
             tooltiptext="Iniciar inventario de productos anteriores"
         >
-          <span>Iniciar inventario </span>
+            <span>Iniciar inventario </span>
         </div>
         <div 
-            class="fa-solid fa-barcode fa-2x icon"
+            class="fa-solid fa-barcode fa-1x icon"
             onClick="@command('crearCodigoBarras')"
             tooltiptext="Generar codigos de barras"
         >
-        <span>Crear codigos de barras</span>
+            <span>Crear codigos de barras</span>
         </div>
         <div 
-            class="fa-solid fa-file-excel fa-2x icon"
+            class="fa-solid fa-file-excel fa-1x icon"
             onClick="@command('exportListboxToExcelTodo')"
             tooltiptext="Descargar todos los productos"
         >
-        <span>Exportar</span>
+            <span>Exportar</span>
         </div>
-         <div class="wrapper_input_head">
+        <div class="wrapper_input_head">
             <span>Cant. cod barras</span>
             <intbox 
                 value="@bind(vm.cantidadCodBar)" 
@@ -53,52 +53,52 @@
     <div class="cont_body">
         <div class="cont_body_item">
             <listbox  width="100%" model="@load(vm.listaProductosModel)" 
-                    mold="paging" pageSize="15"
-                    checkmark="true"  
-                    multiple="true" 
-                    onSelect="@command('seleccionarRegistros')"
-                    nonselectableTags="*">
+                      mold="paging" pageSize="15"
+                      checkmark="true"  
+                      multiple="true" 
+                      onSelect="@command('seleccionarRegistros')"
+                      nonselectableTags="*">
                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
 
-                <listhead class="encabezado22"> 
+                <listhead class="encabezado22 encabezado"> 
                     <listheader width="100%" label="Seleccionar"   sort="auto(prodCodigo)" ></listheader>
                     <listheader width="100%"   sort="auto(prodCodigo)" >
                         <textbox value="@bind(vm.buscarCodigo)" 
-                                class="form-control form-control-sm"
-                                tooltiptext="Codigo "                         
-                                placeholder="Codigo"
-                                onOK="@command('buscarLikeCodigo')"
-                                onChange="self.setValue(self.getValue().toUpperCase());" />
+                                 class="form-control form-control-sm"
+                                 tooltiptext="Codigo "                         
+                                 placeholder="Codigo"
+                                 onOK="@command('buscarLikeCodigo')"
+                                 onChange="self.setValue(self.getValue().toUpperCase());" />
                     </listheader>     
                     <listheader width="100%"  sort="auto(prodNombre)" >
                         <textbox value="@bind(vm.buscarNombre)" 
-                                class="form-control form-control-sm"
-                                tooltiptext="Nombre "                         
-                                placeholder="Nombre del producto"
-                                onOK="@command('buscarLikeNombre')"
-                                onChange="self.setValue(self.getValue().toUpperCase());" />
+                                 class="form-control form-control-sm"
+                                 tooltiptext="Nombre "                         
+                                 placeholder="Nom. producto"
+                                 onOK="@command('buscarLikeNombre')"
+                                 onChange="self.setValue(self.getValue().toUpperCase());" />
 
                         
                     </listheader> 
-                    <listheader width="100%"  label="Cantidad Inicial" />  
-                    <listheader width="100%"  label="Precio Compra" />  
-                    <listheader width="100%"  label="Precio por unidad"  /> 
-                    <listheader width="100%"  label="Precio por 3 unidades"  /> 
-                    <listheader width="100%"  label="Precio por 6 unidades"  /> 
-                    <listheader width="100%"  label="Precio por caja"  /> 
-                    <listheader width="100%"  label="Editar" align="center"/>
+                    <listheader label="Can. Inicial" />  
+                    <listheader label="Prc. Compra" />  
+                    <listheader label="Prc. Unidad"  /> 
+                    <listheader label="Prc. 3 Unidades"  /> 
+                    <listheader label="Prc. 6 Unidades"  /> 
+                    <listheader label="Prc. Caja"  /> 
+                    <listheader label="Editar" align="center"/>
                     <!--<listheader width="5%"  label="" align="center"/>-->
                 </listhead>  
                 <template name="model">                                                            
-                    <listitem class="tabla22">
+                    <listitem class="tabla22 tabla">
                         <listcell   >  </listcell>
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
-                                    class="form-control form-control-sm"  value="@bind(each.prodCodigo)"  />
+                                     class="form-control form-control-sm"  value="@bind(each.prodCodigo)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
-                                        class="form-control form-control-sm" value="@bind(each.prodNombre)" />
+                                     class="form-control form-control-sm" value="@bind(each.prodNombre)" />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true"
@@ -108,40 +108,40 @@
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true"
-                        style="font-size:12px;background:#EBF5FB"
+                                        style="font-size:12px;background:#EBF5FB"
                                         class="form-control form-control-sm"
                                         value="@bind(each.pordCostoVentaRef)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true"  
-                                    style="font-size:12px;background:#EBF5FB"
+                                        style="font-size:12px;background:#EBF5FB"
                                         class="form-control form-control-sm"
                                         value="@bind(each.pordCostoVentaFinal)" />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true" 
                                         class="form-control form-control-sm"
-                                    style="font-size:12px;background:#EBF5FB"
+                                        style="font-size:12px;background:#EBF5FB"
                                         value="@bind(each.prodCostoPreferencial)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true" 
                                         class="form-control form-control-sm"
-                                    style="font-size:12px;background:#EBF5FB"
+                                        style="font-size:12px;background:#EBF5FB"
                                         value="@bind(each.prodCostoPreferencialDos)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true" 
                                         class="form-control form-control-sm"
-                                    style="font-size:12px;background:#EBF5FB"
+                                        style="font-size:12px;background:#EBF5FB"
                                         value="@bind(each.prodCostoPreferencialTres)"  />
                         </listcell>
                     
                         <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">    
                             <image src="/iconos/editar.png"
-                                class="grow"
-                                onClick="@command('actualizarCliente',valor=each)" 
-                                tooltiptext="Modificar producto"/> 
+                                   class="grow"
+                                   onClick="@command('actualizarCliente',valor=each)" 
+                                   tooltiptext="Modificar producto"/> 
                         </listcell>
                     </listitem>
                 </template>

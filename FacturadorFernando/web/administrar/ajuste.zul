@@ -78,7 +78,7 @@
                                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
         
                         
-                                            <listhead class="encabezado12"> 
+                                            <listhead class="encabezado12 encabezado"> 
                                                 <listheader width="100%"      align="left"   >
                                                     <textbox value="@bind(vm.buscarCodigoProd)"                                             
                                                             class="form-control form-control-sm"
@@ -169,7 +169,7 @@
                                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                                 
                         
-                                            <listhead  class="encabezado12">
+                                            <listhead  class="encabezado12 encabezado">
                                                 <listheader width="100%"  label="" align="left" >
                                                     <button label="Anular"   
                                                             onClick="@command('eliminarRegistros')"  

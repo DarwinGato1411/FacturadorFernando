@@ -125,7 +125,7 @@ public class MailerClassSistema {
                     + "    <p>Gracias por seleccionar FACTURAS.EC, Nos complace confirmar sus credenciales:</p>\n"
                     + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
                     + "    <p style=\"margin-bottom: 0;\"><strong>USUARIO:</strong>" + usuarioRecup + " </p>\n"
-                    + "    <p style=\"margin-bottom: 0;\"><strong>CONTRASEÑA:</strong>" + passwordRecup + "</p>\n"
+                    + "    <p style=\"margin-bottom: 0;\"><strong>PASSWORD:</strong>" + passwordRecup + "</p>\n"
                     + "    <br>\n"
                     + "    <div style=\"height: 10px;background:#ffe79e;\"></div>\n"
                     + "    <p>Si tiene cualquier duda o pregunta nos puede escribír al mail <a href=\"\">send@facturas.ec</a> o llámenos al\n"

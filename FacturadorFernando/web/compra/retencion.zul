@@ -8,7 +8,7 @@
           viewModel="@id('vm') @init('com.ec.controlador.RetencionCompraVm')" >
         <tabbox  width="100%"  tabscroll="true" >
             <tabs >
-                <tab label="Retencion" sclass="menutabs"/>
+                <tab label="Retención" sclass="menutabs"/>
             </tabs>
             <tabpanels >
                 <tabpanel  height="100%" width="98%"  >
@@ -331,7 +331,7 @@
                                     </div>
                                 </div>
                                 <div class="wrapper_input_mod" visible="@load(!vm.activaIvaRenta)">
-                                    <span>% Retencion: </span>
+                                    <span>% Retención: </span>
                                     <div class="wrapper_input_text">
                                         <div class="fa-solid fa-user icon"></div>
                                         <combobox  
@@ -364,7 +364,7 @@
                                 </div>
                                
                                 <div class="wrapper_input_mod" visible="@load(vm.activaIvaRenta)">
-                                    <span>% Retencion: </span>
+                                    <span>% Retención: </span>
                                     <div class="wrapper_input_text">
                                         <div class="fa-solid fa-user icon"></div>
                                         <combobox  
@@ -418,7 +418,7 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                               
                                         
-                                    <listhead class="encabezado35">
+                                    <listhead class="encabezado35 encabezado">
                                         <listheader  label="" align="left" >
                                             <button label="" src="/iconos/eliminar.png"  
                                                     onClick="@command('eliminarRegistros')"  
@@ -434,7 +434,7 @@
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem  class="tabla35">
+                                        <listitem  class="tabla35 tabla">
                                             <listcell>
                                                     
                                             </listcell>

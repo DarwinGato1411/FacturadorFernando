@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="fact_row">
+                            <div class="fact_row facturar_wrapper_data">
                                 <div class="wrapper_data">
                                     <div class="wrapper_input">
                                         <span>Partida:</span>
@@ -164,7 +164,7 @@
                                         <textbox 
                                             id="txtNumeroGuiaRecibida" 
                                             placeholder="Num. GUIA" 
-                                            visible="false" 
+                                            visible="true" 
                                             value="@bind(vm.numeroGuiaRecibida)" 
                                             class="input"
                                         />
@@ -193,7 +193,7 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
       
                     
-                                    <listhead class="encabezado17"> 
+                                    <listhead class="encabezado17 encabezado"> 
                                         <listheader width="100%"  label="Código"     align="left"   >
                                                 
                                         </listheader>     
@@ -212,7 +212,7 @@
                                     </listhead>  
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla17" onOK="@command('agregarItemLista',valor=each)">
+                                        <listitem class="tabla17 tabla" onOK="@command('agregarItemLista',valor=each)">
                                             <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                       onDoubleClick="@command('agregarItemLista',valor=each)">
                                                 <label class="form-control form-control-sm"
@@ -261,7 +261,7 @@
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                               
                                         
-                                    <listhead class="encabezado18">
+                                    <listhead class="encabezado18 encabezado">
                                         <listheader width="100%"  label="" align="left" >
                                             <button label="Anular"    
                                                     onClick="@command('eliminarRegistros')"  
@@ -275,7 +275,7 @@
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla18">
+                                        <listitem class="tabla18tabla">
                                             <listcell zclass = "mycss-listcell">
                                                     
                                             </listcell>                                                      

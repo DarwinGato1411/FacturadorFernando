@@ -164,7 +164,7 @@
                                         </auxheader>
                                     </auxhead>       
                                     
-                                    <listhead class="encabezado7"> 
+                                    <listhead class="encabezado7 encabezado"> 
                                         <listheader width="100%%"  label="Fecha" /> 
                                         <listheader width="100%"  label="Factura" /> 
                                         <listheader width="100%"  label="Subtotal" />    
@@ -173,7 +173,7 @@
                         
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla7">
+                                        <listitem class="tabla7 tabla">
                                             <listcell>
                                                 <datebox value="@bind(each.facFecha)" 
                                                          buttonVisible="false" 
@@ -181,7 +181,7 @@
                                                          format="medium" width="100%"  />
                                             </listcell>
                                             <listcell>
-                                                <label value="@bind(each.facNumeroText)" width="100%" />
+                                                <label style="color:black;" value="@bind(each.facNumeroText)" width="100%" />
                                             </listcell>
                                             <listcell>
                                                 <decimalbox format="###.##" 
@@ -218,7 +218,7 @@
                                         </auxheader>
                                     </auxhead>       
                                     
-                                    <listhead class="encabezado7"> 
+                                    <listhead class="encabezado7 encabezado"> 
                                         <listheader width="100%"  label="Fecha" /> 
                                         <listheader width="100%"  label="Factura" /> 
                                         <listheader width="100%"  label="Subtotal" />    
@@ -227,7 +227,7 @@
                         
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla7">
+                                        <listitem class="tabla7 tabla">
                                             <listcell>
                                                 <datebox value="@bind(each.cabFecha)" 
                                                          buttonVisible="false" 
@@ -235,7 +235,7 @@
                                                          format="medium" width="100%"  />
                                             </listcell>
                                             <listcell>
-                                                <label value="@bind(each.cabNumFactura)" width="100%" />
+                                                <label style="color:black;" value="@bind(each.cabNumFactura)" width="100%" />
                                             </listcell>
                                             <listcell>
                                                 <decimalbox format="###.##" 

@@ -21,7 +21,7 @@
             <tabpanels>
                 <tabpanel  height="98%" width="99%"  class="factura"> 
             <div style="width: 100%; display:grid;place-content: center; ">
-            <div class="container_modal">
+               <div class="container_modal">
 
                 <div class="body">
                     <div class="container_row_input">
@@ -159,7 +159,7 @@
                 <div class="body">
                     <div class="container_row_input">
                         <div class="wrapper_input_mod">
-                            <span># Contribuyente Esp: </span>
+                            <span># Contr. Esp: </span>
                             <div class="wrapper_input_text">
                                 <div class="fa-solid fa-user-pen icon"></div>
                                 <textbox 
@@ -202,20 +202,21 @@
                     <div class="container_row_input">
                     
                         <div class="wrapper_input_mod">
-                            <span>Clave firma: </span>
+                            <span>Clave SRI: </span>
                             <div class="wrapper_input_text">
                                 <div class="fa-solid fa-key icon"></div>
                                 <textbox 
                                     type="password"
                                     value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
-                                    placeholder="Clave firma"
+                                    placeholder="Clave SRI"
                                     class="input_text"
-                                    tooltiptext="Clave firma" 
+                                    tooltiptext="Clave SRI" 
+                                     style="width:100%;"
                                 />
                             </div>
                         </div>
-                        <div class="wrapper_input_mod" style="flex:auto;">
-                            <span style="margin:0 0.5em;">Firma Electrónica </span>
+                        <div class="wrapper_input_mod" >
+                            <span >Firma Electrónica </span>
                             <div class="wrapper_input_text" style="width:86%;position:relative">
                                 <div class="fa-solid fa-unlock-keyhole icon"></div>
                                 <textbox value="@bind(vm.tipoambiente.amDirFirma)"
@@ -231,10 +232,6 @@
                                 />
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="container_row_input">
                         <div class="wrapper_input_mod">
                             <span>Contacto Empresa: </span>
                             <div class="wrapper_input_text">
@@ -247,10 +244,15 @@
                                 />
                             </div>
                         </div>
+
+                    </div>
+
+                    <div class="container_row_input">
+                        
                     
-                        <div class="wrapper_input_mod" style="flex:auto;">
-                            <span style="margin:0 0.5em;">Dir. Matriz </span>
-                            <div class="wrapper_input_text" style="width:86%;">
+                        <div class="wrapper_input_mod">
+                            <span >Dir. Matriz </span>
+                            <div class="wrapper_input_text" style="width:86%;position:relative">
                                 <div class="fa-solid fa-location-dot icon"></div>
                                 <textbox 
                                     value="@bind(vm.tipoambiente.amDireccionMatriz)" 
@@ -260,13 +262,9 @@
                                 />
                             </div>
                         </div>
-                    </div>
-
-
-                    <div class="container_row_input">
-                        <div class="wrapper_input_mod">
+                         <div class="wrapper_input_mod">
                         
-                            <span style="margin:0 0.5em;">Cargar Logotipo: </span>
+                            <span>Cargar Logotipo: </span>
                             <div class="wrapper_input_text" style="width:86%;position:relative">
                                 <div class="fa-solid fa-unlock-keyhole icon"></div>
                                 <textbox value="@bind(vm.tipoambiente.am_DirImgPuntoVenta)"
@@ -283,7 +281,7 @@
                             </div>
                         </div>
                         <div class="wrapper_input_mod" style="flex:auto;">
-                            <span style="margin:0 0.5em;">Dir. Establecimiento </span>
+                            <span >Dir. Establecimiento </span>
                             <div class="wrapper_input_text" style="width:86%;">
                                 <div class="fa-solid fa-location-dot icon"></div>
                                 <textbox 
@@ -295,11 +293,14 @@
                             </div>
                         </div>
                     </div>
+
+
+                    
                     
                      <div class="container_row_input">
                         <div class="wrapper_input_mod">
                         
-                            <span style="margin:0 0.5em;">Graba ICE: </span>
+                            <span >Graba ICE: </span>
                             <div class="wrapper_input_text">
                                 <radiogroup 
                                     class="radio_group" 
@@ -314,7 +315,7 @@
                             </div>
                         </div>
                         <div class="wrapper_input_mod" style="flex:auto;">
-                            <span style="margin:0 0.5em;">Porcentaje ICE: </span>
+                            <span >Porcentaje ICE: </span>
                             <div class="wrapper_input_text" style="width:86%;">
                                 <div class="fa-solid fa-location-dot icon"></div>
                                 <textbox 
@@ -326,7 +327,7 @@
                             </div>
                         </div>
                         <div class="wrapper_input_mod" style="flex:auto;">
-                            <span style="margin:0 0.5em;">Codigo ICE: </span>
+                            <span >Codigo ICE: </span>
                             <div class="wrapper_input_text" style="width:86%;">
                                 <div class="fa-solid fa-location-dot icon"></div>
                                 <textbox 
@@ -431,82 +432,82 @@
                             <div class="wrapper_input_text">
                                 <div ></div>
                                     
-                                        </div>
-                                    </div>-->
+                            </div>
+                        </div>-->
                         
-                                </div>
+                    </div>
 
                     
 
                 
-                            </div>
+                </div>
             
-                            <div class="body">
-                                <div class="container_row_input">
-                                    <div class="wrapper_input_mod">
-                                        <span>Sec Factura: </span>
-                                        <div class="wrapper_input_text">
-                                            <div class="fa-solid fa-anchor icon"></div>
-                                            <textbox 
-                                                value="@bind(vm.tipoambiente.amSecFactura)" 
-                                                placeholder="123"
-                                                class="input_text"
-                                                tooltiptext="Secuencial factura" 
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="wrapper_input_mod">
-                                        <span>Sec Retencion: </span>
-                                        <div class="wrapper_input_text">
-                                            <div class="fa-solid fa-location-dot icon"></div>
-                                            <textbox 
-                                                value="@bind(vm.tipoambiente.amSecRetencion)" 
-                                                placeholder="123"
-                                                onOK="@command('buscarCatastro')"
-                                                class="input_text"
-                                                tooltiptext="Secuencial retencion"
-                                            />
-                                        </div>
-                                    </div>
-                    
-                                    <div class="wrapper_input_mod">
-                                        <span>Sec. Nota credito: </span>
-                                        <div class="wrapper_input_text">
-                                            <div class="fa-solid fa-location-dot icon"></div>
-                                            <textbox 
-                                                value="@bind(vm.tipoambiente.amSecNotaCredito)" 
-                                                placeholder="123"
-                                                class="input_text"
-                                                tooltiptext="Secuencial nora de credito"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="wrapper_input_mod">
-                                        <span>Sec. Guias: </span>
-                                        <div class="wrapper_input_text">
-                                            <div class="fa-solid fa-location-dot icon"></div>
-                                            <textbox 
-                                                value="@bind(vm.tipoambiente.amSecGuia)" 
-                                                placeholder="123"
-                              
-                                                class="input_text"
-                                                tooltiptext="Secuencial guia"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                
-                
+                <div class="body">
+                    <div class="container_row_input">
+                        <div class="wrapper_input_mod">
+                            <span>Sec Factura: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-anchor icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amSecFactura)" 
+                                    placeholder="123"
+                                    class="input_text"
+                                    tooltiptext="Secuencial factura" 
+                                />
                             </div>
-
-                            <div style="display:flex;justify-content:flex-end;">
-                                <button class="btn_modal" style="width:300px" onClick="@command('guardar')" tooltiptext="Guardar informacion">
-                                    Guardar
-                                </button>
-                            </div>
-        
                         </div>
+                        <div class="wrapper_input_mod">
+                            <span>Sec Retencion: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-location-dot icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amSecRetencion)" 
+                                    placeholder="123"
+                                    onOK="@command('buscarCatastro')"
+                                    class="input_text"
+                                    tooltiptext="Secuencial retencion"
+                                />
+                            </div>
+                        </div>
+                    
+                        <div class="wrapper_input_mod">
+                            <span>Sec. Nota credito: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-location-dot icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amSecNotaCredito)" 
+                                    placeholder="123"
+                                    class="input_text"
+                                    tooltiptext="Secuencial nora de credito"
+                                />
+                            </div>
+                        </div>
+                        <div class="wrapper_input_mod">
+                            <span>Sec. Guias: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-location-dot icon"></div>
+                                <textbox 
+                                    value="@bind(vm.tipoambiente.amSecGuia)" 
+                                    placeholder="123"
+                              
+                                    class="input_text"
+                                    tooltiptext="Secuencial guia"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                
+                
+                </div>
+
+                <div style="display:flex;justify-content:flex-end;">
+                    <button class="btn_modal" style="width:300px" onClick="@command('guardar')" tooltiptext="Guardar informacion">
+                        Guardar
+                    </button>
+                </div>
+        
+            </div>
 
                     </div>
                 </tabpanel>    

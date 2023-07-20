@@ -226,7 +226,7 @@
                                             <span>Nombre:</span>
                                             <textbox  
                                                 readonly="true" 
-                                                placeholder="Nombre proveedor"
+                                                placeholder="Nom. proveedor"
                                                 class="input" 
                                                 value="@bind(vm.proveedorSeleccionado.provNombre)"  
                                             />
@@ -239,7 +239,7 @@
                                             <span>Teléfono:</span>
                                             <textbox  
                                                 readonly="true" 
-                                                placeholder="022222222"
+                                                placeholder="02222222"
                                                 class="input" 
                                                 value="@bind(vm.proveedorSeleccionado.provTelefono)"  
                                             />
@@ -249,7 +249,7 @@
                                             <span>Dirección</span>
                                             <textbox  
                                                 readonly="true" 
-                                                placeholder="Tabacundo la Esperanza"
+                                                placeholder=""
                                                 class="input" 
                                                 value="@bind(vm.proveedorSeleccionado.provDireccion)"  
                                             />
@@ -290,12 +290,14 @@
                                             maxlength="3"                                                    
                                             placeholder="001"
                                             value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
-                                        />-
+                                        />
+                                        <span style="text-align:center">-</span>
                                         <textbox 
                                             maxlength="3"   
                                             placeholder="001"
                                             value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
-                                        />-
+                                        />
+                                        <span style="text-align:center">-</span>
                                         <textbox 
                                             maxlength="9"   
                                             onChange="self.setValue(self.getValue().toUpperCase());"

@@ -28,7 +28,7 @@
                                      nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead class="encabezado20" sizable="false">
+                                <listhead class="encabezado20 encabezado" sizable="false">
                                     <listheader label="Anio"  align="left"></listheader>
                                     <listheader label="Mes"  align="left"></listheader>
                                     <listheader label="Descripcion"  align="left"></listheader>
@@ -39,7 +39,7 @@
                                 
                             
                                 <template name="model">
-                                    <listitem class="tabla20">
+                                    <listitem class="tabla20 tabla">
                                          
                                         <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 

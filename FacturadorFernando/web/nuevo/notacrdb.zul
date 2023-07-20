@@ -262,20 +262,20 @@
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                             
                                     
-                                <listhead>
-                                    <listheader width="7%"  label="" align="left" >
+                                <listhead class="encabezado encabezado2">
+                                    <listheader label="" align="left" >
                                         <button label="" src="/iconos/delete.png"  
                                                 onClick="@command('eliminarRegistros')"  
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="10%"  label="COD" align="left" />
-                                    <listheader width="8%"  label="CANT" align="left"  /> 
-                                    <listheader width="7%"  label="DES(%)" align="left"  /> 
-                                    <listheader width="20%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="12%"  label="P.REAL" align="left" />                                         
-                                    <listheader width="12%"  label="DESC" align="left" />
-                                    <listheader width="12%"  label="P FINAL" align="left" />
+                                    <listheader label="COD" align="left" />
+                                    <listheader label="CANT" align="left"  /> 
+                                    <listheader label="DES(%)" align="left"  /> 
+                                    <listheader label="DESCRIPCIÓN" align="left" />
+                                    <listheader label="P.REAL" align="left" />                                         
+                                    <listheader label="DESC" align="left" />
+                                    <listheader label="P FINAL" align="left" />
                                     <!--                                        <listheader width="10%"  label="IVA" align="left" />
                                     <listheader width="10%"  label="DESC" align="left" />
                                     <listheader width="10%"  label="P UNIT" align="left" />-->
@@ -284,7 +284,7 @@
                                 </listhead>
                 
                                 <template name="model">                                                            
-                                    <listitem>
+                                    <listitem class="tabla2 tabla">
                                         <listcell>
                                                 
                                         </listcell>
@@ -304,10 +304,10 @@
                                         <listcell>
                                             <decimalbox class="input-group-append"
                                             readonly="true"
-                                                        format="###.##" value="@bind(each.detPordescuento)" width="95%"  />
+                                                        format="###.##" value="@bind(each.detPordescuento)" width="100%"  />
                                         </listcell>
                                         <listcell>
-                                            <label  value="@bind(each.producto.prodNombre)" width="99%" />
+                                            <label style="color:black;"  value="@bind(each.producto.prodNombre)" width="100%" />
                                         </listcell>
                                         <!--                                            <listcell>
                                             <decimalbox readonly="true" format="###.##"

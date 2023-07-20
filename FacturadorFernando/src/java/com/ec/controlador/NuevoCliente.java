@@ -79,8 +79,8 @@ public class NuevoCliente {
             this.cliente.setCiudad(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : " ");
             this.cliente.setCliDireccion(parametrizar.getParCiudad() != null ? parametrizar.getParCiudad() : " ");
             this.cliente.setCliMontoAsignado(BigDecimal.valueOf(999999));
-            this.cliente.setCliMovil(" ");
-            this.cliente.setCliTelefono(" ");
+            this.cliente.setCliMovil("");
+            this.cliente.setCliTelefono("");
             this.cliente.setCliCorreo(parametrizar.getParCorreoDefecto() != null ? parametrizar.getParCorreoDefecto() : " ");
             accion = "create";
         }

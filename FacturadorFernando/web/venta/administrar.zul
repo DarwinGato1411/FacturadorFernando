@@ -20,7 +20,7 @@
                 <tab label="Proveedores" sclass="menutabs" /> 
                 <tab label="Conductor" sclass="menutabs" /> 
 
-                <tab label="Usuario" sclass="menutabs" /> 
+<!--                <tab label="Usuario" sclass="menutabs" /> -->
 
                 <tab label="Configuracion SRI" sclass="menutabs" /> 
                 <!--<tab label="Parametrizar Empresa" sclass="menutabs" />--> 
@@ -38,7 +38,7 @@
 
                 <div class="container_headers" style="margin-bottom:1em">
                     <div 
-                        class="fa-solid fa-plus-circle fa-2x icon"
+                        class="fa-solid fa-plus-circle fa-1x icon"
                         onClick="@command('nuevoCliente')"
                         tooltiptext="Nuevo cliente"
                     >
@@ -46,7 +46,7 @@
                     </div>
 
                     <div 
-                        class="fa-solid fa-file-excel fa-2x icon"
+                        class="fa-solid fa-file-excel fa-1x icon"
                         onClick="@command('exportListboxToExcel')"
                         tooltiptext="Descargar productos"
                     >
@@ -60,8 +60,8 @@
                         <listbox model="@load(vm.listaClientesAll)" 
                                 nonselectableTags="*"  mold="paging" pageSize="15"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
-                            <listhead class="encabezado21"> 
-                                <listheader  width="10%" >
+                            <listhead class="encabezado21 encabezado"> 
+                                <listheader  >
                                     <textbox value="@bind(vm.buscarCedula)" 
                                             class="form-control form-control-sm"
                                             tooltiptext="Cedula"
@@ -70,7 +70,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>     
                                
-                                <listheader width="35%"   > 
+                                <listheader > 
                                     <textbox value="@bind(vm.buscarNombre)" 
                                             class="form-control form-control-sm"
                                             tooltiptext="Nombre Comercial"
@@ -79,16 +79,16 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>
                                 
-                                <listheader width="35%"  label="Direccion "  /> 
-                                <listheader width="10%"  label="Telefono "  />        
-                                <listheader width="10%"  label="Movil"/>
-                                <listheader width="20%"  label="Correo"/>
-                                <listheader width="10%"  label="" align="center"/>
+                                <listheader   label="Dirección "  /> 
+                                <listheader   label="Teléfono "  />        
+                                <listheader   label="Movil"/>
+                                <listheader   label="Correo"/>
+                                <listheader   label="" align="center"/>
                                 
                             </listhead>  
                         
                             <template name="model">                                                            
-                                <listitem class="tabla21">
+                                <listitem class="tabla21 tabla">
                                     <listcell zclass = "mycss-listcell">
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
                                                 class="form-control form-control-sm"  value="@bind(each.cliCedula)"  />
@@ -140,11 +140,11 @@
                 <tabpanel height="100%" hflex="min">
                     <include src="/venta/admconductor.zul"/>  
                 </tabpanel>      
-                <tabpanel height="100%" hflex="min">
+<!--                <tabpanel height="100%" hflex="min">
 
                     <div class="container_headers" style="margin-bottom:1em">
                         <div 
-                            class="fa-solid fa-plus-circle fa-2x icon"
+                            class="fa-solid fa-plus-circle fa-1x icon"
                             onClick="@command('agregarUsario')"
                             tooltiptext="Nuevo usuario"
                         >
@@ -159,7 +159,7 @@
                                 
                                             
                                     
-                                <listhead class="encabezado25" sizable="true">
+                                <listhead class="encabezado25 encabezado" sizable="true">
                                     <listheader label="Nombre de la cuenta"  align="left" width="100%"></listheader>
                                     <listheader label="Usuario"  align="left" width="100%"></listheader>
                                     <listheader label="Contraseña"  align="left" width="100%"></listheader>
@@ -169,7 +169,7 @@
                         
                         
                                 <template name="model">
-                                    <listitem width="100%"  class="tabla25"> 
+                                    <listitem width="100%"  class="tabla25 tabla"> 
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" value="@bind(each.usuNombre)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
@@ -205,7 +205,7 @@
 
 
 
-                </tabpanel>              
+                </tabpanel>              -->
                 <tabpanel height="100%" hflex="min">
                     <include src="/administrar/configuracion.zul"/>  
                 </tabpanel>

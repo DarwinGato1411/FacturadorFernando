@@ -29,7 +29,7 @@
 
                 <div class="container_headers" style="margin-bottom:1em">
                     <div 
-                        class="fa-solid fa-plus-circle fa-2x icon"
+                        class="fa-solid fa-plus-circle fa-1x icon"
                         onClick="@command('nuevoCliente')"
                         tooltiptext="Nuevo cliente"
                     >
@@ -37,7 +37,7 @@
                     </div>
 
                     <div 
-                        class="fa-solid fa-file-excel fa-2x icon"
+                        class="fa-solid fa-file-excel fa-1x icon"
                         onClick="@command('exportListboxToExcel')"
                         tooltiptext="Descargar productos"
                     >
@@ -51,7 +51,7 @@
                         <listbox model="@load(vm.listaClientesAll)" 
                                 nonselectableTags="*"  mold="paging" pageSize="15"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
-                            <listhead class="encabezado21"> 
+                            <listhead class="encabezado21 encabezado"> 
                                 <listheader  width="100%" >
                                     <textbox value="@bind(vm.buscarCedula)" 
                                             class="form-control form-control-sm"
@@ -70,8 +70,8 @@
                                             onChange="self.setValue(self.getValue().toUpperCase());" />
                                 </listheader>
                                 
-                                <listheader width="100%"  label="Direccion "  /> 
-                                <listheader width="100%"  label="Telefono "  />        
+                                <listheader width="100%"  label="Dirección "  /> 
+                                <listheader width="100%"  label="Teléfono "  />        
                                 <listheader width="100%"  label="Movil"/>
                                 <listheader width="100%"  label="Correo"/>
                                 <listheader width="100%"  label="Editar" align="center"/>
