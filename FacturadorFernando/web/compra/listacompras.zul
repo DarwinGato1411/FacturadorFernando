@@ -219,7 +219,7 @@
                                        height=" 30px"   
                                            class="btn btn btn-secondary btn-sm grow"                                         
                                            onClick="@command('reporteFacturaCompraReportePersonalizado',valor=each)"
-                                           tooltiptext="Factura personareporteFacturaCompralizada"/>
+                                           tooltiptext="Reporte compra personalizado"/>
                               
                                 </listcell>
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">

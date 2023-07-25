@@ -41,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    
     gap: 1em;
 }
 
@@ -72,7 +73,7 @@ body {
 .fact_row > .wrapper_data > .wrapper_input {
     display: flex;
     align-items: center;
-    gap: 1em;
+    
     position: relative;
 }
 
@@ -90,10 +91,11 @@ body {
 
 .wrapper_input > span {
     display: block;
-    width: 130px !important;
+    width: 120px !important;
     font-size: 12px;
     font-weight: bold;
     color: #666;
+    
 }
 
 .fact_row > .wrapper_data > .wrapper_input > .input_without_label {
@@ -617,7 +619,7 @@ div.z-listheader-cnt {
     }
 
     .factura_header > .fact_row {
-        
+        width:50%;
         flex-direction: row;
     }
 

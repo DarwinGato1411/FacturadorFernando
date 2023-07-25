@@ -277,12 +277,14 @@
                                         maxlength="3"                                                    
                                         placeholder="001"
                                         value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
-                                    />-
+                                    />
+                                    <span style="text-align:center">-</span>
                                     <textbox 
                                         maxlength="3"   
                                         placeholder="001"
                                         value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
-                                    />-
+                                    />
+                                    <span style="text-align:center">-</span>
                                     <textbox 
                                         maxlength="9"   
                                         onChange="self.setValue(self.getValue().toUpperCase());"
@@ -466,13 +468,13 @@
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                                         
                                     </listheader> 
-                                    <listheader width="10%"  label="CODIGO" align="left" />
-                                    <listheader width="10%"  label="CANT" align="left"  /> 
-                                    <listheader width="10%"  label="FACTOR" align="left"  /> 
-                                    <listheader width="10%"  label="TRANSF" align="left"  />
-                                    <listheader width="55%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="10%"  label="V.UNIT" align="left" /> 
-                                    <listheader width="10%"  label="V. TOTAL" align="left" />
+                                    <listheader width="9%"  label="CODIGO" align="left" />
+                                    <listheader width="9%"  label="CANT" align="left"  /> 
+                                    <listheader width="9%"  label="FACTOR" align="left"  /> 
+                                    <listheader width="9%"  label="TRANSF" align="left"  />
+                                    <listheader width="40%"  label="DESCRIPCIÓN" align="left" />
+                                    <listheader width="9%"  label="V.UNIT" align="left" /> 
+                                    <listheader width="9%"  label="V. TOTAL" align="left" />
                                                                                                                     
                                 </listhead>
             

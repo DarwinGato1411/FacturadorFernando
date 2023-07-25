@@ -24,11 +24,13 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.ZoneId;
 import javax.activation.MimetypesFileTypeMap;
 import javax.mail.internet.ParseException;
 import javax.naming.NamingException;
@@ -89,11 +91,13 @@ public class ListaCompras {
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                 + amb.getAmDirXml();
+        LocalDate fechaActual = LocalDate.now().minusWeeks(1);
+        inicio=Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
         findByBetweenFecha();
     }
 
     private void buscarLikeNombre() {
-        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar);
+        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar, amb);
     }
 
     private void findByBetweenFecha() {
@@ -101,7 +105,7 @@ public class ListaCompras {
     }
 
     private void findByNumFac() {
-        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac);
+        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac,amb);
     }
 
     @Command

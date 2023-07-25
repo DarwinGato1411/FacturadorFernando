@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturacomprapersonalizada" language="groovy" pageWidth="595" pageHeight="421" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.14358881000001"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="52"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturacomprapersonalizada" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.8531167061100144"/>
+	<property name="ireport.x" value="54"/>
+	<property name="ireport.y" value="726"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -378,9 +378,9 @@ limit 1;]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="311" y="182" width="78" height="16"/>
+				<reportElement mode="Transparent" x="311" y="182" width="78" height="16"/>
 				<textElement>
-					<font size="10"/>
+					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cheque}?"Cheque:":"No Cheque"]]></textFieldExpression>
 			</textField>
@@ -398,6 +398,21 @@ limit 1;]]>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{cab_fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="112" y="64" width="117" height="16"/>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección Matriz:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="229" y="64" width="305" height="16"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -683,7 +698,7 @@ limit 1;]]>
 				<text><![CDATA[RECIBIDO CONFORME:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="15" y="70" width="70" height="1"/>
+				<reportElement x="15" y="69" width="70" height="1"/>
 			</line>
 			<line>
 				<reportElement x="115" y="69" width="70" height="1"/>
@@ -695,7 +710,7 @@ limit 1;]]>
 				<reportElement x="304" y="68" width="113" height="1"/>
 			</line>
 			<staticText>
-				<reportElement x="97" y="71" width="97" height="16"/>
+				<reportElement x="97" y="72" width="97" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8" isBold="true"/>
