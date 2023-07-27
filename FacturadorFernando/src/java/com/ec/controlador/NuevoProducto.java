@@ -316,6 +316,7 @@ public class NuevoProducto {
                 producto.setProdEsproducto(Boolean.TRUE);
             } else {
                 producto.setProdEsproducto(Boolean.FALSE);
+                producto.setPordCostoCompra(precioBase);
             }
             if (conICE.equals("S")) {
                 producto.setProdGrabaIce(Boolean.TRUE);
