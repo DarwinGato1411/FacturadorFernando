@@ -316,7 +316,12 @@ public class NuevoProducto {
                 producto.setProdEsproducto(Boolean.TRUE);
             } else {
                 producto.setProdEsproducto(Boolean.FALSE);
-                producto.setPordCostoCompra(precioBase);
+                if(producto.getProdGrabaIva()){
+                    producto.setPordCostoCompra(precioBase);
+                }else{
+                 producto.setPordCostoCompra(producto.getPordCostoVentaFinal());
+                }
+                
             }
             if (conICE.equals("S")) {
                 producto.setProdGrabaIce(Boolean.TRUE);
