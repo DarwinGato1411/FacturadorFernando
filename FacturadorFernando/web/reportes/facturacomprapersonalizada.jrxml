@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="facturacomprapersonalizada" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.8531167061100144"/>
-	<property name="ireport.x" value="54"/>
-	<property name="ireport.y" value="726"/>
+	<property name="ireport.zoom" value="1.9487171000000094"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="145"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -207,15 +207,15 @@ limit 1;]]>
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
 	<title>
-		<band height="220" splitType="Stretch">
+		<band height="198" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="0" y="108" width="555" height="102"/>
+				<reportElement x="0" y="90" width="555" height="102"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="6" y="150" width="96" height="16"/>
+				<reportElement x="6" y="132" width="96" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -223,28 +223,28 @@ limit 1;]]>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="102" y="134" width="209" height="16"/>
+				<reportElement x="102" y="116" width="209" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_nombre}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="102" y="150" width="209" height="16"/>
+				<reportElement x="102" y="132" width="209" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_direccion}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="389" y="150" width="162" height="16"/>
+				<reportElement x="389" y="132" width="162" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_cedula}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="311" y="150" width="78" height="16"/>
+				<reportElement x="311" y="132" width="78" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -252,7 +252,7 @@ limit 1;]]>
 				<text><![CDATA[RUC:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="6" y="134" width="96" height="16"/>
+				<reportElement x="6" y="116" width="96" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -260,7 +260,7 @@ limit 1;]]>
 				<text><![CDATA[Razon Social:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="336" y="108" width="216" height="14"/>
+				<reportElement x="336" y="90" width="216" height="14"/>
 				<box leftPadding="2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="11"/>
@@ -268,14 +268,14 @@ limit 1;]]>
 				<textFieldExpression class="java.lang.String"><![CDATA["Nº: "+$F{cab_secuencial_text}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="102" y="166" width="209" height="16"/>
+				<reportElement x="102" y="148" width="209" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_correo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="166" width="96" height="16"/>
+				<reportElement x="6" y="148" width="96" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -283,7 +283,7 @@ limit 1;]]>
 				<text><![CDATA[Correo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="0" y="108" width="336" height="14" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="0" y="90" width="336" height="14" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box leftPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -301,17 +301,17 @@ limit 1;]]>
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
 			<rectangle radius="10">
-				<reportElement positionType="Float" x="109" y="0" width="442" height="96"/>
+				<reportElement positionType="Float" x="109" y="0" width="442" height="82"/>
 			</rectangle>
 			<textField isBlankWhenNull="true">
-				<reportElement x="229" y="32" width="305" height="16"/>
+				<reportElement x="229" y="20" width="305" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_razon_social}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="112" y="32" width="117" height="16"/>
+				<reportElement x="112" y="20" width="117" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -326,7 +326,7 @@ limit 1;]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nombre_comercial}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="311" y="166" width="78" height="16"/>
+				<reportElement x="311" y="148" width="78" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -334,21 +334,21 @@ limit 1;]]>
 				<text><![CDATA[Nro Factura:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="389" y="166" width="162" height="16"/>
+				<reportElement x="389" y="148" width="162" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cab_num_factura}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="389" y="182" width="163" height="16"/>
+				<reportElement x="389" y="164" width="163" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cheque}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="6" y="182" width="96" height="16"/>
+				<reportElement x="6" y="164" width="96" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -356,14 +356,14 @@ limit 1;]]>
 				<text><![CDATA[Movil:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="102" y="182" width="209" height="16"/>
+				<reportElement x="102" y="164" width="209" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_movil}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="112" y="48" width="117" height="16"/>
+				<reportElement x="112" y="36" width="117" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -371,21 +371,21 @@ limit 1;]]>
 				<text><![CDATA[RUC:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="229" y="48" width="305" height="16"/>
+				<reportElement x="229" y="36" width="305" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="311" y="182" width="78" height="16"/>
+				<reportElement mode="Transparent" x="311" y="164" width="78" height="16"/>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cheque}?"Cheque:":"No Cheque"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="311" y="134" width="78" height="16"/>
+				<reportElement x="311" y="116" width="78" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -393,14 +393,14 @@ limit 1;]]>
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
-				<reportElement x="389" y="134" width="162" height="16"/>
+				<reportElement x="389" y="116" width="162" height="16"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{cab_fecha}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="112" y="64" width="117" height="16"/>
+				<reportElement x="112" y="52" width="117" height="16"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="10" isBold="true"/>
@@ -408,7 +408,7 @@ limit 1;]]>
 				<text><![CDATA[Dirección Matriz:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="229" y="64" width="305" height="16"/>
+				<reportElement x="229" y="52" width="305" height="30"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
@@ -417,9 +417,9 @@ limit 1;]]>
 		</band>
 	</title>
 	<detail>
-		<band height="53" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<componentElement>
-				<reportElement key="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="555" height="34" isPrintWhenDetailOverflows="true"/>
+				<reportElement key="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="555" height="47" isPrintWhenDetailOverflows="true"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 					<datasetRun subDataset="detalle">
 						<datasetParameter name="id_cabecera">
@@ -558,7 +558,7 @@ limit 1;]]>
 				</jr:table>
 			</componentElement>
 		</band>
-		<band height="179">
+		<band height="138">
 			<rectangle radius="10">
 				<reportElement positionType="Float" x="428" y="5" width="127" height="61"/>
 			</rectangle>
