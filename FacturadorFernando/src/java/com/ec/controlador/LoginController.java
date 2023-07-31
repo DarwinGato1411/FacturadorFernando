@@ -48,7 +48,9 @@ public class LoginController extends SelectorComposer<Component> {
     private List<ConsumoClientes> listaClienteses = new ArrayList<ConsumoClientes>();
     private ConsumoClientes consumoDocumentos;
 
-    public void LoginController() {
+    public LoginController() {
+       
+        sweetAltert("warning", "Atención!", "Su pago es requerido hasta el 31 de julio, caso contrario se procederá la elimininación de la información");
     }
 
     @Listen("onClick=#buttonEntrar; onOK=#loginWin")
@@ -150,5 +152,15 @@ public class LoginController extends SelectorComposer<Component> {
                 "/nuevo/registrousuario.zul", null, null);
         window.doModal();
 
+    }
+    
+    public void sweetAltert(String alertaTipo, String tituloMensaje, String detalleMensaje) {
+        String script = "Swal.fire(\n"
+                    + "  '" + tituloMensaje + "',\n"
+                    + "  '" + detalleMensaje + "',\n"
+                    + "  '" + alertaTipo + "'\n"
+                    + ")";
+        System.out.println(script);
+        Clients.evalJavaScript(script);
     }
 }

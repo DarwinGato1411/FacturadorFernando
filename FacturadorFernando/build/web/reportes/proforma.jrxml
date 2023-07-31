@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proforma" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.zoom" value="2.3579476910000032"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="64"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -396,10 +396,10 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 	<title>
 		<band height="144" splitType="Stretch">
 			<rectangle radius="10">
-				<reportElement x="197" y="2" width="358" height="79"/>
+				<reportElement x="174" y="2" width="381" height="79"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="207" y="61" width="66" height="12"/>
+				<reportElement x="188" y="60" width="66" height="12"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="8" isBold="true"/>
@@ -407,35 +407,35 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<text><![CDATA[Dirección:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="207" y="15" width="141" height="21"/>
+				<reportElement x="188" y="14" width="141" height="21"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nombre_comercial}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="273" y="37" width="256" height="12"/>
+				<reportElement x="254" y="37" width="275" height="12"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_razon_social}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="273" y="61" width="256" height="12"/>
+				<reportElement x="254" y="61" width="275" height="20"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="273" y="49" width="256" height="12"/>
+				<reportElement x="254" y="49" width="275" height="12"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="207" y="49" width="66" height="12"/>
+				<reportElement x="188" y="49" width="66" height="12"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="8" isBold="true"/>
@@ -443,7 +443,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<text><![CDATA[RUC:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="207" y="37" width="66" height="12"/>
+				<reportElement x="188" y="37" width="66" height="12"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement>
 					<font size="8" isBold="true"/>
@@ -501,7 +501,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<text><![CDATA[R.U.C/C.I]]></text>
 			</staticText>
 			<image>
-				<reportElement x="15" y="6" width="165" height="66"/>
+				<reportElement x="15" y="6" width="148" height="66"/>
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
 			<staticText>
