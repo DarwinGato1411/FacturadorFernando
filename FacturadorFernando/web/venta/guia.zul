@@ -189,7 +189,7 @@
                                 
                             <div class="factura_body_item" >
                                 <listbox model="@load(vm.listaProducto)" 
-                                         nonselectableTags=""    mold="paging" pageSize="13"  >
+                                         nonselectableTags=""    mold="paging" pageSize="10"   >
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
       
                     
@@ -257,26 +257,26 @@
                                          nonselectableTags="*" 
                                          checkmark="true"  
                                          multiple="true" 
-                                         onSelect="@command('seleccionarRegistros')" >
+                                         onSelect="@command('seleccionarRegistros')"   mold="paging" pageSize="10">
                                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                               
                                         
                                     <listhead class="encabezado18 encabezado">
-                                        <listheader width="100%"  label="" align="left" >
-                                            <button label="Anular"    
+                                        <listheader style="margin:0;"  width="100%"  label="" align="left" >
+                                            <button label="Anular" 
+                                                    width="100%" 
                                                     onClick="@command('eliminarRegistros')"  
                                                     class="btn btn btn-secondary btn-sm "
-                                                    tooltiptext="Eliminar registros seleccionados"
-                                                    style="background:black;color:white;font-size:13px width:100%;"
-                                            />
+                                                    style="background:black;color:white;font-size:10px;"
+                                                    tooltiptext="Eliminar registros seleccionados"/>
                                         </listheader>
                                         <listheader width="100%"  label="Cantidad" align="left" />
                                         <listheader width="100%"  label="Descripción" align="left"  />                                                                                 
                                     </listhead>
                     
                                     <template name="model">                                                            
-                                        <listitem class="tabla18tabla">
-                                            <listcell zclass = "mycss-listcell">
+                                        <listitem class="tabla18 tabla">
+                                            <listcell >
                                                     
                                             </listcell>                                                      
                                             <listcell zclass = "mycss-listcell">
@@ -295,6 +295,7 @@
                                     </template>
 
                                 </listbox>
+                                
                             </div>
                         </div>
                         

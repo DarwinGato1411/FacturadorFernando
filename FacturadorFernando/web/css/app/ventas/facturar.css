@@ -7,6 +7,10 @@
     --background-color: #fff;
 }
 
+input::placeholder {
+ font-size: 12px !important; 
+}
+
 body {
     line-height: 1.5 !important;
     -webkit-font-smoothing: antialiased !important;
@@ -162,6 +166,7 @@ body {
 .wrapper_input > .radio_group > span {
     display: flex;
     align-items: center;
+    gap:5px;
 }
 
 
@@ -1077,10 +1082,7 @@ div.z-listheader-cnt {
     font-size: 12px !important;
 }
 
-.z-listheader input::placeholder{
 
-    font-size: 10px !important;
-}
 
 .z-menubar-ver .z-menu-body .z-menu-inner-m{
     height: auto;
