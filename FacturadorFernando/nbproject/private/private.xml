@@ -4,11 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/Guiaremision.java</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NuevoCliente.java</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/AutorizarDocumentos.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/ATS.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/AdmKardex.java</file>
             <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/guia.zul</file>
-            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/GuiaRemision.java</file>
         </group>
     </open-files>
 </project-private>
