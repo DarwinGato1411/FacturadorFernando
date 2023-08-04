@@ -28,8 +28,8 @@
                             <auxheader colspan="12" >  
                                 <div class="row">
                                   
-                                    <div  class="col-12 col-sm-12 col-md-3 col-lg-3 ">
-                                        facturado:
+                                    <div  class="">
+                                        <span>facturado:</span>
                                         <radiogroup  
                                             selectedItem="@bind(vm.buscarEstado)"  >        
                                                                                 
@@ -46,7 +46,7 @@
                                                    lenient="true"  format="dd/MM/yyyy" 
                                                    constraint="no empty: Ingrese de inicio de la busqueda"/> 
                                     </div>
-                                    <div  class="col-12 col-sm-12 col-md-3 col-lg-3 ">
+                                    <div  >
                                         <label value="Fin: "  />
                                         <datebox   value="@bind(vm.fin)" 
                                                    readonly="true" style="font-weight:bold;" 
@@ -54,12 +54,15 @@
                                                    buttonVisible="true" 
                                                    lenient="true"  format="dd/MM/yyyy" 
                                                    constraint="no empty: IBuscar por fecha fin de la busqueda"/> 
-                                        <button   image="/imagenes/buscar1.png"  
+                                        
+                       
+                                    </div>
+                                    <button   image="/imagenes/buscar1.png"  
                                                   onClick="@command('buscarForFechas')"  
                                                   class="btn btn-primary btn-sm "
                                                   tooltiptext="Buscar"/>
-                       
-                                    </div>
+                                    
+                                    
                                     <div  class="col-12 col-sm-12 col-md-3 col-lg-3 ">
                                         <button   image="/imagenes/folder.png"  
                                                   onClick="@command('subirArchivo')"  

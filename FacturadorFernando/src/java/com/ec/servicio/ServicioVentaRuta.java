@@ -106,7 +106,7 @@ public class ServicioVentaRuta {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
 
-            query = em.createQuery("SELECT f FROM VentaRuta f WHERE f.fecha BETWEEN :inicio and :fin AND UPPER(f.facturado)=:facturado AND f.cedula LIKE :cedula AND  UPPER(f.nombre) LIKE :nombre ORDER BY f.idVentaRuta DESC");
+            query = em.createQuery("SELECT f FROM VentaRuta f WHERE f.fecha BETWEEN :inicio and :fin AND f.facturado=:facturado AND f.cedula LIKE :cedula AND  UPPER(f.nombre) LIKE :nombre ORDER BY f.idVentaRuta DESC");
             query.setParameter("inicio", inicioBus);
             query.setParameter("fin", fin);
             query.setParameter("facturado", estado);
