@@ -112,6 +112,7 @@ public class GuiaRemision {
     private static Tipoambiente amb = null;
     private String numeroGuiaRecibida = "";
     private String amRuc = "";
+    private String guiaObservacion = "";
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
@@ -261,6 +262,7 @@ public class GuiaRemision {
                 guiaremision.setMotivoGuia(motivoGuia);
                 guiaremision.setPartida(partida);
                 guiaremision.setLlegada(llegada);
+                guiaremision.setFacObservacion(guiaObservacion);
                 guiaremision.setTipoGuia(tipoGuiaRemision);
                 List<DetalleGuiaremision> detalleGuia = new ArrayList<DetalleGuiaremision>();
                 DetalleGuiaremision nuevo = null;
@@ -525,6 +527,14 @@ public class GuiaRemision {
 
     public void setNumeroGuiaRecibida(String numeroGuiaRecibida) {
         this.numeroGuiaRecibida = numeroGuiaRecibida;
+    }
+
+    public String getGuiaObservacion() {
+        return guiaObservacion;
+    }
+
+    public void setGuiaObservacion(String guiaObservacion) {
+        this.guiaObservacion = guiaObservacion;
     }
 
 }
