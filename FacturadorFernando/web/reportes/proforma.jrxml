@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proforma" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.100000000000001"/>
+	<property name="ireport.zoom" value="1.3310000000000015"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="table">
@@ -752,12 +752,6 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				</textElement>
 				<text><![CDATA[IVA]]></text>
 			</staticText>
-			<staticText>
-				<reportElement positionType="Float" x="5" y="61" width="309" height="32"/>
-				<box leftPadding="2"/>
-				<textElement/>
-				<text><![CDATA[El documento tiene una vigencia de 30 dias a patrtir de su emisión]]></text>
-			</staticText>
 			<textField pattern="" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="96" y="4" width="219" height="20"/>
 				<textElement>
@@ -766,7 +760,7 @@ and  factura.fac_num_proforma=$P{numfactura};]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd MMMM yyyy", new Locale("es")).format($F{fac_fecha})]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="8" y="24" width="306" height="20"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="8" y="24" width="405" height="56" isPrintWhenDetailOverflows="true"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
