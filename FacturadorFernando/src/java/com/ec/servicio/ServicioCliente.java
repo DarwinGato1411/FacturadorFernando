@@ -102,7 +102,7 @@ public class ServicioCliente {
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.cliCedula = :cliCedula AND c.codTipoambiente=:codTipoambiente");
             query.setParameter("cliCedula", buscar);
-             query.setParameter("codTipoambiente", codTipoambiente);
+            query.setParameter("codTipoambiente", codTipoambiente);
             List<Cliente> listaCliente = (List<Cliente>) query.getResultList();
             if (listaCliente.size() > 0) {
                 cliente = (Cliente) query.getSingleResult();
@@ -118,6 +118,35 @@ public class ServicioCliente {
 
         return cliente;
     }
+    
+    public Cliente FindClienteForCedulaID(String buscar,Integer idCliente, Tipoambiente codTipoambiente) {
+
+        Cliente cliente = new Cliente();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.cliCedula = :cliCedula AND c.codTipoambiente=:codTipoambiente AND c.idCliente=:idCliente");
+            query.setParameter("cliCedula", buscar);
+            query.setParameter("codTipoambiente", codTipoambiente);
+            query.setParameter("idCliente", idCliente);
+            List<Cliente> listaCliente = (List<Cliente>) query.getResultList();
+            if (listaCliente.size() > 0) {
+                cliente = (Cliente) query.getSingleResult();
+            } else {
+                return null;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta cliente");
+        } finally {
+            em.close();
+        }
+
+        return cliente;
+    }
+    
+    
 
     public List<Cliente> FindClienteLikeNombre(String buscar, Tipoambiente codTipoambiente) {
 

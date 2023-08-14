@@ -136,7 +136,7 @@
                                     nonselectableTags=""  mold="paging" pageSize="20"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                             
-                                <listhead class="encabezado8"> 
+                                <listhead class="encabezado8 encabezado"> 
                                     <listheader width="100%"  label="Total con facturas" />                            
                                     <!--<listheader width="25%"  label="Total con Notas Venta" />-->                                                        
                                     <listheader width="100%"  label="Total" align="rigth" /> 
@@ -145,7 +145,7 @@
                                 
                             
                                 <template name="model">                                                            
-                                    <listitem class="tabla8">
+                                    <listitem class="tabla8 tabla">
                                         <listcell  zclass = "mycss-listcell">
                                             <decimalbox readonly="true" format="###.##" 
                                                         value="@bind(each.facTotal)" width="100%" />

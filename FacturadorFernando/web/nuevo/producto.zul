@@ -85,10 +85,11 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
                         <textbox  
-                            maxlength="200" 
+                            maxlength="300" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"
+                          
                             class="input_text" />
                     </div>
                 </div>
@@ -157,7 +158,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-user icon"></div>
                         <textbox  
-                            maxlength="100" 
+                            maxlength="300" 
                             value="@bind(vm.producto.prodNombre)"
                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                             constraint="no empty: Campo requerido"

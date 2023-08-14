@@ -52,7 +52,7 @@
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
         
                         
-                            <listhead class="encabezado13"> 
+                            <listhead class="encabezado13 encabezado"> 
                                     
                                 <listheader width="100%%"  >
                                     <textbox value="@bind(vm.buscarProductoCodigo) "  
@@ -138,13 +138,13 @@
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
     
                     
-                            <listhead class="encabezado14"> 
+                            <listhead class="encabezado14 encabezado"> 
                                 
-                                <listheader width="100%" label="Fecha kardex" sort="auto(detkFechakardex)" />
+                                <listheader width="100%" label="F. kardex" sort="auto(detkFechakardex)" />
                                 <listheader width="100%" label="Cantidad" sort="auto(detkCantidad)" />
                                 <listheader width="100%" label="Unidad" sort="auto(detkCantidad)" />
                                 <listheader width="100%" label="Detalle" sort="auto(detkDetalles)" />
-                                <listheader width="100%" label="Fecha registro" sort="auto(detkFechacreacion)" />
+                                <listheader width="100%" label="F. registro" sort="auto(detkFechacreacion)" />
                                 <listheader width="100%" label="Tipo" sort="auto(idTipokardex.tipkDescripcion)" />
                                 <listheader width="100%" label="Kardex Manual" sort="auto(detkKardexmanual)" />
                                 <listheader width="100%" label="Nº Documento"  />

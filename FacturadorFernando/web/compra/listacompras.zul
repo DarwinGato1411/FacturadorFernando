@@ -123,7 +123,7 @@
                             </auxheader>
                         </auxhead>
                         
-                        <listhead class="encabezado27"> 
+                        <listhead class="encabezado27 encabezado"> 
                             <listheader   label="" >
                                 <textbox value="@bind(vm.buscarNumFac)"  
                                          tooltiptext="Nº Factura"
@@ -152,7 +152,7 @@
                         
                     
                         <template name="model">                                                            
-                            <listitem class="tabla27">
+                            <listitem class="tabla27 tabla">
                                 <listcell zclass = "mycss-listcell">
                                     <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
                                              class="form-control form-control-sm" 

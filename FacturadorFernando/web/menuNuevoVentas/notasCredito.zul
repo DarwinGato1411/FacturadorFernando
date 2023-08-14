@@ -88,7 +88,7 @@
                                  nonselectableTags=""  mold="paging" pageSize="12"  >
                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                         
-                            <listhead class="encabezado6"> 
+                            <listhead class="encabezado encabezado6"> 
                                 <listheader width="100%"  label="N° Fact" /> 
                                 <listheader width="100%"  >
                                     <textbox value="@bind(vm.buscarCedula)"  
@@ -111,7 +111,7 @@
                                 <listheader width="100%"  label="Fecha" />                                                        
                                 <listheader width="100%"  label="Estado SRI" align="rigth" /> 
                                 <listheader width="100%"  label="Fecha Aut." align="rigth" /> 
-                                <listheader width="100%"  label="Clave Autorizacion"  />                                   
+                                <listheader width="100%"  label="Cla. Autorizacion"  />                                   
                                 <listheader width="100%"  label="Autorizado" align="center" />        
                                 <listheader width="100%"  label="Reenviar guía Aut." align="center" />        
                                 <listheader width="100%"  label="Reenviar Fact." align="center" />               

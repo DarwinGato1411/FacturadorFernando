@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="guia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.zoom" value="1.9487171000000019"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="238"/>
+	<property name="ireport.y" value="528"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -225,6 +225,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.Integer"/>
 	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
+	<field name="am_activo" class="java.lang.Boolean"/>
 	<field name="id_guiaremision" class="java.lang.Integer"/>
 	<field name="id_factura" class="java.lang.Integer"/>
 	<field name="fac_fecha" class="java.sql.Date"/>
@@ -264,8 +265,8 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 	<field name="fac_numero" class="java.lang.Integer"/>
 	<field name="documentoaduanerounico" class="java.lang.String"/>
 	<field name="id_transportista" class="java.lang.Integer"/>
-	<field name="fechainitranspguia" class="java.sql.Timestamp"/>
-	<field name="fechafintranspguia" class="java.sql.Timestamp"/>
+	<field name="fechainitranspguia" class="java.sql.Date"/>
+	<field name="fechafintranspguia" class="java.sql.Date"/>
 	<field name="numplacaguia" class="java.lang.String"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
 	<field name="motivoguia" class="java.lang.String"/>
@@ -274,6 +275,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 	<field name="tipo_guia" class="java.lang.String"/>
 	<field name="fac_numero_text_recibida" class="java.lang.String"/>
 	<field name="numero_guia_recibida" class="java.lang.String"/>
+	<field name="fac_observacion" class="java.lang.String"/>
 	<field name="cli_cedula" class="java.lang.String"/>
 	<field name="cli_nombre" class="java.lang.String"/>
 	<field name="cli_razon_social" class="java.lang.String"/>
@@ -319,7 +321,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[R.U.C.;]]></text>
+				<text><![CDATA[R.U.C.:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="307" y="34" width="100" height="20"/>
@@ -413,7 +415,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<text><![CDATA[Direcciòn Sucursal:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="377" width="178" height="13"/>
+				<reportElement x="10" y="377" width="179" height="13"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -443,7 +445,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_matriz}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_direccion_sucursal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="307" y="227" width="243" height="20"/>
@@ -467,29 +469,29 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 			<textField>
 				<reportElement x="189" y="377" width="343" height="13"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombres}+" "+$F{cli_apellidos}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="364" width="75" height="13"/>
+				<reportElement x="10" y="364" width="179" height="13"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Identificación:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="87" y="364" width="102" height="13"/>
+				<reportElement x="189" y="364" width="343" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_cedula}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="390" width="95" height="13"/>
+				<reportElement x="11" y="390" width="178" height="13"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de emisión: ]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="105" y="390" width="189" height="13"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="189" y="390" width="189" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fac_fecha}]]></textFieldExpression>
 			</textField>
@@ -532,17 +534,17 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<text><![CDATA[Punto Partida]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="115" y="258" width="145" height="13"/>
+				<reportElement x="115" y="258" width="417" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{trp_cedula}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="116" y="271" width="262" height="13"/>
+				<reportElement x="116" y="271" width="416" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{trp_razon_social}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="284" width="145" height="13"/>
+				<reportElement x="115" y="284" width="417" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{numplacaguia}]]></textFieldExpression>
 			</textField>
@@ -571,21 +573,21 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fechafintranspguia}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="12" y="338" width="75" height="13"/>
+				<reportElement x="10" y="338" width="179" height="13"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Motivo:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="12" y="351" width="75" height="13"/>
+				<reportElement x="10" y="351" width="179" height="13"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Destino:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="89" y="338" width="289" height="13"/>
+				<reportElement x="189" y="338" width="343" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{motivoguia}]]></textFieldExpression>
 			</textField>
@@ -595,7 +597,7 @@ where  guiaremision.fac_numero=$P{numfactura} and tipoambiente.cod_tipoambiente=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{partida}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="89" y="351" width="443" height="13"/>
+				<reportElement x="189" y="351" width="343" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{llegada}]]></textFieldExpression>
 			</textField>
@@ -760,7 +762,7 @@ Principal]]></text>
 		</band>
 		<band height="198" splitType="Prevent">
 			<rectangle radius="10">
-				<reportElement x="0" y="10" width="307" height="96"/>
+				<reportElement x="0" y="10" width="307" height="119"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -793,25 +795,37 @@ Principal]]></text>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="347" y="75" width="65" height="20"/>
+				<reportElement x="347" y="78" width="65" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Elaborado por]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="470" y="75" width="65" height="20"/>
+				<reportElement x="467" y="78" width="65" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Recibido]]></text>
 			</staticText>
 			<line>
-				<reportElement x="328" y="69" width="100" height="1"/>
+				<reportElement x="328" y="71" width="100" height="1"/>
 			</line>
 			<line>
-				<reportElement x="446" y="68" width="100" height="1"/>
+				<reportElement x="446" y="70" width="100" height="1"/>
 			</line>
+			<staticText>
+				<reportElement positionType="Float" x="11" y="95" width="100" height="20">
+					<printWhenExpression><![CDATA[$F{fac_observacion}]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[Observación:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="110" y="95" width="185" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

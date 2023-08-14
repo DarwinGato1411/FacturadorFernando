@@ -11,8 +11,8 @@
                     
       
                     
-        <listhead> 
-            <listheader width="8%"   >
+        <listhead  class="encabezado37" > 
+            <listheader   >
                 <textbox value="@bind(vm.buscarCedula)"  
                          class="form-control form-control-sm"
                          tooltiptext="Cédula"
@@ -20,7 +20,7 @@
                          onOK="@command('buscarClienteCedula')"
                          onChange="self.setValue(self.getValue().toUpperCase());" />
             </listheader>     
-            <listheader width="15%"  >
+            <listheader   >
                 <textbox value="@bind(vm.buscarNombre)"  
                          class="form-control form-control-sm"
                          tooltiptext="Nombre.."
@@ -29,7 +29,7 @@
                          onOK="@command('buscarClienteNombre')"
                          onChange="self.setValue(self.getValue().toUpperCase());" />
             </listheader> 
-            <listheader width="15%"  >
+            <listheader  >
                 <textbox value="@bind(vm.buscarRazonSocial)"  
                          class="form-control form-control-sm"
                          tooltiptext="Razón Social"
@@ -37,16 +37,16 @@
                          onOK="@command('buscarClienteRazon')"
                          onChange="self.setValue(self.getValue().toUpperCase());" />
             </listheader> 
-            <listheader width="15%"  label="DIRECCION "  /> 
-            <listheader width="8%"  label="TELEFONO "  />        
-            <listheader width="8%"  label="MOVIL"/>
-            <listheader width="20%"  label="CORREO"/>
-            <listheader width="12%"  label="OPCIONES" align="center"/>
+            <listheader  label="DIRECCION "  /> 
+            <listheader  label="TELEFONO "  />        
+            <listheader  label="MOVIL"/>
+            <listheader  label="CORREO"/>
+            <listheader label="" align="center"/>
                             
         </listhead>  
                     
         <template name="model">                                                            
-            <listitem onOK="@command('seleccionarClienteLista',cliente=each)">
+            <listitem class="encabezado37" onOK="@command('seleccionarClienteLista',cliente=each)">
                 <listcell  style="font-size:10px;background-color:#d6eefd" zclass = "mycss-listcell">
                     <textbox readonly="true" style="font-size:12px ;background:#EBF5FB" 
                              value="@bind(each.cliCedula)" 

@@ -123,7 +123,7 @@ body {
 .container_row_input {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap:15px;
 }
 
 .container_row_input > .wrapper_input_mod {
@@ -225,7 +225,7 @@ body {
   width: 100%;
 }
 .btn_modal {
-  font-family: Poppins, sans-serif !important;
+  font-family: arial, sans-serif !important;
 }
 
 .btn_modal::before {

@@ -5,7 +5,7 @@
 
     <div class="container_headers" style="margin-bottom:1em">
         <div 
-            class="fa-solid fa-plus-circle fa-2x icon"
+            class="fa-solid fa-plus-circle fa-1x icon"
             onClick="@command('nuevo')"
             tooltiptext="Nuevo conductor"
         >
@@ -34,7 +34,7 @@
                         </div> 
                     </auxheader>
                 </auxhead>    -->    
-                <listhead class="encabezado24"> 
+                <listhead class="encabezado24 encabezado"> 
                     <listheader width="100%"  label="CI/RUC" />     
                     <listheader width="100%"  >
                         <textbox value="@bind(vm.buscarNombre)" 
@@ -53,7 +53,7 @@
                     <listheader width="100%"  label="Editar" align="center"/>
                 </listhead>  
                 <template name="model">                                                            
-                    <listitem class="tabla24">
+                    <listitem class="tabla24 tabla">
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                           
                                      class="form-control form-control-sm"  value="@bind(each.trpCedula)" />

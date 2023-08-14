@@ -2,6 +2,17 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/entidad/Guiaremision.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/NuevoCliente.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/untilitario/AutorizarDocumentos.java</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/web/venta/guia.zul</file>
+            <file>file:/C:/Users/NanoDan/Documents/DEFACT/Facturas/FacturadorFernando/FacturadorFernando/src/java/com/ec/controlador/GuiaRemision.java</file>
+        </group>
+>>>>>>> 4b824c57675c4bf704311bd71d7d7c48a7b35a43
     </open-files>
 </project-private>

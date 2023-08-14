@@ -18,7 +18,7 @@
 
     <div class="container_headers" style="margin-bottom:1em">
         <div 
-            class="fa-solid fa-plus-circle fa-2x icon"
+            class="fa-solid fa-plus-circle fa-1x icon"
             onClick="@command('nuevoProvedor')"
             tooltiptext="Nuevo proveedor"
         >
@@ -32,7 +32,7 @@
             <listbox  width="100%" model="@load(vm.listaProveedores)" mold="paging" pageSize="15"
                     nonselectableTags="*">
                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
-                <listhead class="encabezado23"> 
+                <listhead class="encabezado23 encabezado"> 
                     <listheader width="100%"   >
                         <textbox value="@bind(vm.buscarCedula)" 
                                 class="form-control form-control-sm"
@@ -60,7 +60,7 @@
                     <listheader width="100%"  label="Editar" align="center"/>
                 </listhead>  
                 <template name="model">                                                            
-                    <listitem class="tabla23">
+                    <listitem class="tabla23 tabla">
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                     class="form-control form-control-sm"  value="@bind(each.provCedula)"  />

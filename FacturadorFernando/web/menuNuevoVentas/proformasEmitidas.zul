@@ -59,7 +59,7 @@
                                      nonselectableTags="*"  mold="paging" pageSize="15"  >
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
   
-                                <listhead class="encabezado4"> 
+                                <listhead class="encabezado4 encabezado"> 
                                     <listheader width="100%"  label="N° Fact" /> 
                                     <listheader width="100%"  label="RUC/CI" />    
                                     <listheader width="100%" label="Nobre comercial"  />
@@ -78,7 +78,7 @@
                         
                     
                                 <template name="model" >                                                            
-                                    <listitem class="tabla4" >
+                                    <listitem class="tabla4 tabla" >
                                         <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                      class="form-control form-control-sm" value="@bind(each.facNumProforma)"  />

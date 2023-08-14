@@ -95,7 +95,7 @@ public class ListaCompras {
     }
 
     private void buscarLikeNombre() {
-        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar);
+        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar,amb);
     }
 
     private void findByBetweenFecha() {
@@ -103,7 +103,7 @@ public class ListaCompras {
     }
 
     private void findByNumFac() {
-        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac);
+        listaCabeceraCompras = servicioCompra.findByNumeroFactura(buscarNumFac, amb);
     }
 
     @Command

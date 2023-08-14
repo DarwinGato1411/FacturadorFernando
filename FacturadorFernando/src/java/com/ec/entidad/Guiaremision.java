@@ -227,6 +227,8 @@ public class Guiaremision implements Serializable {
     private String partida;
     @Column(name = "llegada")
     private String llegada;
+    @Column(name = "fac_observacion")
+    private String facObservacion;
     @Column(name = "fac_fecha_sustento")
     @Temporal(TemporalType.DATE)
     private Date facFechaSustento;
@@ -702,4 +704,13 @@ public class Guiaremision implements Serializable {
         return "com.ec.entidad.Guiaremision[ idGuiaremision=" + idGuiaremision + " ]";
     }
 
+    public String getFacObservacion() {
+        return facObservacion;
+    }
+
+    public void setFacObservacion(String facObservacion) {
+        this.facObservacion = facObservacion;
+    }
+
+    
 }

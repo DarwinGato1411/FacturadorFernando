@@ -98,6 +98,7 @@ public class GuiaRemision {
 
     /*GUIA DE REMISION*/
     public static String buscarCliente = "";
+    public static Integer idCliente= 0;
     private String buscarNombre = "";
     private String buscarRazonSocial = "";
     private String buscarCedula = "";
@@ -111,6 +112,7 @@ public class GuiaRemision {
     private static Tipoambiente amb = null;
     private String numeroGuiaRecibida = "";
     private String amRuc = "";
+    private String guiaObservacion = "";
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
@@ -141,8 +143,8 @@ public class GuiaRemision {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
                     "/venta/buscarclienteguia.zul", null, map);
         window.doModal();
-        System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
-        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente,amb);
+        System.out.println("clinete de la lsitas buscarCliente " + buscarCliente +" "+idCliente);
+        clienteBuscado = servicioCliente.FindClienteForCedulaID(buscarCliente,idCliente,amb);
         if (clienteBuscado != null) {
             llegada = clienteBuscado.getCliDireccion();
         }
@@ -154,6 +156,7 @@ public class GuiaRemision {
     public void seleccionarClienteLista(@BindingParam("cliente") Cliente valor) {
         System.out.println("cliente seleccionado " + valor.getCliCedula());
         buscarCliente = valor.getCliCedula();
+        idCliente=valor.getIdCliente();
         windowClienteBuscarGuia.detach();
 
     }
@@ -259,6 +262,7 @@ public class GuiaRemision {
                 guiaremision.setMotivoGuia(motivoGuia);
                 guiaremision.setPartida(partida);
                 guiaremision.setLlegada(llegada);
+                guiaremision.setFacObservacion(guiaObservacion);
                 guiaremision.setTipoGuia(tipoGuiaRemision);
                 List<DetalleGuiaremision> detalleGuia = new ArrayList<DetalleGuiaremision>();
                 DetalleGuiaremision nuevo = null;
@@ -523,6 +527,14 @@ public class GuiaRemision {
 
     public void setNumeroGuiaRecibida(String numeroGuiaRecibida) {
         this.numeroGuiaRecibida = numeroGuiaRecibida;
+    }
+
+    public String getGuiaObservacion() {
+        return guiaObservacion;
+    }
+
+    public void setGuiaObservacion(String guiaObservacion) {
+        this.guiaObservacion = guiaObservacion;
     }
 
 }
