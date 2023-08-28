@@ -118,6 +118,32 @@ public class ServicioCliente {
 
         return cliente;
     }
+    
+    public Cliente FindClienteForID(Integer buscar, Tipoambiente codTipoambiente) {
+
+        Cliente cliente = new Cliente();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT c FROM Cliente c WHERE c.idCliente =:idCliente AND c.codTipoambiente=:codTipoambiente");
+            query.setParameter("idCliente", buscar);
+             query.setParameter("codTipoambiente", codTipoambiente);
+            List<Cliente> listaCliente = (List<Cliente>) query.getResultList();
+            if (listaCliente.size() > 0) {
+                cliente = (Cliente) query.getSingleResult();
+            } else {
+                return null;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta cliente");
+        } finally {
+            em.close();
+        }
+
+        return cliente;
+    }
 
     public List<Cliente> FindClienteLikeNombre(String buscar, Tipoambiente codTipoambiente) {
 
