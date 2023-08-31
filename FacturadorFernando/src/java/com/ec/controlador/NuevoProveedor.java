@@ -71,13 +71,11 @@ public class NuevoProveedor {
     }
 
     public NuevoProveedor() {
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-
 
     }
 
@@ -88,7 +86,7 @@ public class NuevoProveedor {
     @Command
     @NotifyChange({"proveedor"})
     public void buscarAduana() {
-       InfoPersona aduana = new InfoPersona();
+        InfoPersona aduana = new InfoPersona();
         String nombre = "";
         if (proveedor.getProvCedula() != null) {
             if (!proveedor.getProvCedula().equals("")) {
@@ -105,20 +103,19 @@ public class NuevoProveedor {
                     proveedor.setProvNomComercial(aduana.getNombre());
                     proveedor.setProvDireccion(aduana.getDireccion());
                 }
-                
+
             }
         }
 
     }
-    
-    
+
     @Command
     public void guardar() {
         if (proveedor.getProvCedula() != null
-                    && proveedor.getProvNombre() != null
-                    && proveedor.getProvTelefono() != null
-                    && proveedor.getProvDireccion() != null
-                    && identificacionCompra != null) {
+                && proveedor.getProvNombre() != null
+                && proveedor.getProvTelefono() != null
+                && proveedor.getProvDireccion() != null
+                && identificacionCompra != null) {
             proveedor.setIdTipoIdentificacionCompra(identificacionCompra);
             proveedor.setCodTipoambiente(amb);
             if (accion.equals("create")) {
