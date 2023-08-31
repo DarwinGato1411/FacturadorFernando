@@ -86,7 +86,7 @@ public class ListaRetenciones {
     private String amRuc = "";
 
     public ListaRetenciones() {
-        buscarPorFechas();
+       
        
 
         Session sess = Sessions.getCurrent();
@@ -98,6 +98,7 @@ public class ListaRetenciones {
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                     + amb.getAmDirXml();
+         buscarPorFechas();
     }
 
     private void buscarPorFechas() {
@@ -684,7 +685,7 @@ public class ListaRetenciones {
             parametros.put("numfactura", retencionCompra.getRcoCodigo());
 
             if (con != null) {
-                System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                System.out.println("Conexión Realizada Correctamente");
             }
             FileInputStream is = null;
             is = new FileInputStream(reportPath);

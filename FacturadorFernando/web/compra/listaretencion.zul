@@ -141,7 +141,7 @@
                                          onOK="@command('buscarForRetencion')"
                                          onChange="self.setValue(self.getValue().toUpperCase());" />
                             </listheader>        
-                            <listheader width="20%"  label="Estado SRI" />  
+                            <listheader width="20%"  label="Estado SRI" />   
                             <listheader width="12%"  label="Fecha Autorizacion" />       
                             <listheader width="43%"  label="Autorizacion" />                             
                             <listheader width="3%"  label="" />             
