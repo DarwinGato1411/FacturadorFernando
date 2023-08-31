@@ -129,7 +129,7 @@ public class ServicioCliente {
             Query query = em.createQuery("SELECT c FROM Cliente c WHERE (c.cliNombre like :cliNombre AND c.codTipoambiente=:codTipoambiente) OR c.cliNombres LIKE '%CONSUMIDOR%'");
             query.setParameter("cliNombre", "%" + buscar + "%");
             query.setParameter("codTipoambiente", codTipoambiente);
-            query.setMaxResults(200);
+            //query.setMaxResults(200);
             listaClientes = (List<Cliente>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
