@@ -136,6 +136,16 @@
                                     tooltiptext="Descargar"
                                     label="Descargar Registros de Factura"
                                 />
+                                
+                                <zk if="${vm.codTipoAmbiente==78}"  >
+                                <button 
+                                    class="fa-solid fa-file-excel btn_fact btn_access"
+                                    onClick="@command('exportListboxToExcelPersonalizado')"  
+                                    tooltiptext="Descargar"
+                                    label="Descargar Registros de Factura Personalizado"
+                                    style="font-size:11px;"
+                                />
+                                </zk>
                             </div>
                         </div>
                     </div>
