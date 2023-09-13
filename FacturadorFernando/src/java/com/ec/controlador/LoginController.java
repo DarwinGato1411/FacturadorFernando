@@ -50,7 +50,7 @@ public class LoginController extends SelectorComposer<Component> {
 
     public LoginController() {
        
-        sweetAltert("warning", "Atención!", "Su pago es requerido hasta el 31 de julio, caso contrario se procederá la elimininación de la información");
+        //sweetAltert("warning", "Atención!", "Su pago es requerido hasta el 31 de julio, caso contrario se procederá la elimininación de la información");
     }
 
     @Listen("onClick=#buttonEntrar; onOK=#loginWin")
