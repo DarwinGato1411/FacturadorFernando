@@ -129,6 +129,7 @@ public class NotaCreditoDebitoVm {
     private String facturaDescripcion = "";
     private Integer numeroFactura = 0;
     private String numeroFacturaText = "";
+    private String motivo="";
     private Integer numeroProforma = 0;
     private Date fechafacturacion = new Date();
     private static BigDecimal DESCUENTOGENERAL = BigDecimal.valueOf(5.0);
@@ -942,6 +943,7 @@ public class NotaCreditoDebitoVm {
             creditoDebito.setPuntoemision(amb.getAmPtoemi());
             creditoDebito.setTipodocumento("04");
             creditoDebito.setTipodocumentomod("01");
+            creditoDebito.setFacMotivo(getMotivo());
 
             servicioNotaCredito.guardarNotaCreditoDebito(detalleFactura, creditoDebito);
 
@@ -1164,4 +1166,11 @@ public class NotaCreditoDebitoVm {
         this.numeroFacturaText = numeroFacturaText;
     }
 
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
+    }
 }

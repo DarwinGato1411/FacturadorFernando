@@ -252,6 +252,7 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 	<field name="mensajeinf" class="java.lang.String"/>
 	<field name="numero_factura" class="java.lang.String"/>
 	<field name="fecha_emision_factura" class="java.sql.Date"/>
+	<field name="fac_motivo" class="java.lang.String"/>
 	<field name="for_nombre" class="java.lang.String"/>
 	<field name="for_codigo" class="java.lang.String"/>
 	<field name="isprincipal" class="java.lang.Boolean"/>
@@ -492,23 +493,21 @@ where nota_credito_debito.fac_numero=$P{numfactura} and nota_credito_debito.cod_
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fechafactura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="366" width="284" height="20"/>
+				<reportElement x="11" y="366" width="117" height="20"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[Razon de Modificacion]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="328" y="366" width="222" height="20"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[DEVOLUCION]]></text>
+				<text><![CDATA[Razon de Modificacion:]]></text>
 			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="26" y="14" width="219" height="70"/>
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="137" y="366" width="413" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_motivo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

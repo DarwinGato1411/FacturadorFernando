@@ -179,6 +179,10 @@ public class NotaCreditoDebito implements Serializable {
     private Date facFechaSustento;
     @Column(name = "mensajeinf")
     private String mensajeInf;
+    
+    @Column(name = "fac_motivo")
+    private String facMotivo;
+    
     @OneToMany(mappedBy = "idNota")
     private Collection<DetalleNotaDebitoCredito> detalleNotaDebitoCreditoCollection;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
@@ -523,8 +527,16 @@ public class NotaCreditoDebito implements Serializable {
     public void setMensajeInf(String mensajeInf) {
         this.mensajeInf = mensajeInf;
     }
-    
 
+    public String getFacMotivo() {
+        return facMotivo;
+    }
+
+    public void setFacMotivo(String facMotivo) {
+        this.facMotivo = facMotivo;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
