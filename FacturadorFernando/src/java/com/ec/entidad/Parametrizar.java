@@ -143,6 +143,8 @@ public class Parametrizar implements Serializable {
     private String parPuerto;
     @Column(name = "par_contratado")
     private BigDecimal parContratado;
+    @Column(name = "par_bloqueo_sistema")
+    private Boolean parBloqueoSistema;
 
     public Parametrizar() {
     }
@@ -479,6 +481,14 @@ public class Parametrizar implements Serializable {
 
     public void setParContratado(BigDecimal parContratado) {
         this.parContratado = parContratado;
+    }
+
+    public Boolean getParBloqueoSistema() {
+        return parBloqueoSistema == null ? Boolean.FALSE : parBloqueoSistema;
+    }
+
+    public void setParBloqueoSistema(Boolean parBloqueoSistema) {
+        this.parBloqueoSistema = parBloqueoSistema;
     }
 
 }

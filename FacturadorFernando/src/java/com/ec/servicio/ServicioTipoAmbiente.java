@@ -122,7 +122,7 @@ public class ServicioTipoAmbiente {
          
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta tipoambiente");
+            System.out.println("Error en lsa consulta  "+e.getMessage());
         } finally {
             em.close();
         }

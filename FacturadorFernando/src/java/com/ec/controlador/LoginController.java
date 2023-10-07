@@ -5,6 +5,7 @@
 package com.ec.controlador;
 
 import com.ec.entidad.NumeroDocumentosEmitidos;
+import com.ec.entidad.Parametrizar;
 import com.ec.seguridad.AutentificadorLogeo;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.GrupoUsuarioEnum;
@@ -52,8 +53,18 @@ public class LoginController extends SelectorComposer<Component> {
         if (servicioAuth.login(account.getValue(), password.getValue())) {
             Session sess = Sessions.getCurrent();
             UserCredential cre = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
-
+            if (cre.getUsuarioSistema().getUsuLogin().toUpperCase().contains("SUPER")) {
+                Executions.sendRedirect("/superadmin/consumo.zul");
+            return;
+            }
+            Parametrizar param = servicioParametrizar.FindALlParametrizar();
+            if (param.getParBloqueoSistema()) {
+                Clients.showNotification("El sistema se encuentra bloqueado contactese con el administrador",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                return;
+            }
             if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.USUARIO.getCodigo()) {
+
                 NumeroDocumentosEmitidos emitidos = servicioNumeroDocumentosEmitidos.findByEmpresa(cre.getTipoambiente().getCodTipoambiente());
 
                 numeroDocumentos = emitidos == null ? 0 : emitidos.getNumero().intValue();
@@ -63,7 +74,7 @@ public class LoginController extends SelectorComposer<Component> {
                         Executions.sendRedirect("/venta/facturar.zul");
                     } else {
                         Clients.showNotification("Su plan ilimitado no ha sido renovado contactese con el administrador.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                     }
 
                 } else {
@@ -72,8 +83,8 @@ public class LoginController extends SelectorComposer<Component> {
 
                     } else {
                         Clients.showNotification("El numero de documentos emitidos supera al numero de documentos contratado.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
-                        
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+
                     }
 
                 }
@@ -84,7 +95,7 @@ public class LoginController extends SelectorComposer<Component> {
 
         } else {
             Clients.showNotification("Usuario o Contraseña incorrecto. \n Contactese con el administrador.",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
 
         }
 
@@ -93,7 +104,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick= #linkOlvideContrasena")
     public void linkOlvideContrasena() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/olvidemiclave.zul", null, null);
+                "/nuevo/olvidemiclave.zul", null, null);
         window.doModal();
     }
 
@@ -110,7 +121,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick = #btnRegistra")
     public void btnRegistra() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/registrousuario.zul", null, null);
+                "/nuevo/registrousuario.zul", null, null);
         window.doModal();
 
     }
