@@ -83,7 +83,6 @@ public class ListaVentaRuta {
         Calendar calendar = Calendar.getInstance(); //obtiene la fecha de hoy 
         //  calendar.add(Calendar.DATE, -7); //el -3 indica que se le restaran 3 dias 
         inicio = calendar.getTime();
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -94,7 +93,7 @@ public class ListaVentaRuta {
 //        amb = servicioTipoAmbiente.FindALlTipoambiente();
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
+                + amb.getAmDirXml();
 
     }
 
@@ -226,21 +225,25 @@ public class ListaVentaRuta {
 
                 /*Detalle de factura GLP*/
                 DetalleFactura detalleFactura = new DetalleFactura(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad())),
-                            prodGLP.getProdNombre(),
-                            BigDecimal.valueOf(1.160714286),
-                            BigDecimal.valueOf(1.30),
-                            prodGLP,
-                            factura,
-                            "NORMAL");
-                detalleFactura.setDetIva(BigDecimal.valueOf(0.1392857143));
-                detalleFactura.setDetTotalconiva(BigDecimal.valueOf(1.3));
+                        prodGLP.getProdNombre(),
+                        BigDecimal.valueOf(1.160714286),
+                        BigDecimal.valueOf(1.30),
+                        prodGLP,
+                        factura,
+                        "NORMAL");
+                detalleFactura.setDetIva(BigDecimal.valueOf(0.1392857143).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                detalleFactura.setDetTotalconiva(BigDecimal.valueOf(1.3).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                detalleFactura.setDetTotaldescuentoiva(BigDecimal.valueOf(1.3).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                detalleFactura.setDetSubtotaldescuentoporcantidad(BigDecimal.valueOf(1.160714286).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                detalleFactura.setDetTotaldescuento(BigDecimal.ZERO);
+
                 detalleFactura.setDetSubtotaldescuento(BigDecimal.valueOf(1.160714286));
-                detalleFactura.setDetTotaldescuento(BigDecimal.valueOf(1.3));
+
                 detalleFactura.setDetPordescuento(BigDecimal.ZERO);
                 detalleFactura.setDetValdescuento(BigDecimal.ZERO);
-                detalleFactura.setDetTotaldescuentoiva(BigDecimal.valueOf(1.3));
+
                 detalleFactura.setDetCantpordescuento(BigDecimal.ZERO);
-                detalleFactura.setDetSubtotaldescuentoporcantidad(BigDecimal.valueOf(1.160714286));
+
                 detalleFactura.setDetCodTipoVenta("0");
                 detalleFactura.setDetCodIva("2");
                 detalleFactura.setDetCodPorcentaje("2");
@@ -250,21 +253,26 @@ public class ListaVentaRuta {
                 if (ventaRuta.getTransporte().equals("S")) {
                     /*Detalle de factura TRANSPORTE*/
                     DetalleFactura detalleFacturaTr = new DetalleFactura(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad())),
-                                prodTransporte.getProdNombre(),
-                                BigDecimal.valueOf(1.071428571),
-                                BigDecimal.valueOf(1.20),
-                                prodTransporte,
-                                factura,
-                                "NORMAL");
-                    detalleFacturaTr.setDetIva(BigDecimal.valueOf(0.1285714286));
-                    detalleFacturaTr.setDetTotalconiva(BigDecimal.valueOf(1.2));
+                            prodTransporte.getProdNombre(),
+                            BigDecimal.valueOf(1.071428571),
+                            BigDecimal.valueOf(1.20),
+                            prodTransporte,
+                            factura,
+                            "NORMAL");
+                    
+                    detalleFacturaTr.setDetIva(BigDecimal.valueOf(0.1285714286).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                    detalleFacturaTr.setDetTotalconiva(BigDecimal.valueOf(1.2).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                    detalleFacturaTr.setDetTotaldescuentoiva(BigDecimal.valueOf(1.2).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                    detalleFacturaTr.setDetSubtotaldescuentoporcantidad(BigDecimal.valueOf(1.071428571).multiply(BigDecimal.valueOf(Double.valueOf(ventaRuta.getCantidad()))));
+                    detalleFacturaTr.setDetTotaldescuento(BigDecimal.ZERO);
+
                     detalleFacturaTr.setDetSubtotaldescuento(BigDecimal.valueOf(1.071428571));
-                    detalleFacturaTr.setDetTotaldescuento(BigDecimal.valueOf(1.2));
+                    
                     detalleFacturaTr.setDetPordescuento(BigDecimal.ZERO);
                     detalleFacturaTr.setDetValdescuento(BigDecimal.ZERO);
-                    detalleFacturaTr.setDetTotaldescuentoiva(BigDecimal.valueOf(1.2));
+                    
                     detalleFacturaTr.setDetCantpordescuento(BigDecimal.ZERO);
-                    detalleFacturaTr.setDetSubtotaldescuentoporcantidad(BigDecimal.valueOf(1.071428571));
+                    
                     detalleFacturaTr.setDetCodTipoVenta("0");
                     detalleFacturaTr.setDetCodIva("2");
                     detalleFacturaTr.setDetCodPorcentaje("2");
@@ -277,14 +285,14 @@ public class ListaVentaRuta {
             }
             findBuscarDocumentos();
             Clients.showNotification("Sus facturas fueron generadas correctamente..",
-                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 2000, true);
+                    Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 2000, true);
         }
     }
 
     @Command
     @NotifyChange({"listaVentaRuta"})
     public void cargarVentas()
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
     }
     /*subir rchivo*/
@@ -299,8 +307,8 @@ public class ListaVentaRuta {
 
         try {
             String folderDescargados = PATH_BASE + File.separator + "VENTARUTA"
-                        + File.separator + new Date().getYear()
-                        + File.separator + new Date().getMonth();
+                    + File.separator + new Date().getYear()
+                    + File.separator + new Date().getMonth();
 
             /*EN EL CASO DE NO EXISTIR LOS DIRECTORIOS LOS CREA*/
             File folderGen = new File(folderDescargados);
@@ -341,15 +349,15 @@ public class ListaVentaRuta {
 
                     /*ARMA EL OBJETO PRA SUBIR*/
                     nuevaVenta = new VentaRuta(camposInd[0],//cedula
-                                camposInd[1].toUpperCase(),//nombre
-                                camposInd[8],//cantidad
-                                camposInd[2].toUpperCase(),//direccion
-                                camposInd[4],//correo
-                                camposInd[3],//celular
-                                camposInd[5],//semana
-                                new Date(new Date().getYear(), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[0])),//fecha
-                                camposInd[6],//codigo venta
-                                "N");
+                            camposInd[1].toUpperCase(),//nombre
+                            camposInd[8],//cantidad
+                            camposInd[2].toUpperCase(),//direccion
+                            camposInd[4],//correo
+                            camposInd[3],//celular
+                            camposInd[5],//semana
+                            new Date(new Date().getYear(), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[0])),//fecha
+                            camposInd[6],//codigo venta
+                            "N");
                     nuevaVenta.setTransporte(camposInd[9]);
                     /*CREAR EL CLIENTE SI NO EXISTE*/
                     Cliente buscado = servicioCliente.FindClienteForCedula(camposInd[0], amb);
