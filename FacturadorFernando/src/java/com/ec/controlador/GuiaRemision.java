@@ -113,6 +113,8 @@ public class GuiaRemision {
     private String numeroGuiaRecibida = "";
     private String amRuc = "";
     private String guiaObservacion = "";
+    
+     public static Cliente buscarClienteEnt = new Cliente();
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
@@ -144,7 +146,7 @@ public class GuiaRemision {
                     "/venta/buscarclienteguia.zul", null, map);
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente +" "+idCliente);
-        clienteBuscado = servicioCliente.FindClienteForCedulaID(buscarCliente,idCliente,amb);
+        clienteBuscado = buscarClienteEnt;
         if (clienteBuscado != null) {
             llegada = clienteBuscado.getCliDireccion();
         }
@@ -157,6 +159,8 @@ public class GuiaRemision {
         System.out.println("cliente seleccionado " + valor.getCliCedula());
         buscarCliente = valor.getCliCedula();
         idCliente=valor.getIdCliente();
+        /*seleccion del cliente a registrar en la guia */
+        buscarClienteEnt=valor;
         windowClienteBuscarGuia.detach();
 
     }
