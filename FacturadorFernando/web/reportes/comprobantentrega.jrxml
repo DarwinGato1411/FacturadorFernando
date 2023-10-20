@@ -337,7 +337,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="238" splitType="Stretch">
+		<band height="221" splitType="Stretch">
 			<textField isBlankWhenNull="true">
 				<reportElement x="241" y="57" width="111" height="20"/>
 				<textElement>
@@ -451,7 +451,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="114" y="190" width="265" height="48"/>
+				<reportElement positionType="Float" x="114" y="190" width="265" height="30"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
