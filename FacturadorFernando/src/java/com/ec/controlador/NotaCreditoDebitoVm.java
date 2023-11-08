@@ -186,7 +186,7 @@ public class NotaCreditoDebitoVm {
 
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
+                + amb.getAmDirXml();
 
 //        Session sess = Sessions.getCurrent();
 //        UserCredential cre = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -286,7 +286,7 @@ public class NotaCreditoDebitoVm {
 
             if (valor.getTotal() == null) {
                 Clients.showNotification("Ingrese un valor en el subtotal",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
                 return;
             } else {
 
@@ -433,6 +433,92 @@ public class NotaCreditoDebitoVm {
 //            Messagebox.show("Ocurrio un error al calcular los valores" + e, "Atención", Messagebox.OK, Messagebox.ERROR);
 //        }
 //    }
+    @Command
+    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "subTotalBaseCero"})
+    public void calcularValores(@BindingParam("valor") DetalleFacturaDAO valor) {
+        try {
+            BigDecimal factorIva = (parametrizar.getParIva().divide(BigDecimal.valueOf(100.0)));
+            BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
+
+            if (valor.getProducto().getProdEsproducto()) {
+                Clients.showNotification("Solo se puede cambiar el precio en servicios",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                return;
+            }
+//            Kardex kardex = servicioKardex.FindALlKardexs(valor.getProducto());
+//            if (kardex.getKarTotal().intValue() < valor.getCantidad().intValue()) {
+//               // valor.setCantidad(kardex.getKarTotal());
+//                Clients.showNotification("Verifique el stock del producto cuenta con " + kardex.getKarTotal().intValue() + " en estock",
+//                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+//
+//            }
+            if (valor.getCantidad() == null) {
+                return;
+            }
+
+            if (valor.getCantidad().doubleValue() <= 0) {
+                return;
+            }
+
+            if (valor.getProducto() == null) {
+                return;
+            }
+            /*SERVICOS */
+            if (!valor.getEsProducto()) {
+
+                valor.setTotal(valor.getDetTotaldescuento());
+            }
+            if (valor.getTotalInicial().doubleValue() == 0) {
+                valor.setTotal(valor.getDetTotaldescuento());
+            }
+
+            if (valor.getCantidad().intValue() > 0) {
+                BigDecimal porcentajeDesc = BigDecimal.ZERO;
+                BigDecimal valorDescuentoIva = BigDecimal.ZERO;
+//                BigDecimal porcentajeDesc = valor.getDetPordescuento().divide(BigDecimal.valueOf(100.0), 4, RoundingMode.FLOOR);
+//                BigDecimal valorDescuentoIva = valor.getTotal().multiply(porcentajeDesc);
+
+                BigDecimal valorIva = valor.getSubTotalDescuento().multiply(factorIva).multiply(valor.getCantidad());
+//                valor.setDetIva(valorIva);
+                //valor unitario con descuento ioncluido iva
+                BigDecimal valorTotalIvaDesc = valor.getDetTotaldescuento().subtract(valorDescuentoIva);
+
+                //valor unitario sin iva con descuento
+                BigDecimal subTotalDescuento = BigDecimal.ZERO;
+                if (valor.getProducto().getProdGrabaIva()) {
+                    subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
+                } else {
+                    subTotalDescuento = valorTotalIvaDesc;
+                }
+                valor.setSubTotal(subTotalDescuento);
+                valor.setSubTotalDescuento(subTotalDescuento);
+                //valor del descuento
+                BigDecimal valorDescuento = valor.getSubTotal().subtract(valor.getSubTotalDescuento());
+                valor.setDetValdescuento(valorDescuento);
+                //valor del iva con descuento
+                BigDecimal valorIvaDesc = BigDecimal.ZERO;
+                if (valor.getProducto().getProdGrabaIva()) {
+                    valorIvaDesc = subTotalDescuento.multiply(factorIva).multiply(valor.getCantidad());
+                } else {
+                    valorIvaDesc = BigDecimal.ZERO;
+                }
+
+                valor.setDetIva(valorIvaDesc);
+
+                //valor total con decuento y con iva
+                valor.setDetTotaldescuento(valorTotalIvaDesc);
+                //cantidad por subtotal con descuento
+                valor.setDetSubtotaldescuentoporcantidad(subTotalDescuento.multiply(valor.getCantidad()));
+                valor.setDetTotalconivadescuento(valor.getCantidad().multiply(valorTotalIvaDesc));
+                valor.setDetTotalconiva(valor.getCantidad().multiply(valor.getTotal()));
+                valor.setDetCantpordescuento(valorDescuento.multiply(valor.getCantidad()));
+            }
+            calcularValoresTotales();
+        } catch (Exception e) {
+            Messagebox.show("Ocurrio un error al calcular los valores" + e, "Atención", Messagebox.OK, Messagebox.ERROR);
+        }
+    }
+
     private void getDetallefactura() {
         setListaDetalleFacturaDAOMOdel(new ListModelList<DetalleFacturaDAO>(getListaDetalleFacturaDAODatos()));
         ((ListModelList<DetalleFacturaDAO>) listaDetalleFacturaDAOMOdel).setMultiple(true);
@@ -697,7 +783,7 @@ public class NotaCreditoDebitoVm {
         final HashMap<String, ParamFactura> map = new HashMap<String, ParamFactura>();
         map.put("valor", paramFactura);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/venta/buscarcliente.zul", null, map);
+                "/venta/buscarcliente.zul", null, map);
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
         clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
@@ -1012,7 +1098,7 @@ public class NotaCreditoDebitoVm {
 
                 //  con = emf.unwrap(Connection.class);
                 String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                            .getRealPath("/reportes");
+                        .getRealPath("/reportes");
                 String reportPath = "";
 //                con = ConexionReportes.Conexion.conexion();
 
@@ -1039,7 +1125,7 @@ public class NotaCreditoDebitoVm {
 //para pasar al visor
                 map.put("pdf", fileContent);
                 org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                            "/venta/contenedorReporte.zul", null, map);
+                        "/venta/contenedorReporte.zul", null, map);
                 window.doModal();
                 con.close();
             }

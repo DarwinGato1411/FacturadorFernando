@@ -313,7 +313,6 @@ public class ListaFacturas {
             }
 
         }
-
     }
 
     //buscart notas de venta
