@@ -15,10 +15,8 @@
 }
 
 .all_wrapper{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
+    display:flex;
     align-items: center;
-
     width: 100vw;
     height: 100vh;
     background: url(https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2017/07/11110156/s3-blog-importancia-facturacion-3-min.png);
@@ -30,7 +28,7 @@
 
 .all_wrapper .contenedorInico{
     background-color: rgba(80, 134, 193, 0.7);
-    width: 100%;
+    width: 70%;
     height: 100%;
 }
 
@@ -38,18 +36,16 @@
 .all_wrapper .container_wrapper_signin_root{
     margin: auto;
     height: 100%;
-    width: 100%;
+     width: 30%;
     display: grid;
-
 }
 
 .all_wrapper .container_wrapper_signin_root .wapper_registro{
-    width: 80%;
+    height: 100%;
+    width: 100%
 }
 
 .all_wrapper .fondo{
-
-
     top:0;
     width: 100vw;
     height: 100vh;
@@ -101,7 +97,7 @@ body {
     margin: auto;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.63);
     background-color: #fff;
-    border-radius: 20px;
+    
     padding: 2em;
     position: relative;
     z-index: 3;
@@ -653,7 +649,7 @@ o .wrapper_all_inputs .icon_eye,
 
 .contenedorInico .contenedorPlanes .contacto{
     margin-top: 5px;
-    
+
 }
 
 .contenedorInico .contenedorPlanes .contacto .title{
