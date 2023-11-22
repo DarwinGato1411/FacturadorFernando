@@ -9,107 +9,76 @@
 <zk >
 
 
-    <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
-         
-         
-        <div class="contenedorInico">
-            <div class="contenedorPlanes">
-                <div class="titulo">
-                    PLANES
-                </div>
-                <div class="planes">
-                    <span># Documentos</span>
-                    <span>VALOR DEFACT</span>
-                    <span>12</span>
-                    <span>$ 15.99</span>
-                    <span>24</span>
-                    <span>$ 20.99</span>
-                    <span>36</span>
-                    <span>$ 26.99</span>
-                    <span>48</span>
-                    <span>$ 29.99</span>
-                    <span>60</span>
-                    <span>$ 33.99</span>
-                    <span>ILIMITADO MENSUAL</span>
-                    <span>$ 9.99</span>
-                    <span>ILIMITADO ANUAL</span>
-                    <span>$ 100</span>
-                </div>
-                <div class="contacto">
-                    <div class="title">
-                        
-                        LOS VALORES REGISTRADOS NO INCLUYEN IVA
-                    </div>
-                    <div class="info">
-                        <span>------------------------</span>
-                        <span>REGISTRO GRATUITO</span>
-                        <span>CONTACTOS:</span>
-                        <span>098 817 6386</span>
-                        <span>Oficina - Juan Carlos Bedoya</span>
-                        <span>------------------------</span>
-                        <span>099 742 8125</span>
-                        <span>Ing. Lady Medina</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-            <div class="container_wrapper_signin_root">
-            <div class="wapper_registro wrapper_forgot wrapper_signin">
+    <div class="login_container"  id="loginWin" apply="com.ec.controlador.LoginController">
+        <div class="wrapper_login">
+            <div class="container_img">
+
+                <image src="./imagenes/deckxel/logow.png" class="logo"/>
+               <!-- <div class="wrapper_title">
+                    <span class="title">Sistema de Facturación Electrónica</span>
                    
-                <image src="./imagenes/deckxel/logo.png" class="logo" />
-                <div class="info_wrapper info_wrapper_forgot">
-                    <span class="title">Iniciar Sesión</span>
-                    <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
-                </div>
-                <div class="wrapper_all_inputs">
-                    <div class="left">
-                        <div class="wrapper_input">
-                            <span class="fas fa-user icon "> </span>
-                            <textbox 
-                                type="text" 
-                                placeholder="Usuario" 
-                                class="input" 
-                                id="account"
-                                onCreate="self.focus()"
-                            />
-                        </div>
-                        <div class="wrapper_input">
-                            <span class="fas fa-key icon "> </span>
-                            <textbox 
-                                type="password" 
-                                placeholder="Contraseña" 
-                                id="password"
-                                class="input input_password"
-                            />
-                        </div>
+                    <div class="desc">
+                        Estimado usuario envenido a nuestro sistema.
                     </div>
-                </div>
-                <div class="forgot_password_root" id="linkOlvideContrasena">
-                    Olvide la contraseña
+                    <div class="desc">
+                       Obten tu firma electronica con nosotros.
+                    </div>
+                    <div class="desc">
+                       Asesoramiento directo.
+                    </div>
+                    <div class="desc">DECKXEL</div>
+                   <div class="desc">099 742 8125   </div>
+                   <div class="desc">www.deckxel.com   </div>
+                    <button class="btn btn_reg" id="btnRegistra" >Registro</button>
+                </div> -->
+            </div>
+            <div class="container_signin">
+                <image src="./imagenes/pichincha/logo2.png" class="logo"/>
+                <span class="title" >Iniciar Sesión</span>
+                <span class="subtitle">Bienvenido su mejor opción en facturación electrónica</span> 
+                <div class="wrapper_all_inputs">
+                    <div class="wrapper_input">
+                        <span class="fas fa-user icon"></span>
+                        <textbox 
+                            type="text" 
+                            placeholder="Usuario" 
+                            class="input"
+                            id="account"
+                            onCreate="self.focus()"
+                        />
+                    </div>
+                    <div class="wrapper_input">
+                        <span class="fas fa-lock icon"></span>
+                        <textbox 
+                            type="password" 
+                            placeholder="Contraseña" 
+                             id="password"
+                            class="input input_password"
+                        />
+                        <span class="fa-solid fa-eye icon_eye icon"></span>
+                    </div>
                 </div>
 
-                <div class="wrapper_button">
-                    <button class="btn btn_reg" id="buttonEntrar">
-                        Iniciar Sesión
+                <!--<span class="forgot_text" id="linkOlvideContrasena">Olvide mi contraseña</span>-->
+                
+                <div class="wrapper_buttons">
+                    <button 
+                        class="btn btn_sign" 
+                        id="buttonEntrar"
+                    >Iniciar Sesión
                     </button>
-                    <span class="btn btn_reg" id="btnRegistra">Registro</span>
+<!--                    <button 
+                        class="btn btn_sign_reg"
+                        id="btnRegistra"
+                    >Registro
+                    </button>-->
                 </div>
                 
+                
             </div>
-        </div>     
-       
-        
-
-    </div>
-
-    <div class="wrapper_loading loading_inicio">
-        <div class="lds-ring">
-            <div />
-            <div />
-            <div />
-            <div />
         </div>
     </div>
+
+  
 
 </zk>

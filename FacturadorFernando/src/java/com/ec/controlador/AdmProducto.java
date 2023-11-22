@@ -108,7 +108,7 @@ public class AdmProducto {
 //         = servicioTipoAmbiente.FindALlTipoambiente();
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
+                + amb.getAmDirXml();
         FOLDER_CODIGO_BARRAS = PATH_BASE + File.separator + "CODIGOBARRAS";
 
         File folderGen = new File(FOLDER_CODIGO_BARRAS);
@@ -195,7 +195,7 @@ public class AdmProducto {
         for (Producto producto : listaProducto) {
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/codigoqr");
+                    .getRealPath("/codigoqr");
             String reportPath = "";
             System.out.println("PATh codigos " + reportFile);
             pathQR = reportFile + reportPath + File.separator + producto.getProdNombre() + ".JPEG";
@@ -256,7 +256,7 @@ public class AdmProducto {
     public void nuevoCliente() {
         buscarNombre = "";
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/producto.zul", null, null);
+                "/nuevo/producto.zul", null, null);
         window.doModal();
         findLikeNombre();
         getProductosModel();
@@ -269,7 +269,7 @@ public class AdmProducto {
         final HashMap<String, Producto> map = new HashMap<String, Producto>();
         map.put("valor", valor);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/producto.zul", null, map);
+                "/nuevo/producto.zul", null, map);
         window.doModal();
         // findLikeNombre();
         // getProductosModel();
@@ -324,7 +324,7 @@ public class AdmProducto {
 
     @Command
     public void reporteCodigosQR() throws JRException, IOException,
-                ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
         EntityManager emf = HelperPersistencia.getEMF();
 
         try {
@@ -334,7 +334,7 @@ public class AdmProducto {
 
             con = ConexionReportes.Conexion.conexion();
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
             //con = conexionReportes.conexion();
 
@@ -358,7 +358,7 @@ public class AdmProducto {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
 //        con.close();
             emf.getTransaction().commit();
@@ -400,7 +400,7 @@ public class AdmProducto {
     }
 
     public void reporteCodigosBarras() throws JRException, IOException,
-                ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
+            ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
         EntityManager emf = HelperPersistencia.getEMF();
 
         try {
@@ -409,7 +409,7 @@ public class AdmProducto {
             con = emf.unwrap(Connection.class);
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
             //con = conexionReportes.conexion();
 
@@ -431,7 +431,7 @@ public class AdmProducto {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
 //        con.close();
             emf.getTransaction().commit();
@@ -667,6 +667,10 @@ public class AdmProducto {
             ch5.setCellValue(new HSSFRichTextString("Grava Iva (SI=1; NO=0)"));
             ch5.setCellStyle(estiloCelda);
 
+            HSSFCell ch6 = r.createCell(j++);
+            ch6.setCellValue(new HSSFRichTextString("Cantidad Inicial"));
+            ch6.setCellStyle(estiloCelda);
+
             int rownum = 1;
             int i = 0;
 
@@ -695,6 +699,9 @@ public class AdmProducto {
 
                 HSSFCell c4 = r.createCell(i++);
                 c4.setCellValue(new HSSFRichTextString(item.getProdGrabaIva() ? "1" : "0"));
+
+                HSSFCell c5 = r.createCell(i++);
+                c5.setCellValue(new HSSFRichTextString(item.getProdCantidadInicial().toString()));
                 /*autemta la siguiente fila*/
                 rownum += 1;
 
@@ -712,7 +719,7 @@ public class AdmProducto {
 
     }
 
-     @Command
+    @Command
     @NotifyChange({"listaProductosModel", "buscarNombre"})
     public void cargarProducto() {
 
@@ -723,14 +730,14 @@ public class AdmProducto {
 
                 if (!nombre.contains("xls")) {
                     Clients.showNotification("Su documento debe ser un archivo excel",
-                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
 
                     return;
                 }
 
                 System.out.println("media " + nombre);
                 Files.copy(new File(PATH_BASE + File.separator + "CARGAR" + File.separator + nombre),
-                            new ByteArrayInputStream(media.getByteData()));
+                        new ByteArrayInputStream(media.getByteData()));
 
                 String rutaArchivo = PATH_BASE + File.separator + "CARGAR" + File.separator + nombre;
 
@@ -748,7 +755,7 @@ public class AdmProducto {
                 for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
                     row = sheet.getRow(i);
 //                    for (int j = 0; j < row.getLastCellNum(); j++) {
-                    for (int j = 0; j < 6; j++) {
+                    for (int j = 0; j < 7; j++) {
 
                         if (servicioProducto.findLikeProdNombre(String.valueOf(row.getCell(1)), amb).isEmpty()) {
                             cell = row.getCell(j);
@@ -759,20 +766,23 @@ public class AdmProducto {
                             prod.setPordCostoVentaFinal(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(3)))));
                             prod.setProdCostoPreferencial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(4)))));
                             prod.setProdCostoPreferencialDos(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(5)))));
+                            prod.setProdEsproducto(true);
                             prod.setProdCostoPreferencialTres(BigDecimal.ZERO);
                             prod.setCodTipoambiente(amb);
                             prod.setProdCantMinima(BigDecimal.ONE);
                             prod.setProdFechaRegistro(new Date());
 
                             if (row.getCell(6) != null) {
-                                String valor =String.valueOf(row.getCell(6));
+                                String valor = String.valueOf(row.getCell(6));
                                 prod.setProdGrabaIva(String.valueOf(row.getCell(6)).contains("1") ? Boolean.TRUE : Boolean.FALSE);
 
                                 if (prod.getProdGrabaIva()) {
                                     BigDecimal precioIva = BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2))));
                                     BigDecimal precioCompra = precioIva.divide(BigDecimal.valueOf(1.12), 4, RoundingMode.FLOOR);
                                     prod.setPordCostoCompra(precioCompra);
+                                    prod.setProdIva(new BigDecimal(12));
                                 } else {
+                                    prod.setProdIva(new BigDecimal(0));
                                     prod.setPordCostoCompra(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2)))));
                                 }
 
@@ -780,7 +790,12 @@ public class AdmProducto {
                                 prod.setProdGrabaIva(Boolean.FALSE);
                                 prod.setPordCostoCompra(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2)))));
                             }
-                            prod.setProdCantidadInicial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(6)))));
+                            if (row.getCell(7) != null) {
+                                prod.setProdCantidadInicial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(7)))));
+                            } else {
+                                prod.setProdCantidadInicial(new BigDecimal(0));
+                            }
+
                             servicioProducto.crear(prod);
                             System.out.println("Valor: " + cell.toString());
                         } else {
@@ -795,11 +810,11 @@ public class AdmProducto {
                 inicializarKardex();
                 getProductosModel();
                 Clients.showNotification("Productos cargados correctamente",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
             }
         } catch (IOException | NumberFormatException e) {
             Clients.showNotification("Verifique le archivo para cargar",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
             e.printStackTrace();
 //            Messagebox.show("Upload failed");
         }
