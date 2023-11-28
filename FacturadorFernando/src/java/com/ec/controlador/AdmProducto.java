@@ -736,6 +736,7 @@ public class AdmProducto {
                 }
 
                 System.out.println("media " + nombre);
+                System.out.println(PATH_BASE + File.separator + "CARGAR" + File.separator + nombre);
                 Files.copy(new File(PATH_BASE + File.separator + "CARGAR" + File.separator + nombre),
                         new ByteArrayInputStream(media.getByteData()));
 
