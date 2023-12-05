@@ -242,22 +242,22 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmCodigoIce("0");
                 tipoambienteProd.setAmComprobanteImprime("factura.jasper");
 
-                servicioTipoAmbiente.crear(tipoambienteProd);
-
-                Parametrizar parametrizar = new Parametrizar();
-                parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
-                parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
-                parametrizar.setParRucEmpresa(tipoambiente.getAmRuc());
-                parametrizar.setParIva(BigDecimal.valueOf(12));
-                parametrizar.setParUtilidad(BigDecimal.ZERO);
-                parametrizar.setParUtilidadPreferencial(BigDecimal.TEN);
-                parametrizar.setParUtilidadPreferencialDos(BigDecimal.ZERO);
-                parametrizar.setParEstado(Boolean.FALSE);
-                parametrizar.setIsprincipal(Boolean.TRUE);
-                parametrizar.setParDescuentoGeneral(BigDecimal.ZERO);
-                parametrizar.setParCodigoIva("2");
-                parametrizar.setParIvaActual(BigDecimal.valueOf(12));
-                servicioParametrizar.crear(parametrizar);
+//                servicioTipoAmbiente.crear(tipoambienteProd);
+//
+//                Parametrizar parametrizar = new Parametrizar();
+//                parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
+//                parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
+//                parametrizar.setParRucEmpresa(tipoambiente.getAmRuc());
+//                parametrizar.setParIva(BigDecimal.valueOf(12));
+//                parametrizar.setParUtilidad(BigDecimal.ZERO);
+//                parametrizar.setParUtilidadPreferencial(BigDecimal.TEN);
+//                parametrizar.setParUtilidadPreferencialDos(BigDecimal.ZERO);
+//                parametrizar.setParEstado(Boolean.FALSE);
+//                parametrizar.setIsprincipal(Boolean.TRUE);
+//                parametrizar.setParDescuentoGeneral(BigDecimal.ZERO);
+//                parametrizar.setParCodigoIva("2");
+//                parametrizar.setParIvaActual(BigDecimal.valueOf(12));
+//                servicioParametrizar.crear(parametrizar);
             }
 
 //            usuarioSistema = new Usuario();

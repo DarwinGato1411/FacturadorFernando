@@ -67,11 +67,11 @@
                         id="buttonEntrar"
                     >Iniciar Sesión
                     </button>
-<!--                    <button 
+                    <button 
                         class="btn btn_sign_reg"
                         id="btnRegistra"
                     >Registro
-                    </button>-->
+                    </button>
                 </div>
                 
                 
