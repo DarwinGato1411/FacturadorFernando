@@ -104,7 +104,7 @@ public class ListaFacturas {
 
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
+                + amb.getAmDirXml();
 
         consultarFactura();
     }
@@ -177,7 +177,7 @@ public class ListaFacturas {
 
             map.put("valor", param);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/modificar/factura.zul", null, map);
+                    "/modificar/factura.zul", null, map);
             window.doModal();
 //            window.detach();
             buscarFechas();
@@ -195,7 +195,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/nuevo/retencionventa.zul", null, map);
+                    "/nuevo/retencionventa.zul", null, map);
             window.doModal();
             buscarFechas();
 
@@ -212,7 +212,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/paneles/infofactura.zul", null, map);
+                    "/paneles/infofactura.zul", null, map);
             window.doModal();
 
         } catch (Exception e) {
@@ -227,7 +227,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/detallepago.zul", null, map);
+                    "/venta/detallepago.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
@@ -246,7 +246,7 @@ public class ListaFacturas {
 
             map.put("valor", param);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/nuevo/notacrdb.zul", null, map);
+                    "/nuevo/notacrdb.zul", null, map);
             window.doModal();
 //            window.detach();
         } catch (Exception e) {
@@ -263,7 +263,7 @@ public class ListaFacturas {
             con = emf.unwrap(Connection.class);
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
             if (tipo.equals("COMP")) {
                 reportPath = reportFile + File.separator + "puntoventa.jasper";
@@ -295,7 +295,7 @@ public class ListaFacturas {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             System.out.println("ERROR EL PRESENTAR EL REPORTE " + e.getMessage());
@@ -407,7 +407,7 @@ public class ListaFacturas {
     @Command
     @NotifyChange({"lstFacturas"})
     public void autorizarSRI(@BindingParam("valor") Factura valor)
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         autorizarFacturasSRI(valor);
 
@@ -449,7 +449,7 @@ public class ListaFacturas {
     @Command
     @NotifyChange({"lstFacturas"})
     public void autorizarEnLote()
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         try {
             ParametroLote valor = new ParametroLote(fechainicio, fechafin);
@@ -457,7 +457,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/autorizalote.zul", null, map);
+                    "/venta/autorizalote.zul", null, map);
             window.doModal();
             consultarFacturaFecha();
         } catch (Exception e) {
@@ -469,7 +469,7 @@ public class ListaFacturas {
     @Command
     @NotifyChange({"lstFacturas"})
     public void reenviarEnLote()
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         try {
             ParametroLote valor = new ParametroLote(fechainicio, fechafin);
@@ -477,7 +477,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/reenvialote.zul", null, map);
+                    "/venta/reenvialote.zul", null, map);
             window.doModal();
             consultarFacturaFecha();
         } catch (Exception e) {
@@ -490,22 +490,22 @@ public class ListaFacturas {
 
         SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd");
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderEnviarCliente = PATH_BASE + File.separator + amb.getAmEnviocliente()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         /*EN EL CASO DE NO EXISTIR LOS DIRECTORIOS LOS CREA*/
         File folderGen = new File(folderGenerados);
@@ -534,9 +534,9 @@ public class ListaFacturas {
 
  /*PARA CREAR EL ARCHIVO XML FIRMADO*/
         String nombreArchivoXML = File.separator + "FACT-"
-                    + valor.getCodestablecimiento()
-                    + valor.getPuntoemision()
-                    + valor.getFacNumeroText() + ".xml";
+                + valor.getCodestablecimiento()
+                + valor.getPuntoemision()
+                + valor.getFacNumeroText() + ".xml";
 
 
         /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
@@ -557,7 +557,7 @@ public class ListaFacturas {
         archivo es la ruta del archivo xml generado
         nomre del archivo a firmar*/
         XAdESBESSignature.firmar(archivo, nombreArchivoXML,
-                    amb.getAmClaveAccesoSri(), amb, folderFirmado);
+                amb.getAmClaveAccesoSri(), amb, folderFirmado);
 
         f = new File(pathArchivoFirmado);
 
@@ -650,12 +650,12 @@ public class ListaFacturas {
                             }
                             if (valor.getIdCliente().getCliCorreo() != null) {
                                 mail.sendMailSimple(valor.getIdCliente().getCliCorreo(),
-                                            attachFiles,
-                                            "FACTURA ELECTRONICA",
-                                            valor.getFacClaveAcceso(),
-                                            valor.getFacNumeroText(),
-                                            valor.getFacTotal(),
-                                            valor.getIdCliente().getCliNombre(), amb);
+                                        attachFiles,
+                                        "FACTURA ELECTRONICA",
+                                        valor.getFacClaveAcceso(),
+                                        valor.getFacNumeroText(),
+                                        valor.getFacTotal(),
+                                        valor.getIdCliente().getCliNombre(), amb);
                             }
                         }
 
@@ -681,22 +681,22 @@ public class ListaFacturas {
     private void reenviarFactura(Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
         SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd");
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderEnviarCliente = PATH_BASE + File.separator + amb.getAmEnviocliente()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         /*EN EL CASO DE NO EXISTIR LOS DIRECTORIOS LOS CREA*/
         File folderGen = new File(folderGenerados);
@@ -725,9 +725,9 @@ public class ListaFacturas {
 
  /*PARA CREAR EL ARCHIVO XML FIRMADO*/
         String nombreArchivoXML = File.separator + "FACT-"
-                    + valor.getCodestablecimiento()
-                    + valor.getPuntoemision()
-                    + valor.getFacNumeroText() + ".xml";
+                + valor.getCodestablecimiento()
+                + valor.getPuntoemision()
+                + valor.getFacNumeroText() + ".xml";
 
 
         /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
@@ -748,7 +748,7 @@ public class ListaFacturas {
         archivo es la ruta del archivo xml generado
         nomre del archivo a firmar*/
         XAdESBESSignature.firmar(archivo, nombreArchivoXML,
-                    amb.getAmClaveAccesoSri(), amb, folderFirmado);
+                amb.getAmClaveAccesoSri(), amb, folderFirmado);
 
         f = new File(pathArchivoFirmado);
 
@@ -806,9 +806,9 @@ public class ListaFacturas {
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
                     XAdESBESSignature.firmar(archivoEnvioCliente,
-                                nombreArchivoXML,
-                                amb.getAmClaveAccesoSri(),
-                                amb, foldervoAutorizado);
+                            nombreArchivoXML,
+                            amb.getAmClaveAccesoSri(),
+                            amb, foldervoAutorizado);
 
                     fEnvio = new File(archivoEnvioCliente);
                 }
@@ -832,12 +832,12 @@ public class ListaFacturas {
                 }
                 if (valor.getIdCliente().getCliCorreo() != null) {
                     mail.sendMailSimple(valor.getIdCliente().getCliCorreo(),
-                                attachFiles,
-                                "FACTURA ELECTRONICA",
-                                valor.getFacClaveAcceso(),
-                                valor.getFacNumeroText(),
-                                valor.getFacTotal(),
-                                valor.getIdCliente().getCliNombre(), amb);
+                            attachFiles,
+                            "FACTURA ELECTRONICA",
+                            valor.getFacClaveAcceso(),
+                            valor.getFacNumeroText(),
+                            valor.getFacTotal(),
+                            valor.getIdCliente().getCliNombre(), amb);
                 }
 
             }
@@ -884,7 +884,7 @@ public class ListaFacturas {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/modificar/estadofact.zul", null, map);
+                    "/modificar/estadofact.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
@@ -1139,38 +1139,38 @@ public class ListaFacturas {
             DetalleFactura detalle = servicioDetalleFactura.findDetalleForIdFactuta(valor).get(0);
 
             linea = ("<ventas>\n"
-                        + "<datosRegistrador>\n"
-                        + "<numeroRUC>" + amb.getAmRuc().trim() + "</numeroRUC> \n"
-                        + "</datosRegistrador>\n"
-                        + "<datosVentas>\n"
-                        + "<venta>\n"
-                        + "<rucComercializador>" + amb.getAmRuc().trim() + "</rucComercializador> \n"
-                        + "<CAMVCpn>" + detalle.getDetCamvcpn() + "</CAMVCpn> \n"
-                        + "<serialVin>" + detalle.getDetSerialvin() + "</serialVin> \n"
-                        + "<nombrePropietario>" + valor.getIdCliente().getCliApellidos() + " " + valor.getIdCliente().getCliNombres() + "</nombrePropietario> \n"
-                        + "<tipoIdentificacionPropietario>" + detalle.getTipoIdentificacionPropietario() + "</tipoIdentificacionPropietario> \n"
-                        + "<numeroDocumentoPropietario>" + valor.getIdCliente().getCliCedula() + "</numeroDocumentoPropietario> \n"
-                        + "<tipoComprobante>1</tipoComprobante> \n"
-                        + "<establecimientoComprobante>" + amb.getAmEstab() + "</establecimientoComprobante> \n"
-                        + "<puntoEmisionComprobante>" + amb.getAmPtoemi() + "</puntoEmisionComprobante> \n"
-                        + "<numeroComprobante>" + valor.getFacNumero() + "</numeroComprobante> \n"
-                        + "<numeroAutorizacion>" + valor.getFacClaveAutorizacion() + "</numeroAutorizacion> \n"
-                        + "<fechaVenta>" + formato.format(valor.getFacFecha()) + "</fechaVenta> \n"
-                        + "<precioVenta>" + ArchivoUtils.redondearDecimales(valor.getFacTotal(), 2) + "</precioVenta> \n"
-                        + "<codigoCantonMatriculacion>" + detalle.getCodigoCantonMatriculacion() + "</codigoCantonMatriculacion> \n"
-                        + "<datosDireccion>\n"
-                        + "<tipo>" + detalle.getTipodir() + "</tipo> \n"
-                        + "<calle>" + detalle.getCalle() + "</calle> \n"
-                        + "<numero>" + detalle.getNumero() + "</numero> \n"
-                        + "<interseccion>" + detalle.getInterseccion() + "</interseccion> \n"
-                        + "</datosDireccion>\n"
-                        + "<datosTelefono>\n"
-                        + "<provincia>" + detalle.getProvincia() + "</provincia> \n"
-                        + "<numero>" + detalle.getNumerotel() + "</numero> \n"
-                        + "</datosTelefono>\n"
-                        + "</venta>\n"
-                        + "</datosVentas>\n"
-                        + "</ventas>");
+                    + "<datosRegistrador>\n"
+                    + "<numeroRUC>" + amb.getAmRuc().trim() + "</numeroRUC> \n"
+                    + "</datosRegistrador>\n"
+                    + "<datosVentas>\n"
+                    + "<venta>\n"
+                    + "<rucComercializador>" + amb.getAmRuc().trim() + "</rucComercializador> \n"
+                    + "<CAMVCpn>" + detalle.getDetCamvcpn() + "</CAMVCpn> \n"
+                    + "<serialVin>" + detalle.getDetSerialvin() + "</serialVin> \n"
+                    + "<nombrePropietario>" + valor.getIdCliente().getCliApellidos() + " " + valor.getIdCliente().getCliNombres() + "</nombrePropietario> \n"
+                    + "<tipoIdentificacionPropietario>" + detalle.getTipoIdentificacionPropietario() + "</tipoIdentificacionPropietario> \n"
+                    + "<numeroDocumentoPropietario>" + valor.getIdCliente().getCliCedula() + "</numeroDocumentoPropietario> \n"
+                    + "<tipoComprobante>1</tipoComprobante> \n"
+                    + "<establecimientoComprobante>" + amb.getAmEstab() + "</establecimientoComprobante> \n"
+                    + "<puntoEmisionComprobante>" + amb.getAmPtoemi() + "</puntoEmisionComprobante> \n"
+                    + "<numeroComprobante>" + valor.getFacNumero() + "</numeroComprobante> \n"
+                    + "<numeroAutorizacion>" + valor.getFacClaveAutorizacion() + "</numeroAutorizacion> \n"
+                    + "<fechaVenta>" + formato.format(valor.getFacFecha()) + "</fechaVenta> \n"
+                    + "<precioVenta>" + ArchivoUtils.redondearDecimales(valor.getFacTotal(), 2) + "</precioVenta> \n"
+                    + "<codigoCantonMatriculacion>" + detalle.getCodigoCantonMatriculacion() + "</codigoCantonMatriculacion> \n"
+                    + "<datosDireccion>\n"
+                    + "<tipo>" + detalle.getTipodir() + "</tipo> \n"
+                    + "<calle>" + detalle.getCalle() + "</calle> \n"
+                    + "<numero>" + detalle.getNumero() + "</numero> \n"
+                    + "<interseccion>" + detalle.getInterseccion() + "</interseccion> \n"
+                    + "</datosDireccion>\n"
+                    + "<datosTelefono>\n"
+                    + "<provincia>" + detalle.getProvincia() + "</provincia> \n"
+                    + "<numero>" + detalle.getNumerotel() + "</numero> \n"
+                    + "</datosTelefono>\n"
+                    + "</venta>\n"
+                    + "</datosVentas>\n"
+                    + "</ventas>");
 
             build.append(linea);
             /*IMPRIME EL XML DE LA FACTURA*/
@@ -1178,18 +1178,18 @@ public class ListaFacturas {
             String pathArchivoSalida = "";
 
             String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
-                        + File.separator + new Date().getYear()
-                        + File.separator + new Date().getMonth();
+                    + File.separator + new Date().getYear()
+                    + File.separator + new Date().getMonth();
 
             String nombreArchivoXML = File.separator + "MATRI-"
-                        + valor.getCodestablecimiento()
-                        + valor.getPuntoemision()
-                        + valor.getFacNumeroText() + ".xml";
+                    + valor.getCodestablecimiento()
+                    + valor.getPuntoemision()
+                    + valor.getFacNumeroText() + ".xml";
             /*ruta de salida del archivo XML 
             generados o autorizados para enviar al cliente 
             dependiendo la ruta enviada en el parametro del metodo */
             pathArchivoSalida = folderGenerados
-                        + nombreArchivoXML;
+                    + nombreArchivoXML;
 
             //String pathArchivoSalida = "D:\\";
             out = new FileOutputStream(pathArchivoSalida);
@@ -1218,8 +1218,8 @@ public class ListaFacturas {
     public void reenviarMail(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         AutorizarDocumentos aut = new AutorizarDocumentos();
 
@@ -1227,9 +1227,9 @@ public class ListaFacturas {
 
  /*PARA CREAR EL ARCHIVO XML FIRMADO*/
         String nombreArchivoXML = File.separator + "FACT-"
-                    + valor.getCodestablecimiento()
-                    + valor.getPuntoemision()
-                    + valor.getFacNumeroText() + ".xml";
+                + valor.getCodestablecimiento()
+                + valor.getPuntoemision()
+                + valor.getFacNumeroText() + ".xml";
 
 
         /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
@@ -1247,18 +1247,58 @@ public class ListaFacturas {
         MailerClass mail = new MailerClass();
         if (valor.getIdCliente().getCliCorreo() != null) {
             if (mail.sendMailSimple(valor.getIdCliente().getCliCorreo(),
-                        attachFiles,
-                        "FACTURA ELECTRONICA",
-                        valor.getFacClaveAcceso(),
-                        valor.getFacNumeroText(),
-                        valor.getFacTotal(),
-                        valor.getIdCliente().getCliNombre(), amb)) {
+                    attachFiles,
+                    "FACTURA ELECTRONICA",
+                    valor.getFacClaveAcceso(),
+                    valor.getFacNumeroText(),
+                    valor.getFacTotal(),
+                    valor.getIdCliente().getCliNombre(), amb)) {
                 System.out.println("ENVIO CORRECTO");
             } else {
                 System.out.println("CORREO NO ENVIADO");
             }
         }
 
+    }
+
+    @Command
+    public void exportarFacturaXML(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            FileOutputStream out = null;
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+
+            StringBuilder build = new StringBuilder();
+            String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
+                    + File.separator + new Date().getYear()
+                    + File.separator + new Date().getMonth();
+
+            AutorizarDocumentos aut = new AutorizarDocumentos();
+
+            /*Ubicacion del archivo firmado para obtener la informacion*/
+
+ /*PARA CREAR EL ARCHIVO XML FIRMADO*/
+            String nombreArchivoXML = File.separator + "FACTXML-"
+                    + valor.getCodestablecimiento()
+                    + valor.getPuntoemision()
+                    + valor.getFacNumeroText() + ".xml";
+
+
+            /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
+            String archivoEnvioCliente = "";
+
+            archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, valor.getFacFechaAutorizacion()==null?new Date(): valor.getFacFechaAutorizacion());
+//String pathArchivoSalida = "D:\\";
+         //   out = new FileOutputStream(archivoEnvioCliente);
+            //out.write(build.toString().getBytes());
+            //GRABA DATOS EN FACTURA//
+            File dosfile = new File(archivoEnvioCliente);
+            if (dosfile.exists()) {
+                FileInputStream inputStream = new FileInputStream(dosfile);
+                Filedownload.save(inputStream, new MimetypesFileTypeMap().getContentType(dosfile), dosfile.getName());
+            }
+        } catch (IOException e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
     }
 
 }

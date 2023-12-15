@@ -276,8 +276,8 @@ public class AutorizarDocumentos {
                         + "        <ptoEmi>" + amb.getAmPtoemi() + "</ptoEmi>\n"
                         + "        <secuencial>" + valor.getFacNumeroText() + "</secuencial>\n"
                         + "        <dirMatriz>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirMatriz>\n"
-                        + (amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : "")
-                        + (amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : amb.getAmRimpePopular() ? " <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : "")
+                        + (amb.getAmAgeRet()!=null?(amb.getAmAgeRet() ? "<agenteRetencion>1</agenteRetencion>\n" : ""):"")
+                        + (amb.getAmRimpe()!=null?(amb.getAmRimpe() ? "<contribuyenteRimpe>CONTRIBUYENTE R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : amb.getAmRimpePopular()!=null?(amb.getAmRimpePopular() ? " <contribuyenteRimpe>CONTRIBUYENTE NEGOCIO POPULAR - R\u00c9GIMEN RIMPE</contribuyenteRimpe>\n" : ""):""):"")
                         //  + "        <agenteRetencion>12345678</agenteRetencion>\n"
                         + "</infoTributaria>\n"
                         + "<infoFactura>\n"
@@ -310,9 +310,9 @@ public class AutorizarDocumentos {
                     No Objeto de Impuesto -->6 
                     EXENTO DE IVA 7   */
                         + "                 <codigoPorcentaje>" + valor.getCodigoPorcentaje() + "</codigoPorcentaje>\n"
-                        + "                 <baseImponible>" + valor.getFacTotalBaseGravaba().add(valor.getFacValorIce()).setScale(2, RoundingMode.FLOOR) + "</baseImponible>\n"
+                        + "                 <baseImponible>" + ArchivoUtils.redondearDecimales(valor.getFacTotalBaseGravaba().add(valor.getFacValorIce()),2) + "</baseImponible>\n"
                         + "                 <tarifa>" + valor.getFacPorcentajeIva() + "</tarifa>\n"
-                        + "                 <valor>" + valor.getFacIva().setScale(2, RoundingMode.FLOOR) + "</valor>\n"
+                        + "                 <valor>" + ArchivoUtils.redondearDecimales(valor.getFacIva(),2) + "</valor>\n"
                         + "              </totalImpuesto>\n"
                         + "         </totalConImpuestos>\n"
                         + "                 <propina>0</propina>\n"
@@ -361,7 +361,7 @@ public class AutorizarDocumentos {
                             + "                    <codigoPorcentaje>" + item.getDetCodPorcentaje() + "</codigoPorcentaje>\n"
                             + "                    <tarifa>" + item.getDetTarifa() + "</tarifa>\n"
                             + "                    <baseImponible>" + ArchivoUtils.redondearDecimales((item.getDetSubtotaldescuento().add(item.getDetValorIce())).multiply(item.getDetCantidad()), 2) + "</baseImponible>\n"
-                            + "                    <valor>" + item.getDetIva().setScale(2, RoundingMode.FLOOR) + "</valor>\n"
+                            + "                    <valor>" + ArchivoUtils.redondearDecimales(item.getDetIva(),2) + "</valor>\n"
                             + "                </impuesto>\n"
                             + (amb.getAmGrabaIce() ? valor.getFacValorIce().doubleValue() > 0 ? ICEIMPUESTO : "" : "")
                             + "            </impuestos>\n"

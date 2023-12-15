@@ -193,6 +193,7 @@
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
+                                <listheader width="3%"  label="" align="rigth" />        
                                     
                             </listhead>  
                             
@@ -436,6 +437,13 @@
                                                onClick="@command('reenviarMail',valor=each)" 
                                                class="btn-secondary btn-sm "       
                                                tooltiptext="Reenviar correo electronico"/>
+                                    </listcell>
+                                    <listcell  zclass = "mycss-listcell" >   
+                                        <image src="/iconos/xml.png"   
+                                               height="30px"  
+                                               onClick="@command('exportarFacturaXML',valor=each)" 
+                                               class="btn-secondary btn-sm "       
+                                               tooltiptext="Descargar XML"/>
                                     </listcell>
                                 </listitem>
                             </template>
