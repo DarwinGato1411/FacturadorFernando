@@ -18,7 +18,8 @@
         }
     </script>
 
-    <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
+    <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController"
+         onCreate="@command('verificaCaduca')">
 
         <div class="container_landing login_container">
 
@@ -37,8 +38,19 @@
                     <span class="title">FactuFast</span>
                     <span class="subtitle">SIEMPRE EVOLUCIONANDO CONTIGO</span>
                 </div>
+              
             </div>
-
+          
+            <div  apply="org.zkoss.bind.BindComposer" align="center" 
+                  viewModel="@id('vm') @init('com.ec.controlador.VerificaCaduca')" >
+                <div class="flexbox" visible="@bind(vm.caducaAct)">
+                    <label id="idCaduca" class="textCaduca"  value="Plataforma fuera de linea en " ></label>
+                    <label class="textCaduca"  value="@bind(vm.dias)" ></label>
+                    <label class="textCaduca"  value=" día(s), renovar con su proveedor" ></label>
+                </div>                  
+                
+            </div>
+ 
             <div class="main">
                 <div class="wrapper_main">
                     <div class="wrapper_items">
