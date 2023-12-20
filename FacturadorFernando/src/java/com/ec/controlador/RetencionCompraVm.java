@@ -92,6 +92,7 @@ public class RetencionCompraVm {
     public void afterCompose(@ExecutionArgParam("valor") CabeceraCompra valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
 //        amb = servicioTipoAmbiente.FindALlTipoambiente();
+        System.out.println("asdasdasdasd");
         if (valor != null) {
             this.cabeceraCompra = valor;
             RetencionCompra compraret = servicioRetencionCompra.findByCabeceraCompra(valor);
@@ -112,6 +113,7 @@ public class RetencionCompraVm {
                 retencionCompra.setCabFechaEmision(valor.getCabFecha());
                 accion = "NEW";
                 numeroRetencion();
+                
             }
             getDetallefactura();
         } else {
@@ -125,14 +127,10 @@ public class RetencionCompraVm {
     }
 
     public RetencionCompraVm() {
-       
-
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-
-
     }
 
     private void cargarRetencionExistente() {
@@ -169,10 +167,12 @@ public class RetencionCompraVm {
     }
 
     private int numeroRetencion() {
-        RetencionCompra recuperada = servicioRetencionCompra.findUtlimaRetencion();
+        RetencionCompra recuperada = servicioRetencionCompra.findUtlimaRetencion(amb);
+        System.out.println(recuperada.getRcoSecuencial());
         if (recuperada != null) {
-            // System.out.println("numero de factura " + recuperada);
+            
             numeroRetencion = recuperada.getRcoSecuencial() + 1;
+            System.out.println(numeroRetencion);
 
         } else {
             numeroRetencion = 1;

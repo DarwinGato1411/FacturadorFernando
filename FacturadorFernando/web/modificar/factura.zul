@@ -10,7 +10,7 @@
 }
         
     </style>
-  <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+   <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Facturar')" width="100%" class="wrapper_container_facturar">
     
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
@@ -115,6 +115,7 @@
                                         class="textoFechaDateBox"                              
                                         selectedItem="@bind(vm.facplazo)">
                                         <comboitem label="CONTADO" value="0"/> 
+                                        <comboitem label="7 DIAS" value="7" />
                                         <comboitem label="15 DIAS" value="15" />                    
                                         <comboitem label="30 DIAS" value="30" />
                                         <comboitem label="45 DIAS" value="45" />
@@ -269,7 +270,7 @@
 
             
                                 <listhead> 
-                                    <listheader width="20%" align="left" class="tableHeader" >
+                                    <listheader width="15%" align="left" class="tableHeader" >
                                         <textbox value="@bind(vm.buscarCodigoProd)"  
                                     
                                                  class="form-control form-control-sm"
@@ -279,7 +280,7 @@
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader>     
-                                    <listheader width="45%" align="left"   >
+                                    <listheader width="44%" align="left"   >
                                         <textbox value="@bind(vm.buscarNombreProd)"  
                                                  id="idBusquedaProd"
                                                  class="form-control form-control-sm"
@@ -288,11 +289,11 @@
                                                  onOK="@command('buscarLikeKardexNombreProd')"                                                     
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>                         
-                                    <listheader width="10%"   label="KARDEX" align="center" /> 
-                                    <listheader width="13%"  label="PV X MAYOR" align="center" /> 
-                                    <listheader width="13%"  label="PVP" align="center" /> 
+                                    <listheader width="9%"   label="KARDEX" align="center" /> 
+                                    <listheader width="12%"  label="PV X MAYOR" align="center" /> 
+                                    <listheader width="12%"  label="PVP" align="center" /> 
                                     <listheader width="8%"  label="" align="center"/>
-                                </listhead>  
+                                </listhead>   
             
                                 <template name="model">                                                            
                                     <listitem  onOK="@command('agregarItemLista',valor=each.idProducto)">
@@ -331,7 +332,7 @@
                                                    class="form-control form-control-sm"
                                                    style="font-size:10px;background-color:#FBC3C3"
                                                    value="@bind(each.karTotal)" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -339,7 +340,7 @@
                                                    class="form-control form-control-sm"
                                                    value="@bind(each.idProducto.prodCostoPreferencial)"
                                                    style="font-size:11px; font-weight: bold" 
-                                                   width="96%" />
+                                                  />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -347,7 +348,7 @@
                                                    class="form-control form-control-sm"
                                                    style="font-size:11px; font-weight: bold" 
                                                    value="@bind(each.idProducto.pordCostoVentaFinal)" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
         
                                         <listcell zclass = "mycss-listcell">  
@@ -392,19 +393,19 @@
                                         
                 
                                 <listhead >
-                                    <listheader width="35px"  label="" align="left" >
+                                    <listheader width="1%"  label="" align="left" >
                                         <button label="" src="/iconos/delete.png"  
                                                 onClick="@command('eliminarRegistros')"  
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="15%"   label="COD" align="left" />
+                                    <listheader width="14%"   label="COD" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
-                                    <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="15%"  label="PRE REAL" align="left" />
-                                    <listheader width="15%"  label="PRECIO" align="left" />                                         
-                                    <listheader width="15%"  label="TOTAL" align="left" />
+                                    <listheader width="26%"  label="DESCRIPCIÓN" align="left" />
+                                    <listheader width="13%"  label="PRE REAL" align="left" />
+                                    <listheader width="13%"  label="PRECIO" align="left" />                                         
+                                    <listheader width="13%"  label="TOTAL" align="left" />
                                                                                                                     
                                 </listhead>
             

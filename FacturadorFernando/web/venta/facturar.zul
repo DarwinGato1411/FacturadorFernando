@@ -118,6 +118,7 @@
                                         class="textoFechaDateBox"                              
                                         selectedItem="@bind(vm.facplazo)">
                                         <comboitem label="CONTADO" value="0"/> 
+                                        <comboitem label="7 DIAS" value="7" />
                                         <comboitem label="15 DIAS" value="15" />                    
                                         <comboitem label="30 DIAS" value="30" />
                                         <comboitem label="45 DIAS" value="45" />
@@ -272,7 +273,7 @@
 
             
                                 <listhead> 
-                                    <listheader width="20%" align="left" class="tableHeader" >
+                                    <listheader width="15%" align="left"  >
                                         <textbox value="@bind(vm.buscarCodigoProd)"  
                                     
                                                  class="form-control form-control-sm"
@@ -282,7 +283,7 @@
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     
                                     </listheader>     
-                                    <listheader width="45%" align="left"   >
+                                    <listheader width="44%" align="left"   >
                                         <textbox value="@bind(vm.buscarNombreProd)"  
                                                  id="idBusquedaProd"
                                                  class="form-control form-control-sm"
@@ -291,9 +292,9 @@
                                                  onOK="@command('buscarLikeKardexNombreProd')"                                                     
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>                         
-                                    <listheader width="10%"   label="KARDEX" align="center" /> 
-                                    <listheader width="13%"  label="PV X MAYOR" align="center" /> 
-                                    <listheader width="13%"  label="PVP" align="center" /> 
+                                    <listheader width="9%"   label="KARDEX" align="center" /> 
+                                    <listheader width="12%"  label="PV X MAYOR" align="center" /> 
+                                    <listheader width="12%"  label="PVP" align="center" /> 
                                     <listheader width="8%"  label="" align="center"/>
                                 </listhead>  
             
@@ -321,10 +322,10 @@
                                                   style="font-size:11px;background-color:#C7FEC1"
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                             <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
-                                                   class="form-control form-control-sm"
+                                                   class=""
                                                    style="font-size:10px;background-color:#C7FEC1"
                                                    value="@bind(each.karTotal)" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" 
                                                   if="${!each.verificaStock}" 
@@ -334,7 +335,7 @@
                                                    class="form-control form-control-sm"
                                                    style="font-size:10px;background-color:#FBC3C3"
                                                    value="@bind(each.karTotal)" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -342,7 +343,7 @@
                                                    class="form-control form-control-sm"
                                                    value="@bind(each.idProducto.prodCostoPreferencial)"
                                                    style="font-size:11px; font-weight: bold" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -350,7 +351,7 @@
                                                    class="form-control form-control-sm"
                                                    style="font-size:11px; font-weight: bold" 
                                                    value="@bind(each.idProducto.pordCostoVentaFinal)" 
-                                                   width="96%" />
+                                                   />
                                         </listcell>
         
                                         <listcell zclass = "mycss-listcell">  
@@ -395,19 +396,19 @@
                                         
                 
                                 <listhead >
-                                    <listheader width="35px"  label="" align="left" >
+                                    <listheader width="1%"  label="" align="left" >
                                         <button label="" src="/iconos/delete.png"  
                                                 onClick="@command('eliminarRegistros')"  
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="15%"   label="COD" align="left" />
+                                    <listheader width="14%"   label="COD" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
-                                    <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="15%"  label="PRE REAL" align="left" />
-                                    <listheader width="15%"  label="PRECIO" align="left" />                                         
-                                    <listheader width="15%"  label="TOTAL" align="left" />
+                                    <listheader width="26%"  label="DESCRIPCIÓN" align="left" />
+                                    <listheader width="13%"  label="PRE REAL" align="left" />
+                                    <listheader width="13%"  label="PRECIO" align="left" />                                         
+                                    <listheader width="13%"  label="TOTAL" align="left" />
                                                                                                                     
                                 </listhead>
             
@@ -426,7 +427,7 @@
                                                      style="font-size:10px"
                                                      onOK="@command('buscarPorCodigo',valor=each)"
                                                         
-                                                     width="99%" />
+                                                    />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,3})?$/:Ingrese solo numeros"                                            
@@ -434,7 +435,7 @@
                                                         class="form-control form-control-sm"
                                                         onChange="@command('calcularValoresDesCantidad',valor=each)"
                                                         style="font-size:12px"
-                                                        value="@bind(each.cantidad)"  width="99%" />                                                    
+                                                        value="@bind(each.cantidad)"/>                                                    
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <!--readonly="${!each.esProducto}"-->
@@ -442,7 +443,7 @@
                                                       onOK="@command('calcularValoresDesCantidadPorPorcentaje',valor=each)"                                                              
                                                       class="form-control form-control-sm"
                                                       style="font-size:12px"                                                              
-                                                      value="@bind(each.detPordescuento)" width="95%"  />
+                                                      value="@bind(each.detPordescuento)"/>
                                         </listcell>
                                     
                                         <listcell zclass = "mycss-listcell">
@@ -456,21 +457,21 @@
                                         <listcell  zclass = "mycss-listcell">
                                             <decimalbox readonly="true" format="###.###" 
                                                         class="form-control form-control-sm"
-                                                        value="@bind(each.totalInicial)"  width="99%" />
+                                                        value="@bind(each.totalInicial)"/>
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
                                                         onOK="@command('calcularValoresDesCantidad',valor=each)"
                                                         class="form-control form-control-sm"                                                                                                                            
                                                         ctrlKeys="^A" onCtrlKey="@command('cambioPrecio',valor=each)"
-                                                        value="@bind(each.total)"  width="99%" />
+                                                        value="@bind(each.total)" />
                                         </listcell>
                                     
                                 
                                         <listcell zclass = "mycss-listcell">
                                             <decimalbox readonly="true" 
                                                         class="form-control form-control-sm"
-                                                        value="@bind(each.detTotalconivadescuento)"  width="99%" />
+                                                        value="@bind(each.detTotalconivadescuento)" />
                                         </listcell>
                                     
                                     </listitem>

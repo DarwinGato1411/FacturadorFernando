@@ -36,6 +36,7 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -615,12 +616,11 @@ public class ListaFacturas {
 
                             valor.setFacClaveAutorizacion(claveAccesoComprobante);
                             valor.setEstadosri(autorizacion.getEstado());
-                            try {
-                                String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                                valor.setFacFechaAutorizacion(sm.parse(fechaForm));
-                            } catch (java.text.ParseException ex) {
-                                Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+
+                            Instant instant = autorizacion.getFechaAutorizacion().toGregorianCalendar().toZonedDateTime().toInstant();
+                            Date date = Date.from(instant);
+                            valor.setFacFechaAutorizacion(date);
+
                             System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
                             /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                             archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
@@ -633,7 +633,7 @@ public class ListaFacturas {
 
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
                             ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
-//                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
+//                          ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
                             valor.setFacpath(archivoEnvioCliente.replace(".xml", ".pdf"));
                             servicioFactura.modificar(valor);
@@ -795,13 +795,12 @@ public class ListaFacturas {
 
                     valor.setFacClaveAutorizacion(claveAccesoComprobante);
                     valor.setEstadosri(autorizacion.getEstado());
-                    System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime().toGMTString());
-                    try {
-                        String fechaForm = sm.format(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                        valor.setFacFechaAutorizacion(sm.parse(fechaForm));
-                    } catch (java.text.ParseException ex) {
-                        Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
+                    Instant instant = autorizacion.getFechaAutorizacion().toGregorianCalendar().toZonedDateTime().toInstant();
+                    Date date = Date.from(instant);
+                    valor.setFacFechaAutorizacion(date);
+                   
+                   
 
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
