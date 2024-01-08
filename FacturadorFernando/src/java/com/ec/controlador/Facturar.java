@@ -906,15 +906,18 @@ public class Facturar extends SelectorComposer<Component> {
                     }
 
                     valor.setTotalInicial(costVentaTipoClienteInicial);
-                    BigDecimal porcentajeDesc = valor.getDetPordescuento().divide(BigDecimal.valueOf(100.0), 4, RoundingMode.FLOOR);
+                    BigDecimal porcentajeDesc = valor.getDetPordescuento().divide(BigDecimal.valueOf(100.0), 5, RoundingMode.FLOOR);
+                    if (porcentajeDesc.intValue() == 0) {
+                        porcentajeDesc = BigDecimal.ZERO;
+                    }
                     BigDecimal valorDescuentoIva = costVentaTipoCliente.multiply(porcentajeDesc);
                     //valor unitario con descuento ioncluido iva
                     BigDecimal valorTotalIvaDesc = costVentaTipoCliente.subtract(valorDescuentoIva);
                     //valor unit sin iva sin descuento
-                    BigDecimal subTotal = costVentaTipoCliente.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
+                    BigDecimal subTotal = costVentaTipoCliente.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                     valor.setSubTotal(subTotal);
                     //valor unitario sin iva con descuento
-                    BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
+                    BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                     valor.setSubTotalDescuento(subTotalDescuento);
                     //valor del descuento
                     BigDecimal valorDescuento = valor.getSubTotal().subtract(valor.getSubTotalDescuento());
@@ -1025,15 +1028,15 @@ public class Facturar extends SelectorComposer<Component> {
                 }
 
                 valor.setTotalInicial(costVentaTipoClienteInicial);
-                BigDecimal porcentajeDesc = valor.getDetPordescuento().divide(BigDecimal.valueOf(100.0), 4, RoundingMode.FLOOR);
+                BigDecimal porcentajeDesc = valor.getDetPordescuento().divide(BigDecimal.valueOf(100.0), 5, RoundingMode.FLOOR);
                 BigDecimal valorDescuentoIva = costVentaTipoCliente.multiply(porcentajeDesc);
                 //valor unitario con descuento ioncluido iva
                 BigDecimal valorTotalIvaDesc = costVentaTipoCliente.subtract(valorDescuentoIva);
                 //valor unit sin iva sin descuento
-                BigDecimal subTotal = costVentaTipoCliente.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
+                BigDecimal subTotal = costVentaTipoCliente.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 valor.setSubTotal(subTotal);
                 //valor unitario sin iva con descuento
-                BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
+                BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 5, RoundingMode.FLOOR);
                 valor.setSubTotalDescuento(subTotalDescuento);
                 //valor del descuento
                 BigDecimal valorDescuento = valor.getSubTotal().subtract(valor.getSubTotalDescuento());
