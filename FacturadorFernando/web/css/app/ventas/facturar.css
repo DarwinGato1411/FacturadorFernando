@@ -250,53 +250,54 @@ body {
 }
 
 .factura_body {
-    background-color: #eee;
-    padding: 1em;
-    border-radius: 10px;
-    overflow: hidden !important;
+  background-color: #eee;
+  padding: 1em;
+  border-radius: 10px;
+  overflow: hidden !important;
 }
 
 .factura_body_content {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .factura_body_content > .factura_body_item {
-    overflow: auto;
+  overflow: auto;
 }
 
 .cell-description-header,
 .cell-description-body {
-    width: 350px !important;
+  width: 350px !important;
 }
 
 .cell-header {
-    padding: 0 0.5em;
-    width: 100px;
+  padding: 0 0.5em;
+  width: 100px;
 }
 
 .cell-body {
-    width: 100px;
-    display: block;
+  width: 100px;
+  display: block;
 }
 
 .factura_body_content > .factura_body_item > .z-listbox {
-    overflow: unset;
+  overflow: unset;
 }
 
 .factura_body_content
-> .factura_body_item
-> .z-listbox
-> .z-listbox-header
-> table,
+  > .factura_body_item
+  > .z-listbox
+  > .z-listbox-header
+  > table,
 .factura_body_content
-> .factura_body_item
-> .z-listbox
-> .z-listbox-body
-> table {
-    table-layout: unset !important;
+  > .factura_body_item
+  > .z-listbox
+  > .z-listbox-body
+  > table {
+  table-layout: fixed !important;
 }
+
 
 .wrapper_total > span * {
     color: var(--secondary-color);
@@ -611,51 +612,54 @@ div.z-listheader-cnt {
 .container_headers .icon {
     color: var(--primary-color);
 }
-
 @media only screen and (min-width: 1070px) {
-    .factura_header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  .factura_header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    .factura_header > .fact_row {
-        width:50%;
-        flex-direction: row;
-    }
+  .factura_header > .fact_row {
+    width: 50%;
+    flex-direction: row;
+  }
 
-    .wrapper_buttons {
-        width: 40%;
-    }
+  .fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
+    width: 95% !important;
+  }
 
-    .factura_header > .fact_row:first-child:after {
-        display: none;
-    }
+  .wrapper_buttons {
+    width: 40%;
+  }
 
-    .radio_group > label {
-        width: unset;
-    }
+  .factura_header > .fact_row:first-child:after {
+    display: none;
+  }
 
-    .factura_body_content {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+  .radio_group > label {
+    width: unset;
+  }
 
-    .factura_body_content > .factura_body_item {
-        width: 50%;
-    }
+  .factura_body_content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-    .factura_body_content > .factura_body_item_lefth {
-        width: 60%;
-    }
+  .factura_body_content > .factura_body_item {
+    width: 50%;
+  }
 
-    .factura_body_content > .factura_body_item > .z-listbox {
-        overflow: hidden !important;
-    }
+  .factura_body_content > .factura_body_item_lefth {
+    width: 60%;
+  }
 
-    .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-header,
-    .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-body {
-        overflow: hidden !important;
-    }
+  .factura_body_content > .factura_body_item > .z-listbox {
+    overflow: hidden !important;
+  }
+
+  .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-header,
+  .factura_body_content > .factura_body_item > .z-listbox > .z-listbox-body {
+    overflow: hidden !important;
+  }
 }
 
 @media screen and (min-width: 1400px) {
