@@ -132,133 +132,133 @@
                             </div>
                         </div> -->
 
-                         <div class="factura_header">
-                        <div class="fact_row">
-                            <div class="wrapper_data">
-                                <div class="wrapper_input">
-                                    <span>Total Desc.:</span>
-                                    <decimalbox  
-                                        value="@bind(vm.totalDescuento)"
-                                        format="###.##" 
-                                        readonly="true"
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
+                        <div class="factura_header">
+                            <div class="fact_row">
+                                <div class="wrapper_data">
+                                    <div class="wrapper_input">
+                                        <span>Total Desc.:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.totalDescuento)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
                                      
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Subtotal:</span>
-                                    <decimalbox  
-                                        value="@bind(vm.subTotalCotizacion)"
-                                        format="###.##" 
-                                        readonly="true"
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Sub / Cero:</span>
-                                    <decimalbox  
-                                        value="@bind(vm.subTotalBaseCero)"
-                                        format="###.##" 
-                                        readonly="true"
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>IVA:</span>
-                                    <decimalbox  
-                                        value="@bind(vm.ivaCotizacion)"
-                                        format="###.##" 
-                                        readonly="true"
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                </div>
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Subtotal:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.subTotalCotizacion)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Sub / Cero:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.subTotalBaseCero)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>IVA:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.ivaCotizacion)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                    </div>
                                 
-                            </div>
+                                </div>
 
-                            <div class="wrapper_data">
-                                 <div class="wrapper_input wrapper_total">
-                                    <span style="text_total">Total:</span>
+                                <div class="wrapper_data">
+                                    <div class="wrapper_input wrapper_total">
+                                        <span style="text_total">Total:</span>
 
-                                    <decimalbox  
-                                        format="###.##"   
-                                        value="@bind(vm.valorTotalCotizacion)"                                                 
-                                        readonly="true"
+                                        <decimalbox  
+                                            format="###.##"   
+                                            value="@bind(vm.valorTotalCotizacion)"                                                 
+                                            readonly="true"
                                         
-                                    />
-                                </div> 
+                                        />
+                                    </div> 
+                                </div>
                             </div>
-                        </div>
-                        <div class="fact_row">
-                            <div class="wrapper_data">
-                                <div class="wrapper_input">
-                                    <span>Cliente:</span>
-                                    <textbox   
-                                        class="input" 
-                                        placeholder="Cedula"
-                                        readonly="true"
-                                        value="@bind(vm.clienteBuscado.cliCedula)"  
-                                        maxlength="13"  
-                                    />
+                            <div class="fact_row">
+                                <div class="wrapper_data">
+                                    <div class="wrapper_input">
+                                        <span>Cliente:</span>
+                                        <textbox   
+                                            class="input" 
+                                            placeholder="Cedula"
+                                            readonly="true"
+                                            value="@bind(vm.clienteBuscado.cliCedula)"  
+                                            maxlength="13"  
+                                        />
                         
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Nombre comercial:</span>
+                                        <textbox  
+                                            readonly="true"  
+                                            placeholder="Nombre comercial"
+                                            class="input" 
+                                            value="@bind(vm.clienteBuscado.cliNombre)"  
+                                        />
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Telf:</span>
+                                        <textbox  
+                                            readonly="true"  
+                                            placeholder="Telefono"
+                                            value="@bind(vm.clienteBuscado.cliTelefono)"
+                                            class="input" 
+                                        />
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Fecha :</span>
+                                        <datebox 
+                                            compact="true" 
+                                            value="@bind(vm.fechafacturacion)" 
+                                            readonly="true" 
+                                            class="input_date"  
+                                            buttonVisible="true" 
+                                            lenient="true" 
+                                            format="dd/MM/yyyy" 
+                                            constraint="no empty: Ingrese su fecha de la orden"
+                                        />
+                                    </div>
                                 </div>
-                                <div class="wrapper_input">
-                                    <span>Nombre comercial:</span>
-                                    <textbox  
-                                        readonly="true"  
-                                        placeholder="Nombre comercial"
-                                        class="input" 
-                                        value="@bind(vm.clienteBuscado.cliNombre)"  
-                                    />
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Telf:</span>
-                                    <textbox  
-                                        readonly="true"  
-                                        placeholder="Telefono"
-                                        value="@bind(vm.clienteBuscado.cliTelefono)"
-                                        class="input" 
-                                    />
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Fecha :</span>
-                                    <datebox 
-                                        compact="true" 
-                                        value="@bind(vm.fechafacturacion)" 
-                                        readonly="true" 
-                                        class="input_date"  
-                                        buttonVisible="true" 
-                                        lenient="true" 
-                                        format="dd/MM/yyyy" 
-                                        constraint="no empty: Ingrese su fecha de la orden"
-                                    />
-                                </div>
-                            </div>
                           
-                            <div class="fact_row wrapper_buttons">
+                                <div class="fact_row wrapper_buttons">
                                 
-                                <button 
-                                    autodisable="self"   
-                                    class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                    onClick="@command('Guardar',valor='SG')"
-                                    tooltiptext="Guardar"
-                                    label="Guardar"
-                                />
+                                    <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='SG')"
+                                        tooltiptext="Guardar"
+                                        label="Guardar"
+                                    />
                                 
-                            </div>
+                                </div>
                         
-                        </div> 
-                    </div>
+                            </div> 
+                        </div>
        
                         <div class="factura_body">
                             <listbox id="DescripcionPedidoPrePost" 
-                                        model="@load(vm.listaDetalleFacturaDAOMOdel)"
-                                        nonselectableTags="*" checkmark="true"  
-                                        multiple="true" 
-                                        onSelect="@command('seleccionarRegistros')"  width="99%">
+                                     model="@load(vm.listaDetalleFacturaDAOMOdel)"
+                                     nonselectableTags="*" checkmark="true"  
+                                     multiple="true" 
+                                     onSelect="@command('seleccionarRegistros')"  width="99%">
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                             
                                     
@@ -273,6 +273,7 @@
                                     <listheader label="CANT" align="left"  /> 
                                     <listheader label="DES(%)" align="left"  /> 
                                     <listheader label="DESCRIPCIÓN" align="left" />
+                                    <listheader label="P INICIAL" align="left" />                                         
                                     <listheader label="P.REAL" align="left" />                                         
                                     <listheader label="DESC" align="left" />
                                     <listheader label="P FINAL" align="left" />
@@ -297,33 +298,28 @@
                                         </listcell>
                                         <listcell>
                                             <decimalbox class="input-group-append"
-                                                onOK="@command('calcularValores',valor=each)"
+                                                        onOK="@command('calcularValoresDesCantidad',valor=each)"
                                                     
                                                         format="###.##" value="@bind(each.cantidad)" width="95%"  />
                                         </listcell>
                                         <listcell>
                                             <decimalbox class="input-group-append"
-                                            readonly="true"
+                                                        readonly="true"
                                                         format="###.##" value="@bind(each.detPordescuento)" width="100%"  />
                                         </listcell>
                                         <listcell>
                                             <label style="color:black;"  value="@bind(each.producto.prodNombre)" width="100%" />
                                         </listcell>
-                                        <!--                                            <listcell>
-                                            <decimalbox readonly="true" format="###.##"
-                                                        class="form-control form-control-sm"
-                                                        value="@bind(each.subTotal)"  width="99%" />
-                                        </listcell>-->
-                                    
-                                        <!--                                            <listcell>
-                                            <decimalbox readonly="true" format="###.##" 
-                                                        class="form-control form-control-sm"
-                                                        value="@bind(each.subTotalDescuento)"  width="99%" />
-                                        </listcell>-->
-                                        <listcell>
-                                            <decimalbox readonly="true" format="###.##" 
-                                                        class="form-control form-control-sm"
-                                                        value="@bind(each.total)"  width="99%" />
+                                        <listcell  zclass = "mycss-listcell">
+                                            <decimalbox readonly="true" format="###.###" 
+                                                            class="form-control form-control-sm"
+                                                            value="@bind(each.totalInicial)"  width="100%" />
+                                        </listcell>
+                                        <listcell zclass = "mycss-listcell">
+                                            <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
+                                                            onOK="@command('calcularValoresDesCantidad',valor=each)"
+                                                            class="form-control form-control-sm"                                                                                                                                                                                      
+                                                            value="@bind(each.total)"  width="100%" />
                                         </listcell>
                                         
                                         <listcell>
