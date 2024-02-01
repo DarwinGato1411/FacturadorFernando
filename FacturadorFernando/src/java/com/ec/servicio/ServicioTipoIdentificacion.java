@@ -125,5 +125,28 @@ public class ServicioTipoIdentificacion {
         return tipoadentificacion;
     }
     
-    
+     public Tipoadentificacion  findByTipoIdentificacionId(Integer id) {
+
+        List<Tipoadentificacion> listaTipoadentificacions = new ArrayList<Tipoadentificacion>();
+        Tipoadentificacion t=null;
+        Tipoadentificacion tipoadentificacion = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+          em.getTransaction().begin();
+            Query query = em.createQuery("SELECT A FROM Tipoadentificacion a WHERE a.idTipoIdentificacion=:idTipoIdentificacion");
+           query.setParameter("idTipoIdentificacion", id);
+            listaTipoadentificacions = (List<Tipoadentificacion>) query.getResultList();
+            if (listaTipoadentificacions.size() > 0) {
+                tipoadentificacion = listaTipoadentificacions.get(0);
+            }
+          em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta tipoadentificacion");
+        } finally {
+            em.close();
+        }
+
+        return tipoadentificacion;
+    }
 }
