@@ -4,7 +4,7 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?script src="https://kit.fontawesome.com/484b16c999.js"?>
 
-<?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
+<!--<?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>-->
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantillasuper/plantilla.zul"?>
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
@@ -17,15 +17,24 @@
             <tabpanels >
                 <tabpanel  width="99%" class="factura">                    
                     <div class="factura_header">
-                        <div class="fact_row">
-                            <div 
-                                class="fa-solid fa-plus-circle fa-2x icon"
-                                onClick="@command('agregarUsario')"
-                                tooltiptext="Nuevo usuario"
-                            >
-                                <span>Nuevo usuario</span>
-                            </div>
+                        <div class="fact_row_all">
+                           
                         
+                            <div class="wrapper_input_mod">
+                                <span>Tipo plan </span>
+                                <radiogroup
+                                    class="radio_group" 
+                                    onCheck="@command('consultarUsuariosPorCodigo')" 
+                                    selectedItem="@bind(vm.tipoPlan)"  
+                                >                   
+                                    <radio label="TODOS" value="T"/>
+                                    <space bar="false"  />   
+                                    <radio label="ILIMITADO" value="I"/>                          
+                                    <space bar="false"  />   
+                                    <radio label="DOCUMENTOS" value="D"/>  
+                                     <space bar="true"  />                         
+                                </radiogroup>
+                            </div>
                             <div class="wrapper_input_mod">
                                 <span>Tipo ambiente </span>
                                 <radiogroup
@@ -35,13 +44,14 @@
                                 >                   
                                     <radio label="PRODUCCION" value="2"/>
                                     <space bar="false"  />   
-                                    <radio label="PRUEBAS" value="1"/>                          
+                                    <radio label="PRUEBAS" value="1"/>   
+                                      <space bar="true"  />                         
                                 </radiogroup>
                             </div>
                             
-                        </div>
-                         <div class="fact_row">
-                        <div class="" >
+                            <!--</div>-->
+                            <!--<div class="fact_row">-->
+                            <div class="" align="end" >
                              
                                 <button 
                                     class="fa-solid fa-file-excel btn_fact btn_access"
@@ -49,8 +59,17 @@
                                     tooltiptext="Descargar"
                                     label="Descargar usuarios"
                                 />
+                                <button 
+                                class="fa-solid fa-plus-circle btn_fact btn_access"
+                                onClick="@command('agregarUsario')"
+                                tooltiptext="Nuevo usuario"
+                                label="Crear usuario"
+                            />
                             </div>
-                            </div>
+                            
+<!--                                <span>Nuevo usuario</span>
+                            </div>-->
+                        </div>
                     </div>
 
                     <div class="factura_body factura_content">
@@ -76,7 +95,7 @@
                                     <listheader label="Contraseña Firma"  align="left" width="20%"></listheader>
                                     <listheader label="Fecha caduca"  align="left" width="10%"></listheader>
                                     <listheader label="Fecha ultimo cobro"  align="left" width="10%"></listheader>
-                                      <listheader label="Plan"  align="left" width="10%"></listheader>
+                                    <listheader label="Plan"  align="left" width="10%"></listheader>
                                     <listheader label="Modificar"  align="center" width="5%"></listheader>
                                     <listheader label=""  align="center" width="5%"></listheader>
                                 </listhead>
@@ -136,15 +155,15 @@
                                                 constraint="no empty: Ingrese la fecha "
                                             />
                                         </listcell> 
-                                           <listcell  zclass = "mycss-listcell">      
+                                        <listcell  zclass = "mycss-listcell">      
                                             <textbox if="${each.idUsuario.usuIlimitado}" 
                                                      readonly="true" value="ILIMITADO" 
                                                      class="form-control form-control-sm"
                                                      style="font-size:12px;background:#EBF5FB"/>
                                             <textbox if="${!each.idUsuario.usuIlimitado}" 
-                                                      readonly="true" value="POR DOCUMENTOS" 
-                                                      class="form-control form-control-sm"
-                                                      style="font-size:12px;background:#EBF5FB"/>
+                                                     readonly="true" value="POR DOCUMENTOS" 
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:12px;background:#EBF5FB"/>
                                         </listcell>                   
                                         <listcell  zclass = "mycss-listcell">
                                             <image src="/iconos/editar.png"

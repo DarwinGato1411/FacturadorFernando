@@ -111,14 +111,51 @@ public class GuiaRemision {
     private static Tipoambiente amb = null;
     private String numeroGuiaRecibida = "";
     private String amRuc = "";
+    private String accion = "create";
+    private Guiaremision guiaremision = new Guiaremision();
+    Guiaremision guiaremisionEdit = new Guiaremision();
+    String claveAccesoGuia = "";
 
     @AfterCompose
-    public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
+    public void afterCompose(@ExecutionArgParam("valor") Guiaremision valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
         findClienteLikeNombre();
         findProductoLikeNombre();
-        listaTransportistas = servicioTransportista.findTransportista("",amb);
-        getDetalle();
+        listaTransportistas = servicioTransportista.findTransportista("", amb);
+
+        if (valor != null) {
+            List<DetalleGuiaremision> lista = servicioDetalleGuia.findDetalleForIdGuia(valor);
+            DetalleGuiaDao valorGuia = null;
+            for (DetalleGuiaremision item : lista) {
+                valorGuia = new DetalleGuiaDao();
+                valorGuia.setDetCantidad(item.getDetCantidad());
+                valorGuia.setDetDescripcion(item.getIdProducto().getProdNombre());
+                valorGuia.setIdProducto(item.getIdProducto());
+                listaGuiaRemisionDatos.add(valorGuia);
+            }
+            getDetalle();
+            numeroGuia = valor.getFacNumero();
+            numeroGuiaText = valor.getFacNumeroText();
+
+            clienteBuscado = valor.getIdCliente();
+            transportista = valor.getIdTransportista();
+            motivoGuia = valor.getMotivoGuia();
+            numeroPlaca = valor.getNumplacaguia();
+            partida = valor.getPartida();
+            llegada = valor.getLlegada();
+            tipoGuiaRemision = "EMITIDA";
+            incioTraslado = valor.getFechainitranspguia();
+            finTraslado = valor.getFechafintranspguia();
+            numeroGuiaRecibida = "0";
+            guiaremisionEdit = valor;
+            claveAccesoGuia = valor.getFacClaveAcceso();
+            fechaGuia = valor.getFacFecha();
+            accion = "update";
+        } else {
+            accion = "create";
+            fechaGuia = new Date();
+            getDetalle();
+        }
 
     }
 
@@ -136,13 +173,13 @@ public class GuiaRemision {
     public void buscarClienteEnLista() {
         ParamFactura paramFactura = new ParamFactura();
         paramFactura.setBusqueda("cliente");
-        final HashMap<String, ParamFactura> map = new HashMap<String, ParamFactura>();
-        map.put("valor", paramFactura);
+        final HashMap<String, GuiaRemision> map = new HashMap<String, GuiaRemision>();
+        map.put("valor", null);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/venta/buscarclienteguia.zul", null, map);
+                "/venta/buscarclienteguia.zul", null, map);
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
-        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente,amb);
+        clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
         if (clienteBuscado != null) {
             llegada = clienteBuscado.getCliDireccion();
         }
@@ -220,18 +257,31 @@ public class GuiaRemision {
 
             } else {
                 Clients.showNotification("Verifique el detalle de la guia",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
                 return;
             }
-            numeroGuia();
+            
+
             if (!partida.equals("")
-                        && !numeroPlaca.equals("")
-                        && clienteBuscado != null
-                        && transportista != null) {
+                    && !numeroPlaca.equals("")
+                    && clienteBuscado != null
+                    && transportista != null) {
 
-                Guiaremision guiaremision = new Guiaremision();
+                guiaremision.setIdUsuario(credential.getUsuarioSistema());
+                guiaremision.setFacFecha(fechaGuia);
+                guiaremision.setFacEstado("PENDIENTE");
+                guiaremision.setTipodocumento("06");
+                guiaremision.setPuntoemision("001");
+                guiaremision.setCodestablecimiento("001");
+                guiaremision.setEstadosri("PENDIENTE");
 
-                if (tipoGuiaRemision.equals("EMITIDA")) {
+                if (tipoGuiaRemision.equals("EMITIDA") && accion.equals("create")) {
+                    numeroGuia();
+                    guiaremision.setFacNumero(numeroGuia);
+//                    numeroGuia();
+                    guiaremision.setFacNumeroText(numeroGuiaText);
+                    claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), numeroGuiaText, "12345678", "1");
+                } else if (tipoGuiaRemision.equals("EMITIDA") && accion.equals("update")) {
                     guiaremision.setFacNumero(numeroGuia);
 //                    numeroGuia();
                     guiaremision.setFacNumeroText(numeroGuiaText);
@@ -239,14 +289,7 @@ public class GuiaRemision {
                     guiaremision.setFacNumero(0);
                     guiaremision.setFacNumeroTextRecibida(numeroGuiaRecibida);
                 }
-                guiaremision.setIdUsuario(credential.getUsuarioSistema());
-                guiaremision.setFacFecha(new Date());
-                guiaremision.setFacEstado("PENDIENTE");
-                guiaremision.setTipodocumento("06");
-                guiaremision.setPuntoemision("001");
-                guiaremision.setCodestablecimiento("001");
-                guiaremision.setEstadosri("PENDIENTE");
-                String claveAccesoGuia = ArchivoUtils.generaClave(guiaremision.getFacFecha(), "06", amb.getAmRuc(), amb.getAmCodigo(),  amb.getAmEstab()+amb.getAmPtoemi(), numeroGuiaText, "12345678", "1");
+
                 guiaremision.setFacClaveAcceso(claveAccesoGuia);
                 guiaremision.setFacClaveAutorizacion(claveAccesoGuia);
                 guiaremision.setCodTipoambiente(amb.getCodTipoambiente());
@@ -266,18 +309,26 @@ public class GuiaRemision {
                     nuevo = new DetalleGuiaremision(itemDet.getDetCantidad(), itemDet.getDetDescripcion(), itemDet.getIdProducto(), guiaremision);
                     detalleGuia.add(nuevo);
                 }
+
+                if (accion.equals("update")) {
+                    servicioGuia.eliminar(guiaremisionEdit);
+                }
                 servicioGuia.guardarGuiaremision(detalleGuia, guiaremision);
                 Clients.showNotification("Guardado con exito",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
 
-                Executions.sendRedirect("/venta/guia.zul");
+                if (accion.equals("create")) {
+                     Executions.sendRedirect("/venta/guia.zul");
+                }else{
+                 Executions.sendRedirect("/venta/listaguia.zul");
+                }
             } else {
                 Clients.showNotification("Verifique la informacion",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
             }
         } catch (Exception e) {
             Clients.showNotification("Error al registrar " + e.getMessage(),
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
         }
     }
 
@@ -316,15 +367,15 @@ public class GuiaRemision {
     }
 
     private void findClienteLikeNombre() {
-        listaClientesAll = servicioCliente.FindClienteLikeNombre(buscarNombre,amb);
+        listaClientesAll = servicioCliente.FindClienteLikeNombre(buscarNombre, amb);
     }
 
     private void findClienteLikeRazon() {
-        listaClientesAll = servicioCliente.FindClienteLikeRazonSocial(buscarRazonSocial,amb);
+        listaClientesAll = servicioCliente.FindClienteLikeRazonSocial(buscarRazonSocial, amb);
     }
 
     private void findClienteLikeCedula() {
-        listaClientesAll = servicioCliente.FindClienteLikeCedula(buscarCedula,amb);
+        listaClientesAll = servicioCliente.FindClienteLikeCedula(buscarCedula, amb);
     }
 
     private void getDetalle() {
@@ -338,7 +389,7 @@ public class GuiaRemision {
     }
 
     private void findProductoLikeNombre() {
-        listaProducto = servicioProducto.findLikeProdNombre(buscarNombreProd,amb);
+        listaProducto = servicioProducto.findLikeProdNombre(buscarNombreProd, amb);
     }
 
     public ListModelList<DetalleGuiaDao> getListaGuiaModel() {

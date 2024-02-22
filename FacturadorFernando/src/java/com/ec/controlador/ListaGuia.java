@@ -6,7 +6,6 @@ package com.ec.controlador;
 
 import com.ec.entidad.Cliente;
 import com.ec.entidad.Guiaremision;
-import com.ec.entidad.RetencionCompra;
 import com.ec.entidad.Tipoambiente;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
@@ -94,6 +93,8 @@ public class ListaGuia {
         
            consultarFactura();
     }
+    
+    
 
     private void consultarFactura() {
         lstGuiaRemision = servicioGuia.findBetweenFecha(fechainicio, fechafin,amb);
@@ -692,5 +693,28 @@ public class ListaGuia {
                         Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         }
     }
+    
+     @Command
+    @NotifyChange({"lstGuiaRemision", "buscarSecuencial"})
+    public void editarGuia(@BindingParam("valor") Guiaremision valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+//            ParamFactura param = new ParamFactura();
+//            param.setIdFactura(valor.getIdFactura().toString());
+//            param.setBusqueda("modificar");
+//            param.setTipoDoc("FACT");
+            final HashMap<String, Guiaremision> map = new HashMap<String, Guiaremision>();
+
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                        "/modificar/guia.zul", null, map);
+            window.doModal();
+//            window.detach();
+            buscarFechas();
+
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
 
 }

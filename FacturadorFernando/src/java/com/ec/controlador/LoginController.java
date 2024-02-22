@@ -69,11 +69,11 @@ public class LoginController extends SelectorComposer<Component> {
         boolean bloquear = false;
 
         Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
-        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()) {
+        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()||cantidadContratada.getParBloqueoSistema()) {
             bloquear = true;
         }
 
-        if (!cantidadContratada.getParBloqueoSistema()) {
+       if (!cantidadContratada.getParBloqueoSistema()) {
             bloquear = Boolean.FALSE;
         }
 
@@ -86,7 +86,7 @@ public class LoginController extends SelectorComposer<Component> {
             }
 
             if (bloquear) {
-                Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra bloqueado por falta de pago<br/> Por favor verifique con el proveedor</div>",
+                Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra inactivo<br/> Por favor verifique con el proveedor</div>",
                             Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
                 return;
             }

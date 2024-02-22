@@ -26,6 +26,15 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.factura_header_bg {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  background-color: #eee;
+}
+
 .factura_header {
   display: flex;
   flex-direction: column;
@@ -33,8 +42,18 @@ body {
   margin-bottom: 1em;
   width: 100%;
 }
-
 .factura_header > .fact_row {
+  position: relative;
+  background-color: #eee;
+  padding: 1em;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1em;
+}
+
+.factura_header > .fact_row_all {
   position: relative;
   background-color: #eee;
   padding: 1em;
@@ -618,6 +637,10 @@ div.z-listheader-cnt {
 
   .factura_header > .fact_row {
     width: 50%;
+    flex-direction: row;
+  }
+  .factura_header > .fact_row_all {
+    width: 100%;
     flex-direction: row;
   }
 

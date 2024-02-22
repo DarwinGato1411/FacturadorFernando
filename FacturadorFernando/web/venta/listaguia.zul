@@ -101,6 +101,7 @@
                                 <listheader width="5%"  label="" align="center" />               
                                 <listheader width="5%"  label="" align="center" />               
                                 <listheader width="5%"  label="" align="center" />               
+                                <listheader width="5%"  label="" align="center" />               
                             </listhead>  
                             
                         
@@ -214,6 +215,19 @@
                                            src="/iconos/listo_uno.png"   
                                            class="grow"                                               
                                            tooltiptext="No se puede eliminar por que se encuentra en estado autorizado"/> 
+                                </listcell>
+                                     <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    
+                                    
+                                    <image if="${each.estadosri!='AUTORIZADO'}"
+                                           src="/iconos/editar.png"   
+                                           class="grow"  
+                                           onClick="@command('editarGuia',valor=each)"                                              
+                                           tooltiptext="Editaer guia"/> 
+                                    <image if="${each.estadosri=='AUTORIZADO'}" 
+                                           src="/iconos/listo_uno.png"   
+                                           class="grow"                                               
+                                           tooltiptext="No se puede editar por que se encuentra en estado autorizado"/> 
                                 </listcell>
                                                                 
                                     

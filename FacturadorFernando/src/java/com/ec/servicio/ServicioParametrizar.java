@@ -80,7 +80,8 @@ public class ServicioParametrizar {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT p FROM Parametrizar p WHERE p.isprincipal=TRUE");
+            Query query = em.createQuery("SELECT p FROM Parametrizar p WHERE p.isprincipal=TRUE ORDER BY p.codParametrizar ASC");
+            query.setMaxResults(1);
 //           query.setParameter("codigoUsuario", parametrizar);
             listaParametrizars = (List<Parametrizar>) query.getResultList();
             if (listaParametrizars.size() > 0) {

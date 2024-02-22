@@ -58,6 +58,8 @@ public class GestionUsuarios {
 
     private Boolean esVisisible = Boolean.FALSE;
 
+     private String tipoPlan = "T";
+    
     public GestionUsuarios() {
 
         Session sess = Sessions.getCurrent();
@@ -69,7 +71,7 @@ public class GestionUsuarios {
     }
 
     private void consultarUsuarios() {
-        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
+        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo,tipoPlan);
     }
 
     @Command
@@ -313,4 +315,14 @@ public class GestionUsuarios {
         return pathSalida;
 
     }
+
+    public String getTipoPlan() {
+        return tipoPlan;
+    }
+
+    public void setTipoPlan(String tipoPlan) {
+        this.tipoPlan = tipoPlan;
+    }
+    
+    
 }

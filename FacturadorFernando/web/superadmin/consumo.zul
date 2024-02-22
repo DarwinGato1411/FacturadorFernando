@@ -20,95 +20,81 @@
                 
                 <tabpanel  width="99%" class="factura" >                    
                     
+                    <grid>
+                        <auxhead>
+                            <auxheader colspan="3" label="Detalle del plan contratado" />
+                        </auxhead>
+                        <columns>
+                            <column hflex="6">Tipo plan</column>
+                            <column hflex="3">Consumo</column>
+                            <column hflex="3"></column>
+           
+                        </columns>
+                        <rows sclass="narrow">
+                            <row>
+                                <label  style="color:#002695;font-size:30px "
+                                        value="@bind(vm.consumoIlimitado.detalleCobroPlanContratado)"  >
+                                                
+                                </label>
+                                <textbox   
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.consumoIlimitado.documentos)" 
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                <textbox />
+                            </row>
+                            <row>
+                                <label 
+                                    style="color:#002695;font-size:30px "
+                                    value="@bind(vm.consumoDocumentos.detalleCobroPlanContratado)"  >
+                                                
+                                </label>
                 
-                    <div  class="container-fluid" >
-    
-
-                        <div class="container_modal">
-   
-
-                            <div class="body">
-                                <div class="container_row_input">
-                                    <div class="" >
-                                        <span >
-                                            <label  style="color:#002695;font-size:30px "
-                                                    value="@bind(vm.consumoIlimitado.detalleCobroPlanContratado)"  >
+                                <textbox  
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.consumoDocumentos.documentos)"
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                
+                            </row>
+                            <row>
+                                <label style="color:#002695;font-size:30px "
+                                       value="CONTRATADO"  >
                                                 
-                                            </label>
-                                        </span>
-                                        <textbox   
-                                            style="margin-left: 240px;background:#8FFFC9;color:#002695;font-size:30px "
-                                            readonly="true"
-                                            value="@bind(vm.consumoIlimitado.documentos)" 
-                                            class="input_text" 
-                                        />
-                                    </div>
-                                </div>
-                                <div class="container_row_input">
-                                    <div class="">
-                                        <span>
-                                            <label 
-                                                style="color:#002695;font-size:30px "
-                                                value="@bind(vm.consumoDocumentos.detalleCobroPlanContratado)"  >
+                                </label>
+                
+                                <textbox  
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.parametrizar.parContratado)"
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                
+                            </row>
+                            <row>
+                                <label style="color:#002695;font-size:30px "
+                                       value="RECARGAR FACTURAS"  >
                                                 
-                                            </label>
-                                        </span>
-                                        <textbox  
-                                            style="margin-left: 200px; background:#8FFFC9;color:#002695;font-size:30px "
-                                            readonly="true"
-                                            value="@bind(vm.consumoDocumentos.documentos)"
-                                            class="input_text" 
-                                        />
-                                    </div>
-                                </div>
-                                <div class="container_row_input">
-                                    <div class="">
-                                        <span>
-                                            <label style="color:#002695;font-size:30px "
-                                                   value="CONTRATADO"  >
-                                                
-                                            </label>
-                                        </span>
-                                        <textbox  
-                                            style="margin-left: 350px ;background:#8FFFC9;color:#002695;font-size:30px "
-                                            readonly="true"
-                                            value="@bind(vm.parametrizar.parContratado)"
-                                            class="input_text" 
-                                        />
-                                    </div>
-                                    
-                                </div>
-                                <div class="container_row_input">
-                                    <div class="">
-                                        <span>
-                                            <label style="color:#002695;font-size:30px "
-                                                   value="RECARGAR Fac"  >
-                                                
-                                            </label>
-                                        </span>
-                                        <textbox  
-                                            style="margin-left: 350px ;background:white;color:#002695;font-size:30px "
-                                       
-                                            value="@bind(vm.recargar)"
-                                            class="input_text" 
-                                        />
-                                        <div style="display:flex;justify-content:flex-end;">
-                                            <button class="btn_modal" style="width:300px" onClick="@command('recargar')">
-                                                Recargar
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-
-                               
-            
-
-                            
-                            </div>
-   
-                        </div>
-                    </div>
+                                </label>
+                
+                                <textbox  
+                                    style="background:white;color:#002695;font-size:30px "                                       
+                                    value="@bind(vm.recargar)"
+                                    class="input_text" 
+                                />
+                                <button class="btn_modal" style="width:300px" onClick="@command('recargar')">
+                                    Recargar
+                                </button>
+                                
+                            </row>
+                        </rows>
+                    </grid>
+                    
                 </tabpanel>
                 
 
