@@ -6,7 +6,7 @@
 
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?init class="com.ec.seguridad.Autentificador"?>
-<?init class="org.zkoss.zk.ui.util.Composition" arg0="/pantillasuper/plantilla.zul"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 
 
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
@@ -104,27 +104,51 @@
                                 <label value="" />
                                 
                             </row>
-                            <row>
+<!--                            <row>
                                 <label style="color:#002695;font-size:30px "
-                                      
+                                       if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
                                        value="RECARGAR FACTURAS"  >
                                                 
                                 </label>
                 
                                 <textbox  
-                                  
+                                    if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
                                     style="background:white;color:#002695;font-size:30px "                                       
                                     value="@bind(vm.recargar)"
                                     class="input_text" 
                                 />
                                 <button class="btn_modal" style="width:300px" 
-                                       
+                                        if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
                                         onClick="@command('recargar')">
                                     Recargar
                                 </button>
                                 
-                            </row>
+                            </row>-->
                         </rows>
+                      
+                            <foot>
+                                <footer span="3" id="footer_category" class="footer_right" >
+                                    <div class="alert alert-primary" style="color: #084298;
+					 
+                                    background-color: #f5c2c7;
+                                   font-size:2em;
+                                    border-color: #b6d4fe;"
+                                         if="${vm.pintar}">
+                                        EL SISTEMA SE ENCUENTRA BLOQUEDO CONTACTESE CON EL ADMINISTRADOR
+                                    </div>
+                                    <div class="alert alert-primary" style="color: #084298;
+					 
+                                    background-color: #cfe2ff;
+                                   font-size:2em;
+                                    border-color: #b6d4fe;"
+                                         if="${!vm.pintar}">
+                                        EL SISTEMA SE ENCUENTRA ACTIVO
+                                    </div>
+
+                                </footer>
+                            </foot>
+
+                     
                     </grid>
                     
                 </tabpanel>

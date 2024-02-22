@@ -361,4 +361,9 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnGestionFactura() {
         Executions.sendRedirect("/administrar/gestionfactura.zul");
     }
+       @Listen("onClick = #btnReportes")
+    public void buttonConsultarPlan() {
+        Executions.sendRedirect("/administrar/consumo.zul");
+    }
+
 }

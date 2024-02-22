@@ -49,9 +49,10 @@
                 <div class="col-6 col-sm-6 col-md-11 col-lg-11  "  align="start" >
 
                     <menubar  orient="horizontal"  autodrop="true" class="wrapper_menu">
-                       <menuitem label="Reporte" id="btnReportes" class="menu_child" /> 
-                       <menuitem label="Cobros" id="btnCobros" class="menu_child" />  
+                         <menuitem label="Plan contratado" id="btnReportes" class="menu_child" /> 
+                       <menuitem label="Usuarios registrados" id="btnCobros" class="menu_child" />  
                        <menuitem label="Parametrizar" id="btnParametrizar" class="menu_child" />  
+
                       </menubar>
                 </div>              
             </div>

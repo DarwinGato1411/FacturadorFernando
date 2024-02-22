@@ -141,7 +141,7 @@
                                     <listheader label="Numero"  align="left" hflex="2"></listheader>
                                     <listheader label="Fecha"  align="left" hflex="2"></listheader>
                                     <listheader label="Cliente"  align="left" hflex="8"></listheader>                                  
-                                    <listheader label="Borrar"  align="center" hflex="1"></listheader>
+                                    <listheader label="Borrar"  align="center" hflex="2"></listheader>
                                 </listhead>
                                 
                             
@@ -162,25 +162,38 @@
                                         </listcell>
                                         <listcell zclass = "mycss-listcell" class="td-tabla" >
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
-                                                     value="@bind(each.idCliente.nombresCompletso)" 
+                                                     value="@bind(each.idCliente.cliNombre)" 
                                                      width="100%"/>
                                         </listcell>  
                                         
                                         
                                         <listcell zclass = "mycss-listcell" class="td-tabla"  
-                                                  onClick="@command('eliminarFactura',valor=each)" >
-                                            <div class="wrapper_input"    >
+                                                   >
+<!--                                            <div class="wrapper_input"    >
                                                 <span></span>
                                                
 
                                                 <div 
-                                                    class="fa-solid fa-trash-can" 
+                                                    class="" 
                                                     tooltiptext="Buscar"
                                                 />
 
                                      
-                                            </div>             
-                                         
+                                            </div>             -->
+                                            <button 
+                                                style=" -webkit-font-smoothing: antialiased;
+                                                display: var(--fa-display, inline-block);
+                                                font-style: normal;
+                                                font-variant: normal;
+                                                line-height: 1;
+                                                height: 28px;
+                                                margin: 2px 2px 2px 2px;
+                                                text-rendering: auto;"
+                                                class="fa-solid fa-trash-can btn_fact btn_access"
+                                                onClick="@command('eliminarFactura')"
+                                                tooltiptext="Eliminar factura"
+                                                label="Eliminar"
+                                            />
                                             
                                         </listcell>                            
                                     </listitem>

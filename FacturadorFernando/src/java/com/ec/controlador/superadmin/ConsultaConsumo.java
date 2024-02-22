@@ -65,6 +65,8 @@ public class ConsultaConsumo {
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Parametrizar parametrizar = null;
     private BigDecimal recargar = BigDecimal.ZERO;
+    private BigDecimal saldoDocumentos = BigDecimal.ZERO;
+    private Boolean pintar = Boolean.FALSE;
 
     public ConsultaConsumo() {
 
@@ -82,7 +84,10 @@ public class ConsultaConsumo {
             } else {
                 consumoDocumentos = item;
             }
+           
         }
+     saldoDocumentos = parametrizar.getParContratado().subtract(BigDecimal.valueOf(consumoDocumentos.getDocumentos().doubleValue()));
+     pintar=saldoDocumentos.doubleValue()<0?Boolean.TRUE:Boolean.FALSE;
     }
 
     @Command
@@ -91,8 +96,12 @@ public class ConsultaConsumo {
         try {
             if (recargar.intValue() > 0) {
                 BigDecimal totalDocum = parametrizar.getParContratado() != null ? parametrizar.getParContratado().add(recargar) : BigDecimal.ZERO.add(recargar);
+                if (totalDocum.doubleValue() >= consumoDocumentos.getDocumentos().doubleValue()) {
+                    parametrizar.setParBloqueoSistema(Boolean.FALSE);
+                }
                 parametrizar.setParContratado(totalDocum);
                 servicioParametrizar.modificar(parametrizar);
+
                 consultarConsumo();
                 recargar = BigDecimal.ZERO;
                 Clients.showNotification("Recarga correcta ", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
@@ -158,7 +167,7 @@ public class ConsultaConsumo {
             con = emf.unwrap(Connection.class);
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
             if (tipo.equals("COMP")) {
                 reportPath = reportFile + File.separator + "puntoventa.jasper";
@@ -187,7 +196,7 @@ public class ConsultaConsumo {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             System.out.println("ERROR EL PRESENTAR EL REPORTE " + e.getMessage());
@@ -213,7 +222,7 @@ public class ConsultaConsumo {
 
             //  con = emf.unwrap(Connection.class);
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
 //                con = ConexionReportes.Conexion.conexion();
 
@@ -239,7 +248,7 @@ public class ConsultaConsumo {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
             con.close();
 
@@ -260,6 +269,22 @@ public class ConsultaConsumo {
 
     public void setRecargar(BigDecimal recargar) {
         this.recargar = recargar;
+    }
+
+    public BigDecimal getSaldoDocumentos() {
+        return saldoDocumentos;
+    }
+
+    public void setSaldoDocumentos(BigDecimal saldoDocumentos) {
+        this.saldoDocumentos = saldoDocumentos;
+    }
+
+    public Boolean getPintar() {
+        return pintar;
+    }
+
+    public void setPintar(Boolean pintar) {
+        this.pintar = pintar;
     }
 
 }

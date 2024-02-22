@@ -7,17 +7,33 @@
         <div class="row" >
 
 
-            <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3  " align="start">
                 <image  src="/imagenes/israel/logo2.png" class="logo_defact" />
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      
             </div>
-            <div class="col-12 col-sm-12 col-md-7 col-lg-7  " align="start" style="float: right; " >
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9  " align="start" style="float: right;display: inline-block; " >
                 <div apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
-                    <toolbar id="tb" height="30px"  style="background:transparent;" align="end" >
-                        <!--<toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />-->
+                   
+                    <toolbar id="tb" height="30px"  style="background:transparent;" align="end"  >
+                     <div style="color:red;    display: inline-block;
+                                position: relative;
+                                cursor: pointer;
+                                margin: 0 2px;
+                                vertical-align: middle;
+                                padding: 1px 0;
+                                zoom: 1;color: #084298;
+                                background-color: #cfe2ff;
+                                font-size:2em;
+                                padding: 0px 10px 0px 10px;
+                                margin-right: 70px;
+                                border-color: #b6d4fe;">
+                        <label value="@bind(vm.contratado)" style="font-size: 18px"></label>
+                         <space bar="true"  /> 
+                        <label value="@bind(vm.utilizados)" style="font-size: 18px"></label>
+                        </div>
                         <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
                         <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
          
@@ -106,7 +122,8 @@
                 </menu>
                 <menuitem label="Historial declaraciones" visible="false" id="btnHisDeclaraciones" class="menu_child" />
                 <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
-                <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
+                 <menuitem label="Plan contratado" id="btnReportes" class="menu_child" /> 
+                <menuitem label="Gestion de empresas" visible="false" id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
                 <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
             </menubar> 
@@ -156,8 +173,8 @@
                             </menupopup>
                         </menu>
                     </menubar>  -->   
-                       </div>              
-                </div>
+                </div>              
+            </div>
                 
         </div>
         

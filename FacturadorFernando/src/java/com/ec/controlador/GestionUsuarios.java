@@ -57,6 +57,7 @@ public class GestionUsuarios {
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    private String tipoPlan = "T";
 
     public GestionUsuarios() {
 
@@ -69,7 +70,7 @@ public class GestionUsuarios {
     }
 
     private void consultarUsuarios() {
-        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
+        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo, tipoPlan);
     }
 
     @Command
@@ -97,7 +98,7 @@ public class GestionUsuarios {
     @NotifyChange("listaUsuarios")
     public void agregarUsario() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/usuario.zul", null, null);
+                "/nuevo/usuario.zul", null, null);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -108,7 +109,7 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/superadmin/usuario.zul", null, map);
+                "/superadmin/usuario.zul", null, map);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -249,10 +250,10 @@ public class GestionUsuarios {
             ch2.setCellValue(new HSSFRichTextString("F Caduca"));
             ch2.setCellStyle(estiloCelda);
 
-             HSSFCell ch222 = r.createCell(j++);
+            HSSFCell ch222 = r.createCell(j++);
             ch222.setCellValue(new HSSFRichTextString("F ultimo pago"));
             ch222.setCellStyle(estiloCelda);
-            
+
             HSSFCell ch22 = r.createCell(j++);
             ch22.setCellValue(new HSSFRichTextString("Plan"));
             ch22.setCellStyle(estiloCelda);
@@ -279,8 +280,8 @@ public class GestionUsuarios {
                 HSSFCell c01 = r.createCell(i++);
                 c01.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaPago() != null ? sm.format(item.getIdUsuario().getUsuFechaPago()) : ""));
 
-                 HSSFCell c011 = r.createCell(i++);
-                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca()!= null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
+                HSSFCell c011 = r.createCell(i++);
+                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca() != null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
 
                 HSSFCell c1 = r.createCell(i++);
                 c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado() ? "ILIMITADO" : "DOCUMENTOS"));
@@ -303,4 +304,23 @@ public class GestionUsuarios {
         return pathSalida;
 
     }
+
+    public String getTipoPlan() {
+        return tipoPlan;
+    }
+
+    public void setTipoPlan(String tipoPlan) {
+        this.tipoPlan = tipoPlan;
+    }
+    @Command
+    @NotifyChange("listaUsuarios")
+    public void modificarUsarioSuper(@BindingParam("valor") Usuario usuario) {
+        final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
+        map.put("usuario", usuario);
+        org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                    "/superadmin/usuario.zul", null, map);
+        window.doModal();
+        cosultarUsuarios("");
+    }
+
 }
