@@ -252,7 +252,15 @@
                         
                             </div> 
                         </div>
-       
+                        <div style="margin-bottom: 10px;" class="factura_body">
+                            <span>Motivo:</span>
+                            <textbox 
+                                class="form-control form-control-sm"
+                                 maxlength="300"  
+                                value="@bind(vm.motivo)" 
+                                width="100%" />
+                            
+                        </div>
                         <div class="factura_body">
                             <listbox id="DescripcionPedidoPrePost" 
                                      model="@load(vm.listaDetalleFacturaDAOMOdel)"
@@ -298,6 +306,7 @@
                                         <listcell>
                                             <decimalbox class="input-group-append"
                                                         onOK="@command('calcularValores',valor=each)"
+                                                    
                                                         format="###.##" value="@bind(each.cantidad)" width="95%"  />
                                         </listcell>
                                         <listcell>
@@ -306,7 +315,7 @@
                                                         format="###.##" value="@bind(each.detPordescuento)" width="95%"  />
                                         </listcell>
                                         <listcell>
-                                            <label style="color:black;" value="@bind(each.producto.prodNombre)" width="99%" />
+                                            <textbox style="color:black;" value="@bind(each.descripcion)" width="99%" />
                                         </listcell>
                                         <!--                                            <listcell>
                                             <decimalbox readonly="true" format="###.##"
@@ -332,13 +341,12 @@
                                                         value="@bind(each.detValdescuento)"  width="99%" />
                                         </listcell>
                                         <listcell>
-                                            <decimalbox format="###.##" 
+                                            <decimalbox readonly="false" format="###.##" 
                                                         class="form-control form-control-sm"
                                                         onOK="@command('calcularValores',valor=each)"
                                                         value="@bind(each.detTotaldescuento)"  width="99%" />
-                                            
                                         </listcell>
-                                        <listcell>                                         
+                                        <listcell>
                                             <decimalbox readonly="true" format="###.##" 
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.detTotalconivadescuento)"  width="99%" />

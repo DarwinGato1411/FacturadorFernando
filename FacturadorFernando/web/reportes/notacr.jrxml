@@ -128,7 +128,8 @@ cliente.*,
 nota_credito_debito.*,
 forma_pago.*,
 factura.fac_numero_text as numerofactura,
-factura.fac_fecha as fechafactura
+factura.fac_fecha as fechafactura,
+nota_credito_debito.fac_motivo motivo
 FROM
 tipoambiente
 INNER JOIN factura ON factura.cod_tipoambiente = tipoambiente.cod_tipoambiente
@@ -136,7 +137,8 @@ INNER JOIN cliente ON factura.id_cliente = cliente.id_cliente
 INNER JOIN forma_pago ON factura.id_forma_pago = forma_pago.id_forma_pago
 INNER JOIN nota_credito_debito ON nota_credito_debito.id_factura = factura.id_factura
 where nota_credito_debito.fac_numero=$P{numfactura}
- and nota_credito_debito.cod_TipoAmbiente=$P{tipoambiente};]]>
+ and nota_credito_debito.cod_TipoAmbiente=$P{tipoambiente};
+]]>
 	</queryString>
 	<field name="cod_tipoambiente" class="java.lang.Integer"/>
 	<field name="am_codigo" class="java.lang.String"/>
@@ -197,6 +199,8 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 	<field name="am_codigo_ice" class="java.lang.String"/>
 	<field name="id_usuario" class="java.lang.Integer"/>
 	<field name="am_rimpe_popular" class="java.lang.Boolean"/>
+	<field name="am_codigo_artesano" class="java.lang.String"/>
+	<field name="am_activo" class="java.lang.Boolean"/>
 	<field name="id_cliente" class="java.lang.Integer"/>
 	<field name="cli_cedula" class="java.lang.String"/>
 	<field name="cli_nombre" class="java.lang.String"/>
@@ -253,6 +257,7 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 	<field name="mensajeinf" class="java.lang.String"/>
 	<field name="numero_factura" class="java.lang.String"/>
 	<field name="fecha_emision_factura" class="java.sql.Date"/>
+	<field name="fac_motivo" class="java.lang.String"/>
 	<field name="for_nombre" class="java.lang.String"/>
 	<field name="for_codigo" class="java.lang.String"/>
 	<field name="isprincipal" class="java.lang.Boolean"/>
@@ -260,6 +265,7 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 	<field name="unidad_tiempo" class="java.lang.String"/>
 	<field name="numerofactura" class="java.lang.String"/>
 	<field name="fechafactura" class="java.sql.Date"/>
+	<field name="motivo" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -385,7 +391,7 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 			<staticText>
 				<reportElement x="11" y="223" width="195" height="20"/>
 				<textElement>
-					<font isBold="true"/>
+					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBLIGADO A LLEVAR CONTABILIDAD]]></text>
 			</staticText>
@@ -500,23 +506,21 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 				<textFieldExpression class="java.util.Date"><![CDATA[$F{fechafactura}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="366" width="284" height="20"/>
+				<reportElement x="11" y="366" width="127" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Razon de Modificacion]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="328" y="366" width="222" height="20"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[DEVOLUCION DE MERCADERIA]]></text>
-			</staticText>
 			<image onErrorType="Blank">
 				<reportElement x="26" y="14" width="219" height="70"/>
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="154" y="366" width="396" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>

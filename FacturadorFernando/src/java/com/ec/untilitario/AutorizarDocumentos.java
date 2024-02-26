@@ -421,7 +421,7 @@ public class AutorizarDocumentos {
         FileOutputStream out;
         try {
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String motivo = "DEVOLUCION";
+            String motivo = valor.getMotivo();
             String claveAcceso = generaClave(valor.getFacFecha(), "04", amb.getAmRuc(), amb.getAmCodigo(), amb.getAmEstab() + amb.getAmPtoemi(), valor.getFacNumeroText(), "12345678", "1");
             String tipoDocumento = "";
             if (NCoND.equals("04")) {

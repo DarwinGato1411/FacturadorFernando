@@ -18,7 +18,7 @@
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
                    
                     <toolbar id="tb" height="30px"  style="background:transparent;" align="end"  >
-                     <div style="color:red;    display: inline-block;
+<!--                     <div style="color:red;    display: inline-block;
                                 position: relative;
                                 cursor: pointer;
                                 margin: 0 2px;
@@ -33,7 +33,7 @@
                         <label value="@bind(vm.contratado)" style="font-size: 18px"></label>
                          <space bar="true"  /> 
                         <label value="@bind(vm.utilizados)" style="font-size: 18px"></label>
-                        </div>
+                        </div>-->
                         <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
                         <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
          
