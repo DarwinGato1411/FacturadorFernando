@@ -34,6 +34,17 @@ body {
     width: 100%;
 }
 
+.factura_header > .fact_row_all {
+    position: relative;
+    background-color: #eee;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+
 .factura_header > .fact_row {
     position: relative;
     background-color: #eee;
@@ -621,6 +632,14 @@ div.z-listheader-cnt {
         width: 50%;
         flex-direction: row;
     }
+    .factura_header > .fact_row_all {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .fact_row > .wrapper_data > .wrapper_input > .textoFechaDateBox input {
+        width: 95% !important;
+    }
 
     .wrapper_buttons {
         width: 40%;
@@ -644,7 +663,7 @@ div.z-listheader-cnt {
     }
 
     .factura_body_content > .factura_body_item_lefth {
-        width: 60%;
+        width: 50%;
     }
 
     .factura_body_content > .factura_body_item > .z-listbox {
@@ -658,76 +677,7 @@ div.z-listheader-cnt {
 }
 
 @media screen and (min-width: 1400px) {
-    
-}
-
-.z-north-body,.z-north-noborder{
-    height: auto !important;
-}
-
-.menuA .z-toolbar-body {
-    display: grid;
-
-}
-
-.menulogo{
-    display: flex;
-    flex-direction: column;
-    gap:10px;
-
-}
-
-.menuA div{
-    display: flex;
-    height: auto !important;
-    align-items: center;
-}
-
-
-
-.banner{
-    display: grid;
-    grid-gap:15px;
-}
-
-.btnSalir{
-    margin: 10px;
-    padding: 10px;
-    display: flex;
-}
-
-@media screen and (min-width: 769px) {
-    .menulogo{
-        flex-direction: row;
+    .logo_defact {
+        width: 220px;
     }
-
-    .containerPC{
-        width: 90%
-    }
-
-    .btnSalir{
-        width: 10%
-    }
-
-    .menulog1{
-        width: 40%
-    }
-    .menulog2{
-        width: 60%;
-        margin:auto;
-    }
-
-    .btnSalir{
-        margin: 0px;
-        padding: 0px;
-    }
-
-    .menuA .z-toolbar-body{
-        display: flex;
-        flex-direction: row;
-        gap:20px;
-        width: 100%;
-    }
-
-
 }

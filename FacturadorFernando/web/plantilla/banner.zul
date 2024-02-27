@@ -4,31 +4,48 @@
 
     <div class="banner" id="loginWin"  style="height:auto"  width="100%"
          apply="com.ec.controlador.LogoutController" >
-        <div class="asdasd" >
+        <div class="row" >
 
 
-            
-            <div class="menulogo">
-                <div class="menulog1" align="start">
-                    <image  src="/imagenes/graficaR/logo.png" class="logo_defact" />                                  
-                </div>
-                <div class="menulog2" apply="org.zkoss.bind.BindComposer" 
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3  " align="start">
+                   <image  src="/imagenes/graficaR/logo.png" style="width:70px" class="logo_defact" />   
+                <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
+                
+                     
+            </div>
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9  " align="start" style="float: right;display: inline-block; " >
+                <div apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')">
-                    <toolbar class="menuA" id="tb"   style="background:transparent;border:none;" >
-                        <!--<toolbarbutton image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />-->
-                        <div class="containerPC">                        
-                            <div class="">                       
-                                <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
-                                <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
-                            </div>
-                            <div>
-                                <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
-                                <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
-                            </div>                     
-                        </div >
-
-                            <a  sclass="logout labelLogout" style="color:red;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group btnSalir" >  
-                                <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>-->   
+                   
+                    <toolbar id="tb" height="30px"  style="background:transparent;" align="end"  >
+<!--                     <div style="color:red;    display: inline-block;
+                                position: relative;
+                                cursor: pointer;
+                                margin: 0 2px;
+                                vertical-align: middle;
+                                padding: 1px 0;
+                                zoom: 1;color: #084298;
+                                background-color: #cfe2ff;
+                                font-size:2em;
+                                padding: 0px 10px 0px 10px;
+                                margin-right: 70px;
+                                border-color: #b6d4fe;">
+                        <label value="@bind(vm.contratado)" style="font-size: 18px"></label>
+                         <space bar="true"  /> 
+                        <label value="@bind(vm.utilizados)" style="font-size: 18px"></label>
+                        </div>-->
+                        <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
+                        <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
+         
+                        <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
+                        <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                       <!--<label value="( / " class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />--> 
+                       <!--<label value="  )" class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />-->
+                        <!--<div  align="end" style="float: right; " >-->
+                            <a sclass="logout labelLogout" style="color:red" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
+                                <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>--> 
+                                
+                                
                             <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
                                 <span>Salir</span>
                             </a>
@@ -40,7 +57,7 @@
                
             </div>
         </div>
-        <div class="menu">
+        <div class="row">
             <div  viewModel="@id('vm')" id="gridMenu" 
                   apply="com.ec.controlador.MenuOpciones" 
             class="row col-12 col-sm-12 col-md-12 col-lg-12" >
@@ -103,9 +120,10 @@
                         <menuitem label="Rotacion Productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                     </menupopup>
                 </menu>
-                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
+                <menuitem label="Historial declaraciones" visible="false" id="btnHisDeclaraciones" class="menu_child" />
                 <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
-                <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
+                 <menuitem label="Plan contratado" id="btnReportes" class="menu_child" /> 
+                <menuitem label="Gestion de empresas" visible="false" id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
                 <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
             </menubar> 
@@ -155,8 +173,8 @@
                             </menupopup>
                         </menu>
                     </menubar>  -->   
-                       </div>              
-                </div>
+                </div>              
+            </div>
                 
         </div>
         

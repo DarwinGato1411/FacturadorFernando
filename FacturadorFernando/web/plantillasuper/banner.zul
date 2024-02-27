@@ -8,9 +8,9 @@
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/israel/logo2.png" class="logo_defact" />
-                <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
-                
+             <div class="menulog1" align="start">
+                   <image  src="/imagenes/graficaR/logo.png" style="width:70px" class="logo_defact" />                                   
+                </div>
                      
             </div>
             <div class="col-12 col-sm-12 col-md-7 col-lg-7  " align="start" style="float: right; " >
@@ -49,9 +49,10 @@
                 <div class="col-6 col-sm-6 col-md-11 col-lg-11  "  align="start" >
 
                     <menubar  orient="horizontal"  autodrop="true" class="wrapper_menu">
-                       <menuitem label="Reporte" id="btnReportes" class="menu_child" /> 
-                       <menuitem label="Cobros" id="btnCobros" class="menu_child" />  
+                         <menuitem label="Plan contratado" id="btnReportes" class="menu_child" /> 
+                       <menuitem label="Usuarios registrados" id="btnCobros" class="menu_child" />  
                        <menuitem label="Parametrizar" id="btnParametrizar" class="menu_child" />  
+
                       </menubar>
                 </div>              
             </div>

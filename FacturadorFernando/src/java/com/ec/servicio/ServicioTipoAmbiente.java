@@ -106,6 +106,7 @@ public class ServicioTipoAmbiente {
 
         return tipoambiente;
     }
+
     public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
@@ -115,14 +116,14 @@ public class ServicioTipoAmbiente {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo");
-            query.setParameter("usuNombre", "%"+usuario+"%");
+            query.setParameter("usuNombre", "%" + usuario + "%");
             query.setParameter("amEstado", Boolean.TRUE);
             query.setParameter("amCodigo", amCodigo);
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
-         
+
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta  "+e.getMessage());
+            System.out.println("Error en lsa consulta  " + e.getMessage());
         } finally {
             em.close();
         }
@@ -227,8 +228,8 @@ public class ServicioTipoAmbiente {
 
         return listaTipoambientes;
     }
-    
-     public Tipoambiente findALlTipoambientePorUsuarioAmCodigo(Usuario usuario, String amCodigo) {
+
+    public Tipoambiente findALlTipoambientePorUsuarioAmCodigo(Usuario usuario, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
         Tipoambiente tipoambiente = null;
@@ -254,4 +255,37 @@ public class ServicioTipoAmbiente {
         return tipoambiente;
     }
 
+    public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo, String plan) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            String SQL = "";
+            String QUERY = "SELECT a FROM Tipoambiente a WHERE  UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amCodigo=:amCodigo AND a.amEstado=:amEstado ";
+            String WHERE = " ";
+            String ORDER = " ORDER BY a.idUsuario.usuNombre ASC";
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            if (!plan.equals("T")) {
+                WHERE = " AND a.idUsuario.usuIlimitado=:usuIlimitado";
+            }
+            Query query = em.createQuery(QUERY + WHERE + ORDER);
+            query.setParameter("usuNombre", "%" + usuario + "%");
+            query.setParameter("amEstado", Boolean.TRUE);
+            query.setParameter("amCodigo", amCodigo);
+            if (!plan.equals("T")) {
+                query.setParameter("usuIlimitado", plan.equals("I") ? Boolean.TRUE : Boolean.FALSE);
+            }
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("findALlTipoambientePorUsuarioAdm " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaTipoambientes;
+    }
 }
