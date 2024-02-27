@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,10 +32,12 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
+import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 
 /**
  *
@@ -61,6 +64,9 @@ public class ConsultaConsumo {
 
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Parametrizar parametrizar = null;
+    private BigDecimal recargar = BigDecimal.ZERO;
+    private BigDecimal saldoDocumentos = BigDecimal.ZERO;
+    private Boolean pintar = Boolean.FALSE;
 
     public ConsultaConsumo() {
 
@@ -78,6 +84,32 @@ public class ConsultaConsumo {
             } else {
                 consumoDocumentos = item;
             }
+
+        }
+        saldoDocumentos = parametrizar.getParContratado().subtract(BigDecimal.valueOf(consumoDocumentos.getDocumentos().doubleValue()));
+        pintar = saldoDocumentos.doubleValue() < 0 ? Boolean.TRUE : Boolean.FALSE;
+    }
+
+    @Command
+    @NotifyChange({"consumoIlimitado", "consumoDocumentos", "parametrizar", "recargar"})
+    public void recargar() {
+        try {
+            if (recargar.intValue() > 0) {
+                BigDecimal totalDocum = parametrizar.getParContratado() != null ? parametrizar.getParContratado().add(recargar) : BigDecimal.ZERO.add(recargar);
+                if (totalDocum.doubleValue() >= consumoDocumentos.getDocumentos().doubleValue()) {
+                    parametrizar.setParBloqueoSistema(Boolean.FALSE);
+                }
+                parametrizar.setParContratado(totalDocum);
+                servicioParametrizar.modificar(parametrizar);
+
+                consultarConsumo();
+                recargar = BigDecimal.ZERO;
+                Clients.showNotification("Recarga correcta ", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
+            } else {
+                Clients.showNotification("Debe ingresar un valor mayora cero", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+            }
+        } catch (Exception e) {
+            Clients.showNotification("Ocurrio un error al recargar", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
         }
     }
 
@@ -135,7 +167,7 @@ public class ConsultaConsumo {
             con = emf.unwrap(Connection.class);
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
             if (tipo.equals("COMP")) {
                 reportPath = reportFile + File.separator + "puntoventa.jasper";
@@ -164,7 +196,7 @@ public class ConsultaConsumo {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             System.out.println("ERROR EL PRESENTAR EL REPORTE " + e.getMessage());
@@ -190,7 +222,7 @@ public class ConsultaConsumo {
 
             //  con = emf.unwrap(Connection.class);
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
 //                con = ConexionReportes.Conexion.conexion();
 
@@ -216,7 +248,7 @@ public class ConsultaConsumo {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
             con.close();
 
@@ -230,4 +262,29 @@ public class ConsultaConsumo {
         }
 
     }
+
+    public BigDecimal getRecargar() {
+        return recargar;
+    }
+
+    public void setRecargar(BigDecimal recargar) {
+        this.recargar = recargar;
+    }
+
+    public BigDecimal getSaldoDocumentos() {
+        return saldoDocumentos;
+    }
+
+    public void setSaldoDocumentos(BigDecimal saldoDocumentos) {
+        this.saldoDocumentos = saldoDocumentos;
+    }
+
+    public Boolean getPintar() {
+        return pintar;
+    }
+
+    public void setPintar(Boolean pintar) {
+        this.pintar = pintar;
+    }
+
 }

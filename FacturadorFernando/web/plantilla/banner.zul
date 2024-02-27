@@ -106,9 +106,10 @@
                         <menuitem label="Rotacion Productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                     </menupopup>
                 </menu>
-                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
+                      <menuitem label="Historial declaraciones" visible="false" id="btnHisDeclaraciones" class="menu_child" />
                 <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
-                <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
+                 <menuitem label="Plan contratado" id="btnReportes" class="menu_child" /> 
+                <menuitem label="Gestion de empresas" visible="false" id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
                 <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
             </menubar> 
