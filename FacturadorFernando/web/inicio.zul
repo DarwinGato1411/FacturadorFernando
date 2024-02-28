@@ -2,76 +2,10 @@
 <?script src="https://kit.fontawesome.com/484b16c999.js?v1"?>
 <?script src="./js/inicio.js?v2"?>
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
-<?link rel="icon" type="image/x-icon" href="/iconos/defact.ico"?>  
+<?link rel="icon" type="image/x-icon" href="/imagenes/israel/logo.png"?>  
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-
-    <!--<div class="login_container"  id="loginWin" apply="com.ec.controlador.LoginController">
-        <div class="wrapper_login">
-            <div class="container_img">
-                <image src="./imagenes/logo/logoECP.png" class="logo"/>
-                <div class="wrapper_title">
-                    <span class="title">Sistema de Facturación Electrónica</span>
-                    <span class="subtitle">Edificio Consultorios Pichincha</span>
-                    <div class="desc">
-                        Estimado doctor sea usted bienvenido, para ingresar al sistema
-                        por favor digite su usuario y contraseña.
-                    </div>
-                </div>
-            </div>
-            <div class="container_signin">
-                <image src="./imagenes/pichincha/logo2.png" class="logo"/>
-                <span class="title">Iniciar Sesión</span>
-                <span class="subtitle">Bienvenido a edificio consultorios Pichincha</span> 
-                <div class="wrapper_all_inputs">
-                    <div class="wrapper_input">
-                        <span class="fas fa-user icon"></span>
-                        <textbox 
-                            type="text" 
-                            placeholder="Usuario" 
-                            class="input"
-                            id="account"
-                            onCreate="self.focus()"
-                        />
-                    </div>
-                    <div class="wrapper_input">
-                        <span class="fas fa-lock icon"></span>
-                        <textbox 
-                            type="password" 
-                            placeholder="Contraseña" 
-                             id="password"
-                            class="input input_password"
-                        />
-                        <span class="fa-solid fa-eye icon_eye icon"></span>
-                    </div>
-                </div>
-
-                <span class="forgot_text" id="linkOlvideContrasena">Olvide mi contraseña</span>
-                
-                <div class="wrapper_buttons">
-                    <button 
-                        class="btn btn_sign" 
-                        id="buttonEntrar"
-                    >Iniciar Sesión
-                    </button>
-                    <button 
-                        class="btn btn_sign_reg"
-                        id="btnRegistra"
-                    >Registro
-                    </button>
-                </div>
-                
-                
-            </div>
-        </div>
-    </div> -->
-
-    <!--<div class="wrapper_loading loading_inicio">
-        <div class="lds-heart">
-            <div></div>
-        </div>
-    </div> -->
 
     <div class="all_wrapper" id="loginWin" apply="com.ec.controlador.LoginController">
 
@@ -80,63 +14,67 @@
             <div class="wrapper_nav">
                 <div class="nav">
                     <span class="item_nav login_btn">Iniciar Sesión</span>
-                    <span class="item_nav" id="btnRegistra">Registro</span>
+                    <!--<span class="item_nav" id="btnRegistra">Registro</span>-->
                 </div>
 
                 <span class="fa-solid fa-bars icon_menu"></span>
             </div>
 
             <div class="wrapper_header">
-                <image src="./imagenes/israel/logo.png" class="logo1" />
-                <image src="./imagenes/israel/logo2.png" class="logo2" />
+                <!--<image src="./imagenes/israel/logo.png" class="logo1" />-->
+                <image src="./imagenes/israel/logo.png" class="logo2" />
             </div>
 
             <div class="main">
                 <div class="wrapper_main">
                     <div class="wrapper_logo_ef">
                         <image src="./imagenes/israel/logo2.png" class="logo2" />
-                        <image src="./imagenes/israel/logo.png" class="logo1" />
+                        <!--<image src="./imagenes/israel/logo.png" class="logo1" />-->
                     </div>
 
                     <div class="wrapper_items">
                         <div class="wrapper_item">
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Soporte Permanente</span>
+                                <span class="item_desc">FACTURAS</span>
                             </div>
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Capacitación Gratuita</span>
+                                <span class="item_desc">COMPROBANTE DE RETENCIÓN</span>
                             </div>
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Asesoría Personalizada</span>
+                                <span class="item_desc">GUÍAS DE REMISIÓN</span>
                             </div>
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Planes Anuales</span>
+                                <span class="item_desc">LIQUIDACION DE COMPRA Y SERVICIO</span>
+                            </div>
+                            <div class="item">
+                                <image src="./imagenes/israel/icon.png" class="img_icon" />
+                                <span class="item_desc">NOTAS DE CRÉDITO Y DÉBITO</span>
                             </div>
                         </div>
                         <div class="wrapper_item">
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Declaraciones</span>
+                                <span class="item_desc">SOPORTE PERMANENTE</span>
                             </div>
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Anexos Gastos Personales</span>
+                                <span class="item_desc">CAPACITACIÓN GRATUITA</span>
                             </div>
 
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
-                                <span class="item_desc">Contabilidad</span>
+                                <span class="item_desc">ASESORIA PERSONALIZADA</span>
                             </div>
-                            <div class="item">
+<!--                            <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
                                 <span class="item_desc">Respaldo Declaraciones</span>
-                            </div>
+                            </div>-->
                         </div>
-                        <div class="wrapper_item">
+<!--                        <div class="wrapper_item">
                             <div class="item">
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
                                 <span class="item_desc">Facturas</span>
@@ -153,24 +91,28 @@
                                 <image src="./imagenes/israel/icon.png" class="img_icon" />
                                 <span class="item_desc">Notas de Crédito</span>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
 
             <div class="footer">
-                <image src="./imagenes/israel/lion.png" class="img_lion" />
+                <!--<image src="./imagenes/israel/lion.png" class="img_lion" />-->
                 <div class="wrapper_item_foot">
                     <span class="fa-brands fa-whatsapp icon"></span>
-                    <span>099 9226 274</span>
+                    <span>0998 552 025</span>
+                </div>
+                <div class="wrapper_item_foot">
+                    <span class="fa-brands fa-whatsapp icon"></span>
+                    <span>0987 098 811</span>
+                </div>
+                <div class="wrapper_item_foot">
+                    <span class="fa-brands fa-whatsapp icon"></span>
+                    <span>0995 326 196</span>
                 </div>
                 <div class="wrapper_item_foot">
                     <span class="fa-regular fa-envelope icon"></span>
-                    <span>israelpublicaciones@gmail.com</span>
-                </div>
-                <div class="wrapper_item_foot">
-                    <span class="fa-solid fa-globe"></span>
-                    <span>www.israelpublicaciones.com</span>
+                    <span>grafimoises@hotmail.com</span>
                 </div>
             </div>
 
@@ -178,7 +120,9 @@
 
          <div class="container_forgot_registro container_wrapper_signin_root" style="display:none;">
             <div class="wapper_registro wrapper_forgot wrapper_signin">
-                <image src="./imagenes/israel/logo.png" class="logo" />
+                <div align="center">
+                <image src="./imagenes/israel/logo.png" class="logo img_login_modal" />
+                </div>
                 <div class="info_wrapper info_wrapper_forgot">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Facturar nunca ha sido tan fácil!</span>
