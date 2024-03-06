@@ -255,7 +255,7 @@ body {
 .main {
     width: 100%;
     display: flex;
-    margin-top: 2em;
+    margin-top: 0em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -421,7 +421,7 @@ body {
     .main .wrapper_main .wrapper_items .wrapper_item {
         font-family: "Poppins", sans-serif;
         margin-left: 0.6em;
-        margin-top: 1em;
+        margin-top: 0em;
     }
     .main .wrapper_main .wrapper_items .wrapper_item .item .img_icon {
         font-size: 18px;
@@ -470,10 +470,10 @@ body {
 
 @media screen and (min-width: 1536px) {
     .wrapper_header {
-        margin-top: 5em;
+        margin-top: 3em;
     }
     .main .wrapper_main {
-        margin-top: 1em;
+        margin-top: 0em;
         width: 65%;
     }
     .main .wrapper_main .wrapper_items {
@@ -481,8 +481,8 @@ body {
     }
     .main .wrapper_main .wrapper_items .wrapper_item .item .img_icon {
         display: block;
-        width: 15px;
-        margin-bottom: 6px !important;
+        /*width: 15px;*/
+        margin-bottom: -5px !important;
         margin-right: 3px;
     }
     .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
