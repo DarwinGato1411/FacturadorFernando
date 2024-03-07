@@ -32,7 +32,7 @@
                                     <radio label="ILIMITADO" value="I"/>                          
                                     <space bar="false"  />   
                                     <radio label="DOCUMENTOS" value="D"/>  
-                                     <space bar="true"  />                         
+                                    <space bar="true"  />                         
                                 </radiogroup>
                             </div>
                             <div class="wrapper_input_mod">
@@ -45,7 +45,7 @@
                                     <radio label="PRODUCCION" value="2"/>
                                     <space bar="false"  />   
                                     <radio label="PRUEBAS" value="1"/>   
-                                      <space bar="true"  />                         
+                                    <space bar="true"  />                         
                                 </radiogroup>
                             </div>
                             
@@ -60,24 +60,26 @@
                                     label="Descargar usuarios"
                                 />
                                 <button 
-                                class="fa-solid fa-plus-circle btn_fact btn_access"
-                                onClick="@command('agregarUsario')"
-                                tooltiptext="Nuevo usuario"
-                                label="Crear usuario"
-                            />
+                                    class="fa-solid fa-plus-circle btn_fact btn_access"
+                                    onClick="@command('agregarUsario')"
+                                    tooltiptext="Nuevo usuario"
+                                    label="Crear usuario"
+                                />
                             </div>
                             
-<!--                                <span>Nuevo usuario</span>
+                            <!--                                <span>Nuevo usuario</span>
                             </div>-->
                         </div>
                     </div>
 
                     <div class="factura_body factura_content">
                         <div class="factura_item">
+                          
                             <listbox width="100%" model="@load(vm.listaTipoambientes)" 
                                      nonselectableTags="*"  mold="paging"
                                      pageSize="20">
                                 <listhead sizable="true">
+                                      <listheader label="T-AMB"  tooltiptext="Tipo ambiente" align="left" width="5%"></listheader>
                                     <listheader label="RUC"  align="left" width="15%"></listheader>
                                     <listheader  align="left" width="35%">
                                         <textbox value="@bind(vm.nombreUsuario)"  
@@ -92,6 +94,7 @@
                                     <listheader label="Contraseña"  align="left" width="20%"></listheader>
                                     
                                     <listheader label="Tipo usuario"  align="left" width="10%"></listheader>
+                                    <listheader label="DOC-CONT"  tooltiptext="Documentos contratados" align="left" width="5%"></listheader>
                                     <listheader label="Contraseña Firma"  align="left" width="20%"></listheader>
                                     <listheader label="Fecha caduca"  align="left" width="10%"></listheader>
                                     <listheader label="Fecha ultimo cobro"  align="left" width="10%"></listheader>
@@ -103,6 +106,10 @@
                         
                                 <template name="model">
                                     <listitem width="100%" > 
+                                        <listcell  zclass = "mycss-listcell">
+                                            <textbox readonly="true" value="@bind(each.codTipoambiente)"  style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm" />
+                                        </listcell>
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuRuc)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
@@ -125,6 +132,10 @@
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                         </listcell>  
+                                        <listcell  zclass = "mycss-listcell">                          
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuNumDocumentos)"  style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
+                                        </listcell> 
                                         <listcell  zclass = "mycss-listcell">      
                                             <textbox readonly="true" value="@bind(each.amClaveAccesoSri)" 
                                                      class="form-control form-control-sm"

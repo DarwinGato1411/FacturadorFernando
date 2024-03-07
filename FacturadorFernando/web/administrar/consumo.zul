@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
+<?script src="https://kit.fontawesome.com/484b16c999.js"?>
+
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+
+
+<zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+          viewModel="@id('vm') @init('com.ec.controlador.superadmin.ConsultaConsumo')" >
+        <tabbox id="tboxPrincipal"  width="100%" >
+            <tabs >
+                <tab label="Verificar consumo " sclass="menutabs" /> 
+            </tabs>
+            <tabpanels >
+                
+                <tabpanel  width="99%" class="factura" >                    
+                    
+                    <grid>
+                        <auxhead>
+                            <auxheader colspan="3"  >
+                                <div class="alert alert-primary" style="color: #084298;
+                                    background-color: #cfe2ff;
+                                   font-size:2em;
+                                    border-color: #b6d4fe;">
+                                    NOTA: Si no cuenta con documentos activos el sistema se bloqueara automaticamente
+                                </div>
+                            </auxheader>
+                        </auxhead>
+                        <columns>
+                            <column hflex="6">Tipo plan</column>
+                            <column hflex="3">Consumo</column>
+                            <column hflex="3"></column>
+           
+                        </columns>
+                        <rows sclass="narrow">
+                            <row>
+                                <label  style="color:#002695;font-size:30px "
+                                        value="@bind(vm.consumoIlimitado.detalleCobroPlanContratado)"  >
+                                                
+                                </label>
+                                <textbox   
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.consumoIlimitado.documentos)" 
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                <textbox />
+                            </row>
+                            <row>
+                                <label 
+                                    style="color:#002695;font-size:30px "
+                                    value="@bind(vm.consumoDocumentos.detalleCobroPlanContratado)"  >
+                                                
+                                </label>
+                
+                                <textbox  
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.consumoDocumentos.documentos)"
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                
+                            </row>
+                            <row>
+                                <label style="color:#002695;font-size:30px "
+                                       value="CONTRATADO"  >
+                                                
+                                </label>
+                
+                                <textbox  
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.parametrizar.parContratado)"
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                
+                            </row>
+                            <row>
+                                <label style="color:#002695;font-size:30px "
+                                       value="DOCUMENTOS DISPONIBLES"  >
+                                                
+                                </label>
+                
+                                <textbox   if="${!vm.pintar}"
+                                    style="background:#8FFFC9;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.saldoDocumentos)"
+                                    class="input_text" 
+                                />
+                                <textbox   if="${vm.pintar}"
+                                    style="background:red;color:#002695;font-size:30px "
+                                    readonly="true"
+                                    value="@bind(vm.saldoDocumentos)"
+                                    class="input_text" 
+                                />
+                                <label value="" />
+                                
+                            </row>
+<!--                            <row>
+                                <label style="color:#002695;font-size:30px "
+                                       if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
+                                       value="RECARGAR FACTURAS"  >
+                                                
+                                </label>
+                
+                                <textbox  
+                                    if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
+                                    style="background:white;color:#002695;font-size:30px "                                       
+                                    value="@bind(vm.recargar)"
+                                    class="input_text" 
+                                />
+                                <button class="btn_modal" style="width:300px" 
+                                        if="${each.idUsuario.usuarioSistema.usuLogin eq 'super'}"
+                                        onClick="@command('recargar')">
+                                    Recargar
+                                </button>
+                                
+                            </row>-->
+                        </rows>
+                      
+                            <foot>
+                                <footer span="3" id="footer_category" class="footer_right" >
+                                    <div class="alert alert-primary" style="color: #084298;
+					 
+                                    background-color: #f5c2c7;
+                                   font-size:2em;
+                                    border-color: #b6d4fe;"
+                                         if="${vm.pintar}">
+                                        EL SISTEMA SE ENCUENTRA BLOQUEDO CONTACTESE CON EL ADMINISTRADOR
+                                    </div>
+                                    <div class="alert alert-primary" style="color: #084298;
+					 
+                                    background-color: #cfe2ff;
+                                   font-size:2em;
+                                    border-color: #b6d4fe;"
+                                         if="${!vm.pintar}">
+                                        EL SISTEMA SE ENCUENTRA ACTIVO
+                                    </div>
+
+                                </footer>
+                            </foot>
+
+                     
+                    </grid>
+                    
+                </tabpanel>
+                
+
+            </tabpanels>
+            
+        </tabbox>
+    </hbox>
+
+
+</zk>

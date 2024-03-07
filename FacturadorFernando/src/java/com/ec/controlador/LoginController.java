@@ -69,11 +69,9 @@ public class LoginController extends SelectorComposer<Component> {
         boolean bloquear = false;
 
         Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
-        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue()||cantidadContratada.getParBloqueoSistema()) {
-            bloquear = true;
-        }
-
-       if (!cantidadContratada.getParBloqueoSistema()) {
+        if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue() || cantidadContratada.getParBloqueoSistema()) {
+            bloquear = Boolean.TRUE;
+        } else {
             bloquear = Boolean.FALSE;
         }
 
@@ -85,31 +83,36 @@ public class LoginController extends SelectorComposer<Component> {
                 Executions.sendRedirect("/superadmin/consumo.zul");
             }
 
-            if (bloquear) {
-                Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra inactivo<br/> Por favor verifique con el proveedor</div>",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
-                return;
-            }
             if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.USUARIO.getCodigo()) {
                 NumeroDocumentosEmitidos emitidos = servicioNumeroDocumentosEmitidos.findByEmpresa(cre.getTipoambiente().getCodTipoambiente());
 
                 numeroDocumentos = emitidos == null ? 0 : emitidos.getNumero().intValue();
 
                 if (cre.getUsuarioSistema().getUsuIlimitado()) {
+                    if (bloquear) {
+                        Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra inactivo<br/> Por favor verifique con el proveedor</div>",
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 30000, true);
+                        return;
+                    }
                     if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
                         Executions.sendRedirect("/venta/facturar.zul");
                     } else {
                         Clients.showNotification("<div style:'width=200px;'>Su plan ilimitado no ha sido<br/> renovado contactese con el administrador.</div>",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
                     }
 
                 } else {
+                    if (bloquear) {
+                        Clients.showNotification("<div style:'width=200px;'>El sistema se encuentra inactivo<br/> Por favor verifique con el proveedor</div>",
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+                        return;
+                    }
                     if (cre.getUsuarioSistema().getUsuTotalContratado() > numeroDocumentos) {
                         Executions.sendRedirect("/venta/facturar.zul");
 
                     } else {
                         Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
 
                     }
 
@@ -117,7 +120,7 @@ public class LoginController extends SelectorComposer<Component> {
 
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.ADMINISTRADOR.getCodigo()) {
 
-                Executions.sendRedirect("/administrar/gestionusuarios.zul");
+                Executions.sendRedirect("/administrar/consumo.zul");
 
             } else if (cre.getNivelUsuario().intValue() == GrupoUsuarioEnum.SUPERADMIN.getCodigo()) {
 
@@ -127,10 +130,11 @@ public class LoginController extends SelectorComposer<Component> {
 
         } else {
             Clients.showNotification("<div  style='width:200px;'>Usuario o Contraseña incorrecto.<br/>Contáctese con el administrador.</div>",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
         }
 
     }
+
 
     @Listen("onClick= #linkOlvideContrasena")
     public void linkOlvideContrasena() {
