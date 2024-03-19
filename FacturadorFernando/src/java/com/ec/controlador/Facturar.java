@@ -9,7 +9,6 @@ import com.ec.dao.DetalleFacturaDAO;
 import com.ec.entidad.CierreCaja;
 import com.ec.entidad.Cliente;
 import com.ec.entidad.DetalleFactura;
-import com.ec.entidad.DetalleGuiaremision;
 import com.ec.entidad.DetalleKardex;
 import com.ec.entidad.DetallePago;
 import com.ec.entidad.Factura;
