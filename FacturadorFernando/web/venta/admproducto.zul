@@ -61,7 +61,7 @@
                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
 
                 <listhead class="encabezado22 encabezado"> 
-                    <listheader width="100%" label="Seleccionar"   sort="auto(prodCodigo)" ></listheader>
+                    <listheader width="100%" label="Sel"   sort="auto(prodCodigo)" ></listheader>
                     <listheader width="100%"   sort="auto(prodCodigo)" >
                         <textbox value="@bind(vm.buscarCodigo)" 
                                  class="form-control form-control-sm"
@@ -80,6 +80,7 @@
 
                         
                     </listheader> 
+                    <listheader label="% IVA" />  
                     <listheader label="Can. Inicial" />  
                     <listheader label="Prc. Compra" />  
                     <listheader label="Prc. Unidad"  /> 
@@ -99,6 +100,12 @@
                         <listcell zclass = "mycss-listcell">
                             <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
                                      class="form-control form-control-sm" value="@bind(each.prodNombre)" />
+                        </listcell>
+                        <listcell zclass = "mycss-listcell">
+                            <decimalbox format="###.#####" readonly="true"
+                                        style="font-size:12px;background:#EBF5FB;"
+                                        class="form-control form-control-sm"
+                                        value="@bind(each.prodIva)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
                             <decimalbox format="###.#####" readonly="true"

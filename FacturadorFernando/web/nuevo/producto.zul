@@ -66,7 +66,20 @@
           
 
         </div>
+        <div class="header" visible="@bind(vm.grabaIva)">
+            <div class="wrapper_input_mod" >
+                <span>Porcentaje IVA </span>
+                <radiogroup  selectedItem="@bind(vm.producto.prodIva)" 
+                             model="@load(vm.listaIva)"  
+                             onCheck="@command('colocarIvaCampo')" >
+                    <template name="model">
+                        <radio label="@load(each ne null ? ''.concat(each).concat('%') : '')" style="padding-right: 9px;" value="@load(each)">                        
+                        </radio>
+                    </template>
+                </radiogroup>
 
+            </div>
+        </div>
         <div class="body" visible="@bind(!vm.esUnProdcuto)">
             <div class="container_row_input">
                 <div class="wrapper_input_mod">

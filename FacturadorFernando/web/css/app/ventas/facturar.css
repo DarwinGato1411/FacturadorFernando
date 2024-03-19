@@ -711,7 +711,7 @@ div.z-listheader-cnt {
 
 .facturar_wrapper_data{
     display: grid !important;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-gap:10px;
 }
 
@@ -734,7 +734,7 @@ div.z-listheader-cnt {
 .encabezado1,.tabla1{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 13% 49% 13% 13% 11%;
+    grid-template-columns: 15% 47% 10% 10% 10% 8%;
 }
 
 
@@ -743,7 +743,7 @@ div.z-listheader-cnt {
 .encabezado2, .tabla2{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 7% 7% 7% 7% 22% 12% 10% 10% 9% 9%;
+    grid-template-columns: 5% 7% 7% 7% 27% 23% 8% 8% 8%;
 }
 
 
@@ -867,7 +867,7 @@ div.z-listheader-cnt {
     
     display: grid !important;
     align-items: center;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: 5% 10% 45% 5% 5% 5% 5% 5% 5% 5% 5%;
 }
 
 .tabla23,.encabezado23{

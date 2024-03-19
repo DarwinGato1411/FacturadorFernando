@@ -16,9 +16,9 @@
       
                     
         <listhead> 
-<!--            <listheader width="5%"   >
+            <listheader width="1%"   >
                 
-            </listheader>-->
+            </listheader>
             <listheader width="10%"   >
                 <textbox value="@bind(vm.buscarCodigoProd)"  
                          class="form-control form-control-sm"
@@ -50,6 +50,7 @@
 <!--                <listcell  onOK="@command('seleccionarProductoLista',valor=each)" >
                     <div ></div>
                 </listcell>-->
+                <listcell onClick="@command('seleccionarProductoLista',valor=each)"></listcell>
                 <listcell onClick="@command('seleccionarProductoLista',valor=each)">
                     <label value="@bind(each.prodCodigo)"  width="96%"  
                            onClick="@command('seleccionarProductoLista',valor=each)"/>

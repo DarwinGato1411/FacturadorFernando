@@ -20,7 +20,9 @@ import com.ec.servicio.ServicioTipoKardex;
 import com.ec.untilitario.ArchivoUtils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -71,6 +73,10 @@ public class NuevoProducto {
     private Boolean muestraIncluye = Boolean.TRUE;
     private Boolean muestraSubtotal = Boolean.TRUE;
 
+    private Integer porcentajeIva;
+    private List<BigDecimal> listaIva = new ArrayList<>();
+    private Boolean grabaIva = Boolean.TRUE;
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") Producto producto, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -79,10 +85,10 @@ public class NuevoProducto {
             this.producto = producto;
             if (producto.getProdGrabaIva()) {
                 conIva = "S";
-                this.producto.setProdIva(BigDecimal.valueOf(12.0));
+//                this.producto.setProdIva(BigDecimal.valueOf(12.0));
             } else {
                 conIva = "N";
-                this.producto.setProdIva(BigDecimal.ZERO);
+//                this.producto.setProdIva(BigDecimal.ZERO);
             }
             conICE = producto.getProdGrabaIce() ? "S" : "N";
 
@@ -122,11 +128,20 @@ public class NuevoProducto {
             this.producto.setProdUnidadConversion("UNIDAD");
             this.producto.setProdFactorConversion(BigDecimal.ONE);
 
+//            this.producto.setProdIva(BigDecimal.valueOf(15));
+            this.producto.setProdPorcentajeIva(15);
+
             accion = "create";
         }
         verificarTipoProducto();
         muestraSubtotal();
-
+        listaIva.add(BigDecimal.valueOf(0));
+        listaIva.add(BigDecimal.valueOf(5));
+        listaIva.add(BigDecimal.valueOf(12));
+//        listaIva.add(BigDecimal.valueOf(13));
+//        listaIva.add(BigDecimal.valueOf(14));
+        listaIva.add(BigDecimal.valueOf(15));
+        colocarIva();
     }
 
     public NuevoProducto() {
@@ -139,7 +154,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal","grabaIva"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -162,7 +177,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"muestraSubtotal"})
+    @NotifyChange({"muestraSubtotal","grabaIva"})
     public void muestraSubtotal() {
 
         if (!esUnProdcuto && incluyeIva) {
@@ -172,17 +187,70 @@ public class NuevoProducto {
         }
 
 //        
+
     }
 
     @Command
-    @NotifyChange({"producto"})
+    @NotifyChange({"txtIvaRec", "conIva", "grabaIva", "producto"})
+    public void colocarIvaCampo() {
+
+        txtIvaRec.setText(producto.getProdIva() != null ? producto.getProdIva().toString() : "15");
+        colocarIva();
+        calcularValores();
+    }
+
+    @Command
+    @NotifyChange({"producto", "conIva", "grabaIva", "txtIvaRec"})
     public void colocarIva() {
         if (conIva.equals("S")) {
-            txtIvaRec.setText("12");
-            producto.setProdIva(parametrizar.getParIva());
+//            txtIvaRec.setText("12");
+//            producto.setProdIva(parametrizar.getParIva());
+//            
+            txtIvaRec.setText(producto.getProdIva() != null ? producto.getProdIva().toString() : "15");
+            this.producto.setProdIva(producto.getProdIva() != null ? producto.getProdIva() : BigDecimal.valueOf(15));
+//            producto.setProdIva(parametrizar.getParIva());
+            grabaIva = Boolean.TRUE;
+//            colocarIvaCampo();
+            Integer valorIva = producto.getProdIva().intValue();
+            switch (valorIva) {
+                case 0:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(0);
+                    this.producto.setProdCodigoIva(0);
+                    break;
+                case 5:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(5);
+                    this.producto.setProdCodigoIva(5);
+                    break;
+
+                case 12:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(12);
+                    this.producto.setProdCodigoIva(2);
+                    break;
+                case 13:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(13);
+                    this.producto.setProdCodigoIva(10);
+                    break;
+                case 14:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(14);
+                    this.producto.setProdCodigoIva(3);
+                    break;
+                case 15:
+                    // secuencia de sentencias.
+                    this.producto.setProdPorcentajeIva(15);
+                    this.producto.setProdCodigoIva(4);
+                    break;
+                default:
+                // Default secuencia de sentencias.
+            }
         } else {
             txtIvaRec.setText("0");
             producto.setProdIva(BigDecimal.ZERO);
+            grabaIva = Boolean.FALSE;
         }
 //        calculopreciofinal();
     }
@@ -287,12 +355,12 @@ public class NuevoProducto {
         // BigDecimal porcenUtilidad = ((producto.getProdIva().add(producto.getProdUtilidadNormal()).add(producto.getProdManoObra()).add(producto.getProdTrasnporte())).divide(BigDecimal.valueOf(100))).add(BigDecimal.ONE);
         //BigDecimal porcenUtilidadPref = ((producto.getProdIva().add(producto.getProdUtilidadPreferencial()).add(producto.getProdManoObra()).add(producto.getProdTrasnporte())).divide(BigDecimal.valueOf(100))).add(BigDecimal.ONE);
 //para el precio normal
-        if (producto.getProdIva().intValue() == 0) {
-            conIva = "N";
-        } else {
-            conIva = "S";
-            producto.setProdIva(parametrizar.getParIva());
-        }
+//        if (producto.getProdIva().intValue() == 0) {
+//            conIva = "N";
+//        } else {
+//            conIva = "S";
+////            producto.setProdIva(parametrizar.getParIva());
+//        }
         if (producto.getPordCostoCompra() != null) {
             //VALOR DE LA COMPRA MAS EL IVA
             BigDecimal compraMasIva = ArchivoUtils.redondearDecimales(producto.getPordCostoCompra().multiply(porcenIva), 3);
@@ -319,14 +387,14 @@ public class NuevoProducto {
     @Command
     public void guardar() {
         if (producto.getProdNombre() != null
-                    && producto.getProdCodigo() != null
-                    && producto.getPordCostoVentaRef() != null
-                    && producto.getPordCostoVentaFinal() != null
-                    && producto.getProdCantidadInicial() != null) {
+                && producto.getProdCodigo() != null
+                && producto.getPordCostoVentaRef() != null
+                && producto.getPordCostoVentaFinal() != null
+                && producto.getProdCantidadInicial() != null) {
 
             if (producto.getProdNombre().length() > 300) {
                 Clients.showNotification("El nombre o descripción no puede tener mas de 300 caracteres",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
                 return;
             }
             producto.setCodTipoambiente(amb);
@@ -349,7 +417,7 @@ public class NuevoProducto {
             if (accion.equals("create")) {
                 if (servicioProducto.findByProdCodigo(producto.getProdCodigo(), amb) != null) {
                     Clients.showNotification("El codigo del prodcuto ya se encuentra registrado",
-                                Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
                     return;
                 }
 
@@ -482,7 +550,7 @@ public class NuevoProducto {
 //            calculopreciofinal();
         } else {
             Clients.showNotification("Verifique el subtotal",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
         }
 
     }
@@ -509,6 +577,30 @@ public class NuevoProducto {
 
     public void setMuestraSubtotal(Boolean muestraSubtotal) {
         this.muestraSubtotal = muestraSubtotal;
+    }
+
+    public List<BigDecimal> getListaIva() {
+        return listaIva;
+    }
+
+    public void setListaIva(List<BigDecimal> listaIva) {
+        this.listaIva = listaIva;
+    }
+
+    public Integer getPorcentajeIva() {
+        return porcentajeIva;
+    }
+
+    public void setPorcentajeIva(Integer porcentajeIva) {
+        this.porcentajeIva = porcentajeIva;
+    }
+
+    public Boolean getGrabaIva() {
+        return grabaIva;
+    }
+
+    public void setGrabaIva(Boolean grabaIva) {
+        this.grabaIva = grabaIva;
     }
 
 }
