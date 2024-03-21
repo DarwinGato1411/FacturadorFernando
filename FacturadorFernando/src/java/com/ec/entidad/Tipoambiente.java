@@ -763,7 +763,7 @@ public class Tipoambiente implements Serializable {
     }
 
     public Boolean getAmRimpePopular() {
-        return amRimpePopular;
+        return amRimpePopular == null ? Boolean.FALSE : amRimpePopular;
     }
 
     public void setAmRimpePopular(Boolean amRimpePopular) {
