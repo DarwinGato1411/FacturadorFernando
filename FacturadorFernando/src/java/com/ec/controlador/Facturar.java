@@ -2174,7 +2174,7 @@ public class Facturar extends SelectorComposer<Component> {
             factura.setFacIva13(ivaCotizacion13);
             factura.setFacIva14(ivaCotizacion14);
             factura.setFacIva15(ivaCotizacion15);
-            factura.setFacSubtotal(subTotalCotizacion.add(subTotalBaseCero).add(subTotalCotizacion5).add(subTotalCotizacion15));
+            factura.setFacSubtotal(subTotalCotizacion.add(subTotalBaseCero).add(subTotalCotizacion5).add(subTotalCotizacion15).add(ivaCotizacion13).add(ivaCotizacion14));
 
             factura.setFacIva(ivaCotizacion);
             factura.setFacTotal(valorTotalCotizacion);
