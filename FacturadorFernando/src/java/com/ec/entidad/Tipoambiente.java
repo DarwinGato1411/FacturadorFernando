@@ -215,7 +215,16 @@ public class Tipoambiente implements Serializable {
     private String amComprobanteImprime;
     @Column(name = "am_rimpe_popular")
     private Boolean amRimpePopular;
-    
+
+    @Column(name = "am_nombre_socio")
+    private String amNombreSocio;
+    @Column(name = "am_ruc_socio")
+    private String amRucSocio;
+    @Column(name = "am_placa_socio")
+    private String amPlacaSocio;
+    @Column(name = "am_telefono_socio")
+    private String amTelefonoSocio;
+
     public Tipoambiente() {
     }
 
@@ -759,6 +768,38 @@ public class Tipoambiente implements Serializable {
 
     public void setAmRimpePopular(Boolean amRimpePopular) {
         this.amRimpePopular = amRimpePopular;
+    }
+
+    public String getAmNombreSocio() {
+        return amNombreSocio;
+    }
+
+    public void setAmNombreSocio(String amNombreSocio) {
+        this.amNombreSocio = amNombreSocio;
+    }
+
+    public String getAmRucSocio() {
+        return amRucSocio;
+    }
+
+    public void setAmRucSocio(String amRucSocio) {
+        this.amRucSocio = amRucSocio;
+    }
+
+    public String getAmPlacaSocio() {
+        return amPlacaSocio;
+    }
+
+    public void setAmPlacaSocio(String amPlacaSocio) {
+        this.amPlacaSocio = amPlacaSocio;
+    }
+
+    public String getAmTelefonoSocio() {
+        return amTelefonoSocio;
+    }
+
+    public void setAmTelefonoSocio(String amTelefonoSocio) {
+        this.amTelefonoSocio = amTelefonoSocio;
     }
 
 }

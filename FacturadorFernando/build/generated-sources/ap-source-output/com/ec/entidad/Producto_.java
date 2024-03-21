@@ -13,11 +13,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-<<<<<<< HEAD
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-05-22T23:31:50")
-=======
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-03-17T00:04:00")
->>>>>>> 17babff2bfe9902cab453961a400172c82173985
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-03-21T12:09:36")
 @StaticMetamodel(Producto.class)
 public class Producto_ { 
 
@@ -40,6 +36,7 @@ public class Producto_ {
     public static volatile SingularAttribute<Producto, Date> prodFechaRegistro;
     public static volatile SingularAttribute<Producto, Boolean> prodGrabaIce;
     public static volatile SingularAttribute<Producto, String> prodCodigo;
+    public static volatile SingularAttribute<Producto, Integer> prodPorcentajeIva;
     public static volatile SingularAttribute<Producto, BigDecimal> prodTrasnporte;
     public static volatile SingularAttribute<Producto, BigDecimal> prodUtilidadPreferencial;
     public static volatile SingularAttribute<Producto, BigDecimal> prodCostoPreferencialTres;
@@ -49,6 +46,7 @@ public class Producto_ {
     public static volatile SingularAttribute<Producto, String> proGlp;
     public static volatile CollectionAttribute<Producto, Kardex> kardexCollection;
     public static volatile SingularAttribute<Producto, Integer> prodEstado;
+    public static volatile SingularAttribute<Producto, Integer> prodCodigoIva;
     public static volatile SingularAttribute<Producto, BigDecimal> prodCostoPreferencial;
     public static volatile SingularAttribute<Producto, Integer> prodPrincipal;
     public static volatile SingularAttribute<Producto, String> prodTieneSubsidio;

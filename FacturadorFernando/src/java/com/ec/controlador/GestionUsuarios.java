@@ -4,20 +4,17 @@
  */
 package com.ec.controlador;
 
-import com.ec.entidad.Factura;
 import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.Usuario;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioUsuario;
-import com.ec.untilitario.ArchivoUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +35,7 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
 
 /**
@@ -59,6 +57,7 @@ public class GestionUsuarios {
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     private Boolean esVisisible = Boolean.FALSE;
+    private String tipoPlan = "T";
 
     public GestionUsuarios() {
 
@@ -71,7 +70,7 @@ public class GestionUsuarios {
     }
 
     private void consultarUsuarios() {
-        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo);
+        listaTipoambientes = servicioTipoAmbiente.findALlTipoambientePorUsuarioAdm(nombreUsuario, amCodigo, tipoPlan);
     }
 
     @Command
@@ -99,7 +98,7 @@ public class GestionUsuarios {
     @NotifyChange("listaUsuarios")
     public void agregarUsario() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/usuario.zul", null, null);
+                "/nuevo/usuario.zul", null, null);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -110,9 +109,27 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevoadmin/usuario.zul", null, map);
+                "/nuevoadmin/usuario.zul", null, map);
         window.doModal();
         cosultarUsuarios("");
+    }
+
+    @Command
+    public void descargarFirma(@BindingParam("valor") Tipoambiente amb) {
+
+        try {
+            String filePath = amb.getAmDirBaseArchivos() + File.separator + amb.getAmFolderFirma() + File.separator + amb.getAmDirFirma();
+            File dosfile = new File(filePath);
+            if (dosfile.exists()) {
+                FileInputStream inputStream = new FileInputStream(dosfile);
+                Filedownload.save(inputStream, new MimetypesFileTypeMap().getContentType(dosfile), dosfile.getName());
+            } else {
+                Clients.showNotification("La firma no fue cargada", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR AL DESCARGAR EL ARCHIVO" + e.getMessage());
+        }
+
     }
 
     public UserCredential getCredential() {
@@ -154,7 +171,7 @@ public class GestionUsuarios {
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    
+
     @Command
     public void exportListboxToExcel() throws Exception {
         try {
@@ -213,7 +230,6 @@ public class GestionUsuarios {
 //            HSSFCell chfe = r.createCell(j++);
 //            chfe.setCellValue(new HSSFRichTextString("Cedual"));
 //            chfe.setCellStyle(estiloCelda);
-
             HSSFCell chfe1 = r.createCell(j++);
             chfe1.setCellValue(new HSSFRichTextString("CI/RUC"));
             chfe1.setCellStyle(estiloCelda);
@@ -225,7 +241,7 @@ public class GestionUsuarios {
             HSSFCell chfe111 = r.createCell(j++);
             chfe111.setCellValue(new HSSFRichTextString("Usuario"));
             chfe111.setCellStyle(estiloCelda);
-            
+
             HSSFCell ch1 = r.createCell(j++);
             ch1.setCellValue(new HSSFRichTextString("F Registro"));
             ch1.setCellStyle(estiloCelda);
@@ -234,11 +250,13 @@ public class GestionUsuarios {
             ch2.setCellValue(new HSSFRichTextString("F Caduca"));
             ch2.setCellStyle(estiloCelda);
 
+            HSSFCell ch222 = r.createCell(j++);
+            ch222.setCellValue(new HSSFRichTextString("F ultimo pago"));
+            ch222.setCellStyle(estiloCelda);
+
             HSSFCell ch22 = r.createCell(j++);
             ch22.setCellValue(new HSSFRichTextString("Plan"));
             ch22.setCellStyle(estiloCelda);
-
-            
 
             int rownum = 1;
             int i = 0;
@@ -258,23 +276,21 @@ public class GestionUsuarios {
 
                 HSSFCell c0 = r.createCell(i++);
                 c0.setCellValue(new HSSFRichTextString(sm.format(item.getIdUsuario().getUsuFechaRegistro())));
-                
+
                 HSSFCell c01 = r.createCell(i++);
-                c01.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaPago()!=null?sm.format(item.getIdUsuario().getUsuFechaPago()):""));
+                c01.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaPago() != null ? sm.format(item.getIdUsuario().getUsuFechaPago()) : ""));
+
+                HSSFCell c011 = r.createCell(i++);
+                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca() != null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
 
                 HSSFCell c1 = r.createCell(i++);
-                c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado()?"ILIMITADO":"DOCUMENTOS"));
-                
-                HSSFCell c11 = r.createCell(i++);
-                c11.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado()?"":item.getIdUsuario().getUsuNumDocumentos()!=null?item.getIdUsuario().getUsuNumDocumentos().toString():""));
+                c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado() ? "ILIMITADO" : "DOCUMENTOS"));
 
-                
                 rownum += 1;
 
             }
 
             j = 0;
-            
 
             for (int k = 0; k <= listaTipoambientes.size(); k++) {
                 s.autoSizeColumn(k);
@@ -287,6 +303,25 @@ public class GestionUsuarios {
         }
         return pathSalida;
 
+    }
+
+    public String getTipoPlan() {
+        return tipoPlan;
+    }
+
+    public void setTipoPlan(String tipoPlan) {
+        this.tipoPlan = tipoPlan;
+    }
+
+    @Command
+    @NotifyChange("listaUsuarios")
+    public void modificarUsarioSuper(@BindingParam("valor") Usuario usuario) {
+        final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
+        map.put("usuario", usuario);
+        org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                "/superadmin/usuario.zul", null, map);
+        window.doModal();
+        cosultarUsuarios("");
     }
 
 }

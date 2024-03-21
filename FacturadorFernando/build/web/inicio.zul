@@ -6,33 +6,42 @@
 <?page title="Facturacion electrónica" contentType="text/html;charset=UTF-8"?>
 
 <zk >
-    <div class="login_container" id="loginWin" apply="com.ec.controlador.LoginController">
+
+   <div class="login_container"  id="loginWin" apply="com.ec.controlador.LoginController">
         <div class="wrapper_login">
             <div class="container_img">
-                <image src="./imagenes/manfer/logo-h.png" class="logo" />
+                <image src="./imagenes/logodeckxel.png" class="logo"/>
                 <div class="wrapper_title">
-                    <span class="title">Sistema de Facturación Electrónica</span>
-                    <span class="subtitle">MANFER Asesoría y desarrollo empresarial</span>
+                    <span class="title">Sistema de Facturación Electrónica - Transporte</span>
+                   
                     <div class="desc">
-                        Estimado cliente sea usted bienvenido, para ingresar al sistema
-                        por favor digite su usuario y contraseña.
+                        Estimado usuario envenido a nuestro sistema.
                     </div>
+                    <div class="desc">
+                       Obten tu firma electronica con nosotros.
+                    </div>
+                    <div class="desc">
+                       Asesoramiento directo.
+                    </div>
+                    <div class="desc">DECKXEL</div>
+                   <div class="desc">099 742 8125   </div>
+                   <div class="desc">www.deckxel.com   </div>
+                    <!--<button class="btn btn_reg" id="btnRegistra" >Registro</button> -->
                 </div>
             </div>
             <div class="container_signin">
-                <image src="./imagenes/manfer/logo-h.png" class="logo" />
-                <span class="title">Iniciar Sesión</span>
-                <span class="subtitle">Bienvenido a MANFER</span>
-
+                <image src="./imagenes/logodeckxel.png" class="logo"/>
+                <span class="title" >Iniciar Sesión</span>
+                <span class="subtitle">Bienvenido su mejor opción en facturación electrónica</span> 
                 <div class="wrapper_all_inputs">
                     <div class="wrapper_input">
                         <span class="fas fa-user icon"></span>
                         <textbox 
                             type="text" 
-                            class="input" 
-                            id="account" 
+                            placeholder="Usuario" 
+                            class="input"
+                            id="account"
                             onCreate="self.focus()"
-                            placeholder="Ingrese el usuario" 
                         />
                     </div>
                     <div class="wrapper_input">
@@ -40,33 +49,35 @@
                         <textbox 
                             type="password" 
                             placeholder="Contraseña" 
-                            class="input input_password" 
-                            id="password"
-                            onCreate="self.focus()" 
+                             id="password"
+                            class="input input_password"
                         />
                         <span class="fa-solid fa-eye icon_eye icon"></span>
                     </div>
                 </div>
 
-                <span class="forgot_text" id="linkOlvideContrasena">Olvide mi contraseña</span>
-
-                 <div class="wrapper_buttons">
+                <!--<span class="forgot_text" id="linkOlvideContrasena">Olvide mi contraseña</span>-->
+                
+                <div class="wrapper_buttons">
                     <button 
                         class="btn btn_sign" 
                         id="buttonEntrar"
                     >Iniciar Sesión
                     </button>
-                    <button 
+<!--                    <button 
                         class="btn btn_sign_reg"
                         id="btnRegistra"
                     >Registro
-                    </button>
+                    </button>-->
                 </div>
+                
+                
             </div>
         </div>
     </div>
 
     <div class="wrapper_loading loading_inicio">
-        <div class="lds-dual-ring"></div>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
+
 </zk>

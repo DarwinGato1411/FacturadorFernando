@@ -18,11 +18,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-<<<<<<< HEAD
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2023-05-22T23:31:50")
-=======
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-03-17T00:04:00")
->>>>>>> 17babff2bfe9902cab453961a400172c82173985
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-03-21T12:09:36")
 @StaticMetamodel(Factura.class)
 public class Factura_ { 
 
@@ -40,6 +36,8 @@ public class Factura_ {
     public static volatile SingularAttribute<Factura, BigDecimal> facSaldoAmortizado;
     public static volatile SingularAttribute<Factura, Tipoambiente> cod_tipoambiente;
     public static volatile SingularAttribute<Factura, String> facTipoIdentificadorComprobador;
+    public static volatile SingularAttribute<Factura, BigDecimal> facSubt13;
+    public static volatile SingularAttribute<Factura, BigDecimal> facSubt14;
     public static volatile SingularAttribute<Factura, String> faConSinGuia;
     public static volatile SingularAttribute<Factura, BigDecimal> facAbono;
     public static volatile SingularAttribute<Factura, String> codestablecimiento;
@@ -62,8 +60,11 @@ public class Factura_ {
     public static volatile SingularAttribute<Factura, BigDecimal> facPlazo;
     public static volatile SingularAttribute<Factura, Date> facFechaCobro;
     public static volatile SingularAttribute<Factura, String> facNotaEntregaProcess;
+    public static volatile SingularAttribute<Factura, BigDecimal> facIva15;
+    public static volatile SingularAttribute<Factura, BigDecimal> facIva14;
     public static volatile SingularAttribute<Factura, String> facClaveAutorizacion;
     public static volatile CollectionAttribute<Factura, DetalleFactura> detalleFacturaCollection;
+    public static volatile SingularAttribute<Factura, BigDecimal> facIva13;
     public static volatile SingularAttribute<Factura, BigDecimal> facValorSinSubsidio;
     public static volatile SingularAttribute<Factura, Cliente> idCliente;
     public static volatile SingularAttribute<Factura, String> mensajesri;
@@ -71,7 +72,9 @@ public class Factura_ {
     public static volatile SingularAttribute<Factura, BigDecimal> facTotalBaseCero;
     public static volatile SingularAttribute<Factura, BigDecimal> facSubtotal;
     public static volatile SingularAttribute<Factura, String> facCodIva;
+    public static volatile SingularAttribute<Factura, BigDecimal> facIva5;
     public static volatile SingularAttribute<Factura, String> tipodocumento;
+    public static volatile SingularAttribute<Factura, BigDecimal> facSubt15;
     public static volatile SingularAttribute<Factura, String> codigoPorcentaje;
     public static volatile SingularAttribute<Factura, BigDecimal> facSaldo;
     public static volatile CollectionAttribute<Factura, Guiaremision> guiaremisionCollection;
@@ -81,6 +84,7 @@ public class Factura_ {
     public static volatile SingularAttribute<Factura, EstadoFacturas> idEstado;
     public static volatile SingularAttribute<Factura, BigDecimal> facTotalBaseGravaba;
     public static volatile SingularAttribute<Factura, String> tipoDocumentoMod;
+    public static volatile SingularAttribute<Factura, BigDecimal> facSubt5;
     public static volatile SingularAttribute<Factura, String> puntoemision;
     public static volatile SingularAttribute<Factura, Integer> idFactura;
     public static volatile SingularAttribute<Factura, String> facClaveAcceso;
