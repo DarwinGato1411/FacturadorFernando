@@ -3,15 +3,15 @@
          apply="org.zkoss.bind.BindComposer" >
     
     <caption label="Modificar " style="font-weight:bold" /> 
-   <style>
-     .z-listbox-autopaging .z-listcell-cnt {
-    height: 14px;
-    overflow: hidden;
-}
+    <style>
+        .z-listbox-autopaging .z-listcell-cnt {
+        height: 14px;
+        overflow: hidden;
+        }
         
     </style>
               
-     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Facturar')" width="100%" class="wrapper_container_facturar">
     
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
@@ -499,10 +499,10 @@
                                             
                                             <!--onDoubleClick="@command('cambiarRegistro',valor=each)"-->
                                             <textbox                                                            
-                                                     class="form-control form-control-sm"
-                                                     value="@bind(each.codigo)" 
-                                                     style="font-size:10px"
-                                                     onOK="@command('buscarPorCodigo',valor=each)"
+                                                class="form-control form-control-sm"
+                                                value="@bind(each.codigo)" 
+                                                style="font-size:10px"
+                                                onOK="@command('buscarPorCodigo',valor=each)"
                                                         
                                             />
                                         </listcell>
@@ -535,6 +535,14 @@
                                             <decimalbox readonly="true" format="###.###" 
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.totalInicial)"  width="99%" />
+                                        </listcell>
+                                        
+                                        <listcell zclass = "mycss-listcell">
+                                            <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"                                            
+                                                        onOK="@command('calcularValoresDesCantidadCalcu',valor=each)"
+                                                        class="form-control form-control-sm"                                                                                                                            
+                                                        readonly="@bind(each.esProducto)"
+                                                        value="@bind(each.subTotalCalcu)"  width="99%" />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
@@ -576,5 +584,6 @@
                 </tabpanel>
             </tabpanels>
         </tabbox>   
-    </hbox>  
+    </hbox>
+    
 </window>
