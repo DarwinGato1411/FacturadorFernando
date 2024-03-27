@@ -537,6 +537,14 @@
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.totalInicial)"  width="99%" />
                                         </listcell>
+                                        
+                                          <listcell zclass = "mycss-listcell">
+                                            <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"                                            
+                                                        onOK="@command('calcularValoresDesCantidadCalcu',valor=each)"
+                                                        class="form-control form-control-sm"                                                                                                                            
+                                                        readonly="@bind(each.esProducto)"
+                                                        value="@bind(each.subTotalCalcu)"  width="99%" />
+                                        </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
                                                         onOK="@command('calcularValoresDesCantidad',valor=each)"
