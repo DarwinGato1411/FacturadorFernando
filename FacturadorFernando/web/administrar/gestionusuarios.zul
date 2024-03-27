@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
+
 
 
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
@@ -82,14 +82,16 @@
                                      pageSize="20">
                                 <listhead sizable="true">
                                     <listheader label="T-AMB"  align="left" width="5%"></listheader>
-                                    <listheader label="RUC"  align="left" width="15%"></listheader>
-                                    <listheader  align="left" width="35%">
+                                    <listheader  align="left" width="15%">
                                         <textbox value="@bind(vm.nombreUsuario)"  
-                                             tooltiptext="Responsable de la cuenta"
+                                             tooltiptext="Buscar por RUC, Responsable"
                                              class="form-control form-control-sm"                                         
-                                             placeholder="Responsable de la cuenta"
+                                             placeholder="Buscar por RUC, Responsable"
                                              onOK="@command('consultarUsuariosPorCodigo')"
                                              onChange="self.setValue(self.getValue().toUpperCase());" />
+                                    </listheader>
+                                    <listheader  label="REsponsable" align="left" width="35%">
+                                        
                                         
                                     </listheader>
                                     <listheader label="Usuario"  align="left" width="20%"></listheader>

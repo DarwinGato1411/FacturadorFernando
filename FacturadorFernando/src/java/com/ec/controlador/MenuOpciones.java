@@ -83,7 +83,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 muenGestionUsu.setVisible(Boolean.FALSE);
                 muenGestionEmpresas.setVisible(Boolean.FALSE);
                 btnGestionFactura.setVisible(Boolean.FALSE);
-                btnCodigoRet.setVisible(Boolean.FALSE);
+//                btnCodigoRet.setVisible(Boolean.FALSE);
             }
         }
     }
