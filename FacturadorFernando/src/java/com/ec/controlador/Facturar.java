@@ -459,6 +459,10 @@ public class Facturar extends SelectorComposer<Component> {
         DetalleFacturaDAO nuevoRegistro;
         listaDetalleFacturaDAODatos.clear();
         for (DetalleFactura det : detalleFac) {
+
+            BigDecimal factorIva = (det.getIdProducto().getProdIva().divide(BigDecimal.valueOf(100.0)));
+            BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
+
             nuevoRegistro = new DetalleFacturaDAO();
             nuevoRegistro.setCodigo(det.getIdProducto().getProdCodigo());
             nuevoRegistro.setCantidad(det.getDetCantidad());
@@ -482,6 +486,14 @@ public class Facturar extends SelectorComposer<Component> {
             nuevoRegistro.setTotalInicial(det.getDetTotal());
             nuevoRegistro.setEsProducto(det.getIdProducto().getProdEsproducto());
             nuevoRegistro.setValorIce(valorIce);
+
+            if (det.getIdProducto().getProdGrabaIva()) {
+                nuevoRegistro.setSubTotalCalcu(ArchivoUtils.redondearDecimales(det.getDetTotal().divide(factorSacarSubtotal, 6, RoundingMode.FLOOR), 6));
+            } else {
+
+                nuevoRegistro.setSubTotalCalcu(ArchivoUtils.redondearDecimales(det.getDetTotal(), 6));
+            }
+
             clietipo = det.getDetCodTipoVenta();
 //            calcularValores(nuevoRegistro);
             listaDetalleFacturaDAODatos.add(nuevoRegistro);
@@ -664,6 +676,13 @@ public class Facturar extends SelectorComposer<Component> {
                     tipoVenta = "PREFERENCIAL 2";
                     costVentaTipoClienteInicial = productoBuscado.getProdCostoPreferencialDos();
                     costVentaTipoCliente = productoBuscado.getProdCostoPreferencialDos();
+                }
+
+                if (producto.getProdGrabaIva()) {
+                    valor.setSubTotalCalcu(ArchivoUtils.redondearDecimales(costVentaTipoClienteInicial.divide(factorSacarSubtotal, 6, RoundingMode.FLOOR), 6));
+                } else {
+
+                    valor.setSubTotalCalcu(ArchivoUtils.redondearDecimales(costVentaTipoClienteInicial, 6));
                 }
 
                 valor.setTotalInicial(ArchivoUtils.redondearDecimales(costVentaTipoClienteInicial, 8));
@@ -3509,7 +3528,6 @@ public class Facturar extends SelectorComposer<Component> {
         this.subTotalCotizacion15 = subTotalCotizacion15;
     }
 
-  
     @Command
     @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion",
         "totalDescuento", "buscarNombreProd", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce",
@@ -3653,7 +3671,5 @@ public class Facturar extends SelectorComposer<Component> {
             Messagebox.show("Ocurrio un error al calcular los valores" + e, "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-
-    
 
 }

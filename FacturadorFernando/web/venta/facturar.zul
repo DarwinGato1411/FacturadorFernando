@@ -480,11 +480,12 @@
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="10%"   label="COD" align="left" />
+                                   <listheader width="15%"   label="COD" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
-                                    <listheader width="25%"  label="DESCRIPCIÓN" align="left" />
+                                    <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
                                     <listheader width="15%"  label="PRE REAL" align="left" />
+                                    <listheader width="15%"  label="SUBTOTAL" align="left" />                                         
                                     <listheader width="15%"  label="PRECIO" align="left" />                                         
                                     <listheader width="15%"  label="TOTAL" align="left" />
                                                                                                                     
