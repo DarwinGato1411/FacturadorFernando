@@ -286,9 +286,12 @@
                                         class="input" 
                                     />
                                 </div>
-                                <div class="wrapper_input" style="flex:auto">
+                                <div class="wrapper_input" style="flex:auto" align="center">
+                                     <textbox  class="input_total"   style="background-color:transparent;" value="Total"> </textbox> 
+                                   </div> 
+                                <div class="wrapper_input" style="flex:auto" align="center">
                                     <!--<span   >-->
-                                    <label  class="input_total"   style="background-color:transparent" value="Total :"> </label> 
+                                    <!--<label  class="input_total"   style="background-color:transparent" value="Total :"> </label>--> 
                                     <!--</span>-->
                                     <!--<div class="wrapper_input_text" style="width:100%">-->
                                     <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
@@ -300,27 +303,7 @@
                                     />
                                     <!--</div>-->
                                 </div>
-                                <div class="wrapper_input" style="">
-                                    <!--<span>Cobrar:</span>-->
-                                    <label class="input_cobro" value="Cobrar:"> </label> 
-                                    <textbox 
-                                        class="input_cobro" 
-                                        constraint="/^[0-9]{1,9}(?:[.][0-9]{1,2})?$/:Ingrese solo numeros" 
-                                        onOK="@command('calcularCambio')"
-                                        value="@bind(vm.cobro)"
-                                    />
-                                </div>
-                                
-                                <div class="wrapper_input">
-                                        
-                                    <label  style="background-color:transparent" class="input_cambio" value="Cambio:"> </label> 
-                                    <decimalbox  
-                                        format="###.##"   
-                                        readonly="true" 
-                                        class="input_cambio"
-                                        value="@bind(vm.cambio)" 
-                                    />
-                                </div>
+
                                 <div class="wrapper_input">
                                 
                                     <button 
@@ -373,8 +356,8 @@
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>                         
                                     <listheader width="5%"  label="% IVA" align="center"/>
-                                    <listheader width="10%"   label="KARDEX" align="center" /> 
-                                    <listheader width="13%"  label="PV X MAYOR" align="center" /> 
+                                    <!--<listheader width="10%"   label="KARDEX" align="center" />--> 
+                                    <!--<listheader width="13%"  label="PV X MAYOR" align="center" />--> 
                                     <listheader width="13%"  label="PVP" align="center" /> 
                                     
                                     <listheader width="5%"  label="" align="center"/>
@@ -409,7 +392,7 @@
                                                         value="@bind(each.idProducto.prodIva)" 
                                                         width="96%" />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell" 
+<!--                                        <listcell zclass = "mycss-listcell" 
                                                   if="${each.verificaStock}" 
                                                   style="font-size:11px;background-color:#C7FEC1"
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -418,8 +401,8 @@
                                                    style="font-size:10px;background-color:#C7FEC1"
                                                    value="@bind(each.karTotal)" 
                                                    width="96%" />
-                                        </listcell>
-                                        <listcell zclass = "mycss-listcell" 
+                                        </listcell>-->
+<!--                                        <listcell zclass = "mycss-listcell" 
                                                   if="${!each.verificaStock}" 
                                                   style="font-size:11px;background-color:#FBC3C3"
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
@@ -428,15 +411,15 @@
                                                    style="font-size:10px;background-color:#FBC3C3"
                                                    value="@bind(each.karTotal)" 
                                                    width="96%" />
-                                        </listcell>
-                                        <listcell zclass = "mycss-listcell" 
+                                        </listcell>-->
+<!--                                        <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                             <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
                                                    class="form-control form-control-sm"
                                                    value="@bind(each.idProducto.prodCostoPreferencial)"
                                                    style="font-size:11px; font-weight: bold" 
                                                    width="96%" />
-                                        </listcell>
+                                        </listcell>-->
                                         <listcell zclass = "mycss-listcell" 
                                                   onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                             <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
