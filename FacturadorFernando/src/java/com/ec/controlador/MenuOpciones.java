@@ -52,6 +52,8 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menuitem btnOrden;
     @Wire("#btnlistaOrden")
     Menuitem btnlistaOrden;
+    @Wire("#btnReportes")
+    Menuitem btnReportes;
 
     UserCredential credential = new UserCredential();
     private String acceso = "";
@@ -81,6 +83,8 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 muenGestionUsu.setVisible(Boolean.FALSE);
                 muenGestionEmpresas.setVisible(Boolean.FALSE);
                 btnGestionFactura.setVisible(Boolean.FALSE);
+                btnReportes.setVisible(Boolean.FALSE);
+
             }
         }
     }

@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
+
 
 
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
@@ -81,20 +81,25 @@
                                      nonselectableTags="*"  mold="paging"
                                      pageSize="20">
                                 <listhead sizable="true">
-                                    <listheader label="RUC"  align="left" width="15%"></listheader>
-                                    <listheader  align="left" width="35%">
+                                    <listheader label="T-AMB"  align="left" width="5%"></listheader>
+                                    <listheader  align="left" width="15%">
                                         <textbox value="@bind(vm.nombreUsuario)"  
-                                             tooltiptext="Responsable de la cuenta"
+                                             tooltiptext="Buscar por RUC, Responsable"
                                              class="form-control form-control-sm"                                         
-                                             placeholder="Responsable de la cuenta"
+                                             placeholder="Buscar por RUC, Responsable"
                                              onOK="@command('consultarUsuariosPorCodigo')"
                                              onChange="self.setValue(self.getValue().toUpperCase());" />
+                                    </listheader>
+                                    <listheader  label="REsponsable" align="left" width="35%">
+                                        
                                         
                                     </listheader>
                                     <listheader label="Usuario"  align="left" width="20%"></listheader>
+                                   
                                     <listheader label="Contraseña"  align="left" width="20%"></listheader>
                                     
                                     <listheader label="Tipo usuario"  align="left" width="10%"></listheader>
+                                     <listheader label="DOC-CONT"  tooltiptext="Documentos contratados" align="left" width="5%"></listheader>
                                      <!--<listheader label="Contraseña Firma"  align="left" width="20%"></listheader>-->
                                     <listheader label="Fecha caduca"  align="left" width="10%"></listheader>
                                      <listheader label="Plan"  align="left" width="10%"></listheader>
@@ -106,6 +111,10 @@
                         
                                 <template name="model">
                                     <listitem width="100%" > 
+                                        <listcell  zclass = "mycss-listcell">
+                                            <textbox readonly="true" value="@bind(each.codTipoambiente)"  style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm" />
+                                        </listcell>  
                                         <listcell  zclass = "mycss-listcell">
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuRuc)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm" />
@@ -126,6 +135,10 @@
                                         </listcell>  
                                         <listcell  zclass = "mycss-listcell">                          
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
+                                                     class="form-control form-control-sm"  />
+                                        </listcell>  
+                                        <listcell  zclass = "mycss-listcell">                          
+                                            <textbox readonly="true" value="@bind(each.idUsuario.usuNumDocumentos)"  style="font-size:12px;background:#EBF5FB"
                                                      class="form-control form-control-sm"  />
                                         </listcell>  
 <!--                                         <listcell  zclass = "mycss-listcell">      

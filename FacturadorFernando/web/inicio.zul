@@ -22,6 +22,8 @@
                 <div class="wrapper">
                     <span class="title">Iniciar Sesión</span>
                     <span class="subtitle">Administrar tus facturas nunca ha sido tan fácil!</span>
+                    <span class="subtitle">Nuestro sistema se encuentra actualizado con las reformas del SRI IVA 5% y 15%).</span>
+<!--                    <span class="subtitle"></span>-->
 
                     <div class="wrapper_inputs">
                         <div class="wrapper_input">
