@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
 
 :root {
-     --primary-color: #3e6e55;
+    --primary-color: #3e6e55;
     --secondary-color: #97dddd;
     --terciary-color:#243056;
     --background-color: #fff;
@@ -36,6 +36,16 @@ body {
 }
 
 .factura_header > .fact_row {
+    position: relative;
+    background-color: #eee;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1em;
+}
+.factura_header > .fact_row_all {
     position: relative;
     background-color: #eee;
     padding: 1em;
@@ -619,9 +629,12 @@ div.z-listheader-cnt {
         width: 50%;
         flex-direction: row;
     }
-
+    .factura_header > .fact_row_all {
+        width: 100%;
+        flex-direction: row;
+    }
     .wrapper_buttons {
-        width: 40%;
+        width: 100%;
     }
 
     .factura_header > .fact_row:first-child:after {
@@ -674,7 +687,7 @@ div.z-listheader-cnt {
     display: flex;
     flex-direction: column;
     gap:10px;
-    
+
 }
 
 .menuA div{
@@ -700,11 +713,11 @@ div.z-listheader-cnt {
     .menulogo{
         flex-direction: row;
     }
-    
+
     .containerPC{
         width: 90%
     }
-    
+
     .btnSalir{
         width: 10%
     }
