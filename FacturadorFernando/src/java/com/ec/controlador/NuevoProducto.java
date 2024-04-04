@@ -154,7 +154,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal", "grabaIva"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal","grabaIva"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -165,10 +165,7 @@ public class NuevoProducto {
             esUnProdcuto = Boolean.FALSE;
             //            this.producto.setPordCostoVentaFinal(BigDecimal.ONE);
             prodPrecioSubtotal = prodPrecioSubtotal == null ? BigDecimal.ZERO : prodPrecioSubtotal;
-            if (accion.equals("create")) {
-                calcularPrecioFinalVenta();
-            }
-
+//            calcularPrecioFinalVenta();
         }
         if (!esUnProdcuto && conIva.equals("S")) {
             muestraIncluye = Boolean.TRUE;
@@ -180,7 +177,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"muestraSubtotal", "grabaIva"})
+    @NotifyChange({"muestraSubtotal","grabaIva"})
     public void muestraSubtotal() {
 
         if (!esUnProdcuto && incluyeIva) {
@@ -190,6 +187,7 @@ public class NuevoProducto {
         }
 
 //        
+
     }
 
     @Command

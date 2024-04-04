@@ -88,7 +88,7 @@ public class ServicioProducto {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT p FROM Producto p WHERE p.codTipoambiente=:codTipoambiente ORDER BY p.prodNombre ASC");
-           query.setParameter("codTipoambiente", amb);
+            query.setParameter("codTipoambiente", amb);
             listaProductos = (List<Producto>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -280,5 +280,22 @@ public class ServicioProducto {
         }
 
         return listaProductos;
+    }
+
+    public void modificarIva(Tipoambiente codTipoambiente) {
+
+        try {
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createNativeQuery("UPDATE producto SET prod_codigo_iva='4', prod_porcentaje_iva=15,prod_iva=15 where prod_iva=12 and cod_tipoambiente=" + codTipoambiente.getCodTipoambiente());
+            query.executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en actulizar el producto " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
     }
 }
