@@ -191,194 +191,277 @@
 
 
                     <div class="factura_header">
-                        <div class="fact_row_custom">
+                            <div class="fact_row_custom">
 
 
 
-                            <div class="container_data_custom">
-                                <div class="wrapper_data">
-                                    <div class="wrapper_input">
-                                        <span>Cedula:</span>
-                                        <textbox  
-                                            readonly="true" 
-                                            placeholder="Cedula"
-                                            class="input" 
-                                            onDoubleClick="@command('buscarProveedorEnLista')" 
-                                            value="@bind(vm.proveedorSeleccionado.provCedula)"  
-                                        />
-                                        <div 
-                                            onClick="@command('buscarProveedorEnLista')"  
-                                            class="fa-solid fa-magnifying-glass icon">
+                                <div class="container_data_custom">
+                                    <div class="wrapper_data">
+                                        <div class="wrapper_input">
+                                            <span>Cedula:</span>
+                                            <textbox  
+                                                readonly="true" 
+                                                placeholder="Cedula"
+                                                class="input" 
+                                                onDoubleClick="@command('buscarProveedorEnLista')" 
+                                                value="@bind(vm.proveedorSeleccionado.provCedula)"  
+                                            />
+                                            <div 
+                                                onClick="@command('buscarProveedorEnLista')"  
+                                                class="fa-solid fa-magnifying-glass icon">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="wrapper_input">
+                                            <span>Nombre:</span>
+                                            <textbox  
+                                                readonly="true" 
+                                                placeholder="Nombre proveedor"
+                                                class="input" 
+                                                value="@bind(vm.proveedorSeleccionado.provNombre)"  
+                                            />
+                                            <div class="fa-solid fa-user icon"></div>
                                         </div>
                                     </div>
+
+                                    <div class="wrapper_data">
+                                        <div class="wrapper_input">
+                                            <span>Teléfono:</span>
+                                            <textbox  
+                                                readonly="true" 
+                                                placeholder="022222222"
+                                                class="input" 
+                                                value="@bind(vm.proveedorSeleccionado.provTelefono)"  
+                                            />
+                                            <div class="fa-solid fa-phone icon"/>
+                                        </div>
+                                        <div class="wrapper_input">
+                                            <span>Dirección</span>
+                                            <textbox  
+                                                readonly="true" 
+                                                placeholder="Tabacundo la Esperanza"
+                                                class="input" 
+                                                value="@bind(vm.proveedorSeleccionado.provDireccion)"  
+                                            />
+                                            <div class="fa-solid fa-location-dot icon"/>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="wrapper_data" >
+                                    <div class="wrapper_input">
+                                        <textbox  
+                                            maxlength="3"                                                    
+                                            placeholder="001"
+                                            value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
+                                        />-
+                                        <textbox 
+                                            maxlength="3"   
+                                            placeholder="001"
+                                            value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
+                                        />-
+                                        <textbox 
+                                            maxlength="9"   
+                                            onChange="self.setValue(self.getValue().toUpperCase());"
+                                            placeholder="000000009"
+                                            style="min-width:29%"
+                                            value="@bind(vm.numeroFactura)"  
+                                        />
+                                    </div>
+<!--                                    </div>
+                                    <div class="wrapper_data" >-->
+                                    <div class="wrapper_input">
+                                        <span>F. Factura:</span>
+                                        <datebox 
+                                            value="@bind(vm.fechafacturacion)" 
+                                            readonly="true"                                          
+                                            buttonVisible="true" 
+                                            lenient="true" format="dd/MM/yyyy" 
+                                            constraint="no empty: Ingrese su fecha de la orden"
+                                            class="input_date"
+                                        />
+                                        <!--<div class="fa-solid fa-calendar icon"/>-->
+                                    </div>
+                                </div>
+                                </div>
+
+
+
+                                <div class="container_data_custom" style="margin-top: 1em;">
+                                    <div class="wrapper_data" >
+                                        <div class="wrapper_input">
+                                            <span>Autorización:</span>
+                                            <textbox  
+                                                readonly="false" 
+                                                maxlength="49"                                           
+                                                value="@bind(vm.cabeceraCompra.cabAutorizacion)" 
+                                                class="input"   
+                                            />
+                                            <div class="fa-solid fa-user icon"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+
+
+
+
+
+                            <div class="fact_row">
+                               
+<!--                                <div class="wrapper_data">
                                     
-                                    <div class="wrapper_input">
-                                        <span>Nombre:</span>
-                                        <textbox  
-                                            readonly="true" 
-                                            placeholder="Nombre proveedor"
-                                            class="input" 
-                                            style="padding-right: 25px;"
-                                            value="@bind(vm.proveedorSeleccionado.provNombre)"  
-                                        />
-                                        <div class="fa-solid fa-user icon"></div>
-                                    </div>
-                                </div>
-
+                                    
+                                </div>-->
                                 <div class="wrapper_data">
-                                    <div class="wrapper_input">
-                                        <span>Teléfono:</span>
-                                        <textbox  
-                                            readonly="true" 
-                                            placeholder="022222222"
-                                            class="input" 
-                                            value="@bind(vm.proveedorSeleccionado.provTelefono)"  
-                                        />
-                                        <div class="fa-solid fa-phone icon"/>
-                                    </div>
-                                    <div class="wrapper_input">
-                                        <span>Dirección</span>
-                                        <textbox  
-                                            readonly="true" 
-                                            placeholder="Tabacundo la Esperanza"
-                                            class="input" 
-                                            value="@bind(vm.proveedorSeleccionado.provDireccion)"  
-                                        />
-                                        <div class="fa-solid fa-location-dot icon"/>
-                                    </div>
 
 
+                                    <div class="wrapper_input">
+                                        <span>Sub. 5%</span>
+                                        <decimalbox  format="###.##"  
+                                                     value="@bind(vm.subTotalFactura5)"                                             
+                                                     readonly="true"                                                              
+                                                         
+                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                     class="" />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>
+<!--                                    <div class="wrapper_input">
+                                        <span>Sub. 12%</span>
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.subTotalFactura)"                                             
+                                            readonly="true"                                                    
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>-->
+                                    <div class="wrapper_input">
+                                        <span>Sub. 15%</span>
+                                        <decimalbox  format="###.##"  
+                                                      value="@bind(vm.subTotalFactura15)"                                             
+                                                      readonly="true"                                                              
+                                                         
+                                                      onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                      class="" />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>Sub. 0%</span>
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.subTotalFacturaCero)"                                             
+                                            readonly="true"                                                      
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>
+
+<!--                                    <div class="wrapper_input">
+                                        <span>IVA</span>
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.ivaFactura)"
+                                            readonly="true" 
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                        <div class="fa-solid fa-sack-dollar icon"></div>
+                                    </div>-->
+
+                                  
                                 </div>
-                            </div>
+                                <div class="wrapper_data">
 
 
-
-                            <div class="container_data_custom" style="margin-top: 1em;">
-                                <div class="wrapper_data" >
                                     <div class="wrapper_input">
-                                        <span>Autorización:</span>
-                                        <textbox  
-                                            readonly="false" 
-                                            maxlength="49"                                           
-                                            value="@bind(vm.cabeceraCompra.cabAutorizacion)" 
-                                            class="input"   
-                                        />
-                                        <div class="fa-solid fa-user icon"></div>
+                                             <span>IVA 5 %</span>
+                                           
+                                                    <decimalbox  format="###.##"  
+                                                                     value="@bind(vm.ivaFactura5)"
+                                                                     readonly="true" 
+                                                             
+                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                                     class="" />
+
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
                                     </div>
+<!--                                    <div class="wrapper_input">
+                                       <span>IVA 12 %</span>
+                                           
+                                                    <decimalbox  format="###.##"  
+                                                                     value="@bind(vm.ivaFactura)"
+                                                                     readonly="true" 
+                                                             
+                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                                     class="" />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>-->
+                                    <div class="wrapper_input">
+                                       <span>IVA 15 %</span>
+                                           
+                                                    <decimalbox  format="###.##"  
+                                                                     value="@bind(vm.ivaFactura15)"
+                                                                     readonly="true" 
+                                                             
+                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                                     class="" />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                    </div>
+                                    <div class="wrapper_input">
+<!--                                        <span>Sub. 0%</span>
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.subTotalFacturaCero)"                                             
+                                            readonly="true"                                                      
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>-->
+                                    </div>
+
+<!--                                    <div class="wrapper_input">
+                                        <span>IVA</span>
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.ivaFactura)"
+                                            readonly="true" 
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                        <div class="fa-solid fa-sack-dollar icon"></div>
+                                    </div>-->
+
+                                  
+                                </div>
+                                <div class="fact_row wrapper_buttons">
+                                    <button               
+                                        autodisable="self"
+                                        label="Guardar"
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"
+                                        onClick="@command('Guardar')"
+                                        tooltiptext="Guardar mercaderia"
+                                    />
+
+                                    <div class="wrapper_input wrapper_total" style="flex-direction:row">
+                                    
+                                        <decimalbox  
+                                            format="###.##"  
+                                            value="@bind(vm.valorTotalFactura)"
+                                            readonly="true" 
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                            style="width:120px"
+                                        />
+                                    </div> 
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="fact_row">
-                            <div class="wrapper_data">
-                            <div class="wrapper_input">
-                                    <textbox  
-                                        maxlength="3"                                                    
-                                        placeholder="001"
-                                        value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
-                                    />-
-                                    <textbox 
-                                        maxlength="3"   
-                                        placeholder="001"
-                                        value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
-                                    />-
-                                    <textbox 
-                                        maxlength="9"   
-                                        onChange="self.setValue(self.getValue().toUpperCase());"
-                                        placeholder="000000009"
-                                        style="min-width:29%"
-                                        value="@bind(vm.numeroFactura)"  
-                                    />
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>F. Factura:</span>
-                                    <datebox 
-                                        value="@bind(vm.fechafacturacion)" 
-                                        readonly="true"                                          
-                                        buttonVisible="true" 
-                                        lenient="true" format="dd/MM/yyyy" 
-                                        constraint="no empty: Ingrese su fecha de la orden"
-                                        class="input_date"
-                                    />
-                                    <div class="fa-solid fa-calendar icon"/>
-                                </div>
-
-                                
-                            </div>
-                            <div class="wrapper_data">
-
-
-                                <div class="wrapper_input">
-                                    <span>Sub. 12%</span>
-                                    <decimalbox  
-                                        format="###.##"  
-                                        value="@bind(vm.subTotalFactura)"                                             
-                                        readonly="true"                                                    
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                    <div class="fa-solid fa-hand-holding-dollar icon"></div>
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Sub. 0%</span>
-                                    <decimalbox  
-                                        format="###.##"  
-                                        value="@bind(vm.subTotalFacturaCero)"                                             
-                                        readonly="true"                                                      
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                    <div class="fa-solid fa-hand-holding-dollar icon"></div>
-                                </div>
-
-                                <div class="wrapper_input">
-                                    <span>IVA</span>
-                                    <decimalbox  
-                                        format="###.##"  
-                                        value="@bind(vm.ivaFactura)"
-                                        readonly="true" 
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                    <div class="fa-solid fa-sack-dollar icon"></div>
-                                </div>
-
-                                <!-- <div class="wrapper_input">
-                                    <span>Total</span>
-                                    <decimalbox  
-                                        format="###.##"  
-                                        value="@bind(vm.valorTotalFactura)"
-                                        readonly="true" 
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                    <div class="fa-solid fa-dollar-sign icon"></div>
-                                </div> -->
-                            </div>
-                            <div class="fact_row wrapper_buttons">
-                                <button               
-                                    autodisable="self"
-                                    label="Guardar"
-                                    class="fa-solid fa-floppy-disk btn_fact btn_primary"
-                                    onClick="@command('Guardar')"
-                                    tooltiptext="Guardar mercaderia"
-                                />
-
-                                <div class="wrapper_input wrapper_total" style="flex-direction:row">
-                                
-                                    <decimalbox  
-                                        format="###.##"  
-                                        value="@bind(vm.valorTotalFactura)"
-                                        readonly="true" 
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                        style="width:120px"
-                                    />
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
 
 
                     
