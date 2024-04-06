@@ -57,7 +57,13 @@
         >
             <span>Cargar producto</span>
         </div>
-        
+        <div 
+            class="fa-solid fa fa-spinner fa-2x icon"
+            onClick="@command('cambiarIvaTotos')"
+            tooltiptext="Generar codigos de barras"
+        >
+            <span>Cambiar todos los productos del 12% al 15%</span>
+        </div>
     </div>
 
     <div class="cont_body">
@@ -124,33 +130,34 @@
                                         value="@bind(each.prodCantidadInicial)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
-                            <decimalbox format="###.#####" readonly="true"
-                                        style="font-size:12px;background:#EBF5FB"
+                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"       
+                                        onOK="@command('modificar',valor=each)"
                                         class="form-control form-control-sm"
                                         value="@bind(each.pordCostoVentaRef)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
-                            <decimalbox format="###.#####" readonly="true"  
-                                        style="font-size:12px;background:#EBF5FB"
+                           <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"       
+                                        onOK="@command('modificar',valor=each)"
+                                       
                                         class="form-control form-control-sm"
                                         value="@bind(each.pordCostoVentaFinal)" />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
-                            <decimalbox format="###.#####" readonly="true" 
+                            <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"       
+                                        onOK="@command('modificar',valor=each)"
                                         class="form-control form-control-sm"
-                                        style="font-size:12px;background:#EBF5FB"
                                         value="@bind(each.prodCostoPreferencial)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
-                            <decimalbox format="###.#####" readonly="true" 
+                          <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"       
+                                        onOK="@command('modificar',valor=each)" 
                                         class="form-control form-control-sm"
-                                        style="font-size:12px;background:#EBF5FB"
                                         value="@bind(each.prodCostoPreferencialDos)"  />
                         </listcell>
                         <listcell zclass = "mycss-listcell">
-                            <decimalbox format="###.#####" readonly="true" 
-                                        class="form-control form-control-sm"
-                                        style="font-size:12px;background:#EBF5FB"
+                          <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"       
+                                        onOK="@command('modificar',valor=each)"
+                                        class="form-control form-control-sm"    
                                         value="@bind(each.prodCostoPreferencialTres)"  />
                         </listcell>
                     

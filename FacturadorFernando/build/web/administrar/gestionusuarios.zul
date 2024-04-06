@@ -90,21 +90,21 @@
                                              onOK="@command('consultarUsuariosPorCodigo')"
                                              onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>
-                                    <listheader  label="REsponsable" align="left" width="35%">
+                                    <listheader  label="Responsable" align="left" width="35%">
                                         
                                         
                                     </listheader>
                                     <listheader label="Usuario"  align="left" width="20%"></listheader>
                                    
                                     <listheader label="Contraseña"  align="left" width="20%"></listheader>
+                                    <listheader label="Contraseña Firma"  align="left" width="20%"></listheader>
                                     
                                     <listheader label="Tipo usuario"  align="left" width="10%"></listheader>
                                      <listheader label="DOC-CONT"  tooltiptext="Documentos contratados" align="left" width="5%"></listheader>
                                      <!--<listheader label="Contraseña Firma"  align="left" width="20%"></listheader>-->
                                     <listheader label="Fecha caduca"  align="left" width="10%"></listheader>
                                      <listheader label="Plan"  align="left" width="10%"></listheader>
-                                    <listheader label="Modificar"  align="center" width="5%"></listheader>
-                                     
+                                    <listheader label="Modificar"  align="center" width="5%"></listheader>                                     
                                     <listheader label=""  align="center" width="5%"></listheader>
                                 </listhead>
                         
@@ -129,6 +129,12 @@
                                         </listcell>   
                                         <listcell  zclass = "mycss-listcell">      
                                             <textbox readonly="true" value="@bind(each.idUsuario.usuPassword)" 
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:12px;background:#EBF5FB"
+                                                     type="password" />
+                                        </listcell>  
+                                        <listcell  zclass = "mycss-listcell">      
+                                            <textbox readonly="true" value="@bind(each.amClaveAccesoSri)" 
                                                      class="form-control form-control-sm"
                                                      style="font-size:12px;background:#EBF5FB"
                                                      type="password" />

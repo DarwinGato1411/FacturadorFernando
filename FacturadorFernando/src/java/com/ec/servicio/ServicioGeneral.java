@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 /**
  *
@@ -72,5 +73,25 @@ public class ServicioGeneral {
         }
 
         return compraVenta;
+    }
+    
+     public void corregirProductos() {
+        System.out.println("Entra a consultar usuarios");
+        //Connection connection = em.unwrap(Connection.class);
+        em = HelperPersistencia.getEMF();
+        em.getTransaction().begin();
+        StoredProcedureQuery queryStore = em.createStoredProcedureQuery("corregir_campos_producto");
+        queryStore.executeUpdate();
+        em.getTransaction().commit();
+    }
+
+    public void corregirProformas() {
+        System.out.println("Entra a consultar usuarios");
+        //Connection connection = em.unwrap(Connection.class);
+        em = HelperPersistencia.getEMF();
+        em.getTransaction().begin();
+        StoredProcedureQuery queryStore = em.createStoredProcedureQuery("corregirproformasrepetidas");
+        queryStore.executeUpdate();
+        em.getTransaction().commit();
     }
 }
