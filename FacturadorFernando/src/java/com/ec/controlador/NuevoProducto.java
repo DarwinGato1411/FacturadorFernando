@@ -18,6 +18,7 @@ import com.ec.servicio.ServicioProducto;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioTipoKardex;
 import com.ec.untilitario.ArchivoUtils;
+import com.sun.imageio.plugins.common.BogusColorSpace;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -154,7 +155,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal","grabaIva"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal", "grabaIva"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -177,7 +178,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"muestraSubtotal","grabaIva"})
+    @NotifyChange({"muestraSubtotal", "grabaIva"})
     public void muestraSubtotal() {
 
         if (!esUnProdcuto && incluyeIva) {
@@ -187,7 +188,6 @@ public class NuevoProducto {
         }
 
 //        
-
     }
 
     @Command
@@ -213,11 +213,11 @@ public class NuevoProducto {
 //            colocarIvaCampo();
             Integer valorIva = producto.getProdIva().intValue();
             switch (valorIva) {
-                case 0:
-                    // secuencia de sentencias.
-                    this.producto.setProdPorcentajeIva(0);
-                    this.producto.setProdCodigoIva(0);
-                    break;
+//                case 0:
+//                    // secuencia de sentencias.
+//                    this.producto.setProdPorcentajeIva(0);
+//                    this.producto.setProdCodigoIva(0);
+//                    break;
                 case 5:
                     // secuencia de sentencias.
                     this.producto.setProdPorcentajeIva(5);
@@ -245,11 +245,16 @@ public class NuevoProducto {
                     this.producto.setProdCodigoIva(4);
                     break;
                 default:
-                // Default secuencia de sentencias.
+                    // Default secuencia de sentencias.
+                    this.producto.setProdIva(BigDecimal.ZERO);
+                    this.producto.setProdPorcentajeIva(0);
+                    this.producto.setProdCodigoIva(0);
             }
         } else {
             txtIvaRec.setText("0");
             producto.setProdIva(BigDecimal.ZERO);
+            this.producto.setProdPorcentajeIva(0);
+            this.producto.setProdCodigoIva(0);
             grabaIva = Boolean.FALSE;
         }
 //        calculopreciofinal();
