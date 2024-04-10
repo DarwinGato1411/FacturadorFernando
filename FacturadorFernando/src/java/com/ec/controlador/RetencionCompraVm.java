@@ -118,7 +118,7 @@ public class RetencionCompraVm {
             this.cabeceraCompra = new CabeceraCompra();
 
         }
-        baseImponible = cabeceraCompra.getCabIva().add(cabeceraCompra.getCabIva());
+        baseImponible = cabeceraCompra.getCabIva();
         listaTipoRetencion = servicioTipoRetencion.findAllTipo("IVA");
         tipoRetencionSelected = listaTipoRetencion.get(0);
         listaTipoivaretencion = servicioTipoIvaRetencion.findALlTipoivaretencion();

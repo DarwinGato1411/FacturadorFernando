@@ -89,7 +89,6 @@ public class ModificarCompra {
     private BigDecimal ivaFactura5 = BigDecimal.ZERO;
     private BigDecimal ivaFactura15 = BigDecimal.ZERO;
     private BigDecimal subTotalFacturaCero = BigDecimal.ZERO;
-
     //buscar proveedor
     public Proveedores proveedorSeleccionado = new Proveedores("");
     private List<Proveedores> listaProveedoresAll = new ArrayList<Proveedores>();
@@ -414,7 +413,7 @@ public class ModificarCompra {
     }
     //calcular los valores de la lista
 
-    @Command
+        @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void calcularValores(@BindingParam("valor") DetalleCompraUtil valor) {
@@ -516,8 +515,8 @@ public class ModificarCompra {
             valorTotalFactura.setScale(4, RoundingMode.FLOOR);
         }
     }
-//producto
 
+//producto
     @Command
     @NotifyChange({"listaKardexProducto", "buscarCodigoProd"})
     public void buscarLikeCodigoProd(@BindingParam("valor") String valor) {
@@ -621,7 +620,7 @@ public class ModificarCompra {
                 cabeceraCompra.setCabProveedor(proveedorSeleccionado.getProvNombre());
                 cabeceraCompra.setIdUsuario(credential.getUsuarioSistema());
                 cabeceraCompra.setCabSubTotal(subTotalFactura);
-                cabeceraCompra.setCabIva(ivaFactura.add(ivaFactura5.add(ivaFactura15)));
+                cabeceraCompra.setCabIva(ivaFactura);
                 cabeceraCompra.setCabTotal(valorTotalFactura);
                 cabeceraCompra.setDrcCodigoSustento("01");
                 cabeceraCompra.setCabSubTotalCero(subTotalFacturaCero);
@@ -701,7 +700,7 @@ public class ModificarCompra {
     }
 
     //busqueda del producto
-    @Command
+        @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void eliminarRegistros() {
@@ -725,7 +724,7 @@ public class ModificarCompra {
 
 
     /*AGREGAMOS DESDE LA LSITA */
-    @Command
+        @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void agregarItemLista(@BindingParam("valor") Producto producto) {
@@ -785,6 +784,7 @@ public class ModificarCompra {
         calcularValoresTotales();
     }
 
+   
     public BigDecimal getSubTotalFacturaCero() {
         return subTotalFacturaCero;
     }
@@ -824,4 +824,5 @@ public class ModificarCompra {
     public void setIvaFactura15(BigDecimal ivaFactura15) {
         this.ivaFactura15 = ivaFactura15;
     }
+
 }

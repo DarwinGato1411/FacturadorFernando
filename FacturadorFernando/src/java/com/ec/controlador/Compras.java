@@ -61,13 +61,13 @@ import org.zkoss.zul.Window;
  * @author gato
  */
 public class Compras {
-    
+
     @Wire
     Window windowProveedorBuscar;
     @Wire
     Window wProductoBuscar;
     ServicioCompra servicioCompra = new ServicioCompra();
-    
+
     ServicioProveedor servicioProveedor = new ServicioProveedor();
     ServicioEstadoFactura servicioEstadoFactura = new ServicioEstadoFactura();
     //variables
@@ -89,12 +89,6 @@ public class Compras {
     private BigDecimal ivaFactura5 = BigDecimal.ZERO;
     private BigDecimal ivaFactura15 = BigDecimal.ZERO;
     private BigDecimal subTotalFacturaCero = BigDecimal.ZERO;
-
-    //valorTotalCotizacion
-//    private BigDecimal valorTotalFactura = BigDecimal.ZERO;
-//    private BigDecimal subTotalFactura = BigDecimal.ZERO;
-//    private BigDecimal ivaFactura = BigDecimal.ZERO;
-//    private BigDecimal subTotalFacturaCero = BigDecimal.ZERO;
     //buscar proveedor
     public Proveedores proveedorSeleccionado = new Proveedores("");
     private List<Proveedores> listaProveedoresAll = new ArrayList<Proveedores>();
@@ -124,11 +118,11 @@ public class Compras {
     ServicioKardex servicioKardex = new ServicioKardex();
     ServicioDetalleKardex servicioDetalleKardex = new ServicioDetalleKardex();
     ServicioTipoKardex servicioTipoKardex = new ServicioTipoKardex();
-    
+
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
-    
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -140,216 +134,216 @@ public class Compras {
         findKardexProductoLikeNombre();
         fechafacturacion = new Date();
         parametrizar = servicioParametrizar.FindALlParametrizar();
-        
+
     }
-    
+
     private void buscarProveedoresLikeNombre() {
         listaProveedoresAll = servicioProveedor.findLikeProvNombre("", amb);
     }
-    
+
     public Compras() {
-        
+
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
         getDetalleCompra();
     }
-    
+
     private void getDetalleCompra() {
         setListaCompraProductosMOdel(new ListModelList<DetalleCompraUtil>(getListaCompraProductosDatos()));
         ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).setMultiple(true);
     }
-    
+
     @Command
     public void seleccionarRegistros() {
         registrosSeleccionados = ((ListModelList<DetalleCompraUtil>) getListaCompraProductosMOdel()).getSelection();
     }
-    
+
     public void agregarRegistroVacio() {
-        
+
         DetalleCompraUtil nuevoRegistro = new DetalleCompraUtil(BigDecimal.ZERO, "", BigDecimal.ZERO, BigDecimal.ZERO);
         nuevoRegistro.setProducto(null);
         ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).add(nuevoRegistro);
-        
+
     }
-    
+
     public CabeceraCompra getCabeceraCompra() {
         return cabeceraCompra;
     }
-    
+
     public void setCabeceraCompra(CabeceraCompra cabeceraCompra) {
         this.cabeceraCompra = cabeceraCompra;
     }
-    
+
     public DetalleCompraUtil getCompraProductos() {
         return compraProductos;
     }
-    
+
     public void setCompraProductos(DetalleCompraUtil compraProductos) {
         this.compraProductos = compraProductos;
     }
-    
+
     public ListModelList<DetalleCompraUtil> getListaCompraProductosMOdel() {
         return listaCompraProductosMOdel;
     }
-    
+
     public void setListaCompraProductosMOdel(ListModelList<DetalleCompraUtil> listaCompraProductosMOdel) {
         this.listaCompraProductosMOdel = listaCompraProductosMOdel;
     }
-    
+
     public List<DetalleCompraUtil> getListaCompraProductosDatos() {
         return listaCompraProductosDatos;
     }
-    
+
     public void setListaCompraProductosDatos(List<DetalleCompraUtil> listaCompraProductosDatos) {
         this.listaCompraProductosDatos = listaCompraProductosDatos;
     }
-    
+
     public Set<DetalleCompraUtil> getRegistrosSeleccionados() {
         return registrosSeleccionados;
     }
-    
+
     public void setRegistrosSeleccionados(Set<DetalleCompraUtil> registrosSeleccionados) {
         this.registrosSeleccionados = registrosSeleccionados;
     }
-    
+
     public UserCredential getCredential() {
         return credential;
     }
-    
+
     public void setCredential(UserCredential credential) {
         this.credential = credential;
     }
-    
+
     public Date getFechafacturacion() {
         return fechafacturacion;
     }
-    
+
     public void setFechafacturacion(Date fechafacturacion) {
         this.fechafacturacion = fechafacturacion;
     }
-    
+
     public BigDecimal getValorTotalFactura() {
         return valorTotalFactura;
     }
-    
+
     public void setValorTotalFactura(BigDecimal valorTotalFactura) {
         this.valorTotalFactura = valorTotalFactura;
     }
-    
+
     public BigDecimal getSubTotalFactura() {
         return subTotalFactura;
     }
-    
+
     public void setSubTotalFactura(BigDecimal subTotalFactura) {
         this.subTotalFactura = subTotalFactura;
     }
-    
+
     public BigDecimal getIvaFactura() {
         return ivaFactura;
     }
-    
+
     public void setIvaFactura(BigDecimal ivaFactura) {
         this.ivaFactura = ivaFactura;
     }
-    
+
     public Proveedores getProveedorSeleccionado() {
         return proveedorSeleccionado;
     }
-    
+
     public void setProveedorSeleccionado(Proveedores proveedorSeleccionado) {
         this.proveedorSeleccionado = proveedorSeleccionado;
     }
-    
+
     public List<Proveedores> getListaProveedoresAll() {
         return listaProveedoresAll;
     }
-    
+
     public void setListaProveedoresAll(List<Proveedores> listaProveedoresAll) {
         this.listaProveedoresAll = listaProveedoresAll;
     }
-    
+
     public static String getBuscarCedulaProveedor() {
         return buscarCedulaProveedor;
     }
-    
+
     public static void setBuscarCedulaProveedor(String buscarCedulaProveedor) {
         Compras.buscarCedulaProveedor = buscarCedulaProveedor;
     }
-    
+
     public List<Producto> getListaProducto() {
         return listaProducto;
     }
-    
+
     public void setListaProducto(List<Producto> listaProducto) {
         this.listaProducto = listaProducto;
     }
-    
+
     public String getBuscarNombreProd() {
         return buscarNombreProd;
     }
-    
+
     public void setBuscarNombreProd(String buscarNombreProd) {
         this.buscarNombreProd = buscarNombreProd;
     }
-    
+
     public String getBuscarCodigoProd() {
         return buscarCodigoProd;
     }
-    
+
     public void setBuscarCodigoProd(String buscarCodigoProd) {
         this.buscarCodigoProd = buscarCodigoProd;
     }
-    
+
     public Producto getProductoBuscado() {
         return productoBuscado;
     }
-    
+
     public void setProductoBuscado(Producto productoBuscado) {
         this.productoBuscado = productoBuscado;
     }
-    
+
     public static String getCodigoBusqueda() {
         return codigoBusqueda;
     }
-    
+
     public static void setCodigoBusqueda(String codigoBusqueda) {
         Compras.codigoBusqueda = codigoBusqueda;
     }
-    
+
     public String getBuscarProvCedula() {
         return buscarProvCedula;
     }
-    
+
     public void setBuscarProvCedula(String buscarProvCedula) {
         this.buscarProvCedula = buscarProvCedula;
     }
-    
+
     public String getBuscarProvNombre() {
         return buscarProvNombre;
     }
-    
+
     public void setBuscarProvNombre(String buscarProvNombre) {
         this.buscarProvNombre = buscarProvNombre;
     }
-    
+
     public String getNumeroFactura() {
         return numeroFactura;
     }
-    
+
     public void setNumeroFactura(String numeroFactura) {
         this.numeroFactura = numeroFactura;
     }
-    
+
     public String getEstdoFactura() {
         return estdoFactura;
     }
-    
+
     public void setEstdoFactura(String estdoFactura) {
         this.estdoFactura = estdoFactura;
     }
-    
+
     @Command
     @NotifyChange({"listaProveedortesAll", "proveedorSeleccionado", "fechaEmision"})
     public void buscarProveedorEnLista() {
@@ -360,14 +354,14 @@ public class Compras {
         window.doModal();
         proveedorSeleccionado = servicioProveedor.findProvCedula(buscarCedulaProveedor, amb);
     }
-    
+
     @Command
     @NotifyChange("clienteBuscado")
     public void seleccionarProveedorLista(@BindingParam("valor") Proveedores valor) {
 //        System.out.println("cliente seleccionado " + valor.getProvCedula());
         buscarCedulaProveedor = valor.getProvCedula();
         windowProveedorBuscar.detach();
-        
+
     }
 
     //buscar el producto y ponerlo en la lista
@@ -377,13 +371,13 @@ public class Compras {
 //        System.out.println("producto seleccionado " + valor.getProdCodigo());
         codigoBusqueda = valor.getProdCodigo();
         wProductoBuscar.detach();
-        
+
     }
-    
+
     @Command
     @NotifyChange({"listaCompraProductosMOdel"})
     public void cambiarRegistro(@BindingParam("valor") DetalleCompraUtil valor) {
-        
+
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("valor", "producto");
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
@@ -399,12 +393,12 @@ public class Compras {
     }
     //calcular los valores de la lista
 
-    @Command
+      @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void calcularValores(@BindingParam("valor") DetalleCompraUtil valor) {
         try {
-            
+
             if (valor.getCantidad().intValue() > 0) {
 
                 //calcularValoresTotales();
@@ -419,14 +413,14 @@ public class Compras {
                     //ingresa un registro vacio
                     boolean registroVacio = true;
                     List<DetalleCompraUtil> listaPedido = listaCompraProductosMOdel.getInnerList();
-                    
+
                     for (DetalleCompraUtil item : listaPedido) {
                         if (item.getProducto() == null) {
                             registroVacio = false;
                             break;
                         }
                     }
-                    
+
                     System.out.println("existe un vacio " + registroVacio);
                     if (registroVacio) {
                         DetalleCompraUtil nuevoRegistro = new DetalleCompraUtil();
@@ -437,7 +431,7 @@ public class Compras {
                         nuevoRegistro.setProducto(null);
                         ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).add(nuevoRegistro);
                     }
-                    
+
                 }
             }
             calcularValoresTotales();
@@ -445,11 +439,11 @@ public class Compras {
             Messagebox.show("Ocurrio un error al calcular los valores", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-    
+
     private void calcularValoresTotales() {
         BigDecimal valorTotal = BigDecimal.ZERO;
         BigDecimal valorTotalCero = BigDecimal.ZERO;
-        
+
         BigDecimal valorTotal5 = BigDecimal.ZERO;
 //        BigDecimal valorTotal13 = BigDecimal.ZERO;
 //        BigDecimal valorTotal14 = BigDecimal.ZERO;
@@ -464,9 +458,9 @@ public class Compras {
         List<DetalleCompraUtil> listaPedido = listaCompraProductosMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleCompraUtil item : listaPedido) {
-                
+
                 if (item.getProducto() != null) {
-                    
+
                     if (item.getProducto().getProdPorcentajeIva() == 12) {
                         valorTotal = valorTotal.add(item.getTotal());
                         valorIva = valorIva.multiply(BigDecimal.valueOf(0.12));
@@ -479,10 +473,10 @@ public class Compras {
                     } else {
                         valorTotalCero = valorTotalCero.add(item.getTotal());
                     }
-                    
+
                 }
             }
-            
+
             System.out.println("**********************************************************");
             System.out.println("valor total:::: " + valorTotal);
             subTotalFacturaCero = valorTotalCero;
@@ -501,26 +495,26 @@ public class Compras {
             valorTotalFactura.setScale(4, RoundingMode.FLOOR);
         }
     }
-
 //producto
+
     @Command
     @NotifyChange({"listaKardexProducto", "buscarCodigoProd"})
     public void buscarLikeCodigoProd(@BindingParam("valor") String valor) {
         buscarCodigoProd = valor;
         findProductoLikeCodigo();
     }
-    
+
     @Command
     @NotifyChange({"listaKardexProducto", "buscarNombreProd"})
     public void buscarLikeNombreProd() {
-        
+
         findProductoLikeNombre();
     }
-    
+
     private void findProductoLikeCodigo() {
         listaProducto = servicioProducto.findLikeProdCodigo(buscarCodigoProd, amb);
     }
-    
+
     private void findProductoLikeNombre() {
         listaProducto = servicioProducto.findLikeProdNombre(buscarNombreProd, amb);
     }
@@ -529,14 +523,14 @@ public class Compras {
     @Command
     @NotifyChange({"listaProveedoresAll", "buscarProvCedula"})
     public void buscarProveedorCedula() {
-        
+
         findProveedorCedula();
     }
-    
+
     @Command
     @NotifyChange({"listaProveedoresAll", "buscarProvNombre"})
     public void buscarProveedorNombre() {
-        
+
         findProveedorLikeNombre();
     }
 //    @Command
@@ -549,7 +543,7 @@ public class Compras {
     private void findProveedorLikeNombre() {
         listaProveedoresAll = servicioProveedor.findLikeProvNombre(buscarProvNombre, amb);
     }
-    
+
     private void findProveedorCedula() {
         listaProveedoresAll = servicioProveedor.findProveedorCedula(buscarProvCedula, amb);
     }
@@ -558,21 +552,21 @@ public class Compras {
     @Command
     @NotifyChange({"listaKardexProducto", "buscarNombreProd"})
     public void buscarLikeKardexNombreProdComp() {
-        
+
         findKardexProductoLikeNombre();
     }
-    
+
     @Command
     @NotifyChange({"listaKardexProducto", "buscarCodigoProd"})
     public void buscarLikeKardexCodigoProdComp() {
-        
+
         findKardexProductoLikeCodigo();
     }
-    
+
     private void findKardexProductoLikeNombre() {
         listaKardexProducto = servicioKardex.findByCodOrName(buscarCodigoProd, buscarNombreProd, amb);
     }
-    
+
     private void findKardexProductoLikeCodigo() {
         listaKardexProducto = servicioKardex.findByCodOrName(buscarCodigoProd, buscarNombreProd, amb);
     }
@@ -583,19 +577,25 @@ public class Compras {
     public void Guardar() {
         if (!proveedorSeleccionado.getProvCedula().equals("")
                 && !numeroFactura.equals("")) {
-            guardarCompra();
-            Clients.showNotification("Compra registrada correctamente",
-                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
-            
+            if (numeroFactura.length() == 9) {
+
+                guardarCompra();
+                Clients.showNotification("Compra registrada correctamente",
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+            } else {
+                Clients.showNotification("El número de factura debe tener 9 digitos",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+            }
+
         } else {
             Clients.showNotification("Verifique el proveedor, numero de factura, numero de autorizacion, proveedor",
                     Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
 //            Messagebox.show("", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-    
+
     private void guardarCompra() {
-        
+
         try {
             BigDecimal factorIva = (parametrizar.getParIva().divide(BigDecimal.valueOf(100.0)));
             BigDecimal facturIvaMasBase = (factorIva.add(BigDecimal.ONE));
@@ -610,8 +610,9 @@ public class Compras {
                 cabeceraCompra.setIdProveedor(proveedorSeleccionado);
                 cabeceraCompra.setCabProveedor(proveedorSeleccionado.getProvNombre());
                 cabeceraCompra.setIdUsuario(credential.getUsuarioSistema());
-                cabeceraCompra.setCabSubTotal(subTotalFactura.add(subTotalFactura5.add(subTotalFactura15)));
-                cabeceraCompra.setCabIva(ivaFactura.add(ivaFactura5.add(ivaFactura15)));
+                cabeceraCompra.setCabSubTotal(subTotalFactura.add(subTotalFactura5).add(subTotalFactura15));
+                cabeceraCompra.setCabIva(ivaFactura.add(ivaFactura5).add(ivaFactura15));
+
                 cabeceraCompra.setCabTotal(valorTotalFactura);
                 cabeceraCompra.setDrcCodigoSustento("01");
                 cabeceraCompra.setCabSubTotalCero(subTotalFacturaCero);
@@ -635,10 +636,11 @@ public class Compras {
                                 actualizaPrecio.setPordCostoCompra(item.getSubtotal());
                                 actualizaPrecio.setPordCostoVentaRef(item.getSubtotal());
                             }
+
                             servicioProducto.modificar(actualizaPrecio);
                             detalleCompra.add(item);
                         }
-                        
+
                     }
 
                     //implementar el guaradado en cascada para las compras
@@ -647,10 +649,10 @@ public class Compras {
                     /*INGRESAMOS LO MOVIMIENTOS AL KARDEX*/
                     Kardex kardex = null;
                     DetalleKardex detalleKardex = null;
-                    
+
                     for (DetalleCompraUtil item : listaPedido) {
                         if (item.getProducto() != null) {
-                            
+
                             Tipokardex tipokardex = servicioTipoKardex.findByTipkSigla("ING");
                             if (servicioKardex.FindALlKardexs(item.getProducto()) == null) {
                                 kardex = new Kardex();
@@ -682,10 +684,10 @@ public class Compras {
                             kardex.setKarTotal(total);
                             servicioKardex.modificar(kardex);
                         }
-                        
+
                     }
                 }
-                
+
                 Executions.sendRedirect("/compra/compras.zul");
             } else {
                 Clients.showNotification("Verifique el numero de factura", "error", null, "start_before", 2000, true);
@@ -694,7 +696,7 @@ public class Compras {
             System.out.println("error guardar compra " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
-        
+
     }
 
     //busqueda del producto
@@ -705,17 +707,17 @@ public class Compras {
         if (registrosSeleccionados.size() > 0) {
             ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).removeAll(registrosSeleccionados);
             calcularValoresTotales();
-            
+
         } else {
             Messagebox.show("Seleccione al menos un registro para eliminar", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
-        
+
     }
-    
+
     public List<Kardex> getListaKardexProducto() {
         return listaKardexProducto;
     }
-    
+
     public void setListaKardexProducto(List<Kardex> listaKardexProducto) {
         this.listaKardexProducto = listaKardexProducto;
     }
@@ -731,9 +733,9 @@ public class Compras {
         /*calcula con el iva para todo el 12%*/
         BigDecimal factorIva = (producto.getProdIva().divide(BigDecimal.valueOf(100.0)));
         BigDecimal factorSacarSubtotal = (factorIva.add(BigDecimal.ONE));
-        
+
         List<DetalleCompraUtil> listaPedido = listaCompraProductosMOdel.getInnerList();
-        
+
         for (DetalleCompraUtil item : listaPedido) {
             if (item.getProducto() == null) {
                 ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).remove(item);
@@ -751,20 +753,20 @@ public class Compras {
             valor.setSubtotal(productoBuscado.getPordCostoCompra());
             valor.setTotal(valor.getSubtotal().multiply(valor.getCantidad()));
         }
-        
+
         ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).add(valor);
 
         //ingresa un registro vacio
         boolean registroVacio = true;
         List<DetalleCompraUtil> listaPedidoPost = listaCompraProductosMOdel.getInnerList();
-        
+
         for (DetalleCompraUtil item : listaPedidoPost) {
             if (item.getProducto() == null) {
                 registroVacio = false;
                 break;
             }
         }
-        
+
         System.out.println("existe un vacio " + registroVacio);
         if (registroVacio) {
             DetalleCompraUtil nuevoRegistroPost = new DetalleCompraUtil();
@@ -774,48 +776,48 @@ public class Compras {
             nuevoRegistroPost.setSubtotal(BigDecimal.ZERO);
             ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).add(nuevoRegistroPost);
         }
-        
+
         calcularValoresTotales();
     }
-    
+
     public BigDecimal getSubTotalFacturaCero() {
         return subTotalFacturaCero;
     }
-    
+
     public void setSubTotalFacturaCero(BigDecimal subTotalFacturaCero) {
         this.subTotalFacturaCero = subTotalFacturaCero;
     }
-    
+
     public BigDecimal getSubTotalFactura5() {
         return subTotalFactura5;
     }
-    
+
     public void setSubTotalFactura5(BigDecimal subTotalFactura5) {
         this.subTotalFactura5 = subTotalFactura5;
     }
-    
+
     public BigDecimal getSubTotalFactura15() {
         return subTotalFactura15;
     }
-    
+
     public void setSubTotalFactura15(BigDecimal subTotalFactura15) {
         this.subTotalFactura15 = subTotalFactura15;
     }
-    
+
     public BigDecimal getIvaFactura5() {
         return ivaFactura5;
     }
-    
+
     public void setIvaFactura5(BigDecimal ivaFactura5) {
         this.ivaFactura5 = ivaFactura5;
     }
-    
+
     public BigDecimal getIvaFactura15() {
         return ivaFactura15;
     }
-    
+
     public void setIvaFactura15(BigDecimal ivaFactura15) {
         this.ivaFactura15 = ivaFactura15;
     }
-    
+
 }

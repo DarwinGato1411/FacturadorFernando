@@ -14,7 +14,49 @@
                 <tabpanel  height="100%" width="98%"  >
                    
                 <div class="container_modal">
+ <div class="body">
+                            <div class="container_row_input">
+                                <div class="wrapper_input_mod">
+                                    <span>Subtotal: </span>
+                                    <div class="wrapper_input_text">
+                                        <div class="fa-solid fa-dollar-sign icon"></div>
+                                        <decimalbox 
+                                            format="###.##"  
+                                            readonly="true" 
+                                            class="input_text"
+                                            value="@bind(vm.cabeceraCompra.cabSubTotal)" 
+                                        />
+                                    </div>
+                                </div>
+                                <div class="wrapper_input_mod">
+                                    <span>IVA: </span>
+                                    <div class="wrapper_input_text">
+                                        <div class="fa-solid fa-dollar-sign icon"></div>
+                                        <decimalbox 
+                                            format="###.###"  
+                                            readonly="true" 
+                                            class="input_text"
+                                            value="@bind(vm.cabeceraCompra.cabIva)" 
+                                        />
+                                    </div>
+                                </div>
 
+                                <div class="wrapper_input_mod">
+                                    <span>Total: </span>
+                                    <div class="wrapper_input_text">
+                                        <div class="fa-solid fa-dollar-sign icon"></div>
+                                        <decimalbox 
+                                            format="###.##"  
+                                            readonly="true" 
+                                            class="input_text"
+                                            value="@bind(vm.cabeceraCompra.cabTotal)" 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+                    </div>
                     <div class="body">
                             <div class="container_row_input">
                                 <div class="wrapper_input_mod">
@@ -83,49 +125,7 @@
                             </div>
                     </div>
 
-                    <div class="body">
-                            <div class="container_row_input">
-                                <div class="wrapper_input_mod">
-                                    <span>Subtotal: </span>
-                                    <div class="wrapper_input_text">
-                                        <div class="fa-solid fa-dollar-sign icon"></div>
-                                        <decimalbox 
-                                            format="###.##"  
-                                            readonly="true" 
-                                            class="input_text"
-                                            value="@bind(vm.cabeceraCompra.cabSubTotal)" 
-                                        />
-                                    </div>
-                                </div>
-                                <div class="wrapper_input_mod">
-                                    <span>IVA: </span>
-                                    <div class="wrapper_input_text">
-                                        <div class="fa-solid fa-dollar-sign icon"></div>
-                                        <decimalbox 
-                                            format="###.###"  
-                                            readonly="true" 
-                                            class="input_text"
-                                            value="@bind(vm.cabeceraCompra.cabIva)" 
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="wrapper_input_mod">
-                                    <span>Total: </span>
-                                    <div class="wrapper_input_text">
-                                        <div class="fa-solid fa-dollar-sign icon"></div>
-                                        <decimalbox 
-                                            format="###.##"  
-                                            readonly="true" 
-                                            class="input_text"
-                                            value="@bind(vm.cabeceraCompra.cabTotal)" 
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                           
-                    </div>
+                   
 
                     <div class="body">
                             <div class="container_row_input">
@@ -164,12 +164,12 @@
                                            selectedItem="@bind(vm.tipoRetencionSelected)" width="60%"
                                            readonly="true" >
                                           
-                                    <template name="model">
-                                        <comboitem  label="@bind(each.tireNombre)"
-                                                    description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
-                                    </template>                                      
-                                </combobox>-->
-                                         <div 
+                                            <template name="model">
+                                                <comboitem  label="@bind(each.tireNombre)"
+                                                            description="@bind(each.tireCodigo ne null ? 'Codigo SRI:  '.concat(each.tireCodigo) : ''))"/>
+                                            </template>                                      
+                                        </combobox>-->
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
@@ -191,14 +191,14 @@
                                                 <comboitem  label="@bind(each.tipivaretDescripcion.concat('%'))"/>
                                             </template>                                      
                                         </combobox>
-                                         <div 
+                                        <div 
                                             class="fa-solid fa-chevron-down"
                                             style="position: absolute; right: 7px; top: 7px; color: #1247b9;font-size: 13px" 
                                         />
                                     </div>
                                 </div>
                                 
-                                 <div style="display:flex;justify-content:flex-end;">
+                                <div style="display:flex;justify-content:flex-end;">
                                     <button 
                                         class="fa-solid fa-plus btn_modal" 
                                         style="width:200px" 
@@ -221,7 +221,7 @@
 
                             </div>
 
-                           <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="start">
                                 <listbox id="DescripcionPedidoPrePost" 
                                          model="@load(vm.listaDetalleRetencionCompraModel)"
                                          nonselectableTags="*" 
@@ -260,7 +260,7 @@
                                                 <label  value="@bind(each.tireCodigo.tireNombre)" width="99%"
                                                         if="${each.codImpuestoAsignado == '1'}"/>
                                                 <label  value="Retencion IVA" width="99%" 
-                                                          if="${each.codImpuestoAsignado == '2'}"/>
+                                                        if="${each.codImpuestoAsignado == '2'}"/>
                                             </listcell>
                                             <listcell>
                                                 <label  value="@bind(each.drcDescripcion)" width="99%" />
@@ -282,8 +282,8 @@
 
                                 </listbox>
                             </div>
+                        </div>
                     </div>
-                </div>
                     
                 </tabpanel>
             </tabpanels>

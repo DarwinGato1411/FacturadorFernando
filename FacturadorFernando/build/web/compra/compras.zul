@@ -6,7 +6,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/deckxel/logo.png"?>
+<?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 <zk  contentStyle="overflow:auto" with="100%" >
     
 
@@ -20,7 +20,8 @@
             <tabpanels >
                 <tabpanel  height="100%" width="98%" class="factura" >
                     <div class="container-fluid">
-                      
+                        <div class="row ">    
+                        </div>
 
 
                         <div class="factura_header">
@@ -81,41 +82,41 @@
 
 
                                     </div>
-                                    <div class="wrapper_data" >
-                                    <div class="wrapper_input">
-                                        <textbox  
-                                            maxlength="3"                                                    
-                                            placeholder="001"
-                                            value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
-                                        />-
-                                        <textbox 
-                                            maxlength="3"   
-                                            placeholder="001"
-                                            value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
-                                        />-
-                                        <textbox 
-                                            maxlength="9"   
-                                            onChange="self.setValue(self.getValue().toUpperCase());"
-                                            placeholder="000000009"
-                                            style="min-width:29%"
-                                            value="@bind(vm.numeroFactura)"  
-                                        />
+                                    <div class="wrapper_data">
+                                        <div class="wrapper_input">
+                                            <textbox  
+                                                maxlength="3"                                                    
+                                                placeholder="001"
+                                                value="@bind(vm.cabeceraCompra.cabEstablecimiento)"  
+                                            />-
+                                            <textbox 
+                                                maxlength="3"   
+                                                placeholder="001"
+                                                value="@bind(vm.cabeceraCompra.cabPuntoEmi)"  
+                                            />-
+                                            <textbox 
+                                                maxlength="9"   
+                                                onChange="self.setValue(self.getValue().toUpperCase());"
+                                                placeholder="000000009"
+                                                style="min-width:29%"
+                                                value="@bind(vm.numeroFactura)"  
+                                            />
+                                        </div>
+                                        <div class="wrapper_input">
+                                            <span>F. Factura:</span>
+                                            <datebox 
+                                                value="@bind(vm.fechafacturacion)" 
+                                                readonly="true"                                          
+                                                buttonVisible="true" 
+                                                lenient="true" format="dd/MM/yyyy" 
+                                                constraint="no empty: Ingrese su fecha de la orden"
+                                                class="input_date"
+                                            />
+                                            <div class="fa-solid fa-calendar icon"/>
+                                        </div>
+
+                                    
                                     </div>
-<!--                                    </div>
-                                    <div class="wrapper_data" >-->
-                                    <div class="wrapper_input">
-                                        <span>F. Factura:</span>
-                                        <datebox 
-                                            value="@bind(vm.fechafacturacion)" 
-                                            readonly="true"                                          
-                                            buttonVisible="true" 
-                                            lenient="true" format="dd/MM/yyyy" 
-                                            constraint="no empty: Ingrese su fecha de la orden"
-                                            class="input_date"
-                                        />
-                                        <!--<div class="fa-solid fa-calendar icon"/>-->
-                                    </div>
-                                </div>
                                 </div>
 
 
@@ -134,8 +135,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-
                             </div>
 
 
@@ -144,133 +143,74 @@
 
 
                             <div class="fact_row">
-                               
-<!--                                <div class="wrapper_data">
-                                    
-                                    
-                                </div>-->
+                                
                                 <div class="wrapper_data">
 
 
                                     <div class="wrapper_input">
-                                        <span>Sub. 5%</span>
+                                        <span> Subtotal 5%:</span>
+
                                         <decimalbox  format="###.##"  
                                                      value="@bind(vm.subTotalFactura5)"                                             
                                                      readonly="true"                                                              
                                                          
                                                      onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                                      class="" />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
                                     </div>
-<!--                                    <div class="wrapper_input">
-                                        <span>Sub. 12%</span>
-                                        <decimalbox  
-                                            format="###.##"  
-                                            value="@bind(vm.subTotalFactura)"                                             
-                                            readonly="true"                                                    
-                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                            class="input" 
-                                        />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
-                                    </div>-->
                                     <div class="wrapper_input">
-                                        <span>Sub. 15%</span>
+                                        <span> Subtotal 15%:</span>
+
                                         <decimalbox  format="###.##"  
-                                                      value="@bind(vm.subTotalFactura15)"                                             
-                                                      readonly="true"                                                              
+                                                     value="@bind(vm.subTotalFactura15)"                                             
+                                                     readonly="true"                                                              
                                                          
-                                                      onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                                      class="" />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                     class="" />
                                     </div>
+
                                     <div class="wrapper_input">
-                                        <span>Sub. 0%</span>
-                                        <decimalbox  
-                                            format="###.##"  
-                                            value="@bind(vm.subTotalFacturaCero)"                                             
-                                            readonly="true"                                                      
-                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                            class="input" 
-                                        />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                        <span>Subtotal 0%:</span>
+                                            
+
+                                        <decimalbox  format="###.##"  
+                                                     value="@bind(vm.subTotalFacturaCero)"                                             
+                                                     readonly="true"                                                              
+                                                         
+                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                     class="" />
+                                       
                                     </div>
 
-<!--                                    <div class="wrapper_input">
-                                        <span>IVA</span>
-                                        <decimalbox  
-                                            format="###.##"  
-                                            value="@bind(vm.ivaFactura)"
-                                            readonly="true" 
-                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                            class="input" 
-                                        />
-                                        <div class="fa-solid fa-sack-dollar icon"></div>
-                                    </div>-->
-
-                                  
                                 </div>
+                                
                                 <div class="wrapper_data">
 
 
                                     <div class="wrapper_input">
-                                             <span>IVA 5 %</span>
+                                        <span>IVA 5 %</span>
                                            
-                                                    <decimalbox  format="###.##"  
-                                                                     value="@bind(vm.ivaFactura5)"
-                                                                     readonly="true" 
+                                        <decimalbox  format="###.##"  
+                                                                 value="@bind(vm.ivaFactura5)"
+                                                                 readonly="true" 
                                                              
-                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                                                     class="" />
-
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
-                                    </div>
-<!--                                    <div class="wrapper_input">
-                                       <span>IVA 12 %</span>
-                                           
-                                                    <decimalbox  format="###.##"  
-                                                                     value="@bind(vm.ivaFactura)"
-                                                                     readonly="true" 
-                                                             
-                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                                                     class="" />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
-                                    </div>-->
-                                    <div class="wrapper_input">
-                                       <span>IVA 15 %</span>
-                                           
-                                                    <decimalbox  format="###.##"  
-                                                                     value="@bind(vm.ivaFactura15)"
-                                                                     readonly="true" 
-                                                             
-                                                                     onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                                                     class="" />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>
+                                                                 onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                                 class="" />
                                     </div>
                                     <div class="wrapper_input">
-<!--                                        <span>Sub. 0%</span>
-                                        <decimalbox  
-                                            format="###.##"  
-                                            value="@bind(vm.subTotalFacturaCero)"                                             
-                                            readonly="true"                                                      
-                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                            class="input" 
-                                        />
-                                        <div class="fa-solid fa-hand-holding-dollar icon"></div>-->
+                                        <span>IVA 15 %</span>
+                                           
+                                        <decimalbox  format="###.##"  
+                                                                 value="@bind(vm.ivaFactura15)"
+                                                                 readonly="true" 
+                                                             
+                                                                 onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                                 class="" />
                                     </div>
 
-<!--                                    <div class="wrapper_input">
-                                        <span>IVA</span>
-                                        <decimalbox  
-                                            format="###.##"  
-                                            value="@bind(vm.ivaFactura)"
-                                            readonly="true" 
-                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                            class="input" 
-                                        />
-                                        <div class="fa-solid fa-sack-dollar icon"></div>
-                                    </div>-->
+                                    <div class="wrapper_input">
+                                       
+                                    </div>
 
-                                  
                                 </div>
                                 <div class="fact_row wrapper_buttons">
                                     <button               
@@ -313,7 +253,7 @@
                                                      onOK="@command('buscarLikeKardexCodigoProdComp')"
                                                      onChange="self.setValue(self.getValue().toUpperCase());" />
                                         </listheader>     
-                                        <listheader width="50%" align="left"   >
+                                        <listheader width="60%" align="left"   >
                                             <textbox value="@bind(vm.buscarNombreProd)"  
                                                      id="idBusquedaProd"
                                                      class="form-control form-control-sm"
@@ -324,7 +264,7 @@
                                         </listheader>                                                                    
                                         <listheader width="10%"  label="% IVA" align="center" /> 
                                         <listheader width="15%"  label="P COMPRA" align="center" /> 
-                                        <listheader width="10%"  label="" align="center"/>
+                                        <listheader width="5%"  label="" align="center"/>
                         
                                     </listhead>  
                     
@@ -332,7 +272,7 @@
                                         <listitem  onOK="@command('agregarItemLista',valor=each.idProducto)">
                                             <listcell  style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell" 
                                                        onDoubleClick="@command('agregarItemLista',valor=each.idProducto)">
-                                                <textbox value="@bind(each.idProducto.prodCodigo)"    
+                                                <textbox value="@bind(each.idProducto.prodCodigo)"     onCreate="self.focus()"
                                                          class="form-control form-control-sm"
                                                          style="font-size:10px;background-color:#d6eefd"
                                                          readonly="true"
@@ -346,16 +286,27 @@
                                                           class="form-control form-control-sm"
                                                           onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" />
                                             </listcell>
-                                          <listcell zclass = "mycss-listcell" 
-                                                  onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
-                                            <decimalbox format="###" 
+                                            <!--                                                <listcell zclass = "mycss-listcell" 
+                                                    onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
+                                                <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
+                                                    class="form-control form-control-sm"
+                                                    style="font-size:12px"
+                                                    value="@bind(each.karTotal)" 
+                                                    width="96%" />
+                                            </listcell>
+                                            <listcell zclass = "mycss-listcell" onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
+                                                <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
+                                                    class="form-control form-control-sm"
+                                                    value="@bind(each.idProducto.prodCostoPreferencial)" 
+                                                    width="96%" />
+                                            </listcell>-->
+                                            <listcell zclass = "mycss-listcell" onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
+                                               <decimalbox format="###" 
                                                         readonly="true"
-                                                        onOK="@command('agregarItemLista',valor=each.idProducto)" 
-                                                   class="form-control form-control-sm"
-                                                   style="font-size:11px; font-weight: bold" 
-                                                   value="@bind(each.idProducto.prodIva)" 
-                                                   width="96%" />
-                                        </listcell>
+                                                       class="form-control form-control-sm"
+                                                       value="@bind(each.idProducto.prodIva)" 
+                                                       width="96%" />
+                                            </listcell>
                                             <listcell zclass = "mycss-listcell" onDoubleClick="@command('agregarItemLista',valor=each.idProducto)" >                                                    
                                                 <label onOK="@command('agregarItemLista',valor=each.idProducto)" 
                                                        class="form-control form-control-sm"
@@ -390,7 +341,7 @@
                                             
                                         
                                     <listhead>
-                                        <listheader width="5%"  label="" align="left" >
+                                        <listheader width="6%"  label="" align="left" >
                                             <button label="" src="/iconos/delete.png"   
                                                     onClick="@command('eliminarRegistros')"  
                                                     class="btn btn btn-secondary btn-sm "
@@ -401,7 +352,7 @@
                                         <listheader width="10%"  label="CANT" align="left"  /> 
                                         <listheader width="10%"  label="FACTOR" align="left"  /> 
                                         <listheader width="10%"  label="TRANSF" align="left"  /> 
-                                        <listheader width="35%"  label="DESCRIPCIÓN" align="left" />
+                                        <listheader width="40%"  label="DESCRIPCIÓN" align="left" />
                                         <listheader width="10%"  label="V.UNIT" align="left" /> 
                                         <listheader width="10%"  label="V. TOTAL" align="left" />
                                                                                                                             
