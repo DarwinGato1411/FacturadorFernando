@@ -15,7 +15,7 @@ import javax.persistence.Query;
  *
  * @author gato
  */
-public class ServicioConsumoCliente {
+public class ServicioConsumoClientes {
 
 //    ServicioDetalleGuia servicioDetalleGuia = new ServicioDetalleGuia();
     private EntityManager em;
@@ -48,6 +48,7 @@ public class ServicioConsumoCliente {
                 em.getTransaction().rollback();
             }
             System.out.println("Error en lsa consulta cosumoClientes " + e.getMessage());
+            e.printStackTrace();
         } finally {
             em.close();
         }

@@ -168,9 +168,9 @@ public class RetencionCompraVm {
 
     private int numeroRetencion() {
         RetencionCompra recuperada = servicioRetencionCompra.findUtlimaRetencion(amb);
-        System.out.println(recuperada.getRcoSecuencial());
+        
         if (recuperada != null) {
-            
+//            System.out.println(recuperada.getRcoSecuencial());
             numeroRetencion = recuperada.getRcoSecuencial() + 1;
             System.out.println(numeroRetencion);
 

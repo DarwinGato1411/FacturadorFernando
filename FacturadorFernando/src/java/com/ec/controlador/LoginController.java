@@ -5,7 +5,7 @@
 package com.ec.controlador;
 
 import com.ec.controlador.superadmin.entidad.ConsumoClientes;
-import com.ec.controlador.superadmin.servicio.ServicioConsumoCliente;
+import com.ec.controlador.superadmin.servicio.ServicioConsumoClientes;
 import com.ec.entidad.NumeroDocumentosEmitidos;
 import com.ec.entidad.Parametrizar;
 import com.ec.seguridad.AutentificadorLogeo;
@@ -45,7 +45,7 @@ public class LoginController extends SelectorComposer<Component> {
 
     Integer numeroDocumentos = 0;
 
-    ServicioConsumoCliente servicioConsumoCliente = new ServicioConsumoCliente();
+    ServicioConsumoClientes servicioConsumoCliente = new ServicioConsumoClientes();
     private List<ConsumoClientes> listaClienteses = new ArrayList<ConsumoClientes>();
     private ConsumoClientes consumoDocumentos;
 

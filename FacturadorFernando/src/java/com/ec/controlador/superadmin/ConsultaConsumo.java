@@ -5,7 +5,7 @@
 package com.ec.controlador.superadmin;
 
 import com.ec.controlador.superadmin.entidad.ConsumoClientes;
-import com.ec.controlador.superadmin.servicio.ServicioConsumoCliente;
+import com.ec.controlador.superadmin.servicio.ServicioConsumoClientes;
 import com.ec.entidad.Guiaremision;
 import com.ec.entidad.NotaCreditoDebito;
 import com.ec.entidad.Parametrizar;
@@ -47,7 +47,7 @@ public class ConsultaConsumo {
 
     /*RUTAS PARA LOS ARCHIVPOS XML SRI*/
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
-    ServicioConsumoCliente servicioConsumoCliente = new ServicioConsumoCliente();
+    ServicioConsumoClientes servicioConsumoCliente = new ServicioConsumoClientes();
 
     private List<ConsumoClientes> listaClienteses = new ArrayList<ConsumoClientes>();
     //reporte
