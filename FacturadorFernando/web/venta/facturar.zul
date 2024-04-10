@@ -172,7 +172,7 @@
                                             class="input" 
                                         />
                                     </div>
-                                    <div class="wrapper_input">
+<!--                                    <div class="wrapper_input">
                                         <span>Base 12%:</span>
                                         <decimalbox  
                                             format="###.##"   
@@ -181,7 +181,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                             class="input" 
                                         />
-                                    </div>
+                                    </div>-->
                                
 <!--                                    <div class="wrapper_input">
                                         <span>Base 13%:</span>
@@ -237,7 +237,7 @@
                                             class="input" 
                                         />
                                     </div>
-                                    <div class="wrapper_input">
+<!--                                    <div class="wrapper_input">
                                         <span>IVA 12%:</span>
                                         <decimalbox  
                                             format="###.##"  
@@ -245,7 +245,7 @@
                                             readonly="true" 
                                             class="input" 
                                         />
-                                    </div>
+                                    </div>-->
 <!--                                    <div class="wrapper_input">
                                         <span>IVA 13%:</span>
                                         <decimalbox  
