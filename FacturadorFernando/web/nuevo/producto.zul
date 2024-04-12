@@ -23,7 +23,7 @@
                 <!--<span>Declaración: </span>-->
                 <radiogroup
                     class="radio_group" 
-                    onCheck="@command('verificarTipoProducto')"
+                    onCheck="@command('colocarIva')"
                    
                     selectedItem="@bind(vm.conIva)"  
                 >          
