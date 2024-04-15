@@ -127,8 +127,7 @@ public class NuevoProducto {
             this.producto.setProdUnidadMedida("UNIDAD");
             this.producto.setProdUnidadConversion("UNIDAD");
             this.producto.setProdFactorConversion(BigDecimal.ONE);
-
-//            this.producto.setProdIva(BigDecimal.valueOf(15));
+            this.producto.setProdCodigoIva(4);
             this.producto.setProdPorcentajeIva(15);
 
             accion = "create";
@@ -154,7 +153,7 @@ public class NuevoProducto {
     }
 
     @Command
-    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal","grabaIva"})
+    @NotifyChange({"esUnProdcuto", "producto", "muestraIncluye", "muestraSubtotal", "grabaIva"})
     public void verificarTipoProducto() {
         colocarIva();
         if (esProducto.equals("P")) {
@@ -171,13 +170,14 @@ public class NuevoProducto {
             muestraIncluye = Boolean.TRUE;
         } else {
             muestraIncluye = Boolean.FALSE;
+        
         }
         muestraSubtotal();
 //        
     }
 
     @Command
-    @NotifyChange({"muestraSubtotal","grabaIva"})
+    @NotifyChange({"muestraSubtotal", "grabaIva"})
     public void muestraSubtotal() {
 
         if (!esUnProdcuto && incluyeIva) {
@@ -187,7 +187,6 @@ public class NuevoProducto {
         }
 
 //        
-
     }
 
     @Command
@@ -250,6 +249,8 @@ public class NuevoProducto {
         } else {
             txtIvaRec.setText("0");
             producto.setProdIva(BigDecimal.ZERO);
+            this.producto.setProdPorcentajeIva(0);
+            this.producto.setProdCodigoIva(0);
             grabaIva = Boolean.FALSE;
         }
 //        calculopreciofinal();

@@ -538,7 +538,6 @@ public class Facturar extends SelectorComposer<Component> {
 ////            numeroGuiaText = "000000001";
 //        }
 //    }
-
     private void numeroTexto(Integer valor) {
         numeroGuiaText = "";
         for (int i = valor.toString().length(); i < 9; i++) {
@@ -1146,7 +1145,7 @@ public class Facturar extends SelectorComposer<Component> {
         }
     }
 
-      @Command
+    @Command
     @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion",
         "totalDescuento", "buscarNombreProd", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce",
         "listaProducto", "totalItems", "subTotalCotizacion", "subTotalCotizacion13", "subTotalCotizacion14", "subTotalCotizacion15", "subTotalCotizacion5",
@@ -1281,7 +1280,10 @@ public class Facturar extends SelectorComposer<Component> {
 
     /*CALCULAR EL DESCUENTO EN FUNCION DEL PORCENTAJE*/
     @Command
-    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion", "totalDescuento", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero"})
+    @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion",
+        "totalDescuento", "buscarNombreProd", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce",
+        "listaProducto", "totalItems", "subTotalCotizacion", "subTotalCotizacion13", "subTotalCotizacion14", "subTotalCotizacion15", "subTotalCotizacion5",
+        "ivaCotizacion5", "ivaCotizacion13", "ivaCotizacion14", "ivaCotizacion15"})
     public void calcularValoresDesCantidadPorPorcentaje(@BindingParam("valor") DetalleFacturaDAO valor) {
         try {
             if (valor.getProducto() == null) {
@@ -3152,7 +3154,7 @@ public class Facturar extends SelectorComposer<Component> {
         this.usuPasswordVal = usuPasswordVal;
     }
 
-     @Command
+    @Command
     @NotifyChange({"listaDetalleFacturaDAOMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion",
         "totalDescuento", "buscarNombreProd", "valorTotalInicialVent", "descuentoValorFinal", "subTotalBaseCero", "valorIce",
         "listaProducto", "totalItems", "subTotalCotizacion", "subTotalCotizacion13", "subTotalCotizacion14", "subTotalCotizacion15", "subTotalCotizacion5",
