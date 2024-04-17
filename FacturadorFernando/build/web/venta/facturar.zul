@@ -172,7 +172,7 @@
                                         class="input" 
                                     />
                                 </div>
-                                <div class="wrapper_input">
+<!--                                <div class="wrapper_input">
                                     <span>Base 12%:</span>
                                     <decimalbox  
                                         format="###.##"   
@@ -181,9 +181,9 @@
                                         onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                         class="input" 
                                     />
-                                </div>
+                                </div>-->
                                
-                                <div class="wrapper_input">
+<!--                                <div class="wrapper_input">
                                     <span>Base 13%:</span>
                                     <decimalbox  
                                         format="###.##"   
@@ -202,7 +202,7 @@
                                         onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                         class="input" 
                                     />
-                                </div>
+                                </div>-->
                                 <div class="wrapper_input">
                                     <span>Base 15%:</span>
                                     <decimalbox  
@@ -213,7 +213,16 @@
                                         class="input" 
                                     />
                                 </div>
-                                
+                                <div class="wrapper_input">
+                                    <span>Base 0%:</span>
+                                    <decimalbox  
+                                        format="###.##"   
+                                        value="@bind(vm.subTotalBaseCero)" 
+                                        readonly="true"
+                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                        class="input" 
+                                    />
+                                </div>
                             </div>
                             <div class="wrapper_data">
                                 <div class="wrapper_input">
@@ -236,7 +245,7 @@
                                         class="input" 
                                     />
                                 </div>
-                                <div class="wrapper_input">
+<!--                                <div class="wrapper_input">
                                     <span>IVA 12%:</span>
                                     <decimalbox  
                                         format="###.##"  
@@ -262,7 +271,7 @@
                                         readonly="true" 
                                         class="input" 
                                     />
-                                </div>
+                                </div>-->
                                 <div class="wrapper_input">
                                     <span>IVA 15%:</span>
                                     <decimalbox  
@@ -276,16 +285,7 @@
 
                             </div>
                             <div class="wrapper_data">
-                                <div class="wrapper_input">
-                                    <span>Base 0%:</span>
-                                    <decimalbox  
-                                        format="###.##"   
-                                        value="@bind(vm.subTotalBaseCero)" 
-                                        readonly="true"
-                                        onChange="self.setValue(self.getValue().toUpperCase().trim());" 
-                                        class="input" 
-                                    />
-                                </div>
+                                
                                 <div class="wrapper_input" style="flex:auto" align="center">
                                      <textbox  class="input_total" readonly="true"   style="background-color:transparent;" value="Total"> </textbox> 
                                    </div> 

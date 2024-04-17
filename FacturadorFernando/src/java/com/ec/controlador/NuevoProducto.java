@@ -59,9 +59,9 @@ public class NuevoProducto {
     @Wire
     Textbox txtIvaRec;
 
-    private String conIva = "S";
+    private String conIva = "N";
     private String conICE = "N";
-    private String esProducto = "P";
+    private String esProducto = "S";
     UserCredential credential = new UserCredential();
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
     private Tipoambiente amb = new Tipoambiente();
@@ -127,8 +127,8 @@ public class NuevoProducto {
             this.producto.setProdUnidadMedida("UNIDAD");
             this.producto.setProdUnidadConversion("UNIDAD");
             this.producto.setProdFactorConversion(BigDecimal.ONE);
-            this.producto.setProdCodigoIva(4);
-            this.producto.setProdPorcentajeIva(15);
+            this.producto.setProdCodigoIva(0);
+            this.producto.setProdPorcentajeIva(0);
 
             accion = "create";
         }
@@ -136,7 +136,7 @@ public class NuevoProducto {
         muestraSubtotal();
 //        listaIva.add(BigDecimal.valueOf(0));
         listaIva.add(BigDecimal.valueOf(5));
-        listaIva.add(BigDecimal.valueOf(12));
+//        listaIva.add(BigDecimal.valueOf(12));
 //        listaIva.add(BigDecimal.valueOf(13));
 //        listaIva.add(BigDecimal.valueOf(14));
         listaIva.add(BigDecimal.valueOf(15));
@@ -544,7 +544,7 @@ public class NuevoProducto {
 
         if (prodPrecioSubtotal != null) {
             if (conIva.equals("S")) {
-                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(BigDecimal.valueOf(1.12)));
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(producto.getProdIva()));
             } else {
                 this.producto.setPordCostoVentaFinal(prodPrecioSubtotal);
             }
