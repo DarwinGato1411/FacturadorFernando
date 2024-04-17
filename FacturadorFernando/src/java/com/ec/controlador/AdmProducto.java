@@ -20,10 +20,14 @@ import com.ec.servicio.ServicioTipoKardex;
 import com.ec.untilitario.CodigoQR;
 import com.ec.untilitario.ConexionReportes;
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -52,21 +56,16 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.io.Files;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
+import org.zkoss.zul.Fileupload;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import org.zkoss.io.Files;
-import org.zkoss.zul.Fileupload;
 
 /**
  *
@@ -98,6 +97,7 @@ public class AdmProducto {
     UserCredential credential = new UserCredential();
     private String amRuc = "";
     private Tipoambiente amb = null;
+
     ServicioGeneral servicioGeneral = new ServicioGeneral();
 
     public AdmProducto() {
@@ -294,7 +294,7 @@ public class AdmProducto {
     public void inicializarKardex() {
         if (Messagebox.show("¿Seguro que desea inicializar el Kardex?", "Atención", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION) == Messagebox.YES) {
             Kardex kardex;
-            List<Producto> listaKardex = servicioProducto.findALlProductoCodTipoAmbiente(amb);
+            List<Producto> listaKardex = servicioProducto.FindALlProducto();
             for (Producto producto : listaKardex) {
                 if (servicioKardex.FindALlKardexs(producto) == null) {
                     kardex = new Kardex();
@@ -538,7 +538,9 @@ public class AdmProducto {
             HSSFCell ch4 = r.createCell(j++);
             ch4.setCellValue(new HSSFRichTextString("Grava Iva"));
             ch4.setCellStyle(estiloCelda);
-
+            HSSFCell ch5 = r.createCell(j++);
+            ch5.setCellValue(new HSSFRichTextString("Porcentaje IVA (15 - 0)"));
+            ch5.setCellStyle(estiloCelda);
             int rownum = 1;
             int i = 0;
 
@@ -567,6 +569,9 @@ public class AdmProducto {
 
                 HSSFCell c3 = r.createCell(i++);
                 c3.setCellValue(new HSSFRichTextString(item.getProdGrabaIva().toString()));
+
+                HSSFCell c4 = r.createCell(i++);
+                c4.setCellValue(new HSSFRichTextString(item.getProdIva().toString()));
                 /*autemta la siguiente fila*/
                 rownum += 1;
 
@@ -587,7 +592,7 @@ public class AdmProducto {
     @Command
     public void exportListboxToExcelTodo() throws Exception {
         try {
-            List<Producto> listarTodo = servicioProducto.findALlProductoCodTipoAmbiente(amb);
+            List<Producto> listarTodo = servicioProducto.findLikeProdNombre("", amb);
             File dosfile = new File(exportarExcelTodo(listarTodo));
             if (dosfile.exists()) {
                 FileInputStream inputStream = new FileInputStream(dosfile);
@@ -664,11 +669,10 @@ public class AdmProducto {
             ch4.setCellStyle(estiloCelda);
 
             HSSFCell ch5 = r.createCell(j++);
-            ch5.setCellValue(new HSSFRichTextString("Grava Iva (SI=1; NO=0)"));
+            ch5.setCellValue(new HSSFRichTextString("Grava IVA (SI=1; NO=0)"));
             ch5.setCellStyle(estiloCelda);
-
             HSSFCell ch6 = r.createCell(j++);
-            ch6.setCellValue(new HSSFRichTextString("Cantidad Inicial"));
+            ch6.setCellValue(new HSSFRichTextString("Porcentaje IVA (15 - 0)"));
             ch6.setCellStyle(estiloCelda);
 
             int rownum = 1;
@@ -686,7 +690,7 @@ public class AdmProducto {
                 c0.setCellValue(new HSSFRichTextString(item.getProdNombre()));
 
                 HSSFCell c1 = r.createCell(i++);
-                c1.setCellValue(new HSSFRichTextString(item.getPordCostoCompra().toString()));
+                c1.setCellValue(new HSSFRichTextString(item.getPordCostoCompra() != null ? item.getPordCostoCompra().toString() : "0"));
 
                 HSSFCell c11 = r.createCell(i++);
                 c11.setCellValue(new HSSFRichTextString(item.getPordCostoVentaFinal().toString()));
@@ -699,9 +703,8 @@ public class AdmProducto {
 
                 HSSFCell c4 = r.createCell(i++);
                 c4.setCellValue(new HSSFRichTextString(item.getProdGrabaIva() ? "1" : "0"));
-
                 HSSFCell c5 = r.createCell(i++);
-                c5.setCellValue(new HSSFRichTextString(item.getProdCantidadInicial().toString()));
+                c5.setCellValue(new HSSFRichTextString(item.getProdIva().toString()));
                 /*autemta la siguiente fila*/
                 rownum += 1;
 
@@ -736,7 +739,6 @@ public class AdmProducto {
                 }
 
                 System.out.println("media " + nombre);
-                System.out.println(PATH_BASE + File.separator + "CARGAR" + File.separator + nombre);
                 Files.copy(new File(PATH_BASE + File.separator + "CARGAR" + File.separator + nombre),
                         new ByteArrayInputStream(media.getByteData()));
 
@@ -756,7 +758,7 @@ public class AdmProducto {
                 for (int i = 1; i < sheet.getLastRowNum() + 1; i++) {
                     row = sheet.getRow(i);
 //                    for (int j = 0; j < row.getLastCellNum(); j++) {
-                    for (int j = 0; j < 7; j++) {
+                    for (int j = 0; j < 6; j++) {
 
                         if (servicioProducto.findLikeProdNombre(String.valueOf(row.getCell(1)), amb).isEmpty()) {
                             cell = row.getCell(j);
@@ -767,7 +769,7 @@ public class AdmProducto {
                             prod.setPordCostoVentaFinal(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(3)))));
                             prod.setProdCostoPreferencial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(4)))));
                             prod.setProdCostoPreferencialDos(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(5)))));
-                            prod.setProdEsproducto(true);
+                            prod.setProdIva(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(7)))));
                             prod.setProdCostoPreferencialTres(BigDecimal.ZERO);
                             prod.setCodTipoambiente(amb);
                             prod.setProdCantMinima(BigDecimal.ONE);
@@ -775,28 +777,37 @@ public class AdmProducto {
 
                             if (row.getCell(6) != null) {
                                 String valor = String.valueOf(row.getCell(6));
-                                prod.setProdGrabaIva(String.valueOf(row.getCell(6)).contains("1") ? Boolean.TRUE : Boolean.FALSE);
+                                prod.setProdGrabaIva(String.valueOf(row.getCell(6)).equals("1.0") ? Boolean.TRUE : Boolean.FALSE);
 
                                 if (prod.getProdGrabaIva()) {
                                     BigDecimal precioIva = BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2))));
-                                    BigDecimal precioCompra = precioIva.divide(BigDecimal.valueOf(1.12), 4, RoundingMode.FLOOR);
+                                    BigDecimal precioCompra = precioIva.divide(prod.getProdIva(), 4, RoundingMode.FLOOR);
+                                    if (prod.getProdIva().intValue() == 15) {
+//                                         prod.setProdIva(BigDecimal.ZERO);
+                                        prod.setProdPorcentajeIva(15);
+                                        prod.setProdCodigoIva(4);
+                                    } else {
+                                        prod.setProdPorcentajeIva(5);
+                                        prod.setProdCodigoIva(5);
+                                    }
+
                                     prod.setPordCostoCompra(precioCompra);
-                                    prod.setProdIva(new BigDecimal(12));
                                 } else {
-                                    prod.setProdIva(new BigDecimal(0));
                                     prod.setPordCostoCompra(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2)))));
+                                    prod.setProdIva(BigDecimal.ZERO);
+                                    prod.setProdPorcentajeIva(0);
+                                    prod.setProdCodigoIva(0);
+
                                 }
 
                             } else {
                                 prod.setProdGrabaIva(Boolean.FALSE);
+                                prod.setProdIva(BigDecimal.ZERO);
+                                prod.setProdPorcentajeIva(0);
+                                prod.setProdCodigoIva(0);
                                 prod.setPordCostoCompra(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(2)))));
                             }
-                            if (row.getCell(7) != null) {
-                                prod.setProdCantidadInicial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(7)))));
-                            } else {
-                                prod.setProdCantidadInicial(new BigDecimal(0));
-                            }
-
+                            prod.setProdCantidadInicial(BigDecimal.valueOf(Double.valueOf(String.valueOf(row.getCell(6)))));
                             servicioProducto.crear(prod);
                             System.out.println("Valor: " + cell.toString());
                         } else {
@@ -822,4 +833,23 @@ public class AdmProducto {
 
     }
 
+    @Command
+    @NotifyChange({"listaProductosModel", "buscarNombre"})
+    public void modificar(@BindingParam("valor") Producto valor) {
+//        if (Messagebox.show("¿Seguro que desea eliminar el registro?", "Atención", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION) == Messagebox.YES) {
+        servicioProducto.modificar(valor);
+        Clients.showNotification("Modificado correctamente", Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+
+//        } else {
+//        }
+    }
+
+    @Command
+    @NotifyChange({"listaProductosModel", "buscarNombre"})
+    public void cambiarIvaTotos(@BindingParam("valor") Producto valor) {
+        if (Messagebox.show("¿Desea  cambiar todos sus producto con IVA 12% a IVA 15%?", "Atención", Messagebox.YES | Messagebox.NO, Messagebox.INFORMATION) == Messagebox.YES) {
+            servicioProducto.modificarIva(amb);
+            buscarLikeNombre();
+        }
+    }
 }
