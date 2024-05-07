@@ -570,7 +570,9 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 			</staticText>
 			<textField>
 				<reportElement x="11" y="221" width="273" height="15"/>
-				<textElement/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"CONTRIBUYENTE REGIMEN GENERAL":$F{am_ripme}?"CONTRIBUYENTE REGIMEN RIMPE EMPRENDEDOR": $F{am_rimpe_popular}?"CONTRIBUYENTE NEGOCIO POPULAR - REGIMEN RIMPE":""]]></textFieldExpression>
 			</textField>
 		</band>
