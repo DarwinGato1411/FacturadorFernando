@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.9487171000000019"/>
+	<property name="ireport.zoom" value="2.143588810000002"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="571"/>
+	<property name="ireport.y" value="178"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -344,6 +344,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 	<field name="isprincipal" class="java.lang.Boolean"/>
 	<field name="plazo" class="java.lang.String"/>
 	<field name="unidad_tiempo" class="java.lang.String"/>
+	<field name="am_codigo_artesano" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -460,14 +461,14 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[Direcciòn Sucursal:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="201" width="219" height="20"/>
+				<reportElement x="11" y="200" width="219" height="14"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBLIGADO A LLEVAR CONTABILIDAD]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="230" y="201" width="54" height="20"/>
+				<reportElement x="230" y="200" width="54" height="14"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{llevar_contabilidad}]]></textFieldExpression>
 			</textField>
@@ -498,7 +499,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_clave_acceso}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="181" width="165" height="20"/>
+				<reportElement x="11" y="184" width="165" height="14"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -553,7 +554,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_tipo_emision}.equals( "1" ) ? "NORMAL":""]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="176" y="181" width="108" height="20"/>
+				<reportElement x="176" y="184" width="108" height="14"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_nro_contribuyente}]]></textFieldExpression>
 			</textField>
@@ -562,7 +563,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<imageExpression class="java.lang.String"><![CDATA[$F{am_dir_img_punto_venta}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="241" width="274" height="14">
+				<reportElement positionType="Float" x="11" y="240" width="274" height="14">
 					<printWhenExpression><![CDATA[$F{am_age_ret}]]></printWhenExpression>
 				</reportElement>
 				<textElement>
@@ -571,11 +572,20 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[AGENTE DE RETENCION: NAC-DNCRASC20-00000001]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="11" y="221" width="273" height="15"/>
+				<reportElement x="10" y="216" width="273" height="15"/>
 				<textElement>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_general}?"CONTRIBUYENTE REGIMEN GENERAL":$F{am_ripme}?"CONTRIBUYENTE REGIMEN RIMPE EMPRENDEDOR": $F{am_rimpe_popular}?"CONTRIBUYENTE NEGOCIO POPULAR - REGIMEN RIMPE":""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="240" width="273" height="15">
+					<printWhenExpression><![CDATA[$F{am_codigo_artesano}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Codigo artesano : "+$F{am_codigo_artesano}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -797,6 +807,9 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 		</band>
 		<band height="230" splitType="Immediate">
 			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" x="8" y="8" width="368" height="55"/>
+			</rectangle>
+			<rectangle>
 				<reportElement style="table_TD" positionType="Float" x="392" y="177" width="160" height="49"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
@@ -827,20 +840,12 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_valor_sin_subsidio}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="12" y="126" width="216" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="10" y="85" width="216" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{for_nombre}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="10" y="30" width="100" height="20"/>
-				<box leftPadding="2">
-					<leftPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<text><![CDATA[Dirección:]]></text>
-			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
 				<reportElement style="table_TD" positionType="Float" x="505" y="34" width="47" height="12"/>
 				<box leftPadding="2" rightPadding="2"/>
@@ -896,34 +901,6 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				</textElement>
 				<text><![CDATA[IVA 15%]]></text>
 			</staticText>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="10" y="10" width="368" height="20"/>
-				<box leftPadding="2">
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Información Adicional]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="table_TD" positionType="Float" x="392" y="10" width="113" height="12"/>
-				<box leftPadding="2" bottomPadding="0" rightPadding="2"/>
-				<textElement>
-					<font size="7"/>
-				</textElement>
-				<text><![CDATA[SUBTOTAL 5%]]></text>
-			</staticText>
-			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="111" y="50" width="267" height="20"/>
-				<box>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_correo}]]></textFieldExpression>
-			</textField>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
 				<reportElement style="table_TD" positionType="Float" x="505" y="70" width="47" height="12"/>
 				<box leftPadding="2" rightPadding="2"/>
@@ -955,14 +932,6 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[VALOR TOTAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="10" y="50" width="101" height="20"/>
-				<box leftPadding="2">
-					<leftPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<text><![CDATA[Email:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="table_TD" positionType="Float" x="392" y="106" width="113" height="12"/>
@@ -997,7 +966,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[ICE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="12" y="111" width="217" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement style="table_TD" positionType="Float" mode="Transparent" x="10" y="70" width="217" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
 					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
@@ -1025,23 +994,6 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				</textElement>
 				<text><![CDATA[IRBPNR]]></text>
 			</staticText>
-			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="110" y="30" width="268" height="20"/>
-				<box>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="111" y="70" width="267" height="32"/>
-				<box>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement positionType="Float" mode="Opaque" x="505" y="46" width="47" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
@@ -1065,15 +1017,6 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_iva_15}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="10" y="70" width="101" height="32"/>
-				<box leftPadding="2">
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-				</box>
-				<textElement/>
-				<text><![CDATA[Observación:]]></text>
-			</staticText>
-			<staticText>
 				<reportElement style="table_TD" positionType="Float" x="392" y="70" width="113" height="12"/>
 				<box leftPadding="2" bottomPadding="0" rightPadding="2"/>
 				<textElement>
@@ -1090,7 +1033,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{fac_subsidio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="table_TD" positionType="Float" x="228" y="111" width="54" height="15"/>
+				<reportElement style="table_TD" positionType="Float" x="226" y="70" width="54" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
@@ -1111,7 +1054,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 				<text><![CDATA[0.00]]></text>
 			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
-				<reportElement style="table_TD" positionType="Float" x="228" y="126" width="54" height="15"/>
+				<reportElement style="table_TD" positionType="Float" x="226" y="85" width="54" height="15"/>
 				<box leftPadding="2" rightPadding="2"/>
 				<textElement textAlignment="Right">
 					<font size="6"/>
@@ -1161,6 +1104,105 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 					<font size="7"/>
 				</textElement>
 				<text><![CDATA[PROPINA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="10" y="22" width="101" height="12"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement style="table_TD" positionType="Float" x="111" y="22" width="255" height="12"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_direccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="10" y="34" width="101" height="12"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement style="table_TD" positionType="Float" x="111" y="34" width="255" height="12"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_correo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement style="table_TD" positionType="Float" x="111" y="46" width="255" height="12" isPrintWhenDetailOverflows="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fac_observacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="10" y="46" width="101" height="12" isPrintWhenDetailOverflows="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Observación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="12" y="11" width="354" height="11"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Información Adicional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table_TD" positionType="Float" x="393" y="10" width="112" height="12"/>
+				<box leftPadding="2" bottomPadding="0" rightPadding="2"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL 5%]]></text>
 			</staticText>
 		</band>
 	</detail>
