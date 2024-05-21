@@ -204,6 +204,7 @@
                                     <listheader width="100%"  label="RFA" align="rigth" />        
                                     <listheader width="100%"  label="PE" align="rigth" />
                                     <listheader width="100%"  label="RC" align="rigth" />       
+                                    <listheader width="100%"  label="XML" align="rigth" />       
                                     
                                 </listhead>  
                             
@@ -432,7 +433,13 @@
                                                    tooltiptext="Reenviar correo electrónico"/>
                                 
                                         </listcell>
-    
+                                        <listcell  zclass = "mycss-listcell" >   
+                                            <image src="/iconos/xml.png"   
+                                                   height="30px"  
+                                                   onClick="@command('exportarFacturaXML',valor=each)" 
+                                                   class="btn-secondary btn-sm "       
+                                                   tooltiptext="Descargar XML"/>
+                                        </listcell>
                                     </listitem>
                                 </template>
                             </listbox>

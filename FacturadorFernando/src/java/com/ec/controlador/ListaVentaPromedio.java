@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package com.ec.controlador;
-
 import com.ec.entidad.Tipoambiente;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
