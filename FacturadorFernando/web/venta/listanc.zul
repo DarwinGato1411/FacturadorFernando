@@ -107,6 +107,7 @@
                                 <listheader width="3%"  label="" align="center" />        
                                 <listheader width="3%"  label="" align="center" />               
                                 <listheader width="3%"  label="" align="center" />               
+                                <listheader width="3%"  label="" align="center" />               
                             </listhead>  
                             
                         
@@ -130,11 +131,12 @@
                                                  width="100%"
                                                  format="medium"   />
                                     </listcell>
-                                   <zk  choose="@bind(each.estadosri)" >
+                                    <zk  choose="@bind(each.estadosri)" >
                                         <zk  when="${each.estadosri == 'AUTORIZADO'}"  >
                                             <listcell    zclass = "mycss-listcell"  style="background:#C7FEC1"    >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;color:black"    
                                                          class="form-control form-control-sm"  
+                                                         tooltiptext="@bind(each.detalleSri)"
                                                          value="@bind(each.estadosri)"  width="100%"/>
                                             </listcell>
                                         </zk>
@@ -142,6 +144,7 @@
                                             <listcell    zclass = "mycss-listcell"  style="background:#E2C1F5; color:black" >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;color:black"   
                                                          class="form-control form-control-sm"  
+                                                         tooltiptext="@bind(each.detalleSri)"
                                                          value="@bind(each.estadosri)" 
                                                          width="100%"/>
                                             </listcell>
@@ -149,6 +152,7 @@
                                         <zk  >
                                             <listcell    zclass = "mycss-listcell"  style="background:#FCFE74" >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;color:black"   
+                                                         tooltiptext="@bind(each.detalleSri)"
                                                          class="form-control form-control-sm"  
                                                          value="@bind(each.estadosri)" 
                                                          width="100%"/>
@@ -187,7 +191,7 @@
                                 
                                     </listcell>
                                     
-                                    <zk if="${each.estadosri=='PENDIENTE'}"  > 
+                                    <!--<zk if="${each.estadosri=='PENDIENTE'}"  >--> 
                                         <listcell zclass = "mycss-listcell">  
                                            
                                             <image  src="/iconos/sri24x24.png" 
@@ -195,16 +199,16 @@
                                                     onClick="@command('autorizarSRI',valor=each)" 
                                                     tooltiptext="Autorizar nota de venta"/>
                                         </listcell>
-                                    </zk>
+                                    <!--</zk>-->
                             
-                                    <zk if="${each.estadosri!='PENDIENTE'}"  >
+<!--                                    <zk if="${each.estadosri!='PENDIENTE'}"  >
                                         <listcell zclass = "mycss-listcell">                                         
                                             <image src="/iconos/listo_uno.png"   
                                                    class="grow "       
                                                    tooltiptext="Ya se encuentra autorizado"/>
                                 
                                         </listcell>
-                                    </zk>
+                                    </zk>-->
                                     <zk if="${each.estadosri!='AUTORIZADO'}"  > 
                                         <listcell zclass = "mycss-listcell">    
                                             <image  src="/iconos/reenviar.png" 
@@ -224,6 +228,14 @@
                                             tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> -->
                                         </listcell>
                                     </zk>
+                                    
+                                    <listcell zclass = "mycss-listcell">   
+                                        <image  src="/iconos/delete.png" 
+                                                    class="grow"
+                                                    onClick="@command('eliminarNC',valor=each)" 
+                                                    tooltiptext="Eliminar nota de credito"/>
+                                    
+                                    </listcell>
                                                                 
                                     
                                 </listitem>

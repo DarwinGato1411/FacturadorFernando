@@ -427,7 +427,7 @@ public class Parametrizar implements Serializable {
     }
 
     public Boolean getParBloqueoSistema() {
-        return parBloqueoSistema;
+        return parBloqueoSistema==null?Boolean.FALSE:parBloqueoSistema;
     }
 
     public void setParBloqueoSistema(Boolean parBloqueoSistema) {

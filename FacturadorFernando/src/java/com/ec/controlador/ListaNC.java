@@ -52,6 +52,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Messagebox;
 
 /**
@@ -396,12 +397,12 @@ public class ListaNC {
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
 
                             String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();
-                            String smsInfo = autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional();
+                            String smsInfo = autorizacion.getMensajes().getMensaje().size() > 0 ? autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() : "";
                             nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getMensaje().getBytes());
                             if (autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() != null) {
                                 nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional().getBytes());
                             }
-
+                            valor.setDetalleSri(smsInfo != null ? smsInfo : "");
                             valor.setMensajesri(texto);
                             valor.setEstadosri(autorizacion.getEstado());
 
@@ -466,7 +467,8 @@ public class ListaNC {
                 servicioNotaCredito.modificar(valor);
             }
         } else {
-
+            String smsInfo = resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getInformacionAdicional();
+            valor.setDetalleSri(smsInfo);
             valor.setMensajesri(resSolicitud.getEstado());
             servicioNotaCredito.modificar(valor);
         }
@@ -582,12 +584,12 @@ public class ListaNC {
                 if (!autorizacion.getEstado().equals("AUTORIZADO")) {
 
                     String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();
-                    String smsInfo = autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional();
+                    String smsInfo = autorizacion.getMensajes().getMensaje().size() > 0 ? autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() : "";
                     nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getMensaje().getBytes());
                     if (autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() != null) {
                         nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional().getBytes());
                     }
-
+                    valor.setDetalleSri(smsInfo);
                     valor.setMensajesri(texto);
                     valor.setMensajeInf(smsInfo);
                     nuevo.flush();
@@ -732,4 +734,21 @@ public class ListaNC {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
         }
     }
+
+    @Command
+    @NotifyChange({"lstCreditoDebitos", "fechafin", "fechainicio"})
+    public void eliminarNC(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("Desea eliminar la nota de credito" + "\n Desea continuar?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+                servicioNotaCredito.eliminar(valor);
+                consultarFacturaFecha();
+            } else {
+                Clients.showNotification("Solicitud cancelada",
+                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
+            }
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+    }
+
 }
