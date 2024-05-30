@@ -17,7 +17,6 @@ import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.Tipokardex;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
-import com.ec.servicio.HelperPersistencia;
 import com.ec.servicio.ServicioCompra;
 import com.ec.servicio.ServicioDetalleKardex;
 import com.ec.servicio.ServicioEstadoFactura;
@@ -30,27 +29,14 @@ import com.ec.servicio.ServicioTipoKardex;
 import com.ec.untilitario.ArchivoUtils;
 import com.ec.untilitario.DetalleCompraUtil;
 import com.ec.untilitario.TotalKardex;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperRunManager;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
@@ -58,7 +44,6 @@ import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.NotifyChange;
-import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
@@ -98,7 +83,11 @@ public class Compras {
     //valorTotalCotizacion
     private BigDecimal valorTotalFactura = BigDecimal.ZERO;
     private BigDecimal subTotalFactura = BigDecimal.ZERO;
+    private BigDecimal subTotalFactura5 = BigDecimal.ZERO;
+    private BigDecimal subTotalFactura15 = BigDecimal.ZERO;
     private BigDecimal ivaFactura = BigDecimal.ZERO;
+    private BigDecimal ivaFactura5 = BigDecimal.ZERO;
+    private BigDecimal ivaFactura15 = BigDecimal.ZERO;
     private BigDecimal subTotalFacturaCero = BigDecimal.ZERO;
     //buscar proveedor
     public Proveedores proveedorSeleccionado = new Proveedores("");
@@ -123,9 +112,6 @@ public class Compras {
     public Cliente clienteBuscado = new Cliente("");
     private static BigDecimal DESCUENTOGENERAL = BigDecimal.valueOf(5.0);
     private String clietipo = "0";
-    private int cabNumero = 0;
-    private String cabNumeroTexto = "";
-
     @Wire
     Textbox idBusquedaProd;
     /*DETALLE DEL KARDEX Y DETALLE KARDEX*/
@@ -136,10 +122,6 @@ public class Compras {
     private Tipoambiente amb = new Tipoambiente();
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
-
-    //reporte
-    AMedia fileContent = null;
-    Connection con = null;
 
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
@@ -411,8 +393,9 @@ public class Compras {
     }
     //calcular los valores de la lista
 
-    @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+      @Command
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void calcularValores(@BindingParam("valor") DetalleCompraUtil valor) {
         try {
 
@@ -461,29 +444,59 @@ public class Compras {
         BigDecimal valorTotal = BigDecimal.ZERO;
         BigDecimal valorTotalCero = BigDecimal.ZERO;
 
+        BigDecimal valorTotal5 = BigDecimal.ZERO;
+//        BigDecimal valorTotal13 = BigDecimal.ZERO;
+//        BigDecimal valorTotal14 = BigDecimal.ZERO;
+        BigDecimal valorTotal15 = BigDecimal.ZERO;
+//        BigDecimal valorTotal = BigDecimal.ZERO;
+//        BigDecimal valorTotalConIva = BigDecimal.ZERO;
+        BigDecimal valorIva = BigDecimal.ZERO;
+        BigDecimal valorIva5 = BigDecimal.ZERO;
+//        BigDecimal valorIva13 = BigDecimal.ZERO;
+//        BigDecimal valorIva14 = BigDecimal.ZERO;
+        BigDecimal valorIva15 = BigDecimal.ZERO;
         List<DetalleCompraUtil> listaPedido = listaCompraProductosMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleCompraUtil item : listaPedido) {
 
                 if (item.getProducto() != null) {
-                    valorTotal = valorTotal.add(item.getProducto().getProdGrabaIva() ? item.getTotal() : BigDecimal.ZERO);
-                    valorTotalCero = valorTotalCero.add(!item.getProducto().getProdGrabaIva() ? item.getTotal() : BigDecimal.ZERO);
+
+                    if (item.getProducto().getProdPorcentajeIva() == 12) {
+                        valorTotal = valorTotal.add(item.getTotal());
+                        valorIva = valorIva.multiply(BigDecimal.valueOf(0.12));
+                    } else if (item.getProducto().getProdPorcentajeIva() == 5) {
+                        valorTotal5 = valorTotal5.add(item.getTotal());
+//                        valorIva5 = valorIva5.add(item.getTotal().multiply(BigDecimal.valueOf(0.05)));
+                    } else if (item.getProducto().getProdPorcentajeIva() == 15) {
+                        valorTotal15 = valorTotal15.add(item.getTotal());
+                        valorIva15 = valorIva15.multiply(BigDecimal.valueOf(0.15));
+                    } else {
+                        valorTotalCero = valorTotalCero.add(item.getTotal());
+                    }
+
                 }
             }
+
             System.out.println("**********************************************************");
             System.out.println("valor total:::: " + valorTotal);
             subTotalFacturaCero = valorTotalCero;
             subTotalFactura = valorTotal;
-            BigDecimal valorIva = subTotalFactura.multiply(BigDecimal.valueOf(0.12));
+            subTotalFactura5 = valorTotal5;
+            subTotalFactura15 = valorTotal15;
+            valorIva = subTotalFactura.multiply(BigDecimal.valueOf(0.12));
+            valorIva5 = subTotalFactura5.multiply(BigDecimal.valueOf(0.05));
+            valorIva15 = subTotalFactura15.multiply(BigDecimal.valueOf(0.15));
             ivaFactura = valorIva;
-            valorTotalFactura = valorTotal.add(valorIva).add(subTotalFacturaCero);
+            ivaFactura5 = valorIva5;
+            ivaFactura15 = valorIva15;
+            valorTotalFactura = subTotalFactura.add(ivaFactura).add(subTotalFacturaCero).add(subTotalFactura5).add(subTotalFactura15).add(ivaFactura5).add(ivaFactura15);
             subTotalFactura.setScale(4, RoundingMode.FLOOR);
             ivaFactura.setScale(4, RoundingMode.FLOOR);
             valorTotalFactura.setScale(4, RoundingMode.FLOOR);
         }
     }
-
 //producto
+
     @Command
     @NotifyChange({"listaKardexProducto", "buscarCodigoProd"})
     public void buscarLikeCodigoProd(@BindingParam("valor") String valor) {
@@ -588,9 +601,7 @@ public class Compras {
             BigDecimal facturIvaMasBase = (factorIva.add(BigDecimal.ONE));
             if (true) {
                 //armar la cabecera de la factura
-                secuencialCompra();
-                cabeceraCompra.setCabSecuencial(cabNumero);
-                cabeceraCompra.setCabSecuencialText(cabNumeroTexto);
+
                 cabeceraCompra.setCabRetencionAutori("N");
                 cabeceraCompra.setCabFechaEmision(fechafacturacion);
                 cabeceraCompra.setCabFecha(new Date());
@@ -599,8 +610,9 @@ public class Compras {
                 cabeceraCompra.setIdProveedor(proveedorSeleccionado);
                 cabeceraCompra.setCabProveedor(proveedorSeleccionado.getProvNombre());
                 cabeceraCompra.setIdUsuario(credential.getUsuarioSistema());
-                cabeceraCompra.setCabSubTotal(subTotalFactura);
-                cabeceraCompra.setCabIva(ivaFactura);
+                cabeceraCompra.setCabSubTotal(subTotalFactura.add(subTotalFactura5).add(subTotalFactura15));
+                cabeceraCompra.setCabIva(ivaFactura.add(ivaFactura5).add(ivaFactura15));
+
                 cabeceraCompra.setCabTotal(valorTotalFactura);
                 cabeceraCompra.setDrcCodigoSustento("01");
                 cabeceraCompra.setCabSubTotalCero(subTotalFacturaCero);
@@ -624,6 +636,7 @@ public class Compras {
                                 actualizaPrecio.setPordCostoCompra(item.getSubtotal());
                                 actualizaPrecio.setPordCostoVentaRef(item.getSubtotal());
                             }
+
                             servicioProducto.modificar(actualizaPrecio);
                             detalleCompra.add(item);
                         }
@@ -674,7 +687,7 @@ public class Compras {
 
                     }
                 }
-                reporteGeneral(cabeceraCompra.getIdCabecera(), "P");
+
                 Executions.sendRedirect("/compra/compras.zul");
             } else {
                 Clients.showNotification("Verifique el numero de factura", "error", null, "start_before", 2000, true);
@@ -686,21 +699,10 @@ public class Compras {
 
     }
 
-    public void secuencialCompra() {
-        CabeceraCompra ultimoSecuencial = servicioCompra.findUltimaCompra(amb);
-        if (ultimoSecuencial == null) {
-            cabNumero = 1;
-            cabNumeroTexto = "0000000001";
-        } else {
-            cabNumero = ultimoSecuencial.getCabSecuencial() + 1;
-            cabNumeroTexto = String.format("%0" + 10 + "d", cabNumero);
-        }
-
-    }
-
     //busqueda del producto
     @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void eliminarRegistros() {
         if (registrosSeleccionados.size() > 0) {
             ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).removeAll(registrosSeleccionados);
@@ -723,7 +725,8 @@ public class Compras {
 
     /*AGREGAMOS DESDE LA LSITA */
     @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void agregarItemLista(@BindingParam("valor") Producto producto) {
 
 
@@ -785,72 +788,36 @@ public class Compras {
         this.subTotalFacturaCero = subTotalFacturaCero;
     }
 
-    public int getCabNumero() {
-        return cabNumero;
+    public BigDecimal getSubTotalFactura5() {
+        return subTotalFactura5;
     }
 
-    public void setCabNumero(int cabNumero) {
-        this.cabNumero = cabNumero;
+    public void setSubTotalFactura5(BigDecimal subTotalFactura5) {
+        this.subTotalFactura5 = subTotalFactura5;
     }
 
-    public String getCabNumeroTexto() {
-        return cabNumeroTexto;
+    public BigDecimal getSubTotalFactura15() {
+        return subTotalFactura15;
     }
 
-    public void setCabNumeroTexto(String cabNumeroTexto) {
-        this.cabNumeroTexto = cabNumeroTexto;
+    public void setSubTotalFactura15(BigDecimal subTotalFactura15) {
+        this.subTotalFactura15 = subTotalFactura15;
     }
 
-    @Command
-    public void reporteFacturaCompraReportePersonalizado(@BindingParam("valor") CabeceraCompra valor) throws JRException, IOException, NamingException, SQLException {
-        reporteGeneral(valor.getIdCabecera(), "P");
+    public BigDecimal getIvaFactura5() {
+        return ivaFactura5;
     }
 
-    public void reporteGeneral(Integer idCabera, String reporte) throws JRException, IOException, NamingException, SQLException {
-        EntityManager emf = HelperPersistencia.getEMF();
-        try {
-
-            emf.getTransaction().begin();
-            con = emf.unwrap(Connection.class);
-            String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                    .getRealPath("/reportes");
-            String reportPath = reportFile + File.separator + "facturacompra.jasper";
-            if (reporte.equals("P")) {
-                reportPath = reportFile + File.separator + "facturacomprapersonalizada.jasper";
-            }
-
-            Map<String, Object> parametros = new HashMap<String, Object>();
-
-            //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
-            parametros.put("id_cabecera", idCabera);
-            parametros.put("tipoambiente", amb.getCodTipoambiente());
-
-            if (con != null) {
-                System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-            }
-            FileInputStream is = null;
-            is = new FileInputStream(reportPath);
-
-            byte[] buf = JasperRunManager.runReportToPdf(is, parametros, con);
-            InputStream mediais = new ByteArrayInputStream(buf);
-            AMedia amedia = new AMedia("Reporte", "pdf", "application/pdf", mediais);
-            fileContent = amedia;
-            final HashMap<String, AMedia> map = new HashMap<String, AMedia>();
-//para pasar al visor
-            map.put("pdf", fileContent);
-            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/venta/contenedorReporte.zul", null, map);
-            window.doModal();
-        } catch (FileNotFoundException e) {
-            System.out.println("FileNotFoundException " + e.getMessage());
-        } catch (JRException e) {
-            System.out.println("JRException " + e.getMessage());
-        } finally {
-            if (emf != null) {
-                emf.getTransaction().commit();
-            }
-
-        }
-
+    public void setIvaFactura5(BigDecimal ivaFactura5) {
+        this.ivaFactura5 = ivaFactura5;
     }
+
+    public BigDecimal getIvaFactura15() {
+        return ivaFactura15;
+    }
+
+    public void setIvaFactura15(BigDecimal ivaFactura15) {
+        this.ivaFactura15 = ivaFactura15;
+    }
+
 }

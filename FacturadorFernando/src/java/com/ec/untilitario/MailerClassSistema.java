@@ -29,7 +29,7 @@ import javax.mail.internet.MimeUtility;
  */
 public class MailerClassSistema {
 
-    private Tipoambiente amb = new Tipoambiente();
+      private Tipoambiente amb = new Tipoambiente();
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
     /**
@@ -65,11 +65,8 @@ public class MailerClassSistema {
 
         @Override
         public PasswordAuthentication getPasswordAuthentication() {
-//            amb = servicioTipoAmbiente.FindALlTipoambiente();
-//            String username = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
-            String username = "defact@deckxel.com";
-            String password = "Dereckandre02!";
+  String username = amb.getAmUsuarioSmpt().trim();
+            String password = amb.getAmPassword().trim();
             return new PasswordAuthentication(username, password);
 
         }
@@ -88,18 +85,18 @@ public class MailerClassSistema {
 
             amb = ambiente;
 
-            String asunto = asuntoInf;
-            String host = "mail.deckxel.com";
-            String port = "26";
-            String protocol = "smtp";
-            String usuarioSmpt = "defact@deckxel.com";
-            String password = "Dereckandre02!";
 //            String asunto = asuntoInf;
-//            String host = amb.getAmHost();
-//            String port = amb.getAmPort();
-//            String protocol = amb.getAmProtocol();
-//            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
-//            String password = amb.getAmPassword().trim();
+//            String host = "mail.deckxel.com";
+//            String port = "26";
+//            String protocol = "smtp";
+//            String usuarioSmpt = "defact@deckxel.com";
+//            String password = "Dereckandre02!";
+            String asunto = asuntoInf;
+            String host = amb.getAmHost();
+            String port = amb.getAmPort();
+            String protocol = amb.getAmProtocol();
+            String usuarioSmpt = amb.getAmUsuarioSmpt().trim();
+            String password = amb.getAmPassword().trim();
 
             // Propiedades de la conexión
             // Get system properties
@@ -143,7 +140,7 @@ public class MailerClassSistema {
                         + "                                 overflow: hidden;\n"
                         + "                                 line-height: 32px;\">\n"
                         + "        <div style=\"color:#00000;font-size:18px\"><strong>\n"
-                        + "		 USUARIO DEFACT : " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
+                        + "		 USUARIO : " + amb.getAmNombreComercial().toUpperCase() + "</strong></div>\n"
                         + "		<div style=\"color:#00000;font-size:11px\"><strong>\n"
                         + "		SISTEMA DE FACTURACION ELECTRONICA DEFACT  </strong></div>\n"
                         + "    </div>\n"
