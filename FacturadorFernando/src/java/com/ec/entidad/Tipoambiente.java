@@ -172,7 +172,7 @@ public class Tipoambiente implements Serializable {
     @Column(name = "am_general")
     private Boolean amGeneral;
     @Column(name = "am_rimpe_popular")
-    
+
     private Boolean amRimpePopular;
     @OneToMany(mappedBy = "codTipoambiente")
     private Collection<Producto> productoCollection;
@@ -215,6 +215,40 @@ public class Tipoambiente implements Serializable {
     private String amCodigoIce;
     @Column(name = "am_comprobante_imprime")
     private String amComprobanteImprime;
+    @Column(name = "am_detalle_negocio")
+    private String amDetalleNegocio;
+    @Column(name = "am_producto_estrella")
+    private String amProductoEstrella;
+    @Column(name = "am_facebook")
+    private String amFacebook;
+    @Column(name = "am_instagram")
+    private String amInstagram;
+    @Column(name = "am_tik_tok")
+    private String amTikTok;
+    @Column(name = "am_segmentacion")
+    private String amSegmentacion;
+    @Column(name = "am_pagina_referencia")
+    private String amPaginaReferencia;
+    @Column(name = "am_password_face")
+    private String amPasswordFace;
+    @Column(name = "am_password_instagram")
+    private String amPasswordInstagram;
+    @Column(name = "am_pass_tik_tok")
+    private String amPassTikTok;
+    @Column(name = "am_color_principal")
+    private String amColorPrincipal;
+    @Column(name = "am_color_secundario")
+    private String amColorSecundario;
+    @Column(name = "am_color_adicional")
+    private String amColorAdicional;
+    @Column(name = "am_medio_contacto")
+    private String amMedioContacto;
+    @Column(name = "am_adicional")
+    private String amAdicional;
+    @Column(name = "am_contacto_ws")
+    private String amContactoWs;
+    @Column(name = "am_contacto_ms")
+    private String amContactoMs;
 
 //    @Column(name = "am_nombre_socio")
 //    private String amNombreSocio;
@@ -767,6 +801,142 @@ public class Tipoambiente implements Serializable {
 
     public void setAmRimpePopular(Boolean amRimpePopular) {
         this.amRimpePopular = amRimpePopular;
+    }
+
+    public String getAmDetalleNegocio() {
+        return amDetalleNegocio;
+    }
+
+    public void setAmDetalleNegocio(String amDetalleNegocio) {
+        this.amDetalleNegocio = amDetalleNegocio;
+    }
+
+    public String getAmProductoEstrella() {
+        return amProductoEstrella;
+    }
+
+    public void setAmProductoEstrella(String amProductoEstrella) {
+        this.amProductoEstrella = amProductoEstrella;
+    }
+
+    public String getAmFacebook() {
+        return amFacebook;
+    }
+
+    public void setAmFacebook(String amFacebook) {
+        this.amFacebook = amFacebook;
+    }
+
+    public String getAmInstagram() {
+        return amInstagram;
+    }
+
+    public void setAmInstagram(String amInstagram) {
+        this.amInstagram = amInstagram;
+    }
+
+    public String getAmTikTok() {
+        return amTikTok;
+    }
+
+    public void setAmTikTok(String amTikTok) {
+        this.amTikTok = amTikTok;
+    }
+
+    public String getAmSegmentacion() {
+        return amSegmentacion;
+    }
+
+    public void setAmSegmentacion(String amSegmentacion) {
+        this.amSegmentacion = amSegmentacion;
+    }
+
+    public String getAmPaginaReferencia() {
+        return amPaginaReferencia;
+    }
+
+    public void setAmPaginaReferencia(String amPaginaReferencia) {
+        this.amPaginaReferencia = amPaginaReferencia;
+    }
+
+    public String getAmPasswordFace() {
+        return amPasswordFace;
+    }
+
+    public void setAmPasswordFace(String amPasswordFace) {
+        this.amPasswordFace = amPasswordFace;
+    }
+
+    public String getAmPasswordInstagram() {
+        return amPasswordInstagram;
+    }
+
+    public void setAmPasswordInstagram(String amPasswordInstagram) {
+        this.amPasswordInstagram = amPasswordInstagram;
+    }
+
+    public String getAmPassTikTok() {
+        return amPassTikTok;
+    }
+
+    public void setAmPassTikTok(String amPassTikTok) {
+        this.amPassTikTok = amPassTikTok;
+    }
+
+    public String getAmColorPrincipal() {
+        return amColorPrincipal;
+    }
+
+    public void setAmColorPrincipal(String amColorPrincipal) {
+        this.amColorPrincipal = amColorPrincipal;
+    }
+
+    public String getAmColorSecundario() {
+        return amColorSecundario;
+    }
+
+    public void setAmColorSecundario(String amColorSecundario) {
+        this.amColorSecundario = amColorSecundario;
+    }
+
+    public String getAmColorAdicional() {
+        return amColorAdicional;
+    }
+
+    public void setAmColorAdicional(String amColorAdicional) {
+        this.amColorAdicional = amColorAdicional;
+    }
+
+    public String getAmMedioContacto() {
+        return amMedioContacto;
+    }
+
+    public void setAmMedioContacto(String amMedioContacto) {
+        this.amMedioContacto = amMedioContacto;
+    }
+
+    public String getAmAdicional() {
+        return amAdicional;
+    }
+
+    public void setAmAdicional(String amAdicional) {
+        this.amAdicional = amAdicional;
+    }
+
+    public String getAmContactoWs() {
+        return amContactoWs == null ? "N" : amContactoWs;
+    }
+
+    public void setAmContactoWs(String amContactoWs) {
+        this.amContactoWs = amContactoWs;
+    }
+
+    public String getAmContactoMs() {
+        return amContactoMs == null ? "N" : amContactoMs;
+    }
+
+    public void setAmContactoMs(String amContactoMs) {
+        this.amContactoMs = amContactoMs;
     }
 
 }

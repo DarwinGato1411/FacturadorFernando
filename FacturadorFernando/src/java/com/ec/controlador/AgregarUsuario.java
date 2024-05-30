@@ -98,22 +98,20 @@ public class AgregarUsuario {
     @NotifyChange("usuarioSistema")
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                    && !usuarioSistema.getUsuCorreo().equals("")
-                    && !usuarioSistema.getUsuWhatsapp().equals("")
+                    && !usuarioSistema.getUsuLogin().equals("")    
                     && !usuarioSistema.getUsuPassword().equals("")
                     && !usuarioSistema.getUsuRuc().equals("")
                     && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*verifica si tiene tipo ambiente*/
 
-            if (usuarioSistema.getUsuWhatsapp() == null) {
-                Clients.showNotification("Ingrese un numero de contacto..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                return;
-            }
-            if (usuarioSistema.getUsuRuc().length() != 13) {
-                Clients.showNotification("Ingrese un RUC valido..!!",
+//            if (usuarioSistema.getUsuWhatsapp() == null) {
+//                Clients.showNotification("Ingrese un numero de contacto..!!",
+//                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+//                return;
+//            }
+            if (usuarioSistema.getUsuRuc().length()<=10) {
+                Clients.showNotification("Ingrese un RUC o Cedula valido..!!",
                             Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
@@ -198,49 +196,49 @@ public class AgregarUsuario {
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
-                Tipoambiente tipoambienteProd = new Tipoambiente();
-                tipoambienteProd.setAmUnidadDisco("/");
-                tipoambienteProd.setAmDirBaseArchivos("//DOCUMENTOSRI");
-                tipoambienteProd.setAmCodigo("2");
-                tipoambienteProd.setAmDescripcion("PRODUCCION");
-                tipoambienteProd.setAmEstado(Boolean.FALSE);
-                tipoambienteProd.setAmIdEmpresa(1);
-                tipoambienteProd.setAmUsuariosri("PRODUCCION");
-                tipoambienteProd.setAmUrlsri("cel.sri.gob.ec");
-                tipoambienteProd.setAmFolderFirma("FIRMA");
-                tipoambienteProd.setAmDirReportes("REPORTES");
-                tipoambienteProd.setAmGenerados("GENERADOS");
-                tipoambienteProd.setAmDirXml("XML");
-                tipoambienteProd.setAmFirmados("FIRMADOS");
-                tipoambienteProd.setAmTrasmitidos("TRASMITIDOS");
-                tipoambienteProd.setAmDevueltos("DEVUELTOS");
-                tipoambienteProd.setAmAutorizados("AUTORIZADOS");
-                tipoambienteProd.setAmNoAutorizados("NOAUTORIZADOS");
-                tipoambienteProd.setAmTipoEmision("1");
-                tipoambienteProd.setAmEnviocliente("ENVIARCLIENTE");
-                tipoambienteProd.setAmRuc(usuarioSistema.getUsuRuc());
-                tipoambienteProd.setAmNombreComercial(usuarioSistema.getUsuNombre());
-                tipoambienteProd.setAmRazonSocial(usuarioSistema.getUsuNombre());
-                tipoambienteProd.setAmEstab("001");
-                tipoambienteProd.setAmPtoemi("001");
-                tipoambienteProd.setAmDireccionMatriz("");
-                tipoambienteProd.setAmDireccionSucursal("");
-                tipoambienteProd.setLlevarContabilidad("NO");
-                tipoambienteProd.setAmPort("26");
-                tipoambienteProd.setAmProtocol("smtp");
-                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
-                tipoambienteProd.setAmPassword("Dereckandre02!");
-                tipoambienteProd.setAmHost("mail.deckxel.com");
-
-                tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
-                tipoambienteProd.setAmAgeRet(Boolean.FALSE);
-                tipoambienteProd.setAmContrEsp(Boolean.FALSE);
-                tipoambienteProd.setAmExp(Boolean.FALSE);
-                tipoambienteProd.setIdUsuario(usuarioSistema);
-                tipoambienteProd.setAmGrabaIce(Boolean.FALSE);
-                tipoambienteProd.setAmValorIce(BigDecimal.ZERO);
-                tipoambienteProd.setAmCodigoIce("0");
-                tipoambienteProd.setAmComprobanteImprime("factura.jasper");
+//                Tipoambiente tipoambienteProd = new Tipoambiente();
+//                tipoambienteProd.setAmUnidadDisco("/");
+//                tipoambienteProd.setAmDirBaseArchivos("//DOCUMENTOSRI");
+//                tipoambienteProd.setAmCodigo("2");
+//                tipoambienteProd.setAmDescripcion("PRODUCCION");
+//                tipoambienteProd.setAmEstado(Boolean.FALSE);
+//                tipoambienteProd.setAmIdEmpresa(1);
+//                tipoambienteProd.setAmUsuariosri("PRODUCCION");
+//                tipoambienteProd.setAmUrlsri("cel.sri.gob.ec");
+//                tipoambienteProd.setAmFolderFirma("FIRMA");
+//                tipoambienteProd.setAmDirReportes("REPORTES");
+//                tipoambienteProd.setAmGenerados("GENERADOS");
+//                tipoambienteProd.setAmDirXml("XML");
+//                tipoambienteProd.setAmFirmados("FIRMADOS");
+//                tipoambienteProd.setAmTrasmitidos("TRASMITIDOS");
+//                tipoambienteProd.setAmDevueltos("DEVUELTOS");
+//                tipoambienteProd.setAmAutorizados("AUTORIZADOS");
+//                tipoambienteProd.setAmNoAutorizados("NOAUTORIZADOS");
+//                tipoambienteProd.setAmTipoEmision("1");
+//                tipoambienteProd.setAmEnviocliente("ENVIARCLIENTE");
+//                tipoambienteProd.setAmRuc(usuarioSistema.getUsuRuc());
+//                tipoambienteProd.setAmNombreComercial(usuarioSistema.getUsuNombre());
+//                tipoambienteProd.setAmRazonSocial(usuarioSistema.getUsuNombre());
+//                tipoambienteProd.setAmEstab("001");
+//                tipoambienteProd.setAmPtoemi("001");
+//                tipoambienteProd.setAmDireccionMatriz("");
+//                tipoambienteProd.setAmDireccionSucursal("");
+//                tipoambienteProd.setLlevarContabilidad("NO");
+//                tipoambienteProd.setAmPort("26");
+//                tipoambienteProd.setAmProtocol("smtp");
+//                tipoambienteProd.setAmUsuarioSmpt("defact@deckxel.com");
+//                tipoambienteProd.setAmPassword("Dereckandre02!");
+//                tipoambienteProd.setAmHost("mail.deckxel.com");
+//
+//                tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
+//                tipoambienteProd.setAmAgeRet(Boolean.FALSE);
+//                tipoambienteProd.setAmContrEsp(Boolean.FALSE);
+//                tipoambienteProd.setAmExp(Boolean.FALSE);
+//                tipoambienteProd.setIdUsuario(usuarioSistema);
+//                tipoambienteProd.setAmGrabaIce(Boolean.FALSE);
+//                tipoambienteProd.setAmValorIce(BigDecimal.ZERO);
+//                tipoambienteProd.setAmCodigoIce("0");
+//                tipoambienteProd.setAmComprobanteImprime("factura.jasper");
 
 //                servicioTipoAmbiente.crear(tipoambienteProd);
 //
@@ -261,17 +259,17 @@ public class AgregarUsuario {
             }
 
 //            usuarioSistema = new Usuario();
-            try {
-                tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
-                MailerClassSistema mail = new MailerClassSistema();
-                mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
-                Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
-            } catch (RemoteException ex) {
-                Clients.showNotification("Ocurrio un error al recuperar su password",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
-                Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                tipoAmbienteRecup = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
+//                MailerClassSistema mail = new MailerClassSistema();
+//                mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
+//                Clients.showNotification("Los accesos se enviaron al correo electrónico",
+//                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+//            } catch (RemoteException ex) {
+//                Clients.showNotification("Ocurrio un error al recuperar su password",
+//                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+//                Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             windowIdUsuario.detach();
 
         } else {

@@ -71,19 +71,19 @@ public class MenuOpciones extends SelectorComposer<Component> {
         if (credential.getUsuarioSistema() != null) {
 
             if (credential.getUsuarioSistema().getUsuNivel() == 1) {
-                menuEmitirfact.setVisible(Boolean.FALSE);
-                menuVentas.setVisible(Boolean.FALSE);
-                menuCompras.setVisible(Boolean.FALSE);
-                menuGuias.setVisible(Boolean.FALSE);
-                menuKardex.setVisible(Boolean.FALSE);
-                menuReportes.setVisible(Boolean.FALSE);
-                btnAdministarVenta.setVisible(Boolean.FALSE);
-                btnHisDeclaraciones.setVisible(Boolean.FALSE);
+//                menuEmitirfact.setVisible(Boolean.FALSE);
+//                menuVentas.setVisible(Boolean.FALSE);
+//                menuCompras.setVisible(Boolean.FALSE);
+//                menuGuias.setVisible(Boolean.FALSE);
+//                menuKardex.setVisible(Boolean.FALSE);
+//                menuReportes.setVisible(Boolean.FALSE);
+//                btnAdministarVenta.setVisible(Boolean.FALSE);
+//                btnHisDeclaraciones.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);
-                muenGestionEmpresas.setVisible(Boolean.FALSE);
-                btnGestionFactura.setVisible(Boolean.FALSE);
+//                muenGestionEmpresas.setVisible(Boolean.FALSE);
+//                btnGestionFactura.setVisible(Boolean.FALSE);
             }
         }
     }

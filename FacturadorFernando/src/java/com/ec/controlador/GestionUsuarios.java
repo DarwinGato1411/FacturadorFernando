@@ -48,7 +48,7 @@ public class GestionUsuarios {
     private List<Usuario> listaUsuarios = new ArrayList<Usuario>();
     private List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
 
-    private String amCodigo = "2";
+    private String amCodigo = "1";
     private String nombreUsuario = "";
 
     UserCredential credential = new UserCredential();
@@ -97,7 +97,7 @@ public class GestionUsuarios {
     @NotifyChange("listaUsuarios")
     public void agregarUsario() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/usuario.zul", null, null);
+                "/nuevo/usuario.zul", null, null);
         window.doModal();
         cosultarUsuarios("");
     }
@@ -108,9 +108,20 @@ public class GestionUsuarios {
         final HashMap<String, Usuario> map = new HashMap<String, Usuario>();
         map.put("usuario", usuario);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevoadmin/usuario.zul", null, map);
+                "/nuevoadmin/usuario.zul", null, map);
         window.doModal();
         cosultarUsuarios("");
+    }
+
+    @Command
+    @NotifyChange("listaUsuarios")
+    public void modificarInformacion(@BindingParam("valor") Tipoambiente tipo) {
+        final HashMap<String, Tipoambiente> map = new HashMap<String, Tipoambiente>();
+        map.put("valor", tipo);
+        org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                "/nuevo/informacion.zul", null, map);
+        window.doModal();
+
     }
 
     @Command
@@ -249,10 +260,10 @@ public class GestionUsuarios {
             ch2.setCellValue(new HSSFRichTextString("F Caduca"));
             ch2.setCellStyle(estiloCelda);
 
-             HSSFCell ch222 = r.createCell(j++);
+            HSSFCell ch222 = r.createCell(j++);
             ch222.setCellValue(new HSSFRichTextString("F ultimo pago"));
             ch222.setCellStyle(estiloCelda);
-            
+
             HSSFCell ch22 = r.createCell(j++);
             ch22.setCellValue(new HSSFRichTextString("Plan"));
             ch22.setCellStyle(estiloCelda);
@@ -279,8 +290,8 @@ public class GestionUsuarios {
                 HSSFCell c01 = r.createCell(i++);
                 c01.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaPago() != null ? sm.format(item.getIdUsuario().getUsuFechaPago()) : ""));
 
-                 HSSFCell c011 = r.createCell(i++);
-                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca()!= null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
+                HSSFCell c011 = r.createCell(i++);
+                c011.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuFechaCaduca() != null ? sm.format(item.getIdUsuario().getUsuFechaCaduca()) : ""));
 
                 HSSFCell c1 = r.createCell(i++);
                 c1.setCellValue(new HSSFRichTextString(item.getIdUsuario().getUsuIlimitado() ? "ILIMITADO" : "DOCUMENTOS"));

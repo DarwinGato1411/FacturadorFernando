@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
-<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
-<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
-<?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
-<?script src="https://kit.fontawesome.com/484b16c999.js"?>
+<window  id="windowCliente"  position="center" closable="true"  
+         apply="org.zkoss.bind.BindComposer" 
+         viewModel="@id('vm') @init('com.ec.controlador.ConfiguracionMod')">
+    
 
-<?init class="com.ec.seguridad.Autentificador"?>
-<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
-
-
-<zk  >
-
-        
+    <caption label="Producto" style="font-weight:bold" /> 
        
-    <!--<div style="width: 100%; display:grid;place-content: center; ">-->
-    <div self="@define(content)" apply="org.zkoss.bind.BindComposer" style="width:100%;height:100%;"
-         viewModel="@id('vm') @init('com.ec.controlador.Configuracion')"  class="container_modal">
+     <div style="width:100%;height:100%;" class="container_modal">
+<!--     <div self="@define(content)" apply="org.zkoss.bind.BindComposer" style="width:100%;height:100%;"
+         viewModel="@id('vm') @init('com.ec.controlador.ConfiguracionMod')"  class="container_modal">-->
 
         <div class="body" >
             <div class="container_row_input">
@@ -409,6 +401,7 @@
         
     </div>
 
-
-
-</zk>
+   
+                    
+                  
+</window>

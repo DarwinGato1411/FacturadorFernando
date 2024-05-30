@@ -10,217 +10,405 @@
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 
 
-<zk  contentStyle="overflow:auto" with="100%" >
-    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
-          viewModel="@id('vm') @init('com.ec.controlador.AdministrarVenta')" width="100%">
-        <tabbox id="tboxPrincipal"  width="100%">
-            <tabs >
-                <tab label="Clientes" sclass="menutabs" /> 
-                <tab label="Productos" sclass="menutabs" /> 
-                <tab label="Proveedores" sclass="menutabs" /> 
-                <tab label="Conductor" sclass="menutabs" /> 
+<zk  >
 
-                <tab label="Usuario" sclass="menutabs" /> 
+        
+       
+    <!--<div style="width: 100%; display:grid;place-content: center; ">-->
+    <div self="@define(content)" apply="org.zkoss.bind.BindComposer" style="width:100%;height:100%;"
+         viewModel="@id('vm') @init('com.ec.controlador.Configuracion')"  class="container_modal">
 
-                <tab label="Configuracion SRI" sclass="menutabs" /> 
-                <!--<tab label="Parametrizar Empresa" sclass="menutabs" />--> 
-                <!--<tab label="Consultar catastro" sclass="menutabs" />--> 
-<!--
-                <tab label="Configuraciones" sclass="menutabs" /> 
-                <tab label="Parametrizar Empresa" sclass="menutabs" /> -->
-
-
-            </tabs>
-            
-            <tabpanels >
-                
-                <tabpanel  height="98%" width="99%"  > 
-
-                <div class="container_headers" style="margin-bottom:1em">
-                    <div 
-                        class="fa-solid fa-plus-circle fa-2x icon"
-                        onClick="@command('nuevoCliente')"
-                        tooltiptext="Nuevo cliente"
-                    >
-                    <span>Nuevo cliente</span>
-                    </div>
-
-                    <div 
-                        class="fa-solid fa-file-excel fa-2x icon"
-                        onClick="@command('exportListboxToExcel')"
-                        tooltiptext="Descargar productos"
-                    >
-                <span>Exportar</span>
+        <div class="body" >
+            <div class="container_row_input">
+                <div class="wrapper_input_mod">
+                    <!--<colorbox id="colorPicker" width="30px" height="25px" />-->
+                    <span>Ruta Base: </span>
+                    <div class="wrapper_input_text">
+                        <combobox  
+                            model="@load(vm.listaDicos)" 
+                            readonly="false"
+                            buttonVisible="true" 
+                            selectedItem="@bind(vm.tipoambiente.amUnidadDisco)"
+                            class="input_text"
+                            tooltiptext="Ruta base dependiendo del sistema operativo (D: ó /Documentos)" 
+                        >       
+                            <template name="model">
+                                <comboitem  label="@bind(each)"/>
+                            </template>                                      
+                        </combobox> 
                     </div>
                 </div>
-
-
-                 <div class="cont_body">
-                    <div class="cont_body_item">
-                        <listbox model="@load(vm.listaClientesAll)" 
-                                nonselectableTags="*"  mold="paging" pageSize="15"  >
-                            <custom-attributes org.zkoss.zul.listbox.rod="true"/>
-                            <listhead> 
-                                <listheader width="10%" >
-                                    <textbox value="@bind(vm.buscarCedula)" 
-                                            class="form-control form-control-sm"
-                                            tooltiptext="Cedula"
-                                            placeholder="Identificacion"
-                                            onOK="@command('buscarClienteCedula')"
-                                            onChange="self.setValue(self.getValue().toUpperCase());" />
-                                </listheader>      
-                                <listheader width="20%"   > 
-                                    <textbox value="@bind(vm.buscarNombre)" 
-                                            class="form-control form-control-sm"
-                                            tooltiptext="Nombre Comercial"
-                                            placeholder="Nombre Comercial"
-                                            onOK="@command('buscarClienteNombre')"
-                                            onChange="self.setValue(self.getValue().toUpperCase());" />
-                                </listheader>
-                                
-                                <listheader width="25%"  label="Direccion "  /> 
-                                <listheader width="7%"  label="Telefono "  />        
-                                <listheader width="8%"  label="Movil"/>
-                                <listheader width="25%"  label="Correo"/>
-                                <listheader width="5%"  label="" align="center"/>
-                                
-                            </listhead>  
-                        
-                            <template name="model">                                                            
-                                <listitem>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm"  value="@bind(each.cliCedula)"  />
-                                    </listcell>
-<!--                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm"  value="@bind(each.cliNombres)"  />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
-                                            class="form-control form-control-sm"  value="@bind(each.cliApellidos)"  />
-                                    </listcell>-->
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm"  value="@bind(each.cliNombre)"  />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm" value="@bind(each.cliDireccion)" />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm" value="@bind(each.cliTelefono)" />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"
-                                                class="form-control form-control-sm" value="@bind(each.cliMovil)" />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true" style="font-size:12px;background:#EBF5FB"
-                                            class="form-control form-control-sm"  value="@bind(each.cliCorreo)" />
-                                    </listcell>
-                                    <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">    
-                                        <image src="/iconos/editar.png"
-                                            class="grow "
-                                            onClick="@command('actualizarCliente',valor=each)" 
-                                            tooltiptext="Modificar cliente"/>
-                                        
-                                    </listcell>
-                                </listitem>
-                            </template>
-                        </listbox>
+                <div class="wrapper_input_mod">
+                    <span>RUC: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-address-card icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amRuc)" 
+                            placeholder="RUC..."
+                            onOK="@command('buscarCatastro')"
+                            class="input_text"
+                            tooltiptext="RUC"
+                        />
                     </div>
-                </div>                   
+                </div>
+                  
+                <div class="wrapper_input_mod">
+                    <span>Numero WhatsApp: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-user icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amTelefono)" 
+                            placeholder="062918661"
+                            class="input_text"
+                            tooltiptext="Contacto" 
+                        />
+                    </div>
+                </div>
                 
 
+            </div>
 
+            <div class="container_row_input">
+                <div class="wrapper_input_mod">
+                    <span>Correo: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-envelope icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amUsuarioSmpt)" 
+                            placeholder="deckxelec@gmail.com"
+                            class="input_text"
+                            tooltiptext="Correo" 
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <div class="wrapper_input_mod">
+                        <span>Contacto x WhatsApp: </span>
+                        <radiogroup  style=" margin-left: 60px;"
+                                     class="radio_group"
+                                     selectedItem="@bind(vm.tipoambiente.amContactoWs)" 
+                        >                                            
+                            <radio label="SI" value="s"/>
+                            <space bar="false"  />   
+                            <radio label="NO" value="N"/>                          
+                        </radiogroup>
+                    </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <div class="wrapper_input_mod">
+                        <span>Contacto X Messenger: </span>
+                        <radiogroup  style=" margin-left: 60px;"
+                                     class="radio_group"
+                                     selectedItem="@bind(vm.tipoambiente.amContactoMs)" 
+                        >                                            
+                            <radio label="SI" value="s"/>
+                            <space bar="false"  />   
+                            <radio label="NO" value="N"/>                          
+                        </radiogroup>
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod">
+                    <span>Usuario facebook: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-envelope icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amFacebook)" 
+                            placeholder=""
+                            class="input_text"
+                            tooltiptext="Correo" 
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <span>Contraseña facebook: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-key icon"></div>
+                        <textbox 
+                           
+                            value="@bind(vm.tipoambiente.amPasswordFace)"                            
+                            placeholder="Password123"
+                            class="input_text"
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod"></div>
+            </div>
+            <div class="container_row_input">
                 
-                </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/venta/admproducto.zul"/>  
-                </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/compra/admproveedor.zul"/>  
-                </tabpanel>
-                <tabpanel height="100%" hflex="min">
-                    <include src="/venta/admconductor.zul"/>  
-                </tabpanel>      
-                <tabpanel height="100%" hflex="min">
-
-                    <div class="container_headers" style="margin-bottom:1em">
-                        <div 
-                            class="fa-solid fa-plus-circle fa-2x icon"
-                            onClick="@command('agregarUsario')"
-                            tooltiptext="Nuevo usuario"
-                        >
-                            <span>Nuevo usuario</span>
+                <div class="wrapper_input_mod">
+                    <span>Usuario instagram: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-key icon"></div>
+                        <textbox 
+                           
+                            value="@bind(vm.tipoambiente.amInstagram)"                            
+                      
+                            class="input_text"
+                        />
                     </div>
+                </div>
+                
+                <div class="wrapper_input_mod">
+                    <span>Contraseña instagram: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-key icon"></div>
+                        <textbox 
+                           
+                            value="@bind(vm.tipoambiente.amPasswordInstagram)"                            
+                            placeholder="Password123"
+                            class="input_text"
+                        />
                     </div>
-
-                    <div class="cont_body">
-                        <div class="cont_body_item">
-                            <listbox width="100%" model="@load(vm.listaUsuarios)" nonselectableTags="*"  mold="paging" pageSize="9">
-                         
-                                
-                                            
-                                    
-                                <listhead sizable="true">
-                                    <listheader label="Nombre de la cuenta"  align="left" width="35%"></listheader>
-                                    <listheader label="Usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Contraseña"  align="left" width="20%"></listheader>
-                                    <listheader label="Tipo Usuario"  align="left" width="20%"></listheader>
-                                    <listheader label="Modificar"  align="left" width="5%"></listheader>
-                                </listhead>
-                        
-                        
-                                <template name="model">
-                                    <listitem width="100%" > 
-                                        <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuNombre)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm" />
-                                        </listcell>  
-                                        <listcell  zclass = "mycss-listcell">
-                                            <textbox readonly="true" value="@bind(each.usuLogin)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm" />
-                                        </listcell>   
-                                        <listcell  zclass = "mycss-listcell">      
-                                            <textbox readonly="true" value="@bind(each.usuPassword)" 
-                                                     class="form-control form-control-sm"
-                                                     style="font-size:12px;background:#EBF5FB"
-                                                     type="password" />
-                                        </listcell>  
-                                        <listcell  zclass = "mycss-listcell">                          
-                                            <textbox readonly="true" value="@bind(each.usuTipoUsuario)"  style="font-size:12px;background:#EBF5FB"
-                                                     class="form-control form-control-sm"  />
-                                        </listcell>                  
-                                        <listcell  zclass = "mycss-listcell">
-                                            <image src="/iconos/editar.png"
-                                                   class="grow"
-                                                   onClick="@command('modificarUsario',valor=each)" 
-                                                   tooltiptext="Editar usuario"/> 
-                                            
-                                        </listcell>     
-                                    
-                                    </listitem>
-                                </template>   
+                </div>
+                <div class="wrapper_input_mod"></div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod">
+                    <span>Usuario Tik Tok: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-key icon"></div>
+                        <textbox 
+                           
+                            value="@bind(vm.tipoambiente.amTikTok)"                            
                             
-                            </listbox>
-                        </div>
+                            class="input_text"
+                        />
                     </div>
+                </div>
+                <div class="wrapper_input_mod">
+                    <span>Contraseña tik tok: </span>
+                    <div class="wrapper_input_text">
+                        <div class="fa-solid fa-key icon"></div>
+                        <textbox 
+                           
+                            value="@bind(vm.tipoambiente.amPassTikTok)"                            
+                            placeholder="Password123"
+                            class="input_text"
+                        />
+                    </div>
+                </div>
+                <div class="wrapper_input_mod"></div>
+            </div>
+
+            <div class="container_row_input">
+                        
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="">Nombre Comercial: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <div class="fa-solid fa-location-dot icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amNombreComercial)" 
+                            placeholder="Nombre Comercial"
+                            class="input_text"
+                            tooltiptext="Nombre Comercial" 
+                            style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span>Nombre representante: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <div class="fa-solid fa-user icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amRazonSocial)" 
+                            placeholder="Razon Social"
+                            class="input_text"
+                            style="width:100%;"
+                            tooltiptext="Razon Social" 
+                        />
+                    </div>
+                </div>
+                    
 
 
-
-                </tabpanel>              
-                <tabpanel height="100%" hflex="min">
-                    <include src="/administrar/configuracion.zul"/>  
-                </tabpanel>
-
-
-            </tabpanels>
+            </div>
+                    
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Dirección Matriz: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <div class="fa-solid fa-location-dot icon"></div>
+                        <textbox 
+                            value="@bind(vm.tipoambiente.amDireccionMatriz)" 
+                            placeholder="Direccion Matriz"
+                            class="input_text"
+                            style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Productos o Servicios: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <!--<div class="fa-solid fa-location-dot icon"></div>-->
+                        <textbox rows="4"
+                                 value="@bind(vm.tipoambiente.amProductoEstrella)" 
+                                 placeholder="Ingrese el producto o servicio que mas vende detallado, el precio y caracteristicas"
+                                 class="input_text"
+                                 style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Descripcion del negocio </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <!--<div class="fa-solid fa-location-dot icon"></div>-->
+                        <textbox rows="8"
+                                 value="@bind(vm.tipoambiente.amDetalleNegocio)" 
+                                 placeholder="Descripcion del negocio"
+                                 class="input_text"
+                                 style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Ciudades para el anuncio: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <!--<div class="fa-solid fa-location-dot icon"></div>-->
+                        <textbox rows="4"
+                                 value="@bind(vm.tipoambiente.amSegmentacion)" 
+                                 placeholder="Ingrese en que ciudades desea que circule su anuncio"
+                                 class="input_text"
+                                 style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Paginas de referencia: </span>
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <!--<div class="fa-solid fa-location-dot icon"></div>-->
+                        <textbox rows="4"
+                                 value="@bind(vm.tipoambiente.amPaginaReferencia)" 
+                                 placeholder="Ingrese las facebook de la competencia que conozca"
+                                 class="input_text"
+                                 style="width:100%;"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;">
+                    <span style="margin:0 0.5em;">Colores en Hexadecimal (#FF5733): </span>
+                    
+                    <div class="wrapper_input_text" style="width:86%;">
+                        <a href="https://htmlcolorcodes.com/es/" target="_blank">PUEDE BUSCAR SU COLOR AQUI </a>
+                        <!--<div class="fa-solid fa-location-dot icon"></div>-->
+                        <textbox rows="4"
+                                 value="@bind(vm.tipoambiente.amPaginaReferencia)" 
+                                 placeholder="Ingrese los colores en hexadecimal (#FF5733;#37150E;#0E2137;)"
+                                 class="input_text"
+                                 style="width:100%;"
+                        />
+                    </div>
+                </div>
+                
+            </div>
+            <div class="container_row_input">
+                <div class="wrapper_input_mod" style="flex:auto;" align="center">
+                    <div class="imgContenedor" >
+                
+                        <div class="inputGroupImg">
+                            <!--<span>Logotipo</span>-->
+                            <button 
+                                class="btnSubirImg"
+                                onClick="@command('subirPathImagen')" 
+                        
+                                tooltiptext="Buscar">
+                                Imagen de su logotipo:
+                            </button> 
+                            <image class="imgprod" content="@bind(vm.logotipo)"
+                                   width="200px"/>
+                    
+                        </div>                              
+                    </div>
+          
+                </div>
+                <div class="wrapper_input_mod" style="flex:auto;" align="center">
+                    <div class="imgContenedor" >
+                
+                        <div class="inputGroupImg">
+                            <!--<span>Logotipo</span>-->
+                            <button 
+                                class="btnSubirImg"
+                                onClick="@command('subirColor1')" 
+                        
+                                tooltiptext="Buscar">
+                                Imagen del color principal:
+                            </button> 
+                            <image class="imgprod" content="@bind(vm.color1)"
+                                   width="200px"/>
+                    
+                        </div>                              
+                    </div>
             
-        </tabbox>
-    </hbox>
+                </div>
+                <div class="wrapper_input_mod" style="flex:auto;" align="center">
+                    <div class="imgContenedor" >
+                
+                        <div class="inputGroupImg">
+                            <!--<span>Logotipo</span>-->
+                            <button 
+                                class="btnSubirImg"
+                                onClick="@command('subirColor2')" 
+                        
+                                tooltiptext="Buscar">
+                                Imagen del color secundario:
+                            </button> 
+                            <image class="imgprod" content="@bind(vm.color2)"
+                                   width="200px"/>
+                    
+                        </div>                              
+                    </div>
+            
+                </div>
+                <div class="wrapper_input_mod" style="flex:auto;" align="center">
+                    <div class="imgContenedor" >
+                
+                        <div class="inputGroupImg">
+                            <!--<span>Logotipo</span>-->
+                            <button 
+                                class="btnSubirImg"
+                                onClick="@command('subirColor3')" 
+                        
+                                tooltiptext="Buscar">
+                                Imagen del color adicional:
+                            </button> 
+                            <image class="imgprod" content="@bind(vm.color3)"
+                                   width="200px"/>
+                    
+                        </div>                              
+                    </div>
+            
+                </div>
+                        
+            </div>
+
+        </div>
+
+
+                
+
+                
+        <div style="display:flex;justify-content:flex-end;">
+            <button class="btn_modal" style="width:300px" onClick="@command('guardar')" tooltiptext="Guardar informacion">
+                Guardar
+            </button>
+        </div>
+        
+    </div>
+
 
 
 </zk>

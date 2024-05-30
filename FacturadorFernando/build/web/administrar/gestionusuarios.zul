@@ -82,7 +82,7 @@
                                      <listheader label="Plan"  align="left" width="10%"></listheader>
                                     <listheader label="Modificar"  align="center" width="5%"></listheader>
                                      
-                                    <listheader label=""  align="center" width="5%"></listheader>
+                                    <listheader label="Cuenta"  align="center" width="5%"></listheader>
                                 </listhead>
                         
                         
@@ -146,11 +146,11 @@
                                             
                                         </listcell>    
                                         <listcell  zclass = "mycss-listcell">
-                                            <image src="/iconos/download.png"
+                                            <image src="/iconos/detpago.png"
                                                    class="grow"
                                                    height="25px"
-                                                   onClick="@command('descargarFirma',valor=each)" 
-                                                   tooltiptext="Editar usuario"/> 
+                                                   onClick="@command('modificarInformacion',valor=each)" 
+                                                   tooltiptext="Ver cuenta "/> 
                                             
                                         </listcell>   
                                     

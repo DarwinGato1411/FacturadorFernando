@@ -159,6 +159,10 @@ public class Usuario implements Serializable {
 
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Tipoambiente> tipoambienteCollection;
+    
+    
+    @Column(name = "usu_observacion")
+    private String usuObservacion;
 
     public Usuario() {
     }
@@ -514,4 +518,14 @@ public class Usuario implements Serializable {
         this.tipoambienteCollection = tipoambienteCollection;
     }
 
+    public String getUsuObservacion() {
+        return usuObservacion;
+    }
+
+    public void setUsuObservacion(String usuObservacion) {
+        this.usuObservacion = usuObservacion;
+    }
+
+    
+    
 }

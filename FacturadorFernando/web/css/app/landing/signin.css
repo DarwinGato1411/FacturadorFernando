@@ -127,12 +127,13 @@ body {
     right: 0;
     bottom: 0;
     width: 100%;
-    background: url("https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2017/07/11110156/s3-blog-importancia-facturacion-3-min.png");
+    background-image: url("../../../imagenes/redes.png");
     background-size: cover;
     background-position: center;
-    filter: brightness(20%);
+    /*filter: brightness(20%);*/
     border-radius: 18px 0 0 18px;
     z-index: 1;
+    
 }
 .login_container .wrapper_login .container_signin {
     width: 700px;

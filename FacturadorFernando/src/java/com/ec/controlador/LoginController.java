@@ -97,7 +97,7 @@ public class LoginController extends SelectorComposer<Component> {
 
                 if (cre.getUsuarioSistema().getUsuIlimitado()) {
                     if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
-                        Executions.sendRedirect("/venta/facturar.zul");
+                        Executions.sendRedirect("/venta/administrar.zul");
                     } else {
                         Clients.showNotification("<div style:'width=200px;'>Su plan ilimitado no ha sido<br/> renovado contactese con el administrador.</div>",
                                     Clients.NOTIFICATION_TYPE_ERROR, null, "top_left", 3000, true);
@@ -105,7 +105,7 @@ public class LoginController extends SelectorComposer<Component> {
 
                 } else {
                     if (cre.getUsuarioSistema().getUsuTotalContratado() > numeroDocumentos) {
-                        Executions.sendRedirect("/venta/facturar.zul");
+                        Executions.sendRedirect("/venta/administrar.zul");
 
                     } else {
                         Clients.showNotification("<div style:'width=200px;'>El número de documentos emitidos<br/> supera al número de documentos contratado.</div>",

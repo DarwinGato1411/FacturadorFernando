@@ -5,6 +5,7 @@
  */
 package com.ec.controlador;
 
+import com.ec.entidad.Producto;
 import com.ec.entidad.Tipoambiente;
 import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.UserCredential;
@@ -23,6 +24,7 @@ import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
+import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.image.AImage;
 import org.zkoss.image.Image;
@@ -46,7 +48,7 @@ import org.zkoss.zul.Window;
  *
  * @author Darwin
  */
-public class Configuracion extends SelectorComposer<Component> {
+public class ConfiguracionMod extends SelectorComposer<Component> {
 
     @Wire
     Checkbox chkRM;
@@ -89,10 +91,10 @@ public class Configuracion extends SelectorComposer<Component> {
     private AImage color3 = null;
 
     @AfterCompose
-    public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
+    public void afterCompose(@ExecutionArgParam("valor") Tipoambiente tipo,@ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
         amRuc = credential.getUsuarioSistema().getUsuRuc();
-        tipoambiente = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
+        tipoambiente = tipo;
         if (tipoambiente != null) {
             amCodigo = tipoambiente.getAmCodigo();
             if (tipoambiente.getLlevarContabilidad().equals("NO")) {
@@ -142,7 +144,7 @@ public class Configuracion extends SelectorComposer<Component> {
 //        colorPicker.setColor("#029BCB");
     }
 
-    public Configuracion() {
+    public ConfiguracionMod() {
         listaDiscos();
 
         String sSistemaOperativo = System.getProperty("os.name");
