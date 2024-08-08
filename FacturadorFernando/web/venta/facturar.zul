@@ -4,7 +4,6 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
-<?script src="/js/icon.js"?>
 <?script src="../js/facturar.js"?>
 
 <?init class="com.ec.seguridad.Autentificador"?>
