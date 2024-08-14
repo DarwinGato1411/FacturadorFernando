@@ -13,7 +13,7 @@
         <div class="wrapper_login">
             <div class="container_img">
 
-                <image src="./imagenes/deckxel/logow.png" class="logo"/>
+                <image src="./imagenes/deckxelfact.png" class="logo"/>
                <!-- <div class="wrapper_title">
                     <span class="title">Sistema de Facturación Electrónica</span>
                    

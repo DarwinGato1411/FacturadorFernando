@@ -127,7 +127,7 @@ body {
     right: 0;
     bottom: 0;
     width: 100%;
-    background: url("https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2017/07/11110156/s3-blog-importancia-facturacion-3-min.png");
+/*    background: url("https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2017/07/11110156/s3-blog-importancia-facturacion-3-min.png");*/
     background-size: cover;
     background-position: center;
     filter: brightness(20%);
