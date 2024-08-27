@@ -234,7 +234,7 @@
                                                         format="###.##" value="@bind(each.detPordescuento)" width="95%"  />
                                         </listcell>
                                         <listcell>
-                                            <label  value="@bind(each.producto.prodNombre)" style="color:black" width="99%" />
+                                            <textbox  value="@bind(each.descripcion)" style="color:black" width="99%" />
                                         </listcell>
                                         <!--                                            <listcell>
                                             <decimalbox readonly="true" format="###.##"
@@ -248,7 +248,8 @@
                                                         value="@bind(each.subTotalDescuento)"  width="99%" />
                                         </listcell>-->
                                         <listcell>
-                                            <decimalbox readonly="true" format="###.##" 
+                                            <decimalbox readonly="false" format="###.##" 
+                                            onOK="@command('calcularValores',valor=each)"
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.total)"  width="99%" />
                                         </listcell>
