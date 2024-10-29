@@ -249,7 +249,7 @@
                                         </listcell>-->
                                         <listcell>
                                             <decimalbox readonly="false" format="###.##" 
-                                            onOK="@command('calcularValores',valor=each)"
+                                            onOK="@command('calcularValoresDesCantidad',valor=each)"
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.total)"  width="99%" />
                                         </listcell>
