@@ -96,7 +96,7 @@ public class ListaRetenciones {
 //        amb = servicioTipoAmbiente.FindALlTipoambiente();
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
+                + amb.getAmDirXml();
     }
 
     private void buscarPorFechas() {
@@ -167,25 +167,25 @@ public class ListaRetenciones {
     @Command
     @NotifyChange({"listaRetencionCompras"})
     public void autorizarSRI(@BindingParam("valor") RetencionCompra valor)
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderEnviarCliente = PATH_BASE + File.separator + amb.getAmEnviocliente()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         /*EN EL CASO DE NO EXISTIR LOS DIRECTORIOS LOS CREA*/
         File folderGen = new File(folderGenerados);
@@ -214,9 +214,9 @@ public class ListaRetenciones {
 
  /*PARA CREAR EL ARCHIVO XML FIRMADO*/
         String nombreArchivoXML = File.separator + "RET-"
-                    + amb.getAmEstab()
-                    + valor.getRcoPuntoEmision()
-                    + valor.getRcoSecuencialText() + ".xml";
+                + amb.getAmEstab()
+                + valor.getRcoPuntoEmision()
+                + valor.getRcoSecuencialText() + ".xml";
 
 
         /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
@@ -236,9 +236,13 @@ public class ListaRetenciones {
         /*amb.getAmClaveAccesoSri() es el la clave proporcionada por el SRI
         archivo es la ruta del archivo xml generado
         nomre del archivo a firmar*/
-        XAdESBESSignature.firmar(archivo, nombreArchivoXML,
+        try {
+            XAdESBESSignature.firmar(archivo, nombreArchivoXML,
                     amb.getAmClaveAccesoSri(), amb, folderFirmado);
-
+        } catch (Exception e) {
+            Clients.showNotification("Verifique su firma y contraseña ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+            return;
+        }
         f = new File(pathArchivoFirmado);
 
         datos = ArchivoUtils.ConvertirBytes(pathArchivoFirmado);
@@ -293,11 +297,16 @@ public class ListaRetenciones {
 
                             /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                             archivoEnvioCliente = aut.generaXMLComprobanteRetencion(valor, amb, foldervoAutorizado, nombreArchivoXML);
-                            XAdESBESSignature.firmar(archivoEnvioCliente,
+
+                            try {
+                                XAdESBESSignature.firmar(archivoEnvioCliente,
                                         nombreArchivoXML,
                                         amb.getAmClaveAccesoSri(),
                                         amb, foldervoAutorizado);
-
+                            } catch (Exception e) {
+                                Clients.showNotification("Verifique su firma y contraseña ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                                return;
+                            }
                             fEnvio = new File(archivoEnvioCliente);
 
                             servicioRetencionCompra.modificar(valor);
@@ -321,12 +330,12 @@ public class ListaRetenciones {
                             if (valor.getIdCabecera().getIdProveedor().getProvCorreo() != null) {
 
                                 mail.sendMailSimple(valor.getIdCabecera().getIdProveedor().getProvCorreo(),
-                                            attachFiles,
-                                            "RETENCION ELECTRONICA",
-                                            valor.getRcoAutorizacion(),
-                                            valor.getRcoSecuencialText(),
-                                            BigDecimal.ZERO,
-                                            valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
+                                        attachFiles,
+                                        "RETENCION ELECTRONICA",
+                                        valor.getRcoAutorizacion(),
+                                        valor.getRcoSecuencialText(),
+                                        BigDecimal.ZERO,
+                                        valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
 
                             }
                         }
@@ -360,25 +369,25 @@ public class ListaRetenciones {
     @Command
     @NotifyChange({"listaRetencionCompras"})
     public void reenviarSri(@BindingParam("valor") RetencionCompra valor)
-                throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+            throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderEnviarCliente = PATH_BASE + File.separator + amb.getAmEnviocliente()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
-                    + File.separator + new Date().getYear()
-                    + File.separator + new Date().getMonth();
+                + File.separator + new Date().getYear()
+                + File.separator + new Date().getMonth();
 
         /*EN EL CASO DE NO EXISTIR LOS DIRECTORIOS LOS CREA*/
         File folderGen = new File(folderGenerados);
@@ -407,9 +416,9 @@ public class ListaRetenciones {
 
  /*PARA CREAR EL ARCHIVO XML FIRMADO*/
         String nombreArchivoXML = File.separator + "RET-"
-                    + amb.getAmEstab()
-                    + valor.getRcoPuntoEmision()
-                    + valor.getRcoSecuencialText() + ".xml";
+                + amb.getAmEstab()
+                + valor.getRcoPuntoEmision()
+                + valor.getRcoSecuencialText() + ".xml";
 
 
         /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
@@ -429,9 +438,13 @@ public class ListaRetenciones {
         /*amb.getAmClaveAccesoSri() es el la clave proporcionada por el SRI
         archivo es la ruta del archivo xml generado
         nomre del archivo a firmar*/
-        XAdESBESSignature.firmar(archivo, nombreArchivoXML,
+        try {
+            XAdESBESSignature.firmar(archivo, nombreArchivoXML,
                     amb.getAmClaveAccesoSri(), amb, folderFirmado);
-
+        } catch (Exception e) {
+            Clients.showNotification("Verifique su firma y contraseña ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+            return;
+        }
         f = new File(pathArchivoFirmado);
 
         datos = ArchivoUtils.ConvertirBytes(pathArchivoFirmado);
@@ -477,11 +490,16 @@ public class ListaRetenciones {
 
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLComprobanteRetencion(valor, amb, foldervoAutorizado, nombreArchivoXML);
-                    XAdESBESSignature.firmar(archivoEnvioCliente,
+
+                    try {
+                        XAdESBESSignature.firmar(archivoEnvioCliente,
                                 nombreArchivoXML,
                                 amb.getAmClaveAccesoSri(),
                                 amb, foldervoAutorizado);
-
+                    } catch (Exception e) {
+                        Clients.showNotification("Verifique su firma y contraseña ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
+                        return;
+                    }
                     fEnvio = new File(archivoEnvioCliente);
 
                     servicioRetencionCompra.modificar(valor);
@@ -504,12 +522,12 @@ public class ListaRetenciones {
 //                        }
                     if (valor.getIdCabecera().getIdProveedor().getProvCorreo() != null) {
                         mail.sendMailSimple(valor.getIdCabecera().getIdProveedor().getProvCorreo(),
-                                    attachFiles,
-                                    "RETENCION ELECTRONICA",
-                                    valor.getRcoAutorizacion(),
-                                    valor.getRcoSecuencialText(),
-                                    BigDecimal.ZERO,
-                                    valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
+                                attachFiles,
+                                "RETENCION ELECTRONICA",
+                                valor.getRcoAutorizacion(),
+                                valor.getRcoSecuencialText(),
+                                BigDecimal.ZERO,
+                                valor.getIdCabecera().getIdProveedor().getProvNombre(), amb);
                     }
                 }
 
@@ -672,7 +690,7 @@ public class ListaRetenciones {
             con = emf.unwrap(Connection.class);
 
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = "";
 
             reportPath = reportFile + File.separator + "retencion.jasper";
@@ -697,7 +715,7 @@ public class ListaRetenciones {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             System.out.println("ERROR EL PRESENTAR EL REPORTE " + e.getMessage());
@@ -720,7 +738,7 @@ public class ListaRetenciones {
 
             map.put("valor", retencionCompra.getIdCabecera());
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/compra/retencion.zul", null, map);
+                    "/compra/retencion.zul", null, map);
             window.doModal();
 //            window.detach();
         } catch (Exception e) {
@@ -735,7 +753,7 @@ public class ListaRetenciones {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/modificar/estadoret.zul", null, map);
+                    "/modificar/estadoret.zul", null, map);
             window.doModal();
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
@@ -751,13 +769,13 @@ public class ListaRetenciones {
                 servicioRetencionCompra.eliminar(valor);
                 buscarPorFechas();
                 Clients.showNotification("Eliminado correctamente...",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
             }
 
         } catch (Exception e) {
 //            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
             Clients.showNotification("Ocurrio un errot al eliminar " + e.getMessage(),
-                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
         }
     }
 }

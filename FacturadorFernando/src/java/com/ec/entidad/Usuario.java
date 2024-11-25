@@ -499,7 +499,7 @@ public class Usuario implements Serializable {
     }
 
     public Date getUsuFechaPago() {
-        return usuFechaPago;
+        return usuFechaPago == null ? new Date() : usuFechaPago;
     }
 
     public void setUsuFechaPago(Date usuFechaPago) {

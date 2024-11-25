@@ -52,7 +52,7 @@ public class XAdESBESSignature extends GenericXMLSignature {
      *
      * @param args Argumentos del programa
      */
-    public static void firmar(String xmlPath, String nomreArchivoFirmado, String ClaveFima, Tipoambiente amb, String FOLDER_BASE_FIRMADO) {
+    public static void firmar(String xmlPath, String nomreArchivoFirmado, String ClaveFima, Tipoambiente amb, String FOLDER_BASE_FIRMADO) throws Exception {
         XAdESBESSignature signature = new XAdESBESSignature(xmlPath);
         //clave para la firma electronica
         signature.setPassSignature(ClaveFima);
