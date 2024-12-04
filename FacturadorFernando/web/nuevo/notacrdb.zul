@@ -185,6 +185,7 @@
                                      model="@load(vm.listaDetalleFacturaDAOMOdel)"
                                      nonselectableTags="*" checkmark="true"  
                                      multiple="true" 
+                                  
                                      onSelect="@command('seleccionarRegistros')"  width="99%">
                                 <custom-attributes org.zkoss.zul.listbox.rod="true"/>
                                             
@@ -203,9 +204,9 @@
                                     <listheader width="12%"  label="P.REAL" align="left" />                                         
                                     <listheader width="12%"  label="DESC" align="left" />
                                     <listheader width="12%"  label="P FINAL" align="left" />
-                                    <!--                                        <listheader width="10%"  label="IVA" align="left" />
-                                    <listheader width="10%"  label="DESC" align="left" />
-                                    <listheader width="10%"  label="P UNIT" align="left" />-->
+<!--                                                                            <listheader width="10%"  label="IVA" align="left" />
+                                    <listheader width="10%"  label="DESC" align="left" />-->
+                                    <listheader width="10%"  label="P UNIT" align="left" />
                                     <listheader width="12%"  label="TOTAL" align="left" />
                                                                                                                         
                                 </listhead>
@@ -249,7 +250,7 @@
                                         </listcell>-->
                                         <listcell>
                                             <decimalbox readonly="false" format="###.##" 
-                                            onOK="@command('calcularValoresDesCantidad',valor=each)"
+                                            onOK="@command('calcularValores',valor=each)"
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.total)"  width="99%" />
                                         </listcell>
@@ -264,6 +265,11 @@
                                             <decimalbox readonly="true" format="###.##" 
                                                         class="form-control form-control-sm"
                                                         value="@bind(each.detTotaldescuento)"  width="99%" />
+                                        </listcell>
+                                        <listcell>
+                                            <decimalbox readonly="true" format="###.##"
+                                                        class="form-control form-control-sm"
+                                                        value="@bind(each.subTotal)"  width="99%" />
                                         </listcell>
                                         <listcell>
                                             <decimalbox readonly="true" format="###.##" 

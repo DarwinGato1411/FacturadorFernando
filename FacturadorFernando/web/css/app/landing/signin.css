@@ -172,6 +172,21 @@ body {
   .container_registro .wapper_registro .wrapper_all_inputs {
     flex-direction: row;
   }
+  
+  .wrapper_nav {
+    width: fit-content;
+    right: 0;
+  }
+  .wrapper_nav .nav {
+    transform: translate(0, 0) !important;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    border: none;
+    margin-top: 1em;
+  }
+  .wrapper_nav .nav .item_nav {
+    font-size: 18px;
+  }
 }
 .wrapper_loading {
   position: fixed;
@@ -429,6 +444,20 @@ body {
   .main .wrapper_main .wrapper_items .wrapper_item .item .item_desc {
     font-size: 23px;
     font-family: "Raleway", sans-serif;
+  }
+  .wrapper_nav {
+    width: fit-content;
+    right: 0;
+  }
+  .wrapper_nav .nav {
+    transform: translate(0, 0) !important;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    border: none;
+    margin-top: 1em;
+  }
+  .wrapper_nav .nav .item_nav {
+    font-size: 18px;
   }
 }
 @media screen and (min-width: 1024px) {

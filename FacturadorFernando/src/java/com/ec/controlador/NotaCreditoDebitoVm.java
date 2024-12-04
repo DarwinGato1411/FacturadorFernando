@@ -243,13 +243,14 @@ public class NotaCreditoDebitoVm {
             nuevoRegistro.setDetIva(det.getDetIva());
             nuevoRegistro.setDetTotalconiva(det.getDetTotalconiva());
             nuevoRegistro.setTipoVenta(det.getDetTipoVenta());
+            nuevoRegistro.setEsProducto(det.getIdProducto().getProdEsproducto());
             //valores con descuentos
             nuevoRegistro.setSubTotalDescuento(det.getDetSubtotaldescuento());
             nuevoRegistro.setDetTotaldescuento(det.getDetTotaldescuento());
             nuevoRegistro.setDetPordescuento(det.getDetPordescuento());
             nuevoRegistro.setDetValdescuento(det.getDetValdescuento());
             nuevoRegistro.setDetTotalconivadescuento(det.getDetTotaldescuentoiva());
-            nuevoRegistro.setDetCantpordescuento(det.getDetCantpordescuento());
+            nuevoRegistro.setDetCantpordescuento(det.getDetCantpordescuento().doubleValue() < 0 ? BigDecimal.ZERO : det.getDetCantpordescuento());
             nuevoRegistro.setDetIvaDesc(det.getDetIva());
             nuevoRegistro.setCodTipoVenta(det.getDetCodTipoVenta());
             nuevoRegistro.setDetSubtotaldescuentoporcantidad(det.getDetSubtotaldescuentoporcantidad());
@@ -408,8 +409,16 @@ public class NotaCreditoDebitoVm {
                 BigDecimal subTotalDescuento = valorTotalIvaDesc.divide(factorSacarSubtotal, 4, RoundingMode.FLOOR);
                 valor.setSubTotalDescuento(subTotalDescuento);
                 //valor del descuento
+
+                if (!valor.getEsProducto()) {
+                    valor.setSubTotal(subTotalDescuento);
+                }
+
                 BigDecimal valorDescuento = valor.getSubTotal().subtract(valor.getSubTotalDescuento());
-                valor.setDetValdescuento(valorDescuento);
+                if (valorDescuento.doubleValue() < 0) {
+                    valorDescuento = BigDecimal.ZERO;
+                }
+                valor.setDetValdescuento(valorDescuento.doubleValue() < 0 ? BigDecimal.ZERO : valorDescuento);
                 //valor del iva con descuento
                 BigDecimal valorIvaDesc = subTotalDescuento.multiply(factorIva).multiply(valor.getCantidad());
 

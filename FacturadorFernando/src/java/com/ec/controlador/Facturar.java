@@ -2462,6 +2462,7 @@ public class Facturar extends SelectorComposer<Component> {
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (NumberFormatException e) {
             System.out.println("ERROR FACTURA " + e.getMessage());
+            e.printStackTrace();
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (SQLException e) {
             System.out.println("ERROR FACTURA " + e.getMessage());

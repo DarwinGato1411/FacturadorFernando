@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notacr" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.4641000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="160"/>
+	<property name="ireport.y" value="101"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -442,19 +442,19 @@ where nota_credito_debito.fac_numero=$P{numfactura}
 				<text><![CDATA[Contribuyente Especial Nro]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="189" y="272" width="189" height="20"/>
+				<reportElement x="189" y="272" width="360" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="378" y="272" width="75" height="20"/>
+				<reportElement x="332" y="296" width="75" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Identificación:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="453" y="272" width="102" height="20"/>
+				<reportElement x="407" y="296" width="142" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cli_cedula}]]></textFieldExpression>
 			</textField>
@@ -991,7 +991,7 @@ Principal]]></text>
 				<textElement>
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[IVA 5%]]></text>
+				<text><![CDATA[IVA 15%]]></text>
 			</staticText>
 			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
 				<reportElement style="table_TD" positionType="Float" x="502" y="12" width="47" height="12"/>
