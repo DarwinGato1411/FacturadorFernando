@@ -159,7 +159,7 @@ public class ListaNC {
 
             Map<String, Object> parametros = new HashMap<String, Object>();
 
-            //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
+              parametros.put("tipoambiente", amb.getCodTipoambiente());
             parametros.put("numfactura", numeroFactura);
 
             if (con != null) {
@@ -702,7 +702,7 @@ public class ListaNC {
 
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
             parametros.put("numfactura", valor.getFacNumero());
-            parametros.put("codTipoAmbiente", amb.getCodTipoambiente());
+            parametros.put("tipoambiente", amb.getCodTipoambiente());
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamente");
             }
