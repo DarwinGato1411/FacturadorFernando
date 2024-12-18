@@ -743,7 +743,7 @@ div.z-listheader-cnt {
 .encabezado2, .tabla2{
     display: grid !important;
     align-items: center;
-    grid-template-columns: 5% 7% 7% 7% 27% 23% 8% 8% 8%;
+    grid-template-columns: 5% 7% 7% 7% 34% 8% 8% 8% 8% 8%;
 }
 
 
@@ -771,7 +771,8 @@ div.z-listheader-cnt {
 .tabla6,.encabezado6{
     display: grid !important;
     align-items: center;
-    grid-template-columns: repeat(10,1fr)
+    /*grid-template-columns: repeat(10,1fr)*/
+        grid-template-columns: 10% 10% 10% 10% 10% 10% 20% 5% 5% 5% 5% 5%;
 }
 
 .tabla7,.encabezado7{

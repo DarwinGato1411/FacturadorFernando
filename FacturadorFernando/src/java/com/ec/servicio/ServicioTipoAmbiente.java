@@ -288,8 +288,10 @@ public class ServicioTipoAmbiente {
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo and a.amActivo=:amActivo");
+            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE (UPPER(a.idUsuario.usuNombre) like :usuNombre OR UPPER(a.idUsuario.usuLogin) like :usuLogin OR a.idUsuario.usuRuc like :usuRuc) AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo and a.amActivo=:amActivo");
             query.setParameter("usuNombre", "%"+usuario+"%");
+            query.setParameter("usuLogin", "%"+usuario+"%");
+            query.setParameter("usuRuc", "%"+usuario+"%");
             query.setParameter("amEstado", Boolean.TRUE);
             query.setParameter("amCodigo", amCodigo);
             query.setParameter("amActivo", activo);

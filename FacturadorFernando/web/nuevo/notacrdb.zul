@@ -147,9 +147,9 @@
                                      
                                     </div>
                                     <div class="wrapper_input">
-                                        <span>Subtotal:</span>
+                                        <span>Base 5%:</span>
                                         <decimalbox  
-                                            value="@bind(vm.subTotalCotizacion)"
+                                            value="@bind(vm.subTotalCotizacion5)"
                                             format="###.##" 
                                             readonly="true"
                                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
@@ -157,7 +157,30 @@
                                         />
                                     </div>
                                     <div class="wrapper_input">
-                                        <span>Sub / Cero:</span>
+                                        <span>Base 15%:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.subTotalCotizacion15)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                    </div>
+<!--                                    <div class="wrapper_input">
+                                        <span>IVA:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.ivaCotizacion)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                    </div>-->
+                                
+                                </div>
+                                <div class="wrapper_data">
+                                       <div class="wrapper_input">
+                                        <span>Base 0%:</span>
                                         <decimalbox  
                                             value="@bind(vm.subTotalBaseCero)"
                                             format="###.##" 
@@ -167,18 +190,30 @@
                                         />
                                     </div>
                                     <div class="wrapper_input">
-                                        <span>IVA:</span>
+                                        <span>IVA 5%:</span>
                                         <decimalbox  
-                                            value="@bind(vm.ivaCotizacion)"
+                                            value="@bind(vm.ivaCotizacion5)"
+                                            format="###.##" 
+                                            readonly="true"
+                                            onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                            class="input" 
+                                        />
+                                     
+                                    </div>
+                                    <div class="wrapper_input">
+                                        <span>IVA 15%:</span>
+                                        <decimalbox  
+                                            value="@bind(vm.ivaCotizacion15)"
                                             format="###.##" 
                                             readonly="true"
                                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                             class="input" 
                                         />
                                     </div>
+                                 
+                                    
                                 
                                 </div>
-
                                 <div class="wrapper_data">
                                     <div class="wrapper_input wrapper_total">
                                         <span style="text_total">Total:</span>
@@ -236,6 +271,17 @@
                                             constraint="no empty: Ingrese su fecha de la orden"
                                         />
                                     </div>
+                                    <div class="wrapper_input">
+                                        <span>Motivo :</span>
+                                    
+                                        <textbox  
+                                            readonly="false"  
+                                            placeholder="Motivo"
+                                            value="@bind(vm.motivo)" 
+                                            class="input" 
+                                        />
+                                   
+                                    </div>
                                 </div>
                           
                                 <div class="fact_row wrapper_buttons">
@@ -280,7 +326,7 @@
                                     <!--                                        <listheader width="10%"  label="IVA" align="left" />
                                     <listheader width="10%"  label="DESC" align="left" />
                                     <listheader width="10%"  label="P UNIT" align="left" />-->
-                                    <listheader width="12%"  label="TOTAL" align="left" />
+                                    <listheader label="TOTAL" align="left" />
                                                                                                                         
                                 </listhead>
                 
@@ -298,7 +344,7 @@
                                         </listcell>
                                         <listcell>
                                             <decimalbox class="input-group-append"
-                                                        onOK="@command('calcularValoresDesCantidad',valor=each)"
+                                                        onOK="@command('calcularValores',valor=each)"
                                                     
                                                         format="###.##" value="@bind(each.cantidad)" width="95%"  />
                                         </listcell>
@@ -317,7 +363,7 @@
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"                                            
-                                                            onOK="@command('calcularValoresDesCantidad',valor=each)"
+                                                            onOK="@command('calcularValores',valor=each)"
                                                             class="form-control form-control-sm"                                                                                                                                                                                      
                                                             value="@bind(each.total)"  width="100%" />
                                         </listcell>
