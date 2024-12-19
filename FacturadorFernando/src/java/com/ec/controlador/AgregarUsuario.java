@@ -146,6 +146,10 @@ public class AgregarUsuario {
 
                 tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
+                tipoambiente.setAmUsuarioSmpt("docs.defact@gmail.com");
+                tipoambiente.setAmHost("smtp.gmail.com");
+                tipoambiente.setAmPassword("mjpjmkzrsedgzxcq");
+
                 tipoambiente.setLlevarContabilidad("NO");
                 tipoambiente.setAmMicroEmp(Boolean.FALSE);
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
@@ -182,6 +186,10 @@ public class AgregarUsuario {
 
                 tipoambienteProd.setAmPort("587");
                 tipoambienteProd.setAmProtocol("smtp");
+                tipoambienteProd.setAmUsuarioSmpt("docs.defact@gmail.com");
+                tipoambienteProd.setAmHost("smtp.gmail.com");
+                tipoambienteProd.setAmPassword("mjpjmkzrsedgzxcq");
+                
                 tipoambienteProd.setLlevarContabilidad("NO");
                 tipoambienteProd.setAmMicroEmp(Boolean.FALSE);
                 tipoambienteProd.setAmAgeRet(Boolean.FALSE);

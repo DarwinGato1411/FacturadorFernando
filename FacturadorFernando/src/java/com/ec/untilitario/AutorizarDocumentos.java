@@ -302,13 +302,13 @@ public class AutorizarDocumentos {
             build.append(linea);
 //            BigDecimal valorICe = (valor.getFacTotalBaseGravaba().multiply(amb.getAmValorIce())).divide(BigDecimal.valueOf(100), 2, RoundingMode.FLOOR);
 
-            String ICE = "            <totalImpuesto>\n"
-                    + "                <codigo>3</codigo>\n"
-                    + "                <codigoPorcentaje>" + amb.getAmCodigoIce().trim() + "</codigoPorcentaje>\n"
-                    + "                <baseImponible>" + (valor.getFacValorIce().doubleValue() > 0 ? valor.getFacTotalBaseGravaba().setScale(2, RoundingMode.FLOOR) : BigDecimal.ZERO) + "</baseImponible>\n"
-                    + "                <tarifa>" + (valor.getFacValorIce().doubleValue() > 0 ? amb.getAmValorIce() : BigDecimal.ZERO) + "</tarifa>\n"
-                    + "                <valor>" + valor.getFacValorIce() + "</valor>\n"
-                    + "             </totalImpuesto>\n";
+//            String ICE = "            <totalImpuesto>\n"
+//                    + "                <codigo>3</codigo>\n"
+//                    + "                <codigoPorcentaje>" + amb.getAmCodigoIce().trim() + "</codigoPorcentaje>\n"
+//                    + "                <baseImponible>" + (valor.getFacValorIce().doubleValue() > 0 ? valor.getFacTotalBaseGravaba().setScale(2, RoundingMode.FLOOR) : BigDecimal.ZERO) + "</baseImponible>\n"
+//                    + "                <tarifa>" + (valor.getFacValorIce().doubleValue() > 0 ? amb.getAmValorIce() : BigDecimal.ZERO) + "</tarifa>\n"
+//                    + "                <valor>" + valor.getFacValorIce() + "</valor>\n"
+//                    + "             </totalImpuesto>\n";
             linea = ("<infoTributaria>\n"
                     + "        <ambiente>" + amb.getAmCodigo() + "</ambiente>\n"
                     + "        <tipoEmision>1</tipoEmision>\n"
