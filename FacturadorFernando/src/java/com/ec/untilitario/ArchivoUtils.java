@@ -898,25 +898,7 @@ public class ArchivoUtils {
         return bytes;
     }
 
-    public static String obtenerPorRuc(String cedula) {
-        if (cedula.length() == 10) {
-            cedula = cedula + "001";
-        }
-
-        try {
-            JSONObject json = readJsonFromUrl("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula);
-            System.out.println(json.toString());
-            System.out.println(json.get("nombreCompleto"));
-            return json.get("nombreCompleto").toString();
-        } catch (IOException ex) {
-//                Logger.getLogger(Archi.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JSONException ex) {
-//                Logger.getLogger(Verificador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return "";
-
-    }
+  
 
     public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
         InputStream is = new URL(url).openStream();
@@ -937,6 +919,59 @@ public class ArchivoUtils {
             sb.append((char) cp);
         }
         return sb.toString();
+    }
+
+    public static String obtenerPorRuc(String cedula) {
+        if (cedula.length() == 10) {
+            cedula = cedula + "001";
+        }
+
+        String contenido = "";
+        String direccion = "";
+        System.out.println("gestion doc");
+
+        X509TrustManager trustManager;
+        SSLSocketFactory sslSocketFactory;
+        try {
+            HandshakeCertificates certificates = new HandshakeCertificates.Builder()
+                    .addTrustedCertificate(letsEncryptCertificateAuthoritySRI)
+                    .addTrustedCertificate(entrustRootCertificateAuthoritySRI)
+                    .addTrustedCertificate(comodoRsaCertificationAuthoritySRI)
+                    // Uncomment if standard certificates are also required.
+                    //.addPlatformTrustedCertificates()
+                    .build();
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+                    .build();
+            Request request = new Request.Builder()
+                    .url("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula)
+                    .build();
+            System.out.println("EEEE");
+
+            try {
+                Response response = client.newCall(request).execute();
+                if (!response.isSuccessful()) {
+                    Headers responseHeaders = response.headers();
+                    for (int i = 0; i < responseHeaders.size(); i++) {
+                        System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
+                    }
+
+                    throw new IOException("Unexpected code " + response);
+                }
+
+                String contenidoObt = response.body().string();
+                JSONObject jsonObject = new JSONObject(contenidoObt);
+                return jsonObject.get("nombreCompleto").toString();
+            } catch (IOException e) {
+                System.out.println("ERROR IOException " + e.getMessage());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+//           
+
+        return "";
+
     }
 
     public static InfoPersona obtenerPorCedula(String cedula) {
