@@ -4,7 +4,6 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
-<?script src="/js/icon.js"?>
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
