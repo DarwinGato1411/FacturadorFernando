@@ -14,8 +14,8 @@ import com.ec.servicio.ServicioCliente;
 import com.ec.servicio.ServicioParametrizar;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioTipoIdentificacion;
-import com.ec.untilitario.AduanaJson;
-import com.ec.untilitario.ArchivoUtils;
+import com.ec.untilitario.InfoPersona;
+import com.ec.untilitario.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
@@ -95,57 +95,35 @@ public class NuevoCliente {
 
     }
 
-    @Command
+   @Command
     @NotifyChange({"cliente"})
     public void buscarAduana() throws URISyntaxException, IOException, XPathExpressionException, JSONException {
+        
+        
+        
+//       String token=ArchivoUtils.token("");
+        InfoPersona aduana = new InfoPersona();
+        String nombre = "";
         if (cliente.getCliCedula() != null) {
             if (!cliente.getCliCedula().equals("")) {
                 String cedulaBuscar = "";
-                if (cliente.getCliCedula().length() > 10) {
-                    cedulaBuscar = cliente.getCliCedula().substring(0, 10);
-                } else {
+                if (cliente.getCliCedula().length() == 13) {
                     cedulaBuscar = cliente.getCliCedula();
-                }
-                AduanaJson aduana = ArchivoUtils.obtenerdatoAduana(cedulaBuscar);
-                if (aduana.getNombre().equals("")) {
-                    cliente.setCliApellidos("");
-                    cliente.setCliNombres("");
-                    cliente.setCliNombre("");
-                    cliente.setCliRazonSocial("");
-                    Clients.showNotification("Cliente no encontrado ingreselo manualmente...!! ",
-                                Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
-                    return;
-                }
-                if (aduana != null) {
-
-                    String nombreApellido[] = aduana.getNombre().split(" ");
-                    String nombrePersona = "";
-                    String apellidoPersona = "";
-//                    switch (nombreApellido.length) {
-//                        case 1:
-//                            apellidoPersona = nombreApellido[0];
-//                            nombrePersona = "";
-//                            break;
-//                        case 2:
-//                            apellidoPersona = nombreApellido[0];
-//                            nombrePersona = nombreApellido[1];
-//                            break;
-//                        case 3:
-//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-//                            nombrePersona = nombreApellido[2];
-//                            break;
-//                        case 4:
-//                            apellidoPersona = nombreApellido[0] + " " + nombreApellido[1];
-//                            nombrePersona = nombreApellido[2] + " " + nombreApellido[3];
-//                            break;
-//                        default:
-//                            break;
-//                    }
+                    nombre = ArchivoUtils.obtenerPorRuc(cedulaBuscar);
+                    cliente.setCliApellidos(nombre);
+                    cliente.setCliNombres(nombre);
+                    cliente.setCliNombre(nombre);
+                    cliente.setCliRazonSocial(nombre);
+                } else if (cliente.getCliCedula().length() == 10) {
+                    cedulaBuscar = cliente.getCliCedula();
+                    aduana = ArchivoUtils.obtenerPorCedula(cedulaBuscar);
                     cliente.setCliApellidos(aduana.getNombre());
                     cliente.setCliNombres(aduana.getNombre());
                     cliente.setCliNombre(aduana.getNombre());
                     cliente.setCliRazonSocial(aduana.getNombre());
+                    cliente.setCliDireccion(aduana.getDireccion());
                 }
+
             }
         }
 
@@ -189,7 +167,7 @@ public class NuevoCliente {
                     cliente.setClietipo(Integer.valueOf(clietipo));
                     cliente.setClieFechaRegistro(fechaReg);
                     cliente.setIdTipoIdentificacion(tipoadentificacion);
-                    cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
+//                    cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
                     servicioCliente.crear(cliente);
 
                     windowCliente.detach();
@@ -201,7 +179,7 @@ public class NuevoCliente {
 
             } else {
                 if (cliente.getCliClave() == null) {
-                    cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
+//                    cliente.setCliClave(ArchivoUtils.generaraClaveTemporal());
                 }
                 cliente.setIdTipoIdentificacion(tipoadentificacion);
                 cliente.setClietipo(Integer.valueOf(clietipo));
