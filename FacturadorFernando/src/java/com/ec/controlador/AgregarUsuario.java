@@ -98,8 +98,8 @@ public class AgregarUsuario {
     @NotifyChange("usuarioSistema")
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                    && !tipoUSuario.equals("")) {
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*crea el usuario*/
             if (accion.contains("create")) {
@@ -159,7 +159,8 @@ public class AgregarUsuario {
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
-                tipoAmbiente.setIdUsuario(usuarioSistema);
+//                tipoAmbiente.setIdUsuario(usuarioSistema);
+                tipoambiente.setIdUsuario(usuarioSistema);
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
