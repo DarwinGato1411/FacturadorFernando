@@ -82,7 +82,7 @@ public class ServicioTipoAmbiente {
 
     }
 
-    public Tipoambiente findALlTipoambientePorUsuario(Usuario usuario,Boolean activo) {
+    public Tipoambiente findALlTipoambientePorUsuario(Usuario usuario, Boolean activo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
         Tipoambiente tipoambiente = null;
@@ -107,7 +107,7 @@ public class ServicioTipoAmbiente {
 
         return tipoambiente;
     }
-    
+
     public Tipoambiente findALlTipoambientePorUsuario(Usuario usuario) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
@@ -119,7 +119,7 @@ public class ServicioTipoAmbiente {
             Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE a.idUsuario=:idUsuario AND a.amEstado=:amEstado ");
             query.setParameter("idUsuario", usuario);
             query.setParameter("amEstado", Boolean.TRUE);
-         
+
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
             if (listaTipoambientes.size() > 0) {
                 tipoambiente = listaTipoambientes.get(0);
@@ -257,6 +257,7 @@ public class ServicioTipoAmbiente {
 
         return tipoambiente;
     }
+
     public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
@@ -266,11 +267,11 @@ public class ServicioTipoAmbiente {
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo");
-            query.setParameter("usuNombre", "%"+usuario+"%");
+            query.setParameter("usuNombre", "%" + usuario + "%");
             query.setParameter("amEstado", Boolean.TRUE);
             query.setParameter("amCodigo", amCodigo);
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
-         
+
             em.getTransaction().commit();
         } catch (Exception e) {
             System.out.println("Error en lsa consulta tipoambiente");
@@ -280,26 +281,34 @@ public class ServicioTipoAmbiente {
 
         return listaTipoambientes;
     }
-    public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo,Boolean activo) {
+
+    public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo, String plan) {
 
         List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
         Tipoambiente tipoambiente = null;
         try {
             //Connection connection = em.unwrap(Connection.class);
+            String SQL = "";
+            String QUERY = "SELECT a FROM Tipoambiente a WHERE  UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amCodigo=:amCodigo AND a.amEstado=:amEstado ";
+            String WHERE = " ";
+            String ORDER = " ORDER BY a.idUsuario.usuNombre ASC";
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT a FROM Tipoambiente a WHERE (UPPER(a.idUsuario.usuNombre) like :usuNombre OR UPPER(a.idUsuario.usuLogin) like :usuLogin OR a.idUsuario.usuRuc like :usuRuc) AND a.amEstado=:amEstado AND a.amCodigo=:amCodigo and a.amActivo=:amActivo");
-            query.setParameter("usuNombre", "%"+usuario+"%");
-            query.setParameter("usuLogin", "%"+usuario+"%");
-            query.setParameter("usuRuc", "%"+usuario+"%");
+            if (!plan.equals("T")) {
+                WHERE = " AND a.idUsuario.usuIlimitado=:usuIlimitado";
+            }
+            Query query = em.createQuery(QUERY + WHERE + ORDER);
+            query.setParameter("usuNombre", "%" + usuario + "%");
             query.setParameter("amEstado", Boolean.TRUE);
             query.setParameter("amCodigo", amCodigo);
-            query.setParameter("amActivo", activo);
+            if (!plan.equals("T")) {
+                query.setParameter("usuIlimitado", plan.equals("I") ? Boolean.TRUE : Boolean.FALSE);
+            }
             listaTipoambientes = (List<Tipoambiente>) query.getResultList();
-         
+
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta tipoambiente");
+            System.out.println("findALlTipoambientePorUsuarioAdm " + e.getMessage());
         } finally {
             em.close();
         }

@@ -144,6 +144,8 @@ public class AgregarUsuario {
                 tipoambiente.setAmTipoEmision("1");
                 tipoambiente.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambiente.setAmRuc(usuarioSistema.getUsuRuc());
+                tipoambiente.setAmNombreComercial(usuarioSistema.getUsuNombre());
+                tipoambiente.setAmRazonSocial(usuarioSistema.getUsuNombre());
                 tipoambiente.setAmNombreComercial("");
                 tipoambiente.setAmRazonSocial("");
                 tipoambiente.setAmDireccionMatriz("QUITO");
@@ -159,6 +161,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmAgeRet(Boolean.FALSE);
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
+                tipoambiente.setAmNombreComercial(usuarioSistema.getUsuNombre());
 //                tipoAmbiente.setIdUsuario(usuarioSistema);
                 tipoambiente.setIdUsuario(usuarioSistema);
                 servicioTipoAmbiente.crear(tipoambiente);
@@ -184,6 +187,8 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmTipoEmision("1");
                 tipoambienteProd.setAmEnviocliente("ENVIARCLIENTE");
                 tipoambienteProd.setAmRuc(usuarioSistema.getUsuRuc());
+                tipoambienteProd.setAmNombreComercial(usuarioSistema.getUsuNombre());
+                tipoambienteProd.setAmRazonSocial(usuarioSistema.getUsuNombre());
                 tipoambienteProd.setAmNombreComercial("");
                 tipoambienteProd.setAmRazonSocial("");
                 tipoambienteProd.setAmDireccionMatriz("QUITO");
@@ -202,20 +207,20 @@ public class AgregarUsuario {
                 tipoambienteProd.setIdUsuario(usuarioSistema);
                 servicioTipoAmbiente.crear(tipoambienteProd);
 
-                Parametrizar parametrizar = new Parametrizar();
-                parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
-                parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
-                parametrizar.setParRucEmpresa(tipoambiente.getAmRuc());
-                parametrizar.setParIva(BigDecimal.valueOf(12));
-                parametrizar.setParUtilidad(BigDecimal.ZERO);
-                parametrizar.setParUtilidadPreferencial(BigDecimal.TEN);
-                parametrizar.setParUtilidadPreferencialDos(BigDecimal.ZERO);
-                parametrizar.setParEstado(Boolean.FALSE);
-                parametrizar.setIsprincipal(Boolean.TRUE);
-                parametrizar.setParDescuentoGeneral(BigDecimal.ZERO);
-                parametrizar.setParCodigoIva("2");
-                parametrizar.setParIvaActual(BigDecimal.valueOf(12));
-                servicioParametrizar.crear(parametrizar);
+//                Parametrizar parametrizar = new Parametrizar();
+//                parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
+//                parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
+//                parametrizar.setParRucEmpresa(tipoambiente.getAmRuc());
+//                parametrizar.setParIva(BigDecimal.valueOf(12));
+//                parametrizar.setParUtilidad(BigDecimal.ZERO);
+//                parametrizar.setParUtilidadPreferencial(BigDecimal.TEN);
+//                parametrizar.setParUtilidadPreferencialDos(BigDecimal.ZERO);
+//                parametrizar.setParEstado(Boolean.FALSE);
+//                parametrizar.setIsprincipal(Boolean.TRUE);
+//                parametrizar.setParDescuentoGeneral(BigDecimal.ZERO);
+//                parametrizar.setParCodigoIva("2");
+//                parametrizar.setParIvaActual(BigDecimal.valueOf(12));
+//                servicioParametrizar.crear(parametrizar);
             }
 
 //            usuarioSistema = new Usuario();

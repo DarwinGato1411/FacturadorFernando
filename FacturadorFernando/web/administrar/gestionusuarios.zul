@@ -42,7 +42,7 @@
                                     <radio label="PRUEBAS" value="1"/>                          
                                 </radiogroup>
                             </div>
-                            <div class="wrapper_input_mod">
+<!--                            <div class="wrapper_input_mod">
                                 <span>Estado usuario</span>
                                 <radiogroup
                                     class="radio_group" 
@@ -53,7 +53,7 @@
                                     <space bar="false"  />   
                                     <radio label="INACTIVO" value="${false}"/>                          
                                 </radiogroup>
-                            </div>
+                            </div>-->
 
                         </div>
                     </div>

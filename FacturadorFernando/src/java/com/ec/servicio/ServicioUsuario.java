@@ -102,27 +102,26 @@ public class ServicioUsuario {
         return usuarioObtenido;
     }
 
-    public List<Usuario> FindALlUsuarioPorLikeNombre(String nombre, Usuario usuario, Boolean activo) {
+   public List<Usuario> FindALlUsuarioPorLikeNombre(String nombre, Usuario usuario) {
 
 //        Usuario usuarioLogeado = new Usuario();
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
         try {
             System.out.println("Entra a consultar usuarios ");
 
-            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre AND a.amActivo=:amActivo  ";
+            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre ";
             String WHERE = "";
             String ORDERBY = " ORDER BY u.usuNombre ";
             //Connection connection = em.unwrap(Connection.class);
             em = HelperPersistencia.getEMF();
             em.getTransaction().begin();
             if (usuario.getUsuNivel() != 1) {
-                WHERE = "  AND u.usuRuc=:usuRuc";
+                WHERE = "  AND u.idUsuario=:idUsuario";
             }
             Query query = em.createQuery(SELECT + WHERE+ORDERBY);
             query.setParameter("usuNombre", "%" + nombre + "%");
-            query.setParameter("amActivo", activo);
             if (usuario.getUsuNivel() != 1) {
-                query.setParameter("usuRuc", usuario.getUsuRuc());
+                query.setParameter("idUsuario", usuario.getIdUsuario());
             }
 
             listaUsuarios = (List<Usuario>) query.getResultList();
@@ -135,7 +134,6 @@ public class ServicioUsuario {
 
         return listaUsuarios;
     }
-    
     /*Recupera contraseña
     */
     
@@ -168,4 +166,73 @@ public class ServicioUsuario {
 
         return usuarioObtenido;
     }
+    
+      public List<Tipoambiente> findALlTipoambientePorUsuarioAdm(String usuario, String amCodigo, String plan) {
+
+        List<Tipoambiente> listaTipoambientes = new ArrayList<Tipoambiente>();
+        Tipoambiente tipoambiente = null;
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            String SQL = "";
+            String QUERY = "SELECT a FROM Tipoambiente a WHERE  UPPER(a.idUsuario.usuNombre) like :usuNombre AND a.amCodigo=:amCodigo AND a.amEstado=:amEstado ";
+            String WHERE = " ";
+            String ORDER = " ORDER BY a.idUsuario.usuNombre ASC";
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            if (!plan.equals("T")) {
+                WHERE = " AND a.idUsuario.usuIlimitado=:usuIlimitado";
+            }
+            Query query = em.createQuery(QUERY + WHERE + ORDER);
+            query.setParameter("usuNombre", "%" + usuario + "%");
+            query.setParameter("amEstado", Boolean.TRUE);
+            query.setParameter("amCodigo", amCodigo);
+            if (!plan.equals("T")) {
+                query.setParameter("usuIlimitado", plan.equals("I") ? Boolean.TRUE : Boolean.FALSE);
+            }
+            listaTipoambientes = (List<Tipoambiente>) query.getResultList();
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("findALlTipoambientePorUsuarioAdm " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaTipoambientes;
+    }
+      
+      public List<Usuario> FindALlUsuarioPorLikeNombreAdm(String nombre, Usuario usuario,String amCodigo) {
+
+//        Usuario usuarioLogeado = new Usuario();
+        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+        try {
+            System.out.println("Entra a consultar usuarios ");
+
+            String SELECT = "SELECT u FROM Usuario u  WHERE u.usuNombre like :usuNombre AND u. ";
+            String WHERE = "";
+            String ORDERBY = " ORDER BY u.usuNombre ";
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            if (usuario.getUsuNivel() != 1) {
+                WHERE = "  AND u.idUsuario=:idUsuario";
+            }
+            Query query = em.createQuery(SELECT + WHERE+ORDERBY);
+            query.setParameter("usuNombre", "%" + nombre + "%");
+            if (usuario.getUsuNivel() != 1) {
+                query.setParameter("idUsuario", usuario.getIdUsuario());
+            }
+
+            listaUsuarios = (List<Usuario>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta usuarios " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaUsuarios;
+    }
+      
+      
 }

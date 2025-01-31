@@ -234,7 +234,7 @@ public class AdministrarVenta {
 
     /*ADMINISTRAR USUARIO*/
     private void cosultarUsuarios(String buscar) {
-        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar, credential.getUsuarioSistema(), activo);
+        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar, credential.getUsuarioSistema());
     }
 
     public List<Usuario> getListaUsuarios() {
@@ -402,6 +402,14 @@ public class AdministrarVenta {
 
     public void setEsVisisible(Boolean esVisisible) {
         this.esVisisible = esVisisible;
+    }
+
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
 }

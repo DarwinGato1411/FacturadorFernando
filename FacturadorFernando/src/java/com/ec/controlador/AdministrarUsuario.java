@@ -43,7 +43,7 @@ public class AdministrarUsuario {
     }
 
     private void cosultarUsuarios(String buscar) {
-        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar,credential.getUsuarioSistema(),activo);
+        listaUsuarios = servicioUsuario.FindALlUsuarioPorLikeNombre(buscar,credential.getUsuarioSistema());
     }
 
     public List<Usuario> getListaUsuarios() {
