@@ -55,6 +55,17 @@ public class LoginController extends SelectorComposer<Component> {
 
     @Listen("onClick=#buttonEntrar; onOK=#loginWin")
     public void doLogin() {
+
+        Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
+
+        if (cantidadContratada.getParCaducaVps()) {
+
+        } else {
+            Clients.showNotification("SU VPS CADUCO SI NO SE REALIZA LA RENOVACION PERDERA LA INFORMACION,"
+                    + " ADICIONAL TIENE UN ERROR EN EL SRI DEBE INSTALAR UN CERTIFICADO: https://ceel.sri.gob.ec/comprobante-electronico-ws/RecepcionComprobantesOffline?wsdl. It failed. sun.security.validator.ValidatorException ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+
+        }
+
         Date actual = new Date();
         Date caduca = new Date();
         listaClienteses = servicioConsumoCliente.findAll();
@@ -68,7 +79,6 @@ public class LoginController extends SelectorComposer<Component> {
 
         boolean bloquear = false;
 
-        Parametrizar cantidadContratada = servicioParametrizar.FindALlParametrizar();
         if (cantidadContratada.getParContratado().intValue() <= consumoDocumentos.getDocumentos().intValue() || cantidadContratada.getParBloqueoSistema()) {
             bloquear = Boolean.TRUE;
         } else {

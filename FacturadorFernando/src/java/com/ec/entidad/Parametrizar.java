@@ -138,7 +138,10 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_bloqueo_sistema")
     private Boolean parBloqueoSistema;
-    
+
+    @Column(name = "par_caduca_vps")
+    private Boolean parCaducaVps;
+
     public Parametrizar() {
     }
 
@@ -433,8 +436,6 @@ public class Parametrizar implements Serializable {
     public void setParBloqueoSistema(Boolean parBloqueoSistema) {
         this.parBloqueoSistema = parBloqueoSistema;
     }
-    
-    
 
     @Override
     public boolean equals(Object object) {
@@ -454,4 +455,15 @@ public class Parametrizar implements Serializable {
         return "com.ec.entidad.Parametrizar[ codParametrizar=" + codParametrizar + " ]";
     }
 
+    public Boolean getParCaducaVps() {
+        return parCaducaVps==null?Boolean.FALSE:parCaducaVps;
+    }
+
+    public void setParCaducaVps(Boolean parCaducaVps) {
+        this.parCaducaVps = parCaducaVps;
+    }
+
+    
+    
+    
 }

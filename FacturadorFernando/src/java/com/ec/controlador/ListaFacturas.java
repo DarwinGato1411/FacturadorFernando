@@ -405,12 +405,16 @@ public class ListaFacturas {
         this.amb = amb;
     }
 
-    @Command
+     @Command
     @NotifyChange({"lstFacturas"})
     public void autorizarSRI(@BindingParam("valor") Factura valor)
             throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
-        autorizarFacturasSRI(valor);
+        if (amb.getActivarCertificado()) {
+            autorizarFacturasSRI(valor);
+        } else {
+            Clients.showNotification("ERROR EN EL SRI DEBE INSTALAR UN CERTIFICADO: https://ceel.sri.gob.ec/comprobante-electronico-ws/RecepcionComprobantesOffline?wsdl. It failed. sun.security.validator.ValidatorException ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+        }
 
     }
 
