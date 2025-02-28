@@ -11,7 +11,11 @@ import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.vista.servicios.ServicioSriCatastro;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.security.KeyStore;
+import java.security.cert.X509Certificate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.zkoss.bind.annotation.AfterCompose;
@@ -89,6 +93,51 @@ public class Configuracion extends SelectorComposer<Component> {
 
     @Command
     @NotifyChange({"tipoambiente"})
+    public void validarFirma() throws Exception {
+//        String datosFirma = new DatosFirmaResponse();
+
+        try {
+            // Ruta al archivo P12 o PFX
+
+            final String secretKey = "AFSOTEC2023";
+
+            String rutaFirma = filePath = tipoambiente.getAmDirBaseArchivos() + File.separator + tipoambiente.getAmFolderFirma() + File.separator+tipoambiente.getAmDirFirma();
+            String contrasena = tipoambiente.getAmClaveAccesoSri(); // Contraseña del archivo
+
+            // Cargar el almacén de claves (KeyStore)
+            KeyStore keyStore = KeyStore.getInstance("PKCS12");
+            FileInputStream fis = new FileInputStream(rutaFirma);
+            keyStore.load(fis, contrasena.toCharArray());
+
+            // Obtener el alias del certificado
+            String alias = keyStore.aliases().nextElement();
+
+            // Obtener el certificado X509
+            X509Certificate certificado = (X509Certificate) keyStore.getCertificate(alias);
+
+            // Mostrar información del certificado
+            System.out.println("Titular: " + certificado.getSubjectDN());
+            System.out.println("Emisor: " + certificado.getIssuerDN());
+            System.out.println("Válido desde: " + certificado.getNotBefore());
+            System.out.println("Válido hasta: " + certificado.getNotAfter());
+
+            // Cerrar el flujo de entrada
+            fis.close();
+             Clients.showNotification("SU CLAVE INGRESADA ES CORRECTA ",
+                        Clients.NOTIFICATION_TYPE_INFO
+                     , null, "end_center", 2000, true);
+
+        } catch (Exception e) {
+            System.out.println("ERROR EN LA CLAVE DE LA FIRMA " + e.getMessage());
+            Clients.showNotification("SU CLAVE INGRESADA ES INCORRECTA, INGRESE NUEVAMENTE SU CLAVE",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+
+        }
+
+    }
+
+    @Command
+    @NotifyChange({"tipoambiente"})
     public void buscarCatastro() {
         if (tipoambiente.getAmRuc() != null) {
 
@@ -149,14 +198,14 @@ public class Configuracion extends SelectorComposer<Component> {
 
             if (!nombre.contains("p12")) {
                 Clients.showNotification("Su firma electronica debe ser tipo archivo con extension .p12 ",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
 
                 return;
             }
             if (media.getByteData().length > 10 * 1024 * 1024) {
 
                 Clients.showNotification("El arhivo seleccionado sobrepasa el tamaño de 10Mb.\n Por favor seleccione un archivo más pequeño. ",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                 return;
             }
             filePath = tipoambiente.getAmDirBaseArchivos() + File.separator + tipoambiente.getAmFolderFirma() + File.separator;
@@ -167,7 +216,7 @@ public class Configuracion extends SelectorComposer<Component> {
             }
 
             Files.copy(new File(filePath + media.getName()),
-                        media.getStreamData());
+                    media.getStreamData());
             tipoambiente.setAmDirFirma(nombre);
 
         }
@@ -200,7 +249,7 @@ public class Configuracion extends SelectorComposer<Component> {
                     baseDir.mkdirs();
                 }
                 Files.copy(new File(filePathImg + media.getName()),
-                            media.getStreamData());
+                        media.getStreamData());
                 tipoambiente.setAm_DirImgPuntoVenta(filePathImg + File.separator + nombre);
             }
 
@@ -226,7 +275,7 @@ public class Configuracion extends SelectorComposer<Component> {
         servicioTipoAmbiente.modificar(tipoambiente);
 
         Clients.showNotification("Información registrada exitosamente",
-                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
+                Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
 
     }
 
@@ -297,4 +346,5 @@ public class Configuracion extends SelectorComposer<Component> {
     public void setGrabaICE(String grabaICE) {
         this.grabaICE = grabaICE;
     }
+
 }
