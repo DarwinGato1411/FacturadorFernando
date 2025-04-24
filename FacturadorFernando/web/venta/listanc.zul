@@ -133,7 +133,7 @@
                                     <listcell  zclass = "mycss-listcell" >
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                  class="form-control form-control-sm" value="@bind(each.estadosri)" 
-                                                 tooltiptext="@bind(each.mensajesri)"
+                                                 tooltiptext="@bind(each.mensajeInf)"
                                         />
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">

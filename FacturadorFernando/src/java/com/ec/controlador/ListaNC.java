@@ -80,9 +80,9 @@ public class ListaNC {
     private Date fechafin = new Date();
     private String amRuc = "";
     UserCredential credential = new UserCredential();
-
+    
     public ListaNC() {
-
+        
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
@@ -91,59 +91,59 @@ public class ListaNC {
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
                 + amb.getAmDirXml();
-
+        
         consultarFactura();
     }
-
+    
     private void consultarFactura() {
         lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
-
+    
     public List<NotaCreditoDebito> getLstCreditoDebitos() {
         return lstCreditoDebitos;
     }
-
+    
     public void setLstCreditoDebitos(List<NotaCreditoDebito> lstCreditoDebitos) {
         this.lstCreditoDebitos = lstCreditoDebitos;
     }
-
+    
     public String getBuscarCliente() {
         return buscarCliente;
     }
-
+    
     public void setBuscarCliente(String buscarCliente) {
         this.buscarCliente = buscarCliente;
     }
-
+    
     public String getEstadoBusqueda() {
         return estadoBusqueda;
     }
-
+    
     public void setEstadoBusqueda(String estadoBusqueda) {
         this.estadoBusqueda = estadoBusqueda;
     }
-
+    
     public BigDecimal getPorCobrar() {
         return porCobrar;
     }
-
+    
     public void setPorCobrar(BigDecimal porCobrar) {
         this.porCobrar = porCobrar;
     }
-
+    
     @Command
     public void reporteNotaVenta(@BindingParam("valor") Guiaremision valor) throws JRException, IOException, NamingException, SQLException {
         reporteGeneral(valor.getFacNumero(), "GUIA");
     }
-
+    
     public void reporteGeneral(Integer numeroFactura, String tipo) throws JRException, IOException, NamingException, SQLException {
-
+        
         EntityManager emf = HelperPersistencia.getEMF();
-
+        
         try {
             emf.getTransaction().begin();
             con = emf.unwrap(Connection.class);
-
+            
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
                     .getRealPath("/reportes");
             String reportPath = "";
@@ -154,18 +154,18 @@ public class ListaNC {
             } else if (tipo.equals("GUIA")) {
                 reportPath = reportFile + File.separator + "guia.jasper";
             }
-
+            
             Map<String, Object> parametros = new HashMap<String, Object>();
-
+            
             parametros.put("tipoambiente", amb.getCodTipoambiente());
             parametros.put("numfactura", numeroFactura);
-
+            
             if (con != null) {
                 System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
             }
             FileInputStream is = null;
             is = new FileInputStream(reportPath);
-
+            
             byte[] buf = JasperRunManager.runReportToPdf(is, parametros, con);
             InputStream mediais = new ByteArrayInputStream(buf);
             AMedia amedia = new AMedia("Reporte", "pdf", "application/pdf", mediais);
@@ -185,46 +185,46 @@ public class ListaNC {
             if (emf != null) {
                 emf.getTransaction().commit();
             }
-
+            
         }
-
+        
     }
 
     //buscart notas de venta
     @Command
     @NotifyChange({"lstCreditoDebitos", "buscarCliente"})
     public void buscarLikeCliente() {
-
+        
         consultarFacturas();
-
+        
     }
-
+    
     private void consultarFacturas() {
         lstCreditoDebitos = servicioNotaCredito.findLikeCliente(buscarCliente, amb);
-
+        
     }
 
     //buscart notas de venta
     @Command
     @NotifyChange({"lstCreditoDebitos", "buscarCliente"})
     public void buscarLikeCedula() {
-
+        
         consultarFacturasForCedula();
-
+        
     }
-
+    
     private void consultarFacturasForCedula() {
         lstCreditoDebitos = servicioNotaCredito.findLikeCedula(buscarCedula, amb);
-
+        
     }
-
+    
     @Command
     @NotifyChange({"lstCreditoDebitos", "fechafin", "fechainicio"})
     public void buscarFechas() {
         consultarFacturaFecha();
-
+        
     }
-
+    
     private void consultarFacturaFecha() {
         lstCreditoDebitos = servicioNotaCredito.findBetweenFecha(fechainicio, fechafin, amb);
     }
@@ -233,68 +233,68 @@ public class ListaNC {
     private byte[] graficoBarrasMes;
     String pathSalidaMes = "";
     private AImage reporteMes;
-
+    
     public AMedia getFileContent() {
         return fileContent;
     }
-
+    
     public void setFileContent(AMedia fileContent) {
         this.fileContent = fileContent;
     }
-
+    
     public JFreeChart getJfreechartMes() {
         return jfreechartMes;
     }
-
+    
     public void setJfreechartMes(JFreeChart jfreechartMes) {
         this.jfreechartMes = jfreechartMes;
     }
-
+    
     public byte[] getGraficoBarrasMes() {
         return graficoBarrasMes;
     }
-
+    
     public void setGraficoBarrasMes(byte[] graficoBarrasMes) {
         this.graficoBarrasMes = graficoBarrasMes;
     }
-
+    
     public String getPathSalidaMes() {
         return pathSalidaMes;
     }
-
+    
     public void setPathSalidaMes(String pathSalidaMes) {
         this.pathSalidaMes = pathSalidaMes;
     }
-
+    
     public AImage getReporteMes() {
         return reporteMes;
     }
-
+    
     public void setReporteMes(AImage reporteMes) {
         this.reporteMes = reporteMes;
     }
-
+    
     public static String getPATH_BASE() {
         return PATH_BASE;
     }
-
+    
     public static void setPATH_BASE(String PATH_BASE) {
         ListaNC.PATH_BASE = PATH_BASE;
     }
-
+    
     public Tipoambiente getAmb() {
         return amb;
     }
-
+    
     public void setAmb(Tipoambiente amb) {
         this.amb = amb;
     }
-
+    
     @Command
     @NotifyChange({"lstCreditoDebitos"})
     public void autorizarSRI(@BindingParam("valor") NotaCreditoDebito valor)
             throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
+        
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
@@ -304,11 +304,11 @@ public class ListaNC {
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
-
+        
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
-
+        
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
@@ -322,12 +322,12 @@ public class ListaNC {
         if (!folderFirm.exists()) {
             folderFirm.mkdirs();
         }
-
+        
         File folderAu = new File(foldervoAutorizado);
         if (!folderAu.exists()) {
             folderAu.mkdirs();
         }
-
+        
         File folderCliente = new File(folderEnviarCliente);
         if (!folderCliente.exists()) {
             folderCliente.mkdirs();
@@ -350,7 +350,7 @@ public class ListaNC {
         String pathArchivoAutorizado = foldervoAutorizado + nombreArchivoXML;
         String pathArchivoNoAutorizado = folderNoAutorizados + nombreArchivoXML;
         String archivoEnvioCliente = "";
-
+        
         File f = null;
         File fEnvio = null;
         byte[] datos = null;
@@ -370,7 +370,7 @@ public class ListaNC {
             return;
         }
         f = new File(pathArchivoFirmado);
-
+        
         datos = ArchivoUtils.ConvertirBytes(pathArchivoFirmado);
         //obtener la clave de acceso desde el archivo xml
         String claveAccesoComprobante = ArchivoUtils.obtenerValorXML(f, "/*/infoTributaria/claveAcceso");
@@ -388,7 +388,7 @@ public class ListaNC {
 //                    Logger.getLogger(Tipoambiente.class.getName()).log(Level.SEVERE, null, ex);
 //                }
                 try {
-
+                    
                     RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
                     for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                         FileOutputStream nuevo = null;
@@ -398,21 +398,21 @@ public class ListaNC {
                         nuevo = new FileOutputStream(pathArchivoNoAutorizado);
                         nuevo.write(autorizacion.getComprobante().getBytes());
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
-
+                            
                             String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();
-                            String smsInfo = autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional();
+                            String smsInfo = autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() != null ? autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() : "S/N";
                             nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getMensaje().getBytes());
                             if (autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() != null) {
                                 nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional().getBytes());
                             }
-
+                            
                             valor.setMensajesri(texto);
                             valor.setEstadosri(autorizacion.getEstado());
-
+                            valor.setMensajeInf(smsInfo);
                             nuevo.flush();
                             servicioNotaCredito.modificar(valor);
                         } else {
-
+                            
                             valor.setFacClaveAutorizacion(claveAccesoComprobante);
                             valor.setEstadosri(autorizacion.getEstado());
                             valor.setFacFechaAutorizacion(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
@@ -425,15 +425,15 @@ public class ListaNC {
 //                                    amb, foldervoAutorizado);
 
                             fEnvio = new File(archivoEnvioCliente);
-
+                            
                             System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
                             ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
 //                            ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                             /*GUARDA EL PATH PDF CREADO*/
-
+                            
                             servicioNotaCredito.modificar(valor);
                             /*envia el mail*/
-
+                            
                             String[] attachFiles = new String[2];
                             attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
                             attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
@@ -451,10 +451,10 @@ public class ListaNC {
                                         valor.getFacNumeroText(),
                                         valor.getFacTotal(),
                                         valor.getIdFactura().getIdCliente().getCliNombre(), amb);
-
+                                
                             }
                         }
-
+                        
                     }
                 } catch (RespuestaAutorizacionException ex) {
                     Logger.getLogger(ListaNC.class.getName()).log(Level.SEVERE, null, ex);
@@ -464,22 +464,22 @@ public class ListaNC {
                 ArchivoUtils.FileCopy(pathArchivoFirmado, pathArchivoNoAutorizado);
                 valor.setEstadosri(resSolicitud.getEstado());
                 valor.setMensajesri(resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getMensaje());
-
+                valor.setMensajeInf(smsInfo);
                 servicioNotaCredito.modificar(valor);
             }
         } else {
-
+            
             valor.setMensajesri(resSolicitud.getEstado());
             servicioNotaCredito.modificar(valor);
         }
-
+        
     }
-
+    
     @Command
     @NotifyChange({"lstCreditoDebitos"})
     public void reenviarSRI(@BindingParam("valor") NotaCreditoDebito valor)
             throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
+        
         String folderGenerados = PATH_BASE + File.separator + amb.getAmGenerados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
@@ -489,11 +489,11 @@ public class ListaNC {
         String folderFirmado = PATH_BASE + File.separator + amb.getAmFirmados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
-
+        
         String foldervoAutorizado = PATH_BASE + File.separator + amb.getAmAutorizados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
-
+        
         String folderNoAutorizados = PATH_BASE + File.separator + amb.getAmNoAutorizados()
                 + File.separator + new Date().getYear()
                 + File.separator + new Date().getMonth();
@@ -507,12 +507,12 @@ public class ListaNC {
         if (!folderFirm.exists()) {
             folderFirm.mkdirs();
         }
-
+        
         File folderAu = new File(foldervoAutorizado);
         if (!folderAu.exists()) {
             folderAu.mkdirs();
         }
-
+        
         File folderCliente = new File(folderEnviarCliente);
         if (!folderCliente.exists()) {
             folderCliente.mkdirs();
@@ -535,7 +535,7 @@ public class ListaNC {
         String pathArchivoAutorizado = foldervoAutorizado + nombreArchivoXML;
         String pathArchivoNoAutorizado = folderNoAutorizados + nombreArchivoXML;
         String archivoEnvioCliente = "";
-
+        
         File f = null;
         File fEnvio = null;
         byte[] datos = null;
@@ -555,7 +555,7 @@ public class ListaNC {
             return;
         }
         f = new File(pathArchivoFirmado);
-
+        
         datos = ArchivoUtils.ConvertirBytes(pathArchivoFirmado);
         //obtener la clave de acceso desde el archivo xml
         String claveAccesoComprobante = ArchivoUtils.obtenerValorXML(f, "/*/infoTributaria/claveAcceso");
@@ -573,7 +573,7 @@ public class ListaNC {
             Logger.getLogger(Tipoambiente.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-
+            
             RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
             for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                 FileOutputStream nuevo = null;
@@ -584,28 +584,28 @@ public class ListaNC {
                 if (autorizacion.getComprobante() != null) {
                     nuevo.write(autorizacion.getComprobante().getBytes());
                 }
-
+                
                 if (!autorizacion.getEstado().equals("AUTORIZADO")) {
-
+                    
                     String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();
                     String smsInfo = autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional();
                     nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getMensaje().getBytes());
                     if (autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional() != null) {
                         nuevo.write(autorizacion.getMensajes().getMensaje().get(0).getInformacionAdicional().getBytes());
                     }
-
+                    
                     valor.setMensajesri(texto);
                     valor.setMensajeInf(smsInfo);
                     nuevo.flush();
                 } else {
-
+                    
                     valor.setFacClaveAutorizacion(claveAccesoComprobante);
                     valor.setEstadosri(autorizacion.getEstado());
                     valor.setFacFechaAutorizacion(autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
 
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLNotaCreditoDebito(valor, amb, folderGenerados, nombreArchivoXML, "04");
-
+                    
                     try {
                         XAdESBESSignature.firmar(archivoEnvioCliente,
                                 nombreArchivoXML,
@@ -617,15 +617,15 @@ public class ListaNC {
                     }
                     fEnvio = new File(archivoEnvioCliente);
                 }
-
+                
                 System.out.println("PATH DEL ARCHIVO PARA ENVIAR AL CLIENTE " + archivoEnvioCliente);
                 ArchivoUtils.reporteGeneralPdfMail(archivoEnvioCliente.replace(".xml", ".pdf"), valor.getFacNumero(), "FACT", amb);
 //                ArchivoUtils.zipFile(fEnvio, archivoEnvioCliente);
                 /*GUARDA EL PATH PDF CREADO*/
-
+                
                 servicioNotaCredito.modificar(valor);
                 /*envia el mail*/
-
+                
                 String[] attachFiles = new String[2];
                 attachFiles[0] = archivoEnvioCliente.replace(".xml", ".pdf");
                 attachFiles[1] = archivoEnvioCliente.replace(".xml", ".xml");
@@ -643,45 +643,45 @@ public class ListaNC {
                             valor.getFacNumeroText(),
                             valor.getFacTotal(),
                             valor.getIdFactura().getIdCliente().getCliNombre(), amb);
-
+                    
                 }
-
+                
             }
             consultarFacturaFecha();
         } catch (RespuestaAutorizacionException ex) {
             Logger.getLogger(ListaNC.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
     public Date getFechainicio() {
         return fechainicio;
     }
-
+    
     public void setFechainicio(Date fechainicio) {
         this.fechainicio = fechainicio;
     }
-
+    
     public Date getFechafin() {
         return fechafin;
     }
-
+    
     public void setFechafin(Date fechafin) {
         this.fechafin = fechafin;
     }
-
+    
     public String getBuscarCedula() {
         return buscarCedula;
     }
-
+    
     public void setBuscarCedula(String buscarCedula) {
         this.buscarCedula = buscarCedula;
     }
-
+    
     @Command
     public void reporteGeneral(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
         EntityManager emf = HelperPersistencia.getEMF();
-
+        
         try {
             emf.getTransaction().begin();
             con = emf.unwrap(Connection.class);
@@ -694,7 +694,7 @@ public class ListaNC {
 
 //                    reportPath = reportFile + File.separator + "puntoventa.jasper";
             reportPath = reportFile + File.separator + "notacr.jasper";
-
+            
             Map<String, Object> parametros = new HashMap<String, Object>();
 
             //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
@@ -705,7 +705,7 @@ public class ListaNC {
             }
             FileInputStream is = null;
             is = new FileInputStream(reportPath);
-
+            
             byte[] buf = JasperRunManager.runReportToPdf(is, parametros, con);
             InputStream mediais = new ByteArrayInputStream(buf);
             AMedia amedia = new AMedia("Reporte", "pdf", "application/pdf", mediais);
@@ -717,7 +717,7 @@ public class ListaNC {
                     "/venta/contenedorReporte.zul", null, map);
             window.doModal();
             con.close();
-
+            
         } catch (Exception e) {
             System.out.println("Error en generar el reporte " + e.getMessage());
         } finally {
@@ -726,14 +726,14 @@ public class ListaNC {
                 System.out.println("cerro entity");
             }
         }
-
+        
     }
-
+    
     @Command
     public void cambiarEstadoFact(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, NamingException, SQLException {
         try {
             final HashMap<String, NotaCreditoDebito> map = new HashMap<String, NotaCreditoDebito>();
-
+            
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
                     "/modificar/estadonc.zul", null, map);
@@ -742,7 +742,7 @@ public class ListaNC {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
         }
     }
-
+    
     @Command
     @NotifyChange({"lstCreditoDebitos", "buscarCliente"})
     public void eliminar(@BindingParam("valor") NotaCreditoDebito valor) throws JRException, IOException, NamingException, SQLException {
@@ -750,7 +750,7 @@ public class ListaNC {
             if (Messagebox.show("Esta seguro que desea eliminar el documento?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
                 servicioNotaCredito.eliminar(valor);
                 consultarFactura();
-
+                
             }
         } catch (Exception e) {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
