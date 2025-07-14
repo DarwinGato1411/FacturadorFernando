@@ -256,6 +256,8 @@ public class Factura implements Serializable {
     private BigDecimal facSubt15;
     @Column(name = "fac_iva_15")
     private BigDecimal facIva15;
+    @Column(name = "fac_xml")
+    private String facXml;
     
     
     
@@ -904,4 +906,14 @@ public class Factura implements Serializable {
         this.facIva15 = facIva15;
     }
 
+    public String getFacXml() {
+        return facXml==null ? "":facXml;
+    }
+
+    public void setFacXml(String facXml) {
+        this.facXml = facXml;
+    }
+
+    
+    
 }

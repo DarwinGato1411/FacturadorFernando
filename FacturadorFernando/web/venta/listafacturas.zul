@@ -194,6 +194,7 @@
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
                                 <listheader width="3%"  label="" align="rigth" />        
+                                <listheader width="3%"  label="" align="rigth" />        
                                     
                             </listhead>  
                             
@@ -430,6 +431,13 @@
                                                class="btn-secondary btn-sm "       
                                                tooltiptext="Reenviar correo electronico"/>
                                     </listcell> 
+                                    <listcell   zclass = "mycss-listcell"  >   
+                                            
+                                        <image src="/iconos/xml.png"  
+                                               onClick="@command('descargarXML',valor=each)"  
+                                               class="btn-secondary btn-sm"                                               
+                                               tooltiptext="Generar XML"/> 
+                                    </listcell>
                                 </listitem>
                             </template>
                         </listbox>

@@ -290,16 +290,21 @@ public class AutorizarDocumentos {
             } else {
                 tipoAmbiente = "PRODUCCION";
             }
-            linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                    + "<factura id=\"comprobante\" version=\"1.1.0\">\n");
+            linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
+//            linea = ("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n");
             build.append(linea);
             linea = "";
             if (autorizada) {
-                linea = (" <estado>AUTORIZADO</estado>\n"
+                linea = ("<autorizacion>"
+                        +" <estado>AUTORIZADO</estado>\n"
                         + " <numeroAutorizacion>" + claveAcceso + "</numeroAutorizacion>\n"
                         + " <fechaAutorizacion>" + formato.format(fechaAutorizacion) + "</fechaAutorizacion>\n"
-                        + " <ambiente>" + tipoAmbiente + "</ambiente>\n");
+                        + " <ambiente>" + tipoAmbiente + "</ambiente>\n"
+                        + " <comprobamte>\n");
+                build.append(linea);
             }
+            
+              linea = ("<factura id=\"comprobante\" version=\"1.1.0\">\n");
             build.append(linea);
 //            BigDecimal valorICe = (valor.getFacTotalBaseGravaba().multiply(amb.getAmValorIce())).divide(BigDecimal.valueOf(100), 2, RoundingMode.FLOOR);
 
@@ -340,12 +345,12 @@ public class AutorizarDocumentos {
                     + "         <totalSubsidio>" + valor.getFacSubsidio().setScale(2, RoundingMode.FLOOR) + "</totalSubsidio>\n"
                     + "        <totalDescuento>" + valor.getFacDescuento().setScale(2, RoundingMode.FLOOR) + "</totalDescuento>\n"
                     + "        <totalConImpuestos>\n"
-                    + (valor.getFacTotalBaseCero().doubleValue() > 0 ? TARIFA0 : "\n")
-                    + (valor.getFacTotalBaseGravaba().doubleValue() > 0 ? TARIFA12 : "\n")
-                    + (valor.getFacSubt5().doubleValue() > 0 ? TARIFA5 : "\n")
-                    + (valor.getFacSubt13().doubleValue() > 0 ? TARIFA13 : "\n")
-                    + (valor.getFacSubt14().doubleValue() > 0 ? TARIFA14 : "\n")
-                    + (valor.getFacSubt15().doubleValue() > 0 ? TARIFA15 : "\n")
+                    + (valor.getFacTotalBaseCero().doubleValue() > 0 ? TARIFA0 : "")
+                    + (valor.getFacTotalBaseGravaba().doubleValue() > 0 ? TARIFA12 : "")
+                    + (valor.getFacSubt5().doubleValue() > 0 ? TARIFA5 : "")
+                    + (valor.getFacSubt13().doubleValue() > 0 ? TARIFA13 : "")
+                    + (valor.getFacSubt14().doubleValue() > 0 ? TARIFA14 : "")
+                    + (valor.getFacSubt15().doubleValue() > 0 ? TARIFA15 : "")
                     + "         </totalConImpuestos>\n"
                     + "                 <propina>0</propina>\n"
                     + "                 <importeTotal>" + ArchivoUtils.redondearDecimales(valor.getFacTotal(), 2) + "</importeTotal>\n"
@@ -421,7 +426,18 @@ public class AutorizarDocumentos {
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
                     + "   </infoAdicional>\n"
                     + "</factura>\n");
-            build.append(linea);
+            
+              build.append(linea);
+              
+             if (autorizada) {
+                linea = ("</comprobante>"
+//                        +" <estado>AUTORIZADO</estado>\n"
+                        + " <mensajes></mensajes>"
+                        + " </autorizacion>\n");
+                  build.append(linea);
+            }
+             
+          
             /*IMPRIME EL XML DE LA FACTURA*/
             System.out.println("XML " + build);
             String pathArchivoSalida = "";
