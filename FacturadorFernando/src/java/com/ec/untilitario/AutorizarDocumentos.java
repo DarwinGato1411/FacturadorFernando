@@ -300,7 +300,7 @@ public class AutorizarDocumentos {
                         + " <numeroAutorizacion>" + claveAcceso + "</numeroAutorizacion>\n"
                         + " <fechaAutorizacion>" + formato.format(fechaAutorizacion) + "</fechaAutorizacion>\n"
                         + " <ambiente>" + tipoAmbiente + "</ambiente>\n"
-                        + " <comprobamte>\n");
+                        + " <comprobante>\n");
                 build.append(linea);
             }
             
