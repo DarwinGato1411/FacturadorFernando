@@ -52,12 +52,12 @@
                                 <listhead> 
                                     <listheader width="5%"  label="N° Fact" /> 
                                     <listheader width="10%"  label="RUC/CI" />    
-                                    <listheader width="18%" label="Nobre comercial"  >
+<!--                                    <listheader width="18%" label="Nobre comercial"  >
                                
                                 
                                 
-                                    </listheader> 
-                                    <listheader width="18%"  label="Razon Social" /> 
+                                    </listheader> -->
+                                    <listheader width="36%"  label="Razon Social" /> 
                                     <listheader width="10%"  label="Movil" /> 
                                     <listheader width="10%"  label="Fecha" /> 
                                     <listheader width="8%"  label="Total " align="center"  /> 
@@ -81,13 +81,13 @@
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                      class="form-control form-control-sm" value="@bind(each.idCliente.cliCedula)"  />
                                         </listcell>
-                                        <listcell zclass = "mycss-listcell">
+<!--                                        <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                      class="form-control form-control-sm" value="@bind(each.idCliente.cliNombres)"  />
-                                        </listcell>
+                                        </listcell>-->
                                         <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
-                                                     class="form-control form-control-sm" value="@bind(each.idCliente.cliRazonSocial)"  />
+                                                     class="form-control form-control-sm" value="@bind(each.idCliente.cliNombre)"  />
                                         </listcell>
                                         <listcell zclass = "mycss-listcell">
                                             <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
