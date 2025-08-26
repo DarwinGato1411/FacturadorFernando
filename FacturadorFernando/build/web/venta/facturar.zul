@@ -281,7 +281,25 @@
                                         class="input" 
                                     />
                                 </div>
-                                
+                                <div class="wrapper_input">
+                                    <span style="color:red"></span>
+                                    <label  style="color:blue"
+                                        value="Envio automatico "
+                                        class="input" 
+                                    />
+                                    
+                                </div>
+                                <div class="wrapper_input">
+                                       <button 
+                                            autodisable="self"   
+                                            class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                            onClick="@command('Guardar',valor='SG',envia='S')"
+                                            tooltiptext="Guardar y Envia al SRI"
+                                            label="Facturar y Enviar al SRI"
+                                            width="100%"
+                                        />
+
+                                    </div>
 
                             </div>
                             <div class="wrapper_data">
@@ -309,7 +327,7 @@
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='SG')"
+                                        onClick="@command('Guardar',valor='SG',envia='N')"
                                         tooltiptext="Guardar"
                                         label="Facturar"
                                         width="100%"

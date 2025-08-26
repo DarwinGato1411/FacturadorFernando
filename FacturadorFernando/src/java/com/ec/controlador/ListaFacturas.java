@@ -629,7 +629,7 @@ public class ListaFacturas {
 
                             System.out.println("autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime() " + autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
                             /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
-                            archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+                            archivoEnvioCliente = aut.generaXMLFacturaDescarga(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
 //                            XAdESBESSignature.firmar(archivoEnvioCliente,
 //                                    nombreArchivoXML,
 //                                    amb.getAmClaveAccesoSri(),
@@ -807,11 +807,11 @@ public class ListaFacturas {
                     valor.setFacpath(archivoEnvioCliente.replace(".xml", ".pdf"));
                     servicioFactura.modificar(valor);
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
-                    archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
-                    XAdESBESSignature.firmar(archivoEnvioCliente,
-                            nombreArchivoXML,
-                            amb.getAmClaveAccesoSri(),
-                            amb, foldervoAutorizado);
+                    archivoEnvioCliente = aut.generaXMLFacturaDescarga(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
+//                    XAdESBESSignature.firmar(archivoEnvioCliente,
+//                            nombreArchivoXML,
+//                            amb.getAmClaveAccesoSri(),
+//                            amb, foldervoAutorizado);
 
                     fEnvio = new File(archivoEnvioCliente);
 
@@ -1359,12 +1359,12 @@ public class ListaFacturas {
 //            pathArchivoSalida = folderGenerados
 //                        + nombreArchivoXML;
             AutorizarDocumentos aut = new AutorizarDocumentos();
-            String archivo = aut.generaXMLFactura(valor, amb, folderGenerados, nombreArchivoXML, valor.getFacFechaAutorizacion() == null ? Boolean.FALSE : Boolean.TRUE, valor.getFacFechaAutorizacion() == null ? valor.getFacFecha() : valor.getFacFechaAutorizacion());
+            String archivo = aut.generaXMLFacturaDescarga(valor, amb, folderGenerados, nombreArchivoXML, valor.getFacFechaAutorizacion() == null ? Boolean.FALSE : Boolean.TRUE, valor.getFacFechaAutorizacion() == null ? valor.getFacFecha() : valor.getFacFechaAutorizacion());
            
             
-            XAdESBESSignature.firmar(archivo, nombreArchivoXML,
-                    amb.getAmClaveAccesoSri(), amb, folderFirmado);
-            String descarga=folderFirmado+File.separator+nombreArchivoXML;
+//            XAdESBESSignature.firmar(archivo, nombreArchivoXML,
+//                    amb.getAmClaveAccesoSri(), amb, folderFirmado);
+            String descarga=archivo;
             //GRABA DATOS EN FACTURA//
             File dosfile = new File(descarga);
             if (dosfile.exists()) {
