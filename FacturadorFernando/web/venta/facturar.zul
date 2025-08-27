@@ -172,7 +172,7 @@
                                         class="input" 
                                     />
                                 </div>
-                                <div class="wrapper_input">
+<!--                                <div class="wrapper_input">
                                     <span>Base 12%:</span>
                                     <decimalbox  
                                         format="###.##"   
@@ -202,7 +202,7 @@
                                         onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                         class="input" 
                                     />
-                                </div>
+                                </div>-->
                                 <div class="wrapper_input">
                                     <span>Base 15%:</span>
                                     <decimalbox  
@@ -213,7 +213,17 @@
                                         class="input" 
                                     />
                                 </div>
-                                
+                                  <div class="wrapper_input">
+                                       <button 
+                                            autodisable="self"   
+                                            class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                            onClick="@command('Guardar',valor='SG',envia='S')"
+                                            tooltiptext="Guardar y Envia al SRI (esta opcion es de envio automatico) "
+                                            label="Facturar y Enviar al SRI "
+                                            width="100%"
+                                        />
+
+                                    </div>
                             </div>
                             <div class="wrapper_data">
                                 <div class="wrapper_input">
@@ -236,7 +246,7 @@
                                         class="input" 
                                     />
                                 </div>
-                                <div class="wrapper_input">
+<!--                                <div class="wrapper_input">
                                     <span>IVA 12%:</span>
                                     <decimalbox  
                                         format="###.##"  
@@ -262,7 +272,7 @@
                                         readonly="true" 
                                         class="input" 
                                     />
-                                </div>
+                                </div>-->
                                 <div class="wrapper_input">
                                     <span>IVA 15%:</span>
                                     <decimalbox  
@@ -272,7 +282,18 @@
                                         class="input" 
                                     />
                                 </div>
+                               <div class="wrapper_input">
                                 
+                                      <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='SG',envia='N')"
+                                        tooltiptext="Guardar"
+                                        label="Facturar"
+                                        width="100%"
+                                    />
+
+                                </div>
 
                             </div>
                             <div class="wrapper_data">
@@ -321,18 +342,7 @@
                                         value="@bind(vm.cambio)" 
                                     />
                                 </div>
-                                <div class="wrapper_input">
                                 
-                                    <button 
-                                        autodisable="self"   
-                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='SG')"
-                                        tooltiptext="Guardar"
-                                        label="Facturar"
-                                        width="100%"
-                                    />
-
-                                </div>
                                 
                                     
                              
