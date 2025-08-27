@@ -139,6 +139,10 @@ public class Parametrizar implements Serializable {
     @Column(name = "par_bloqueo_sistema")
     private Boolean parBloqueoSistema;
     
+    
+      @Column(name = "par_con_datos")
+    private Boolean parConDatos;
+    
     public Parametrizar() {
     }
 
@@ -433,7 +437,13 @@ public class Parametrizar implements Serializable {
     public void setParBloqueoSistema(Boolean parBloqueoSistema) {
         this.parBloqueoSistema = parBloqueoSistema;
     }
-    
+     public Boolean getParConDatos() {
+        return parConDatos==null ?Boolean.FALSE:parConDatos;
+    }
+
+    public void setParConDatos(Boolean parConDatos) {
+        this.parConDatos = parConDatos;
+    }
     
 
     @Override
