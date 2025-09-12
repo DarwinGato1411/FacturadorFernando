@@ -42,7 +42,10 @@ public class MenuToolbar {
         window.doModal();
 
     }
-
+  @Command
+    public void catalogo() {
+        Executions.sendRedirect("/venta/administrar.zul");
+    }
     @Command
     public void nuevoProducto() {
 

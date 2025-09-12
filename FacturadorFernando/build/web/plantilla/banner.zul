@@ -20,18 +20,37 @@
                             <div class="">                       
                                 <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
                                 <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
+                                <toolbarbutton image="/iconos/page_add.png" label="Catalogo" onClick="@command('catalogo')" />
                             </div>
+<!--                            <div>
+                                <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
+                                <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                            </div>                     -->
+                        </div >
+                        <div class="containerPC">                        
+<!--                            <div class="">                       
+                                <toolbarbutton image="/iconos/page.png" label="Producto"  onClick="@command('nuevoProducto')" />
+                                <toolbarbutton image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />
+                            </div>-->
                             <div>
                                 <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
                                 <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
-                            </div>                     
+                            </div>  
+                            
+                            <div>                            
+                                <a  sclass="logout labelLogout" style="color:red;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group btnSalir" >  
+                                    <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>-->   
+                                    <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
+                                    <span>Salir</span>
+                                </a>    
+                            </div>                 
                         </div >
 
-                            <a  sclass="logout labelLogout" style="color:red;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group btnSalir" >  
-                                <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>-->   
+<!--                            <a  sclass="logout labelLogout" style="color:red;" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group btnSalir" >  
+                                <label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>   
                             <div class="fa-solid fa-arrow-right-from-bracket icon_exit" />
                                 <span>Salir</span>
-                            </a>
+                            </a>-->
 
                 
                         <!--</div>-->
@@ -50,7 +69,8 @@
             <menubar id="menubar" orient="horizontal"  autodrop="true" class="wrapper_menu">
                 <menu label="Ventas" id="menuEmitirfact" class="menu_child">
                     <menupopup class="submenu"> 
-                        <menuitem label="Emitir Facturas" id="btnFacturar" class="fa-solid fa-receipt menu_item" />
+                        <menuitem label="Emitir Facturas" id="btnFacturar" class="fa-solid fa-receipt menu_item d-none d-lg-block" />
+                         <menuitem label="Emitir Facturas movil" id="btnFacturarMov" class="fa-solid fa-receipt menu_item d-block d-lg-none" />
                         <menuitem label="Facturas por cobrar" id="btnfactCobra" class="fa-solid fa-dollar-sign menu_item" />
                     </menupopup>
                 </menu>
@@ -61,8 +81,9 @@
                     </menupopup>
                 </menu>-->
                 <menu label="Gestion de ventas"  id="menuVentas" class="menu_child">
-                    <menupopup class="submenu">                               
-                        <menuitem label="Facturas emitidas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>                             
+                    <menupopup class="submenu">                                                          
+                        <menuitem label="Facturas emitidas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item  d-none d-lg-block"/>        
+                        <menuitem label="Facturas emitidas movil" id="btnNotaVentasMovil" class="fa-solid fa-paper-plane menu_item  d-block d-lg-none"/>                       
                         <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
                         <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />
                         
@@ -103,7 +124,7 @@
                         <menuitem label="Rotacion Productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
                     </menupopup>
                 </menu>
-                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
+                <!--<menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />-->
                 <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
                 <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
                 <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
@@ -155,8 +176,8 @@
                             </menupopup>
                         </menu>
                     </menubar>  -->   
-                       </div>              
-                </div>
+                </div>              
+            </div>
                 
         </div>
         

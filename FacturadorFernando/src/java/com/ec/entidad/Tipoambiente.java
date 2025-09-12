@@ -215,6 +215,12 @@ public class Tipoambiente implements Serializable {
     private String amComprobanteImprime;
     @Column(name = "am_rimpe_popular")
     private Boolean amRimpePopular;
+
+    @Column(name = "am_reenviarme")
+    private Boolean reenviarme;
+    @Column(name = "am_correo_reenviar")
+    private String amCorreoReenviar;
+
     public Tipoambiente() {
     }
 
@@ -753,11 +759,27 @@ public class Tipoambiente implements Serializable {
     }
 
     public Boolean getAmRimpePopular() {
-        return amRimpePopular==null?Boolean.FALSE:amRimpePopular;
+        return amRimpePopular == null ? Boolean.FALSE : amRimpePopular;
     }
 
     public void setAmRimpePopular(Boolean amRimpePopular) {
         this.amRimpePopular = amRimpePopular;
+    }
+
+    public Boolean getReenviarme() {
+        return reenviarme == null ? Boolean.FALSE : reenviarme;
+    }
+
+    public void setReenviarme(Boolean reenviarme) {
+        this.reenviarme = reenviarme;
+    }
+
+    public String getAmCorreoReenviar() {
+        return amCorreoReenviar;
+    }
+
+    public void setAmCorreoReenviar(String amCorreoReenviar) {
+        this.amCorreoReenviar = amCorreoReenviar;
     }
 
 }

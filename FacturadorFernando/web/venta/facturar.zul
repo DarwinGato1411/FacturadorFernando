@@ -19,9 +19,9 @@
         
         <tabbox  width="100%"  tabscroll="true" >
             <tabs >
-                <tab label="Emitir factura" sclass="menutabs"/>
+                <tab  label="@bind(vm.numerofactReenvio >0 ? 'Facturar - VERIFIQUE TIENE ' .concat(vm.numerofactReenvio).concat( ' FACTURAS NO AUTORIZADAS ' ): 'Facturar')" sclass="menutabs"></tab>
             </tabs>
-
+            <!--@bind('FACTURAR - '.concat(vm.numerofactReenvio))"-->
             <tabpanels class="tabpanels">
                 
                 <tabpanel class="factura">       
@@ -284,22 +284,22 @@
                                 <div class="wrapper_input">
                                     <span style="color:red"></span>
                                     <label  style="color:blue"
-                                        value="Envio automatico "
-                                        class="input" 
+                                            value="Envio automatico "
+                                            class="input" 
                                     />
                                     
                                 </div>
                                 <div class="wrapper_input">
-                                       <button 
-                                            autodisable="self"   
-                                            class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                            onClick="@command('Guardar',valor='SG',envia='S')"
-                                            tooltiptext="Guardar y Envia al SRI"
-                                            label="Facturar y Enviar al SRI"
-                                            width="100%"
-                                        />
+                                    <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='SG',envia='S')"
+                                        tooltiptext="Guardar y Envia al SRI"
+                                        label="Facturar y Enviar al SRI"
+                                        width="100%"
+                                    />
 
-                                    </div>
+                                </div>
 
                             </div>
                             <div class="wrapper_data">

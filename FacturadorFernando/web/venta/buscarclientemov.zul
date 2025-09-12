@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <window  id="windowClienteBuscar"  position="center" class="col-12 col-sm-12 col-md-11 col-lg-11" closable="true"  
          apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
-         viewModel="@id('vm') @init('com.ec.controlador.Facturar')">
+         viewModel="@id('vm') @init('com.ec.controlador.FacturarMov')">
     
     <caption label="Seleccionar cliente" style="font-weight:bold"/> 
    
@@ -12,7 +12,7 @@
       
                     
         <listhead> 
-            <listheader width="20%"   >
+            <listheader width="30%"   >
                 <textbox value="@bind(vm.buscarCedula)"  
                          class="form-control form-control-sm"
                          tooltiptext="Cédula"
@@ -21,7 +21,7 @@
                          onChange="@command('buscarClienteCedula')"/>
             </listheader>     
 
-            <listheader width="20%"  >
+            <listheader width="30%"  >
                 <textbox value="@bind(vm.buscarNombre)"  
                          class="form-control form-control-sm"
                          tooltiptext="Nombre Comercial.."
@@ -30,10 +30,10 @@
                          onOK="@command('buscarClienteNombre')"
                          onChange="self.setValue(self.getValue().toUpperCase());" />
             </listheader> 
-             <listheader width="20%"  label="DIRECCION "  /> 
-            <listheader width="15%"  label="TELEFONO "  />    
-            <listheader width="20%"  label="CORREO"/>
-            <listheader width="5%"  label="OPCIONES" align="center"/>
+          <!--   <listheader width="20%"  label="DIRECCION "  /> 
+            <listheader width="8%"  label="TELEFONO "  />   --> 
+            <listheader width="30%"  label="CORREO"/>
+            <listheader width="10%"  label="OPCIONES" align="center"/>
                             
         </listhead>  
                     
@@ -58,7 +58,7 @@
                              value="@bind(each.cliNombre)" 
                              onClick="@command('seleccionarClienteLista',cliente=each)" />
                 </listcell>
-                 <listcell   style="font-size:10px;background-color:#d6eefd" zclass = "mycss-listcell" 
+                 <!--<listcell   style="font-size:10px;background-color:#d6eefd" zclass = "mycss-listcell" 
                             onClick="@command('seleccionarClienteLista',cliente=each)" >
                     <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"
                              class="form-control form-control-sm"
@@ -72,7 +72,7 @@
                              class="form-control form-control-sm"                      
                              value="@bind(each.cliMovil)" 
                              onClick="@command('seleccionarClienteLista',cliente=each)"  />
-                </listcell>
+                </listcell>-->
                 <listcell  style="font-size:10px;background-color:#d6eefd" zclass = "mycss-listcell" 
                            onClick="@command('seleccionarClienteLista',cliente=each)" >
                     <textbox readonly="true" style="font-size:12px ;background:#EBF5FB"

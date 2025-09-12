@@ -126,7 +126,7 @@ import org.zkoss.zul.Window;
  *
  * @author gato
  */
-public class Facturar extends SelectorComposer<Component> {
+public class FacturarMov extends SelectorComposer<Component> {
 
 //    @Wire
 //    Window windowNotaEntrega;
@@ -401,7 +401,7 @@ public class Facturar extends SelectorComposer<Component> {
 
     }
 
-    public Facturar() {
+    public FacturarMov() {
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
@@ -1434,7 +1434,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public static void setBuscarCliente(String buscarCliente) {
-        Facturar.buscarCliente = buscarCliente;
+        FacturarMov.buscarCliente = buscarCliente;
     }
 
     public List<Cliente> getListaClientesAll() {
@@ -1498,7 +1498,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public static void setCodigoBusqueda(String codigoBusqueda) {
-        Facturar.codigoBusqueda = codigoBusqueda;
+        FacturarMov.codigoBusqueda = codigoBusqueda;
     }
 
     public String getBuscarCodigoProd() {
@@ -1621,7 +1621,7 @@ public class Facturar extends SelectorComposer<Component> {
         final HashMap<String, ParamFactura> map = new HashMap<String, ParamFactura>();
         map.put("valor", paramFactura);
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                "/venta/buscarcliente.zul", null, map);
+                "/venta/buscarclientemov.zul", null, map);
         window.doModal();
         System.out.println("clinete de la lsitas buscarCliente " + buscarCliente);
         clienteBuscado = servicioCliente.FindClienteForCedula(buscarCliente, amb);
@@ -2463,7 +2463,7 @@ public class Facturar extends SelectorComposer<Component> {
 
             reporteGeneral();
             if (accion.equals("create")) {
-                Executions.sendRedirect("/venta/facturar.zul");
+                Executions.sendRedirect("/venta/facturamov.zul");
             } else {
 //                Executions.sendRedirect("/venta/listafacturas.zul");
                 windowModCotizacionFact.detach();
@@ -2968,7 +2968,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public static void setSeleccionNotaEntrega(Set<Factura> seleccionNotaEntrega) {
-        Facturar.seleccionNotaEntrega = seleccionNotaEntrega;
+        FacturarMov.seleccionNotaEntrega = seleccionNotaEntrega;
     }
 
     public BigDecimal getSubTotalBaseCero() {
@@ -3151,7 +3151,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public static void setValidaBorrado(Boolean validaBorrado) {
-        Facturar.validaBorrado = validaBorrado;
+        FacturarMov.validaBorrado = validaBorrado;
     }
 
     public String getUsuLoginVal() {
@@ -3310,7 +3310,7 @@ public class Facturar extends SelectorComposer<Component> {
     }
 
     public static void setTIPOPRECIO(String TIPOPRECIO) {
-        Facturar.TIPOPRECIO = TIPOPRECIO;
+        FacturarMov.TIPOPRECIO = TIPOPRECIO;
     }
 
     public Producto getPRODUCTOCAMBIO() {

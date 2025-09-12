@@ -5,6 +5,7 @@
  */
 package com.ec.untilitario;
 
+import com.ec.entidad.Cliente;
 import com.ec.entidad.DetalleFactura;
 import com.ec.entidad.DetalleGuiaremision;
 import com.ec.entidad.DetalleNotaDebitoCredito;
@@ -12,12 +13,15 @@ import com.ec.entidad.DetalleRetencionCompra;
 import com.ec.entidad.Factura;
 import com.ec.entidad.Guiaremision;
 import com.ec.entidad.NotaCreditoDebito;
+import com.ec.entidad.Parametrizar;
 import com.ec.entidad.RetencionCompra;
 import com.ec.entidad.Tipoambiente;
+import com.ec.servicio.ServicioCliente;
 import com.ec.servicio.ServicioDetalleFactura;
 import com.ec.servicio.ServicioDetalleGuia;
 import com.ec.servicio.ServicioDetalleNotaCredito;
 import com.ec.servicio.ServicioDetalleRetencionCompra;
+import com.ec.servicio.ServicioParametrizar;
 import com.ec.servicio.ServicioTipoAmbiente;
 import ec.gob.sri.comprobantes.exception.RespuestaAutorizacionException;
 import ec.gob.sri.comprobantes.util.AutorizacionComprobantesWs;
@@ -50,7 +54,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import javax.xml.namespace.QName;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 
 /**
  *
@@ -62,8 +65,11 @@ public class AutorizarDocumentos {
     ServicioDetalleGuia servicioDetalleGuia = new ServicioDetalleGuia();
     ServicioDetalleNotaCredito servicioDetalleNotaCredito = new ServicioDetalleNotaCredito();
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
+    ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
 
     ServicioDetalleRetencionCompra servicioDetalleRetencionCompra = new ServicioDetalleRetencionCompra();
+
+    ServicioCliente servicioCliente = new ServicioCliente();
 
     public static String removeCaracteres(String input) {
         // Cadena de caracteres original a sustituir.
@@ -227,12 +233,11 @@ public class AutorizarDocumentos {
         }
     }
 
-    
-    
     //<editor-fold defaultstate="collapsed" desc=" ARMAR FACTURA"> 
     public String generaXMLFactura(Factura valor, Tipoambiente amb, String folderDestino, String nombreArchivoXML, Boolean autorizada, Date fechaAutorizacion) {
         try {
 
+            Parametrizar param = servicioParametrizar.FindALlParametrizar();
             /*VERIFICAR AGREGAR IVA 5 13 14 15*/
             String TARIFA0 = ("            <totalImpuesto>\n"
                     + "                <codigo>" + valor.getFacCodIva() + "</codigo>\n"
@@ -300,15 +305,27 @@ public class AutorizarDocumentos {
             linea = "";
             if (autorizada) {
                 linea = ("<autorizacion>"
-                        +" <estado>AUTORIZADO</estado>\n"
+                        + " <estado>AUTORIZADO</estado>\n"
                         + " <numeroAutorizacion>" + claveAcceso + "</numeroAutorizacion>\n"
                         + " <fechaAutorizacion>" + formato.format(fechaAutorizacion) + "</fechaAutorizacion>\n"
                         + " <ambiente>" + tipoAmbiente + "</ambiente>\n"
                         + " <comprobante>\n");
                 build.append(linea);
             }
-            
-              linea = ("<factura id=\"comprobante\" version=\"1.1.0\">\n");
+            String comprador = "";
+            if (param.getParConDatos() && valor.getIdCliente().getCliNombre().toUpperCase().contains("CONSUMIDOR")) {
+
+                Cliente cli = servicioCliente.findClienteLikeCedula("1718264839001");
+                comprador = "        <tipoIdentificacionComprador>" + cli.getIdTipoIdentificacion().getTidCodigo() + "</tipoIdentificacionComprador>\n"
+                        + "        <razonSocialComprador>" + removeCaracteres(cli.getCliNombre()) + "</razonSocialComprador>\n"
+                        + "        <identificacionComprador>" + cli.getCliCedula() + "</identificacionComprador>\n";
+
+            } else {
+                comprador = "        <tipoIdentificacionComprador>" + valor.getIdCliente().getIdTipoIdentificacion().getTidCodigo() + "</tipoIdentificacionComprador>\n"
+                        + "        <razonSocialComprador>" + removeCaracteres(valor.getIdCliente().getCliNombre()) + "</razonSocialComprador>\n"
+                        + "        <identificacionComprador>" + valor.getIdCliente().getCliCedula() + "</identificacionComprador>\n";
+            }
+            linea = ("<factura id=\"comprobante\" version=\"1.1.0\">\n");
             build.append(linea);
 //            BigDecimal valorICe = (valor.getFacTotalBaseGravaba().multiply(amb.getAmValorIce())).divide(BigDecimal.valueOf(100), 2, RoundingMode.FLOOR);
 
@@ -342,9 +359,7 @@ public class AutorizarDocumentos {
                     + "        <dirEstablecimiento>" + removeCaracteres(amb.getAmDireccionMatriz()) + "</dirEstablecimiento>\n"
                     //   + "        <contribuyenteEspecial>0047</contribuyenteEspecial>\n"
                     + "        <obligadoContabilidad>" + amb.getLlevarContabilidad() + "</obligadoContabilidad>\n"
-                    + "        <tipoIdentificacionComprador>" + valor.getIdCliente().getIdTipoIdentificacion().getTidCodigo() + "</tipoIdentificacionComprador>\n"
-                    + "        <razonSocialComprador>" + removeCaracteres(valor.getIdCliente().getCliNombre()) + "</razonSocialComprador>\n"
-                    + "        <identificacionComprador>" + valor.getIdCliente().getCliCedula() + "</identificacionComprador>\n"
+                    + comprador
                     + "        <totalSinImpuestos>" + ArchivoUtils.redondearDecimales(valor.getFacSubtotal(), 2) + "</totalSinImpuestos>\n"
                     + "         <totalSubsidio>" + valor.getFacSubsidio().setScale(2, RoundingMode.FLOOR) + "</totalSubsidio>\n"
                     + "        <totalDescuento>" + valor.getFacDescuento().setScale(2, RoundingMode.FLOOR) + "</totalDescuento>\n"
@@ -430,18 +445,17 @@ public class AutorizarDocumentos {
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
                     + "   </infoAdicional>\n"
                     + "</factura>\n");
-            
-              build.append(linea);
-              
-             if (autorizada) {
+
+            build.append(linea);
+
+            if (autorizada) {
                 linea = ("</comprobante>"
-//                        +" <estado>AUTORIZADO</estado>\n"
+                        //                        +" <estado>AUTORIZADO</estado>\n"
                         + " <mensajes></mensajes>"
                         + " </autorizacion>\n");
-                  build.append(linea);
+                build.append(linea);
             }
-             
-          
+
             /*IMPRIME EL XML DE LA FACTURA*/
             System.out.println("XML " + build);
             String pathArchivoSalida = "";
@@ -467,8 +481,6 @@ public class AutorizarDocumentos {
     }
 //</editor-fold > 
 
-    
-  
     //<editor-fold defaultstate="collapsed" desc=" ARMAR NOTA DE CREDITO"> 
     public String generaXMLNotaCreditoDebito(NotaCreditoDebito valor, Tipoambiente amb, String folderDestino, String nombreArchivoXML, String NCoND) {
         FileOutputStream out;
@@ -566,7 +578,7 @@ public class AutorizarDocumentos {
                     + (valor.getFacSubt14().doubleValue() > 0 ? TARIFA14 : "\n")
                     + (valor.getFacSubt15().doubleValue() > 0 ? TARIFA15 : "\n")
                     + "        </totalConImpuestos>\n"
-                    + "        <motivo>" + (valor.getFacMotivo() != null ? valor.getFacMotivo(): "DEVOLUCION") + "</motivo>\n" //Motivo
+                    + "        <motivo>" + (valor.getFacMotivo() != null ? valor.getFacMotivo() : "DEVOLUCION") + "</motivo>\n" //Motivo
                     + "    </infoNota" + tipoDocumento + ">\n");
             build.append(linea);
             if (tipoDocumento.equals("Credito")) {
@@ -654,9 +666,6 @@ public class AutorizarDocumentos {
     }
 
     //</editor-fold>
-    
-    
-    
     //<editor-fold defaultstate="collapsed" desc=" ARMAR GUIA DE REMISION">  
     public String generaXMLGuiaRemision(Guiaremision valor, Tipoambiente amb, String folderDestino, String nombreArchivoXML) {
         FileOutputStream out;
@@ -864,9 +873,8 @@ public class AutorizarDocumentos {
         return "";
     }
     //</editor-fold>
-    
-    
-     //<editor-fold defaultstate="collapsed" desc=" ARMAR FACTURA"> 
+
+    //<editor-fold defaultstate="collapsed" desc=" ARMAR FACTURA"> 
     public String generaXMLFacturaDescarga(Factura valor, Tipoambiente amb, String folderDestino, String nombreArchivoXML, Boolean autorizada, Date fechaAutorizacion) {
         try {
 
@@ -916,19 +924,18 @@ public class AutorizarDocumentos {
 
             FileOutputStream out = null;
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            
-            
-        // 1. Convertir Date → Instant
-        Instant instant = fechaAutorizacion.toInstant();
 
-        // 2. Aplicar un offset (por ejemplo, -05:00)
-        ZoneOffset offset = ZoneOffset.of("-05:00");
-        OffsetDateTime odt = OffsetDateTime.ofInstant(instant, offset);
+            // 1. Convertir Date → Instant
+            Instant instant = fechaAutorizacion.toInstant();
 
-        // 3. Formatear como cadena en formato ISO 8601
-        String resultado = odt.toString();
+            // 2. Aplicar un offset (por ejemplo, -05:00)
+            ZoneOffset offset = ZoneOffset.of("-05:00");
+            OffsetDateTime odt = OffsetDateTime.ofInstant(instant, offset);
 
-        System.out.println(resultado); // Ej: 2025-07-29T12:58:32.123-05:00
+            // 3. Formatear como cadena en formato ISO 8601
+            String resultado = odt.toString();
+
+            System.out.println(resultado); // Ej: 2025-07-29T12:58:32.123-05:00
 
             StringBuilder build = new StringBuilder();
             String linea = "";
@@ -950,15 +957,15 @@ public class AutorizarDocumentos {
             linea = "";
             if (autorizada) {
                 linea = ("<autorizacion>"
-                        +" <estado>AUTORIZADO</estado>\n"
+                        + " <estado>AUTORIZADO</estado>\n"
                         + " <numeroAutorizacion>" + claveAcceso + "</numeroAutorizacion>\n"
-                        + " <fechaAutorizacion>" + resultado+ "</fechaAutorizacion>\n"
+                        + " <fechaAutorizacion>" + resultado + "</fechaAutorizacion>\n"
                         + " <ambiente>" + tipoAmbiente + "</ambiente>\n"
                         + " <comprobante>\n");
                 build.append(linea);
             }
-            
-              linea = ("<![CDATA[<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <factura id=\"comprobante\" version=\"1.1.0\">\n");
+
+            linea = ("<![CDATA[<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?> <factura id=\"comprobante\" version=\"1.1.0\">\n");
             build.append(linea);
 //            BigDecimal valorICe = (valor.getFacTotalBaseGravaba().multiply(amb.getAmValorIce())).divide(BigDecimal.valueOf(100), 2, RoundingMode.FLOOR);
 
@@ -1080,18 +1087,17 @@ public class AutorizarDocumentos {
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
                     + "   </infoAdicional>\n"
                     + "</factura>]]>");
-            
-              build.append(linea);
-              
-             if (autorizada) {
+
+            build.append(linea);
+
+            if (autorizada) {
                 linea = ("</comprobante>\n"
-//                        +" <estado>AUTORIZADO</estado>\n"
+                        //                        +" <estado>AUTORIZADO</estado>\n"
                         + " <mensajes></mensajes>\n"
                         + " </autorizacion>\n");
-                  build.append(linea);
+                build.append(linea);
             }
-             
-          
+
             /*IMPRIME EL XML DE LA FACTURA*/
             System.out.println("XML " + build);
             String pathArchivoSalida = "";
@@ -1116,9 +1122,5 @@ public class AutorizarDocumentos {
         return null;
     }
 //</editor-fold > 
-    
-    
+
 }
-
-
-

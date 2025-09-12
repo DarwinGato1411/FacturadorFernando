@@ -75,7 +75,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 menuKardex.setVisible(Boolean.FALSE);
                 menuReportes.setVisible(Boolean.FALSE);
                 btnAdministarVenta.setVisible(Boolean.FALSE);
-                btnHisDeclaraciones.setVisible(Boolean.FALSE);
+//                btnHisDeclaraciones.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);
@@ -93,6 +93,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnFacturar")
     public void doFacturar() {
         Executions.sendRedirect("/venta/facturar.zul");
+    }
+    @Listen("onClick = #btnFacturarMov")
+    public void btnFacturarMov() {
+        Executions.sendRedirect("/venta/facturamov.zul");
     }
 
     @Listen("onClick = #btnKardex")
@@ -128,6 +132,10 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnNotaVentas")
     public void doAdministrarNotaVenta() {
         Executions.sendRedirect("/venta/listafacturas.zul");
+    }
+    @Listen("onClick = #btnNotaVentasMovil")
+    public void btnNotaVentasMovil() {
+        Executions.sendRedirect("/venta/listafacturasmovil.zul");
     }
 
     @Listen("onClick = #btnNotaVenta")

@@ -37,6 +37,7 @@
                         <textbox    
                             id="txtRuc" 
                             onOK="@command('buscarAduana')"
+                            onChange="@command('buscarAduana')"
                             value="@bind(vm.cliente.cliCedula)" 
                             class="input_text" 
                         />
