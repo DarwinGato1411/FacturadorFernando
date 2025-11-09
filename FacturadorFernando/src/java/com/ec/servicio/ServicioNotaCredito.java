@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -58,11 +60,11 @@ public class ServicioNotaCredito {
             DetalleNotaDebitoCredito detalleNotaCreditoDebito = null;
             for (DetalleFacturaDAO item : detalleNotaCreditoDebitoDAOs) {
                 detalleNotaCreditoDebito = new DetalleNotaDebitoCredito(item.getCantidad(),
-                            item.getDescripcion(),
-                            item.getSubTotal(),
-                            item.getTotal(),
-                            item.getProducto(),
-                            notaCreditoDebito, item.getTipoVenta());
+                        item.getDescripcion(),
+                        item.getSubTotal(),
+                        item.getTotal(),
+                        item.getProducto(),
+                        notaCreditoDebito, item.getTipoVenta());
                 detalleNotaCreditoDebito.setDetIva(item.getDetIva());
                 detalleNotaCreditoDebito.setDetTotalconiva(item.getDetTotalconiva());
 
@@ -78,7 +80,19 @@ public class ServicioNotaCredito {
                 em.persist(detalleNotaCreditoDebito);
             }
             em.getTransaction().commit();
+        } catch (ConstraintViolationException e) {
+            System.out.println("❌ ERROR DE VALIDACIÓN EN 'prePersist':");
+            for (ConstraintViolation<?> v : e.getConstraintViolations()) {
+                System.out.println("--------------------------------------");
+                System.out.println("Entidad:  " + v.getRootBeanClass().getSimpleName());
+                System.out.println("Propiedad: " + v.getPropertyPath());
+                System.out.println("Valor inválido: " + v.getInvalidValue());
+                System.out.println("Mensaje: " + v.getMessage());
+            }
+
         } catch (Exception e) {
+            e.printStackTrace();
+
             System.out.println("Error en insertar notaCreditoDebito GUARDAR CON DETALLE " + e.getMessage());
         } finally {
             em.close();
@@ -544,6 +558,5 @@ public class ServicioNotaCredito {
 
         return listaNotaCreditoDebitos;
     }
-    
-   
+
 }
