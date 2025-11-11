@@ -492,12 +492,13 @@
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                    <listheader width="10%"   label="COD" align="left" />
+                                    <listheader width="7%"   label="COD" align="left" />
+                                    <listheader width="7%"   label="AUX" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
                                     <listheader width="25%"  label="DESCRIPCIÓN" align="left" />
-                                    <listheader width="15%"  label="PRE REAL" align="left" />
-                                    <listheader width="15%"  label="PRECIO" align="left" />                                         
+                                    <listheader width="12%"  label="PRE REAL" align="left" />
+                                    <listheader width="12%"  label="PRECIO" align="left" />                                         
                                     <listheader width="15%"  label="TOTAL" align="left" />
                                                                                                                     
                                 </listhead>
@@ -516,6 +517,16 @@
                                                      value="@bind(each.codigo)" 
                                                      style="font-size:10px"
                                                      onOK="@command('buscarPorCodigo',valor=each)"
+                                                        
+                                            />
+                                        </listcell>
+                                        <listcell zclass = "mycss-listcell" >
+                                            
+                                            <!--onDoubleClick="@command('cambiarRegistro',valor=each)"-->
+                                            <textbox        readonly="TRUE"                                                    
+                                                     class="form-control form-control-sm"
+                                                     value="@bind(each.producto.prodCodigoAux)" 
+                                                     style="font-size:10px"
                                                         
                                             />
                                         </listcell>

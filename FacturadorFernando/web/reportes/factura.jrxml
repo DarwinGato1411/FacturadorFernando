@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factura" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
-	<property name="ireport.zoom" value="2.143588810000002"/>
-	<property name="ireport.x" value="140"/>
-	<property name="ireport.y" value="579"/>
+	<property name="ireport.zoom" value="1.948717100000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="166"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -34,7 +34,7 @@ FROM
 factura
 INNER JOIN detalle_factura ON detalle_factura.id_factura = factura.id_factura
 INNER JOIN producto ON detalle_factura.id_producto = producto.id_producto
-where factura.id_factura=$P{id_factura}]]>
+where factura.id_factura=$P{id_factura};]]>
 		</queryString>
 		<field name="id_factura" class="java.lang.Integer"/>
 		<field name="id_estado" class="java.lang.Integer"/>
@@ -69,7 +69,7 @@ where factura.id_factura=$P{id_factura}]]>
 		<field name="fac_unidad_tiempo" class="java.lang.String"/>
 		<field name="estadosri" class="java.lang.String"/>
 		<field name="mensajesri" class="java.lang.String"/>
-		<field name="fac_fecha_autorizacion" class="java.sql.Date"/>
+		<field name="fac_fecha_autorizacion" class="java.sql.Timestamp"/>
 		<field name="fac_clave_acceso" class="java.lang.String"/>
 		<field name="cod_tipoambiente" class="java.lang.Integer"/>
 		<field name="fac_clave_autorizacion" class="java.lang.String"/>
@@ -96,6 +96,30 @@ where factura.id_factura=$P{id_factura}]]>
 		<field name="fac_propina" class="java.math.BigDecimal"/>
 		<field name="fac_mesa" class="java.lang.Integer"/>
 		<field name="fac_mesa_historial" class="java.lang.Integer"/>
+		<field name="id_orden_trabajo" class="java.lang.Integer"/>
+		<field name="fac_fecha_cobro" class="java.sql.Date"/>
+		<field name="fac_placa" class="java.lang.String"/>
+		<field name="fac_marca" class="java.lang.String"/>
+		<field name="fac_anio" class="java.lang.Integer"/>
+		<field name="fac_cilindraje" class="java.lang.String"/>
+		<field name="fac_kilometraje" class="java.lang.String"/>
+		<field name="fac_chasis" class="java.lang.String"/>
+		<field name="fac_madre" class="java.lang.String"/>
+		<field name="fac_hija" class="java.lang.String"/>
+		<field name="fac_destino" class="java.lang.String"/>
+		<field name="id_referencia" class="java.lang.Integer"/>
+		<field name="fac_valor_ice" class="java.math.BigDecimal"/>
+		<field name="fac_base_ice" class="java.math.BigDecimal"/>
+		<field name="fac_motivo" class="java.lang.String"/>
+		<field name="fac_subt_5" class="java.math.BigDecimal"/>
+		<field name="fac_iva_5" class="java.math.BigDecimal"/>
+		<field name="fac_subt_13" class="java.math.BigDecimal"/>
+		<field name="fac_iva_13" class="java.math.BigDecimal"/>
+		<field name="fac_subt_14" class="java.math.BigDecimal"/>
+		<field name="fac_iva_14" class="java.math.BigDecimal"/>
+		<field name="fac_subt_15" class="java.math.BigDecimal"/>
+		<field name="fac_iva_15" class="java.math.BigDecimal"/>
+		<field name="fac_total_amortizado" class="java.math.BigDecimal"/>
 		<field name="id_detalle" class="java.lang.Integer"/>
 		<field name="id_producto" class="java.lang.Integer"/>
 		<field name="det_cantidad" class="java.math.BigDecimal"/>
@@ -130,6 +154,7 @@ where factura.id_factura=$P{id_factura}]]>
 		<field name="numerotel" class="java.lang.String"/>
 		<field name="tipo_identificacion_propietario" class="java.lang.String"/>
 		<field name="codigo_canton_matriculacion" class="java.lang.String"/>
+		<field name="det_valor_ice" class="java.math.BigDecimal"/>
 		<field name="id_sub_categoria" class="java.lang.Integer"/>
 		<field name="prod_codigo" class="java.lang.String"/>
 		<field name="prod_nombre" class="java.lang.String"/>
@@ -166,6 +191,18 @@ where factura.id_factura=$P{id_factura}]]>
 		<field name="prod_servlet_url" class="java.lang.String"/>
 		<field name="prod_espropina" class="java.lang.String"/>
 		<field name="pord_costo_promedio_compra" class="java.math.BigDecimal"/>
+		<field name="prod_fecha_registro" class="java.sql.Date"/>
+		<field name="prod_factor_conversion" class="java.math.BigDecimal"/>
+		<field name="prod_unidad_medida" class="java.lang.String"/>
+		<field name="prod_unidad_conversion" class="java.lang.String"/>
+		<field name="prod_esreceta" class="java.lang.Boolean"/>
+		<field name="prod_porcentaje_ice" class="java.math.BigDecimal"/>
+		<field name="prod_graba_ice" class="java.lang.Boolean"/>
+		<field name="prod_detalle" class="java.lang.String"/>
+		<field name="prod_codigo_iva" class="java.math.BigDecimal"/>
+		<field name="prod_porcentaje_iva" class="java.math.BigDecimal"/>
+		<field name="prod_activo" class="java.lang.Boolean"/>
+		<field name="prod_codigo_aux" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="numfactura" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -591,10 +628,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</datasetParameter>
 						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					</datasetRun>
-					<jr:column width="95">
+					<jr:column width="70">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="95" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="70" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.25"/>
 									<topPen lineWidth="0.25"/>
@@ -610,7 +647,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="95" height="15"/>
+								<reportElement x="0" y="0" width="70" height="15"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -618,10 +655,37 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60">
+					<jr:column width="70">
+						<jr:columnHeader height="17" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="70" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+								<box leftPadding="2" bottomPadding="0" rightPadding="2">
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+									<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</textElement>
+								<text><![CDATA[Codigo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="70" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{prod_codigo_aux}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="60" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="50" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.25"/>
 									<topPen lineWidth="0.25"/>
@@ -637,7 +701,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField>
-								<reportElement x="0" y="0" width="60" height="15"/>
+								<reportElement x="0" y="0" width="50" height="15"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -645,10 +709,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="159">
+					<jr:column width="166">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="159" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="166" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.25"/>
 									<topPen lineWidth="0.25"/>
@@ -664,7 +728,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true">
-								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="159" height="15"/>
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="166" height="15"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="8"/>
 								</textElement>
@@ -672,10 +736,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60">
+					<jr:column width="50">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="60" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="50" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.1"/>
 									<topPen lineWidth="0.1"/>
@@ -691,7 +755,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="###0.00000;-###0.00000">
-								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="15"/>
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="15"/>
 								<box rightPadding="2">
 									<pen lineWidth="0.25"/>
 									<topPen lineWidth="0.0"/>
@@ -706,10 +770,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60">
+					<jr:column width="50">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="60" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="50" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.1"/>
 									<topPen lineWidth="0.1"/>
@@ -725,7 +789,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField pattern="###0.00;-###0.00" isBlankWhenNull="false">
-								<reportElement mode="Transparent" x="0" y="0" width="60" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+								<reportElement mode="Transparent" x="0" y="0" width="50" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
 									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 								</textElement>
@@ -733,10 +797,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60">
+					<jr:column width="50">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement mode="Opaque" x="0" y="0" width="60" height="17"/>
+								<reportElement mode="Opaque" x="0" y="0" width="50" height="17"/>
 								<box leftPadding="2" bottomPadding="0" rightPadding="2">
 									<pen lineWidth="0.1"/>
 									<topPen lineWidth="0.1"/>
@@ -752,7 +816,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField pattern="###0.00000;-###0.00000" isBlankWhenNull="false">
-								<reportElement mode="Transparent" x="0" y="0" width="60" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+								<reportElement mode="Transparent" x="0" y="0" width="50" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
 									<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 								</textElement>
@@ -760,10 +824,10 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60">
+					<jr:column width="50">
 						<jr:columnHeader style="table_TD" height="17" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="60" height="17"/>
+								<reportElement x="0" y="0" width="50" height="17"/>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font size="6"/>
 								</textElement>
@@ -772,7 +836,7 @@ where tipoambiente.cod_tipoambiente=$P{codTipoAmbiente} and  factura.fac_numero=
 						</jr:columnHeader>
 						<jr:detailCell style="table_TD" height="15" rowSpan="1">
 							<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00">
-								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="15"/>
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="15"/>
 								<box leftPadding="1" rightPadding="2">
 									<pen lineWidth="0.25"/>
 									<topPen lineWidth="0.0"/>
