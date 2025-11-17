@@ -87,7 +87,8 @@ public class ServicioDetalleFactura {
             listadetallefacturas = (List<DetalleFactura>) query.getResultList();
           em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta detallefactura");
+            e.printStackTrace();
+            System.out.println("Error en lsa consulta detallefactura "+e.getMessage());
         } finally {
             em.close();
         }

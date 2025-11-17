@@ -217,7 +217,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -273,7 +273,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -300,7 +300,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -327,7 +327,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -354,7 +354,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -376,7 +376,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -398,7 +398,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -446,7 +446,8 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            e.printStackTrace();
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -467,7 +468,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -489,7 +490,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -511,7 +512,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -541,7 +542,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -563,7 +564,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -593,7 +594,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -834,7 +835,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -863,7 +864,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -886,7 +887,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -909,7 +910,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -937,7 +938,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -961,7 +962,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -982,7 +983,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -1037,7 +1038,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -1065,7 +1066,7 @@ public class ServicioFactura {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
@@ -1143,7 +1144,7 @@ public class ServicioFactura {
             listaFacturas = (List<Factura>) query.getResultList();
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en lsa consulta factura");
+            System.out.println("Error en lsa consulta factura "+e.getLocalizedMessage());
         } finally {
             em.close();
         }
