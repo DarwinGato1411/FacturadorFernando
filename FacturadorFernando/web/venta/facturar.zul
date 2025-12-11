@@ -213,17 +213,17 @@
                                         class="input" 
                                     />
                                 </div>
-                                  <div class="wrapper_input">
-                                       <button 
-                                            autodisable="self"   
-                                            class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                            onClick="@command('Guardar',valor='SG',envia='S')"
-                                            tooltiptext="Guardar y Envia al SRI (esta opcion es de envio automatico) "
-                                            label="Facturar y Enviar al SRI "
-                                            width="100%"
-                                        />
+                                <div class="wrapper_input">
+                                    <button 
+                                        autodisable="self"   
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        onClick="@command('Guardar',valor='SG',envia='S')"
+                                        tooltiptext="Guardar y Envia al SRI (esta opcion es de envio automatico) "
+                                        label="Facturar y Enviar al SRI "
+                                        width="100%"
+                                    />
 
-                                    </div>
+                                </div>
                             </div>
                             <div class="wrapper_data">
                                 <div class="wrapper_input">
@@ -246,7 +246,7 @@
                                         class="input" 
                                     />
                                 </div>
-<!--                                <div class="wrapper_input">
+                                <!--                                <div class="wrapper_input">
                                     <span>IVA 12%:</span>
                                     <decimalbox  
                                         format="###.##"  
@@ -282,9 +282,9 @@
                                         class="input" 
                                     />
                                 </div>
-                               <div class="wrapper_input">
+                                <div class="wrapper_input">
                                 
-                                      <button 
+                                    <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
                                         onClick="@command('Guardar',valor='SG',envia='N')"
@@ -490,7 +490,8 @@
                                                 class="btn btn btn-secondary btn-sm "
                                                 tooltiptext="Eliminar registros seleccionados"/>
                                     </listheader>
-                                   <listheader width="15%"   label="COD" align="left" />
+                                    <listheader width="15%"   label="COD" align="left" />
+                                    <listheader width="15%"   label="AUX" align="left" />
                                     <listheader width="10%"   label="CANT" align="left"  />
                                     <listheader width="10%"   label="% DESC" align="left"  />                                            
                                     <listheader width="30%"  label="DESCRIPCIÓN" align="left" />
@@ -511,10 +512,21 @@
                                             
                                             <!--onDoubleClick="@command('cambiarRegistro',valor=each)"-->
                                             <textbox                                                            
-                                                     class="form-control form-control-sm"
-                                                     value="@bind(each.codigo)" 
-                                                     style="font-size:10px"
-                                                     onOK="@command('buscarPorCodigo',valor=each)"
+                                                class="form-control form-control-sm"
+                                                value="@bind(each.codigo)" 
+                                                style="font-size:10px"
+                                                onOK="@command('buscarPorCodigo',valor=each)"
+                                                        
+                                            />
+                                        </listcell>
+                                        <listcell zclass = "mycss-listcell" >
+                                            
+                                            <!--onDoubleClick="@command('cambiarRegistro',valor=each)"-->
+                                            <textbox           readonly="true"                                                 
+                                                               class="form-control form-control-sm"
+                                                               value="@bind(each.producto.prodCodigoAux)" 
+                                                               style="font-size:10px"
+                                                               onOK="@command('buscarPorCodigo',valor=each)"
                                                         
                                             />
                                         </listcell>
@@ -549,7 +561,7 @@
                                                         value="@bind(each.totalInicial)"  width="99%" />
                                         </listcell>
                                         
-                                          <listcell zclass = "mycss-listcell">
+                                        <listcell zclass = "mycss-listcell">
                                             <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,7})?$/:Ingrese solo numeros"                                            
                                                         onOK="@command('calcularValoresDesCantidadCalcu',valor=each)"
                                                         class="form-control form-control-sm"                                                                                                                            

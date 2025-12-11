@@ -160,18 +160,18 @@ public class Producto implements Serializable {
 
     @Column(name = "prod_graba_ice")
     private Boolean prodGrabaIce;
-    
+
     @Column(name = "prod_porcentaje_ice")
     private BigDecimal prodPorcentajeIce;
 
-    
-        @Column(name = "prod_codigo_iva")
+    @Column(name = "prod_codigo_iva")
     private Integer prodCodigoIva;
     @Column(name = "prod_porcentaje_iva")
     private Integer prodPorcentajeIva;
 
-    
-    
+    @Column(name = "prod_codigo_aux")
+    private String prodCodigoAux;
+
     public Producto() {
     }
 
@@ -541,7 +541,7 @@ public class Producto implements Serializable {
     }
 
     public Boolean getProdGrabaIce() {
-        return prodGrabaIce==null?Boolean.FALSE:prodGrabaIce;
+        return prodGrabaIce == null ? Boolean.FALSE : prodGrabaIce;
     }
 
     public void setProdGrabaIce(Boolean prodGrabaIce) {
@@ -549,7 +549,7 @@ public class Producto implements Serializable {
     }
 
     public BigDecimal getProdPorcentajeIce() {
-        return prodPorcentajeIce==null?BigDecimal.ZERO:prodPorcentajeIce;
+        return prodPorcentajeIce == null ? BigDecimal.ZERO : prodPorcentajeIce;
     }
 
     public void setProdPorcentajeIce(BigDecimal prodPorcentajeIce) {
@@ -570,6 +570,14 @@ public class Producto implements Serializable {
 
     public void setProdPorcentajeIva(Integer prodPorcentajeIva) {
         this.prodPorcentajeIva = prodPorcentajeIva;
+    }
+
+    public String getProdCodigoAux() {
+        return prodCodigoAux;
+    }
+
+    public void setProdCodigoAux(String prodCodigoAux) {
+        this.prodCodigoAux = prodCodigoAux;
     }
 
     @Override
