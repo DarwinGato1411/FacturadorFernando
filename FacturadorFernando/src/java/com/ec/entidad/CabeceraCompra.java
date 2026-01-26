@@ -135,6 +135,9 @@ public class CabeceraCompra implements Serializable {
     @ManyToOne
     private Tipoambiente codTipoambiente;
 
+    @Column(name = "cab_saldo_factura")
+    private BigDecimal cabSaldoFactura;
+
     public CabeceraCompra() {
     }
 
@@ -390,6 +393,14 @@ public class CabeceraCompra implements Serializable {
 
     public void setUsuIdUsuario(Usuario usuIdUsuario) {
         this.usuIdUsuario = usuIdUsuario;
+    }
+
+    public BigDecimal getCabSaldoFactura() {
+        return cabSaldoFactura;
+    }
+
+    public void setCabSaldoFactura(BigDecimal cabSaldoFactura) {
+        this.cabSaldoFactura = cabSaldoFactura;
     }
 
 //    @XmlTransient

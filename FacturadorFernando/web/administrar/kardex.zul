@@ -7,7 +7,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk  contentStyle="overflow:auto" with="100%" >
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" id="idHbox"
           viewModel="@id('vm') @init('com.ec.controlador.AdmKardex')" width="100%">
@@ -146,8 +146,9 @@
                                 <listheader width="100%" label="Detalle" sort="auto(detkDetalles)" />
                                 <listheader width="100%" label="F. registro" sort="auto(detkFechacreacion)" />
                                 <listheader width="100%" label="Tipo" sort="auto(idTipokardex.tipkDescripcion)" />
-                                <listheader width="100%" label="Kardex Manual" sort="auto(detkKardexmanual)" />
-                                <listheader width="100%" label="Nº Documento"  />
+                                <listheader width="100%" label="Documento" sort="auto(detkKardexmanual)" />
+                                <listheader width="100%" label=""  />
+                                <!--<listheader width="100%" label=""  />-->
                                     
                                 
                             
@@ -187,20 +188,20 @@
                                                    class="form-control form-control-sm"
                                                    style="font-size:10px;background-color:#d6eefd"/>
                                     </listcell>
-                                    <zk if="${each.detkKardexmanual}" > 
+<!--                                    <zk if="${each.detkKardexmanual}" > 
                                         <listcell zclass = "mycss-listcell" >
                                             <label value="MANUAL" width="96%"
                                                        class="form-control form-control-sm"
                                                        style="font-size:10px;background-color:#d6eefd"/>
                                         </listcell>
-                                    </zk>
-                                    <zk if="${each.detkKardexmanual=='FALSE'}" > 
+                                    </zk>-->
+<!--                                    <zk if="${each.detkKardexmanual=='FALSE'}" > 
                                         <listcell  zclass = "mycss-listcell">
                                             <label value="Transaccion" width="96%"
                                                        class="form-control form-control-sm"
                                                        style="font-size:10px;background-color:#d6eefd"/>
                                         </listcell>
-                                    </zk>
+                                    </zk>-->
                                     <zk if="${each.idCompra != NULL}" > 
                                         <listcell  zclass = "mycss-listcell">
                                             <label value="@bind(each.idCompra.cabNumFactura ne null ? 'COM-'.concat(each.idCompra.cabNumFactura) : '')" width="96%"
@@ -220,6 +221,14 @@
                                             AJUSTE
                                         </listcell>
                                     </zk>
+                                    <listcell zclass = "mycss-listcell" >
+                                               <image  src="/iconos/delete.png"
+                                             width="40px"
+                                             height="25px"
+                                                    class="btn btn btn-secondary btn-sm grow"
+                                                    onClick="@command('eliminar',valor=each)" 
+                                                    tooltiptext="Reenviar su factura a autorizar"/>
+                                            </listcell>
                                 </listitem>
                             </template>
                         </listbox> 

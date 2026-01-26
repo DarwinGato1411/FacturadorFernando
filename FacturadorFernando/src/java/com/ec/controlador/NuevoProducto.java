@@ -103,11 +103,12 @@ public class NuevoProducto {
             this.producto.setProdUnidadMedida(producto.getProdUnidadMedida() == null ? "UNIDAD" : producto.getProdUnidadMedida());
             this.producto.setProdUnidadConversion(producto.getProdUnidadConversion() == null ? "UNIDAD" : producto.getProdUnidadConversion());
             this.producto.setProdFactorConversion(producto.getProdFactorConversion() == null ? BigDecimal.ONE : producto.getProdFactorConversion());
-            prodPrecioSubtotal = this.producto.getPordCostoVentaFinal().divide(BigDecimal.valueOf(1.12), 5, RoundingMode.FLOOR);
+            prodPrecioSubtotal = this.producto.getPordCostoVentaFinal().divide(BigDecimal.valueOf(1.15), 5, RoundingMode.FLOOR);
             accion = "update";
         } else {
             this.producto = new Producto(0, Boolean.FALSE);
-            this.producto.setProdIva(parametrizar.getParIva());
+             this.producto.setProdIva(BigDecimal.valueOf(15));
+            this.producto.setProdPorcentajeIva(15);
             this.producto.setPordCostoVentaRef(BigDecimal.ZERO);
             this.producto.setProdManoObra(BigDecimal.ZERO);
             this.producto.setProdCantidadInicial(BigDecimal.ZERO);
@@ -135,9 +136,9 @@ public class NuevoProducto {
         }
         verificarTipoProducto();
         muestraSubtotal();
-        listaIva.add(BigDecimal.valueOf(0));
+//        listaIva.add(BigDecimal.valueOf(0));
         listaIva.add(BigDecimal.valueOf(5));
-        listaIva.add(BigDecimal.valueOf(12));
+//        listaIva.add(BigDecimal.valueOf(12));
 //        listaIva.add(BigDecimal.valueOf(13));
 //        listaIva.add(BigDecimal.valueOf(14));
         listaIva.add(BigDecimal.valueOf(15));

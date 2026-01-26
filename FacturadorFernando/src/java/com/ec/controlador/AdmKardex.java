@@ -59,6 +59,8 @@ public class AdmKardex {
     private Tipoambiente amb = null;
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
+    private Producto prodSelected = null;
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -87,6 +89,8 @@ public class AdmKardex {
         if (kardex != null) {
             listaDetalleKardex = servicioDetalleKardex.findByIdKardex(kardex);
         }
+        prodSelected = valor;
+        servicioKardex.verificarKardexGeneralPorProducto(valor.getIdProducto());
 
     }
 
@@ -112,7 +116,7 @@ public class AdmKardex {
         if (kardex.getIdKardex() != null) {
             if (detalleKardex.getDetkCantidad() == null) {
                 Clients.showNotification("Verifique la cantidad ingresada",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                 return;
             }
 
@@ -133,10 +137,10 @@ public class AdmKardex {
             listaDetalleKardex = servicioDetalleKardex.findByIdKardex(kardex);
             detalleKardex = new DetalleKardex();
             Clients.showNotification("Registrado correctamente",
-                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
         } else {
             Clients.showNotification("Debe seleccionar un producto",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
         }
     }
 
@@ -212,4 +216,26 @@ public class AdmKardex {
         this.buscarProductoCodigo = buscarProductoCodigo;
     }
 
+    @Command
+    @NotifyChange({"kardex", "listaDetalleKardex"})
+    public void eliminar(@BindingParam("valor") DetalleKardex valor) {
+
+        try {
+            servicioDetalleKardex.eliminar(valor);
+            servicioKardex.verificarKardexGeneral();
+            kardex = servicioKardex.FindALlKardexs(prodSelected);
+            listaDetalleKardex.clear();
+            if (kardex != null) {
+                listaDetalleKardex = servicioDetalleKardex.findByIdKardex(kardex);
+            }
+            Clients.showNotification("Eliminado correctamente ",
+                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 3000, true);
+        } catch (Exception e) {
+            Clients.showNotification("Error al eliminar " + e.getMessage(),
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+        }
+
+    }
+    
+    
 }

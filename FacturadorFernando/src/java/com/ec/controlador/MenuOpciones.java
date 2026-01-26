@@ -39,13 +39,13 @@ public class MenuOpciones extends SelectorComposer<Component> {
     Menu menuReportes;
 
     @Wire("#btnAdministarVenta")
-    Menuitem btnAdministarVenta;
+    Menu btnAdministarVenta;
     @Wire("#muenGestionUsu")
     Menuitem muenGestionUsu;
     @Wire("#muenGestionEmpresas")
     Menuitem muenGestionEmpresas;
     @Wire("#btnHisDeclaraciones")
-    Menuitem btnHisDeclaraciones;
+    Menu btnHisDeclaraciones;
     @Wire("#btnGestionFactura")
     Menuitem btnGestionFactura;
     @Wire("#btnOrden")
@@ -56,9 +56,11 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Wire("#btnCrearCliente")
     Menuitem btnCrearCliente;
     @Wire("#btnConfSRI")
-    Menuitem btnConfSRI;
+    Menu btnConfSRI;
     @Wire("#btnRetencionManual")
     Menuitem btnRetencionManual;
+    @Wire("#menuRetencion")
+    Menu menuRetencion;
 
     UserCredential credential = new UserCredential();
     private String acceso = "";
@@ -82,6 +84,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
                 btnAdministarVenta.setVisible(Boolean.FALSE);
                 btnConfSRI.setVisible(Boolean.FALSE);
                 btnRetencionManual.setVisible(Boolean.FALSE);
+                menuRetencion.setVisible(Boolean.FALSE);
 
             } else {
                 muenGestionUsu.setVisible(Boolean.FALSE);
@@ -340,10 +343,12 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnComprasSRI() {
         Executions.sendRedirect("/compra/listacomprassri.zul");
     }
+
     @Listen("onClick = #btnRetencionManual")
     public void btnRetencionManual() {
         Executions.sendRedirect("/contabilidad/retencion.zul");
     }
+
     @Listen("onClick = #btnEmitRetencionManual")
     public void btnEmitRetencionManual() {
         Executions.sendRedirect("/contabilidad/listaretencion.zul");
@@ -354,7 +359,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void btnCierreCaja() {
 //        if (credential.getUsuarioSistema().getUsuNivel() != 1) {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/cierrecaja.zul", null, null);
+                "/nuevo/cierrecaja.zul", null, null);
         window.doModal();
 //        } else {
 //            Clients.showNotification("El usuario administrador no puede cerrar una caja",
@@ -367,7 +372,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void nuevoProducto() {
 
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/producto.zul", null, null);
+                "/nuevo/producto.zul", null, null);
         window.doModal();
 
     }
@@ -376,7 +381,7 @@ public class MenuOpciones extends SelectorComposer<Component> {
     public void nuevoCliente() {
 
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/cliente.zul", null, null);
+                "/nuevo/cliente.zul", null, null);
         window.doModal();
 
     }
@@ -411,5 +416,15 @@ public class MenuOpciones extends SelectorComposer<Component> {
     @Listen("onClick = #btnGestionFactura")
     public void btnGestionFactura() {
         Executions.sendRedirect("/administrar/gestionfactura.zul");
+    }
+
+    @Listen("onClick = #btnNotaVentasMovil")
+    public void btnNotaVentasMovil() {
+        Executions.sendRedirect("/venta/listafacturasmovil.zul");
+    }
+
+    @Listen("onClick = #btnFacturarMov")
+    public void btnFacturarMov() {
+        Executions.sendRedirect("/venta/facturamov.zul");
     }
 }

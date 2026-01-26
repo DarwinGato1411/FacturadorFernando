@@ -4,10 +4,10 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
-
+ <?link rel="icon" type="image/x-icon" href="/imagenes/logo/paybillslogo.png"?> 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk  contentStyle="overflow:auto" class="col-12 col-sm-12 col-md-12 col-lg-12" >
 
  
@@ -237,14 +237,15 @@
                                     </listcell>
                                     <zk if="${each.facEstado=='PE'}" > 
                                         <listcell zclass = "mycss-listcell" style="background:#FFB1A0;color: red" >
-                                            <textbox readonly="true"  style="font-size:12px;background:transparent" 
+                                            <textbox readonly="false"  style="font-size:12px;background:#FFB1A0" 
                                                      class="form-control form-control-sm"     
                                                      value="@bind(each.facEstado)" width="100%"/>
                                         </listcell>
                                     </zk>
                                     <zk if="${each.facEstado=='PA'}"  > 
-                                        <listcell  zclass = "mycss-listcell" style="background:#C7FEC1;color: blue"  >
-                                            <textbox  readonly="true"  style="font-size:12px;background:transparent" 
+                                        <listcell  style="background:#C7FEC1;color: blue"  >
+                                            sss
+                                            <textbox  readonly="false"  style="font-size:12px;background:#C7FEC1" 
                                                       class="form-control form-control-sm"     
                                                       value="@bind(each.facEstado)" width="100%"/>
                                         </listcell>
@@ -286,12 +287,25 @@
                                                  format="medium" width="100%"  />
                                     </listcell>
                 
-                                    <listcell   zclass = "mycss-listcell" >
-                                        <textbox  readonly="true" 
-                                                  style="font-size:12px;background:#EBF5FB"
-                                                  class="form-control form-control-sm"  
-                                                  value="@bind(each.cod_tipoambiente.amNombreComercial)" width="100%"/>
-                                    </listcell>
+                                         <zk  choose="@bind(each.facNumDocumento)" >
+                                        <zk  when="${each.facNumDocumento  != null}"  >
+                                            <listcell   zclass = "mycss-listcell" >
+                                                <textbox  readonly="false" 
+                                                          onOK="@command('modificarFactura',valor=each)"
+                                                         style="font-size:12px;background:white"
+                                                         class="form-control form-control-sm"  
+                                                         value="@bind(each.facNumDocumento)" width="100%"/>
+                                            </listcell>
+                                        </zk>      
+                                        <zk  when="${each.facNumDocumento == null}"  >
+                                            <listcell   zclass = "mycss-listcell" >
+                                                <textbox  readonly="true" 
+                                                         style="font-size:12px;background:#EBF5FB"
+                                                         class="form-control form-control-sm"  
+                                                         value="Efectivo" width="100%"/>
+                                            </listcell>
+                                        </zk>      
+                                    </zk>
                                 
                                     
                                     <listcell   zclass = "mycss-listcell" >   

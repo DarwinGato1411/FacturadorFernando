@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk class="border border-primary">
 
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
@@ -200,21 +200,7 @@
                     </div>
 
                     <div class="container_row_input">
-                    
-                        <div class="wrapper_input_mod">
-                            <span>Clave SRI: </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-key icon"></div>
-                                <textbox 
-                                    type="password"
-                                    value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
-                                    placeholder="Clave SRI"
-                                    class="input_text"
-                                    tooltiptext="Clave SRI" 
-                                     style="width:100%;"
-                                />
-                            </div>
-                        </div>
+           
                         <div class="wrapper_input_mod" >
                             <span >Firma Electrónica </span>
                             <div class="wrapper_input_text" style="width:86%;position:relative">
@@ -229,6 +215,22 @@
                                     class="fa-solid fa-folder icon_signature" 
                                     onClick="@command('subirFirma')"  
                                     tooltiptext="Subir archivos"
+                                />
+                            </div>
+                        </div>
+                        
+                        <div class="wrapper_input_mod">
+                            <span>Clave firma: </span>
+                            <div class="wrapper_input_text">
+                                <div class="fa-solid fa-key icon"></div>
+                                <textbox 
+                                    type="password"
+                                       onChange="@command('validarFirma')"
+                                    value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
+                                    placeholder="Clave firma electronica"
+                                    class="input_text"
+                                    tooltiptext="Clave firma electronica" 
+                                     style="width:100%;"
                                 />
                             </div>
                         </div>

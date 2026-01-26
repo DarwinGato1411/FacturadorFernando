@@ -15,7 +15,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.ParameterMode;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 
 /**
  *
@@ -228,5 +230,61 @@ public class ServicioKardex {
         }
 
         return listaKardexs;
+    }
+    
+     public void verificarKardexGeneral() {
+        try {
+            em = HelperPersistencia.getEMF();
+
+            em.getTransaction().begin();
+//           Query elimina= em.createNativeQuery("delete from model_ruta;");
+//            int i=elimina.executeUpdate();
+//            System.out.println("VALOR BORRA "+i);
+            StoredProcedureQuery queryStore = em.createStoredProcedureQuery("verificarkardex");
+//            queryStore.registerStoredProcedureParameter("numeromes", Integer.class, ParameterMode.IN);
+//            queryStore.registerStoredProcedureParameter("fecharegistro", Date.class, ParameterMode.IN);
+//            queryStore.setParameter("numeromes", mes);
+//            queryStore.setParameter("fecharegistro", fecha);
+
+            if (queryStore.executeUpdate() != -1) {
+                System.out.println("CUADRADO CORRECTAMENTE");
+            }else{
+            System.out.println("ERROR AL CUADRAR EL KARDEX ");
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("error iniciarProximoMes " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+    }
+     
+     public void verificarKardexGeneralPorProducto(Integer idProducto) {
+        try {
+            em = HelperPersistencia.getEMF();
+
+            em.getTransaction().begin();
+//           Query elimina= em.createNativeQuery("delete from model_ruta;");
+//            int i=elimina.executeUpdate();
+//            System.out.println("VALOR BORRA "+i);
+            StoredProcedureQuery queryStore = em.createStoredProcedureQuery("verificarkardexPorProducto");
+            queryStore.registerStoredProcedureParameter("idProductoParam", Integer.class, ParameterMode.IN);
+//            queryStore.registerStoredProcedureParameter("fecharegistro", Date.class, ParameterMode.IN);
+//            queryStore.setParameter("numeromes", mes);
+            queryStore.setParameter("idProductoParam", idProducto);
+
+            if (queryStore.executeUpdate() != -1) {
+                System.out.println("CUADRADO CORRECTAMENTE");
+            }else{
+            System.out.println("ERROR AL CUADRAR EL KARDEX ");
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("error iniciarProximoMes " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
     }
 }

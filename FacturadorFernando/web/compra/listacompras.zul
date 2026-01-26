@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk   width="100%" >
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.ListaCompras')" width="100%">
@@ -148,6 +148,8 @@
                             <listheader   label="IF" align="center" />        
                             <listheader   label="CR" align="center" />        
                             <listheader   label="MF" align="center" />        
+                            <listheader   label="RP" align="center" />        
+                            <listheader   label="EL" align="center" />        
                         </listhead>  
                         
                     
@@ -187,17 +189,24 @@
                                                 readonly="true"  
                                                 value="@bind(each.cabTotal)"  />
                                 </listcell>
-                                <listcell zclass = "mycss-listcell">
-                                    <textbox readonly="true"  style="font-size:12px"
+                                 <listcell if="${each.cabEstado=='PA'}"  style="background:#C7FEC1 !important" zclass = "mycss-listcell">
+                                    <textbox readonly="true"   style="background:#C7FEC1 !important"
                                              class="form-control form-control-sm" 
-                                             value="@bind(each.cabEstado)" />
+                                             value="PAGADO" />
+                                </listcell>
+                                
+                                <listcell if="${each.cabEstado=='PE'}" style="background:#FF8F8F !important" zclass = "mycss-listcell">
+                                    <textbox readonly="true"  
+                                             style="background:#FF8F8F !important"
+                                             class="form-control form-control-sm" 
+                                             value="PENDIENTE" />
                                 </listcell>
                                 <listcell zclass = "mycss-listcell">
-                                    <textbox readonly="true"  style="font-size:12px ;background:#EBF5FB"
+                                    <textbox readonly="true"  style="font-size:12px ;background:#EBF5FB "
                                              class="form-control form-control-sm" 
                                              value="@bind(each.cabProveedor)" />
                                 </listcell>
-                                <listcell zclass = "mycss-listcell">
+                                <listcell zclass = "mycss-listcell" style="font-size:12px ;background:#EBF5FB">
                                     <textbox readonly="true"  style="font-size:12px ;background:#EBF5FB"
                                              class="form-control form-control-sm" 
                                              value="@bind(each.idUsuario.usuNombre)"  />
@@ -235,8 +244,24 @@
                                            class=" grow"                                       
                                            tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
                                 </listcell>
-                                
-                                
+                                <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    <image 
+                                           src="/iconos/page_add.png"
+                                           height=" 30px" 
+                                           class="btn btn btn-secondary btn-sm grow"
+                                           onClick="@command('verDetallePago',valor=each)" 
+                                           tooltiptext="Ver detalle de pago"/>
+                                  
+                                </listcell>
+                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    <image 
+                                           src="/iconos/delete.png"
+                                           height=" 30px" 
+                                           class="btn btn btn-secondary btn-sm grow"
+                                           onClick="@command('eliminarCompra',valor=each)" 
+                                           tooltiptext="eliminar factura"/>
+                                    
+                                </listcell>
                                 
                             </listitem>
                         </template>

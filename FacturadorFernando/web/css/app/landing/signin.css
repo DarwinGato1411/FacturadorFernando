@@ -1,417 +1,278 @@
-@import "https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins&family=Raleway:wght@300&display=swap";
-:root {
-    --primary-color: #1E6F94;
-    --secondary-color: #009788;
-    --tertiary-color: #d5ecfb;
-    --background-color: #fff;
-}
+/* ========================================
+   ESTILO DEL LOGIN - COPIA FIEL DE LA IMAGEN
+   Solo CSS - Sin tocar ZUL
+======================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    padding: 0 !important;
-}
-.btn {
-    width: 100%;
-    padding: 12px;
-    font-family: "Poppins", sans-serif;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-}
-.btn:hover {
-    transform: scale(0.95);
-}
+/* Fondo general */
 .login_container {
-    width: 100%;
-    height: 100vh;
-    background-image: url("../../../imagenes/tucontador/contador.jpg");
-    background-origin: content-box;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: grid;
+    background: linear-gradient(135deg, #4266F4, #7FE4FF);
+    min-height: 100vh;
+    display: flex;
     align-items: center;
-}
-
-.login_container .wrapper_login {
-    background-color: #fff;
-    border-radius: 3px;
-    box-sizing: border-box;
-    width: 90%;
-    height: 90vh;
-    margin:auto;
-
-}
-
-.login_container .wrapper_login .container_img {
-    display: none;
-}
-
-
-
-.login_container .wrapper_login .container_signin {
+    justify-content: center;
     padding: 20px;
-    height: 100%;
-    display: grid;
-    margin: auto;
-    overflow-y: scroll;
+    font-family: 'Poppins', sans-serif;
 }
 
-.login_container .wrapper_login .container_signin::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
-
-.login_container .wrapper_login .container_signin::-webkit-scrollbar:vertical {
-    width:10px;
-}
-
-.login_container .wrapper_login .container_signin::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-    display: none;
-} 
-
-.login_container .wrapper_login .container_signin::-webkit-scrollbar:horizontal {
-    height: 10px;
-}
-
-.login_container .wrapper_login .container_signin::-webkit-scrollbar-thumb {
-    background-color: #797979;
+/* Contenedor principal del login */
+.wrapper_login {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
     border-radius: 20px;
-    border: 2px solid #f1f2f3;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: white;
 }
 
-.login_container .wrapper_login .container_signin::-webkit-scrollbar-track {
-    border-radius: 10px;  
-}
-
-.login_container .wrapper_login .container_signin .logo {
-    display: none;
-    text-align: center;
-}
-.login_container .wrapper_login .container_signin .title {
-    margin-top: 1.3em;
-    display: block;
-    font-size: 30px;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    color: var(--secondary-color);
-}
-.login_container .wrapper_login .container_signin .subtitle {
-    margin-top: 0.5em;
-    font-family: "Nunito", sans-serif;
-    text-align: center;
-    font-size: 14px;
-    display: block;
-}
-.login_container .wrapper_login .container_signin .wrapper_all_inputs {
-    margin-top: 3.5em;
+/* Lado izquierdo: Imagen y texto */
+.container_img {
+    flex: 1;
+    background: linear-gradient(135deg, #4266F4, #7FE4FF);
+    color: white;
+    /* padding: 40px; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_all_inputs
-.wrapper_input {
-    height: 60px;
-    width: 100%;
+
+/* Lado izquierdo: Imagen y texto */
+.container_imgder {
+    flex: 1;
+    /*background: linear-gradient(135deg, #4266F4, #7FE4FF);*/
+    color: white;
+    /* padding: 40px; */
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    overflow: hidden;
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_all_inputs
-.wrapper_input
-.input {
+
+/* Estilo del logo (imagen) */
+.container_img .logo {
     width: 100%;
-    padding: 10px 30px;
-    border-radius: 20px;
-    border: solid var(--secondary-color) 2px;
-    color: var(--primary-color);
+    height: auto;
+    /* margin-bottom: 20px; */
+    /* filter: brightness(1.2); */
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_all_inputs
-.wrapper_input
-.icon {
+
+/* Estilo del logo (imagen) */
+.container_imgder .logoder {
+    width: 120px;
+    height: auto;
+    /* margin-bottom: 20px; */
+    /* filter: brightness(1.2); */
+}
+
+/* Texto "WELCOME" y subtítulo */
+.container_img .title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.container_img .subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    text-align: center;
+    max-width: 80%;
+    line-height: 1.5;
+}
+
+/* Círculos decorativos */
+.container_img::before,
+.container_img::after {
+    content: "";
     position: absolute;
-    top: 10px;
-    left: 10px;
-    color: var(--secondary-color);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_all_inputs
-.wrapper_input
+
+.container_img::before {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -150px;
+}
+
+.container_img::after {
+    width: 200px;
+    height: 200px;
+    bottom: -100px;
+    right: -100px;
+}
+
+/* Lado derecho: Formulario de login */
+.container_signin {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Título y subtítulo del formulario */
+.container_signin .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.container_signin .subtitle {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Contenedor de inputs */
+.wrapper_all_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Input individual */
+.wrapper_input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    background: #fafafa;
+}
+
+/* Ícono dentro del input */
+.wrapper_input .icon {
+    color: #666;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Estilo de los inputs */
+.input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+}
+
+.input_password {
+    padding-right: 40px; /* Espacio para el ojo */
+}
+
+/* Icono de mostrar/ocultar contraseña */
 .icon_eye {
     position: absolute;
-    left: unset;
-    right: 10px !important;
-}
-.login_container .wrapper_login .container_signin .forgot_text {
-    display: block;
-    text-align: right;
-    font-family: "Nunito", sans-serif;
-    color: gray;
-    font-size: 14px;
-    margin-right: 5px;
+    right: 15px;
     cursor: pointer;
+    color: #666;
+    font-size: 16px;
 }
-.login_container .wrapper_login .container_signin .wrapper_buttons {
+
+/* Enlace "Olvidé mi contraseña" */
+.forgot_text {
+    color: #1e6f94;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    text-align: right;
+    display: block;
+}
+
+/* Botones */
+.wrapper_buttons {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1em;
-    margin-top: 3em;
+    gap: 10px;
 }
-.login_container .wrapper_login .container_signin .wrapper_buttons .btn_sign {
+
+.btn_sign {
+    background: #1e6f94;
+    color: white;
     border: none;
-    outline: none;
-    border: solid var(--secondary-color) 2px;
-    border-radius: 20px;
-    color: var(--primary-color);
-    background-color: var(--base-color);
-    transition: all 0.3s ease-in-out;
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_buttons
+
 .btn_sign:hover {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background: #009788;
 }
-.login_container
-.wrapper_login
-.container_signin
-.wrapper_buttons
+
 .btn_sign_reg {
-    border: none;
-    outline: none;
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.233));
-    color: var(--base-color);
-    background-color: var(--primary-color);
-    font-family: "Poppins", sans-serif;
-    font-size: 14px;
-    border-radius: 20px;
+    background: white;
+    color: #1e6f94;
+    border: 2px solid #1e6f94;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn_sign_reg:hover {
+    background: #1e6f94;
+    color: white;
+}
+
+/* --- ESTILOS RESPONSIVOS --- */
+
+@media screen and (max-width: 768px) {
+    .wrapper_login {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .container_img {
+        padding: 30px;
+    }
+
+    .container_signin {
+        padding: 30px;
+    }
+
+    .container_img .title {
+        font-size: 1.5rem;
+    }
+
+    .container_img .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .container_signin .title {
+        font-size: 1.2rem;
+    }
+
+    .wrapper_input {
+        padding: 8px 12px;
+    }
+
+    .input {
+        font-size: 13px;
+    }
+
+    .btn_sign,
+    .btn_sign_reg {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
 }
 
 
-
-.container_registro,
-.container_forgot_registro {
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.container_registro .wapper_registro,
-.container_forgot_registro .wapper_registro {
-   
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.8);
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 2em;
-    position: relative;
-}
-.container_registro .wapper_registro .logo,
-.container_forgot_registro .wapper_registro .logo {
-    width: 150px;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-}
-.container_registro .wapper_registro .info_wrapper,
-.container_forgot_registro .wapper_registro .info_wrapper {
-    margin-top: 5em;
-}
-.container_registro .wapper_registro .info_wrapper .title,
-.container_registro .wapper_registro .info_wrapper .subtitle,
-.container_forgot_registro .wapper_registro .info_wrapper .title,
-.container_forgot_registro .wapper_registro .info_wrapper .subtitle {
-    display: block;
-    text-align: center;
-}
-.container_registro .wapper_registro .info_wrapper .title,
-.container_forgot_registro .wapper_registro .info_wrapper .title {
-    font-family: "Poppins", sans-serif;
-    font-size: 25px;
-    color: var(--secondary-color);
-}
-.container_registro .wapper_registro .info_wrapper .subtitle,
-.container_forgot_registro .wapper_registro .info_wrapper .subtitle {
-    font-size: 14px;
-    font-family: "Raleway", sans-serif;
-    margin-top: 7px;
-}
-.container_registro .wapper_registro .wrapper_all_inputs,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs {
-    margin-top: 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1em;
-}
-.container_registro .wapper_registro .wrapper_all_inputs .left,
-.container_registro .wapper_registro .wrapper_all_inputs .right,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .left,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .right {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-}
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .wrapper_input {
-    width: 100%;
-    position: relative;
-}
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .input,
-.container_forgot_registro
-.wapper_registro
-.wrapper_all_inputs
-.wrapper_input
-.input {
-    padding: 10px 35px;
-    border: none;
-    border: solid var(--secondary-color) 1px;
-    border-radius: 20px;
-    color: var(--primary-color);
-    width: 100%;
-}
-.container_registro .wapper_registro .wrapper_all_inputs .wrapper_input .icon,
-.container_forgot_registro
-.wapper_registro
-.wrapper_all_inputs
-.wrapper_input
-.icon {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-.container_registro .wapper_registro .wrapper_all_inputs .icon,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .icon {
-    color: var(--secondary-color);
-}
-.container_registro .wapper_registro .wrapper_all_inputs .icon_eye,
-.container_forgot_registro .wapper_registro .wrapper_all_inputs .icon_eye {
-    position: absolute;
-    top: 10px;
-    color: var(--secondary-color);
-    right: 10px !important;
-}
-.container_registro .wapper_registro .wrapper_button,
-.container_forgot_registro .wapper_registro .wrapper_button {
-    margin: 2em 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.container_registro .wapper_registro .wrapper_button .btn_reg,
-.container_forgot_registro .wapper_registro .wrapper_button .btn_reg {
-    width: 96%;
-    padding: 10px 30px;
-    border-radius: 20px;
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.199));
-    border: none;
-    outline: none;
-    color: var(--base-color);
-    background-color: var(--primary-color);
-}
-.container_registro .wrapper_forgot,
-.container_forgot_registro .wrapper_forgot {
-    width: 400px;
-}
-.container_registro .wrapper_forgot .info_wrapper_forgot,
-.container_forgot_registro .wrapper_forgot .info_wrapper_forgot {
-    margin-top: 7em;
-}
-.container_registro .wrapper_forgot .wrapper_button .btn_reg,
-.container_forgot_registro .wrapper_forgot .wrapper_button .btn_reg {
-    width: 77%;
-}
-
-.wrapper_loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    z-index: 100;
-}
-.lds-dual-ring {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-}
-.lds-dual-ring:after {
-    content: " ";
-    display: block;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border-radius: 50%;
-    border: 6px solid var(--secondary-color);
-    border-color:var(--secondary-color) rgba(0, 0, 0, 0)
-        var(--secondary-color) rgba(0, 0, 0, 0);
-    animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@media screen and (min-width: 768px){
-   
-    .login_container .wrapper_login{
-        display: flex;
-        
-    }
-    
-    
-     .login_container .wrapper_login .container_img{
-        display: block; 
-        width:  100%;
-        height: 100%;
-    }
-    
-    .login_container .wrapper_login .container_img .logo{
-        display: block;
-        width:  100%;
-         height: 100%;
-    }
-    
-    .login_container .wrapper_login .container_signin{
-        width:  100%;
-        
-    }
-}
 

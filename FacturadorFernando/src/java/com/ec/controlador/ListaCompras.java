@@ -49,6 +49,7 @@ import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
+import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
@@ -80,26 +81,24 @@ public class ListaCompras {
     Connection con = null;
 
     public ListaCompras() {
-       
 
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
-        
-        
+
         //OBTIENE LAS RUTAS DE ACCESO A LOS DIRECTORIOS DE LA TABLA TIPOAMBIENTE
         PATH_BASE = amb.getAmDirBaseArchivos() + File.separator
-                    + amb.getAmDirXml();
-         findByBetweenFecha();
+                + amb.getAmDirXml();
+        findByBetweenFecha();
     }
 
     private void buscarLikeNombre() {
-        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar,amb);
+        listaCabeceraCompras = servicioCompra.findCabProveedor(buscar, amb);
     }
 
     private void findByBetweenFecha() {
-        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin,amb);
+        listaCabeceraCompras = servicioCompra.findByBetweenFecha(inicio, fin, amb);
     }
 
     private void findByNumFac() {
@@ -131,7 +130,7 @@ public class ListaCompras {
 
             map.put("valor", valor);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/compra/retencion.zul", null, map);
+                    "/compra/retencion.zul", null, map);
             window.doModal();
 //            window.detach();
         } catch (Exception e) {
@@ -147,7 +146,7 @@ public class ListaCompras {
 
                 map.put("valor", valor);
                 org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                            "/compra/modificarcompra.zul", null, map);
+                        "/compra/modificarcompra.zul", null, map);
                 window.doModal();
             }
 //            window.detach();
@@ -336,7 +335,7 @@ public class ListaCompras {
             emf.getTransaction().begin();
             con = emf.unwrap(Connection.class);
             String reportFile = Executions.getCurrent().getDesktop().getWebApp()
-                        .getRealPath("/reportes");
+                    .getRealPath("/reportes");
             String reportPath = reportFile + File.separator + "facturacompra.jasper";
 
             Map<String, Object> parametros = new HashMap<String, Object>();
@@ -358,7 +357,7 @@ public class ListaCompras {
 //para pasar al visor
             map.put("pdf", fileContent);
             org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                        "/venta/contenedorReporte.zul", null, map);
+                    "/venta/contenedorReporte.zul", null, map);
             window.doModal();
         } catch (FileNotFoundException e) {
             System.out.println("FileNotFoundException " + e.getMessage());
@@ -373,4 +372,35 @@ public class ListaCompras {
 
     }
 
+    @Command
+    public void verDetallePago(@BindingParam("valor") CabeceraCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            final HashMap<String, CabeceraCompra> map = new HashMap<String, CabeceraCompra>();
+
+            map.put("valor", valor);
+            org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                    "/compra/detallepagocompra.zul", null, map);
+            window.doModal();
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+
+    }
+
+    @Command
+    @NotifyChange({"listaCabeceraCompras", "buscar"})
+    public void eliminarCompra(@BindingParam("valor") CabeceraCompra valor) throws JRException, IOException, NamingException, SQLException {
+        try {
+            if (Messagebox.show("¿Esta seguro de eliminar la compra, recuerde que se eliminará las retenciones generadas a esta factura de compra?", "Question", Messagebox.OK | Messagebox.CANCEL, Messagebox.QUESTION) == Messagebox.OK) {
+
+                servicioCompra.eliminar(valor);
+                findByBetweenFecha();
+                Clients.showNotification("Eliminado correctamente...",
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+            }
+        } catch (Exception e) {
+            Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
+        }
+
+    }
 }

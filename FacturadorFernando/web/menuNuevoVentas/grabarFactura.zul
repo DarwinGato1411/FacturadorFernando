@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk width="100%" class="container" 
 >
 
@@ -252,7 +252,7 @@
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='SG')"
+                                        onClick="@command('Guardar',valor='SG',envia='N')"
                                         tooltiptext="Guardar"
                                         label="Grabar"
                                         style="font-size:18px; height:46px"

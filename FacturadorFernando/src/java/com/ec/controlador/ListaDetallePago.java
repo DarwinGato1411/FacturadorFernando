@@ -45,7 +45,7 @@ public class ListaDetallePago {
     ServicioFactura servicioFactura = new ServicioFactura();
     private List<DetallePago> lstPagos = new ArrayList<DetallePago>();
     private Factura factura = new Factura();
-    private Integer numeroMeses = 0;
+    private Integer numeroMeses = 1;
     private BigDecimal saldo = BigDecimal.ZERO;
     private BigDecimal totalFactura = BigDecimal.ZERO;
 
@@ -57,6 +57,8 @@ public class ListaDetallePago {
             totalFactura = factura.getFacTotal();
             totalFactura = ArchivoUtils.redondearDecimales(totalFactura, 2);
             consultarDetallepago();
+        } else {
+
         }
     }
 
@@ -78,6 +80,7 @@ public class ListaDetallePago {
 
         } else {
             generar = Boolean.TRUE;
+            calculoCuota();
         }
     }
 

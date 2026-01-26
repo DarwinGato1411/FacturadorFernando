@@ -119,6 +119,14 @@ public class Compras {
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
+    //valorTotalCotizacion
+    private BigDecimal subTotalFactura5 = BigDecimal.ZERO;
+    private BigDecimal subTotalFactura15 = BigDecimal.ZERO;
+
+    private BigDecimal ivaFactura5 = BigDecimal.ZERO;
+    private BigDecimal ivaFactura15 = BigDecimal.ZERO;
+
+    //buscar proveedor
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -134,7 +142,7 @@ public class Compras {
     }
 
     private void buscarProveedoresLikeNombre() {
-        listaProveedoresAll = servicioProveedor.findLikeProvNombre("",amb);
+        listaProveedoresAll = servicioProveedor.findLikeProvNombre("", amb);
     }
 
     public Compras() {
@@ -346,9 +354,9 @@ public class Compras {
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("valor", "proveedor");
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/compra/buscarproveedor.zul", null, map);
+                "/compra/buscarproveedor.zul", null, map);
         window.doModal();
-        proveedorSeleccionado = servicioProveedor.findProvCedula(buscarCedulaProveedor,amb);
+        proveedorSeleccionado = servicioProveedor.findProvCedula(buscarCedulaProveedor, amb);
     }
 
     @Command
@@ -377,9 +385,9 @@ public class Compras {
         final HashMap<String, String> map = new HashMap<String, String>();
         map.put("valor", "producto");
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/compra/buscarproducto.zul", null, map);
+                "/compra/buscarproducto.zul", null, map);
         window.doModal();
-        productoBuscado = servicioProducto.findByProdCodigo(codigoBusqueda,amb);
+        productoBuscado = servicioProducto.findByProdCodigo(codigoBusqueda, amb);
         if (productoBuscado != null) {
             valor.setProducto(productoBuscado);
             valor.setCodigo(productoBuscado.getProdCodigo());
@@ -389,8 +397,9 @@ public class Compras {
     }
     //calcular los valores de la lista
 
-    @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+   @Command
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void calcularValores(@BindingParam("valor") DetalleCompraUtil valor) {
         try {
 
@@ -398,7 +407,7 @@ public class Compras {
 
                 //calcularValoresTotales();
                 //nuevo registro
-                Producto buscadoPorCodigo = servicioProducto.findByProdCodigo(valor.getCodigo(),amb);
+                Producto buscadoPorCodigo = servicioProducto.findByProdCodigo(valor.getCodigo(), amb);
                 if (buscadoPorCodigo != null) {
                     valor.setDescripcion(buscadoPorCodigo.getProdNombre());
 //                    valor.setSubtotal(buscadoPorCodigo.getPordCostoVentaRef());
@@ -435,26 +444,56 @@ public class Compras {
         }
     }
 
-    private void calcularValoresTotales() {
+   private void calcularValoresTotales() {
         BigDecimal valorTotal = BigDecimal.ZERO;
         BigDecimal valorTotalCero = BigDecimal.ZERO;
 
+        BigDecimal valorTotal5 = BigDecimal.ZERO;
+//        BigDecimal valorTotal13 = BigDecimal.ZERO;
+//        BigDecimal valorTotal14 = BigDecimal.ZERO;
+        BigDecimal valorTotal15 = BigDecimal.ZERO;
+//        BigDecimal valorTotal = BigDecimal.ZERO;
+//        BigDecimal valorTotalConIva = BigDecimal.ZERO;
+        BigDecimal valorIva = BigDecimal.ZERO;
+        BigDecimal valorIva5 = BigDecimal.ZERO;
+//        BigDecimal valorIva13 = BigDecimal.ZERO;
+//        BigDecimal valorIva14 = BigDecimal.ZERO;
+        BigDecimal valorIva15 = BigDecimal.ZERO;
         List<DetalleCompraUtil> listaPedido = listaCompraProductosMOdel.getInnerList();
         if (listaPedido.size() > 0) {
             for (DetalleCompraUtil item : listaPedido) {
 
                 if (item.getProducto() != null) {
-                    valorTotal = valorTotal.add(item.getProducto().getProdGrabaIva() ? item.getTotal() : BigDecimal.ZERO);
-                    valorTotalCero = valorTotalCero.add(!item.getProducto().getProdGrabaIva() ? item.getTotal() : BigDecimal.ZERO);
+
+                    if (item.getProducto().getProdPorcentajeIva() == 12) {
+                        valorTotal = valorTotal.add(item.getTotal());
+                        valorIva = valorIva.multiply(BigDecimal.valueOf(0.12));
+                    } else if (item.getProducto().getProdPorcentajeIva() == 5) {
+                        valorTotal5 = valorTotal5.add(item.getTotal());
+//                        valorIva5 = valorIva5.add(item.getTotal().multiply(BigDecimal.valueOf(0.05)));
+                    } else if (item.getProducto().getProdPorcentajeIva() == 15) {
+                        valorTotal15 = valorTotal15.add(item.getTotal());
+                        valorIva15 = valorIva15.multiply(BigDecimal.valueOf(0.15));
+                    } else {
+                        valorTotalCero = valorTotalCero.add(item.getTotal());
+                    }
+
                 }
             }
+
             System.out.println("**********************************************************");
             System.out.println("valor total:::: " + valorTotal);
             subTotalFacturaCero = valorTotalCero;
             subTotalFactura = valorTotal;
-            BigDecimal valorIva = subTotalFactura.multiply(BigDecimal.valueOf(0.12));
+            subTotalFactura5 = valorTotal5;
+            subTotalFactura15 = valorTotal15;
+            valorIva = subTotalFactura.multiply(BigDecimal.valueOf(0.12));
+            valorIva5 = subTotalFactura5.multiply(BigDecimal.valueOf(0.05));
+            valorIva15 = subTotalFactura15.multiply(BigDecimal.valueOf(0.15));
             ivaFactura = valorIva;
-            valorTotalFactura = valorTotal.add(valorIva).add(subTotalFacturaCero);
+            ivaFactura5 = valorIva5;
+            ivaFactura15 = valorIva15;
+            valorTotalFactura = subTotalFactura.add(ivaFactura).add(subTotalFacturaCero).add(subTotalFactura5).add(subTotalFactura15).add(ivaFactura5).add(ivaFactura15);
             subTotalFactura.setScale(4, RoundingMode.FLOOR);
             ivaFactura.setScale(4, RoundingMode.FLOOR);
             valorTotalFactura.setScale(4, RoundingMode.FLOOR);
@@ -477,11 +516,11 @@ public class Compras {
     }
 
     private void findProductoLikeCodigo() {
-        listaProducto = servicioProducto.findLikeProdCodigo(buscarCodigoProd,amb);
+        listaProducto = servicioProducto.findLikeProdCodigo(buscarCodigoProd, amb);
     }
 
     private void findProductoLikeNombre() {
-        listaProducto = servicioProducto.findLikeProdNombre(buscarNombreProd,amb);
+        listaProducto = servicioProducto.findLikeProdNombre(buscarNombreProd, amb);
     }
 //proveedor
 
@@ -506,11 +545,11 @@ public class Compras {
 //    }
 
     private void findProveedorLikeNombre() {
-        listaProveedoresAll = servicioProveedor.findLikeProvNombre(buscarProvNombre,amb);
+        listaProveedoresAll = servicioProveedor.findLikeProvNombre(buscarProvNombre, amb);
     }
 
     private void findProveedorCedula() {
-        listaProveedoresAll = servicioProveedor.findProveedorCedula(buscarProvCedula,amb);
+        listaProveedoresAll = servicioProveedor.findProveedorCedula(buscarProvCedula, amb);
     }
 
     //para buscar karder y mostrar en productos
@@ -541,14 +580,14 @@ public class Compras {
     @NotifyChange({"listaCompraProductosMOdel", "subTotalCotizacion", "ivaCotizacion", "valorTotalCotizacion"})
     public void Guardar() {
         if (!proveedorSeleccionado.getProvCedula().equals("")
-                    && !numeroFactura.equals("")) {
+                && !numeroFactura.equals("")) {
             guardarCompra();
-              Clients.showNotification("Compra registrada correctamente",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+            Clients.showNotification("Compra registrada correctamente",
+                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
 
         } else {
-             Clients.showNotification("Verifique el proveedor, numero de factura, numero de autorizacion, proveedor",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+            Clients.showNotification("Verifique el proveedor, numero de factura, numero de autorizacion, proveedor",
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
 //            Messagebox.show("", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
@@ -657,8 +696,9 @@ public class Compras {
     }
 
     //busqueda del producto
-    @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+      @Command
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void eliminarRegistros() {
         if (registrosSeleccionados.size() > 0) {
             ((ListModelList<DetalleCompraUtil>) listaCompraProductosMOdel).removeAll(registrosSeleccionados);
@@ -681,7 +721,8 @@ public class Compras {
 
     /*AGREGAMOS DESDE LA LSITA */
     @Command
-    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero"})
+    @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
+        "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void agregarItemLista(@BindingParam("valor") Producto producto) {
 
 
@@ -741,6 +782,38 @@ public class Compras {
 
     public void setSubTotalFacturaCero(BigDecimal subTotalFacturaCero) {
         this.subTotalFacturaCero = subTotalFacturaCero;
+    }
+
+    public BigDecimal getSubTotalFactura5() {
+        return subTotalFactura5;
+    }
+
+    public void setSubTotalFactura5(BigDecimal subTotalFactura5) {
+        this.subTotalFactura5 = subTotalFactura5;
+    }
+
+    public BigDecimal getSubTotalFactura15() {
+        return subTotalFactura15;
+    }
+
+    public void setSubTotalFactura15(BigDecimal subTotalFactura15) {
+        this.subTotalFactura15 = subTotalFactura15;
+    }
+
+    public BigDecimal getIvaFactura5() {
+        return ivaFactura5;
+    }
+
+    public void setIvaFactura5(BigDecimal ivaFactura5) {
+        this.ivaFactura5 = ivaFactura5;
+    }
+
+    public BigDecimal getIvaFactura15() {
+        return ivaFactura15;
+    }
+
+    public void setIvaFactura15(BigDecimal ivaFactura15) {
+        this.ivaFactura15 = ivaFactura15;
     }
 
 }

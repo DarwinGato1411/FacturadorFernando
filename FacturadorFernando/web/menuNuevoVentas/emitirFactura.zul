@@ -8,7 +8,7 @@
 
 <?init class="com.ec.seguridad.Autentificador"?>
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
-<?link rel="icon" type="image/x-icon" href="/imagenes/logo/logosn.png"?> 
+
 <zk  width="100%" class="container" 
 >
 
@@ -192,7 +192,7 @@
                                     <listheader width="100%"  label="Estado SRI" align="rigth" /> 
                                     <listheader width="100%"  label="Fecha Aut." align="rigth" /> 
                                                                    
-                                    <listheader width="100%"  label="Responsable / Cuenta"  />                                   
+                                    <listheader width="100%"  label="Nº Documento"  />                                   
                                     <listheader width="100%"  label="CEF"  align="rigth" />        
                                     <listheader width="100%"  label="GNC" align="rigth" />        
                                     <listheader width="100%"  label="IC" align="rigth" />        
@@ -248,14 +248,14 @@
                                         </listcell>
                                         <zk if="${each.facEstado=='PE'}" > 
                                             <listcell zclass = "mycss-listcell" style="background:#FFB1A0;color: red" >
-                                                <textbox readonly="true"  style="font-size:12px;background:transparent" 
+                                                <textbox readonly="true"  style="font-size:12px;background:#FFB1A0 !important" 
                                                          class="form-control form-control-sm"     
                                                          value="@bind(each.facEstado)" width="100%"/>
                                             </listcell>
                                         </zk>
                                         <zk if="${each.facEstado=='PA'}"  > 
                                             <listcell  zclass = "mycss-listcell" style="background:#C7FEC1;color: blue"  >
-                                                <textbox  readonly="true"  style="font-size:12px;background:transparent" 
+                                                <textbox  readonly="true"  style="font-size:12px;background:#C7FEC1 !important" 
                                                           class="form-control form-control-sm"     
                                                           value="@bind(each.facEstado)" width="100%"/>
                                             </listcell>
@@ -295,12 +295,25 @@
                                                      format="medium" width="100%"  />
                                         </listcell>
                 
-                                        <listcell   zclass = "mycss-listcell" >
-                                            <textbox  readonly="true" 
-                                                      style="font-size:12px;background:#EBF5FB"
-                                                      class="form-control form-control-sm"  
-                                                      value="@bind(each.cod_tipoambiente.amNombreComercial)" width="100%"/>
-                                        </listcell>
+                                        <zk  choose="@bind(each.facNumDocumento)" >
+                                            <zk  when="${each.facNumDocumento  != null}"  >
+                                                <listcell   zclass = "mycss-listcell" >
+                                                    <textbox  readonly="false" 
+                                                             onOK="@command('modificarFactura',valor=each)"
+                                                             style="font-size:12px;background:white"
+                                                             class="form-control form-control-sm"  
+                                                             value="@bind(each.facNumDocumento)" width="100%"/>
+                                                </listcell>
+                                            </zk>      
+                                            <zk  when="${each.facNumDocumento == null}"  >
+                                                <listcell   zclass = "mycss-listcell" >
+                                                    <textbox  readonly="true" 
+                                                             style="font-size:12px;background:#EBF5FB"
+                                                             class="form-control form-control-sm"  
+                                                             value="Efectivo" width="100%"/>
+                                                </listcell>
+                                            </zk>      
+                                        </zk>
                                 
                                     
                                         <listcell   zclass = "mycss-listcell" >   
@@ -409,7 +422,7 @@
                                         </zk>
                                                                 
                                     
-                                        <listcell  zclass = "mycss-listcell"  if="${each.facEstado=='PE'}" >   
+                                        <listcell  zclass = "mycss-listcell"  >   
                                             
                                             <image src="/iconos/page_add.png"  
                                                    height=" 30px"  
@@ -417,13 +430,13 @@
                                                    class="btn btn btn-secondary btn-sm grow"                                               
                                                    tooltiptext="Verifica la tabla de amortizacion para los pagos"/> 
                                         </listcell>
-                                        <listcell   zclass = "mycss-listcell" if="${each.facEstado=='PA'}">                                         
+<!--                                        <listcell   zclass = "mycss-listcell" if="${each.facEstado=='PA'}">                                         
                                             <image src="/iconos/listo_uno.png"   
                                                    height=" 30px"  
                                                    class="btn-secondary btn-sm grow"                                               
                                                    tooltiptext="Solo se puede crear la tabla de amortizacion en estado Pendiente (PE)"/>
                                 
-                                        </listcell>
+                                        </listcell>-->
                                         
                                         <listcell   zclass = "mycss-listcell">                                         
                                             <image src="/iconos/remail.png"   

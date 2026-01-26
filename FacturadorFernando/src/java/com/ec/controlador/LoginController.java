@@ -10,6 +10,7 @@ import com.ec.seguridad.EnumSesion;
 import com.ec.seguridad.GrupoUsuarioEnum;
 import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioParametrizar;
+import com.ec.untilitario.DeviceUtils;
 import com.ec.vista.servicios.ServicioNumeroDocumentosEmitidos;
 import java.util.Date;
 import org.zkoss.zk.ui.select.SelectorComposer;
@@ -60,20 +61,31 @@ public class LoginController extends SelectorComposer<Component> {
 
                 if (cre.getUsuarioSistema().getUsuIlimitado()) {
                     if (cre.getUsuarioSistema().getUsuFechaPago().after(actual)) {
-                        Executions.sendRedirect("/venta/facturar.zul");
+                        boolean isMobile = DeviceUtils.isMobileDevice();
+                        if (isMobile) {
+                            Executions.sendRedirect("/venta/facturamov.zul");
+                        } else {
+                            Executions.sendRedirect("/venta/facturar.zul");
+                        }
+
                     } else {
                         Clients.showNotification("Su plan ilimitado no ha sido renovado contactese con el administrador.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
                     }
 
                 } else {
                     if (cre.getUsuarioSistema().getUsuTotalContratado() > numeroDocumentos) {
-                        Executions.sendRedirect("/venta/facturar.zul");
+                          boolean isMobile = DeviceUtils.isMobileDevice();
+                        if (isMobile) {
+                            Executions.sendRedirect("/venta/facturamov.zul");
+                        } else {
+                            Executions.sendRedirect("/venta/facturar.zul");
+                        }
 
                     } else {
                         Clients.showNotification("El numero de documentos emitidos supera al numero de documentos contratado.",
-                                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
-                        
+                                Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+
                     }
 
                 }
@@ -84,7 +96,7 @@ public class LoginController extends SelectorComposer<Component> {
 
         } else {
             Clients.showNotification("Usuario o Contraseña incorrecto. \n Contactese con el administrador.",
-                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 3000, true);
 
         }
 
@@ -93,7 +105,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick= #linkOlvideContrasena")
     public void linkOlvideContrasena() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/olvidemiclave.zul", null, null);
+                "/nuevo/olvidemiclave.zul", null, null);
         window.doModal();
     }
 
@@ -110,7 +122,7 @@ public class LoginController extends SelectorComposer<Component> {
     @Listen("onClick = #btnRegistra")
     public void btnRegistra() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
-                    "/nuevo/registrousuario.zul", null, null);
+                "/nuevo/registrousuario.zul", null, null);
         window.doModal();
 
     }

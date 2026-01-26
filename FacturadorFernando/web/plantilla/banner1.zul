@@ -1,14 +1,15 @@
-<?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+
+
 
    <zk>
 
     <div class="banner" id="loginWin"  style="height:100vh; overflow:scroll"  width="100%"
          apply="com.ec.controlador.LogoutController" >
-        <div class="" >
+        <div class="menusuperior" style="background:#EDEDEE" >
 
 
-            <div class="" style="width:100%;">
-                <image style="margin:auto; display block;"  src="/imagenes/logo/logosn.png" class="logo_defact" />                       
+            <div class="logo_defact" >
+                <image style="margin:auto; display block;"  src="/imagenes/logo/paybillslogo.png" class="logo_defact" />                       
             </div>
             <div class=" " >
                 <div class="usuario" apply="org.zkoss.bind.BindComposer" 
@@ -17,8 +18,9 @@
                      
                       
          
-                        <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
-                        <label value="${sessionScope.usuario.nombreUsuario} / TIPO AMBIENTE ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                        <label value="Hola, " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
+                        <label value="${sessionScope.usuario.nombreUsuario} " class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                        <!--<label value="${sessionScope.usuario.nombreUsuario} / ${sessionScope.usuario.tipoambiente.codTipoambiente}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />-->
                        
                       
                            <div >
@@ -37,87 +39,145 @@
                
             </div>
         </div>
-        <div class="">
+        <div class="menuinferior">
             <div  viewModel="@id('vm')" id="gridMenu" 
                   apply="com.ec.controlador.MenuOpciones" 
             class="" >
                 
          <div class="" >
 
-            <menubar id="menubar" orient="vertical"  autodrop="true" class="wrapper_menu">
-            <menu label="Ventas" id="menuEmitirfact" class="menu_child">
+            <menubar id="menubar" orient="vertical"  autodrop="true" class="wrapper_menu d-none d-lg-block">
+            <menu label="Ventas" id="menuEmitirfact" class="menu_child fa-regular fa-file-invoice-dollar menu_item ">
                 <menupopup class="submenu">
-                    <menuitem label="Crear cliente" id="btnCrearCliente" class="fa-solid fa-user menu_item menu_item" />
-                    <menuitem label="Crear producto" id="btnCrearProducto" class="fa-solid fa-paper-plane menu_item"/>
-                    <menuitem label="Grabar factura" id="btnFacturar" class="fa-solid fa-receipt menu_item" />
-                    <menuitem label="Emitir Facturas" id="btnNotaVentas" class="fa-solid fa-paper-plane menu_item"/>   
-                    <menuitem label="Cuentas por cobrar" id="btnfactCobra" class="fa-solid fa-dollar-sign menu_item" />                                           
-                    <menuitem label="Notas credito" id="btnNotaCredito" class="fa-solid fa-clipboard menu_item" />               
-                    <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="fa-solid fa-newspaper menu_item" />
-                    <menuitem label="Reporte acumulado de ventas" id="btnAcumuladoventas" class="fa-solid fa-gear menu_item"/>
-                    <menuitem label="Reporte compras vs ventas" id="btnBalanceUtilidad" class="fa-solid fa-gear menu_item" />                   
+                    <menuitem label="Crear cliente" id="btnCrearCliente"  class="menu_item " style="color:black" />
+                    <menuitem label="Crear producto" id="btnCrearProducto" class="menu_item"/>
+                    <menuitem label="Grabar factura" id="btnFacturar" class="menu_item" />
+                    <menuitem label="Emitir Facturas" id="btnNotaVentas" class="menu_item"/>   
+                    <menuitem label="Cuentas por cobrar" id="btnfactCobra" class="menu_item" />                                           
+                    <menuitem label="Notas credito" id="btnNotaCredito" class="menu_item" />               
+                    <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="menu_item" />
+                    <menuitem label="Reporte acumulado de ventas" id="btnAcumuladoventas" class="menu_item"/>
+                    <menuitem label="Reporte compras vs ventas" id="btnBalanceUtilidad" class="menu_item" />                   
                 </menupopup>
 
             </menu>
-            <menu label="Compras" id="menuCompras" class="menu_child">
+            <menu label="Compras" id="menuCompras" class="menu_child fa-regular fa-cart-plus menu_item ">
                 <menupopup class="submenu">             
-                    <menuitem label="Crear proveedor" id="btnCrearProveedor" class="fa-solid fa-user menu_item" />
-                    <menuitem label="Crear producto" id="btnCrearProd" class="fa-solid fa-paper-plane menu_item"/>
-                    <menuitem label="Ingreso de mercaderia" id="btnIngresoCompras" class="fa-solid fa-paper-plane menu_item" />                                
-                    <menuitem label="Lista de facturas de compra    " id="btnListaCompras" class="fa-solid fa-list menu_item" />                                                                     
-                    <menuitem label="Lista de retenciones" id="btnRetenciones" class="fa-solid fa-list menu_item" />                                                                   
-                    <menuitem label="Kardex detallado" id="btnKardex"  class="fa-solid fa-list menu_item" /> 
-                    <menuitem label="Kardex general" id="btnKardexPorProd"  class="fa-solid fa-list-check menu_item" />   
-                    <menuitem label="Rotacion productos" id="btnRotacionProducto" class="fa-solid fa-gear menu_item"/>
-                    <menuitem label="Ajuste de Entrada/Salida" id="btnAjuste" class="fa-solid fa-gear menu_item" />    
+                    <menuitem label="Crear proveedor" id="btnCrearProveedor" class="menu_item" style="" />
+                    <menuitem label="Crear producto" id="btnCrearProd" class="menu_item"/>
+                    <menuitem label="Ingreso de mercaderia" id="btnIngresoCompras" class="menu_item" />                                
+                    <menuitem label="Lista de facturas de compra    " id="btnListaCompras" class="menu_item" />                                                                     
+                    <menuitem label="Lista de retenciones" id="btnRetenciones" class="menu_item" />                                                                   
+                    <menuitem label="Kardex detallado" id="btnKardex"  class=" menu_item" /> 
+                    <menuitem label="Kardex general" id="btnKardexPorProd"  class="menu_item" />   
+                    <menuitem label="Rotacion productos" id="btnRotacionProducto" class=" menu_item"/>
+                    <menuitem label="Ajuste de Entrada/Salida" id="btnAjuste" class=" menu_item" />    
                     <!--<menuitem label="Descargar compras SRI" id="btnComprasSRI" class="fa-solid fa-gear menu_item" />-->    
                 </menupopup>
             </menu>
-            <menu label="Retencion" id="menuRetencion" class="menu_child">
+           
+            <menu label="Retencion" id="menuRetencion" class="menu_child  fa-regular fa-chart-pie menu_item menu_item">
                 <menupopup class="submenu">                     
-                    <menuitem label="Grabar retención" id="btnRetencionManual" class="fa-solid fa-paper-plane menu_item" />                                                   
-                    <menuitem label="Emitir retención" id="btnEmitRetencionManual" class="fa-solid fa-paper-plane menu_item" />                                                   
+                    <menuitem label="Grabar retención" id="btnRetencionManual" class=" menu_item" />                                                   
+                    <menuitem label="Emitir retención" id="btnEmitRetencionManual" class="menu_item" />                                                   
                 </menupopup>
             </menu> 
-             <menu label="Guias"  id="menuGuias" class="menu_child">
+             <menu label="Guias"  id="menuGuias" class="menu_child fa-solid fa-truck menu_item " >
                 <menupopup class="submenu">                        
-                    <menuitem label="Emitir Guias de remision" id="btnEmitirGuiaRemision" class="fa-solid fa-paper-plane menu_item" />
-                    <menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="fa-solid fa-ticket menu_item" />
+                    <menuitem label="Emitir Guias de remision" id="btnEmitirGuiaRemision" class="menu_item" />
+                    <menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="menu_item" />
                         
                 </menupopup>
             </menu> 
-                <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child" />
-                <menuitem label="Gestion de usuarios " id="muenGestionUsu" class="menu_child" />
-                <menuitem label="Gestion de empresas " id="muenGestionEmpresas" class="menu_child" />
-                <menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />
-                <menuitem label="Gestion facturas" id="btnGestionFactura" class="menu_child" />
-                <menuitem label="Configuración SRI" id="btnConfSRI" class="menu_child" />
-            </menubar>
+            <menu label="Historial declaraciones" id="btnHisDeclaraciones" class="menu_child fa-regular fa-magnifying-glass-dollar menu_item " >
+                <menupopup >  
+                     <!--<menuitem  class=" fa-solid fa-paper-plane menu_item" />-->
+                </menupopup>
+            </menu>
+         
+            <menu label="Catalogos"  id="btnAdministarVenta" class="menu_child fa-solid fa-suitcase menu_item " >
+                <menupopup class="submenu">      
+<!--            <menuitem label="Catalogos"  class="fa-solid fa-ticket menu_item" />-->
+                </menupopup>
+            </menu>
+          <!--<menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="fa-solid fa-ticket menu_item" />-->
+         
+           <menu label="Configuración SRI" id="btnConfSRI" class="menu_child fa-solid fa-gear menu_item " >
+                <menupopup>    
+                    <!--<menuitem  class="fa-solid fa-ticket menu_item" />-->
+                </menupopup>
+           </menu>
+            
+<!--            <menu label="Historial declaraciones"  id="btnHisDeclaraciones" class="menu_child fa-solid fa-gear menu_item ">
+                <menupopup class="submenu">                        
+                    
+                   
+                        
+                </menupopup>
+            </menu> -->
+<!--            <menu label="Catalogos"  class="menu_child fa-solid fa-gear menu_item ">
+                <menupopup class="submenu">                        
+                    <menuitem label="Catalogos" id="btnAdministarVenta" class="fa fa-car menu_item" />
+                    <menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="fa-solid fa-ticket menu_item" />
+                    <menuitem label="Configuración SRI" id="btnConfSRI" class="fa-solid fa-ticket menu_item" />
+                     <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class=" fa-solid fa-paper-plane menu_item" />
+                        
+                </menupopup>
+            </menu> -->
+<!--            <menu label="Configuración SRI"  id="btnConfSRI" class="menu_child fa-solid fa-gear menu_item ">
+                <menupopup class="submenu">                        
+                    <menuitem label="Catalogos" id="btnAdministarVenta" class="fa fa-car menu_item" />
+                    <menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="fa-solid fa-ticket menu_item" />
+                    <menuitem label="Configuración SRI" id="btnConfSRI" class="fa-solid fa-ticket menu_item" />
+                     <menuitem label="Historial declaraciones" id="btnHisDeclaraciones" class=" fa-solid fa-paper-plane menu_item" />
+                        
+                            </menupopup>
+                        </menu> -->
+               
+                        <menuitem label="Gestion de usuarios " id="muenGestionUsu" visible="true"  class="fa-solid fa-file menu_child" />
+                        <menuitem label="Gestion de empresas " id="muenGestionEmpresas" visible="true"  class="fa-solid fa-file menu_child" />
+                        <!--<menuitem label="Catalogos" id="btnAdministarVenta" class="menu_child" />-->
+                        <menuitem label="Gestion facturas" id="btnGestionFactura" visible="true" class="fa-solid fa-file menu_child" />
+                
+                    </menubar>
+                    <!--menu horizontal-->
+                    <menubar id="menubar1" orient="horizontal"  autodrop="true" class="wrapper_menu d-block d-lg-none">
+                        <menu label="Ventas" id="menuEmitirfactmov" class="menu_child fa-regular fa-file-invoice-dollar menu_item ">
+                            <menupopup class="submenu">
+                   
+                                <menuitem label="Grabar factura" id="btnFacturarMov" class="menu_item" />
+                                <menuitem label="Emitir Facturas" id="btnNotaVentasMovil" class="menu_item"/>   
+                                      
+                            </menupopup>
+
+                        </menu>
+            
            
-
+            
+                    </menubar>
 
                     
-            </div>
-                     <div apply="org.zkoss.bind.BindComposer" 
+                </div>
+                <div apply="org.zkoss.bind.BindComposer" 
                      viewModel="@id('vm') @init('com.ec.controlador.MenuToolbar')"
-                          class="" >
+                     class="d-none d-lg-block" >
 
-                <menubar id="menubarEmpresa" orient="vertical"  autodrop="true"  class="wrapper_menu">   
-                    <menu label="Empresa" id="menuInformacion" class="menu_child"  >
-                        <menupopup  class="submenu">                     
+                    <menubar id="menubarEmpresa" orient="vertical"  autodrop="true"  class="wrapper_menu">   
+                        <menu label="Empresa" id="menuInformacion" class="menu_child fa-solid fa-industry menu_item "  >
+                            <menupopup  class="submenu">                     
                     
-                            <menuitem label="RUC: ${sessionScope.usuario.tipoambiente.amRuc}" class="fa-solid fa-user menu_item" />                                
-                            <menuitem label="RAZÓN SOCIAL: ${sessionScope.usuario.tipoambiente.amRazonSocial}"  class="fa-solid fa-user menu_item" />                                                          
-                            <menuitem label="Modificar usuario" onClick="@command('modificarUsuario')" class="fa-solid fa-pen-to-square menu_item" />
-                            <menuitem label="Salir" id="logoutMenu" class="fa-solid fa-arrow-right-from-bracket menu_item" />  
-                        </menupopup>
-                    </menu>    
-                </menubar>
+                                <menuitem label="RUC: ${sessionScope.usuario.tipoambiente.amRuc}" class="menu_item" />                                
+                                <menuitem label="RAZÓN SOCIAL: ${sessionScope.usuario.tipoambiente.amRazonSocial}"  class="menu_item" />                                                          
+                                <menuitem label="Modificar usuario" onClick="@command('modificarUsuario')" class="menu_item" />
+                                <menuitem label="Salir" id="logoutMenu" class="menu_item" />  
+                            </menupopup>
+                        </menu>    
+                    </menubar>
 
 
                       
-                       </div>              
-                </div>
+                </div>              
+            </div>
                 
         </div>
         
