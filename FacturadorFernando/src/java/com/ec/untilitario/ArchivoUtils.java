@@ -132,43 +132,38 @@ public class ArchivoUtils {
             + "-----END CERTIFICATE-----";
 
     static final String certSRI = "-----BEGIN CERTIFICATE-----\n"
-            + "MIIG7DCCBdSgAwIBAgIQDq1uovBFe87I1sEjFGd/rTANBgkqhkiG9w0BAQsFADBZ\n"
+            + "MIIF9zCCBN+gAwIBAgIQCo9GhDNKQJ3LjbgSftNDFjANBgkqhkiG9w0BAQsFADBZ\n"
             + "MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMTMwMQYDVQQDEypE\n"
-            + "aWdpQ2VydCBHbG9iYWwgRzIgVExTIFJTQSBTSEEyNTYgMjAyMCBDQTEwHhcNMjQx\n"
-            + "MjIzMDAwMDAwWhcNMjYwMTIzMjM1OTU5WjB0MQswCQYDVQQGEwJFQzEOMAwGA1UE\n"
-            + "CBMFQXp1YXkxDzANBgNVBAcTBkN1ZW5jYTEkMCIGA1UEChMbU0VSVklDSU8gREUg\n"
-            + "UkVOVEFTIElOVEVSTkFTMR4wHAYDVQQDExVzcmllbmxpbmVhLnNyaS5nb2IuZWMw\n"
-            + "ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCx3qNrIfml3GXdXYcWu1Th\n"
-            + "YPSEjL24JORo3hgjkaYRBmFKtBeWtmNNnE8Mp3J+aIF2cnMx2fRwWUXoryG2X/Be\n"
-            + "vZYxEAZfM6OXqo61HA+zqujdlLoiMtNPbdKMQoulHNyMFXDF8KvcksWQUsNro6aZ\n"
-            + "SchuPDtzVFZWskXVXR6KAds/aBJWtSYmGWPhkNN9IdUX297vIPYozy6p1WwcXoMZ\n"
-            + "tRZgjh5PHvjZA6tiHZFfjddjjIiyf/P3cAmjSvY/ARjTVJi6FK0QvlbKIWv84p2z\n"
-            + "mDF9QojghaR1svRe196BksY5Oaxj48HRn2YfyCM2YA6xZV4RrqsGh1a1RtQ9yv3t\n"
-            + "AgMBAAGjggOTMIIDjzAfBgNVHSMEGDAWgBR0hYDAZsffN97PvSk3qgMdvu3NFzAd\n"
-            + "BgNVHQ4EFgQUiJfMAB34G5Xj24SHgTzknw2LCIUwIAYDVR0RBBkwF4IVc3JpZW5s\n"
-            + "aW5lYS5zcmkuZ29iLmVjMD4GA1UdIAQ3MDUwMwYGZ4EMAQICMCkwJwYIKwYBBQUH\n"
-            + "AgEWG2h0dHA6Ly93d3cuZGlnaWNlcnQuY29tL0NQUzAOBgNVHQ8BAf8EBAMCBaAw\n"
-            + "HQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMIGfBgNVHR8EgZcwgZQwSKBG\n"
-            + "oESGQmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbEcyVExT\n"
-            + "UlNBU0hBMjU2MjAyMENBMS0xLmNybDBIoEagRIZCaHR0cDovL2NybDQuZGlnaWNl\n"
-            + "cnQuY29tL0RpZ2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3Js\n"
-            + "MIGHBggrBgEFBQcBAQR7MHkwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2lj\n"
-            + "ZXJ0LmNvbTBRBggrBgEFBQcwAoZFaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29t\n"
-            + "L0RpZ2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3J0MAwGA1Ud\n"
-            + "EwEB/wQCMAAwggGABgorBgEEAdZ5AgQCBIIBcASCAWwBagB3AJaXZL9VWJet90OH\n"
-            + "aDcIQnfp8DrV9qTzNm5GpD8PyqnGAAABk/D5VK4AAAQDAEgwRgIhAMxhciSMAh/K\n"
-            + "naI237TBD7qcK2sNR+Yrxp33dqKSLILoAiEA2UssmF0Ht6eUovbbIWLN1aQKtd8H\n"
-            + "r1vBX6UWUoRGMpIAdgBkEcRspBLsp4kcogIuALyrTygH1B41J6vq/tUDyX3N8AAA\n"
-            + "AZPw+VSNAAAEAwBHMEUCIQD0TLLzkg10q58G7qdlf5ug2OBvkpUsxznFVjb5S0+i\n"
-            + "HwIgfRb8cLoqf8pQycew38pE9lO5vXi77L7U6OqyO4FwceQAdwBJnJtp3h187Pw2\n"
-            + "3s2HZKa4W68Kh4AZ0VVS++nrKd34wwAAAZPw+VSgAAAEAwBIMEYCIQCBxShySgnw\n"
-            + "IokvNdWDrWLhsmwv/7YtXgwB5YeEBKTA/QIhAKFXnwA41iIBExm0xID3oMsHfLx8\n"
-            + "NmZtYrog0p+NkT42MA0GCSqGSIb3DQEBCwUAA4IBAQB+Lzwu+Coogn4fzmMPTSER\n"
-            + "V1nr/lIOqJZnGbLeqVD+5o19aYexqDquVjdMIojHwrAy7Xx7Jr0wk6R5fGO9FF2i\n"
-            + "tGnwOPufIwXeQa2c2mYFPvly4boC8Gga3unKVdQ+STxZe4Dueel0QU23slBA17nb\n"
-            + "ymPhkwZ7RUTmqbRbNur054EidD9oRNLUrj+ED262sUBQsz1OrYopRqYHaFmQzCC+\n"
-            + "5iLU7Zfcvzaq+SEaxtGXD2oIuR6wTSr8Em1ad5hli7CtcpPNP5yn+jFhE8xT7t54\n"
-            + "N6Cd6ThtNlsLoQfEGP0rUXgllxVh8z/0twIEdZfTfNnrc7eZdNMyt4zdS81EZYaK\n"
+            + "aWdpQ2VydCBHbG9iYWwgRzIgVExTIFJTQSBTSEEyNTYgMjAyMCBDQTEwHhcNMjYw\n"
+            + "MjE1MDAwMDAwWhcNMjcwMTE0MjM1OTU5WjBdMQswCQYDVQQGEwJFQzEPMA0GA1UE\n"
+            + "BxMGQ3VlbmNhMSQwIgYDVQQKExtTZXJ2aWNpbyBkZSBSZW50YXMgSW50ZXJuYXMx\n"
+            + "FzAVBgNVBAMTDmNlbC5zcmkuZ29iLmVjMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcD\n"
+            + "QgAEfrrJQifvYPKhVgN+QSpuAOvKNwdiPEMZq7MRDZrJzIUMwv37q88i2HjDl6sY\n"
+            + "eB4/RcqYIjFbOdTgeZFYHxTADqOCA4AwggN8MB8GA1UdIwQYMBaAFHSFgMBmx983\n"
+            + "3s+9KTeqAx2+7c0XMB0GA1UdDgQWBBRdQbcrEzcCmCVQ6sg/1S1GcvjD0TAZBgNV\n"
+            + "HREEEjAQgg5jZWwuc3JpLmdvYi5lYzA+BgNVHSAENzA1MDMGBmeBDAECAjApMCcG\n"
+            + "CCsGAQUFBwIBFhtodHRwOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/\n"
+            + "BAQDAgOIMBMGA1UdJQQMMAoGCCsGAQUFBwMBMIGfBgNVHR8EgZcwgZQwSKBGoESG\n"
+            + "Qmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbEcyVExTUlNB\n"
+            + "U0hBMjU2MjAyMENBMS0xLmNybDBIoEagRIZCaHR0cDovL2NybDQuZGlnaWNlcnQu\n"
+            + "Y29tL0RpZ2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3JsMIGH\n"
+            + "BggrBgEFBQcBAQR7MHkwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0\n"
+            + "LmNvbTBRBggrBgEFBQcwAoZFaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp\n"
+            + "Z2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3J0MAwGA1UdEwEB\n"
+            + "/wQCMAAwggF+BgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB2AExj3JjlnB2riPYeij3e\n"
+            + "ro+rRKM3e1+blMP7oZz8wb4mAAABnF75hZgAAAQDAEcwRQIgGCnzPdzdEqafUp9o\n"
+            + "zhTmZ03a7s3vYlaLsViqQdnli4ACIQDn1F1Pib+HErletjG+oDGA2sEWmYiKY5vS\n"
+            + "NShKuAlBaAB1AByfaCzp+vBFaVD4G5aKh93bMhDYTObIsuOCUkrEz1mfAAABnF75\n"
+            + "hYkAAAQDAEYwRAIgIoYlIS/sFIqXsQbYxt6JcMZtfJvkGWmxhV1IoYlVKq4CIGQc\n"
+            + "VJ8GL16L/9eHMtrBOTDbWspq4W4FhMsbU/YepJy5AHcAYEyar3p/d18B1Ab8kg3I\n"
+            + "mesLHH34yVIb+voXdzuXi8kAAAGcXvmGzwAABAMASDBGAiEAgdPKkc3+5Arnb+g4\n"
+            + "VXWSmqN+lW6svsY3yqkh7qZ4YRICIQD0MtWkE6s6AglP/spZ5N+olbyn0rMKRlbb\n"
+            + "CjR1PSK9VDANBgkqhkiG9w0BAQsFAAOCAQEANEQ42R84HFQMsZgpUN1kgt4A/trP\n"
+            + "L12aTWOEaPL9/5tVdNY3BesH/a7plPp5hSWjHRkUI1XboeBeq3nLTY6S5gwb7Y54\n"
+            + "eenlgih9SxsIWfcuKA1E26SGs6sqU/kBcvdi+yaDvuPoDN9/ZKpmVZ4s7hbLdSMk\n"
+            + "WvdW/zCbI3i/+diSEMjxPuz+8bVeO36zggWNMth/FkubYofGuNWFIBGUSDdgo2Ox\n"
+            + "1L22tARPL3ma/+Rnafc8AwBFWybUKxV36glXGgllHIrCEnpE988r1gn9RqGFChQu\n"
+            + "zPnET79AIl0QP5oSw2rgFrMZaQWU1s2WUBm+N6g2xqyb9b2DX6cxJHHgeA==\n"
             + "-----END CERTIFICATE-----";
 
     public static String archivoToString(String rutaArchivo) {
@@ -1035,6 +1030,40 @@ public class ArchivoUtils {
 
         return new InfoPersona(contenido, direccion);
     }
+    
+     public static Date recuperarFecha(Date fecha, String tipo) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaSinHoraStr = sdf.format(fecha);
+        String horaStr = "00:00:00";
+        // Hora a agregar
+        if (tipo.equals("fin")) {
+            horaStr = "23:59:59";
+        }
+
+        // Formato de fecha y hora
+        SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            // Convertir fecha sin hora a objeto Date
+            Date fechaSinHora = formatoFechaHora.parse(fechaSinHoraStr + " 00:00:00");
+
+            // Concatenar la hora a la fecha sin hora
+            String fechaConHoraStr = fechaSinHoraStr + " " + horaStr;
+            System.out.println(fechaConHoraStr);
+
+            // Convertir la cadena con fecha y hora a objeto Date
+            Date fechaConHora = formatoFechaHora.parse(fechaConHoraStr);
+            System.out.println(fechaConHora);
+
+            // Imprimir los objetos Date resultantes
+            return fechaConHora;
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+            return fecha;
+        }
+    }
+
     static final X509Certificate comodoRsaCertificationAuthority = Certificates.decodeCertificatePem(certGestDoc);
 //
     static final X509Certificate entrustRootCertificateAuthority = Certificates.decodeCertificatePem(certGestDoc);

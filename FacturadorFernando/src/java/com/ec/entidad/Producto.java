@@ -573,7 +573,7 @@ public class Producto implements Serializable {
     }
 
     public String getProdCodigoAux() {
-        return prodCodigoAux;
+        return prodCodigoAux == null ? "" : prodCodigoAux;
     }
 
     public void setProdCodigoAux(String prodCodigoAux) {

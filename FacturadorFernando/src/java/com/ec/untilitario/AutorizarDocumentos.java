@@ -399,7 +399,7 @@ public class AutorizarDocumentos {
 
                 linea = ("        <detalle>\n"
                         + "            <codigoPrincipal>" + removeCaracteres(item.getIdProducto().getProdCodigo()) + "</codigoPrincipal>\n"
-                        + (item.getIdProducto().getProdCodigoAux() != null ? "            <codigoAuxiliar>" + removeCaracteres(item.getIdProducto().getProdCodigoAux()) + "</codigoAuxiliar>\n" : " ")
+                        + ((!item.getIdProducto().getProdCodigoAux().equals("")) ? "            <codigoAuxiliar>" + removeCaracteres(item.getIdProducto().getProdCodigoAux()) + "</codigoAuxiliar>\n" : " ")
                         + "            <descripcion>" + removeCaracteres(item.getDetDescripcion()) + "</descripcion>\n"
                         //+ "            <descripcion>" + removeCaracteres(item.getIdProducto().getProdNombre()) + "</descripcion>\n"
                         + "            <cantidad>" + item.getDetCantidad().setScale(2, RoundingMode.FLOOR) + "</cantidad>\n"
