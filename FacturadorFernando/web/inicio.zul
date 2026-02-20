@@ -34,7 +34,6 @@
                             placeholder="Contraseña" 
                             class="input input_password" 
                             id="password"
-                            onCreate="self.focus()" 
                         />
                         <span class="fa-solid fa-eye icon_eye icon"></span>
                     </div>

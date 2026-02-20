@@ -4,6 +4,7 @@
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
+<?script src="https://kit.fontawesome.com/484b16c999.js"?>
 <?script src="../js/facturar.js"?>
 
 <?init class="com.ec.seguridad.Autentificador"?>
@@ -202,21 +203,22 @@
                     <div class="container_row_input">
                     
                         <div class="wrapper_input_mod">
-                            <span>Clave SRI: </span>
+                            <span>Clave firma: </span>
                             <div class="wrapper_input_text">
                                 <div class="fa-solid fa-key icon"></div>
                                 <textbox 
                                     type="password"
+                                      onChange="@command('validarFirma')"
                                     value="@bind(vm.tipoambiente.amClaveAccesoSri)" 
-                                    placeholder="Clave SRI"
+                                    placeholder="Clave firma"
                                     class="input_text"
-                                    tooltiptext="Clave SRI" 
+                                    tooltiptext="Clave firma" 
                                      style="width:100%;"
                                 />
                             </div>
                         </div>
                         <div class="wrapper_input_mod" >
-                            <span >Firma Electrónica </span>
+                            <span    onDoubleClick="@command('verInformacion')">Firma Electrónica </span>
                             <div class="wrapper_input_text" style="width:86%;position:relative">
                                 <div class="fa-solid fa-unlock-keyhole icon"></div>
                                 <textbox value="@bind(vm.tipoambiente.amDirFirma)"
@@ -432,82 +434,82 @@
                             <div class="wrapper_input_text">
                                 <div ></div>
                                     
-                            </div>
-                        </div>-->
+                                        </div>
+                                    </div>-->
                         
-                    </div>
+                                </div>
 
                     
 
                 
-                </div>
+                            </div>
             
-                <div class="body">
-                    <div class="container_row_input">
-                        <div class="wrapper_input_mod">
-                            <span>Sec Factura: </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-anchor icon"></div>
-                                <textbox 
-                                    value="@bind(vm.tipoambiente.amSecFactura)" 
-                                    placeholder="123"
-                                    class="input_text"
-                                    tooltiptext="Secuencial factura" 
-                                />
-                            </div>
-                        </div>
-                        <div class="wrapper_input_mod">
-                            <span>Sec Retencion: </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-location-dot icon"></div>
-                                <textbox 
-                                    value="@bind(vm.tipoambiente.amSecRetencion)" 
-                                    placeholder="123"
-                                    onOK="@command('buscarCatastro')"
-                                    class="input_text"
-                                    tooltiptext="Secuencial retencion"
-                                />
-                            </div>
-                        </div>
+                            <div class="body">
+                                <div class="container_row_input">
+                                    <div class="wrapper_input_mod">
+                                        <span>Sec Factura: </span>
+                                        <div class="wrapper_input_text">
+                                            <div class="fa-solid fa-anchor icon"></div>
+                                            <textbox 
+                                                value="@bind(vm.tipoambiente.amSecFactura)" 
+                                                placeholder="123"
+                                                class="input_text"
+                                                tooltiptext="Secuencial factura" 
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="wrapper_input_mod">
+                                        <span>Sec Retencion: </span>
+                                        <div class="wrapper_input_text">
+                                            <div class="fa-solid fa-location-dot icon"></div>
+                                            <textbox 
+                                                value="@bind(vm.tipoambiente.amSecRetencion)" 
+                                                placeholder="123"
+                                                onOK="@command('buscarCatastro')"
+                                                class="input_text"
+                                                tooltiptext="Secuencial retencion"
+                                            />
+                                        </div>
+                                    </div>
                     
-                        <div class="wrapper_input_mod">
-                            <span>Sec. Nota credito: </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-location-dot icon"></div>
-                                <textbox 
-                                    value="@bind(vm.tipoambiente.amSecNotaCredito)" 
-                                    placeholder="123"
-                                    class="input_text"
-                                    tooltiptext="Secuencial nora de credito"
-                                />
-                            </div>
-                        </div>
-                        <div class="wrapper_input_mod">
-                            <span>Sec. Guias: </span>
-                            <div class="wrapper_input_text">
-                                <div class="fa-solid fa-location-dot icon"></div>
-                                <textbox 
-                                    value="@bind(vm.tipoambiente.amSecGuia)" 
-                                    placeholder="123"
+                                    <div class="wrapper_input_mod">
+                                        <span>Sec. Nota credito: </span>
+                                        <div class="wrapper_input_text">
+                                            <div class="fa-solid fa-location-dot icon"></div>
+                                            <textbox 
+                                                value="@bind(vm.tipoambiente.amSecNotaCredito)" 
+                                                placeholder="123"
+                                                class="input_text"
+                                                tooltiptext="Secuencial nora de credito"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="wrapper_input_mod">
+                                        <span>Sec. Guias: </span>
+                                        <div class="wrapper_input_text">
+                                            <div class="fa-solid fa-location-dot icon"></div>
+                                            <textbox 
+                                                value="@bind(vm.tipoambiente.amSecGuia)" 
+                                                placeholder="123"
                               
-                                    class="input_text"
-                                    tooltiptext="Secuencial guia"
-                                />
+                                                class="input_text"
+                                                tooltiptext="Secuencial guia"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                
+                
                             </div>
-                        </div>
-                    </div>
 
-                
-                
-                </div>
-
-                <div style="display:flex;justify-content:flex-end;">
-                    <button class="btn_modal" style="width:300px" onClick="@command('guardar')" tooltiptext="Guardar informacion">
-                        Guardar
-                    </button>
-                </div>
+                            <div style="display:flex;justify-content:flex-end;">
+                                <button class="btn_modal" style="width:300px" onClick="@command('guardar')" tooltiptext="Guardar informacion">
+                                    Guardar
+                                </button>
+                            </div>
         
-            </div>
+                        </div>
 
                     </div>
                 </tabpanel>    
