@@ -132,38 +132,43 @@ public class ArchivoUtils {
             + "-----END CERTIFICATE-----";
 
     static final String certSRI = "-----BEGIN CERTIFICATE-----\n"
-            + "MIIF9zCCBN+gAwIBAgIQCo9GhDNKQJ3LjbgSftNDFjANBgkqhkiG9w0BAQsFADBZ\n"
+            + "MIIG0jCCBbqgAwIBAgIQDtb/tBd+GZHlQWyNdTc6aDANBgkqhkiG9w0BAQsFADBZ\n"
             + "MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMTMwMQYDVQQDEypE\n"
             + "aWdpQ2VydCBHbG9iYWwgRzIgVExTIFJTQSBTSEEyNTYgMjAyMCBDQTEwHhcNMjYw\n"
-            + "MjE1MDAwMDAwWhcNMjcwMTE0MjM1OTU5WjBdMQswCQYDVQQGEwJFQzEPMA0GA1UE\n"
+            + "MTIzMDAwMDAwWhcNMjcwMjIzMjM1OTU5WjBkMQswCQYDVQQGEwJFQzEPMA0GA1UE\n"
             + "BxMGQ3VlbmNhMSQwIgYDVQQKExtTZXJ2aWNpbyBkZSBSZW50YXMgSW50ZXJuYXMx\n"
-            + "FzAVBgNVBAMTDmNlbC5zcmkuZ29iLmVjMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcD\n"
-            + "QgAEfrrJQifvYPKhVgN+QSpuAOvKNwdiPEMZq7MRDZrJzIUMwv37q88i2HjDl6sY\n"
-            + "eB4/RcqYIjFbOdTgeZFYHxTADqOCA4AwggN8MB8GA1UdIwQYMBaAFHSFgMBmx983\n"
-            + "3s+9KTeqAx2+7c0XMB0GA1UdDgQWBBRdQbcrEzcCmCVQ6sg/1S1GcvjD0TAZBgNV\n"
-            + "HREEEjAQgg5jZWwuc3JpLmdvYi5lYzA+BgNVHSAENzA1MDMGBmeBDAECAjApMCcG\n"
-            + "CCsGAQUFBwIBFhtodHRwOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDgYDVR0PAQH/\n"
-            + "BAQDAgOIMBMGA1UdJQQMMAoGCCsGAQUFBwMBMIGfBgNVHR8EgZcwgZQwSKBGoESG\n"
-            + "Qmh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbEcyVExTUlNB\n"
-            + "U0hBMjU2MjAyMENBMS0xLmNybDBIoEagRIZCaHR0cDovL2NybDQuZGlnaWNlcnQu\n"
-            + "Y29tL0RpZ2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3JsMIGH\n"
-            + "BggrBgEFBQcBAQR7MHkwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0\n"
-            + "LmNvbTBRBggrBgEFBQcwAoZFaHR0cDovL2NhY2VydHMuZGlnaWNlcnQuY29tL0Rp\n"
-            + "Z2lDZXJ0R2xvYmFsRzJUTFNSU0FTSEEyNTYyMDIwQ0ExLTEuY3J0MAwGA1UdEwEB\n"
-            + "/wQCMAAwggF+BgorBgEEAdZ5AgQCBIIBbgSCAWoBaAB2AExj3JjlnB2riPYeij3e\n"
-            + "ro+rRKM3e1+blMP7oZz8wb4mAAABnF75hZgAAAQDAEcwRQIgGCnzPdzdEqafUp9o\n"
-            + "zhTmZ03a7s3vYlaLsViqQdnli4ACIQDn1F1Pib+HErletjG+oDGA2sEWmYiKY5vS\n"
-            + "NShKuAlBaAB1AByfaCzp+vBFaVD4G5aKh93bMhDYTObIsuOCUkrEz1mfAAABnF75\n"
-            + "hYkAAAQDAEYwRAIgIoYlIS/sFIqXsQbYxt6JcMZtfJvkGWmxhV1IoYlVKq4CIGQc\n"
-            + "VJ8GL16L/9eHMtrBOTDbWspq4W4FhMsbU/YepJy5AHcAYEyar3p/d18B1Ab8kg3I\n"
-            + "mesLHH34yVIb+voXdzuXi8kAAAGcXvmGzwAABAMASDBGAiEAgdPKkc3+5Arnb+g4\n"
-            + "VXWSmqN+lW6svsY3yqkh7qZ4YRICIQD0MtWkE6s6AglP/spZ5N+olbyn0rMKRlbb\n"
-            + "CjR1PSK9VDANBgkqhkiG9w0BAQsFAAOCAQEANEQ42R84HFQMsZgpUN1kgt4A/trP\n"
-            + "L12aTWOEaPL9/5tVdNY3BesH/a7plPp5hSWjHRkUI1XboeBeq3nLTY6S5gwb7Y54\n"
-            + "eenlgih9SxsIWfcuKA1E26SGs6sqU/kBcvdi+yaDvuPoDN9/ZKpmVZ4s7hbLdSMk\n"
-            + "WvdW/zCbI3i/+diSEMjxPuz+8bVeO36zggWNMth/FkubYofGuNWFIBGUSDdgo2Ox\n"
-            + "1L22tARPL3ma/+Rnafc8AwBFWybUKxV36glXGgllHIrCEnpE988r1gn9RqGFChQu\n"
-            + "zPnET79AIl0QP5oSw2rgFrMZaQWU1s2WUBm+N6g2xqyb9b2DX6cxJHHgeA==\n"
+            + "HjAcBgNVBAMTFXNyaWVubGluZWEuc3JpLmdvYi5lYzCCASIwDQYJKoZIhvcNAQEB\n"
+            + "BQADggEPADCCAQoCggEBAOYaLHq7Qo400kt74uq5PWcahml8ew8pSD1w+MJY6kQG\n"
+            + "ztNl01Sd2/Y3keHeHQGeCnd2MIIgyRfHK/NsruJjJHsE/qOji1lxesT07VPjNc/z\n"
+            + "/eUqHWajuEoH7B0sylRUGeP1AiBt4XFeLHwKzMi0WqXP1rdzoc+bRqTxBCfMvicq\n"
+            + "H4zZoD73i/uNiIt1aphKQqtydWT+8myT7FkXvFSVOsc+Fx3KfQoUdb57EHt8Vjuc\n"
+            + "A8ckvF1lmvng78IQtwGzMgVc5znx0VRc2VqdDtvj4ClvZ3NyswzilHOdp3VdHG7F\n"
+            + "AG/IwMAiT1uMyzPsvDC7cEsYVITfz1qhuDhpAwjE45MCAwEAAaOCA4kwggOFMB8G\n"
+            + "A1UdIwQYMBaAFHSFgMBmx9833s+9KTeqAx2+7c0XMB0GA1UdDgQWBBSVhv+aMx5K\n"
+            + "Ic//+gzqqEvwEeT4CjAgBgNVHREEGTAXghVzcmllbmxpbmVhLnNyaS5nb2IuZWMw\n"
+            + "PgYDVR0gBDcwNTAzBgZngQwBAgIwKTAnBggrBgEFBQcCARYbaHR0cDovL3d3dy5k\n"
+            + "aWdpY2VydC5jb20vQ1BTMA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEF\n"
+            + "BQcDATCBnwYDVR0fBIGXMIGUMEigRqBEhkJodHRwOi8vY3JsMy5kaWdpY2VydC5j\n"
+            + "b20vRGlnaUNlcnRHbG9iYWxHMlRMU1JTQVNIQTI1NjIwMjBDQTEtMS5jcmwwSKBG\n"
+            + "oESGQmh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbEcyVExT\n"
+            + "UlNBU0hBMjU2MjAyMENBMS0xLmNybDCBhwYIKwYBBQUHAQEEezB5MCQGCCsGAQUF\n"
+            + "BzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5jb20wUQYIKwYBBQUHMAKGRWh0dHA6\n"
+            + "Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbEcyVExTUlNBU0hB\n"
+            + "MjU2MjAyMENBMS0xLmNydDAMBgNVHRMBAf8EAjAAMIIBgAYKKwYBBAHWeQIEAgSC\n"
+            + "AXAEggFsAWoAdwBMY9yY5Zwdq4j2Hoo93q6Pq0SjN3tfm5TD+6Gc/MG+JgAAAZvo\n"
+            + "kuCJAAAEAwBIMEYCIQCd9jDYbY8cNIYSnWNAJcs/kViI3wf7f/zT6JIFv5ImSQIh\n"
+            + "AMiJgF+qjclv36dV6dptfQW0ws52MW+yx0dNXcCnepbHAHYAHJ9oLOn68EVpUPgb\n"
+            + "loqH3dsyENhM5siy44JSSsTPWZ8AAAGb6JLfvAAABAMARzBFAiEA+LDvMJy8cLe+\n"
+            + "CtRooklCqct0ZsPnMzOsn0WcIu2p6Q0CIAJd6pphmP78C09hTmOSpBTm/4kzf6Xf\n"
+            + "pWjYXnXhDys6AHcAYEyar3p/d18B1Ab8kg3ImesLHH34yVIb+voXdzuXi8kAAAGb\n"
+            + "6JLglQAABAMASDBGAiEAiS+/Pefmk/j1cNZ9LCvV1SGurPLS1ZXI+dJHZlLxT7QC\n"
+            + "IQC5sB9Yw/lZ1fjToOZwYYi6Do/Roz7DTdt0UTykmjBSdTANBgkqhkiG9w0BAQsF\n"
+            + "AAOCAQEAWkKK4E0SELAdEFFc9nGLSX0RGFaYy06z/L+AV1HqkEJQr1Y8sf5uar+3\n"
+            + "sXGIcrTD1CWvRGRFgSXMWUyNIbZkYMvwRgvQNM4ZJfMKY2rjd+A2iNzxYWubxyU0\n"
+            + "jCLOGe8ydZPbQcAXUWUntwJ0DqrWYL3bpz1sB+lwpHGzXI2WCZFWQuXTQhEX0zVm\n"
+            + "vXhXKYiw7OTkwuvVIrxU/g88Ltq44oOJh0f/8NLOYgasQPVuc1s+u3ZorFEMk0oI\n"
+            + "MrIpKrpAgpbUEs7k6jtmQ87VYT3dxP8KL9uudIV7dr7PiZ13AopRvYJCGERgJavA\n"
+            + "vXT7Olc0/PKW4WPBccbL2YVKn/kK1Q==\n"
             + "-----END CERTIFICATE-----";
 
     public static String archivoToString(String rutaArchivo) {
@@ -1030,8 +1035,8 @@ public class ArchivoUtils {
 
         return new InfoPersona(contenido, direccion);
     }
-    
-     public static Date recuperarFecha(Date fecha, String tipo) {
+
+    public static Date recuperarFecha(Date fecha, String tipo) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String fechaSinHoraStr = sdf.format(fecha);
