@@ -84,6 +84,13 @@ body {
     font-weight: bold;
     color: #666;
 }
+.wrapper_input_ret > span {
+    display: block;
+    width: 100% !important;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+}
 
 .fact_row > .wrapper_data > .wrapper_input > .input_without_label {
     width: 100% !important;
@@ -825,6 +832,9 @@ div.z-listheader-cnt {
     align-items: center;
     grid-template-columns: 12% 29% 30% 29%;
 }
+
+
+
 
 .tabla13,.encabezado13{
     display: grid !important;

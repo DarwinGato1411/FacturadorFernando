@@ -27,7 +27,7 @@
                         
                         <div class="factura_header">
                             <div class="fact_row">
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                  
                                     <span>Tipo documento:</span>
                                     <combobox  readonly="true"
@@ -45,7 +45,7 @@
                                     class="form-control form-control-sm"   />-->
 
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <span>Fecha doc sustento:</span>
                                     
                                     <datebox compact="true" value="@bind(vm.retencionCompra.cabFechaEmision)" 
@@ -57,7 +57,7 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                  
                                     <span>Tipo Identificacion:</span>
                                     <combobox  model="@load(vm.listaIdentificion)"                                             
@@ -77,7 +77,7 @@
 
                                 </div>
                                 <!--</div>-->
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                  
                                     <span>CI/RUC</span>
                                     
@@ -90,7 +90,7 @@
 
                                 </div>
                                 <!--</div>-->
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                  
                                     <span>Razon social</span>
                                     
@@ -102,19 +102,8 @@
                                              class="form-control form-control-sm"   />
 
                                 </div>
-                                <!--</div>-->
-                                <div class="wrapper_input">
-                                 
-                                    <span>Nº factura:</span>
-                                    
-                                    <textbox readonly="false"
-                                             style="font-weight:bold"     
-                                             maxlength="15"                                          
-                                             value="@bind(vm.retencionCompra.rcoNumFactura)" 
-                                             class="form-control form-control-sm"   />
-
-                                </div>
-                                <div class="wrapper_input">
+                                  
+                              <div class="wrapper_input_ret">
                                  
                                     <span>Correo:</span>
                                     
@@ -125,23 +114,44 @@
                                              class="form-control form-control-sm"   />
 
                                 </div>
+                                
+                                <div class="wrapper_input_ret">
+                                 
+                                    <span>Nº factura:</span>
+                                    
+                                    <textbox readonly="false"
+                                             style="font-weight:bold"     
+                                             maxlength="15"                                          
+                                             value="@bind(vm.retencionCompra.rcoNumFactura)" 
+                                             class="form-control form-control-sm"   />
+
+                                </div>
+                            
+                            </div>
+                            </div>
+<!--                           <div class="factura_header">
+                              <div class="fact_row">
+                                
+                                
                              
                             
                             </div>
-                        </div>
+                        </div>-->
                         <div class="factura_header">
                             <div class="fact_row">
                             
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret" >
                                  
-                                    <radiogroup  selectedItem="@bind(vm.codImpuestoAsignado)" onCheck="@command('visualizarIvaFuente')" >
+                                    <radiogroup selectedItem="@bind(vm.codImpuestoAsignado)" onCheck="@command('visualizarIvaFuente')" >
+                                        <hlayout spacing="15px">
                                         <radio label="IVA" value="2"/>
-                                        <separator/>
-                                        <radio label="RENTA" value="1"/>     
+                                        
+                                        <radio label="RENTA" value="1"/>    
+                                        </hlayout> 
                                     </radiogroup>
 
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <span>Fecha retencion:</span>
                                     
                                     <datebox compact="true" value="@bind(vm.retencionCompra.rcoFecha)" 
@@ -153,7 +163,7 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <span>Nº retencion:</span>
                                     
                                     <textbox readonly="false"
@@ -164,7 +174,7 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <span>Base imponible:</span>
                                     <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                                                 value="@bind(vm.baseImponible)"
@@ -176,7 +186,7 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <span>Tipo retencion:</span>
                                     
                                     <div  visible="@load(vm.activaIvaRenta)">
@@ -205,7 +215,7 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input">
+                                <div class="wrapper_input_ret">
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
@@ -218,10 +228,10 @@
 
                                    
                                 </div>
-                                <div class="wrapper_input" align="end">
+                                <div class="wrapper_input_ret" align="end">
                                     <separator width="100px" />
                                 </div>
-                                <div class="wrapper_input" align="end">
+                                <div class="wrapper_input_ret" align="end">
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
@@ -286,9 +296,9 @@
                                                             value="@bind(each.drcBaseImponible)"  width="99%" />
                                             </listcell>                                     
                                             <listcell>
-                                                <label  value="@bind(each.tireCodigo.tireNombre)" width="99%"
+                                                <label  value="@bind(each.tireCodigo.tireNombre)"  style="color:black" width="99%"
                                                         if="${each.codImpuestoAsignado == '1'}"/>
-                                                <label  value="Retencion IVA" width="99%" 
+                                                <label  value="Retencion IVA" width="99%" style="color:black"
                                                         if="${each.codImpuestoAsignado == '2'}"/>
                                             </listcell>
                                             <listcell>

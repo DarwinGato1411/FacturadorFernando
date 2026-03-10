@@ -1053,6 +1053,29 @@ public class ArchivoUtils {
         return new InfoPersona(contenido, direccion);
     }
 
+    public static String formatearFecha(Date fecha) {
+
+        // Formato de fecha y hora
+        SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            // Convertir fecha sin hora a objeto Date
+//            Date fechaSinHora = formatoFechaHora.parse(fechaSinHoraStr + " 00:00:00");
+
+            // Concatenar la hora a la fecha sin hora
+//            String fechaConHoraStr = fechaSinHoraStr + " " + horaStr;
+//            System.out.println(fechaConHoraStr);
+            // Convertir la cadena con fecha y hora a objeto Date
+            String fechaConHora = formatoFechaHora.format(fecha);
+            System.out.println(fechaConHora);
+
+            // Imprimir los objetos Date resultantes
+            return fechaConHora;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
     static final X509Certificate comodoRsaCertificationAuthority = Certificates.decodeCertificatePem(certGestDoc);
 //
     static final X509Certificate entrustRootCertificateAuthority = Certificates.decodeCertificatePem(certGestDoc);

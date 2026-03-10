@@ -202,7 +202,7 @@
                     <div class="container_row_input">
            
                         <div class="wrapper_input_mod" >
-                            <span >Firma Electrónica </span>
+                            <span onDoubleClick="@command('verInformacion')" >Firma Electrónica </span>
                             <div class="wrapper_input_text" style="width:86%;position:relative">
                                 <div class="fa-solid fa-unlock-keyhole icon"></div>
                                 <textbox value="@bind(vm.tipoambiente.amDirFirma)"

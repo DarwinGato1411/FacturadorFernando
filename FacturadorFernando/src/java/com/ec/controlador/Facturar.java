@@ -2402,27 +2402,35 @@ public class Facturar extends SelectorComposer<Component> {
             }
 
         } catch (IOException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (InstantiationException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (NumberFormatException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (SQLException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (NamingException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         } catch (JRException e) {
+            e.printStackTrace();
             System.out.println("ERROR FACTURA " + e.getMessage());
             Messagebox.show("Ocurrio un error guardar la factura ", "Atención", Messagebox.OK, Messagebox.ERROR);
         }

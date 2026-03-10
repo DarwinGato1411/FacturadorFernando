@@ -544,7 +544,7 @@ public class NuevoProducto {
 
         if (prodPrecioSubtotal != null) {
             if (conIva.equals("S")) {
-                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(BigDecimal.valueOf(1.12)));
+                this.producto.setPordCostoVentaFinal(prodPrecioSubtotal.multiply(BigDecimal.valueOf(1.15)));
             } else {
                 this.producto.setPordCostoVentaFinal(prodPrecioSubtotal);
             }

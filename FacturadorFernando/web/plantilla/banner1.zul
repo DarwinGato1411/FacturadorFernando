@@ -51,8 +51,8 @@
                 <menupopup class="submenu">
                     <menuitem label="Crear cliente" id="btnCrearCliente"  class="menu_item " style="color:black" />
                     <menuitem label="Crear producto" id="btnCrearProducto" class="menu_item"/>
-                    <menuitem label="Grabar factura" id="btnFacturar" class="menu_item" />
-                    <menuitem label="Emitir Facturas" id="btnNotaVentas" class="menu_item"/>   
+                    <menuitem label="Crear factura" id="btnFacturar" class="menu_item" />
+                    <menuitem label="Facturas emitidas" id="btnNotaVentas" class="menu_item"/>   
                     <menuitem label="Cuentas por cobrar" id="btnfactCobra" class="menu_item" />                                           
                     <menuitem label="Notas credito" id="btnNotaCredito" class="menu_item" />               
                     <menuitem label="Proformas emitidas" id="btnProformasEmitidas" class="menu_item" />
@@ -78,14 +78,14 @@
            
             <menu label="Retencion" id="menuRetencion" class="menu_child  fa-regular fa-chart-pie menu_item menu_item">
                 <menupopup class="submenu">                     
-                    <menuitem label="Grabar retención" id="btnRetencionManual" class=" menu_item" />                                                   
-                    <menuitem label="Emitir retención" id="btnEmitRetencionManual" class="menu_item" />                                                   
+                    <menuitem label="Crear retención" id="btnRetencionManual" class=" menu_item" />                                                   
+                    <menuitem label="Lista de retención" id="btnEmitRetencionManual" class="menu_item" />                                                   
                 </menupopup>
             </menu> 
              <menu label="Guias"  id="menuGuias" class="menu_child fa-solid fa-truck menu_item " >
                 <menupopup class="submenu">                        
-                    <menuitem label="Emitir Guias de remision" id="btnEmitirGuiaRemision" class="menu_item" />
-                    <menuitem label="Guias de remision emitidas" id="btnGuiaRemision" class="menu_item" />
+                    <menuitem label="Crear Guia de remisión" id="btnEmitirGuiaRemision" class="menu_item" />
+                    <menuitem label="Lista de Guias " id="btnGuiaRemision" class="menu_item" />
                         
                 </menupopup>
             </menu> 
