@@ -123,7 +123,7 @@
                     <div class="wrapper_input_text">
                         <div class="fa-solid fa-dollar-sign icon"></div>
                         <textbox    
-                            
+                            onOK="@command('calcularSubTotal')"
                             constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                             value="@bind(vm.producto.pordCostoVentaFinal)"  
                             class="input_text"  

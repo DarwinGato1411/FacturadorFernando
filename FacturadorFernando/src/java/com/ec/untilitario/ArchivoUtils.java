@@ -918,6 +918,25 @@ public class ArchivoUtils {
         return sb.toString();
     }
 
+//    public static String obtenerPorRuc(String cedula) {
+//        if (cedula.length() == 10) {
+//            cedula = cedula + "001";
+//        }
+//
+//        try {
+//            JSONObject json = readJsonFromUrl("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula);
+//            System.out.println(json.toString());
+//            System.out.println(json.get("nombreCompleto"));
+//            return json.get("nombreCompleto").toString();
+//        } catch (IOException ex) {
+////                Logger.getLogger(Archi.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (JSONException ex) {
+////                Logger.getLogger(Verificador.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return "";
+//
+//    }
     public static String obtenerPorRuc(String cedula) {
         if (cedula.length() == 10) {
             cedula = cedula + "001";
@@ -930,16 +949,22 @@ public class ArchivoUtils {
         X509TrustManager trustManager;
         SSLSocketFactory sslSocketFactory;
         try {
-            HandshakeCertificates certificates = new HandshakeCertificates.Builder()
+           /* HandshakeCertificates certificates = new HandshakeCertificates.Builder()
                     .addTrustedCertificate(letsEncryptCertificateAuthoritySRI)
                     .addTrustedCertificate(entrustRootCertificateAuthoritySRI)
                     .addTrustedCertificate(comodoRsaCertificationAuthoritySRI)
                     // Uncomment if standard certificates are also required.
                     //.addPlatformTrustedCertificates()
-                    .build();
-            OkHttpClient client = new OkHttpClient.Builder()
+                    .build();*/
+           HandshakeCertificates certificates = new HandshakeCertificates.Builder()
+        .addPlatformTrustedCertificates()  // MUY IMPORTANTE
+        .build();
+           /* OkHttpClient client = new OkHttpClient.Builder()
                     .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
-                    .build();
+                    .build();*/
+           OkHttpClient client = new OkHttpClient.Builder()
+        .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+        .build();
             Request request = new Request.Builder()
                     .url("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula)
                     .build();
@@ -1034,7 +1059,63 @@ public class ArchivoUtils {
 
         return new InfoPersona(contenido, direccion);
     }
+    
+     public static Date recuperarFecha(Date fecha, String tipo) {
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaSinHoraStr = sdf.format(fecha);
+        String horaStr = "00:00:00";
+        // Hora a agregar
+        if (tipo.equals("fin")) {
+            horaStr = "23:59:59";
+        }
+
+        // Formato de fecha y hora
+        SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            // Convertir fecha sin hora a objeto Date
+            Date fechaSinHora = formatoFechaHora.parse(fechaSinHoraStr + " 00:00:00");
+
+            // Concatenar la hora a la fecha sin hora
+            String fechaConHoraStr = fechaSinHoraStr + " " + horaStr;
+            System.out.println(fechaConHoraStr);
+
+            // Convertir la cadena con fecha y hora a objeto Date
+            Date fechaConHora = formatoFechaHora.parse(fechaConHoraStr);
+            System.out.println(fechaConHora);
+
+            // Imprimir los objetos Date resultantes
+            return fechaConHora;
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+            return fecha;
+        }
+    }
+
+       public static String formatearFecha(Date fecha) {
+
+        // Formato de fecha y hora
+        SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            // Convertir fecha sin hora a objeto Date
+//            Date fechaSinHora = formatoFechaHora.parse(fechaSinHoraStr + " 00:00:00");
+
+            // Concatenar la hora a la fecha sin hora
+//            String fechaConHoraStr = fechaSinHoraStr + " " + horaStr;
+//            System.out.println(fechaConHoraStr);
+            // Convertir la cadena con fecha y hora a objeto Date
+            String fechaConHora = formatoFechaHora.format(fecha);
+            System.out.println(fechaConHora);
+
+            // Imprimir los objetos Date resultantes
+            return fechaConHora;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
     static final X509Certificate comodoRsaCertificationAuthority = Certificates.decodeCertificatePem(certGestDoc);
 //
     static final X509Certificate entrustRootCertificateAuthority = Certificates.decodeCertificatePem(certGestDoc);
