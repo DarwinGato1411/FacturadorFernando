@@ -57,6 +57,25 @@
 
                                    
                                 </div>
+                                
+                                
+                                <div class="wrapper_input_ret">
+                                 
+                                    <span>Nº factura:</span>
+                                    
+                                    <textbox readonly="false"
+                                             style="font-weight:bold"     
+                                             maxlength="15"                                          
+                                             value="@bind(vm.retencionCompra.rcoNumFactura)" 
+                                             class="form-control form-control-sm"   />
+
+                                </div>
+                            
+                            </div>
+                            
+                            </div>
+                             <div class="factura_header">
+                            <div class="fact_row">
                                 <div class="wrapper_input_ret">
                                  
                                     <span>Tipo Identificacion:</span>
@@ -103,31 +122,31 @@
 
                                 </div>
                                   
-                              <div class="wrapper_input_ret">
+                              
+                               <div class="wrapper_input_ret">
+                                 
+                                    <span>Dirección:</span>
+                                    
+                                    <textbox readonly="false"
+                                             style="font-weight:bold"     
+                                             maxlength="200"                                  
+                                             value="@bind(vm.retencionCompra.rcoDireccion)" 
+                                             class="form-control form-control-sm"   />
+
+                                </div> 
+                                <div class="wrapper_input_ret">
                                  
                                     <span>Correo:</span>
                                     
                                     <textbox readonly="false"
                                              style="font-weight:bold"     
-                                             maxlength="200"                                          
+                                             maxlength="200"                                         
                                              value="@bind(vm.retencionCompra.rcoCorreoProveedor)" 
                                              class="form-control form-control-sm"   />
 
                                 </div>
-                                
-                                <div class="wrapper_input_ret">
-                                 
-                                    <span>Nº factura:</span>
-                                    
-                                    <textbox readonly="false"
-                                             style="font-weight:bold"     
-                                             maxlength="15"                                          
-                                             value="@bind(vm.retencionCompra.rcoNumFactura)" 
-                                             class="form-control form-control-sm"   />
-
-                                </div>
-                            
                             </div>
+                            
                             </div>
 <!--                           <div class="factura_header">
                               <div class="fact_row">
@@ -144,9 +163,9 @@
                                  
                                     <radiogroup selectedItem="@bind(vm.codImpuestoAsignado)" onCheck="@command('visualizarIvaFuente')" >
                                         <hlayout spacing="15px">
-                                        <radio label="IVA" value="2"/>
+                                            <radio label="IVA" value="2"/>
                                         
-                                        <radio label="RENTA" value="1"/>    
+                                            <radio label="RENTA" value="1"/>    
                                         </hlayout> 
                                     </radiogroup>
 
@@ -179,10 +198,10 @@
                                     <textbox    constraint="/^[0-9]{1,9}(?:[.][0-9]{1,5})?$/:Ingrese solo numeros"
                                                 value="@bind(vm.baseImponible)"
                                                 class="form-control form-control-sm"   />
-<!--                                    <decimalbox readonly="false" format="###.#####" 
-                                                style="font-weight:bold"                                              
-                                                value="@bind(vm.baseImponible)" 
-                                                class="form-control form-control-sm"   />-->
+                                    <!--                                    <decimalbox readonly="false" format="###.#####" 
+                                    style="font-weight:bold"                                              
+                                    value="@bind(vm.baseImponible)" 
+                                    class="form-control form-control-sm"   />-->
 
                                    
                                 </div>
@@ -218,27 +237,26 @@
                                 <div class="wrapper_input_ret">
                                     <button 
                                         autodisable="self"   
-                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        class="fa-solid  btn_fact btn_primary z-button-os"                  
                                         onClick="@command('agregarRegistro')"  
                                         tooltiptext="Agregar"
                                         label="Agregar item"
-                                        style="font-size:18px; height:46px"
                                     />
 
 
                                    
                                 </div>
-                                <div class="wrapper_input_ret" align="end">
+<!--                                <div class="wrapper_input_ret" align="end">
                                     <separator width="100px" />
-                                </div>
+                                </div>-->
                                 <div class="wrapper_input_ret" align="end">
                                     <button 
                                         autodisable="self"   
-                                        class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
+                                        class="fa-solid fa-floppy-disk btn_fact btn_primary z-button-os"                      
                                         onClick="@command('guardar')"
                                         tooltiptext="Guardar"
                                         label="Guardar"
-                                        style="font-size:18px; height:46px"
+                                       
                                     />
 
 

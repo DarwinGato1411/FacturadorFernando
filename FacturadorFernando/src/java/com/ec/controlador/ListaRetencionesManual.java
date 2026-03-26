@@ -677,7 +677,7 @@ public class ListaRetencionesManual {
                         .getRealPath("/reportes");
             String reportPath = "";
 
-            reportPath = reportFile + File.separator + "retencion.jasper";
+            reportPath = reportFile + File.separator + "retencionmanual.jasper";
 
             Map<String, Object> parametros = new HashMap<String, Object>();
 

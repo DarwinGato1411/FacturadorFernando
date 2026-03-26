@@ -247,17 +247,17 @@ public class ListaComprasSri extends SelectorComposer<Component> {
     @Command
     @NotifyChange({"listaComprasSris", "inicio", "fin", "listaComprasSriModel"})
     public void cargarfacturasSistema() {
-        for (CabeceraCompraSri item : registrosSeleccionados) {
-            if (servicioCompra.findByNumeroFacturaAndProveedor(item.getCabNumFactura(), item.getCabProveedor()).isEmpty()) {
-                CabeceraCompra cabecera = ArchivoUtils.compraSriToCompra(item,amb);
-                servicioCompra.crear(cabecera);
-                for (DetalleCompraSri object : servicioDetalleComprasSri.detallebyCompraSri(item)) {
-                    DetalleCompra detalleCompra = ArchivoUtils.detalleSriToDetalleCompra(object, cabecera,amb);
-                    servicioDetalleCompra.crear(detalleCompra);
-                }
-            }
-
-        }
+//        for (CabeceraCompraSri item : registrosSeleccionados) {
+//            if (servicioCompra.findByNumeroFacturaAndProveedor(item.getCabNumFactura(), item.getCabProveedor()).isEmpty()) {
+////                CabeceraCompra cabecera = ArchivoUtils.compraSriToCompra(item,amb);
+//                servicioCompra.crear(cabecera);
+//                for (DetalleCompraSri object : servicioDetalleComprasSri.detallebyCompraSri(item)) {
+////                    DetalleCompra detalleCompra = ArchivoUtils.detalleSriToDetalleCompra(object, cabecera,amb);
+////                    servicioDetalleCompra.crear(detalleCompra);
+//                }
+//            }
+//
+//        }
         Clients.showNotification("Facturas cargadas correctamente ",
                     Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
 

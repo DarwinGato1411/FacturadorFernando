@@ -133,6 +133,7 @@ public class NotaCreditoDebitoVm {
     private String motivo = "";
     private Integer numeroProforma = 0;
     private Date fechafacturacion = new Date();
+    private Date fechaNc = new Date();
     private static BigDecimal DESCUENTOGENERAL = BigDecimal.valueOf(5.0);
     //usuario que factura
 
@@ -1023,13 +1024,14 @@ public class NotaCreditoDebitoVm {
             creditoDebito.setCodigoPorcentaje(factura.getCodigoPorcentaje());
             creditoDebito.setFacAbono(BigDecimal.ZERO);
             creditoDebito.setFacCodIce(factura.getFacCodIce());
+            creditoDebito.setFacFecha(fechaNc);
             creditoDebito.setFacCodIva(factura.getFacCodIva());
             creditoDebito.setFacDescripcion(factura.getFacDescripcion());
             creditoDebito.setFacDescuento(totalDescuento);
             //cuando solo se emite pero no se procesa para pagos de alguna factura
             creditoDebito.setFacEstado("EM");
             //fecha de e mision de la nota de credito
-            creditoDebito.setFacFecha(new Date());
+//            creditoDebito.setFacFecha(new Date());
             creditoDebito.setFacFechaSustento(factura.getFacFecha());
             creditoDebito.setFacIva(ivaCotizacion);
             creditoDebito.setFacMoneda("DOLAR");
@@ -1062,7 +1064,7 @@ public class NotaCreditoDebitoVm {
             if (accion.equals("create")) {
                 Executions.sendRedirect("/venta/facturar.zul");
             } else {
-                Executions.sendRedirect("/venta/listafacturas.zul");
+                Executions.sendRedirect("/menuNuevoVentas/emitirFactura.zul");
             }
 
 //            }
@@ -1355,6 +1357,14 @@ public class NotaCreditoDebitoVm {
 
     public void setIvaCotizacion15(BigDecimal ivaCotizacion15) {
         this.ivaCotizacion15 = ivaCotizacion15;
+    }
+
+    public Date getFechaNc() {
+        return fechaNc;
+    }
+
+    public void setFechaNc(Date fechaNc) {
+        this.fechaNc = fechaNc;
     }
 
 }

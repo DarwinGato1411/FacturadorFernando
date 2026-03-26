@@ -10,8 +10,7 @@
 }
         
     </style>
-              
-   <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.Facturar')" width="100%">
     
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
@@ -174,7 +173,7 @@
                                             class="input" 
                                         />
                                     </div>
-                                    <div class="wrapper_input">
+<!--                                    <div class="wrapper_input">
                                         <span>Base 12%:</span>
                                         <decimalbox  
                                             format="###.##"   
@@ -183,7 +182,7 @@
                                             onChange="self.setValue(self.getValue().toUpperCase().trim());" 
                                             class="input" 
                                         />
-                                    </div>
+                                    </div>-->
                                
 <!--                                    <div class="wrapper_input">
                                         <span>Base 13%:</span>
@@ -239,7 +238,7 @@
                                             class="input" 
                                         />
                                     </div>
-                                    <div class="wrapper_input">
+<!--                                    <div class="wrapper_input">
                                         <span>IVA 12%:</span>
                                         <decimalbox  
                                             format="###.##"  
@@ -247,7 +246,7 @@
                                             readonly="true" 
                                             class="input" 
                                         />
-                                    </div>
+                                    </div>-->
 <!--                                    <div class="wrapper_input">
                                         <span>IVA 13%:</span>
                                         <decimalbox  
@@ -275,8 +274,29 @@
                                             class="input" 
                                         />
                                     </div>
+                                    <div class="wrapper_input">
+                                        <span>Nº Cobro::</span>
+                                        <textbox  
+                                          
+                                             tooltiptext="Registrar el numero de cobro puede ser de transferencia, deposito, cheque, etc..."
+                                            value="@bind(vm.factura.facNumDocumento)"
+                                            readonly="false" 
+                                            class="input" 
+                                        />
+                                    </div>
                                 
+<!--                        <div class="wrapper_input">
+                                        <label  style="background-color:transparent" class="input_cobro_doc" value="Nº Cobro:"> </label> 
+                                        <textbox  
+                                            maxlength="100" 
+                                            width="100%"
+                                            tooltiptext="Registrar el numero de cobro de transferencia, deposito, cheque, etc..."
+                                            value="@bind(vm.factura.facNumDocumento)"
+                                            class="input_num_docum" 
+                                        />-->
+                                       
 
+                                    <!--</div>-->
                                 </div>
                                  <div class="wrapper_data">
                                 <div class="wrapper_input">
@@ -352,7 +372,7 @@
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='ENV')"
+                                        onClick="@command('Guardar',valor='SG',envia='S')"
                                         tooltiptext="Guardar y Enviar al SRI"
                                         label="Guardar - Enviar"
                                         style="font-size:12px;"
@@ -378,7 +398,7 @@
                                     <button 
                                         autodisable="self"   
                                         class="fa-solid fa-floppy-disk btn_fact btn_primary"                  
-                                        onClick="@command('Guardar',valor='SG')"
+                                        onClick="@command('Guardar',valor='SG',envia='N')"
                                         tooltiptext="Guardar"
                                         label="Grabar"
                                         style="font-size:12px;"
@@ -497,12 +517,18 @@
                                             </listcell>
         
                                             <listcell zclass = "mycss-listcell">  
-                                                <div 
+<!--                                                <div 
                                                     class="fa-solid fa-chevron-right"
                                                     
                                                     onClick="@command('agregarItemLista',valor=each.idProducto)"
                                                     tooltiptext="Asignar producto"
-                                                />
+                                                />-->
+                                                
+                                                <image  src="/iconos/agregaru.png"                                              
+                                                        style="    margin-left: 1px;width: 30px"
+                                                        class="btn btn btn-secondary btn-sm grow"
+                                                        onClick="@command('agregarItemLista',valor=each.idProducto)" 
+                                                        tooltiptext="Asigar producto"/> 
                                                 <!-- <image  src="/iconos/Forward.png" 
                                                 onClick="@command('agregarItemLista',valor=each.idProducto)" 
                                                 tooltiptext="Asigar producto"/> -->
@@ -540,7 +566,7 @@
                                         <listheader  width="100%"  label="Detalle" align="left" />
                                         <listheader  width="100%"  label="Pre. Real" align="left" />
                                         <listheader  width="100%"  label="Precio" align="left" />                                         
-                                        <listheader  width="100%"  label="Total" align="left" />
+                                        <listheader  width="100%"   label="Total" align="left" />
                                                                                                                     
                                     </listhead>
             
@@ -610,7 +636,7 @@
                                             <listcell zclass = "mycss-listcell">
                                                 <decimalbox readonly="true" format="###.###" 
                                                             class="form-control form-control-sm"
-                                                            value="@bind(each.detTotalconivadescuento)"  width="99%" />
+                                                            value="@bind(each.detTotalconivadescuento)"   />
                                             </listcell>
                                     
                                         </listitem>
@@ -640,7 +666,7 @@
                 </tabpanel>
                 
             </tabpanels>
-        </tabbox>  
+        </tabbox>   
     </hbox>
                   
 </window>

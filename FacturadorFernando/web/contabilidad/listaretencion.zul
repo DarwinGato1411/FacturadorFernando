@@ -112,10 +112,11 @@
                             <listheader width="100%"  label="Estado SRI" />  
                             <listheader width="100%"  label="Fecha Autorizacion" />       
                             <listheader width="100%"  label="Autorizacion" />                             
-                            <listheader width="100%"  label="ER" />             
+                                        
                             <listheader width="100%"  label="AF" />             
                             <listheader width="100%"  label="RR" />             
-                            <listheader width="100%"  label="IR" />             
+                            <listheader width="100%"  label="IR" />  
+                            <listheader width="100%"  label="ER" />            
                         </listhead>  
                         
                     
@@ -162,18 +163,7 @@
                                              class="form-control form-control-sm"
                                              value="@bind(each.rcoAutorizacion)"  />
                                 </listcell>
-                                <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
-                                    <image  if="${each.drcEstadosri!='AUTORIZADO'}" 
-                                            src="/iconos/editar.png" 
-                                            class=" grow"
-                                            onClick="@command('crearRetencionCompra',valor=each)" 
-                                            tooltiptext="editar retencion"/>
-                                    
-                                    <image if="${each.drcEstadosri=='S'}" 
-                                           src="/iconos/listo_uno.png"   
-                                           class=" grow"                                          
-                                           tooltiptext="No se puede autorizar por que se encuentra en estado autorizado"/> 
-                                </listcell>
+                                
                                 <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
                                     <image if="${each.drcEstadosri!='AUTORIZADO'}"
                                            src="/iconos/sri24x24.png" 
@@ -208,7 +198,17 @@
                                            onClick="@command('reporteGeneral',valor=each)"                                              
                                            tooltiptext="Imprimir retencion"/> 
                                 </listcell>
-                           
+                              
+                                <listcell zclass = "mycss-listcell" style="font-size:12px;background:#F8F9F9">
+                                    <image 
+                                        src="/iconos/delete.png"
+                                        height=" 30px" 
+                                        class="btn btn btn-secondary btn-sm grow"
+                                        onClick="@command('eliminarRetencion',valor=each)" 
+                                        tooltiptext="Eliminar retencion"/>
+                                    
+                                </listcell>
+                               
                                 
                                 
                                 

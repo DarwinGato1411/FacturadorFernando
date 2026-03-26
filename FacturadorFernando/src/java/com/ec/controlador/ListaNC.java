@@ -396,7 +396,7 @@ public class ListaNC {
                         /*CREA EL ARCHIVO XML AUTORIZADO*/
                         System.out.println("pathArchivoNoAutorizado " + pathArchivoNoAutorizado);
                         nuevo = new FileOutputStream(pathArchivoNoAutorizado);
-                        nuevo.write(autorizacion.getComprobante().getBytes());
+//                        nuevo.write(autorizacion.getComprobante().getBytes());
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
                             
                             String texto = autorizacion.getMensajes().getMensaje().get(0).getMensaje();

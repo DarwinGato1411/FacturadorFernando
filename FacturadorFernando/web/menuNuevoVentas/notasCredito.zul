@@ -143,13 +143,13 @@
                                     <listcell  zclass = "mycss-listcell" >
                                         <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"                            
                                                  class="form-control form-control-sm" value="@bind(each.estadosri)" 
-                                                 tooltiptext="@bind(each.mensajesri)"
+                                                 tooltiptext="@bind(each.mensajeInf)"
                                         />
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">
                                         <datebox compact="true" value="@bind(each.facFechaAutorizacion)" 
                                                  buttonVisible="false" lenient="true" 
-                                                 tooltiptext="@bind(each.mensajesri)"
+                                                 tooltiptext="@bind(each.mensajeInf)"
                                                  readonly="true"
                                                  width="100%"
                                                  format="medium"   />
@@ -171,7 +171,7 @@
                                     </listcell>
                                     
                                     
-                                    <zk if="${each.estadosri=='PENDIENTE'}"  > 
+                                    <zk if="${each.estadosri!='AUTORIZADO'}"  > 
                                         <listcell zclass = "mycss-listcell">    
                                             <image  src="/iconos/sri24x24.png" 
                                                     class="grow"
@@ -180,7 +180,7 @@
                                         </listcell>
                                     </zk>
                             
-                                    <zk if="${each.estadosri!='PENDIENTE'}"  >
+                                    <zk if="${each.estadosri=='AUTORIZADO'}"  >
                                         <listcell zclass = "mycss-listcell">                                         
                                             <image src="/iconos/listo_uno.png"   
                                                    class="grow "       

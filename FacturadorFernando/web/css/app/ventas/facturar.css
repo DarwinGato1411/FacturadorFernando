@@ -759,6 +759,11 @@ div.z-listheader-cnt {
     grid-template-columns: 15% 47% 10% 10% 10% 8%;
 }
 
+.encabezadonc,.tablanc{
+    display: grid !important;
+    align-items: center;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
 
 
 

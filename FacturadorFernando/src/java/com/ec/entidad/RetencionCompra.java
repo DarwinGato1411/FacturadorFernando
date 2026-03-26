@@ -137,6 +137,8 @@ public class RetencionCompra implements Serializable {
     private String rcoNumFactura;
     @Column(name = "rco_correo_proveedor")
     private String rcoCorreoProveedor;
+    @Column(name = "rco_direccion")
+    private String rcoDireccion;
 
     public RetencionCompra() {
     }
@@ -400,6 +402,14 @@ public class RetencionCompra implements Serializable {
     @Override
     public String toString() {
         return "com.ec.entidad.RetencionCompra[ rcoCodigo=" + rcoCodigo + " ]";
+    }
+
+    public String getRcoDireccion() {
+        return rcoDireccion;
+    }
+
+    public void setRcoDireccion(String rcoDireccion) {
+        this.rcoDireccion = rcoDireccion;
     }
 
 }

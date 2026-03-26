@@ -172,6 +172,7 @@ public class RetencionManualVm {
                     cedulaBuscar = retencionCompra.getRcoIdentificacion();
                     aduana = ArchivoUtils.obtenerPorCedula(cedulaBuscar);
                     retencionCompra.setRcoRazonSocial(aduana.getNombre());
+                    retencionCompra.setRcoDireccion(aduana.getDireccion());
                 }
 
             }
@@ -334,8 +335,8 @@ public class RetencionManualVm {
 
             if (numeroRetencion != 0) {
                 if (retencionCompra.getRcoIdentificacion() != null
-                            && retencionCompra.getRcoRazonSocial() != null
-                            && retencionCompra.getRcoNumFactura() != null) {
+                        && retencionCompra.getRcoRazonSocial() != null
+                        && retencionCompra.getRcoNumFactura() != null) {
                     if (retencionCompra != null) {
 
                         System.out.println("NUM DIG " + retencionCompra.getRcoNumFactura().length());
@@ -370,7 +371,7 @@ public class RetencionManualVm {
                     retencionCompra.setRcoAutorizacion(claveAcceso);
                     servicioRetencionCompra.crearCabDetalle(retencionCompra, listaDetalleRetencionCompraModel.getInnerList());
                     Clients.showNotification("Guardado correctamente",
-                                Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
+                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 1000, true);
                     Executions.sendRedirect("/contabilidad/retencion.zul");
                 } else {
                     Clients.showNotification("Verifique la informacion del documento", "error", null, "start_before", 2000, true);

@@ -1,21 +1,7 @@
 package com.ec.untilitario;
 
-import com.ec.entidad.CabeceraCompra;
-import com.ec.entidad.DetalleCompra;
-import com.ec.entidad.Parametrizar;
-import com.ec.entidad.Producto;
-import com.ec.entidad.Proveedores;
-import com.ec.entidad.TipoIdentificacionCompra;
 import com.ec.entidad.Tipoambiente;
-import com.ec.entidad.sri.CabeceraCompraSri;
-import com.ec.entidad.sri.DetalleCompraSri;
-import com.ec.seguridad.UserCredential;
 import com.ec.servicio.HelperPersistencia;
-import com.ec.servicio.ServicioEstadoFactura;
-import com.ec.servicio.ServicioParametrizar;
-import com.ec.servicio.ServicioProducto;
-import com.ec.servicio.ServicioProveedor;
-import com.ec.servicio.ServicioTipoIdentificacionCompra;
 import ec.gob.sri.comprobantes.util.xml.LectorXPath;
 import ec.gob.sri.comprobantes.util.xml.XStreamUtil;
 import ec.gob.sri.comprobantes.ws.RespuestaSolicitud;
@@ -36,11 +22,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.security.cert.X509Certificate;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -51,8 +32,6 @@ import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.X509TrustManager;
 import javax.persistence.EntityManager;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -80,19 +59,6 @@ import org.zkoss.zk.ui.Executions;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.tls.Certificates;
-import okhttp3.tls.HandshakeCertificates;
-import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -104,6 +70,26 @@ import org.w3c.dom.Text;
 import org.w3c.dom.DOMException;
 
 import org.xml.sax.SAXException;
+
+import java.net.URL;
+import java.net.*;
+import java.nio.charset.Charset;
+import java.security.cert.X509Certificate;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.X509TrustManager;
+import javax.xml.xpath.*;
+import org.apache.http.*;
+import org.apache.http.client.*;
+import org.apache.http.client.methods.*;
+import org.apache.http.client.utils.*;
+import org.apache.http.impl.client.*;
+import org.apache.http.util.*;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.tls.Certificates;
+import okhttp3.tls.HandshakeCertificates;
 
 public class ArchivoUtils {
 
@@ -183,13 +169,6 @@ public class ArchivoUtils {
             + "5iLU7Zfcvzaq+SEaxtGXD2oIuR6wTSr8Em1ad5hli7CtcpPNP5yn+jFhE8xT7t54\n"
             + "N6Cd6ThtNlsLoQfEGP0rUXgllxVh8z/0twIEdZfTfNnrc7eZdNMyt4zdS81EZYaK\n"
             + "-----END CERTIFICATE-----";
-
-    private static UserCredential credential = new UserCredential();
-    private static ServicioEstadoFactura servicioEstadoFactura = new ServicioEstadoFactura();
-    private static ServicioProveedor servicioProveedor = new ServicioProveedor();
-    private static ServicioTipoIdentificacionCompra servicioTipoIdentificacionCompra = new ServicioTipoIdentificacionCompra();
-    private static ServicioProducto servicioProducto = new ServicioProducto();
-    private static ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
 
     public static String archivoToString(String rutaArchivo) {
         /*  70 */ StringBuffer buffer = new StringBuffer();
@@ -554,6 +533,70 @@ public class ArchivoUtils {
 
     }
 
+    public static void reporteGeneralPdfMailWS(String pathPDF, Integer numeroFactura, String tipo, Tipoambiente amb) throws JRException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, NamingException {
+        EntityManager emf = HelperPersistencia.getEMF();
+        Connection con = null;
+        try {
+
+            File currentDirFile = new File(".");
+            String helper = currentDirFile.getAbsolutePath();
+            String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());
+            System.out.println("helper " + helper);
+            System.out.println("currentDir " + currentDir);
+
+            String sutaPlit[] = helper.split("domain1");
+            System.out.println("sutaPlit[0] " + sutaPlit[0]);
+
+//            String reportFile = "/home/Deckxel/payara41/glassfish/domains/domain1/applications/posibilitum/reportes";
+            String reportFile = sutaPlit[0] + File.separator + "domain1/applications/defact/reportes";
+//            String reportFile = Executions.getCurrent().getDesktop().getWebApp()
+//                    .getRealPath("/reportes");
+            System.out.println("reportFile " + reportFile);
+            String reportPath = "";
+            emf.getTransaction().begin();
+            con = emf.unwrap(Connection.class);
+            if (tipo.contains("FACT")) {
+                reportPath = reportFile + File.separator + "factura.jasper";
+            } else if (tipo.contains("NCRE")) {
+                reportPath = reportFile + File.separator + "notacr.jasper";
+            } else if (tipo.contains("RET")) {
+                reportPath = reportFile + File.separator + "retencion.jasper";
+            } else if (tipo.contains("GUIA")) {
+                reportPath = reportFile + File.separator + "guia.jasper";
+            }
+
+            Map<String, Object> parametros = new HashMap<String, Object>();
+
+            //  parametros.put("codUsuario", String.valueOf(credentialLog.getAdUsuario().getCodigoUsuario()));
+            parametros.put("numfactura", numeroFactura);
+            parametros.put("codTipoAmbiente", amb.getCodTipoambiente());
+
+            if (con != null) {
+                System.out.println("Conexión Realizada Correctamenteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+            }
+            FileInputStream is = null;
+            is = new FileInputStream(reportPath);
+
+//                byte[] buf = JasperRunManager.runReportToPdf(is, parametros, con);
+            JasperPrint print = JasperFillManager.fillReport(reportPath, parametros, con);
+            JasperExportManager.exportReportToPdfFile(print, pathPDF);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error en generar el reporte file " + e.getMessage());
+        } catch (JRException e) {
+            System.out.println("Error en generar el reporte JRE  " + e.getMessage());
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (emf != null) {
+                emf.close();
+                System.out.println("cerro entity");
+            }
+        }
+
+    }
+
+
     /*AGREGA LO DESEADO AL FINAL DEL TAG REALIZA UN INCREMENT MAS NO UN ADD EN UNA POSICION ESPECIFICA*/
     public static void modificarXMLAutorizado(String URI, String estado, String autorizacion, Date fecha, String URISalida) {
         try {
@@ -723,13 +766,13 @@ public class ArchivoUtils {
 
     public static AduanaJson obtenerdatoAduana(String cedulaParam) {
         AduanaJson respuesta = new AduanaJson();
-        String stubsApiBaseUri = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedulaParam;
-
-        HttpClient client = HttpClients.createDefault();
-
-        URIBuilder builder;
         try {
-            builder = new URIBuilder(stubsApiBaseUri);
+
+            String stubsApiBaseUri = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedulaParam;
+
+            HttpClient client = HttpClients.createDefault();
+
+            URIBuilder builder = new URIBuilder(stubsApiBaseUri);
 
             String listStubsUri = builder.build().toString();
             HttpGet getStubMethod = new HttpGet(listStubsUri);
@@ -770,25 +813,63 @@ public class ArchivoUtils {
                 respuesta.setNombre("");
                 respuesta.setMensaje("");
             }
+
         } catch (URISyntaxException ex) {
-            //                Log.e("ERROR", e.getMessage());
-            respuesta.setCedula("");
-            respuesta.setNombre("");
-            respuesta.setMensaje("");
             Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            //                Log.e("ERROR", e.getMessage());
-            respuesta.setCedula("");
-            respuesta.setNombre("");
-            respuesta.setMensaje("");
-            Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            //                Log.e("ERROR", e.getMessage());
-            respuesta.setCedula("");
-            respuesta.setNombre("");
-            respuesta.setMensaje("");
             Logger.getLogger(ArchivoUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return respuesta;
+    }
+
+    public static AduanaJson obteberDatos(String cedulaParam) throws URISyntaxException, IOException, XPathExpressionException, JSONException {
+        AduanaJson respuesta = new AduanaJson();
+        String stubsApiBaseUri = "https://srienlinea.sri.gob.ec/movil-servicios/api/v1.0/deudas/porIdentificacion/" + cedulaParam;
+
+        HttpClient client = HttpClients.createDefault();
+
+        URIBuilder builder = new URIBuilder(stubsApiBaseUri);
+
+        String listStubsUri = builder.build().toString();
+        HttpGet getStubMethod = new HttpGet(listStubsUri);
+        HttpResponse getStubResponse = client.execute(getStubMethod);
+        int getStubStatusCode = getStubResponse.getStatusLine()
+                .getStatusCode();
+        if (getStubStatusCode < 200 || getStubStatusCode >= 300) {
+            // Handle non-2xx status code
+            respuesta.setCedula("");
+            respuesta.setNombre("");
+            respuesta.setMensaje("");
+        }
+        String contenido = EntityUtils
+                .toString(getStubResponse.getEntity());
+
+        System.out.println(contenido);
+
+        //JSONObject outlineArray = new JSONObject(contenido);
+        try {
+            if (!contenido.equals("")) {
+                JSONObject appObject = new JSONObject(contenido);
+
+                JSONObject appObjectInf = appObject.getJSONObject("contribuyente");
+                String nombre = appObjectInf.getString("nombreComercial");
+                String mensaje = appObjectInf.getString("clase");
+                String cedula = appObjectInf.getString("identificacion");
+
+                respuesta.setCedula(cedula);
+                respuesta.setNombre(nombre);
+                respuesta.setMensaje(mensaje);
+            } else {
+                respuesta.setCedula("");
+                respuesta.setNombre("");
+                respuesta.setMensaje("");
+            }
+        } catch (JSONException e) {
+            respuesta.setCedula("");
+            respuesta.setNombre("");
+            respuesta.setMensaje("");
+        }
+
         return respuesta;
     }
 
@@ -816,105 +897,46 @@ public class ArchivoUtils {
         return bytes;
     }
 
-    public static CabeceraCompra compraSriToCompra(CabeceraCompraSri valor, Tipoambiente amb) {
-        CabeceraCompra compra = new CabeceraCompra();
-        Proveedores prov = servicioProveedor.findProvCedula(valor.getCabRucProveedor(), amb);
-        if (prov != null) {
-            compra.setIdProveedor(prov);
-        } else {
-            Proveedores provNuevo = new Proveedores();
-            //DEPENDE DEL PROVEEDOR SI ES CEDULA O RUC
-            TipoIdentificacionCompra identificacionCompra = null;
-            if (valor.getCabRucProveedor().length() == 13) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("04");
-            } else if (valor.getCabRucProveedor().length() == 10) {
-                identificacionCompra = servicioTipoIdentificacionCompra.findByCedulaRuc("05");
-            }
-            provNuevo.setIdTipoIdentificacionCompra(identificacionCompra);
-            provNuevo.setProvBanco("S/N");
-            provNuevo.setProvNombre(valor.getCabProveedor());
-            provNuevo.setProvNomComercial(valor.getCabProveedor());
-            provNuevo.setProvCedula(valor.getCabRucProveedor());
-            provNuevo.setProvDireccion(valor.getCabDireccion());
-            servicioProveedor.crear(provNuevo);
-            compra.setIdProveedor(provNuevo);
-//            prov = provNuevo;
+    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
+        InputStream is = new URL(url).openStream();
+        try {
+            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+            String jsonText = readAll(rd);
+            JSONObject json = new JSONObject(jsonText);
+            return json;
+        } finally {
+            is.close();
         }
-
-        compra.setCabDescripcion("PROCESADA");
-        compra.setIdUsuario(credential.getUsuarioSistema());
-        compra.setIdEstado(servicioEstadoFactura.findByEstCodigo("PA"));
-        compra.setCabNumFactura(valor.getCabNumFactura());
-        compra.setCabEstado("PE");
-
-        compra.setCabFecha(valor.getCabFecha());
-        compra.setCabSubTotal(valor.getCabSubTotal());
-        compra.setCabIva(valor.getCabIva());
-        compra.setCabTotal(valor.getCabTotal());
-        compra.setCabSubTotalCero(valor.getCabSubTotalCero());
-
-        compra.setCabEstado("PE");
-        compra.setCabProveedor(valor.getCabProveedor());
-        compra.setCabClaveAcceso(valor.getCabAutorizacion());
-        compra.setCabAutorizacion(valor.getCabAutorizacion());
-        compra.setCabFechaEmision(valor.getCabFecha());
-        compra.setDrcCodigoSustento("01");
-        compra.setCabRetencionAutori("N");
-        compra.setCabTraeSri(Boolean.TRUE);
-        compra.setCabEstablecimiento(valor.getCabEstablecimiento());
-        compra.setCabPuntoEmi(valor.getCabPuntoEmision());
-
-        return compra;
     }
 
-    public static DetalleCompra detalleSriToDetalleCompra(DetalleCompraSri valor, CabeceraCompra compra, Tipoambiente amb) {
-        DetalleCompra detalleCom = new DetalleCompra();
-        Parametrizar parametrizar = new Parametrizar();
-        parametrizar = servicioParametrizar.FindALlParametrizar();
-        BigDecimal factorIva = BigDecimal.ONE.add(parametrizar.getParIvaActual().divide(BigDecimal.valueOf(100)));
-        BigDecimal factorUtilidad = BigDecimal.ONE.add(BigDecimal.valueOf(0.47));
-        Producto buscado = servicioProducto.findByProdCodigo(valor.getIprodCodigoProducto(), amb);
-        Producto nuevoProd = new Producto();
-        if (buscado == null) {
-            BigDecimal costoInicial = valor.getIprodSubtotal().setScale(2, RoundingMode.CEILING);
-            BigDecimal calCostoCompr = (costoInicial.divide(factorIva, 3, RoundingMode.FLOOR));
-            System.out.println("PRODUCTO NUEVO " + valor.getIprodDescripcion());
-            nuevoProd = new Producto();
-            nuevoProd.setPordCostoCompra(calCostoCompr);
-            nuevoProd.setPordCostoVentaFinal(costoInicial.multiply(factorUtilidad).setScale(4, RoundingMode.CEILING));
-            nuevoProd.setPordCostoVentaRef(costoInicial.setScale(4, RoundingMode.CEILING));
-            nuevoProd.setProdAbreviado("");
-            nuevoProd.setProdCantMinima(BigDecimal.TEN);
-            nuevoProd.setProdCantidadInicial(BigDecimal.TEN);
-            nuevoProd.setProdCodigo(valor.getIprodCodigoProducto().length() > 199 ? valor.getIprodCodigoProducto().substring(0, 199) : valor.getIprodCodigoProducto());
-            nuevoProd.setProdCostoPreferencial(BigDecimal.ZERO);
-            nuevoProd.setProdCostoPreferencialDos(BigDecimal.ZERO);
-            nuevoProd.setProdCostoPreferencialTres(BigDecimal.ZERO);
-            nuevoProd.setProdIsPrincipal(Boolean.FALSE);
-            nuevoProd.setProdIva(parametrizar.getParIvaActual());
-            nuevoProd.setProdManoObra(BigDecimal.ZERO);
-            nuevoProd.setProdNombre(valor.getIprodDescripcion().length() > 199 ? valor.getIprodDescripcion().substring(0, 199) : valor.getIprodDescripcion());
-            nuevoProd.setProdTrasnporte(BigDecimal.ZERO);
-            nuevoProd.setProdUtilidadNormal(BigDecimal.ZERO);
-            nuevoProd.setProdUtilidadPreferencial(BigDecimal.ZERO);
-            servicioProducto.crear(nuevoProd);
-            detalleCom.setIdProducto(nuevoProd);
+    private static String readAll(Reader rd) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int cp;
+        while ((cp = rd.read()) != -1) {
+            sb.append((char) cp);
         }
-
-        if (buscado != null) {
-            detalleCom.setIdProducto(buscado);
-        }
-        detalleCom.setIdCabecera(compra);
-        detalleCom.setIprodCantidad(valor.getIprodCantidad());
-        detalleCom.setDetDescripcion(valor.getIprodDescripcion());
-        detalleCom.setIprodSubtotal(valor.getIprodSubtotal());
-        detalleCom.setIprodTotal(valor.getIprodTotal());
-        detalleCom.setDetValorInicial(BigDecimal.ONE);
-        detalleCom.setDetFactor(BigDecimal.ONE);
-
-        return detalleCom;
+        return sb.toString();
     }
 
+//    public static String obtenerPorRuc(String cedula) {
+//        if (cedula.length() == 10) {
+//            cedula = cedula + "001";
+//        }
+//
+//        try {
+//            JSONObject json = readJsonFromUrl("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula);
+//            System.out.println(json.toString());
+//            System.out.println(json.get("nombreCompleto"));
+//            return json.get("nombreCompleto").toString();
+//        } catch (IOException ex) {
+////                Logger.getLogger(Archi.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (JSONException ex) {
+////                Logger.getLogger(Verificador.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        return "";
+//
+//    }
     public static String obtenerPorRuc(String cedula) {
         if (cedula.length() == 10) {
             cedula = cedula + "001";
@@ -927,16 +949,22 @@ public class ArchivoUtils {
         X509TrustManager trustManager;
         SSLSocketFactory sslSocketFactory;
         try {
-            HandshakeCertificates certificates = new HandshakeCertificates.Builder()
+           /* HandshakeCertificates certificates = new HandshakeCertificates.Builder()
                     .addTrustedCertificate(letsEncryptCertificateAuthoritySRI)
                     .addTrustedCertificate(entrustRootCertificateAuthoritySRI)
                     .addTrustedCertificate(comodoRsaCertificationAuthoritySRI)
                     // Uncomment if standard certificates are also required.
                     //.addPlatformTrustedCertificates()
-                    .build();
-            OkHttpClient client = new OkHttpClient.Builder()
+                    .build();*/
+           HandshakeCertificates certificates = new HandshakeCertificates.Builder()
+        .addPlatformTrustedCertificates()  // MUY IMPORTANTE
+        .build();
+           /* OkHttpClient client = new OkHttpClient.Builder()
                     .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
-                    .build();
+                    .build();*/
+           OkHttpClient client = new OkHttpClient.Builder()
+        .sslSocketFactory(certificates.sslSocketFactory(), certificates.trustManager())
+        .build();
             Request request = new Request.Builder()
                     .url("https://srienlinea.sri.gob.ec/sri-catastro-sujeto-servicio-internet/rest/Persona/obtenerPersonaDesdeRucPorIdentificacion?numeroRuc=" + cedula)
                     .build();
@@ -966,27 +994,6 @@ public class ArchivoUtils {
 
         return "";
 
-    }
-
-    public static JSONObject readJsonFromUrl(String url) throws IOException, JSONException {
-        InputStream is = new URL(url).openStream();
-        try {
-            BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-            String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
-        } finally {
-            is.close();
-        }
-    }
-
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
     }
 
     public static InfoPersona obtenerPorCedula(String cedula) {
@@ -1052,8 +1059,41 @@ public class ArchivoUtils {
 
         return new InfoPersona(contenido, direccion);
     }
+    
+     public static Date recuperarFecha(Date fecha, String tipo) {
 
-    public static String formatearFecha(Date fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaSinHoraStr = sdf.format(fecha);
+        String horaStr = "00:00:00";
+        // Hora a agregar
+        if (tipo.equals("fin")) {
+            horaStr = "23:59:59";
+        }
+
+        // Formato de fecha y hora
+        SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            // Convertir fecha sin hora a objeto Date
+            Date fechaSinHora = formatoFechaHora.parse(fechaSinHoraStr + " 00:00:00");
+
+            // Concatenar la hora a la fecha sin hora
+            String fechaConHoraStr = fechaSinHoraStr + " " + horaStr;
+            System.out.println(fechaConHoraStr);
+
+            // Convertir la cadena con fecha y hora a objeto Date
+            Date fechaConHora = formatoFechaHora.parse(fechaConHoraStr);
+            System.out.println(fechaConHora);
+
+            // Imprimir los objetos Date resultantes
+            return fechaConHora;
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+            return fecha;
+        }
+    }
+
+       public static String formatearFecha(Date fecha) {
 
         // Formato de fecha y hora
         SimpleDateFormat formatoFechaHora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

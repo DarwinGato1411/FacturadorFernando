@@ -83,7 +83,11 @@ public class Compras {
     //valorTotalCotizacion
     private BigDecimal valorTotalFactura = BigDecimal.ZERO;
     private BigDecimal subTotalFactura = BigDecimal.ZERO;
+    private BigDecimal subTotalFactura5 = BigDecimal.ZERO;
+    private BigDecimal subTotalFactura15 = BigDecimal.ZERO;
     private BigDecimal ivaFactura = BigDecimal.ZERO;
+    private BigDecimal ivaFactura5 = BigDecimal.ZERO;
+    private BigDecimal ivaFactura15 = BigDecimal.ZERO;
     private BigDecimal subTotalFacturaCero = BigDecimal.ZERO;
     //buscar proveedor
     public Proveedores proveedorSeleccionado = new Proveedores("");
@@ -119,14 +123,6 @@ public class Compras {
     private String amRuc = "";
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
 
-    //valorTotalCotizacion
-    private BigDecimal subTotalFactura5 = BigDecimal.ZERO;
-    private BigDecimal subTotalFactura15 = BigDecimal.ZERO;
-
-    private BigDecimal ivaFactura5 = BigDecimal.ZERO;
-    private BigDecimal ivaFactura15 = BigDecimal.ZERO;
-
-    //buscar proveedor
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("valor") String valor, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -397,7 +393,7 @@ public class Compras {
     }
     //calcular los valores de la lista
 
-   @Command
+      @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void calcularValores(@BindingParam("valor") DetalleCompraUtil valor) {
@@ -444,7 +440,7 @@ public class Compras {
         }
     }
 
-   private void calcularValoresTotales() {
+    private void calcularValoresTotales() {
         BigDecimal valorTotal = BigDecimal.ZERO;
         BigDecimal valorTotalCero = BigDecimal.ZERO;
 
@@ -499,8 +495,8 @@ public class Compras {
             valorTotalFactura.setScale(4, RoundingMode.FLOOR);
         }
     }
-
 //producto
+
     @Command
     @NotifyChange({"listaKardexProducto", "buscarCodigoProd"})
     public void buscarLikeCodigoProd(@BindingParam("valor") String valor) {
@@ -581,9 +577,15 @@ public class Compras {
     public void Guardar() {
         if (!proveedorSeleccionado.getProvCedula().equals("")
                 && !numeroFactura.equals("")) {
-            guardarCompra();
-            Clients.showNotification("Compra registrada correctamente",
-                    Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+            if (numeroFactura.length() == 9) {
+
+                guardarCompra();
+                Clients.showNotification("Compra registrada correctamente",
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+            } else {
+                Clients.showNotification("El número de factura debe tener 9 digitos",
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+            }
 
         } else {
             Clients.showNotification("Verifique el proveedor, numero de factura, numero de autorizacion, proveedor",
@@ -608,8 +610,9 @@ public class Compras {
                 cabeceraCompra.setIdProveedor(proveedorSeleccionado);
                 cabeceraCompra.setCabProveedor(proveedorSeleccionado.getProvNombre());
                 cabeceraCompra.setIdUsuario(credential.getUsuarioSistema());
-                cabeceraCompra.setCabSubTotal(subTotalFactura);
-                cabeceraCompra.setCabIva(ivaFactura);
+                cabeceraCompra.setCabSubTotal(subTotalFactura.add(subTotalFactura5).add(subTotalFactura15));
+                cabeceraCompra.setCabIva(ivaFactura.add(ivaFactura5).add(ivaFactura15));
+
                 cabeceraCompra.setCabTotal(valorTotalFactura);
                 cabeceraCompra.setDrcCodigoSustento("01");
                 cabeceraCompra.setCabSubTotalCero(subTotalFacturaCero);
@@ -633,6 +636,7 @@ public class Compras {
                                 actualizaPrecio.setPordCostoCompra(item.getSubtotal());
                                 actualizaPrecio.setPordCostoVentaRef(item.getSubtotal());
                             }
+
                             servicioProducto.modificar(actualizaPrecio);
                             detalleCompra.add(item);
                         }
@@ -696,7 +700,7 @@ public class Compras {
     }
 
     //busqueda del producto
-      @Command
+    @Command
     @NotifyChange({"listaCompraProductosMOdel", "subTotalFactura", "ivaFactura", "valorTotalFactura", "subTotalFacturaCero",
         "ivaFactura5", "ivaFactura15", "subTotalFactura5", "subTotalFactura15"})
     public void eliminarRegistros() {
