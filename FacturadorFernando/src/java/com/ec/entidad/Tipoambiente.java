@@ -217,6 +217,8 @@ public class Tipoambiente implements Serializable {
     private String amCodigoArtesano;
     @Column(name = "am_rimpe_popular")
     private Boolean amRimpePopular;
+    @Column(name = "observa_fac")
+    private String observafac;
 
     public Tipoambiente() {
     }
@@ -769,6 +771,14 @@ public class Tipoambiente implements Serializable {
 
     public void setAmCodigoArtesano(String amCodigoArtesano) {
         this.amCodigoArtesano = amCodigoArtesano;
+    }
+
+    public String getObservafac() {
+        return observafac==null?"":observafac;
+    }
+
+    public void setObservafac(String observafac) {
+        this.observafac = observafac;
     }
 
 }

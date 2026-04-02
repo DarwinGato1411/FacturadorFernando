@@ -413,7 +413,11 @@ public class Facturar extends SelectorComposer<Component> {
         formaPagoSelected = servicioFormaPago.finPrincipal();
         if (accion.equals("create")) {
             numeroFactura();
-
+            if (amb.getObservafac() == null) {
+                factura.setFacObservacion("");
+            } else {
+                factura.setFacObservacion(amb.getObservafac());
+            }
         } else {
 
         }
@@ -431,6 +435,7 @@ public class Facturar extends SelectorComposer<Component> {
             factura = servicioFactura.findFirIdFact(idFactuta);
             facConSinGuia = factura.getFaConSinGuia();
             facplazo = factura.getFacPlazo() == null ? "30" : factura.getFacPlazo().setScale(0).toString();
+
         } else {
             factura = servicioFactura.findByIdCotizacion(idFactuta);
             facConSinGuia = "SG";
