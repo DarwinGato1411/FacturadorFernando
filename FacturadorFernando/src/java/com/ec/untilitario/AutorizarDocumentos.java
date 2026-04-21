@@ -158,8 +158,8 @@ public class AutorizarDocumentos {
         return verificador;
     }
 
-    public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) {
-        try {
+    public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) throws RespuestaAutorizacionException, MalformedURLException  {
+//        try {
 
             //System.setProperty("https.protocols", "SSLv3");
             //System.setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
@@ -169,11 +169,11 @@ public class AutorizarDocumentos {
             RecepcionComprobantesOffline portRec = service.getRecepcionComprobantesOfflinePort();
             return portRec.validarComprobante(datos);
 
-        } catch (MalformedURLException ex) {
-            RespuestaSolicitud response = new RespuestaSolicitud();
-            response.setEstado("ERROR SRI: " + ex.getMessage());
-            return response;
-        }
+//        } catch (MalformedURLException ex) {
+//            RespuestaSolicitud response = new RespuestaSolicitud();
+//            response.setEstado("ERROR SRI: " + ex.getMessage());
+//            return response;
+//        }
 
     }
 

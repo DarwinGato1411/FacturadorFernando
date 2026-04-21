@@ -42,6 +42,7 @@ import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.Selectors;
 import org.zkoss.zk.ui.select.annotation.Wire;
+import org.zkoss.zk.ui.util.Clients;
 
 import org.zkoss.zul.Window;
 
@@ -176,7 +177,13 @@ public class AutorizarEnLote {
         /*GUARDAMOS LA CLAVE DE ACCESO ANTES DE ENVIAR A AUTORIZAR*/
         valor.setFacClaveAcceso(claveAccesoComprobante);
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
-        RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos,amb);
+       RespuestaSolicitud resSolicitud =null;
+            try {
+                 resSolicitud = autorizarDocumentos.validar(datos, amb);
+            } catch (Exception e) {
+                 Clients.showNotification("El SRI ESTA FUERA DE LINEA....!!", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 6000, true);
+                 return;
+            }
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
             // Autorizacion autorizacion = null;
 

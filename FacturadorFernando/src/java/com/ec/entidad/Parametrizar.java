@@ -151,7 +151,10 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_con_datos")
     private Boolean parConDatos;
-
+    @Column(name = "par_envio_activado")
+    private Boolean parEnvioActivado;
+    
+    
     public Parametrizar() {
     }
 
@@ -511,5 +514,14 @@ public class Parametrizar implements Serializable {
 
     public void setParConDatos(Boolean parConDatos) {
         this.parConDatos = parConDatos;
+    }
+    
+    
+    public Boolean getParEnvioActivado() {
+        return parEnvioActivado==null?Boolean.FALSE:parEnvioActivado;
+    }
+
+    public void setParEnvioActivado(Boolean parEnvioActivado) {
+        this.parEnvioActivado = parEnvioActivado;
     }
 }
