@@ -29,6 +29,7 @@ import ec.gob.sri.comprobantes.ws.RecepcionComprobantesOffline;
 import ec.gob.sri.comprobantes.ws.RecepcionComprobantesOfflineService;
 import ec.gob.sri.comprobantes.ws.RespuestaSolicitud;
 import ec.gob.sri.comprobantes.ws.aut.RespuestaComprobante;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -158,6 +159,15 @@ public class AutorizarDocumentos {
     public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) {
         try {
 
+            String domainRoot = System.getProperty("com.sun.aas.instanceRoot");
+            String keystorePath
+                    = domainRoot + File.separator + "config" + File.separator + "keystore.jks";
+            System.setProperty("javax.net.debug", "ssl,handshake");
+            System.setProperty("javax.net.ssl.keyStore", keystorePath);
+            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
+            System.setProperty("javax.net.ssl.trustStore", keystorePath);
+            System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
+            System.out.println("KEYSTORE: " + keystorePath);
             //System.setProperty("https.protocols", "SSLv3");
             //System.setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
             URL url = new URL("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl");
@@ -166,9 +176,36 @@ public class AutorizarDocumentos {
             RecepcionComprobantesOffline portRec = service.getRecepcionComprobantesOfflinePort();
             return portRec.validarComprobante(datos);
 
-        } catch (MalformedURLException ex) {
+        } catch (javax.xml.ws.WebServiceException ex) {
+
+            Throwable causa = ex.getCause();
+
+            while (causa != null) {
+
+                if (causa instanceof javax.net.ssl.SSLHandshakeException) {
+
+//                    throw new Exception(
+//                            "No es posible conectarse al SRI. "
+//                            + "El servicio puede estar fuera de línea o presentar problemas con su certificado SSL."
+//                    );
+                    RespuestaSolicitud response = new RespuestaSolicitud();
+                    response.setEstado("ERROR SRI: " + ex.getMessage());
+//                    Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido ",
+//                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+                    return response;
+                }
+
+                causa = causa.getCause();
+            }
+
+            throw ex;
+
+        } catch (Exception ex) {
+
             RespuestaSolicitud response = new RespuestaSolicitud();
             response.setEstado("ERROR SRI: " + ex.getMessage());
+//            Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido ",
+//                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
             return response;
         }
 
@@ -177,11 +214,38 @@ public class AutorizarDocumentos {
     public RespuestaComprobante autorizarComprobante(String claveDeAcceso, Tipoambiente amb) throws RespuestaAutorizacionException {
 
         try {
+            String domainRoot = System.getProperty("com.sun.aas.instanceRoot");
+            String keystorePath
+                    = domainRoot + File.separator + "config" + File.separator + "keystore.jks";
+            System.setProperty("javax.net.debug", "ssl,handshake");
+            System.setProperty("javax.net.ssl.keyStore", keystorePath);
+            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
+            System.setProperty("javax.net.ssl.trustStore", keystorePath);
+            System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
             RespuestaComprobante repuesta = new AutorizacionComprobantesWs("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl").llamadaWSAutorizacionInd(claveDeAcceso);
             return repuesta;
+        } catch (javax.xml.ws.WebServiceException ex) {
+
+            Throwable causa = ex.getCause();
+
+            while (causa != null) {
+
+                if (causa instanceof javax.net.ssl.SSLHandshakeException) {
+
+                    RespuestaComprobante response = new RespuestaComprobante();
+                    response.setNumeroComprobantes("ERROR SRI: " + ex.getMessage());
+                    return response;
+                }
+
+                causa = causa.getCause();
+            }
+
+            throw ex;
+
         } catch (Exception ex) {
+
             RespuestaComprobante response = new RespuestaComprobante();
-            response.setNumeroComprobantes(ex.getMessage());
+            response.setNumeroComprobantes("ERROR SRI: " + ex.getMessage());
             return response;
         }
 

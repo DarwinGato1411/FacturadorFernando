@@ -118,7 +118,12 @@ public class TareasBackground implements ServletContextListener {
         };
 
         // Ejecutar cada 10 segundos, empezando inmediatamente
-        scheduler.scheduleAtFixedRate(tarea, 0, 1, TimeUnit.MINUTES);
+         scheduler.scheduleWithFixedDelay(
+                tarea,
+                0,
+                10,
+                TimeUnit.SECONDS
+        );
     }
 
     @Override
