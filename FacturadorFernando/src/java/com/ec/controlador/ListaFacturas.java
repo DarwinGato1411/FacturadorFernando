@@ -569,6 +569,12 @@ public class ListaFacturas {
         valor.setFacClaveAcceso(claveAccesoComprobante);
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
         RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos, amb);
+
+        if (resSolicitud.getEstado().contains("ERROR SRI")) {
+            Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido refresque la pantalla y reenvie ",
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+            return;
+        }
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
             // Autorizacion autorizacion = null;
 
@@ -795,12 +801,10 @@ public class ListaFacturas {
 
                     valor.setFacClaveAutorizacion(claveAccesoComprobante);
                     valor.setEstadosri(autorizacion.getEstado());
-                    
+
                     Instant instant = autorizacion.getFechaAutorizacion().toGregorianCalendar().toZonedDateTime().toInstant();
                     Date date = Date.from(instant);
                     valor.setFacFechaAutorizacion(date);
-                   
-                   
 
                     /*se agrega la la autorizacion, fecha de autorizacion y se firma nuevamente*/
                     archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, autorizacion.getFechaAutorizacion().toGregorianCalendar().getTime());
@@ -906,7 +910,7 @@ public class ListaFacturas {
         }
     }
 
-      private String exportarExcel() throws FileNotFoundException, IOException, ParseException {
+    private String exportarExcel() throws FileNotFoundException, IOException, ParseException {
         String directorioReportes = Executions.getCurrent().getDesktop().getWebApp().getRealPath("/reportes");
 
         Date date = new Date();
@@ -1044,8 +1048,8 @@ public class ListaFacturas {
 
                 HSSFCell c12 = r.createCell(i++);
                 c12.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacTotalBaseCero(), 2)).toString()));
-               subTotal0 = subTotal0.add(ArchivoUtils.redondearDecimales(item.getFacTotalBaseCero(), 2));
-               
+                subTotal0 = subTotal0.add(ArchivoUtils.redondearDecimales(item.getFacTotalBaseCero(), 2));
+
                 HSSFCell c11 = r.createCell(i++);
                 c11.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacSubt5(), 2)).toString()));
                 subTotal5 = subTotal5.add(ArchivoUtils.redondearDecimales(item.getFacSubt5(), 2));
@@ -1054,15 +1058,13 @@ public class ListaFacturas {
                 c111.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacSubt15(), 2)).toString()));
                 subTotal15 = subTotal15.add(ArchivoUtils.redondearDecimales(item.getFacSubt15(), 2));
 
-               
-
                 HSSFCell c2 = r.createCell(i++);
                 c2.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacIva5(), 2)).toString()));
                 IVATotal5 = IVATotal5.add(ArchivoUtils.redondearDecimales(item.getFacIva5(), 2));
 
                 HSSFCell c22 = r.createCell(i++);
                 c22.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacIva15(), 2)).toString()));
-                 IVATotal15 = IVATotal15.add(ArchivoUtils.redondearDecimales(item.getFacIva15(), 2));
+                IVATotal15 = IVATotal15.add(ArchivoUtils.redondearDecimales(item.getFacIva15(), 2));
                 HSSFCell c3 = r.createCell(i++);
                 c3.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(item.getFacTotal(), 2)).toString()));
 
@@ -1117,7 +1119,7 @@ public class ListaFacturas {
             HSSFCell chF7 = r.createCell(j++);
             chF7.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(subTotal5, 2)).toString()));
             chF7.setCellStyle(estiloCelda);
-            
+
             HSSFCell chF77 = r.createCell(j++);
             chF77.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(subTotal15, 2)).toString()));
             chF77.setCellStyle(estiloCelda);
@@ -1125,7 +1127,7 @@ public class ListaFacturas {
             HSSFCell chF8 = r.createCell(j++);
             chF8.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(IVATotal5, 2)).toString()));
             chF8.setCellStyle(estiloCelda);
-            
+
             HSSFCell chF88 = r.createCell(j++);
             chF88.setCellValue(new HSSFRichTextString((ArchivoUtils.redondearDecimales(IVATotal15, 2)).toString()));
             chF88.setCellStyle(estiloCelda);
@@ -1154,6 +1156,7 @@ public class ListaFacturas {
         return pathSalida;
 
     }
+
     @Command
     public void exportarRegXML(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException {
         try {
@@ -1315,9 +1318,9 @@ public class ListaFacturas {
             /*RUTAS FINALES DE,LOS ARCHIVOS XML FIRMADOS Y AUTORIZADOS*/
             String archivoEnvioCliente = "";
 
-            archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, valor.getFacFechaAutorizacion()==null?new Date(): valor.getFacFechaAutorizacion());
+            archivoEnvioCliente = aut.generaXMLFactura(valor, amb, foldervoAutorizado, nombreArchivoXML, Boolean.TRUE, valor.getFacFechaAutorizacion() == null ? new Date() : valor.getFacFechaAutorizacion());
 //String pathArchivoSalida = "D:\\";
-         //   out = new FileOutputStream(archivoEnvioCliente);
+            //   out = new FileOutputStream(archivoEnvioCliente);
             //out.write(build.toString().getBytes());
             //GRABA DATOS EN FACTURA//
             File dosfile = new File(archivoEnvioCliente);

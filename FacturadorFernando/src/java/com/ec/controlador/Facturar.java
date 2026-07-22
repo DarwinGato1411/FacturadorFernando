@@ -3611,6 +3611,14 @@ public class Facturar extends SelectorComposer<Component> {
         valor.setFacClaveAcceso(claveAccesoComprobante);
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
         RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos, amb);
+               
+          
+          if (resSolicitud.getEstado().contains("ERROR SRI")) {
+            Clients.showNotification("Servicio del SRI caido , verifique su factura en el listado de documentos y autorice",
+                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+            return;
+        }
+            
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
             // Autorizacion autorizacion = null;
 
