@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="proforma" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.6105100000000019"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="25"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -85,9 +85,23 @@ factura.cod_tipoambiente = tipoambiente.cod_tipoambiente and tipoambiente.cod_ti
 		<field name="am_contr_esp" class="java.lang.Boolean"/>
 		<field name="am_exp" class="java.lang.Boolean"/>
 		<field name="am_ripme" class="java.lang.Boolean"/>
+		<field name="am_sec_factura" class="java.lang.Integer"/>
+		<field name="am_sec_retencion" class="java.lang.Integer"/>
+		<field name="am_sec_nota_credito" class="java.lang.Integer"/>
+		<field name="am_sec_guia" class="java.lang.Integer"/>
+		<field name="am_valor_iva" class="java.math.BigDecimal"/>
+		<field name="am_general" class="java.lang.Boolean"/>
+		<field name="am_graba_ice" class="java.lang.Boolean"/>
+		<field name="am_valor_ice" class="java.math.BigDecimal"/>
+		<field name="am_comprobante_imprime" class="java.lang.String"/>
+		<field name="am_codigo_ice" class="java.lang.String"/>
+		<field name="id_usuario" class="java.lang.Integer"/>
+		<field name="am_rimpe_popular" class="java.lang.Boolean"/>
+		<field name="am_codigo_artesano" class="java.lang.String"/>
+		<field name="am_activo" class="java.lang.Boolean"/>
+		<field name="activar_certificado" class="java.lang.Boolean"/>
 		<field name="id_factura" class="java.lang.Integer"/>
 		<field name="id_estado" class="java.lang.Integer"/>
-		<field name="id_usuario" class="java.lang.Integer"/>
 		<field name="id_cliente" class="java.lang.Integer"/>
 		<field name="fac_numero" class="java.lang.Integer"/>
 		<field name="fac_fecha" class="java.sql.Date"/>
@@ -118,7 +132,7 @@ factura.cod_tipoambiente = tipoambiente.cod_tipoambiente and tipoambiente.cod_ti
 		<field name="fac_unidad_tiempo" class="java.lang.String"/>
 		<field name="estadosri" class="java.lang.String"/>
 		<field name="mensajesri" class="java.lang.String"/>
-		<field name="fac_fecha_autorizacion" class="java.sql.Date"/>
+		<field name="fac_fecha_autorizacion" class="java.sql.Timestamp"/>
 		<field name="fac_clave_acceso" class="java.lang.String"/>
 		<field name="fac_clave_autorizacion" class="java.lang.String"/>
 		<field name="fac_path" class="java.lang.String"/>
@@ -156,6 +170,18 @@ factura.cod_tipoambiente = tipoambiente.cod_tipoambiente and tipoambiente.cod_ti
 		<field name="fac_hija" class="java.lang.String"/>
 		<field name="fac_destino" class="java.lang.String"/>
 		<field name="id_referencia" class="java.lang.Integer"/>
+		<field name="fac_valor_ice" class="java.math.BigDecimal"/>
+		<field name="fac_base_ice" class="java.math.BigDecimal"/>
+		<field name="fac_motivo" class="java.lang.String"/>
+		<field name="fac_subt_5" class="java.math.BigDecimal"/>
+		<field name="fac_iva_5" class="java.math.BigDecimal"/>
+		<field name="fac_subt_13" class="java.math.BigDecimal"/>
+		<field name="fac_iva_13" class="java.math.BigDecimal"/>
+		<field name="fac_subt_14" class="java.math.BigDecimal"/>
+		<field name="fac_iva_14" class="java.math.BigDecimal"/>
+		<field name="fac_subt_15" class="java.math.BigDecimal"/>
+		<field name="fac_iva_15" class="java.math.BigDecimal"/>
+		<field name="fac_total_amortizado" class="java.math.BigDecimal"/>
 		<field name="id_detalle" class="java.lang.Integer"/>
 		<field name="id_producto" class="java.lang.Integer"/>
 		<field name="det_cantidad" class="java.math.BigDecimal"/>
@@ -190,6 +216,7 @@ factura.cod_tipoambiente = tipoambiente.cod_tipoambiente and tipoambiente.cod_ti
 		<field name="numerotel" class="java.lang.String"/>
 		<field name="tipo_identificacion_propietario" class="java.lang.String"/>
 		<field name="codigo_canton_matriculacion" class="java.lang.String"/>
+		<field name="det_valor_ice" class="java.math.BigDecimal"/>
 		<field name="id_sub_categoria" class="java.lang.Integer"/>
 		<field name="prod_codigo" class="java.lang.String"/>
 		<field name="prod_nombre" class="java.lang.String"/>
@@ -231,6 +258,13 @@ factura.cod_tipoambiente = tipoambiente.cod_tipoambiente and tipoambiente.cod_ti
 		<field name="prod_unidad_medida" class="java.lang.String"/>
 		<field name="prod_unidad_conversion" class="java.lang.String"/>
 		<field name="prod_esreceta" class="java.lang.Boolean"/>
+		<field name="prod_porcentaje_ice" class="java.math.BigDecimal"/>
+		<field name="prod_graba_ice" class="java.lang.Boolean"/>
+		<field name="prod_detalle" class="java.lang.String"/>
+		<field name="prod_codigo_iva" class="java.math.BigDecimal"/>
+		<field name="prod_porcentaje_iva" class="java.math.BigDecimal"/>
+		<field name="prod_activo" class="java.lang.Boolean"/>
+		<field name="prod_codigo_aux" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="numfactura" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -249,7 +283,7 @@ INNER JOIN forma_pago ON factura.id_forma_pago = forma_pago.id_forma_pago
 where fac_tipo='PROF'
 and tipoambiente.cod_tipoambiente=$P{codTipoAmbiente}
 and  factura.fac_num_proforma=$P{numfactura}
-and fac_tipo='PROF']]>
+and fac_tipo='PROF';]]>
 	</queryString>
 	<field name="cod_tipoambiente" class="java.lang.Integer"/>
 	<field name="am_codigo" class="java.lang.String"/>

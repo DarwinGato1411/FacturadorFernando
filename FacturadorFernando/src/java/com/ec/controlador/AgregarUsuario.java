@@ -153,6 +153,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
                 tipoAmbiente.setIdUsuario(usuarioSistema);
+                 tipoAmbiente.setAmRucProveedor("1713788956001");
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
@@ -189,6 +190,7 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmContrEsp(Boolean.FALSE);
                 tipoambienteProd.setAmExp(Boolean.FALSE);
                 tipoambienteProd.setIdUsuario(usuarioSistema);
+                  tipoambienteProd.setAmRucProveedor("1713788956001");
                 servicioTipoAmbiente.crear(tipoambienteProd);
                 
 //                Parametrizar parametrizar = new Parametrizar();

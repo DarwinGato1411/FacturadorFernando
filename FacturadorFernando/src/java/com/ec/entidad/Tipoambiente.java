@@ -219,6 +219,8 @@ public class Tipoambiente implements Serializable {
     private Boolean amRimpePopular;
     @Column(name = "observa_fac")
     private String observafac;
+    @Column(name = "am_ruc_proveedor")
+    private String amRucProveedor;
 
     public Tipoambiente() {
     }
@@ -774,11 +776,19 @@ public class Tipoambiente implements Serializable {
     }
 
     public String getObservafac() {
-        return observafac==null?"":observafac;
+        return observafac == null ? "" : observafac;
     }
 
     public void setObservafac(String observafac) {
         this.observafac = observafac;
+    }
+
+    public String getAmRucProveedor() {
+        return amRucProveedor == null ? "1713788956001" : amRucProveedor;
+    }
+
+    public void setAmRucProveedor(String amRucProveedor) {
+        this.amRucProveedor = amRucProveedor;
     }
 
 }
