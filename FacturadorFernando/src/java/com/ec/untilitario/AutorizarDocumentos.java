@@ -501,6 +501,7 @@ public class AutorizarDocumentos {
                     + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
                     + (valor.getFacObservacion() != null ? (valor.getFacObservacion().length() > 0 ? "<campoAdicional nombre=\"OBSERVACION\">" + removeCaracteres(valor.getFacObservacion()) + "</campoAdicional>\n" : "") : "")
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
+                    + "<campoAdicional nombre=\"RUC_PROVEEDOR\">"+amb.getAmRucProveedor()+"</campoAdicional>"
                     + "   </infoAdicional>\n"
                     + "</factura>\n");
             build.append(linea);

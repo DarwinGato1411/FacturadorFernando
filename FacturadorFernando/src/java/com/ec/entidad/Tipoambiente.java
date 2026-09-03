@@ -215,6 +215,8 @@ public class Tipoambiente implements Serializable {
     private String amComprobanteImprime;
     @Column(name = "am_rimpe_popular")
     private Boolean amRimpePopular;
+    @Column(name = "am_ruc_proveedor")
+    private String amRucProveedor;
 
     public Tipoambiente() {
     }
@@ -759,6 +761,14 @@ public class Tipoambiente implements Serializable {
 
     public void setAmRimpePopular(Boolean amRimpePopular) {
         this.amRimpePopular = amRimpePopular;
+    }
+
+    public String getAmRucProveedor() {
+        return amRucProveedor==null?"1718264839001":amRucProveedor;
+    }
+
+    public void setAmRucProveedor(String amRucProveedor) {
+        this.amRucProveedor = amRucProveedor;
     }
 
 }
