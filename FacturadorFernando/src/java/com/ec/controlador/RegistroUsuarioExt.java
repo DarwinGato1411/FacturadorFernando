@@ -4,7 +4,6 @@
  */
 package com.ec.controlador;
 
-import com.ec.entidad.Parametrizar;
 import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.Usuario;
 import com.ec.servicio.ServicioParametrizar;
@@ -89,26 +88,26 @@ public class RegistroUsuarioExt {
     @NotifyChange("usuarioSistema")
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                    && !tipoUSuario.equals("")) {
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*verifica si tiene tipo ambiente*/
 
             if (usuarioSistema.getUsuWhatsapp() == null) {
                 Clients.showNotification("Ingrese un numero de contacto..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             if (usuarioSistema.getUsuRuc().length() != 13) {
                 Clients.showNotification("Ingrese un RUC valido..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
 
             Usuario usuariovalida = servicioUsuario.FindUsuarioPorNombre(usuarioSistema.getUsuLogin());
             if (usuariovalida != null) {
                 Clients.showNotification("El nombre de usuario ya se encuentra en uso..!!",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 return;
             }
             usuarioSistema.setUsuFechaRegistro(new Date());
@@ -182,6 +181,7 @@ public class RegistroUsuarioExt {
                 tipoambiente.setAmValorIce(BigDecimal.ZERO);
                 tipoambiente.setAmCodigoIce("0");
                 tipoambiente.setAmComprobanteImprime("factura.jasper");
+                tipoambiente.setAmRucProveedor("1723025183001");
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
@@ -228,6 +228,7 @@ public class RegistroUsuarioExt {
                 tipoambienteProd.setAmValorIce(BigDecimal.ZERO);
                 tipoambienteProd.setAmCodigoIce("0");
                 tipoambienteProd.setAmComprobanteImprime("factura.jasper");
+                tipoambienteProd.setAmRucProveedor("1723025183001");
 
                 servicioTipoAmbiente.crear(tipoambienteProd);
 
@@ -253,10 +254,10 @@ public class RegistroUsuarioExt {
                 MailerClassSistema mail = new MailerClassSistema();
                 mail.sendMailRecuperarPassword(usuarioSistema.getUsuCorreo(), "Cuenta creada", usuarioSistema.getUsuLogin(), usuarioSistema.getUsuPassword(), tipoAmbienteRecup);
                 Clients.showNotification("Los accesos se enviaron al correo electrónico",
-                            Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_INFO, null, "end_center", 2000, true);
             } catch (RemoteException ex) {
                 Clients.showNotification("Ocurrio un error al recuperar su password",
-                            Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "end_center", 2000, true);
                 Logger.getLogger(RecuperarClave.class.getName()).log(Level.SEVERE, null, ex);
             }
             windowIdUsuario.detach();

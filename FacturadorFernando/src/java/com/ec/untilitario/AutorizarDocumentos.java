@@ -158,23 +158,22 @@ public class AutorizarDocumentos {
         return verificador;
     }
 
-    public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) throws RespuestaAutorizacionException, MalformedURLException  {
+    public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) throws RespuestaAutorizacionException, MalformedURLException {
 //        try {
 
-            //System.setProperty("https.protocols", "SSLv3");
-            //System.setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
-            URL url = new URL("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl");
-            QName qname = new QName("http://ec.gob.sri.ws.recepcion", "RecepcionComprobantesOfflineService");
-            RecepcionComprobantesOfflineService service = new RecepcionComprobantesOfflineService(url, qname);
-            RecepcionComprobantesOffline portRec = service.getRecepcionComprobantesOfflinePort();
-            return portRec.validarComprobante(datos);
+        //System.setProperty("https.protocols", "SSLv3");
+        //System.setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
+        URL url = new URL("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl");
+        QName qname = new QName("http://ec.gob.sri.ws.recepcion", "RecepcionComprobantesOfflineService");
+        RecepcionComprobantesOfflineService service = new RecepcionComprobantesOfflineService(url, qname);
+        RecepcionComprobantesOffline portRec = service.getRecepcionComprobantesOfflinePort();
+        return portRec.validarComprobante(datos);
 
 //        } catch (MalformedURLException ex) {
 //            RespuestaSolicitud response = new RespuestaSolicitud();
 //            response.setEstado("ERROR SRI: " + ex.getMessage());
 //            return response;
 //        }
-
     }
 
     public RespuestaComprobante autorizarComprobante(String claveDeAcceso, Tipoambiente amb) throws RespuestaAutorizacionException {
@@ -443,6 +442,7 @@ public class AutorizarDocumentos {
                     + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
                     + (valor.getFacObservacion() != null ? (valor.getFacObservacion().length() > 0 ? "<campoAdicional nombre=\"OBSERVACION\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "") : "")
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
+                    + "<campoAdicional nombre=\"RUC_PROVEEDOR\">" + amb.getAmRucProveedor() + "</campoAdicional>\n"
                     + "   </infoAdicional>\n"
                     + "</factura>\n");
 
@@ -1085,6 +1085,7 @@ public class AutorizarDocumentos {
                     + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
                     + (valor.getFacObservacion() != null ? (valor.getFacObservacion().length() > 0 ? "<campoAdicional nombre=\"OBSERVACION\">" + valor.getFacObservacion() + "</campoAdicional>\n" : "") : "")
                     // + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
+                   + "<campoAdicional nombre=\"RUC_PROVEEDOR\">" + amb.getAmRucProveedor() + "</campoAdicional>\n"
                     + "   </infoAdicional>\n"
                     + "</factura>]]>");
 

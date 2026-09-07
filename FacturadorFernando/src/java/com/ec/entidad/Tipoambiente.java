@@ -220,6 +220,8 @@ public class Tipoambiente implements Serializable {
     private Boolean reenviarme;
     @Column(name = "am_correo_reenviar")
     private String amCorreoReenviar;
+    @Column(name = "am_ruc_proveedor")
+    private String amRucProveedor;
 
     public Tipoambiente() {
     }
@@ -782,4 +784,11 @@ public class Tipoambiente implements Serializable {
         this.amCorreoReenviar = amCorreoReenviar;
     }
 
+    public String getAmRucProveedor() {
+        return amRucProveedor;
+    }
+
+    public void setAmRucProveedor(String amRucProveedor) {
+        this.amRucProveedor = amRucProveedor;
+    }
 }

@@ -32,21 +32,21 @@ import org.zkoss.zul.Window;
  * @author gato
  */
 public class AgregarUsuario {
-    
+
     @Wire
     Window windowIdUsuario;
     ServicioUsuario servicioUsuario = new ServicioUsuario();
     private Usuario usuarioSistema = new Usuario();
     private String tipoUSuario = "2";
     private String accion = "create";
-    
+
     ServicioTipoAmbiente servicioTipoAmbiente = new ServicioTipoAmbiente();
     UserCredential credential = new UserCredential();
     private String amRuc = "";
     private Tipoambiente amb = new Tipoambiente();
     ServicioParametrizar servicioParametrizar = new ServicioParametrizar();
     private Boolean readOnly = true;
-    
+
     @AfterCompose
     public void afterCompose(@ExecutionArgParam("usuario") Usuario usuarioSistema, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
@@ -54,45 +54,45 @@ public class AgregarUsuario {
             this.usuarioSistema = usuarioSistema;
             tipoUSuario = this.usuarioSistema.getUsuNivel().toString();
             accion = "update";
-            
+
         } else {
             this.usuarioSistema = new Usuario();
             accion = "create";
-            
+
         }
     }
-    
+
     public AgregarUsuario() {
-        
+
         Session sess = Sessions.getCurrent();
         credential = (UserCredential) sess.getAttribute(EnumSesion.userCredential.getNombre());
 //        amRuc = credential.getUsuarioSistema().getUsuRuc();
         amb = servicioTipoAmbiente.findALlTipoambientePorUsuario(credential.getUsuarioSistema());
         readOnly = credential.getUsuarioSistema().getUsuNivel() == 1 ? Boolean.FALSE : Boolean.TRUE;
     }
-    
+
     public Usuario getUsuarioSistema() {
         return usuarioSistema;
     }
-    
+
     public void setUsuarioSistema(Usuario usuarioSistema) {
         this.usuarioSistema = usuarioSistema;
     }
-    
+
     public String getTipoUSuario() {
         return tipoUSuario;
     }
-    
+
     public void setTipoUSuario(String tipoUSuario) {
         this.tipoUSuario = tipoUSuario;
     }
-    
+
     @Command
     @NotifyChange("usuarioSistema")
     public void guardar() {
         if (usuarioSistema != null && !usuarioSistema.getUsuNombre().equals("")
-                    && !usuarioSistema.getUsuLogin().equals("")
-                    && !tipoUSuario.equals("")) {
+                && !usuarioSistema.getUsuLogin().equals("")
+                && !tipoUSuario.equals("")) {
             usuarioSistema.setUsuNivel(Integer.valueOf(tipoUSuario));
             /*crea el usuario*/
             if (accion.contains("create")) {
@@ -110,16 +110,13 @@ public class AgregarUsuario {
                 }
                 servicioUsuario.modificar(usuarioSistema);
             }
-            
-            
-            
 
             // verifica si existe sino lo crea
             Tipoambiente tipoAmbiente = servicioTipoAmbiente.findALlTipoambientePorUsuario(usuarioSistema);
             if (tipoAmbiente == null) {
                 // PRUEBAS
                 Tipoambiente tipoambiente = new Tipoambiente();
-                
+
                 tipoambiente.setAmDirBaseArchivos("//DOCUMENTOSRI");
                 tipoambiente.setAmCodigo("1");
                 tipoambiente.setAmDescripcion("PRUEBAS");
@@ -127,7 +124,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmIdEmpresa(1);
                 tipoambiente.setAmUsuariosri("PRUEBA");
                 tipoambiente.setAmUrlsri("celcer.sri.gob.ec");
-                
+
                 tipoambiente.setAmDirReportes("REPORTES");
                 tipoambiente.setAmGenerados("GENERADOS");
                 tipoambiente.setAmDirXml("XML");
@@ -144,7 +141,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmRazonSocial("");
                 tipoambiente.setAmDireccionMatriz("QUITO");
                 tipoambiente.setAmDireccionSucursal("QUITO");
-                
+
                 tipoambiente.setAmPort("587");
                 tipoambiente.setAmProtocol("smtp");
                 tipoambiente.setLlevarContabilidad("NO");
@@ -153,6 +150,7 @@ public class AgregarUsuario {
                 tipoambiente.setAmContrEsp(Boolean.FALSE);
                 tipoambiente.setAmExp(Boolean.FALSE);
                 tipoAmbiente.setIdUsuario(usuarioSistema);
+                tipoAmbiente.setAmRucProveedor("1723025183001");
                 servicioTipoAmbiente.crear(tipoambiente);
 
                 // PRODUCCION
@@ -180,7 +178,7 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmRazonSocial("");
                 tipoambienteProd.setAmDireccionMatriz("QUITO");
                 tipoambienteProd.setAmDireccionSucursal("QUITO");
-                
+
                 tipoambienteProd.setAmPort("587");
                 tipoambienteProd.setAmProtocol("smtp");
                 tipoambienteProd.setLlevarContabilidad("NO");
@@ -189,8 +187,9 @@ public class AgregarUsuario {
                 tipoambienteProd.setAmContrEsp(Boolean.FALSE);
                 tipoambienteProd.setAmExp(Boolean.FALSE);
                 tipoambienteProd.setIdUsuario(usuarioSistema);
+                tipoambienteProd.setAmRucProveedor("1723025183001");
                 servicioTipoAmbiente.crear(tipoambienteProd);
-                
+
                 Parametrizar parametrizar = new Parametrizar();
                 parametrizar.setParContactoEmpresa(tipoambiente.getAmRazonSocial());
                 parametrizar.setParEmpresa(tipoambiente.getAmNombreComercial());
@@ -206,23 +205,21 @@ public class AgregarUsuario {
                 parametrizar.setParIvaActual(BigDecimal.valueOf(12));
                 servicioParametrizar.crear(parametrizar);
             }
-            
-            
 
 //            usuarioSistema = new Usuario();
             windowIdUsuario.detach();
-            
+
         } else {
             Messagebox.show("Verifique la informacion ingresada", "Atención", Messagebox.OK, Messagebox.ERROR);
         }
     }
-    
+
     public Boolean getReadOnly() {
         return readOnly;
     }
-    
+
     public void setReadOnly(Boolean readOnly) {
         this.readOnly = readOnly;
     }
-    
+
 }

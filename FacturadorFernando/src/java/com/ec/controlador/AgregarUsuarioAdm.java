@@ -4,7 +4,6 @@
  */
 package com.ec.controlador;
 
-import com.ec.entidad.Parametrizar;
 import com.ec.entidad.Tipoambiente;
 import com.ec.entidad.Usuario;
 import com.ec.seguridad.EnumSesion;
@@ -12,7 +11,6 @@ import com.ec.seguridad.UserCredential;
 import com.ec.servicio.ServicioParametrizar;
 import com.ec.servicio.ServicioTipoAmbiente;
 import com.ec.servicio.ServicioUsuario;
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import org.zkoss.bind.annotation.AfterCompose;
