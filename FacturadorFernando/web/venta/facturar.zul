@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
-<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css?v2"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
 <?script src="../js/facturar.js"?>
@@ -589,6 +590,20 @@
                                         style="margin-bottom:15px; margin-left:1px"  
                                         rows="3"
                                         value="@bind(vm.factura.facObservacion)"
+                                        class="input_text" 
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div class="wrapper_input_mod" style="flex:auto;display: contents">
+                                <span> Placa:</span>
+                                <div class="wrapper_input_text" >
+                                    <!--<div class="fa-solid fa-dollar-sign icon"></div>-->
+                                    <textbox  
+                                        maxlength="10" 
+                                        width="50%"
+                                        style="margin-bottom:15px; margin-left:1px"                                        
+                                        value="@bind(vm.factura.facPlaca)"
                                         class="input_text" 
                                     />
                                 </div>

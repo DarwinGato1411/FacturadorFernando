@@ -1,14 +1,14 @@
-<?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/menu.css?v18"?>
 
 <zk>
 
     <div class="banner" id="loginWin"  style="height:auto"  width="100%"
          apply="com.ec.controlador.LogoutController" >
-        <div class="row" >
+        <div class="row banner-top" >
 
 
             <div class="col-12 col-sm-12 col-md-5 col-lg-5  " align="start">
-                <image  src="/imagenes/israel/logo2.png" class="logo_defact" />
+                <image  src="/imagenes/logo/confirma-actura-fondo.png?v2" class="logo_defact" />
                 <!-- <label value="Sistema de facturacion - DEFACT" sclass="banner-head labelNuevo" />  --> 
                 
                      
@@ -26,7 +26,7 @@
                         <!--<label value="( / " class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />--> 
                         <!--<label value="  )" class="infoEmpresa" if="${not sessionScope.userCredential.anonymous}" />-->
                         <!--<div  align="end" style="float: right; " >-->
-                        <a sclass="logout labelLogout" style="color:red" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
+                        <a sclass="logout labelLogout" id="logout" if="${not sessionScope.userCredential.anonymous}" class="form-group" >  
                             <!--<label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/>--> 
                                 
                                 
@@ -41,7 +41,7 @@
                
             </div>
         </div>
-        <div class="row">
+        <div class="row banner-nav-row">
             <div  viewModel="@id('vm')"  
                   apply="com.ec.controlador.MenuOpcionesSuper" 
                   class="row col-12 col-sm-12 col-md-12 col-lg-12" >

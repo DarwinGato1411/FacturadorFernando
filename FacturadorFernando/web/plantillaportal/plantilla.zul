@@ -1,6 +1,9 @@
-<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/modales.css?v1"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/menu.css?v18"?>
 <?script src="/js/icon.js"?>
 
 <zk>

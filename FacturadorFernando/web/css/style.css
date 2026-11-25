@@ -29,8 +29,8 @@ element.style {
   overflow: hidden;
 }
 .banner {
-  background-color: white;
-  color: black;
+  background-color: #0d3b66;
+  color: #ffffff;
   padding: 10px 5px 5px 10px;
 }
 .banner-head {
@@ -222,7 +222,7 @@ element.style {
 }
 
 .z-toolbar .z-toolbarbutton-cnt {
-  color: #000000;
+  /*color: #000000;*/
   font-family: Tahoma, verdana;
   font-size: 1em;
   font-weight: normal;
@@ -231,6 +231,15 @@ element.style {
   border-left: 1px solid #dddddd;
   border-right: 1px solid #eeeeee;
   border-top: 1px solid #e0e0e0;
+}
+
+.banner .z-toolbar,
+.banner .z-toolbar table,
+.banner .z-toolbar td,
+.banner .z-toolbar .z-toolbarbutton-cnt,
+.banner .z-toolbar .z-toolbarbutton-content {
+  border: 0 none !important;
+  box-shadow: none !important;
 }
 
 .z-toolbar {
@@ -376,7 +385,7 @@ element.style {
 }
 .labelNuevo {
   font-size: 1em;
-  color: #07317d;
+  /*color: #07317d;*/
   text-align: center;
   height: auto;
   font-weight: bold;
@@ -573,7 +582,7 @@ div.z-listbox-header th.z-auxheader {
   border-color: #cfcfcf #cfcfcf #cfcfcf white;
   border-top: 0;
   padding: 0;
-  background: #77dd77 !important;
+  background: #121212 !important;
   font-weight: bold;
 }
 
@@ -593,8 +602,8 @@ div.z-auxheader-cnt {
   position: relative;
   display: block;
   padding: 2px 0;
-  border-top: 1px solid #d8d8d8;
-  border-bottom: 1px solid #d8d8d8;
+  border-top: 0 none;
+  border-bottom: 0 none;
   background: transparent repeat-x 0 0;
   background-image: none;
 }

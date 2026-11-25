@@ -1,0 +1,124 @@
+/* Tablas del sistema: paleta login (no aplica a menús) */
+:root {
+    --tf-table-dark: #121212;
+    --tf-table-orange: #f37021;
+    --tf-table-teal: #00bfa5;
+    --tf-table-text: #121212;
+    --tf-table-muted: #6b6b6b;
+    --tf-table-row: #ffffff;
+    --tf-table-row-alt: #f4f4f4;
+    --tf-table-hover: #e9fbf8;
+    --tf-table-border: #e4e4e4;
+}
+
+div.z-listbox,
+div.z-grid {
+    border: 1px solid var(--tf-table-border) !important;
+    background: #ffffff;
+}
+
+div.z-listbox-header,
+div.z-grid-header {
+    background: var(--tf-table-dark) !important;
+}
+
+div.z-listbox-header th.z-listheader,
+div.z-listbox-header th.z-auxheader,
+div.z-grid-header th.z-column,
+div.z-grid-header th.z-auxhead {
+    background: var(--tf-table-dark) !important;
+    color: #ffffff !important;
+    border-color: #2a2a2a !important;
+    font-weight: 700 !important;
+}
+
+.z-listheader-content,
+.z-column-content,
+div.z-listheader-cnt,
+div.z-listheader-cnt .z-label,
+div.z-listbox-header div.z-auxheader-cnt,
+div.z-column-cnt {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}
+
+.z-listheader .z-textbox,
+.z-listheader input,
+.z-listheader .form-control,
+.z-listheader .z-decimalbox,
+.z-auxheader .z-textbox,
+.z-auxheader input,
+.z-column .z-textbox,
+.z-column input {
+    color: var(--tf-table-text) !important;
+    background: #ffffff !important;
+    border: 1px solid #d8d8d8 !important;
+    border-radius: 4px !important;
+}
+
+div.z-listbox-body,
+div.z-grid-body {
+    background: #ffffff !important;
+}
+
+div.z-listcell-cnt,
+div.z-listcell-cnt .z-label,
+div.z-row-cnt,
+div.z-row-cnt .z-label,
+div.z-listfooter-cnt {
+    color: var(--tf-table-text) !important;
+}
+
+.z-listitem,
+.z-row {
+    background: var(--tf-table-row);
+}
+
+.z-listitem.z-listitem-odd,
+tr.z-listitem-odd,
+.z-grid-odd,
+.z-row:nth-child(even) {
+    background: var(--tf-table-row-alt);
+}
+
+.z-listitem:hover,
+.z-listitem:hover > .z-listcell,
+.z-listitem-over > .z-listcell,
+.z-row:hover,
+.z-row:hover > .z-cell {
+    background: var(--tf-table-hover) !important;
+}
+
+.z-listitem.z-listitem-selected > .z-listcell,
+.z-listitem-seld > .z-listcell {
+    background: rgba(0, 191, 165, 0.16) !important;
+}
+
+.z-paging,
+.z-paging-os {
+    background: #f4f4f4 !important;
+    color: var(--tf-table-text) !important;
+    border-color: var(--tf-table-border) !important;
+}
+
+.z-paging a,
+.z-paging-os a,
+.z-paging-os span,
+.z-paging-info,
+.z-paging-text {
+    color: var(--tf-table-text) !important;
+}
+
+.z-paging-os .z-paging-os-seld,
+.z-paging .z-paging-os-seld,
+.z-paging-os span.z-paging-os-selected {
+    background: var(--tf-table-teal) !important;
+    color: var(--tf-table-dark) !important;
+    border-color: var(--tf-table-teal) !important;
+    font-weight: 700 !important;
+}
+
+.z-paging-button:hover,
+.z-paging-os a:hover {
+    color: var(--tf-table-orange) !important;
+}

@@ -184,6 +184,7 @@ public class Facturar extends SelectorComposer<Component> {
     public static String codigoBusqueda = "";
     //crear un factura nueva
     private Factura factura = new Factura();
+    private boolean guardandoFactura = false;
     private DetalleFacturaDAO detalleFacturaDAO = new DetalleFacturaDAO();
     private ListModelList<DetalleFacturaDAO> listaDetalleFacturaDAOMOdel;
     private List<DetalleFacturaDAO> listaDetalleFacturaDAODatos = new ArrayList<DetalleFacturaDAO>();
@@ -2342,20 +2343,31 @@ public class Facturar extends SelectorComposer<Component> {
                     factura.setFacClaveAutorizacion(claveAcceso);
 
                     if (accion.equals("create")) {
+                        boolean facturaYaRegistrada = factura.getIdFactura() != null;
+                        if (!facturaYaRegistrada && tipoVenta.equals("FACT") && numeroFactura != null && numeroFactura > 0) {
+                            Factura existente = servicioFactura.findPorNumeroTipoAmbiente(numeroFactura, amb);
+                            if (existente != null) {
+                                factura = existente;
+                                facturaYaRegistrada = true;
+                                Clients.showNotification("La factura " + numeroFacturaText + " ya estaba registrada. No se duplicó.",
+                                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
+                            }
+                        }
 
-                        servicioFactura.guardarFactura(detalleFactura, factura);
-                        if (estdoFactura.equals("PA")) {
-                            DetallePago detallePago = new DetallePago();
-                            detallePago.setDetpNumPago(1);
-                            detallePago.setDetpFechaCobro(new Date());
-                            detallePago.setDetpTotal(factura.getFacTotal());
-                            detallePago.setDetpAbono(factura.getFacTotal());
-                            detallePago.setDetpSaldo(BigDecimal.ZERO);
-                            detallePago.setIdFactura(factura);
-                            servicioDetallePago.crear(detallePago);
+                        if (!facturaYaRegistrada) {
+                            servicioFactura.guardarFactura(detalleFactura, factura);
+                            if (estdoFactura.equals("PA")) {
+                                DetallePago detallePago = new DetallePago();
+                                detallePago.setDetpNumPago(1);
+                                detallePago.setDetpFechaCobro(new Date());
+                                detallePago.setDetpTotal(factura.getFacTotal());
+                                detallePago.setDetpAbono(factura.getFacTotal());
+                                detallePago.setDetpSaldo(BigDecimal.ZERO);
+                                detallePago.setIdFactura(factura);
+                                servicioDetallePago.crear(detallePago);
+                            }
                         }
                     } else {
-
                         servicioFactura.eliminar(factura);
                         servicioDetalleKardex.eliminarKardexVenta(factura.getIdFactura());
                         servicioFactura.guardarFactura(detalleFactura, factura);
@@ -2398,7 +2410,12 @@ public class Facturar extends SelectorComposer<Component> {
                     if (envia.equals("N") || !tipoVenta.equals("FACT")) {
                         /*en el caso que no se desee autorizar la factura*/
                     } else {
-                        autorizarFacturasSRI(factura);
+                        try {
+                            autorizarFacturasSRI(factura);
+                        } catch (Exception ex) {
+                            Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+                            mostrarMensajeSri(factura, AutorizarDocumentos.clasificarErrorSri(ex));
+                        }
                     }
 
                 }
@@ -2499,7 +2516,15 @@ public class Facturar extends SelectorComposer<Component> {
             }
             if (listaDetalleFacturaDAOMOdel.size() > 0) {
                 if (!listaDetalleFacturaDAOMOdel.get(0).getDescripcion().equals("")) {
-                    guardarFactura(valor, envia);
+                    if (guardandoFactura) {
+                        return;
+                    }
+                    guardandoFactura = true;
+                    try {
+                        guardarFactura(valor, envia);
+                    } finally {
+                        guardandoFactura = false;
+                    }
 
                 } else {
                     Messagebox.show("Registre un producto para proceder a la facturación", "Atención", Messagebox.OK, Messagebox.ERROR);
@@ -3521,6 +3546,52 @@ public class Facturar extends SelectorComposer<Component> {
         this.subTotalCotizacion15 = subTotalCotizacion15;
     }
 
+    private boolean facturaAutorizadaSri(RespuestaComprobante respuesta) {
+        if (AutorizarDocumentos.respuestaSriCaida(respuesta) || !AutorizarDocumentos.tieneAutorizaciones(respuesta)) {
+            return false;
+        }
+        for (Autorizacion autorizacion : respuesta.getAutorizaciones().getAutorizacion()) {
+            if ("AUTORIZADO".equals(autorizacion.getEstado())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private RespuestaComprobante autorizarConUnReintento(AutorizarDocumentos autorizarDocumentos, String claveAccesoComprobante) throws RespuestaAutorizacionException {
+        RespuestaComprobante respuesta = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+        if (facturaAutorizadaSri(respuesta)) {
+            return respuesta;
+        }
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        return autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+    }
+
+    private void mostrarSriCaido(Factura valor) {
+        mostrarMensajeSri(valor, AutorizarDocumentos.mensajeSriCaido());
+    }
+
+    private void mostrarMensajeSri(Factura valor, String mensaje) {
+        String texto = (mensaje == null || mensaje.trim().isEmpty())
+                ? AutorizarDocumentos.mensajeSriCaido() : mensaje;
+        if (valor != null && valor.getFacNumeroText() != null) {
+            texto = "Factura " + valor.getFacNumeroText() + " quedó registrada. " + texto;
+        }
+        Clients.showNotification(texto, Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
+        if (valor != null && valor.getIdFactura() != null) {
+            try {
+                valor.setMensajesri(texto);
+                servicioFactura.modificar(valor);
+            } catch (Exception ex) {
+                Logger.getLogger(Facturar.class.getName()).log(Level.WARNING, "No se pudo guardar mensaje SRI", ex);
+            }
+        }
+    }
+
     private void autorizarFacturasSRI(Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         SimpleDateFormat sm = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
@@ -3610,15 +3681,20 @@ public class Facturar extends SelectorComposer<Component> {
         /*GUARDAMOS LA CLAVE DE ACCESO ANTES DE ENVIAR A AUTORIZAR*/
         valor.setFacClaveAcceso(claveAccesoComprobante);
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
-        RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos, amb);
-               
-          
-          if (resSolicitud.getEstado().contains("ERROR SRI")) {
-            Clients.showNotification("Servicio del SRI caido , verifique su factura en el listado de documentos y autorice",
-                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+        RespuestaSolicitud resSolicitud;
+        try {
+            resSolicitud = autorizarDocumentos.validar(datos, amb);
+        } catch (Exception ex) {
+            Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(ex));
             return;
         }
-            
+
+        if (AutorizarDocumentos.respuestaSriCaida(resSolicitud)) {
+            mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resSolicitud));
+            return;
+        }
+
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
             // Autorizacion autorizacion = null;
 
@@ -3630,7 +3706,15 @@ public class Facturar extends SelectorComposer<Component> {
 //                }
                 try {
 
-                    RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+                    RespuestaComprobante resComprobante = autorizarConUnReintento(autorizarDocumentos, claveAccesoComprobante);
+                    if (AutorizarDocumentos.respuestaSriCaida(resComprobante)) {
+                        mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resComprobante));
+                        return;
+                    }
+                    if (!AutorizarDocumentos.tieneAutorizaciones(resComprobante)) {
+                        mostrarMensajeSri(valor, AutorizarDocumentos.mensajeSriSinAutorizacion());
+                        return;
+                    }
                     for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                         FileOutputStream nuevo = null;
 
@@ -3643,8 +3727,11 @@ public class Facturar extends SelectorComposer<Component> {
 
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
                             if (autorizacion.getEstado().equals("EN PROCESO")) {
-                                Clients.showNotification("Autoriza con reenvio ", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-                                reenviarFactura(valor);
+                                valor.setEstadosri(autorizacion.getEstado());
+                                valor.setMensajesri("EN PROCESO. Consulte o reenvíe desde el listado de facturas.");
+                                servicioFactura.modificar(valor);
+                                Clients.showNotification("El SRI tiene el comprobante en proceso. Reenvíe desde el listado de facturas.",
+                                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
                             } else {
                                 String texto = "Sin Identificar el error";
                                 String smsInfo = "Sin identificar el error";
@@ -3661,6 +3748,9 @@ public class Facturar extends SelectorComposer<Component> {
                                 valor.setFacMsmInfoSri(smsInfo);
                                 nuevo.flush();
                                 servicioFactura.modificar(valor);
+                                Clients.showNotification("El SRI no autorizó el comprobante (" + autorizacion.getEstado() + "): " + texto
+                                        + (smsInfo != null ? " - " + smsInfo : ""),
+                                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
                             }
                         } else {
 
@@ -3732,21 +3822,30 @@ public class Facturar extends SelectorComposer<Component> {
 
                     }
                 } catch (RespuestaAutorizacionException ex) {
-                    Clients.showNotification("RespuestaAutorizacionException> Error del servicio del SRI ", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 3000, true);
-                    Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+                    mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(ex));
+                } catch (Exception ex) {
+                    Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+                    mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(ex));
                 }
             } else {
                 String smsInfo = resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getInformacionAdicional();
                 ArchivoUtils.FileCopy(pathArchivoFirmado, pathArchivoNoAutorizado);
+                String mensajeSri = resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getMensaje();
                 valor.setEstadosri(resSolicitud.getEstado());
-                valor.setMensajesri(resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getMensaje());
+                valor.setMensajesri(mensajeSri);
                 valor.setFacMsmInfoSri(smsInfo);
                 servicioFactura.modificar(valor);
+                Clients.showNotification("El SRI no autorizó el comprobante: " + mensajeSri
+                        + (smsInfo != null ? " - " + smsInfo : ""),
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
             }
         } else {
 
-            valor.setMensajesri(resSolicitud.getEstado());
+            String estado = resSolicitud.getEstado() != null ? resSolicitud.getEstado() : "Sin estado de validación del SRI";
+            valor.setMensajesri(estado);
             servicioFactura.modificar(valor);
+            Clients.showNotification(estado, Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
         }
     }
 
@@ -3847,6 +3946,14 @@ public class Facturar extends SelectorComposer<Component> {
         try {
 
             RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+            if (AutorizarDocumentos.respuestaSriCaida(resComprobante)) {
+                mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resComprobante));
+                return;
+            }
+            if (!AutorizarDocumentos.tieneAutorizaciones(resComprobante)) {
+                mostrarMensajeSri(valor, AutorizarDocumentos.mensajeSriSinAutorizacion());
+                return;
+            }
             for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                 FileOutputStream nuevo = null;
 
@@ -3940,7 +4047,11 @@ public class Facturar extends SelectorComposer<Component> {
 
             }
         } catch (RespuestaAutorizacionException ex) {
-            Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(ex));
+        } catch (Exception ex) {
+            Logger.getLogger(Facturar.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(ex));
         }
 
     }

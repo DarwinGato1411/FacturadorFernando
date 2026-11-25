@@ -5,6 +5,9 @@
     --secondary-color: #b8a026;
     --tertiary-color: #d5ecfb;
     --background-color: #fff;
+    --login-orange: #f37021;
+    --login-teal: #00bfa5;
+    --login-dark: #121212;
 }
 
 body {
@@ -399,14 +402,15 @@ body {
 }
 
 .wrapper_menu > table > tbody > tr {
-    background-color: var(--primary-color) !important;
+    background-color: #0d3b66 !important;
 }
 
 .submenu {
     border-radius: 10px;
 }
 .submenu * {
-    background-color: #eee !important;
+    background-color: #0a2f52 !important;
+    color: #ffffff !important;
 }
 
 .menu_item {
@@ -414,7 +418,7 @@ body {
     font-weight: bold !important;
     font-size: 14px !important;
     position: relative;
-    color: var(--primary-color);
+    color: #ffffff;
 }
 
 .menu_item::before {
@@ -423,7 +427,7 @@ body {
     margin-right: 0.5em;
     font-size: 16px;
     position: absolute;
-    color: var(--primary-color);
+    color: #ffffff !important;
 }
 
 .menu_child {
@@ -435,15 +439,18 @@ body {
 .menu_child:hover > * {
     border: none !important;
     outline: none !important;
-    background-color: transparent !important;
 }
 
 .logo_defact {
     display: block;
-    object-fit: cover;
-    width: 300px;
+    object-fit: contain;
+    width: auto;
+    max-width: 340px;
+    height: 56px;
     position: relative;
     z-index: 100;
+    background: transparent !important;
+    border-radius: 0 !important;
 }
 
 .icon_exit span * {
@@ -597,14 +604,14 @@ body {
 
 div.z-listbox-header th.z-listheader,
 div.z-listbox-header th.z-auxheader {
-    background: var(--primary-color) !important;
+    background: var(--login-dark) !important;
     color: #fff !important;
 }
 
 div.z-listfooter-cnt,
 div.z-listcell-cnt,
 div.z-listheader-cnt {
-    color: #fff;
+    color: #121212;
 }
 
 .td-tabla {
@@ -627,6 +634,10 @@ div.z-listheader-cnt {
 
     .factura_header > .fact_row {
         width: 50%;
+        flex-direction: row;
+    }
+    .factura_header.paint_all_row > .fact_row {
+        width: 100% !important;
         flex-direction: row;
     }
     .factura_header > .fact_row_all {
@@ -675,7 +686,9 @@ div.z-listheader-cnt {
 
 @media screen and (min-width: 1400px) {
     .logo_defact {
-        width: 220px;
+        width: auto;
+        max-width: 380px;
+        height: 62px;
     }
 }
 .input_total {
@@ -710,4 +723,91 @@ div.z-listheader-cnt {
     margin-bottom: 0px;
     background-color: #e1e1e1;
     width: 90%;
+}
+
+/* Paleta del login: solo área de facturar, sin menús */
+.factura .btn_primary,
+.factura .btn_access,
+.factura .btn_alert,
+.factura .btn_fact {
+    background-color: var(--login-orange) !important;
+    color: #ffffff !important;
+}
+
+.factura .btn_element {
+    background-color: var(--login-teal) !important;
+    color: #121212 !important;
+}
+
+.factura .wrapper_total > span *,
+.factura .wrapper_total > input {
+    color: var(--login-teal) !important;
+}
+
+.factura .input_total,
+.factura .input_total.z-label {
+    color: var(--login-teal) !important;
+}
+
+.factura .input_cobro,
+.factura .input_cobro.z-label {
+    color: var(--login-teal) !important;
+}
+
+.factura .input_cambio,
+.factura .input_cambio.z-label {
+    color: var(--login-orange) !important;
+}
+
+.factura div.z-listbox-header th.z-listheader,
+.factura div.z-listbox-header th.z-auxheader {
+    background: var(--login-dark) !important;
+    color: #ffffff !important;
+}
+
+.factura .td-tabla {
+    background-color: var(--login-dark);
+}
+
+.factura .container_headers .icon {
+    color: var(--login-teal);
+}
+
+.factura .fact_row > .wrapper_data > .wrapper_input > input:focus,
+.factura .fact_row > .wrapper_data > .wrapper_input > .z-textbox:focus {
+    border-color: var(--login-teal) !important;
+}
+
+.z-north,
+.z-north-body,
+.banner {
+    background: #0d3b66 !important;
+    border: 0 none !important;
+}
+.banner .wrapper_menu,
+.banner .z-menubar,
+.banner .banner-nav-row {
+    background: #0d3b66 !important;
+}
+.banner .banner-top {
+    border-bottom: 0 none !important;
+}
+
+.ajuste-full,
+.ajuste-full .container-fluid,
+.ajuste-full .factura_header,
+.ajuste-full .factura_body,
+.ajuste-full .factura_body_content {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media only screen and (min-width: 1070px) {
+    .ajuste-full .factura_header > .fact_row {
+        width: 100% !important;
+    }
+    .ajuste-full .factura_body_content > .factura_body_item {
+        width: 50% !important;
+        flex: 1 1 50%;
+    }
 }

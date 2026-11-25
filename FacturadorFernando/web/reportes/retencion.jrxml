@@ -195,6 +195,7 @@ limit 1;]]>
 	<field name="prov_tipo_cuenta" class="java.lang.String"/>
 	<field name="prov_numero_cuenta" class="java.lang.String"/>
 	<field name="prov_nom_comercial" class="java.lang.String"/>
+	<field name="am_ruc_proveedor" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -699,6 +700,16 @@ limit 1;]]>
 				<reportElement x="110" y="75" width="267" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{prov_correo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="11" y="95" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[RUC Proveedor]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="111" y="95" width="267" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{am_ruc_proveedor}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

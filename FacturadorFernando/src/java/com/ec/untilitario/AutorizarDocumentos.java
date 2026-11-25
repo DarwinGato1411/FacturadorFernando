@@ -45,8 +45,16 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.ws.BindingProvider;
+import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -156,98 +164,261 @@ public class AutorizarDocumentos {
         return verificador;
     }
 
+    public static String mensajeSriCaido() {
+        return "El SRI está caído o no es posible conectarse. Intente más tarde.";
+    }
+
+    public static String mensajeSriSinAutorizacion() {
+        return "El SRI recibió el comprobante pero aún no devuelve la autorización. Reenvíe en unos segundos.";
+    }
+
+    public static String clasificarErrorSri(Throwable ex) {
+        if (ex instanceof TimeoutException) {
+            return "Tiempo de espera agotado al consultar el SRI. El servicio puede estar lento. Intente de nuevo.";
+        }
+        Throwable causa = ex;
+        while (causa != null) {
+            String raw = causa.getMessage() != null ? causa.getMessage() : "";
+            String msg = raw.toLowerCase();
+            String nombre = causa.getClass().getName();
+            if (causa instanceof java.security.cert.CertificateException
+                    || msg.contains("subject alternative names")
+                    || msg.contains("pkix")
+                    || msg.contains("sun.security.validator")) {
+                return "Error de certificado SSL: el certificado del SRI no coincide con el host o la IP. El SRI puede estar activo.";
+            }
+            if (causa instanceof javax.net.ssl.SSLHandshakeException
+                    || causa instanceof javax.net.ssl.SSLException
+                    || msg.contains("sslhandshake")
+                    || (msg.contains("ssl") && msg.contains("handshake"))) {
+                return "Error SSL/TLS al conectar con el SRI. Verifique certificado y red. El SRI puede estar activo.";
+            }
+            if (msg.contains("failed to access the wsdl") || (msg.contains("wsdl") && msg.contains("failed"))) {
+                return "No se pudo acceder al WSDL del SRI (recepción o autorización). Verifique internet y que el servicio esté publicado.";
+            }
+            if (causa instanceof java.net.SocketTimeoutException
+                    || causa instanceof TimeoutException
+                    || msg.contains("timed out")
+                    || msg.contains("timeout")
+                    || msg.contains("tiempo de espera")) {
+                return "Tiempo de espera agotado al consultar el SRI. Intente de nuevo.";
+            }
+            if (causa instanceof java.net.ConnectException
+                    || msg.contains("connection refused")
+                    || msg.contains("connect timed")) {
+                return "No hay conexión con el servidor del SRI (conexión rechazada o interrumpida).";
+            }
+            if (causa instanceof java.net.UnknownHostException) {
+                return "No se pudo resolver el nombre del servidor del SRI. Verifique DNS e internet.";
+            }
+            if (causa instanceof javax.xml.ws.soap.SOAPFaultException) {
+                return "El SRI devolvió un error SOAP: " + recortarMensaje(raw);
+            }
+            if (nombre.contains("PersistenceException") || msg.contains("could not open connection")) {
+                return "Error de base de datos al guardar o consultar (no es una caída del SRI).";
+            }
+            causa = causa.getCause();
+        }
+        if (ex != null && ex.getMessage() != null && !ex.getMessage().trim().isEmpty()) {
+            return "Error al comunicarse con el SRI: " + recortarMensaje(ex.getMessage());
+        }
+        return "Error al comunicarse con el SRI. Intente de nuevo.";
+    }
+
+    public static String mensajeUsuario(RespuestaSolicitud respuesta) {
+        if (respuesta == null) {
+            return "No se obtuvo respuesta al validar el comprobante en el SRI.";
+        }
+        return extraerMensajeErrorSri(respuesta.getEstado(), "No se obtuvo respuesta al validar el comprobante en el SRI.");
+    }
+
+    public static String mensajeUsuario(RespuestaComprobante respuesta) {
+        if (respuesta == null) {
+            return "No se obtuvo respuesta al autorizar el comprobante en el SRI.";
+        }
+        if (respuesta.getNumeroComprobantes() != null && respuesta.getNumeroComprobantes().contains("ERROR SRI")) {
+            return extraerMensajeErrorSri(respuesta.getNumeroComprobantes(), mensajeSriCaido());
+        }
+        if (!tieneAutorizaciones(respuesta)) {
+            return mensajeSriSinAutorizacion();
+        }
+        return mensajeSriCaido();
+    }
+
+    public static String mensajeUsuario(Throwable ex) {
+        return clasificarErrorSri(ex);
+    }
+
+    private static String extraerMensajeErrorSri(String texto, String defecto) {
+        if (texto == null || texto.trim().isEmpty()) {
+            return defecto;
+        }
+        int idx = texto.indexOf(':');
+        if (texto.contains("ERROR SRI") && idx >= 0 && idx + 1 < texto.length()) {
+            String detalle = texto.substring(idx + 1).trim();
+            return detalle.isEmpty() ? defecto : detalle;
+        }
+        return texto;
+    }
+
+    private static String recortarMensaje(String texto) {
+        if (texto == null) {
+            return "";
+        }
+        String limpio = texto.replace('\n', ' ').trim();
+        return limpio.length() > 220 ? limpio.substring(0, 220) + "..." : limpio;
+    }
+
+    public static boolean esErrorSri(Throwable ex) {
+        Throwable causa = ex;
+        while (causa != null) {
+            String msg = causa.getMessage() != null ? causa.getMessage() : "";
+            if (causa instanceof javax.xml.ws.WebServiceException
+                    || causa instanceof javax.xml.ws.soap.SOAPFaultException
+                    || causa instanceof javax.net.ssl.SSLException
+                    || causa instanceof java.security.cert.CertificateException
+                    || causa instanceof java.net.ConnectException
+                    || causa instanceof java.net.UnknownHostException
+                    || causa instanceof java.net.SocketTimeoutException
+                    || causa instanceof TimeoutException
+                    || msg.contains("Failed to access the WSDL")
+                    || msg.contains("subject alternative names")) {
+                return true;
+            }
+            causa = causa.getCause();
+        }
+        return false;
+    }
+
+    public static boolean respuestaSriCaida(RespuestaSolicitud respuesta) {
+        return respuesta == null
+                || (respuesta.getEstado() != null && respuesta.getEstado().contains("ERROR SRI"));
+    }
+
+    public static boolean respuestaSriCaida(RespuestaComprobante respuesta) {
+        return respuesta == null
+                || (respuesta.getNumeroComprobantes() != null && respuesta.getNumeroComprobantes().contains("ERROR SRI"));
+    }
+
+    public static boolean tieneAutorizaciones(RespuestaComprobante respuesta) {
+        return respuesta != null
+                && respuesta.getAutorizaciones() != null
+                && respuesta.getAutorizaciones().getAutorizacion() != null
+                && !respuesta.getAutorizaciones().getAutorizacion().isEmpty();
+    }
+
+    private static final int SRI_TIMEOUT_SEGUNDOS = 45;
+    private static volatile boolean sslSriAplicado = false;
+    private static final ExecutorService SRI_EXECUTOR = Executors.newFixedThreadPool(8, r -> {
+        Thread t = new Thread(r, "sri-ws");
+        t.setDaemon(true);
+        return t;
+    });
+
+    private static void aplicarTimeoutsRed() {
+        System.setProperty("sun.net.client.defaultConnectTimeout", "15000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "30000");
+    }
+
+    private static void aplicarTimeoutsPuerto(Object port) {
+        if (!(port instanceof BindingProvider)) {
+            return;
+        }
+        Map<String, Object> ctx = ((BindingProvider) port).getRequestContext();
+        ctx.put("com.sun.xml.internal.ws.connect.timeout", 15000);
+        ctx.put("com.sun.xml.internal.ws.request.timeout", 30000);
+        ctx.put("com.sun.xml.ws.connect.timeout", 15000);
+        ctx.put("com.sun.xml.ws.request.timeout", 30000);
+        ctx.put("javax.xml.ws.client.connectionTimeout", 15000);
+        ctx.put("javax.xml.ws.client.receiveTimeout", 30000);
+    }
+
+    private static synchronized void aplicarSslSri() {
+        if (sslSriAplicado) {
+            return;
+        }
+        instalarCertificado();
+        HostnameVerifier verificador = (hostname, session) -> {
+            if (hostname == null) {
+                return true;
+            }
+            String h = hostname.toLowerCase();
+            return h.contains("sri.gob.ec") || h.matches("\\d{1,3}(\\.\\d{1,3}){3}");
+        };
+        HttpsURLConnection.setDefaultHostnameVerifier(verificador);
+        sslSriAplicado = true;
+    }
+
     public RespuestaSolicitud validar(byte[] datos, Tipoambiente amb) {
+        Future<RespuestaSolicitud> future = SRI_EXECUTOR.submit(() -> validarInterno(datos, amb));
         try {
-            String domainRoot = System.getProperty("com.sun.aas.instanceRoot");
-            String keystorePath
-                    = domainRoot + File.separator + "config" + File.separator + "keystore.jks";
-            System.setProperty("javax.net.debug", "ssl,handshake");
-            System.setProperty("javax.net.ssl.keyStore", keystorePath);
-            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
-            System.setProperty("javax.net.ssl.trustStore", keystorePath);
-            System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
-            System.out.println("KEYSTORE: " + keystorePath);
-            //System.setProperty("https.protocols", "SSLv3");
-            //System.setProperty(org.apache.axis2.transport.http.HTTPConstants.CHUNKED, Boolean.FALSE);
+            return future.get(SRI_TIMEOUT_SEGUNDOS, TimeUnit.SECONDS);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "Timeout al validar en el SRI");
+            RespuestaSolicitud response = new RespuestaSolicitud();
+            response.setEstado("ERROR SRI: " + clasificarErrorSri(ex));
+            return response;
+        } catch (Exception ex) {
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "SRI no disponible al validar", ex);
+            RespuestaSolicitud response = new RespuestaSolicitud();
+            response.setEstado("ERROR SRI: " + clasificarErrorSri(ex));
+            return response;
+        }
+    }
+
+    private RespuestaSolicitud validarInterno(byte[] datos, Tipoambiente amb) {
+        try {
+            aplicarTimeoutsRed();
+            aplicarSslSri();
             URL url = new URL("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl");
             QName qname = new QName("http://ec.gob.sri.ws.recepcion", "RecepcionComprobantesOfflineService");
             RecepcionComprobantesOfflineService service = new RecepcionComprobantesOfflineService(url, qname);
             RecepcionComprobantesOffline portRec = service.getRecepcionComprobantesOfflinePort();
+            aplicarTimeoutsPuerto(portRec);
             return portRec.validarComprobante(datos);
-
-        } catch (javax.xml.ws.WebServiceException ex) {
-
-            Throwable causa = ex.getCause();
-
-            while (causa != null) {
-
-                if (causa instanceof javax.net.ssl.SSLHandshakeException) {
-
-//                    throw new Exception(
-//                            "No es posible conectarse al SRI. "
-//                            + "El servicio puede estar fuera de línea o presentar problemas con su certificado SSL."
-//                    );
-                    RespuestaSolicitud response = new RespuestaSolicitud();
-                    response.setEstado("ERROR SRI: " + ex.getMessage());
-//                    Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido ",
-//                            Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
-                    return response;
-                }
-
-                causa = causa.getCause();
-            }
-
-            throw ex;
-
         } catch (Exception ex) {
-
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "SRI no disponible al validar", ex);
             RespuestaSolicitud response = new RespuestaSolicitud();
-            response.setEstado("ERROR SRI: " + ex.getMessage());
-//            Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido ",
-//                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+            response.setEstado("ERROR SRI: " + clasificarErrorSri(ex));
             return response;
         }
-
     }
 
     public RespuestaComprobante autorizarComprobante(String claveDeAcceso, Tipoambiente amb) throws RespuestaAutorizacionException {
-
+        Future<RespuestaComprobante> future = SRI_EXECUTOR.submit(() -> autorizarInterno(claveDeAcceso, amb));
         try {
-            String domainRoot = System.getProperty("com.sun.aas.instanceRoot");
-            String keystorePath
-                    = domainRoot + File.separator + "config" + File.separator + "keystore.jks";
-            System.setProperty("javax.net.debug", "ssl,handshake");
-            System.setProperty("javax.net.ssl.keyStore", keystorePath);
-            System.setProperty("javax.net.ssl.keyStorePassword", "changeit");
-            System.setProperty("javax.net.ssl.trustStore", keystorePath);
-            System.setProperty("javax.net.ssl.trustStorePassword", "changeit");
-            RespuestaComprobante repuesta = new AutorizacionComprobantesWs("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl").llamadaWSAutorizacionInd(claveDeAcceso);
-            return repuesta;
-        } catch (javax.xml.ws.WebServiceException ex) {
-
-            Throwable causa = ex.getCause();
-
-            while (causa != null) {
-
-                if (causa instanceof javax.net.ssl.SSLHandshakeException) {
-
-                    RespuestaComprobante response = new RespuestaComprobante();
-                    response.setNumeroComprobantes("ERROR SRI: " + ex.getMessage());
-                    return response;
-                }
-
-                causa = causa.getCause();
-            }
-
-            throw ex;
-
-        } catch (Exception ex) {
-
+            return future.get(SRI_TIMEOUT_SEGUNDOS, TimeUnit.SECONDS);
+        } catch (TimeoutException ex) {
+            future.cancel(true);
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "Timeout al autorizar en el SRI");
             RespuestaComprobante response = new RespuestaComprobante();
-            response.setNumeroComprobantes("ERROR SRI: " + ex.getMessage());
+            response.setNumeroComprobantes("ERROR SRI: " + clasificarErrorSri(ex));
+            return response;
+        } catch (Exception ex) {
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "SRI no disponible al autorizar", ex);
+            RespuestaComprobante response = new RespuestaComprobante();
+            response.setNumeroComprobantes("ERROR SRI: " + clasificarErrorSri(ex));
             return response;
         }
+    }
 
+    private RespuestaComprobante autorizarInterno(String claveDeAcceso, Tipoambiente amb) {
+        try {
+            aplicarTimeoutsRed();
+            aplicarSslSri();
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+            return new AutorizacionComprobantesWs("https://" + amb.getAmUrlsri() + "/comprobantes-electronicos-ws/AutorizacionComprobantesOffline?wsdl").llamadaWSAutorizacionInd(claveDeAcceso);
+        } catch (Exception ex) {
+            Logger.getLogger(AutorizarDocumentos.class.getName()).log(Level.WARNING, "SRI no disponible al autorizar", ex);
+            RespuestaComprobante response = new RespuestaComprobante();
+            response.setNumeroComprobantes("ERROR SRI: " + clasificarErrorSri(ex));
+            return response;
+        }
     }
 
 //    public RespuestaComprobante autoriza(String clave) {
@@ -265,7 +436,7 @@ public class AutorizarDocumentos {
 //        }
 //        return null;
 //    }
-    public void instalarCertificado() {
+    public static void instalarCertificado() {
         TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             @Override
             public X509Certificate[] getAcceptedIssuers() {
@@ -1037,6 +1208,7 @@ public class AutorizarDocumentos {
                     + (amb.getAmAgeRet() ? "<campoAdicional nombre=\"Agente de Retencion\">Agente de Retencion Resolucion Nro. NAC-DNCRASC20-00000001</campoAdicional>\n" : "")
                     + (amb.getAmRimpe() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN RIMPE\">CONTRIBUYENTE REGIMEN RIMPE</campoAdicional>\n" : "")
                     + (amb.getAmGeneral() ? "<campoAdicional nombre=\"CONTRIBUYENTE REGIMEN GENERAL\">CONTRIBUYENTE REGIMEN GENERAL</campoAdicional>\n" : "")
+                        + "<campoAdicional nombre=\"RUC_PROVEEDOR\">"+amb.getAmRucProveedor()+"</campoAdicional>"
                     + "    </infoAdicional>\n"
                     + "</comprobanteRetencion>");
             build.append(linea);

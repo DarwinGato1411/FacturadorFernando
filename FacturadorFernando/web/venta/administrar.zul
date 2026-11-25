@@ -2,6 +2,7 @@
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
 <?init class="com.ec.seguridad.Autentificador"?>
@@ -22,6 +23,7 @@
                 <tab label="Usuario" sclass="menutabs" /> 
 
                 <tab label="Configuracion SRI" sclass="menutabs" /> 
+                <tab label="Codigos de retencion" sclass="menutabs" /> 
                 <!--<tab label="Parametrizar Empresa" sclass="menutabs" />--> 
                 <!--<tab label="Consultar catastro" sclass="menutabs" />--> 
 <!--
@@ -228,7 +230,9 @@
                 <tabpanel height="100%" hflex="min">
                     <include src="/administrar/configuracion.zul"/>  
                 </tabpanel>
-
+                <tabpanel height="100%" width="100%" class="sri_tab">
+                    <include src="/administrar/codigoretenciones.zul"/>  
+                </tabpanel> 
 
             </tabpanels>
             

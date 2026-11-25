@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?init class="com.ec.seguridad.Autentificador"?>
 <zk class="border border-primary">
@@ -77,6 +78,16 @@
                              placeholder="RUC..."
                              class="form-control"
                              tooltiptext="RUC" />
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                    <label value="RUC PROVEEDOR:"              
+                     style="font-size:14px;padding:  0rem 0rem;"                                                   
+                           class="form-control bg-info" />
+                    <textbox value="@bind(vm.tipoambiente.amRucProveedor)" 
+                             placeholder="RUC proveedor"
+                             maxlength="13"
+                             class="form-control"
+                             tooltiptext="RUC del proveedor (am_ruc_proveedor)" />
                 </div>
                 <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
                     <label value="RAZON SOCIAL:" 

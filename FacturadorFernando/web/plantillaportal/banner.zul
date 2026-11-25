@@ -2,7 +2,7 @@
 
     <div class="banner" id="loginWin"  style="height:auto"  width="100%"
          apply="com.ec.controlador.LogoutControllerPortal" >
-        <div class="row" >
+        <div class="row banner-top" >
             <div class="col-6 col-sm-6 col-md-6 col-lg-6  " align="start">
                 <label value="Portal de facturas electronicas" sclass="banner-head labelNuevo" />        
             </div>

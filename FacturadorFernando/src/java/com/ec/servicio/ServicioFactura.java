@@ -190,6 +190,27 @@ public class ServicioFactura {
 
     }
 
+    public Factura findPorNumeroTipoAmbiente(Integer numero, Tipoambiente tipoambiente) {
+        try {
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT f FROM Factura f WHERE f.facNumero = :numero AND f.facTipo = 'FACT' AND f.cod_tipoambiente = :codTipoambiente");
+            query.setParameter("numero", numero);
+            query.setParameter("codTipoambiente", tipoambiente);
+            query.setMaxResults(1);
+            List<Factura> lista = query.getResultList();
+            em.getTransaction().commit();
+            return lista == null || lista.isEmpty() ? null : lista.get(0);
+        } catch (Exception e) {
+            System.out.println("Error al consultar factura por número " + e.getMessage());
+            return null;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
     public void modificar(Factura factura) {
 
         try {
@@ -1201,5 +1222,49 @@ public class ServicioFactura {
         }
 
         return facturas;
+    }
+     
+     public List<Factura> findBetweenPendientesEnviarSRI(Date inicio, Date fin) {
+
+        List<Factura> listaFacturas = new ArrayList<Factura>();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT a FROM Factura a WHERE a.facFecha BETWEEN :inicio AND :fin AND (a.estadosri='PENDIENTE' OR TRIM(a.mensajesri)=TRIM('CLAVE DE ACCESO EN PROCESAMIENTO'))  AND a.facTipo='FACT' ORDER BY a.facFecha DESC");
+            query.setParameter("inicio", inicio);
+            query.setParameter("fin", fin);
+            query.setMaxResults(400);
+            listaFacturas = (List<Factura>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta factura " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaFacturas;
+    }
+
+    public List<Factura> findBetweenDevueltaPorReenviarSRI(Date inicio, Date fin) {
+
+        List<Factura> listaFacturas = new ArrayList<Factura>();
+        try {
+            //Connection connection = em.unwrap(Connection.class);
+            em = HelperPersistencia.getEMF();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT a FROM Factura a WHERE a.facFecha BETWEEN :inicio AND :fin AND a.estadosri='DEVUELTA' AND a.mensajesri='CLAVE ACCESO REGISTRADA' AND a.facTipo='FACT' ORDER BY a.facFecha DESC");
+            query.setParameter("inicio", inicio);
+            query.setParameter("fin", fin);
+            query.setMaxResults(400);
+            listaFacturas = (List<Factura>) query.getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Error en lsa consulta factura " + e.getMessage());
+        } finally {
+            em.close();
+        }
+
+        return listaFacturas;
     }
 }

@@ -138,11 +138,13 @@ public class Parametrizar implements Serializable {
 
     @Column(name = "par_bloqueo_sistema")
     private Boolean parBloqueoSistema;
-    
-    
-      @Column(name = "par_con_datos")
+
+    @Column(name = "par_con_datos")
     private Boolean parConDatos;
-    
+
+    @Column(name = "par_envio_activado")
+    private Boolean parEnvioActivado;
+
     public Parametrizar() {
     }
 
@@ -431,20 +433,20 @@ public class Parametrizar implements Serializable {
     }
 
     public Boolean getParBloqueoSistema() {
-        return parBloqueoSistema==null?Boolean.FALSE:parBloqueoSistema;
+        return parBloqueoSistema == null ? Boolean.FALSE : parBloqueoSistema;
     }
 
     public void setParBloqueoSistema(Boolean parBloqueoSistema) {
         this.parBloqueoSistema = parBloqueoSistema;
     }
-     public Boolean getParConDatos() {
-        return parConDatos==null ?Boolean.FALSE:parConDatos;
+
+    public Boolean getParConDatos() {
+        return parConDatos == null ? Boolean.FALSE : parConDatos;
     }
 
     public void setParConDatos(Boolean parConDatos) {
         this.parConDatos = parConDatos;
     }
-    
 
     @Override
     public boolean equals(Object object) {
@@ -462,6 +464,14 @@ public class Parametrizar implements Serializable {
     @Override
     public String toString() {
         return "com.ec.entidad.Parametrizar[ codParametrizar=" + codParametrizar + " ]";
+    }
+
+    public Boolean getParEnvioActivado() {
+        return parEnvioActivado == null ? Boolean.FALSE : parEnvioActivado;
+    }
+
+    public void setParEnvioActivado(Boolean parEnvioActivado) {
+        this.parEnvioActivado = parEnvioActivado;
     }
 
 }

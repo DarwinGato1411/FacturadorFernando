@@ -409,9 +409,12 @@ public class ListaFacturas {
     @NotifyChange({"lstFacturas"})
     public void autorizarSRI(@BindingParam("valor") Factura valor)
             throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
-        autorizarFacturasSRI(valor);
-
+        try {
+            autorizarFacturasSRI(valor);
+        } catch (Exception e) {
+            Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, e);
+            mostrarSriCaido(valor, e);
+        }
     }
 
     @Command
@@ -485,6 +488,24 @@ public class ListaFacturas {
             Messagebox.show("Error " + e.toString(), "Atención", Messagebox.OK, Messagebox.INFORMATION);
         }
 
+    }
+
+    private void mostrarSriCaido(Factura valor, Exception e) {
+        mostrarMensajeSri(valor, AutorizarDocumentos.clasificarErrorSri(e));
+    }
+
+    private void mostrarMensajeSri(Factura valor, String mensaje) {
+        String texto = (mensaje == null || mensaje.trim().isEmpty())
+                ? AutorizarDocumentos.mensajeSriCaido() : mensaje;
+        Clients.showNotification(texto, Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
+        if (valor != null) {
+            try {
+                valor.setMensajesri(texto);
+                servicioFactura.modificar(valor);
+            } catch (Exception ex) {
+                Logger.getLogger(ListaFacturas.class.getName()).log(Level.WARNING, "No se pudo guardar mensaje SRI", ex);
+            }
+        }
     }
 
     private void autorizarFacturasSRI(Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -570,9 +591,8 @@ public class ListaFacturas {
         AutorizarDocumentos autorizarDocumentos = new AutorizarDocumentos();
         RespuestaSolicitud resSolicitud = autorizarDocumentos.validar(datos, amb);
 
-        if (resSolicitud.getEstado().contains("ERROR SRI")) {
-            Clients.showNotification("Ocurrio un error en el SRI o esta temporalmente suspendido refresque la pantalla y reenvie ",
-                    Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 5000, true);
+        if (AutorizarDocumentos.respuestaSriCaida(resSolicitud)) {
+            mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resSolicitud));
             return;
         }
         if (resSolicitud != null && resSolicitud.getComprobantes() != null) {
@@ -587,6 +607,14 @@ public class ListaFacturas {
                 try {
 
                     RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+                    if (AutorizarDocumentos.respuestaSriCaida(resComprobante)) {
+                        mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resComprobante));
+                        return;
+                    }
+                    if (!AutorizarDocumentos.tieneAutorizaciones(resComprobante)) {
+                        mostrarMensajeSri(valor, AutorizarDocumentos.mensajeSriSinAutorizacion());
+                        return;
+                    }
                     for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                         FileOutputStream nuevo = null;
 
@@ -599,8 +627,11 @@ public class ListaFacturas {
 
                         if (!autorizacion.getEstado().equals("AUTORIZADO")) {
                             if (autorizacion.getEstado().equals("EN PROCESO")) {
-                                Clients.showNotification("Autoriza con reenvio ", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 3000, true);
-                                reenviarFactura(valor);
+                                valor.setEstadosri(autorizacion.getEstado());
+                                valor.setMensajesri("EN PROCESO. Use reenviar cuando desee consultar al SRI.");
+                                servicioFactura.modificar(valor);
+                                Clients.showNotification("El SRI tiene el comprobante en proceso. Use reenviar para consultarlo.",
+                                        Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
                             } else {
                                 String texto = "Sin Identificar el error";
                                 String smsInfo = "Sin identificar el error";
@@ -617,6 +648,9 @@ public class ListaFacturas {
                                 valor.setFacMsmInfoSri(smsInfo);
                                 nuevo.flush();
                                 servicioFactura.modificar(valor);
+                                Clients.showNotification("El SRI no autorizó el comprobante (" + autorizacion.getEstado() + "): " + texto
+                                        + (smsInfo != null ? " - " + smsInfo : ""),
+                                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
                             }
                         } else {
 
@@ -668,19 +702,29 @@ public class ListaFacturas {
                     }
                 } catch (RespuestaAutorizacionException ex) {
                     Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+                    mostrarSriCaido(valor, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+                    mostrarSriCaido(valor, ex);
                 }
             } else {
                 String smsInfo = resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getInformacionAdicional();
                 ArchivoUtils.FileCopy(pathArchivoFirmado, pathArchivoNoAutorizado);
+                String mensajeSri = resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getMensaje();
                 valor.setEstadosri(resSolicitud.getEstado());
-                valor.setMensajesri(resSolicitud.getComprobantes().getComprobante().get(0).getMensajes().getMensaje().get(0).getMensaje());
+                valor.setMensajesri(mensajeSri);
                 valor.setFacMsmInfoSri(smsInfo);
                 servicioFactura.modificar(valor);
+                Clients.showNotification("El SRI no autorizó el comprobante: " + mensajeSri
+                        + (smsInfo != null ? " - " + smsInfo : ""),
+                        Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
             }
         } else {
 
-            valor.setMensajesri(resSolicitud.getEstado());
+            String estado = resSolicitud.getEstado() != null ? resSolicitud.getEstado() : "Sin estado de validación del SRI";
+            valor.setMensajesri(estado);
             servicioFactura.modificar(valor);
+            Clients.showNotification(estado, Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 7000, true);
         }
     }
 
@@ -777,6 +821,14 @@ public class ListaFacturas {
         try {
 
             RespuestaComprobante resComprobante = autorizarDocumentos.autorizarComprobante(claveAccesoComprobante, amb);
+            if (AutorizarDocumentos.respuestaSriCaida(resComprobante)) {
+                mostrarMensajeSri(valor, AutorizarDocumentos.mensajeUsuario(resComprobante));
+                return;
+            }
+            if (!AutorizarDocumentos.tieneAutorizaciones(resComprobante)) {
+                mostrarMensajeSri(valor, AutorizarDocumentos.mensajeSriSinAutorizacion());
+                return;
+            }
             for (Autorizacion autorizacion : resComprobante.getAutorizaciones().getAutorizacion()) {
                 FileOutputStream nuevo = null;
 
@@ -846,6 +898,10 @@ public class ListaFacturas {
             }
         } catch (RespuestaAutorizacionException ex) {
             Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarSriCaido(valor, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarSriCaido(valor, ex);
         }
 
     }
@@ -853,7 +909,12 @@ public class ListaFacturas {
     @Command
     @NotifyChange({"lstFacturas"})
     public void reenviarSRI(@BindingParam("valor") Factura valor) throws JRException, IOException, NamingException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        reenviarFactura(valor);
+        try {
+            reenviarFactura(valor);
+        } catch (Exception e) {
+            Logger.getLogger(ListaFacturas.class.getName()).log(Level.SEVERE, null, e);
+            mostrarSriCaido(valor, e);
+        }
     }
 
     public Date getFechainicio() {

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
-<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css?v4"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
 <?script src="/js/icon.js"?>
 
 <?init class="com.ec.seguridad.Autentificador"?>
@@ -9,12 +10,15 @@
 <?link rel="icon" type="image/x-icon" href="/iconos/deckxel.ico"?>
 
 
-<zk  contentStyle="overflow:auto" with="100%" class="container" >
+<zk  contentStyle="overflow:auto" width="100%" class="col-12 col-sm-12 col-md-12 col-lg-12" >
     
               
-    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer"     
+    <div self="@define(content)" apply="org.zkoss.bind.BindComposer"     
           ctrlKeys="^P" onCtrlKey="@command('Guardar',valor='SG')" 
-          viewModel="@id('vm') @init('com.ec.controlador.AjusteEntradaSalida')" width="100%">
+          viewModel="@id('vm') @init('com.ec.controlador.AjusteEntradaSalida')"
+          width="100%"
+          style="width:100%;display:block;"
+          sclass="ajuste-page">
         
         
         <timer id="timer" delay="300000" repeats="true" onTimer="@command('refrescarPagina')" />
@@ -24,7 +28,7 @@
             </tabs>
             <tabpanels >
                 
-                <tabpanel  height="100%" width="98%" class="factura" >
+                <tabpanel  height="100%" width="100%" class="factura ajuste-full" >
                     
                     <div class="container-fluid " >
                         
@@ -74,6 +78,7 @@
                                 <div class="factura_body factura_body_content">
                                     <div class="factura_body_item" >
                                         <listbox model="@load(vm.listaKardexProducto)" 
+                                                width="100%"
                                                 nonselectableTags=""    mold="paging" pageSize="12"  >
                                             <custom-attributes org.zkoss.zul.listbox.rod="true"/>
         
@@ -162,6 +167,7 @@
                                         <listbox 
                                             model="@load(vm.listaDetalleFacturaDAOMOdel)"
                                             mold="paging"
+                                            width="100%"
                                             height="400px" autopaging="true" 
                                             nonselectableTags="*" checkmark="true"  
                                             multiple="true" 
@@ -259,7 +265,7 @@
 
         </tabbox>   
          
-    </hbox>
+    </div>
 
     
 </zk>

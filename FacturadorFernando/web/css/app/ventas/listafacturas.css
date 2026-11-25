@@ -1,0 +1,233 @@
+/* Paleta del login, solo lista de facturas emitidas (no menús) */
+.lista-facturas {
+    --lf-dark: #121212;
+    --lf-orange: #f37021;
+    --lf-teal: #00bfa5;
+    --lf-whatsapp: #25d366;
+    --lf-muted: #6b6b6b;
+    --lf-border: #e4e4e4;
+}
+
+.lista-facturas .factura_header > .fact_row,
+.lista-facturas .factura_header > .fact_row_all {
+    background-color: #f6f6f6;
+    border: 1px solid var(--lf-border);
+    box-shadow: inset 4px 0 0 var(--lf-teal);
+}
+
+.lista-facturas .factura_header.lf-toolbar {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 0.5em;
+}
+
+.lista-facturas .factura_header > .fact_row.lf-all-row {
+    width: 100% !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.5em 0.7em 0.5em 1em;
+    overflow-x: auto;
+}
+
+.lista-facturas .factura_header > .fact_row.lf-all-row:after {
+    display: none !important;
+}
+
+.lista-facturas .lf-filter {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.3em !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    white-space: nowrap;
+    position: relative;
+}
+
+.lista-facturas .lf-filter > span,
+.lista-facturas .lf-filter .wrapper_input > span {
+    width: auto !important;
+    font-size: 11px;
+}
+
+.lista-facturas .lf-filter .input_date,
+.lista-facturas .lf-filter .textoFechaDateBox {
+    width: 110px !important;
+}
+
+.lista-facturas .lf-filter .input_date > input,
+.lista-facturas .lf-filter .textoFechaDateBox input {
+    width: 100% !important;
+    padding: 3px 22px 3px 8px !important;
+    font-size: 11px !important;
+}
+
+.lista-facturas .lf-filter > .icon {
+    position: absolute;
+    right: 6px;
+    font-size: 12px;
+    color: var(--lf-orange);
+    cursor: pointer;
+}
+
+.lista-facturas .wrapper_input > span {
+    color: var(--lf-dark);
+}
+
+.lista-facturas .fact_row > .wrapper_data > .wrapper_input > input,
+.lista-facturas .fact_row > .wrapper_data > .wrapper_input > .input_date > input,
+.lista-facturas .fact_row > .wrapper_data > .wrapper_input > .input_select > input,
+.lista-facturas .textoFechaDateBox input {
+    border: 1px solid #d0d0d0 !important;
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .fact_row > .wrapper_data > .wrapper_input > input:focus,
+.lista-facturas .textoFechaDateBox input:focus {
+    border-color: var(--lf-teal) !important;
+    box-shadow: 0 0 0 2px rgba(0, 191, 165, 0.18);
+}
+
+.lista-facturas .fact_row > .wrapper_data > .wrapper_input > .icon {
+    color: var(--lf-orange);
+}
+
+.lista-facturas .btn_fact,
+.lista-facturas .btn_fact.z-button {
+    border-radius: 5px !important;
+    font-weight: 600 !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 0.65em !important;
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    white-space: nowrap;
+    flex: 0 0 auto;
+}
+
+.lista-facturas .btn_fact::before {
+    font-size: 11px !important;
+    margin-right: 0.35em;
+}
+
+.lista-facturas .btn_fact > img {
+    width: 14px !important;
+    height: 14px !important;
+    margin-right: 0.35em;
+}
+
+.lista-facturas .btn_fact.btn_primary {
+    background-color: var(--lf-dark) !important;
+    color: #ffffff !important;
+}
+
+.lista-facturas .btn_fact.btn_primary:hover {
+    background-color: var(--lf-orange) !important;
+}
+
+.lista-facturas .btn_fact.btn_access {
+    background-color: var(--lf-orange) !important;
+    color: #ffffff !important;
+}
+
+.lista-facturas .btn_fact.btn_access:hover {
+    background-color: #ff8a3d !important;
+}
+
+.lista-facturas .btn_fact.btn_alert {
+    background-color: var(--lf-orange) !important;
+    color: #ffffff !important;
+}
+
+.lista-facturas .btn_fact.btn_base {
+    background-color: #ffffff !important;
+    color: var(--lf-dark) !important;
+    border: 1px solid var(--lf-teal) !important;
+}
+
+.lista-facturas .btn_fact.btn_base:hover {
+    background-color: var(--lf-teal) !important;
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .factura_body {
+    background-color: #f6f6f6;
+    border: 1px solid var(--lf-border);
+}
+
+.lista-facturas div.z-listbox-header th.z-listheader,
+.lista-facturas div.z-listbox-header th.z-auxheader {
+    background: var(--lf-dark) !important;
+    color: #ffffff !important;
+    border-color: #2a2a2a !important;
+}
+
+.lista-facturas div.z-listheader-cnt,
+.lista-facturas div.z-listheader-cnt .z-label {
+    color: #ffffff !important;
+}
+
+.lista-facturas .z-listheader .z-textbox,
+.lista-facturas .z-listheader input,
+.lista-facturas .z-listheader .form-control {
+    color: var(--lf-dark) !important;
+    background: #ffffff !important;
+    border: 1px solid #d8d8d8 !important;
+}
+
+.lista-facturas div.z-listcell-cnt,
+.lista-facturas div.z-listcell-cnt .z-label {
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .z-listitem {
+    background: #ffffff;
+}
+
+.lista-facturas .z-listitem:hover {
+    background: #e9fbf8 !important;
+}
+
+.lista-facturas .z-listitem.z-listitem-odd,
+.lista-facturas tr.z-listitem-odd {
+    background: #f4f4f4;
+}
+
+.lista-facturas .z-paging,
+.lista-facturas .z-paging-os {
+    background: transparent !important;
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .z-paging a,
+.lista-facturas .z-paging-os a {
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .z-paging-os .z-paging-os-seld,
+.lista-facturas .z-paging .z-paging-os-seld {
+    background: var(--lf-teal) !important;
+    color: var(--lf-dark) !important;
+    border-color: var(--lf-teal) !important;
+    font-weight: 700;
+}
+
+.lista-facturas .z-tabs-header,
+.lista-facturas .z-tabs-cnt {
+    background: transparent !important;
+}
+
+.lista-facturas .z-tab,
+.lista-facturas .z-tab-seld {
+    color: var(--lf-dark) !important;
+}
+
+.lista-facturas .z-tab-seld {
+    border-bottom: 3px solid var(--lf-teal) !important;
+}
+
+.lista-facturas .z-tab-text {
+    color: inherit !important;
+}

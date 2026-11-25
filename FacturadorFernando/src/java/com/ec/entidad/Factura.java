@@ -181,9 +181,9 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date facFechaCobro;
 
-//    @Column(name = "fac_placa")
-//    private String facPlaca;
-//
+    @Column(name = "fac_placa")
+    private String facPlaca;
+
 //    @Column(name = "fac_marca")
 //    private String facMarca;
 //
@@ -690,13 +690,13 @@ public class Factura implements Serializable {
         this.facFechaCobro = facFechaCobro;
     }
 //
-//    public String getFacPlaca() {
-//        return facPlaca;
-//    }
-//
-//    public void setFacPlaca(String facPlaca) {
-//        this.facPlaca = facPlaca;
-//    }
+    public String getFacPlaca() {
+        return facPlaca;
+    }
+
+    public void setFacPlaca(String facPlaca) {
+        this.facPlaca = facPlaca;
+    }
 //
 //    public String getFacMarca() {
 //        return facMarca;

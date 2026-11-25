@@ -2,6 +2,8 @@
 <?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
 <?link rel="stylesheet" type="text/css" href="/css/style.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/facturar.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/ventas/listafacturas.css"?>
 <?link rel="stylesheet" type="text/css" href="/css/app/ventas/modales.css"?>
 <?script src="/js/icon.js"?>
 <?script src="/js/icon.js"?>
@@ -13,130 +15,123 @@
  
     <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
           viewModel="@id('vm') @init('com.ec.controlador.ListaFacturas')" >
-        <tabbox id="tboxPrincipal"  width="100%" >
+        <tabbox id="tboxPrincipal"  width="100%" sclass="lista-facturas" >
             <tabs >
                 <tab label="Lista de facturas emitidas" sclass="menutabs" /> 
             </tabs>
             <tabpanels >
                 
-                <tabpanel  width="99%" class="factura" >                    
+                <tabpanel  width="99%" class="factura lista-facturas" >                    
                  
 
-                    <div class="factura_header">
-                        <div class="fact_row">
-                            <div class="wrapper_data">
-                                <div class="wrapper_input">
-                                    <span>Estado:</span>
-                                    <combobox  
-                                        width="100%"         
-                                        class="  textoFechaDateBox"      
-                                        selectedItem="@bind(vm.estadoBusqueda)"     
-                                        readonly="true"  
-                                    >
-                                        <comboitem label="TODO" value="TODO" />
-                                        <comboitem label="PENDIENTE" value="PE" />
-                                        <comboitem label="PAGADO" value="PA" />
-                                    </combobox>
-                                    <!--<div class="fa-solid fa-chevron-down icon"></div>-->
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Inicio:</span>
-                                    <datebox 
-                                        value="@bind(vm.fechainicio)" 
-                                        compact="true" 
-                                        readonly="true" 
-                                        buttonVisible="true" 
-                                        class="input_date"
-                                        lenient="true" 
-                                        format="dd/MM/yyyy" 
-                                        constraint="no empty: Ingrese la fecha"
-                                    /> 
-                                    <div class="fa-solid fa-calendar icon" />                                 
-                                </div>
-                                <div class="wrapper_input">
-                                    <span>Fin:</span>
-                                    <datebox 
-                                        value="@bind(vm.fechafin)" 
-                                        compact="true" 
-                                        readonly="true" 
-                                        buttonVisible="true" 
-                                        class="input_date"
-                                        lenient="true" 
-                                        format="dd/MM/yyyy" 
-                                        constraint="no empty: Ingrese la fecha"
-                                    />
-                                    <div class="fa-solid fa-calendar icon" />
-                                </div>
-                            </div>
-                            <div class="wrapper_data">
-                                <button 
-                                    class="fa-solid fa-magnifying-glass btn_fact btn_primary"
-                                    onClick="@command('buscarEstado')"  
-                                    tooltiptext="Buscar facturas por estado"
+                    <div class="factura_header lf-toolbar">
+                        <div class="fact_row lf-all-row">
+                            <div class="wrapper_input lf-filter">
+                                <span>Estado:</span>
+                                <combobox  
+                                    width="110px"         
+                                    class="textoFechaDateBox"      
+                                    selectedItem="@bind(vm.estadoBusqueda)"     
+                                    readonly="true"  
                                 >
-                                    Buscar por estado
-                                </button>
-                                <button 
-                                    class="fa-solid fa-magnifying-glass btn_fact btn_primary"
-                                    onClick="@command('buscarFechas')"  
-                                    tooltiptext="Buscar facturas por fecha"
-                                >
-                                    Buscar por fecha
-                                </button>
+                                    <comboitem label="TODO" value="TODO" />
+                                    <comboitem label="PENDIENTE" value="PE" />
+                                    <comboitem label="PAGADO" value="PA" />
+                                </combobox>
                             </div>
+                            <div class="wrapper_input lf-filter">
+                                <span>Inicio:</span>
+                                <datebox 
+                                    value="@bind(vm.fechainicio)" 
+                                    compact="true" 
+                                    readonly="true" 
+                                    buttonVisible="true" 
+                                    class="input_date"
+                                    width="110px"
+                                    lenient="true" 
+                                    format="dd/MM/yyyy" 
+                                    constraint="no empty: Ingrese la fecha"
+                                /> 
+                                <div class="fa-solid fa-calendar icon" />                                 
+                            </div>
+                            <div class="wrapper_input lf-filter">
+                                <span>Fin:</span>
+                                <datebox 
+                                    value="@bind(vm.fechafin)" 
+                                    compact="true" 
+                                    readonly="true" 
+                                    buttonVisible="true" 
+                                    class="input_date"
+                                    width="110px"
+                                    lenient="true" 
+                                    format="dd/MM/yyyy" 
+                                    constraint="no empty: Ingrese la fecha"
+                                />
+                                <div class="fa-solid fa-calendar icon" />
+                            </div>
+                            <button 
+                                class="fa-solid fa-magnifying-glass btn_fact btn_primary"
+                                onClick="@command('buscarEstado')"  
+                                tooltiptext="Buscar facturas por estado"
+                            >
+                                Buscar por estado
+                            </button>
+                            <button 
+                                class="fa-solid fa-magnifying-glass btn_fact btn_primary"
+                                onClick="@command('buscarFechas')"  
+                                tooltiptext="Buscar facturas por fecha"
+                            >
+                                Buscar por fecha
+                            </button>
                         </div>
-                        <div class="fact_row">
-                            <div class="wrapper_data">
-                                <button 
-                                    class="fa-solid fa-magnifying-glass btn_fact btn_base"
-                                    label="PEN-SRI"
-                                    onClick="@command('buscarPendientesEnvSRI')" 
-                                    tooltiptext="Buscar facturas pendientes para enviar al SRI"
-                                >
-                                    Pendientes por autorizar
-                                </button>
-                                <button 
-                                    image="/iconos/sri24x24.png"
-                                    class="btn_fact btn_base"
-                                    label="AUT-LOTE"
-                                    onClick="@command('autorizarEnLote')" 
-                                    tooltiptext="Autorizar facturas en lote"
-                                >
-                                    Autorizar Facturas en Lote
-                                </button>
-                                <button 
-                                    image="/iconos/sri24x24.png"
-                                    class="btn_fact btn_base"
-                                    label="Reenviar Facturas"
-                                    onClick="@command('buscarDevueltaSRIReenvio')" 
-                                    tooltiptext="Buscar facturas pendientes para enviar al SRI"
-                                >
-                                    Reenviar Facturas
-                                </button>
-                            </div>
-                            <div class="wrapper_data">
-                                <button 
-                                    image="/iconos/sri24x24.png"
-                                    class="btn_fact btn_base"
-                                    label="REEN-LOTE"
-                                    onClick="@command('reenviarEnLote')" 
-                                    tooltiptext="Autorizar facturas en lote"
-                                >
-                                    Reenviar Lote de Factura
-                                </button>
-                                <button 
-                                    class="fa-solid fa-magnifying-glass btn_fact btn_alert"
-                                    onClick="@command('buscarDevueltaSRIPorCorregir')" 
-                                    tooltiptext="Buscar facturas pendientes para enviar al SRI"
-                                    label="Facturas Devueltas por Corregir"
-                                />
-                                <button 
-                                    class="fa-solid fa-file-excel btn_fact btn_access"
-                                    onClick="@command('exportListboxToExcel')"  
-                                    tooltiptext="Descargar"
-                                    label="Descargar Registros de Factura"
-                                />
-                            </div>
+                        <div class="fact_row lf-all-row">
+                            <button 
+                                class="fa-solid fa-magnifying-glass btn_fact btn_base"
+                                label="PEN-SRI"
+                                onClick="@command('buscarPendientesEnvSRI')" 
+                                tooltiptext="Buscar facturas pendientes para enviar al SRI"
+                            >
+                                Pendientes por autorizar
+                            </button>
+                            <button 
+                                image="/iconos/sri24x24.png"
+                                class="btn_fact btn_base"
+                                label="AUT-LOTE"
+                                onClick="@command('autorizarEnLote')" 
+                                tooltiptext="Autorizar facturas en lote"
+                            >
+                                Autorizar Facturas en Lote
+                            </button>
+                            <button 
+                                image="/iconos/sri24x24.png"
+                                class="btn_fact btn_base"
+                                label="Reenviar Facturas"
+                                onClick="@command('buscarDevueltaSRIReenvio')" 
+                                tooltiptext="Buscar facturas pendientes para enviar al SRI"
+                            >
+                                Reenviar Facturas
+                            </button>
+                            <button 
+                                image="/iconos/sri24x24.png"
+                                class="btn_fact btn_base"
+                                label="REEN-LOTE"
+                                onClick="@command('reenviarEnLote')" 
+                                tooltiptext="Autorizar facturas en lote"
+                            >
+                                Reenviar Lote de Factura
+                            </button>
+                            <button 
+                                class="fa-solid fa-magnifying-glass btn_fact btn_alert"
+                                onClick="@command('buscarDevueltaSRIPorCorregir')" 
+                                tooltiptext="Buscar facturas pendientes para enviar al SRI"
+                                label="Facturas Devueltas por Corregir"
+                            />
+                            <button 
+                                class="fa-solid fa-file-excel btn_fact btn_access"
+                                onClick="@command('exportListboxToExcel')"  
+                                tooltiptext="Descargar"
+                                label="Descargar Registros de Factura"
+                            />
                         </div>
                     </div>
 
@@ -208,17 +203,17 @@
                                                 tooltiptext="Imprimir comprobante"/>
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB"  
+                                        <textbox readonly="true"  style="font-size:12px;background:#F3FBFA"  
                                                  class="form-control form-control-sm"                            
                                                  value="@bind(each.facNumeroText)" width="100%" />
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true" style="font-size:12px;background:#EBF5FB"  
+                                        <textbox readonly="true" style="font-size:12px;background:#F3FBFA"  
                                                  class="form-control form-control-sm"                            
                                                  value="@bind(each.idCliente.cliCedula)" width="100%" />
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">
-                                        <textbox readonly="true"  style="font-size:12px;background:#EBF5FB" 
+                                        <textbox readonly="true"  style="font-size:12px;background:#F3FBFA" 
                                                  class="form-control form-control-sm"                             
                                                  value="@bind(each.idCliente.cliNombre)" width="100%" />
                                     </listcell>
@@ -232,19 +227,19 @@
                                     </listcell>
                                     <listcell zclass = "mycss-listcell">
                                         <decimalbox format="###.##" readonly="true" 
-                                                    style="font-size:12px;background:#EBF5FB"
+                                                    style="font-size:12px;background:#F3FBFA"
                                                     class="form-control form-control-sm"  
                                                     value="@bind(each.facTotal)" width="100%"/>
                                     </listcell>
                                     <zk if="${each.facEstado=='PE'}" > 
-                                        <listcell zclass = "mycss-listcell" style="background:#FFB1A0;color: red" >
+                                        <listcell zclass = "mycss-listcell" style="background:#FFD8C4;color:#F37021" >
                                             <textbox readonly="true"  style="font-size:12px;background:transparent" 
                                                      class="form-control form-control-sm"     
                                                      value="@bind(each.facEstado)" width="100%"/>
                                         </listcell>
                                     </zk>
                                     <zk if="${each.facEstado=='PA'}"  > 
-                                        <listcell  zclass = "mycss-listcell" style="background:#C7FEC1;color: blue"  >
+                                        <listcell  zclass = "mycss-listcell" style="background:#D8F8E8;color:#121212"  >
                                             <textbox  readonly="true"  style="font-size:12px;background:transparent" 
                                                       class="form-control form-control-sm"     
                                                       value="@bind(each.facEstado)" width="100%"/>
@@ -252,7 +247,7 @@
                                     </zk>
                                     <zk  choose="@bind(each.estadosri)" >
                                         <zk  when="${each.estadosri == 'AUTORIZADO'}"  >
-                                            <listcell    zclass = "mycss-listcell"  style="background:#C7FEC1"  >
+                                            <listcell    zclass = "mycss-listcell"  style="background:#CFF7F1"  >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent;"    
                                                          class="form-control form-control-sm"  
                                                          value="@bind(each.estadosri)" tooltiptext="@bind(each.facMsmInfoSri)" width="100%"/>
@@ -267,7 +262,7 @@
                                             </listcell>
                                         </zk>
                                         <zk  >
-                                            <listcell    zclass = "mycss-listcell"  style="background:#FCFE74" >
+                                            <listcell    zclass = "mycss-listcell"  style="background:#FFE4CC" >
                                                 <textbox readonly="true"  style="font-size:12px;background:transparent"   
                                                          class="form-control form-control-sm"  
                                                          value="@bind(each.estadosri)" tooltiptext="@bind(each.facMsmInfoSri)" 
@@ -283,13 +278,13 @@
                                                 
                                                  readonly="true"
                                                  height=" 30px" 
-                                                 style="font-size:12px;background:#EBF5FB"
+                                                 style="font-size:12px;background:#F3FBFA"
                                                  format="medium" width="100%"  />
                                     </listcell>
                 
                                     <listcell   zclass = "mycss-listcell" >
                                         <textbox  readonly="true" 
-                                                  style="font-size:12px;background:#EBF5FB"
+                                                  style="font-size:12px;background:#F3FBFA"
                                                   class="form-control form-control-sm"  
                                                   value="@bind(each.cod_tipoambiente.amNombreComercial)" width="100%"/>
                                     </listcell>

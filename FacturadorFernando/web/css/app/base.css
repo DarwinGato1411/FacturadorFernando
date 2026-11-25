@@ -39,6 +39,18 @@ select {
   overflow: hidden;
 }
 
+.z-center,
+.z-center-body,
+.z-center-body > div,
+.z-center-body > table,
+.z-center-body .z-hbox,
+.z-center-body .z-tabbox,
+.z-center-body .z-tabpanels,
+.z-center-body .z-tabpanel {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
 /* 
  * Seccione de registro
 */

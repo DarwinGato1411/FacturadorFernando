@@ -1,0 +1,300 @@
+/* Menú formal transaccional: azul institucional. */
+.z-north,
+.z-north-noborder,
+.z-north-body,
+.z-north-header,
+.z-north-body .z-div {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    border: 0 none !important;
+    box-shadow: none !important;
+}
+
+.z-north-body .banner-nav-row,
+.z-north-body .banner-nav-row.z-div,
+.z-north-body #gridMenu,
+.z-north-body .banner-nav-row .z-div {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+}
+
+.banner,
+div.banner,
+.banner.z-div {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    color: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 none !important;
+    box-shadow: none !important;
+}
+
+.banner .row,
+.banner .banner-top,
+.banner > .row.banner-top,
+.banner [class*="col-"] {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    border: 0 none !important;
+    border-top: 0 none !important;
+    border-bottom: 0 none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    margin: 0 !important;
+}
+
+.banner .banner-top,
+.banner > .row.banner-top {
+    min-height: 52px;
+    padding: 6px 16px !important;
+}
+
+.banner .banner-nav-row,
+.banner > .row.banner-nav-row {
+    min-height: 44px;
+    padding: 0 8px !important;
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    border: 0 none !important;
+}
+
+.banner .banner-nav-row .row,
+.banner .banner-nav-row .col-12,
+.banner .banner-nav-row .col-6,
+.banner .banner-nav-row .col-md-11,
+.banner .banner-nav-row .col-lg-11,
+.banner .banner-nav-row .col-md-1,
+.banner .banner-nav-row .col-lg-1,
+.banner #gridMenu {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+}
+
+.banner .logo_defact {
+    height: 56px !important;
+    width: auto !important;
+    max-width: 340px !important;
+    object-fit: contain !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+.banner .z-toolbar,
+.banner .z-toolbar table,
+.banner .z-toolbar tbody,
+.banner .z-toolbar tr,
+.banner .z-toolbar td,
+.banner .z-toolbar div,
+.banner .z-toolbar span {
+    background: transparent !important;
+    border: 0 none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.banner .z-toolbar {
+    min-height: 40px !important;
+}
+
+.banner .z-toolbar .z-toolbarbutton,
+.banner .z-toolbar .z-toolbarbutton-content,
+.banner .z-toolbar .z-toolbarbutton-cnt {
+    color: #ffffff !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    border-radius: 4px !important;
+    padding: 4px 10px !important;
+    margin: 0 4px !important;
+    box-shadow: none !important;
+}
+
+.banner .z-toolbarbutton:hover,
+.banner .z-toolbarbutton-over,
+.banner .z-toolbarbutton-over .z-toolbarbutton-content {
+    background: #f37021 !important;
+    border-color: #f37021 !important;
+    color: #ffffff !important;
+}
+
+.banner .labelNuevo,
+.banner .labelNuevo .z-label,
+.banner .z-label.labelNuevo,
+.banner .z-toolbar .z-label,
+.banner .banner-top .z-label,
+.banner .banner-top span {
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+.banner a.logout,
+.banner .labelLogout,
+.banner .logout,
+.banner a.logout span {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+.banner a.logout:hover,
+.banner a.logout:hover span {
+    color: #f37021 !important;
+}
+
+.banner .icon_exit,
+.banner .icon_exit::before {
+    color: #ffffff !important;
+}
+
+.banner .z-menubar,
+.banner .z-menubar-horizontal,
+.banner .z-menubar-hor,
+.banner .wrapper_menu,
+.banner .wrapper_menu table,
+.banner .wrapper_menu tr,
+.banner .wrapper_menu td,
+.banner .z-menubar table,
+.banner .z-menubar tr,
+.banner .z-menubar td {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    background-image: none !important;
+    margin: 0 !important;
+}
+
+.banner .z-menubar-hor,
+.banner .z-menubar-ver,
+.banner .z-menubar,
+.banner .wrapper_menu {
+    border: 0 none !important;
+    border-top: 0 none !important;
+    border-bottom: 0 none !important;
+    border-left: 0 none !important;
+    border-right: 0 none !important;
+}
+
+.banner .z-menu,
+.banner .z-menuitem,
+.banner .z-menubar > .z-menu,
+.banner .z-menubar > .z-menuitem,
+.banner .menu_child {
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    display: inline-block !important;
+    padding: 0 12px !important;
+    border: 0 none !important;
+}
+
+.banner .z-menu-text,
+.banner .z-menuitem-text,
+.banner .z-menu-content,
+.banner .z-menuitem-content,
+.banner .z-menu-btn,
+.banner .z-menuitem-btn,
+.banner .z-menu-cnt,
+.banner .z-menuitem-cnt,
+.banner .menu_child .z-menu-text,
+.banner .menu_child .z-menuitem-text,
+.banner .z-menu-inner-m .z-menu-btn,
+.banner .z-menuitem-inner-m .z-menuitem-btn {
+    color: #ffffff !important;
+    background: #0d3b66 !important;
+    background-color: #0d3b66 !important;
+    background-image: none !important;
+    border: 0 none !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+.banner .z-menubar > .z-menu:hover,
+.banner .z-menubar > .z-menu.z-menu-over,
+.banner .z-menubar > .z-menu.z-menu-hover,
+.banner .z-menubar > .z-menu.z-menu-selected,
+.banner .z-menubar > .z-menu.z-menu-seld,
+.banner .z-menubar > .z-menuitem:hover,
+.banner .z-menubar > .z-menuitem.z-menuitem-over,
+.banner .z-menubar > .z-menuitem.z-menuitem-seld,
+.banner .menu_child:hover {
+    background: #f37021 !important;
+    background-color: #f37021 !important;
+}
+
+.banner .z-menubar > .z-menu:hover > a,
+.banner .z-menubar > .z-menu.z-menu-over > a,
+.banner .z-menubar > .z-menu:hover .z-menu-text,
+.banner .z-menubar > .z-menu.z-menu-over .z-menu-text,
+.banner .z-menubar > .z-menu:hover table,
+.banner .z-menubar > .z-menu:hover td,
+.banner .z-menubar > .z-menu:hover .z-menu-btn,
+.banner .z-menubar > .z-menu:hover .z-menu-content,
+.banner .z-menubar > .z-menu:hover .z-menu-inner,
+.banner .z-menubar > .z-menu:hover .z-menu-inner-l,
+.banner .z-menubar > .z-menu:hover .z-menu-inner-m,
+.banner .z-menubar > .z-menu:hover .z-menu-inner-r,
+.banner .z-menubar > .z-menuitem:hover .z-menuitem-text,
+.banner .z-menubar > .z-menuitem:hover .z-menuitem-content,
+.banner .z-menubar > .z-menu:hover > *:not(.z-menupopup),
+.banner .z-menubar > .z-menu.z-menu-over > *:not(.z-menupopup),
+.banner .menu_child:hover > *:not(.z-menupopup) {
+    background: #f37021 !important;
+    background-color: #f37021 !important;
+    background-image: none !important;
+    color: #ffffff !important;
+}
+
+.banner .z-menupopup,
+.banner .submenu,
+.banner .z-menupopup-content,
+.banner .z-menupopup-cnt {
+    background: #0a2f52 !important;
+    background-color: #0a2f52 !important;
+    border: 1px solid #d8d8d8 !important;
+    border-radius: 0 0 6px 6px !important;
+}
+
+.banner .submenu *,
+.banner .z-menupopup .z-menuitem,
+.banner .z-menupopup .z-menuitem-content,
+.banner .z-menupopup .z-menu-content,
+.banner .z-menupopup .z-menuitem-text,
+.banner .menu_item {
+    background: #0a2f52 !important;
+    background-color: #0a2f52 !important;
+    color: #ffffff !important;
+}
+
+.banner .z-menupopup .z-menuitem:hover,
+.banner .z-menupopup .z-menuitem-over,
+.banner .submenu .z-menuitem:hover,
+.banner .z-menupopup .z-menuitem:hover .z-menuitem-content,
+.banner .z-menupopup .z-menuitem:hover .z-menuitem-text,
+.banner .menu_item:hover {
+    background: #f37021 !important;
+    background-color: #f37021 !important;
+    color: #ffffff !important;
+}
+
+.banner .menu_item::before,
+.banner .submenu .menu_item::before,
+.banner .z-menupopup .menu_item::before,
+.z-menupopup .menu_item::before,
+.submenu .menu_item::before,
+.z-menupopup .fa-solid::before,
+.z-menupopup .fas::before,
+.menu_item.fa-solid::before,
+.menu_item.fas::before {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+}
+
+.banner .banner-head,
+.banner .banner-head.z-label {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+}

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/landing/signin.css?v22"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/modales.css?v3"?>
 
 <window  id="windowIdUsuario"  position="center" class="window_reg" closable="true"
          apply="org.zkoss.bind.BindComposer" 
@@ -7,23 +9,42 @@
     <caption label="Registrar usuario"  class="window_registrar_usuario" />
 
 
-    <script type="text/javascript">
+    <script type="text/javascript"><![CDATA[
         const windowModal = () => {
-            const container = document.querySelector(".window_registrar_usuario");
             const modal = document.querySelector(".register_wrapper_id");
+            const win = document.querySelector(".window_reg") || document.querySelector("#windowIdUsuario");
 
-            const modal_btn = Array.from(
-                container.querySelectorAll(".z-window-modal-close")
-            )[0];
+            const getCloseBtn = () => {
+                const root = win || document;
+                return root.querySelector(".z-window-close, .z-window-modal-close, .z-window-icon.z-window-close, [class*='window-close']");
+            };
 
-
-            const closeModal = (e) => {
-                if(!modal.contains(e.target)){
+            const closeWindow = () => {
+                const modal_btn = getCloseBtn();
+                if (modal_btn) {
                     modal_btn.click();
+                    return;
+                }
+                if (typeof zk !== "undefined" && zk.Widget) {
+                    const widget = zk.Widget.$("$windowIdUsuario");
+                    if (widget) {
+                        widget.detach();
+                    }
                 }
             };
 
-            document.addEventListener('click', (e) => closeModal(e));
+            const closeModal = (e) => {
+                if (!modal) {
+                    return;
+                }
+                if (modal.contains(e.target) || e.target.closest(".z-window-close, .z-window-modal-close, .z-window-icon")) {
+                    return;
+                }
+                closeWindow();
+                document.removeEventListener("mousedown", closeModal, true);
+            };
+
+            document.addEventListener("mousedown", closeModal, true);
         };
 
         const deleteTags = (node) => {
@@ -66,7 +87,7 @@
                 }, 500);
             });
         })();
-    </script>
+    ]]></script>
 
 
     <div class="container_registro register_container_id">

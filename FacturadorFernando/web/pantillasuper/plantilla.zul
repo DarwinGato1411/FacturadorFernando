@@ -1,8 +1,8 @@
 
-<?link rel="stylesheet" type="text/css" href="/css/app/base.css"?>   
-<?link rel="stylesheet" type="text/css" href="/css/app/landing/signin.css"?>
-
-<?link rel="stylesheet" type="text/css" href="/css/app/menu.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/base.css"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/modales.css?v1"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/tablas.css?v1"?>
+<?link rel="stylesheet" type="text/css" href="/css/app/menu.css?v18"?>
 
 <?script src="/js/icon.js"?>
 <zk>

@@ -152,7 +152,12 @@ public class LoginController extends SelectorComposer<Component> {
         Executions.sendRedirect("/consultas.zul");
     }
 
-    @Listen("onClick = #btnRegistra")
+    @Listen("onClick = #btnAccesoClientes")
+    public void btnAccesoClientes() {
+        Clients.evalJavaScript("if (window.tfOpenLogin) { window.tfOpenLogin(); }");
+    }
+
+    @Listen("onClick = #btnRegistra; onClick = #btnComenzarAhora")
     public void btnRegistra() {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
                 "/nuevo/registrousuario.zul", null, null);
